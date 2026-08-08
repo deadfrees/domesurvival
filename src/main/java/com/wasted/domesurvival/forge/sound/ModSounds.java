@@ -13,6 +13,8 @@ public final class ModSounds {
 
     public static final RegistryObject<SoundEvent> AIRLOCK_OPEN = register("airlock_open");
     public static final RegistryObject<SoundEvent> AIRLOCK_CLOSE = register("airlock_close");
+    public static final RegistryObject<SoundEvent> ACID_RAIN_AMBIENCE = register("acid_rain_ambience");
+    public static final RegistryObject<SoundEvent> SANDSTORM_WIND = register("sandstorm_wind");
 
     private static RegistryObject<SoundEvent> register(String name) {
         return SOUND_EVENTS.register(name,

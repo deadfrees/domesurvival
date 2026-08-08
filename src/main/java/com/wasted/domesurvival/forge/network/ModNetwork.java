@@ -11,7 +11,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import java.util.Optional;
 
 public final class ModNetwork {
-    private static final String PROTOCOL_VERSION = "1";
+    private static final String PROTOCOL_VERSION = "4";
 
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(DomeSurvival.MOD_ID, "main"),
@@ -38,6 +38,15 @@ public final class ModNetwork {
                 OxygenSyncPacket::encode,
                 OxygenSyncPacket::decode,
                 OxygenSyncPacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+        );
+
+        CHANNEL.registerMessage(
+                nextMessageId++,
+                SurfaceWeatherSyncPacket.class,
+                SurfaceWeatherSyncPacket::encode,
+                SurfaceWeatherSyncPacket::decode,
+                SurfaceWeatherSyncPacket::handle,
                 Optional.of(NetworkDirection.PLAY_TO_CLIENT)
         );
     }

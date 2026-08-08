@@ -6,5 +6,7 @@
   "block.domesurvival.airlock_door": "Герметичный затвор шлюза",
   "block.domesurvival.airlock_panel": "Панель управления шлюзом",
   "subtitles.domesurvival.airlock_open": "Открывается затвор шлюза",
-  "subtitles.domesurvival.airlock_close": "Закрывается затвор шлюза"
+  "subtitles.domesurvival.airlock_close": "Закрывается затвор шлюза",
+  "subtitles.domesurvival.sandstorm_wind": "Рёв песчаной бури",
+  "subtitles.domesurvival.acid_rain_ambience": "Кислотный дождь"
 }

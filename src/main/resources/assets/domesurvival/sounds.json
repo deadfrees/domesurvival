@@ -16,5 +16,23 @@
         "stream": false
       }
     ]
+  },
+  "acid_rain_ambience": {
+    "subtitle": "subtitles.domesurvival.acid_rain_ambience",
+    "sounds": [
+      {
+        "name": "domesurvival:weather/acid_rain_ambience",
+        "stream": true
+      }
+    ]
+  },
+  "sandstorm_wind": {
+    "subtitle": "subtitles.domesurvival.sandstorm_wind",
+    "sounds": [
+      {
+        "name": "domesurvival:weather/sandstorm_wind",
+        "stream": true
+      }
+    ]
   }
 }

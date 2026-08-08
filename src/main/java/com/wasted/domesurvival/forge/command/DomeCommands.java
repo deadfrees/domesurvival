@@ -11,6 +11,7 @@ import com.wasted.domesurvival.forge.airlock.AirlockService;
 import com.wasted.domesurvival.forge.data.DomeSavedData;
 import com.wasted.domesurvival.forge.dome.DomeGenerationService;
 import com.wasted.domesurvival.forge.dome.DomePreview;
+import com.wasted.domesurvival.forge.weather.SurfaceWeatherService;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
@@ -33,7 +34,12 @@ public final class DomeCommands {
                         .then(Commands.literal("status").executes(ctx -> airlockStatus(ctx.getSource())))
                         .then(Commands.literal("inner").executes(ctx -> toggleAirlock(ctx.getSource(), AirlockDoor.INNER)))
                         .then(Commands.literal("outer").executes(ctx -> toggleAirlock(ctx.getSource(), AirlockDoor.OUTER)))
-                        .then(Commands.literal("reset").executes(ctx -> resetAirlock(ctx.getSource())))));
+                        .then(Commands.literal("reset").executes(ctx -> resetAirlock(ctx.getSource()))))
+                .then(Commands.literal("weather")
+                        .then(Commands.literal("status").executes(ctx -> weatherStatus(ctx.getSource())))
+                        .then(Commands.literal("sandstorm")
+                                .then(Commands.literal("start").executes(ctx -> startSandstorm(ctx.getSource())))
+                                .then(Commands.literal("stop").executes(ctx -> stopSandstorm(ctx.getSource()))))));
     }
 
     private static int preview(CommandSourceStack source) {
@@ -120,6 +126,33 @@ public final class DomeCommands {
         }
         source.sendFailure(AirlockService.interlockComponent(result.message()));
         return 0;
+    }
+
+
+    private static int weatherStatus(CommandSourceStack source) {
+        ServerLevel level = source.getLevel();
+        source.sendSuccess(() -> Component.literal(
+                "Surface weather: " + SurfaceWeatherService.currentWeather(level)
+                        + ", sandstormRemaining=" + SurfaceWeatherService.sandstormSecondsRemaining(level) + "s"
+                        + ", nextSandstorm=" + SurfaceWeatherService.sandstormCooldownSeconds(level) + "s"), false);
+        return 1;
+    }
+
+    private static int startSandstorm(CommandSourceStack source) {
+        int duration = SurfaceWeatherService.startSandstorm(source.getLevel());
+        if (duration <= 0) {
+            source.sendFailure(Component.literal("Sandstorms can only be started in the overworld."));
+            return 0;
+        }
+        source.sendSuccess(() -> Component.literal(
+                "Sandstorm started for " + duration + " seconds."), true);
+        return 1;
+    }
+
+    private static int stopSandstorm(CommandSourceStack source) {
+        SurfaceWeatherService.stopSandstorm(source.getLevel());
+        source.sendSuccess(() -> Component.literal("Sandstorm stopped."), true);
+        return 1;
     }
 
     private static int resetAirlock(CommandSourceStack source) {
