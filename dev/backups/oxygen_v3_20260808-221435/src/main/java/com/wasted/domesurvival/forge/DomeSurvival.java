@@ -4,7 +4,6 @@ import com.wasted.domesurvival.forge.airlock.AirlockService;
 import com.wasted.domesurvival.forge.block.ModBlocks;
 import com.wasted.domesurvival.forge.command.DomeCommands;
 import com.wasted.domesurvival.forge.dome.DomeGenerationService;
-import com.wasted.domesurvival.forge.network.ModNetwork;
 import com.wasted.domesurvival.forge.sound.ModSounds;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -22,8 +21,6 @@ public final class DomeSurvival {
         ModBlocks.BLOCKS.register(modBus);
         ModBlocks.ITEMS.register(modBus);
         ModSounds.SOUND_EVENTS.register(modBus);
-
-        ModNetwork.register();
 
         MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
         MinecraftForge.EVENT_BUS.addListener(this::onServerStarted);
