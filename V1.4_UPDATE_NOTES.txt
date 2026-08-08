@@ -1,0 +1,19 @@
+DomeSurvival V1.4
+
+Changes:
+- Corrected the dome foundation geometry.
+- Dome foundation is now entirely inside the dome footprint: radius 46..50.
+- The outer edge is exactly at R=50, directly under the shell.
+- V1.3 external plinth blocks outside R=50 are removed conditionally.
+- Removed external foundation restores WASTED-like terrain:
+  Y>=62 -> air
+  Y=61  -> sand
+  Y<=60 -> sandstone
+- Existing airlock foundation remains under the airlock itself.
+- Structure version: 5.
+- Existing V1.3 world: use /dome upgrade, NOT /dome generate.
+
+Pure Java test:
+DomeGeometrySelfTest: OK
+plannedV13toV14Ops=10574
+Java classfile major=61 (Java 17)

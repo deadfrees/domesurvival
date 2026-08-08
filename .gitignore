@@ -1,0 +1,10 @@
+.gradle/
+build/
+run/
+run-data/
+out/
+*.log
+*.class
+src/generated/
+dev/worlds/WASTED_TEST/
+dev/worlds/.extract/

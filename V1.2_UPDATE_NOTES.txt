@@ -1,0 +1,24 @@
+DomeSurvival V1.2
+
+Changes:
+- Airlock moved from X=-506 to X=-515 to line up with WASTED coarse-dirt path.
+- New airlock Z range: -596..-582.
+- Dirt path continues through the airlock as coarse dirt.
+- Old V1.1 airlock is removed automatically during /dome upgrade.
+- Old V1.1 dome opening is re-sealed automatically.
+- Small author-built white/black/brown structure immediately beyond the old airlock is conditionally removed.
+- Dome perimeter foundation is deepened to Y=59..62.
+- Airlock gets its own buried foundation at Y=59..60 plus frame rails at Y=61.
+- Safe AIRLOCK bounds follow the new airlock position.
+- structureVersion = 3.
+
+Upgrade existing V1.1 test world:
+  /dome status
+  /dome upgrade
+  /dome status
+
+Expected after upgrade:
+  structureVersion=3/3
+
+Useful inspection teleport:
+  /tp @s -515 64 -578

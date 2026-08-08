@@ -1,0 +1,33 @@
+# Gradle cache/build
+.gradle/
+build/
+out/
+
+# Minecraft runtime
+run/
+run-data/
+logs/
+
+# IntelliJ local files
+.idea/
+*.iml
+
+# Java
+*.class
+
+# Logs/crash reports
+*.log
+crash-reports/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Test worlds / WASTED
+dev/worlds/
+WASTED_TEST/
+*.mca
+
+# Temporary folders
+temp/
+tmp/

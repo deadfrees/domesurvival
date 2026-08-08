@@ -1,0 +1,9 @@
+DomeSurvival V1.3
+
+- Structure version: 4
+- Adds a clearly visible solid foundation/plinth around the dome.
+- Foundation uses a new block: domesurvival:dome_foundation (smooth-stone visual).
+- Foundation spans Y=59..63; Y=62..63 is visibly above the WASTED trail surface.
+- Foundation ring is ~5.5 blocks thick radially, so it reads as a real structural base.
+- Airlock receives matching foundation side walls and buried footing.
+- Existing V1.2 world upgrades safely with /dome upgrade; no need to regenerate the dome.

@@ -1,0 +1,20 @@
+{
+  "airlock_open": {
+    "subtitle": "subtitles.domesurvival.airlock_open",
+    "sounds": [
+      {
+        "name": "domesurvival:airlock/open",
+        "stream": false
+      }
+    ]
+  },
+  "airlock_close": {
+    "subtitle": "subtitles.domesurvival.airlock_close",
+    "sounds": [
+      {
+        "name": "domesurvival:airlock/close",
+        "stream": false
+      }
+    ]
+  }
+}

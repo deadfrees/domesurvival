@@ -1,0 +1,9 @@
+DomeSurvival V2.1
+
+Airlock panel status indication:
+- CLOSED shutter -> RED panel
+- OPEN shutter -> GREEN panel
+- Inner and outer panels display their own shutter state independently.
+- Interlock remains unchanged: both shutters cannot be open at the same time.
+- Panel states synchronize after toggles, reset, and server startup.
+- No structure version bump is required; existing V2 world stays structureVersion=6/6.

@@ -1,0 +1,10 @@
+{
+  "mod.domesurvival.name": "Dome Survival",
+  "block.domesurvival.reinforced_glass": "Усиленное стекло купола",
+  "block.domesurvival.dome_frame": "Каркас купола",
+  "block.domesurvival.dome_foundation": "Фундамент купола",
+  "block.domesurvival.airlock_door": "Герметичный затвор шлюза",
+  "block.domesurvival.airlock_panel": "Панель управления шлюзом",
+  "subtitles.domesurvival.airlock_open": "Открывается затвор шлюза",
+  "subtitles.domesurvival.airlock_close": "Закрывается затвор шлюза"
+}

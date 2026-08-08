@@ -1,0 +1,14 @@
+DomeSurvival V2.3
+
+- Added second INNER door control panel on the dome side of the inner shutter.
+- Existing chamber-side inner panel remains. Both control the same inner shutter.
+- Both inner panels stay synchronized with the same door state.
+- Inner door action chat is now compact and color-coded:
+  GREEN: [ШЛЮЗ] ВНУТРЕННЯЯ ЗАКРЫТА • КАМЕРА ПОД ДАВЛЕНИЕМ
+  RED:   [ШЛЮЗ] ВНУТРЕННЯЯ ОТКРЫТА • КАМЕРА ПОД ДАВЛЕНИЕМ
+- Outer door messages remain:
+  GREEN: [ШЛЮЗ] ВНЕШНЯЯ ЗАКРЫТА • КАМЕРА ПОД ДАВЛЕНИЕМ
+  RED:   [ШЛЮЗ] ВНЕШНЯЯ ОТКРЫТА • КАМЕРА РАЗГЕРМЕТИЗИРОВАНА
+- Existing opening/closing OGG sounds are reused for both inner panels.
+- Structure version: 7. Existing V2/V2.2 world should show 6/7; use /dome upgrade once.
+- Upgrade adds exactly one block: the dome-side inner panel at X=-512 Y=63 Z=-596.
