@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.client;
 
 import com.wasted.domesurvival.core.oxygen.OxygenRules;
+import com.wasted.domesurvival.core.oxygen.OxygenSource;
 import com.wasted.domesurvival.forge.DomeSurvival;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -40,15 +41,17 @@ public final class OxygenHudOverlay {
         int oxygen = ClientOxygenState.oxygen();
         int max = ClientOxygenState.maxOxygen();
 
-        // Mimic vanilla air HUD behavior: disappear once reserve is full in breathable air.
-        if (ClientOxygenState.breathable() && oxygen >= max) {
+        // Full personal reserve in ambient breathable air needs no HUD.
+        if (ClientOxygenState.breathable()
+                && ClientOxygenState.source() == OxygenSource.ENVIRONMENT
+                && oxygen >= max) {
             return;
         }
 
         int rightEdge = screenWidth / 2 + 91;
         int y = screenHeight - 59;
 
-        // If vanilla underwater bubbles are also visible, keep our environmental O2 row separate.
+        // Keep environmental oxygen separate from vanilla underwater air.
         if (minecraft.player.isUnderWater()) {
             y -= 10;
         }
@@ -57,17 +60,31 @@ public final class OxygenHudOverlay {
 
         for (int i = 0; i < OxygenRules.HUD_BUBBLES; i++) {
             double amount = filledBubbles - i;
-            ResourceLocation texture = amount >= 1.0 ? FULL : amount >= 0.5 ? HALF : EMPTY;
+            ResourceLocation texture =
+                    amount >= 1.0 ? FULL : amount >= 0.5 ? HALF : EMPTY;
 
             int x = rightEdge - ICON_SIZE - i * ICON_STEP;
-            graphics.blit(texture, x, y, 0.0F, 0.0F,
-                    ICON_SIZE, ICON_SIZE, ICON_SIZE, ICON_SIZE);
+            graphics.blit(
+                    texture,
+                    x,
+                    y,
+                    0.0F,
+                    0.0F,
+                    ICON_SIZE,
+                    ICON_SIZE,
+                    ICON_SIZE,
+                    ICON_SIZE
+            );
         }
 
         /*
-         * V3.1: no "O2" text label.
-         * In Minecraft's pixel font it was visually ambiguous and looked like the number "02".
-         * The cyan bubble row itself is the oxygen indicator.
+         * V3.2.1:
+         * No separate tank-source glyph.
+         * The playtest showed that a detached icon near the center of the HUD
+         * looks like an unrelated status indicator.
+         *
+         * Source selection is still known by the client, but the oxygen bubble
+         * row remains visually clean and consistent with V3.1.
          */
     }
 }

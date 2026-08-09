@@ -5,6 +5,7 @@ import com.wasted.domesurvival.forge.block.ModBlocks;
 import com.wasted.domesurvival.forge.command.DomeCommands;
 import com.wasted.domesurvival.forge.config.SurfaceHazardConfig;
 import com.wasted.domesurvival.forge.dome.DomeGenerationService;
+import com.wasted.domesurvival.forge.item.ModItems;
 import com.wasted.domesurvival.forge.network.ModNetwork;
 import com.wasted.domesurvival.forge.particle.ModParticles;
 import com.wasted.domesurvival.forge.sound.ModSounds;
@@ -25,6 +26,7 @@ public final class DomeSurvival {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModBlocks.BLOCKS.register(modBus);
         ModBlocks.ITEMS.register(modBus);
+        ModItems.ITEMS.register(modBus);
         ModSounds.SOUND_EVENTS.register(modBus);
         ModParticles.PARTICLE_TYPES.register(modBus);
 

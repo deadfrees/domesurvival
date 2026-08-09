@@ -1,10 +1,15 @@
 package com.wasted.domesurvival.forge.client;
 
 import com.wasted.domesurvival.forge.DomeSurvival;
+import com.wasted.domesurvival.forge.client.model.OxygenMaskModel;
+import com.wasted.domesurvival.forge.client.model.OxygenTankModel;
 import com.wasted.domesurvival.forge.client.particle.AcidRainParticle;
 import com.wasted.domesurvival.forge.client.particle.SandstormParticle;
+import com.wasted.domesurvival.forge.client.render.M40MaskRenderLayer;
 import com.wasted.domesurvival.forge.particle.ModParticles;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
@@ -30,8 +35,45 @@ public final class ClientModEvents {
     }
 
     @SubscribeEvent
-    public static void registerParticles(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ModParticles.ACID_RAIN_STREAK.get(), AcidRainParticle.Provider::new);
-        event.registerSpriteSet(ModParticles.SANDSTORM_MOTE.get(), SandstormParticle.Provider::new);
+    public static void registerLayerDefinitions(
+            EntityRenderersEvent.RegisterLayerDefinitions event
+    ) {
+        event.registerLayerDefinition(
+                OxygenMaskModel.LAYER_LOCATION,
+                OxygenMaskModel::createBodyLayer
+        );
+
+        event.registerLayerDefinition(
+                OxygenTankModel.LAYER_LOCATION,
+                OxygenTankModel::createBodyLayer
+        );
+    }
+
+    @SubscribeEvent
+    public static void addPlayerLayers(EntityRenderersEvent.AddLayers event) {
+        for (String skin : event.getSkins()) {
+            PlayerRenderer renderer = event.getSkin(skin);
+
+            if (renderer != null) {
+                renderer.addLayer(
+                        new M40MaskRenderLayer(renderer)
+                );
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void registerParticles(
+            RegisterParticleProvidersEvent event
+    ) {
+        event.registerSpriteSet(
+                ModParticles.ACID_RAIN_STREAK.get(),
+                AcidRainParticle.Provider::new
+        );
+
+        event.registerSpriteSet(
+                ModParticles.SANDSTORM_MOTE.get(),
+                SandstormParticle.Provider::new
+        );
     }
 }

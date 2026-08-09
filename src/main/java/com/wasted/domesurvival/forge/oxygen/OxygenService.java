@@ -1,6 +1,8 @@
 package com.wasted.domesurvival.forge.oxygen;
 
 import com.wasted.domesurvival.core.oxygen.OxygenRules;
+import com.wasted.domesurvival.core.oxygen.OxygenSource;
+import com.wasted.domesurvival.core.oxygen.OxygenSupplyRules;
 import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.network.ModNetwork;
 import com.wasted.domesurvival.forge.network.OxygenSyncPacket;
@@ -13,12 +15,12 @@ import net.minecraftforge.fml.common.Mod;
 /**
  * Server-authoritative oxygen simulation.
  *
- * Performance rules:
- * - one global server callback per tick;
- * - actual player simulation only every 20 ticks;
- * - O(1) arithmetic environment classification;
- * - no block/chunk scans;
- * - packet only when oxygen or breathable-state changed.
+ * V3.2 performance characteristics:
+ * - simulation still runs once per second, not once per tick;
+ * - exactly two equipment-slot lookups (HEAD/CHEST), no inventory scan;
+ * - no world block scan/chunk traversal;
+ * - one NBT integer update/sec only while a tank is actively supplying oxygen;
+ * - HUD packet is sent only on authoritative state changes.
  */
 @Mod.EventBusSubscriber(modid = DomeSurvival.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class OxygenService {
@@ -49,7 +51,7 @@ public final class OxygenService {
         if (event.getEntity() instanceof ServerPlayer player) {
             PlayerOxygenData.oxygen(player);
             PlayerOxygenData.clearLastBreathable(player);
-            sync(player, OxygenEnvironment.isBreathable(player));
+            syncCurrent(player);
         }
     }
 
@@ -57,7 +59,7 @@ public final class OxygenService {
     public static void onRespawn(PlayerEvent.PlayerRespawnEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             PlayerOxygenData.clearLastBreathable(player);
-            sync(player, OxygenEnvironment.isBreathable(player));
+            syncCurrent(player);
         }
     }
 
@@ -65,7 +67,7 @@ public final class OxygenService {
     public static void onDimensionChanged(PlayerEvent.PlayerChangedDimensionEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             PlayerOxygenData.clearLastBreathable(player);
-            sync(player, OxygenEnvironment.isBreathable(player));
+            syncCurrent(player);
         }
     }
 
@@ -88,51 +90,129 @@ public final class OxygenService {
         }
 
         boolean bypass = player.isCreative() || player.isSpectator();
-        boolean breathable = bypass || OxygenEnvironment.isBreathable(player);
+        boolean environmentBreathable = bypass || OxygenEnvironment.isBreathable(player);
 
-        int beforeOxygen = PlayerOxygenData.oxygen(player);
-        int beforeEmpty = PlayerOxygenData.emptyUpdates(player);
-        int max = PlayerOxygenData.maxOxygen(player);
+        int reserveBefore = PlayerOxygenData.oxygen(player);
+        int emptyBefore = PlayerOxygenData.emptyUpdates(player);
+        int reserveMax = PlayerOxygenData.maxOxygen(player);
 
-        OxygenRules.StepResult step;
+        OxygenEquipment.TankView tank = OxygenEquipment.tank(player);
+        int tankBefore = tank == null ? 0 : tank.oxygen();
+        boolean tankReady = !bypass && OxygenEquipment.tankEquipmentReady(player, tank);
+
+        OxygenSupplyRules.SupplyStep step;
+
         if (bypass) {
-            step = new OxygenRules.StepResult(max, 0, false);
+            step = new OxygenSupplyRules.SupplyStep(
+                    reserveMax,
+                    0,
+                    tankBefore,
+                    OxygenSource.ENVIRONMENT,
+                    false,
+                    false
+            );
         } else {
-            step = OxygenRules.step(beforeOxygen, max, beforeEmpty, breathable);
+            step = OxygenSupplyRules.step(
+                    reserveBefore,
+                    reserveMax,
+                    emptyBefore,
+                    environmentBreathable,
+                    tankReady,
+                    tankBefore
+            );
         }
 
-        boolean oxygenChanged = step.oxygen() != beforeOxygen || step.emptyUpdates() != beforeEmpty;
-        if (oxygenChanged) {
-            PlayerOxygenData.set(player, step.oxygen(), step.emptyUpdates());
+        boolean reserveChanged =
+                step.reserveOxygen() != reserveBefore || step.emptyUpdates() != emptyBefore;
+
+        if (reserveChanged) {
+            PlayerOxygenData.set(
+                    player,
+                    step.reserveOxygen(),
+                    step.emptyUpdates()
+            );
         }
 
-        boolean environmentChanged = PlayerOxygenData.updateLastBreathable(player, breathable);
+        boolean tankChanged = false;
+        if (tank != null && step.tankConsumed() && step.tankOxygen() != tankBefore) {
+            tank.setOxygen(step.tankOxygen());
+            tankChanged = true;
+        }
+
+        boolean environmentChanged =
+                PlayerOxygenData.updateLastBreathable(player, environmentBreathable);
 
         if (step.shouldDamage()) {
-            /*
-             * Do NOT use drown() here.
-             * The vanilla drowning source produces underwater/bubble audiovisual feedback,
-             * which is incorrect for environmental oxygen deprivation.
-             *
-             * generic() gives normal damage feedback without pretending the player is underwater.
-             */
-            player.hurt(player.damageSources().generic(), OxygenRules.SUFFOCATION_DAMAGE);
+            player.hurt(
+                    player.damageSources().generic(),
+                    OxygenRules.SUFFOCATION_DAMAGE
+            );
         }
 
-        if (oxygenChanged || environmentChanged) {
-            sync(player, breathable);
+        if (reserveChanged || tankChanged || environmentChanged) {
+            sendSnapshot(player, environmentBreathable, step.source());
         }
     }
 
-    public static void sync(ServerPlayer player, boolean breathable) {
+    private static void syncCurrent(ServerPlayer player) {
+        boolean bypass = player.isCreative() || player.isSpectator();
+        boolean environmentBreathable = bypass || OxygenEnvironment.isBreathable(player);
+
+        OxygenSource source = currentSource(player, environmentBreathable, bypass);
+        sendSnapshot(player, environmentBreathable, source);
+        PlayerOxygenData.updateLastBreathable(player, environmentBreathable);
+    }
+
+    private static OxygenSource currentSource(
+            ServerPlayer player,
+            boolean environmentBreathable,
+            boolean bypass
+    ) {
+        if (bypass || environmentBreathable) {
+            return OxygenSource.ENVIRONMENT;
+        }
+
+        OxygenEquipment.TankView tank = OxygenEquipment.tank(player);
+        if (OxygenEquipment.tankEquipmentReady(player, tank)
+                && tank != null
+                && tank.oxygen() > 0) {
+            return OxygenSource.TANK;
+        }
+
+        return OxygenSource.RESERVE;
+    }
+
+    private static void sendSnapshot(
+            ServerPlayer player,
+            boolean environmentBreathable,
+            OxygenSource source
+    ) {
+        int current;
+        int max;
+
+        if (source == OxygenSource.TANK) {
+            OxygenEquipment.TankView tank = OxygenEquipment.tank(player);
+            if (tank != null && tank.oxygen() > 0) {
+                current = tank.oxygen();
+                max = tank.capacity();
+            } else {
+                source = OxygenSource.RESERVE;
+                current = PlayerOxygenData.oxygen(player);
+                max = PlayerOxygenData.maxOxygen(player);
+            }
+        } else {
+            current = PlayerOxygenData.oxygen(player);
+            max = PlayerOxygenData.maxOxygen(player);
+        }
+
         ModNetwork.sendTo(
                 player,
                 new OxygenSyncPacket(
-                        PlayerOxygenData.oxygen(player),
-                        PlayerOxygenData.maxOxygen(player),
-                        breathable
+                        current,
+                        max,
+                        environmentBreathable,
+                        source
                 )
         );
-        PlayerOxygenData.updateLastBreathable(player, breathable);
     }
 }

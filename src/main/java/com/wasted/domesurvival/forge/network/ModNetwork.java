@@ -11,14 +11,24 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import java.util.Optional;
 
 public final class ModNetwork {
+    /*
+     * Protocol 4 comes from the current shared main branch.
+     *
+     * Do not return this to protocol 2:
+     * current main already contains SurfaceWeatherSyncPacket.
+     */
     private static final String PROTOCOL_VERSION = "4";
 
-    public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(DomeSurvival.MOD_ID, "main"),
-            () -> PROTOCOL_VERSION,
-            PROTOCOL_VERSION::equals,
-            PROTOCOL_VERSION::equals
-    );
+    public static final SimpleChannel CHANNEL =
+            NetworkRegistry.newSimpleChannel(
+                    new ResourceLocation(
+                            DomeSurvival.MOD_ID,
+                            "main"
+                    ),
+                    () -> PROTOCOL_VERSION,
+                    PROTOCOL_VERSION::equals,
+                    PROTOCOL_VERSION::equals
+            );
 
     private static int nextMessageId;
     private static boolean registered;
@@ -30,6 +40,7 @@ public final class ModNetwork {
         if (registered) {
             return;
         }
+
         registered = true;
 
         CHANNEL.registerMessage(
@@ -51,7 +62,13 @@ public final class ModNetwork {
         );
     }
 
-    public static void sendTo(ServerPlayer player, Object message) {
-        CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), message);
+    public static void sendTo(
+            ServerPlayer player,
+            Object message
+    ) {
+        CHANNEL.send(
+                PacketDistributor.PLAYER.with(() -> player),
+                message
+        );
     }
 }
