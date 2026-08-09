@@ -38,12 +38,25 @@ public final class ModBlocks {
             () -> new AirlockPanelBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .strength(15.0F, 1200.0F)));
 
+
+    public static final RegistryObject<Block> LANOS_DECORATIVE = BLOCKS.register("lanos_decorative",
+            () -> new DecorativeLanosBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .strength(2.0F, 6.0F)
+                    .noOcclusion()));
+
+    public static final RegistryObject<Block> LANOS_ABANDONED = BLOCKS.register("lanos_abandoned",
+            () -> new DecorativeLanosBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .strength(2.0F, 6.0F)
+                    .noOcclusion()));
+
     static {
         ITEMS.register("reinforced_glass", () -> new BlockItem(REINFORCED_GLASS.get(), new Item.Properties()));
         ITEMS.register("dome_frame", () -> new BlockItem(DOME_FRAME.get(), new Item.Properties()));
         ITEMS.register("dome_foundation", () -> new BlockItem(DOME_FOUNDATION.get(), new Item.Properties()));
         ITEMS.register("airlock_door", () -> new BlockItem(AIRLOCK_DOOR.get(), new Item.Properties()));
         ITEMS.register("airlock_panel", () -> new BlockItem(AIRLOCK_PANEL.get(), new Item.Properties()));
+        ITEMS.register("lanos_decorative", () -> new BlockItem(LANOS_DECORATIVE.get(), new Item.Properties()));
+        ITEMS.register("lanos_abandoned", () -> new BlockItem(LANOS_ABANDONED.get(), new Item.Properties()));
     }
 
     private ModBlocks() {

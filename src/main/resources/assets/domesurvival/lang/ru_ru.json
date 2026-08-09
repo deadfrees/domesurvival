@@ -8,5 +8,7 @@
   "subtitles.domesurvival.airlock_open": "Открывается затвор шлюза",
   "subtitles.domesurvival.airlock_close": "Закрывается затвор шлюза",
   "subtitles.domesurvival.sandstorm_wind": "Рёв песчаной бури",
-  "subtitles.domesurvival.acid_rain_ambience": "Кислотный дождь"
+  "subtitles.domesurvival.acid_rain_ambience": "Кислотный дождь",
+  "block.domesurvival.lanos_decorative": "Chevrolet Lanos (декоративный)",
+  "block.domesurvival.lanos_abandoned": "Chevrolet Lanos (заброшенный)"
 }

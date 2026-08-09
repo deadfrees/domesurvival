@@ -8,5 +8,7 @@
   "subtitles.domesurvival.airlock_open": "Airlock shutter opens",
   "subtitles.domesurvival.airlock_close": "Airlock shutter closes",
   "subtitles.domesurvival.sandstorm_wind": "Sandstorm wind",
-  "subtitles.domesurvival.acid_rain_ambience": "Acid rain"
+  "subtitles.domesurvival.acid_rain_ambience": "Acid rain",
+  "block.domesurvival.lanos_decorative": "Chevrolet Lanos (Decorative)",
+  "block.domesurvival.lanos_abandoned": "Chevrolet Lanos (Abandoned)"
 }
