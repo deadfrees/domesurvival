@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "domesurvival:basic_fluid_pipe",
-    "domesurvival:reinforced_fluid_pipe",
-    "domesurvival:high_pressure_fluid_pipe"
-  ]
-}

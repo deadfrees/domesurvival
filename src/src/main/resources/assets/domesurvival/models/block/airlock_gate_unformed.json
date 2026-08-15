@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "domesurvival:block/airlock_gate_unformed_dark"
-  }
-}

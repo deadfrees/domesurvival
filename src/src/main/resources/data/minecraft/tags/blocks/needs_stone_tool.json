@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "domesurvival:coal_generator",
-    "domesurvival:water_purifier",
-    "domesurvival:oxygen_electrolyzer",
-    "domesurvival:machine_stabilizer"
-  ]
-}

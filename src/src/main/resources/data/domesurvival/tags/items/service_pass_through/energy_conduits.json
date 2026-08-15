@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "domesurvival:basic_energy_pipe",
-    "domesurvival:reinforced_energy_pipe",
-    "domesurvival:high_voltage_energy_pipe"
-  ]
-}

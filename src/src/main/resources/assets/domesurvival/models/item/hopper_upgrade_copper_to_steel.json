@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "domesurvival:item/hopper_upgrade_copper_to_steel"
-  }
-}

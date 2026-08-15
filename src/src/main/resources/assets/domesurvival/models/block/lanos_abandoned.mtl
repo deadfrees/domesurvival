@@ -1,8 +1,0 @@
-# Forge OBJ material; texture is supplied by the wrapper JSON
-newmtl car
-Ka 1.000000 1.000000 1.000000
-Kd 1.000000 1.000000 1.000000
-Ks 0.000000 0.000000 0.000000
-d 1.0
-illum 1
-map_Kd #texture0

@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "lit=false": { "model": "domesurvival:block/airlock_panel_closed" },
-    "lit=true":  { "model": "domesurvival:block/airlock_panel_open" }
-  }
-}
