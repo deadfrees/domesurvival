@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ASA",
+    "NMN",
+    "SGS"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:ingots/aluminum"
+    },
+    "S": {
+      "tag": "forge:ingots/steel"
+    },
+    "N": {
+      "tag": "forge:ingots/nickel"
+    },
+    "M": {
+      "item": "domesurvival:small_oxygen_tank"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "domesurvival:medium_oxygen_tank"
+  }
+}

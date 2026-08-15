@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "domesurvival:small_oxygen_tank",
+    "domesurvival:medium_oxygen_tank",
+    "domesurvival:large_oxygen_tank"
+  ]
+}

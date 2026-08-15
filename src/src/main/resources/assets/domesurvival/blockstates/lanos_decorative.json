@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "domesurvival:block/lanos_decorative"
+    },
+    "facing=east": {
+      "model": "domesurvival:block/lanos_decorative",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "domesurvival:block/lanos_decorative",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "domesurvival:block/lanos_decorative",
+      "y": 270
+    }
+  }
+}

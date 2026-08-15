@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SRS",
+    "CGC",
+    "NRN"
+  ],
+  "key": {
+    "S": { "tag": "forge:ingots/silver" },
+    "R": { "item": "minecraft:redstone" },
+    "C": { "tag": "forge:ingots/copper" },
+    "G": { "tag": "forge:ingots/gold" },
+    "N": { "tag": "forge:ingots/nickel" }
+  },
+  "result": {
+    "item": "domesurvival:pulse_matrix",
+    "count": 1
+  }
+}

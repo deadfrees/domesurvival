@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "domesurvival:oxygen_pipe",
+    "domesurvival:reinforced_oxygen_pipe",
+    "domesurvival:high_flow_oxygen_pipe"
+  ]
+}

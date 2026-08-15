@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AGA",
+    "RBR",
+    "SMS"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:ingots/aluminum"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "R": {
+      "item": "domesurvival:reinforced_oxygen_pipe"
+    },
+    "B": {
+      "item": "domesurvival:machine_stabilizer"
+    },
+    "S": {
+      "tag": "forge:ingots/steel"
+    },
+    "M": {
+      "item": "domesurvival:pulse_matrix"
+    }
+  },
+  "result": {
+    "item": "domesurvival:oxygen_complex_output",
+    "count": 1
+  }
+}

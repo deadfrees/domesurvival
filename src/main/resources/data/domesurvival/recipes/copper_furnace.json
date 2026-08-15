@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CFC",
+    "CCC"
+  ],
+  "key": {
+    "C": { "tag": "forge:ingots/copper" },
+    "F": { "item": "minecraft:furnace" }
+  },
+  "result": {
+    "item": "domesurvival:copper_furnace",
+    "count": 1
+  }
+}

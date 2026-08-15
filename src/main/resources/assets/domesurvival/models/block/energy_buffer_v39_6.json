@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "domesurvival:block/coal_generator_side",
+    "down": "domesurvival:block/coal_generator_side",
+    "up": "domesurvival:block/coal_generator_side",
+    "north": "domesurvival:block/energy_buffer/front_6",
+    "south": "domesurvival:block/coal_generator_side",
+    "west": "domesurvival:block/coal_generator_side",
+    "east": "domesurvival:block/coal_generator_side"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SIS",
+    "CBC",
+    "SIS"
+  ],
+  "key": {
+    "S": { "tag": "forge:ingots/steel" },
+    "I": { "tag": "forge:ingots/iron" },
+    "C": { "tag": "forge:ingots/copper" },
+    "B": { "item": "minecraft:iron_block" }
+  },
+  "result": {
+    "item": "domesurvival:machine_stabilizer",
+    "count": 1
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "credit": "Created for GOTEICRAFT",
+  "ambientocclusion": true,
+  "gui_light": "side",
+  "textures": {
+    "particle": "domesurvival:block/oxygen_pipe/reinforced_oxygen_pipe_metal",
+    "metal": "domesurvival:block/oxygen_pipe/reinforced_oxygen_pipe_metal",
+    "seal": "domesurvival:block/oxygen_pipe/reinforced_oxygen_pipe_seal",
+    "oxygen": "domesurvival:block/oxygen_pipe/reinforced_oxygen_pipe_oxygen",
+    "panel": "domesurvival:block/oxygen_pipe/reinforced_oxygen_pipe_panel",
+    "bolts": "domesurvival:block/oxygen_pipe/reinforced_oxygen_pipe_bolts"
+  },
+  "elements": [
+    {
+      "from": [
+        5.75,
+        5.75,
+        0.0
+      ],
+      "to": [
+        10.25,
+        10.25,
+        5.75
+      ],
+      "faces": {
+        "east": {
+          "texture": "#metal"
+        },
+        "west": {
+          "texture": "#metal"
+        },
+        "up": {
+          "texture": "#metal"
+        },
+        "down": {
+          "texture": "#metal"
+        }
+      }
+    },
+    {
+      "from": [
+        6.6,
+        10.25,
+        0.8
+      ],
+      "to": [
+        9.4,
+        10.37,
+        5.2
+      ],
+      "faces": {
+        "up": {
+          "texture": "#oxygen"
+        }
+      }
+    }
+  ]
+}

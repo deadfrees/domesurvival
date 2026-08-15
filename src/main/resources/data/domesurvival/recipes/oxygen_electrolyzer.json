@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SMS",
+    "GBG",
+    "NPN"
+  ],
+  "key": {
+    "S": { "tag": "forge:ingots/silver" },
+    "M": { "item": "domesurvival:pulse_matrix" },
+    "G": { "item": "minecraft:glass" },
+    "B": { "item": "domesurvival:machine_stabilizer" },
+    "N": { "tag": "forge:ingots/nickel" },
+    "P": { "item": "domesurvival:oxygen_pipe" }
+  },
+  "result": {
+    "item": "domesurvival:oxygen_electrolyzer",
+    "count": 1
+  }
+}

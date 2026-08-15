@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TPT",
+    "CCC",
+    "TPT"
+  ],
+  "key": {
+    "T": {
+      "tag": "forge:ingots/tin"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "C": {
+      "tag": "domesurvival:filter_carbon"
+    }
+  },
+  "result": {
+    "item": "domesurvival:water_filter_cartridge"
+  }
+}

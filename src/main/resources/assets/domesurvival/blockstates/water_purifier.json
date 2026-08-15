@@ -1,0 +1,178 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "facing": "north",
+        "lit": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/water_purifier"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "lit": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/water_purifier",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "lit": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/water_purifier",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "lit": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/water_purifier",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "lit": "true"
+      },
+      "apply": {
+        "model": "domesurvival:block/water_purifier_lit"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "lit": "true"
+      },
+      "apply": {
+        "model": "domesurvival:block/water_purifier_lit",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "lit": "true"
+      },
+      "apply": {
+        "model": "domesurvival:block/water_purifier_lit",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "lit": "true"
+      },
+      "apply": {
+        "model": "domesurvival:block/water_purifier_lit",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "port_up": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_input_port_up"
+      }
+    },
+    {
+      "when": {
+        "port_up": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_output_port_up"
+      }
+    },
+    {
+      "when": {
+        "port_down": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_input_port_down"
+      }
+    },
+    {
+      "when": {
+        "port_down": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_output_port_down"
+      }
+    },
+    {
+      "when": {
+        "port_north": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_input_port_north"
+      }
+    },
+    {
+      "when": {
+        "port_north": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_output_port_north"
+      }
+    },
+    {
+      "when": {
+        "port_south": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_input_port_south"
+      }
+    },
+    {
+      "when": {
+        "port_south": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_output_port_south"
+      }
+    },
+    {
+      "when": {
+        "port_west": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_input_port_west"
+      }
+    },
+    {
+      "when": {
+        "port_west": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_output_port_west"
+      }
+    },
+    {
+      "when": {
+        "port_east": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_input_port_east"
+      }
+    },
+    {
+      "when": {
+        "port_east": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/machine_output_port_east"
+      }
+    }
+  ]
+}

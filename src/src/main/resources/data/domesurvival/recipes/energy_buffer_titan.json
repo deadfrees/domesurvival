@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DMD",
+    "NSN",
+    "DBD"
+  ],
+  "key": {
+    "D": {
+      "item": "ad_astra:desh_plate"
+    },
+    "M": {
+      "item": "domesurvival:pulse_matrix"
+    },
+    "N": {
+      "tag": "forge:ingots/nickel"
+    },
+    "S": {
+      "item": "domesurvival:energy_buffer"
+    },
+    "B": {
+      "item": "domesurvival:machine_stabilizer"
+    }
+  },
+  "result": {
+    "item": "domesurvival:energy_buffer_titan",
+    "count": 1
+  }
+}

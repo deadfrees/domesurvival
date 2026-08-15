@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LCL",
+    "DBD",
+    "LML"
+  ],
+  "key": {
+    "L": {
+      "tag": "forge:ingots/lead"
+    },
+    "C": {
+      "tag": "forge:ingots/copper"
+    },
+    "D": {
+      "item": "enderio:dark_steel_ingot"
+    },
+    "B": {
+      "item": "domesurvival:machine_stabilizer"
+    },
+    "M": {
+      "item": "domesurvival:pulse_matrix"
+    }
+  },
+  "result": {
+    "item": "domesurvival:energy_buffer",
+    "count": 1
+  }
+}

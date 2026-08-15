@@ -1,35 +1,40 @@
-# DomeSurvival Dev
+# Dome Survival — stable 0.1.1
 
-Target stack:
+Minecraft Forge mod for the WASTED / GOTEICRAFT survival project.
+
+## Target
+
 - Minecraft 1.20.1
-- Forge 47.4.10 baseline
-- Java 17 target
-- Map: WASTED V0.5
+- Forge 47.4.10
+- Java 17
+- Curios 5.14.1
+- CoFH Core 11.0.2.56
+- Thermal Core 11.0.6.24
+- CustomNPCs-Unofficial 1.20.1.20260711
 
-Dome V1 geometry:
-- center: X=-506, Y=62, Z=-641
-- surface radius: 50
-- vertical skirt: 3
-- top: Y=115
-- underground safe radius: 45
-- underground minimum: Y=-64
+## Build
 
-## Fast Java tests
-
-```bash
-./dev/scripts/build-core.sh
+```powershell
+.\gradlew.bat clean build --console=plain
 ```
 
-The core is intentionally Minecraft-independent. The local harness compiles with `javac --release 17` and rejects output unless classfile major version is 61 (Java 17).
+The release build uses public Maven/CurseMaven dependencies. The old generated `devmods`
+flat-directory dependency block is no longer required.
 
-## Forge layer
+## Stable scope
 
-`build.gradle` is prepared for Forge 1.20.1 / 47.4.10 and requests a Java 17 toolchain. Full Forge dependency resolution/run tasks require a Gradle installation/wrapper and Forge artifacts. The pure-Java core can be tested independently in this environment.
+The 0.1.1 stable snapshot contains the current production code for:
 
-## WASTED test copy
+- dome survival and surface hazards;
+- oxygen equipment and sealed-room oxygen simulation;
+- machines and energy storage;
+- energy, fluid, oxygen and item transport networks;
+- tiered hoppers;
+- universal tank;
+- airlock gate/control system;
+- oxygen reclamation complex;
+- technical service pass-through;
+- CustomNPCs progression integration.
 
-```bash
-./dev/scripts/prepare-wasted-test-world.sh
-```
-
-This creates a disposable world under `dev/worlds/WASTED_TEST` while leaving the uploaded original archive untouched.
+Historical patch archives, build logs, test-world copies, Forge MDK duplicates and local
+modpack jars are intentionally excluded from source control.

@@ -1,0 +1,9 @@
+{
+    "replace":  false,
+    "values":  [
+                   "domesurvival:copper_item_pipe",
+                   "domesurvival:steel_item_pipe",
+                   "domesurvival:desh_item_pipe",
+                   "domesurvival:filtering_item_pipe"
+               ]
+}

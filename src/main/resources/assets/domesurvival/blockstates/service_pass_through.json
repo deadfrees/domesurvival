@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "axis=z,occupied=false": {
+      "model": "domesurvival:block/service_pass_through_empty_z"
+    },
+    "axis=z,occupied=true": {
+      "model": "domesurvival:block/service_pass_through_z"
+    },
+    "axis=x,occupied=false": {
+      "model": "domesurvival:block/service_pass_through_empty_z",
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=x,occupied=true": {
+      "model": "domesurvival:block/service_pass_through_z",
+      "y": 90,
+      "uvlock": true
+    },
+    "axis=y,occupied=false": {
+      "model": "domesurvival:block/service_pass_through_empty_z",
+      "x": 90,
+      "uvlock": true
+    },
+    "axis=y,occupied=true": {
+      "model": "domesurvival:block/service_pass_through_z",
+      "x": 90,
+      "uvlock": true
+    }
+  }
+}

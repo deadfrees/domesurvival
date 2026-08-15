@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:dusts/coal",
+    {
+      "id": "immersiveengineering:coal_coke",
+      "required": false
+    }
+  ]
+}

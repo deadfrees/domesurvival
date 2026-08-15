@@ -1,1 +1,7 @@
-maps/WASTED_TEST/** filter=lfs diff=lfs merge=lfs -text
+* text=auto
+*.png binary
+*.ogg binary
+*.wav binary
+*.nbt binary
+*.glb binary
+*.bin binary

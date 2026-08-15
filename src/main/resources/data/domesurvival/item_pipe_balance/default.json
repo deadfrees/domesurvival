@@ -1,0 +1,18 @@
+{
+  "copper": {
+    "items_per_cycle": 4,
+    "cooldown_ticks": 40
+  },
+  "steel": {
+    "items_per_cycle": 16,
+    "cooldown_ticks": 20
+  },
+  "desh": {
+    "items_per_cycle": 32,
+    "cooldown_ticks": 10
+  },
+  "filtering": {
+    "items_per_cycle": 16,
+    "cooldown_ticks": 20
+  }
+}

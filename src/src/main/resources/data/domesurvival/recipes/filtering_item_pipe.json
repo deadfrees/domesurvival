@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RGR",
+    "GPG",
+    "RSR"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "P": {
+      "item": "domesurvival:pulse_matrix"
+    },
+    "S": {
+      "item": "domesurvival:steel_item_pipe"
+    }
+  },
+  "result": {
+    "item": "domesurvival:filtering_item_pipe",
+    "count": 1
+  }
+}

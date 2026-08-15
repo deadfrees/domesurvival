@@ -1,0 +1,79 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "front": "domesurvival:block/airlock_gate/p00",
+    "side": "domesurvival:block/airlock_gate/side",
+    "particle": "domesurvival:block/airlock_gate/p00",
+    "back": "domesurvival:block/airlock_gate/p00_back"
+  },
+  "elements": [
+    {
+      "from": [
+        0.0,
+        0.0,
+        5.5
+      ],
+      "to": [
+        2.0,
+        16.0,
+        10.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            2,
+            16
+          ],
+          "texture": "#back"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            2,
+            16
+          ],
+          "texture": "#front"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            5,
+            16
+          ],
+          "texture": "#side"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            5,
+            16
+          ],
+          "texture": "#side"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            2,
+            5
+          ],
+          "texture": "#side"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            2,
+            5
+          ],
+          "texture": "#side"
+        }
+      }
+    }
+  ]
+}

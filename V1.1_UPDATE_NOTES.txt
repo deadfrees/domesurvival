@@ -1,5 +1,0 @@
-DomeSurvival V1.1 update
-- Existing V1 dome saves migrate automatically to structureVersion=1.
-- Run /dome upgrade once to add foundation/frame/temporary south airlock.
-- /dome check reports the current logical safe zone.
-- No oxygen/damage mechanics are enabled yet.

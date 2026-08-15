@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "domesurvival:block/coal_generator_top",
+    "front": "domesurvival:block/oxygen_electrolyzer_front_on",
+    "side": "domesurvival:block/coal_generator_side"
+  }
+}

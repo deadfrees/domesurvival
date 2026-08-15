@@ -1,0 +1,7 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "domesurvival:block/airlock_gate/p30"
+  },
+  "elements": []
+}

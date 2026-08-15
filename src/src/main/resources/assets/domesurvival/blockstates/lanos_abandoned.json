@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "domesurvival:block/lanos_abandoned"
+    },
+    "facing=east": {
+      "model": "domesurvival:block/lanos_abandoned",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "domesurvival:block/lanos_abandoned",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "domesurvival:block/lanos_abandoned",
+      "y": 270
+    }
+  }
+}

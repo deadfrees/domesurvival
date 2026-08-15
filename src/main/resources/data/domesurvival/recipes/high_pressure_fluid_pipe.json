@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "RDR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "item": "domesurvival:reinforced_fluid_pipe"
+    },
+    "D": {
+      "item": "ad_astra:desh_plate"
+    }
+  },
+  "result": {
+    "item": "domesurvival:high_pressure_fluid_pipe",
+    "count": 8
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ad_astra"
+    }
+  ]
+}

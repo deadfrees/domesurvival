@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "domesurvival:block/energy_buffer/front",
+    "down": "domesurvival:block/energy_buffer/bottom",
+    "up": "domesurvival:block/energy_buffer/top",
+    "north": "domesurvival:block/energy_buffer/front",
+    "south": "domesurvival:block/energy_buffer/back",
+    "west": "domesurvival:block/energy_buffer/side_output",
+    "east": "domesurvival:block/energy_buffer/side_input"
+  }
+}

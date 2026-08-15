@@ -1,0 +1,9 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "domesurvival:block/universal_tank"
+      }
+    }
+  ]
+}
