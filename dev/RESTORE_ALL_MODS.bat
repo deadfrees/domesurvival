@@ -9,7 +9,7 @@ set "OLD_HOLD=%CD%\run\mods_dev_hold"
 if not exist "%MODS%" mkdir "%MODS%"
 
 echo ============================================================
-echo Dome Survival - RESTORE ALL HELD MODS
+echo Dome Survival - RESTORE PHYSICAL MODPACK
 echo ============================================================
 echo.
 

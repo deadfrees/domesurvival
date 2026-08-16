@@ -3,7 +3,7 @@ setlocal EnableExtensions
 cd /d "%~dp0.."
 
 echo ============================================================
-echo Dome Survival - BOOTSTRAP EFFECTIVE MODPACK V6.3
+echo Dome Survival - FULL MODPACK BOOTSTRAP V6.8 STABLE
 echo ============================================================
 echo.
 
