@@ -22,11 +22,15 @@ minecraft {
 
     runs {
         configureEach {
+            // Runtime refmap remapping is still useful for compatible dependencies,
+            // but it cannot make every arbitrary production mixin JAR dev-safe.
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'info'
+
             mods {
                 "${mod_id}" {
                     source sourceSets.main
@@ -35,10 +39,13 @@ minecraft {
         }
 
         client {}
+
         server {
             args '--nogui'
         }
+
         gameTestServer {}
+
         data {
             workingDirectory project.file('run-data')
             args '--mod', mod_id, '--all',
@@ -60,10 +67,12 @@ repositories {
             includeGroup 'com.teamcofh'
         }
     }
+
     maven {
         name = 'Curios'
         url = uri('https://maven.theillusivec4.top/')
     }
+
     maven {
         name = 'CurseMaven'
         url = uri('https://www.cursemaven.com')
@@ -74,18 +83,39 @@ repositories {
 }
 
 dependencies {
+    // DEV_V5_4_CUSTOMNPCS_DEOBF
+    // DomeSurvival automatic subscribers currently reference CustomNPCs classes.
+    compileOnly fg.deobf('curse.maven:customnpcs-unofficial-1052708:8414335')
+    runtimeOnly fg.deobf('curse.maven:customnpcs-unofficial-1052708:8414335')
+    // DEV_V5_3_CORE_DEOBF
+    // Hard/runtime mod APIs used by DomeSurvival must be remapped by ForgeGradle.
+
+    // Curios - hard dependency used by oxygen equipment/rendering.
+    compileOnly fg.deobf('top.theillusivec4.curios:curios-forge:5.14.1+1.20.1:api')
+    runtimeOnly fg.deobf('top.theillusivec4.curios:curios-forge:5.14.1+1.20.1')
+
+    // CoFH Core - DomeSurvival classes directly reference IWrenchable.
+    compileOnly fg.deobf('com.teamcofh:cofh_core:1.20.1-11.0.2.56')
+    runtimeOnly fg.deobf('com.teamcofh:cofh_core:1.20.1-11.0.2.56')
+
+    // Thermal Core - API/classes used by the project and paired with CoFH Core.
+    compileOnly fg.deobf('com.teamcofh:thermal_core:1.20.1-11.0.6.24')
+    runtimeOnly fg.deobf('com.teamcofh:thermal_core:1.20.1-11.0.6.24')
+    // ForgeGradle remaps the release mod for Mojang-mapped runClient.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    // Runtime/compile APIs actually referenced by DomeSurvival.
-    implementation fg.deobf('com.teamcofh:cofh_core:1.20.1-11.0.2.56')
-    implementation fg.deobf('com.teamcofh:thermal_core:1.20.1-11.0.6.24')
+    /*
+     * Compile classpath only.
+     *
+     * The REAL runtime copies of all gameplay mods live physically in run/mods.
+     * These entries are not runtimeOnly/implementation, so ForgeGradle does not
+     * inject a second gameplay copy into runClient.
+     */
 
     def curiosVersion = '5.14.1+1.20.1'
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curiosVersion}:api")
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curiosVersion}")
 
-    // Exact CustomNPCs build used by the current modpack (CurseForge file 8414335).
-    implementation fg.deobf('curse.maven:customnpcs-unofficial-1052708:8414335')
+    // Kept compile-only for any existing Java references.
+    // Runtime CustomNPCs remains the physical JAR in run/mods for production testing.
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -106,6 +136,7 @@ processResources {
             mod_authors            : mod_authors,
             mod_description        : mod_description
     ]
+
     inputs.properties replaceProperties
 
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
@@ -124,5 +155,21 @@ jar {
                 'Implementation-Vendor' : mod_authors
         ])
     }
+
     finalizedBy 'reobfJar'
+}
+
+
+// DEV_V6_0_FULL_MODPACK_RUNTIME
+// Full modpack development mode.
+// The generated script contains ONLY runtimeOnly fg.deobf(...) local mod dependencies.
+// It is activated explicitly with -PdomeFullDev=true.
+if (project.hasProperty('domeFullDev')) {
+    def domeFullDevScript = file('dev/generated/full_modpack_runtime.gradle')
+    if (!domeFullDevScript.exists()) {
+        throw new GradleException(
+            'FULL DEV runtime is not prepared. Run dev\\RUN_DEV_FULL.bat first.'
+        )
+    }
+    apply from: domeFullDevScript
 }

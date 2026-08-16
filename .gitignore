@@ -38,3 +38,6 @@ V*_GRADLE_STDERR.txt
 # Local world copies / generated runtime data
 dev/worlds/WASTED_TEST/
 dev/worlds/.extract/
+
+# DomeSurvival generated FULL DEV runtime cache
+dev/generated/
