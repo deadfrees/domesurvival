@@ -12,12 +12,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -241,6 +243,11 @@ public final class SealedRoomManager {
         }
 
         LevelCache cache = LEVEL_CACHES.get(level);
+        if (cache != null
+                && !cache.roomsByOutlet.isEmpty()
+                && Math.floorMod(gameTime, RoomAtmosphereRules.OCCUPANT_CONSUMPTION_INTERVAL_TICKS) == 0L) {
+            consumeOccupiedRoomOxygen(level, atmosphere);
+        }
         if (cache == null) return;
 
         long[] pendingKeys = cache.pendingRevalidation.keySet().toLongArray();
@@ -262,6 +269,47 @@ public final class SealedRoomManager {
             if (pressure == null || pressure.depressurized()) {
                 removeLeakingSession(cache, roomId);
             }
+        }
+    }
+
+    /**
+     * Counts players only against already-cached sealed-room geometry.
+     * It never starts discovery/flood-fill and aggregates by canonical room identity,
+     * so multiple ventilation outlets serving the same volume do not duplicate demand.
+     */
+    private static void consumeOccupiedRoomOxygen(ServerLevel level,
+                                                  RoomAtmosphereSavedData atmosphere) {
+        Map<RoomKey, RoomOccupancy> occupiedRooms = new HashMap<>();
+
+        for (ServerPlayer player : level.getServer().getPlayerList().getPlayers()) {
+            if (player.level() != level
+                    || !player.isAlive()
+                    || player.isCreative()
+                    || player.isSpectator()) {
+                continue;
+            }
+
+            BlockPos breathingPos = BlockPos.containing(
+                    player.getX(), player.getEyeY(), player.getZ()
+            );
+            RoomSnapshot room = findCachedSealedRoomContaining(level, breathingPos);
+            if (room == null || !room.sealed()) {
+                continue;
+            }
+
+            RoomKey key = new RoomKey(room.roomId(), room.geometrySignature());
+            occupiedRooms.compute(key, (ignored, current) ->
+                    current == null
+                            ? new RoomOccupancy(room, 1)
+                            : new RoomOccupancy(current.room(), current.players() + 1)
+            );
+        }
+
+        for (RoomOccupancy occupancy : occupiedRooms.values()) {
+            atmosphere.consumeOxygen(
+                    occupancy.room(),
+                    RoomAtmosphereRules.occupantOxygenDemand(occupancy.players())
+            );
         }
     }
 
@@ -579,6 +627,12 @@ public final class SealedRoomManager {
 
     private static long chunkKey(BlockPos pos) {
         return ChunkPos.asLong(pos.getX() >> 4, pos.getZ() >> 4);
+    }
+
+    private record RoomKey(long roomId, long geometrySignature) {
+    }
+
+    private record RoomOccupancy(RoomSnapshot room, int players) {
     }
 
     private static final class LevelCache {

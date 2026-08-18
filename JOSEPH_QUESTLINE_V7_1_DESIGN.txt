@@ -1,0 +1,170 @@
+DomeSurvival — Joseph Kupper Questline V7.1
+===============================================
+
+Design goal
+-----------
+The first chapter now follows the survival logic of the dome:
+survive inside -> restore workshop -> stabilize power -> purify water ->
+build oxygen infrastructure -> first serious outside expedition ->
+automate logistics -> create an emergency reserve.
+
+Stage 02 remains the only large automatic construction event: the existing
+workshop restoration through JosephCooperBridge/WorkshopUpgradeApplier.
+Stages 03-08 do NOT place structures or touch dome/world blocks. Their
+"base upgrades" are progression states plus useful infrastructure reward packs.
+
+QUEST REQUIREMENTS / REWARDS
+----------------------------
+
+01 Жизнеобеспечение купола
+Submit:
+- Oak logs 32
+- Oak saplings 8
+- Wheat 24
+- Charcoal 16
+- Glass 32
+- Copper ingots 12
+Reward:
+- Bread 12
+- Torches 24
+- Bone meal 16
+
+02 Восстановление мастерской
+Java core remains:
+- Iron 64
+- Copper 32
+- Redstone 24
+Extras:
+- Stone bricks 48
+- Iron bars 16
+- Glass panes 24
+- Pistons 6
+- DomeSurvival Copper Furnace 1
+- DomeSurvival Copper Hopper 1
+Effect:
+- Existing workshop is restored/built exactly as before.
+Reward:
+- Machine Wrench 1
+- Copper Item Pipes 8
+- Basic Fluid Pipes 8
+- Copper Hoppers 2
+
+03 Аварийное энергоснабжение
+Submit:
+- Coal Generator 1
+- Pulse Matrix 2
+- Machine Stabilizer 1
+- Ender IO Dark Steel 2
+- Coal 64
+- Redstone 24
+Base milestone:
+- emergency power status becomes ready
+Reward:
+- Energy Buffer 1
+- Basic Energy Pipes 12
+- Coal reserve 32
+
+04 Вода и фильтрация
+Submit:
+- Water Filter Cartridges 4
+- Improved Water Filter 1
+- Basic Fluid Pipes 12
+- Universal Tank 1
+- Copper 16
+- Glass 16
+Base milestone:
+- water purification status becomes stable
+Reward:
+- Water Purifier 1
+- Universal Tank 1
+- Reinforced Fluid Pipes 8
+- Spare Filter Cartridges 2
+
+05 Кислородный контур
+Submit:
+- Pulse Matrix 2
+- Machine Stabilizer 1
+- Oxygen Pipes 16
+- Small Oxygen Tanks 2
+- Ender IO Dark Steel 4
+- Redstone 24
+Base milestone:
+- controlled outside work becomes a believable progression step
+Reward:
+- Oxygen Electrolyzer 1
+- Oxygen Filler 1
+- Oxygen Masks 2
+- Medium Oxygen Tanks 2
+- Reinforced Oxygen Pipes 8
+
+06 Первая внешняя экспедиция
+Submit:
+- Raw Iron 32
+- Raw Copper 48
+- Coal 64
+- Redstone 32
+- Gold Ingots 12
+- Diamonds 4
+Reward:
+- Full DomeSurvival Surface Suit
+- Large Oxygen Tank 1
+- Cooked Beef 16
+
+07 Логистика купола
+Submit:
+- Copper Item Pipes 16
+- Filtering Item Pipes 4
+- Copper Hoppers 4
+- Basic Energy Pipes 8
+- Basic Fluid Pipes 8
+- Oxygen Pipes 8
+Base milestone:
+- logistics status becomes established
+Reward:
+- Steel Item Pipes 12
+- Steel Hoppers 2
+- Reinforced Energy Pipes 8
+- Reinforced Fluid Pipes 8
+- Reinforced Oxygen Pipes 8
+- Machine Wrench 1
+
+08 Аварийный резерв базы
+Submit:
+- Energy Buffer 1
+- Universal Tanks 2
+- Industrial Water Filter 1
+- Steel Item Pipes 8
+- Steel Hoppers 2
+- Ender IO Dark Steel 8
+Base milestone:
+- first survival chapter becomes resilient/complete
+Reward:
+- High Voltage Energy Pipes 8
+- Reinforced Glass 16
+- Large Oxygen Tanks 2
+- Industrial Water Filter 1
+- Filtering Item Pipes 4
+
+09 Программа «Исход»
+Placeholder for the next chapter:
+communications, science, long-range expeditions and later Ad Astra/space
+progression. Desh-tier rewards are intentionally NOT given before that chapter.
+
+Shared progression / rewards
+----------------------------
+Quest progress remains in CustomNPCs world StoredData, as in the current
+Joseph GUI. Reward keys use the same stageXX prefixes, so admin reset removes
+them too. Each reward pack is one-time for the shared base; the player who
+finishes the stage physically receives the package and can install/distribute it.
+
+Testing an existing WASTED_TEST
+-------------------------------
+Use:
+  /josephscript apply
+  /josephscript resetprogress
+
+resetprogress is preferred for this test because it resets logical quest state
+while preserving an already-built workshop.
+
+Do NOT use resettest unless you explicitly want the physical workshop removed
+and rebuilt during Stage 02.

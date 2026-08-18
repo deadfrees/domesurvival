@@ -391,5 +391,6 @@
     "tooltip.domesurvival.surface_suit.weather_protection":  "A full set protects from dangerous surface weather",
     "tooltip.domesurvival.water_filter.cycles":  "Durability: %s / %s cycles",
     "tooltip.domesurvival.water_filter.energy":  "Consumption: %s FE/t",
-    "tooltip.domesurvival.water_filter.process_ticks":  "Cycle time: %s ticks"
+    "tooltip.domesurvival.water_filter.process_ticks":  "Cycle time: %s ticks",
+    "item.domesurvival.memory_painting": "Memory Painting"
 }

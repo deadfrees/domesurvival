@@ -1,4 +1,6 @@
 {
+    "dimension.minecraft.the_end":  "Предел Реальности",
+    "dimension.minecraft.the_nether":  "Ядро Земли",
     "block.domesurvival.airlock_control_panel":  "Панель управления шлюзом",
     "block.domesurvival.airlock_door":  "Герметичный затвор шлюза",
     "block.domesurvival.airlock_gate":  "Ворота шлюза",
@@ -391,5 +393,6 @@
     "tooltip.domesurvival.surface_suit.weather_protection":  "Полный комплект защищает от опасной погоды поверхности",
     "tooltip.domesurvival.water_filter.cycles":  "Ресурс: %s / %s циклов",
     "tooltip.domesurvival.water_filter.energy":  "Потребление: %s FE/т",
-    "tooltip.domesurvival.water_filter.process_ticks":  "Время цикла: %s тиков"
+    "tooltip.domesurvival.water_filter.process_ticks":  "Время цикла: %s тиков",
+    "item.domesurvival.memory_painting": "Картина воспоминаний"
 }

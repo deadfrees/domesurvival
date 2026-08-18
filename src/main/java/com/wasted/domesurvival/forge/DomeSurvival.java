@@ -17,6 +17,8 @@ import com.wasted.domesurvival.forge.network.ModNetwork;
 import com.wasted.domesurvival.forge.particle.ModParticles;
 import com.wasted.domesurvival.forge.registry.ModBlockEntities;
 import com.wasted.domesurvival.forge.registry.ModMenuTypes;
+import com.wasted.domesurvival.forge.registry.ModEntityTypes;
+import com.wasted.domesurvival.forge.registry.ModPaintingVariants;
 import com.wasted.domesurvival.forge.sound.ModSounds;
 import com.wasted.domesurvival.forge.storage.tank.UniversalTankRegistry;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,6 +47,8 @@ public final class DomeSurvival {
         ModBlocks.BLOCKS.register(modBus);
         ModBlocks.ITEMS.register(modBus);
         ModItems.ITEMS.register(modBus);
+        ModEntityTypes.ENTITY_TYPES.register(modBus);
+        ModPaintingVariants.PAINTING_VARIANTS.register(modBus);
         ModSounds.SOUND_EVENTS.register(modBus);
         ModParticles.PARTICLE_TYPES.register(modBus);
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modBus);

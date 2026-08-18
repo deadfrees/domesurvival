@@ -1,0 +1,6 @@
+STAGE4B V3
+
+Updated before first NPC launch.
+maneogflow position: -508.950 62.000000 -596.588
+iVAN position: -534.938 62.000000 -664.466
+Role titles, skins, interaction logic and performance safeguards remain unchanged.

@@ -102,6 +102,11 @@ public static final RegistryObject<Item> OXYGEN_MASK = ITEMS.register(
             () -> new SurfaceSuitItem(ArmorItem.Type.BOOTS, new Item.Properties())
     );
 
+    /** Separate painting item backed by Dome Survival painting variants. */
+    public static final RegistryObject<Item> MEMORY_PAINTING = ITEMS.register(
+            "memory_painting",
+            () -> new MemoryPaintingItem(new Item.Properties().stacksTo(64))
+    );
     private ModItems() {
     }
 }

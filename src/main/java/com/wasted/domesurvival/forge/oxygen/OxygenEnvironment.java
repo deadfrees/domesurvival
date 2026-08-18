@@ -26,8 +26,16 @@ public final class OxygenEnvironment {
     public static boolean isBreathable(ServerPlayer player) {
         ServerLevel level = (ServerLevel) player.level();
 
-        // V3 initially governs the WASTED overworld only.
-        // This avoids unexpectedly breaking Nether/End gameplay before those rules are designed.
+        BlockPos breathingPos = BlockPos.containing(player.getX(), player.getEyeY(), player.getZ());
+
+        // Nether/End intentionally have no breathable ambient atmosphere.
+        // Only an already-discovered, actually pressurized sealed room can provide air there.
+        if (Level.NETHER.equals(level.dimension()) || Level.END.equals(level.dimension())) {
+            return SealedRoomManager.isBreathableAt(level, breathingPos);
+        }
+
+        // Preserve compatibility with modded dimensions (including existing Ad Astra integration):
+        // the hard no-atmosphere rule is intentionally limited to vanilla Nether and End.
         if (!Level.OVERWORLD.equals(level.dimension())) {
             return true;
         }
@@ -47,7 +55,6 @@ public final class OxygenEnvironment {
 
         // Player-built rooms are breathable only after V61 atmosphere filling completed.
         // This is a cache lookup only; it never starts room discovery from the player tick.
-        BlockPos breathingPos = BlockPos.containing(player.getX(), player.getEyeY(), player.getZ());
         return SealedRoomManager.isBreathableAt(level, breathingPos);
     }
 }

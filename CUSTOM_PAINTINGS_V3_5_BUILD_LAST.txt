@@ -1,0 +1,250 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.8/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :clean
+
+> Task :compileJava
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\EnergyPipeCreativeTabEvents.java:16: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "basic_energy_pipe"),
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\EnergyPipeCreativeTabEvents.java:17: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "reinforced_energy_pipe"),
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\EnergyPipeCreativeTabEvents.java:18: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "high_voltage_energy_pipe")
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\itempipe\ItemPipeBlockEntityRenderer.java:166: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+        return new ResourceLocation(DomeSurvival.MOD_ID, "textures/block/item_pipe/" + file);
+               ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\model\OxygenMaskModel.java:21: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+                    new ResourceLocation(DomeSurvival.MOD_ID, "oxygen_mask_v326_empty"),
+                    ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\model\OxygenTankModel.java:18: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ModelLayerLocation(new ResourceLocation(DomeSurvival.MOD_ID, "oxygen_tank_small_v23"), "main");
+                                   ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\model\OxygenTankModel.java:20: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ModelLayerLocation(new ResourceLocation(DomeSurvival.MOD_ID, "oxygen_tank_medium_v23"), "main");
+                                   ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\model\OxygenTankModel.java:22: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ModelLayerLocation(new ResourceLocation(DomeSurvival.MOD_ID, "oxygen_tank_large_v23"), "main");
+                                   ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\OxygenHudOverlay.java:13: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/oxygen_full.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\OxygenHudOverlay.java:15: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/oxygen_half.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\OxygenHudOverlay.java:17: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/oxygen_empty.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\AirlockGateBlockEntityRenderer.java:40: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+    private static final ResourceLocation SIDE_TEXTURE = new ResourceLocation(
+                                                         ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\AirlockGateBlockEntityRenderer.java:270: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+        ResourceLocation id = new ResourceLocation(
+                              ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\M40MaskRenderLayer.java:25: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\OxygenComplexPortRenderer.java:21: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/block/oxygen_complex/port_off.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\OxygenComplexPortRenderer.java:23: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/block/oxygen_complex/port_input.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\OxygenComplexPortRenderer.java:25: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/block/oxygen_complex/port_output.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\OxygenComplexPortRenderer.java:27: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/block/energy_buffer/back.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\OxygenComplexPortRenderer.java:29: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/block/energy_buffer/side_input.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\OxygenComplexPortRenderer.java:31: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/block/energy_buffer/side_output.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\OxygenMaskCurioRenderer.java:25: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\OxygenTankCurioRenderer.java:16: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/models/armor/oxygen_tank.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\machine\passthrough\ServiceConduitKind.java:51: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+                new ResourceLocation(DomeSurvival.MOD_ID, path)
+                ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\UniversalTankBlockEntityRenderer.java:27: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "block/airlock_gate_unformed_dark");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\UniversalTankBlockEntityRenderer.java:29: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation("minecraft", "block/glass");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\UniversalTankBlockEntityRenderer.java:32: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation("minecraft", "block/white_stained_glass");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\UniversalTankBlockEntityRenderer.java:34: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "block/universal_tank/valve_input");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\UniversalTankBlockEntityRenderer.java:36: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "block/universal_tank/valve_output");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\screen\AdamantiumEnergyBufferScreen.java:26: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\screen\CoalGeneratorScreen.java:30: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\screen\CreativeEnergyBufferScreen.java:26: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\screen\EnergyBufferScreen.java:26: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\screen\OxygenElectrolyzerScreen.java:21: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+    private static final ResourceLocation PORT_TEXTURE = new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+                                                         ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\screen\OxygenFillerScreen.java:24: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\oxygen\room\SealedRoomManager.java:42: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "airtight_blocks")
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\oxygen\room\SealedRoomManager.java:46: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "non_airtight_blocks")
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\screen\TitanEnergyBufferScreen.java:26: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\screen\UniversalTankScreen.java:31: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\screen\WaterPurifierScreen.java:27: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\UniversalTankClientEvents.java:33: warning: [removal] setRenderLayer(Block,RenderType) in ItemBlockRenderTypes has been deprecated and marked for removal
+            ItemBlockRenderTypes.setRenderLayer(
+                                ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\weather\SurfaceWeatherClientEvents.java:46: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+    private static final ResourceLocation SOLAR_HEAT_VIGNETTE = new ResourceLocation(
+                                                                ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\WrenchCreativeTabEvents.java:17: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "machine_wrench");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\DomeSurvival.java:36: warning: [removal] get() in FMLJavaModLoadingContext has been deprecated and marked for removal
+        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+                                                   ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\DomeSurvival.java:54: warning: [removal] get() in ModLoadingContext has been deprecated and marked for removal
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SurfaceHazardConfig.SPEC);
+                         ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\fluid\ModFluids.java:23: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+    private static final ResourceLocation WATER_STILL = new ResourceLocation("block/water_still");
+                                                        ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\fluid\ModFluids.java:24: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+    private static final ResourceLocation WATER_FLOW = new ResourceLocation("block/water_flow");
+                                                       ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\fluid\ModFluids.java:25: warning: [removal] ResourceLocation(String) in ResourceLocation has been deprecated and marked for removal
+    private static final ResourceLocation WATER_OVERLAY = new ResourceLocation("block/water_overlay");
+                                                          ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\item\MemoryPaintingItem.java:131: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            ResourceLocation id = new ResourceLocation(DomeSurvival.MOD_ID, path);
+                                  ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\item\ModCreativeTabs.java:31: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "items");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\item\ModCreativeTabs.java:33: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "reinforced_glass");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\itempipe\ItemPipeBalance.java:49: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+        JsonElement element = objects.get(new ResourceLocation(DomeSurvival.MOD_ID, "default"));
+                                          ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\itempipe\ItemPipeBlock.java:50: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "machine_wrench");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\itempipe\ItemPipeRegistry.java:116: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+        return new ResourceLocation(DomeSurvival.MOD_ID, path);
+               ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\machine\oxygen\complex\OxygenComplexFilters.java:13: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "air_filters")
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\machine\oxygen\OxygenPipeBlock.java:49: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "machine_wrench");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\machine\passthrough\ServicePassThroughBlock.java:39: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "machine_wrench");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\machine\passthrough\ServicePassThroughRegistry.java:22: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "service_pass_through");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\network\ModNetwork.java:24: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+                    new ResourceLocation(
+                    ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\pipe\PipeWrenchInteractionEvents.java:21: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "machine_wrench");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\pipe\PipeWrenchReliableInteractionEvents.java:26: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "machine_wrench");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\progression\WorkshopUpgradeApplier.java:40: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation("domesurvival", "workshop/warehouse_17x11");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\progression\WorkshopUpgradeApplier.java:42: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation("domesurvival", "workshop/warehouse_floor_v9");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\progression\WorkshopUpgradeApplier.java:44: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation("domesurvival", "workshop/warehouse_original_cleanup_v9");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\progression\WorkshopProject.java:23: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            TagKey.create(Registries.ITEM, new ResourceLocation("forge", "ingots/iron"));
+                                           ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\progression\WorkshopProject.java:26: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            TagKey.create(Registries.ITEM, new ResourceLocation("forge", "ingots/copper"));
+                                           ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\sound\MachineSoundEvents.java:35: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+        return new ResourceLocation(DomeSurvival.MOD_ID, path);
+               ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\sound\ModSounds.java:21: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+                () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(DomeSurvival.MOD_ID, name)));
+                                                          ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\transport\energy\EnergyPipeBlock.java:46: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "machine_wrench");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\transport\fluid\FluidPipeBlock.java:45: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "machine_wrench");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\transport\fluid\FluidPipeClientEvents.java:19: warning: [removal] setRenderLayer(Block,RenderType) in ItemBlockRenderTypes has been deprecated and marked for removal
+            ItemBlockRenderTypes.setRenderLayer(FluidPipeRegistry.BASIC_FLUID_PIPE.get(), RenderType.cutout());
+                                ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\transport\fluid\FluidPipeClientEvents.java:20: warning: [removal] setRenderLayer(Block,RenderType) in ItemBlockRenderTypes has been deprecated and marked for removal
+            ItemBlockRenderTypes.setRenderLayer(FluidPipeRegistry.REINFORCED_FLUID_PIPE.get(), RenderType.cutout());
+                                ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\transport\fluid\FluidPipeClientEvents.java:21: warning: [removal] setRenderLayer(Block,RenderType) in ItemBlockRenderTypes has been deprecated and marked for removal
+            ItemBlockRenderTypes.setRenderLayer(FluidPipeRegistry.HIGH_PRESSURE_FLUID_PIPE.get(), RenderType.cutout());
+                                ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+72 warnings
+
+> Task :processResources
+> Task :classes
+> Task :jar
+> Task :downloadMcpConfig
+> Task :extractSrg
+> Task :createMcpToSrg
+> Task :reobfJar
+> Task :jarJar SKIPPED
+> Task :reobfJarJar SKIPPED
+> Task :assemble
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+> Task :test
+> Task :check
+> Task :build
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 40s
+10 actionable tasks: 10 executed

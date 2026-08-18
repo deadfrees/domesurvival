@@ -24,6 +24,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
     private static final String TAG_GEOMETRY = "Geometry";
     private static final String TAG_REQUIRED = "RequiredOxygen";
     private static final String TAG_OXYGEN = "Oxygen";
+    private static final String TAG_OPERATIONAL = "Operational";
     private static final String TAG_PRESSURE_STATE = "PressureState";
     private static final String TAG_LEAK_START_TIME = "LeakStartTime";
     private static final String TAG_LEAK_START_OXYGEN = "LeakStartOxygen";
@@ -60,6 +61,9 @@ public final class RoomAtmosphereSavedData extends SavedData {
             PressureState pressureState = roomTag.contains(TAG_PRESSURE_STATE)
                     ? PressureState.byOrdinal(roomTag.getInt(TAG_PRESSURE_STATE))
                     : PressureState.SEALED;
+            boolean operational = roomTag.contains(TAG_OPERATIONAL)
+                    ? roomTag.getBoolean(TAG_OPERATIONAL)
+                    : pressureState == PressureState.SEALED && required > 0 && oxygen >= required;
             long leakStartTime = Math.max(0L, roomTag.getLong(TAG_LEAK_START_TIME));
             int leakStartOxygen = Math.max(0, Math.min(required, roomTag.getInt(TAG_LEAK_START_OXYGEN)));
 
@@ -76,12 +80,16 @@ public final class RoomAtmosphereSavedData extends SavedData {
                 leakStartOxygen = 0;
                 leakOutlets.clear();
             }
+            if (pressureState != PressureState.SEALED || oxygen <= 0) {
+                operational = false;
+            }
 
             AtmosphereRecord record = new AtmosphereRecord(
                     geometry,
                     required,
                     oxygen,
                     pressureState,
+                    operational,
                     leakStartTime,
                     leakStartOxygen,
                     leakOutlets
@@ -103,7 +111,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
 
         if (record == null || record.geometrySignature != room.geometrySignature()) {
             replaceRecord(room.roomId(), new AtmosphereRecord(
-                    room.geometrySignature(), required, 0, PressureState.SEALED,
+                    room.geometrySignature(), required, 0, PressureState.SEALED, false,
                     0L, 0, new LongOpenHashSet()
             ));
             setDirty();
@@ -141,6 +149,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
                     leaking.pressureState = PressureState.SEALED;
                     leaking.leakStartTime = 0L;
                     leaking.leakStartOxygen = 0;
+                    leaking.operational = leaking.required > 0 && leaking.oxygen >= leaking.required;
                     changed = true;
                 } else {
                     leaking.leakOutlets.remove(outletKey);
@@ -162,6 +171,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
             exact.pressureState = PressureState.SEALED;
             exact.leakStartTime = 0L;
             exact.leakStartOxygen = 0;
+            exact.operational = exact.required > 0 && exact.oxygen >= exact.required;
             if (changed || exact.pressureState == PressureState.SEALED) setDirty();
         }
 
@@ -180,8 +190,40 @@ public final class RoomAtmosphereSavedData extends SavedData {
         if (accepted <= 0) return 0;
 
         record.oxygen += accepted;
+        if (record.required > 0 && record.oxygen >= record.required) {
+            record.operational = true;
+        }
         setDirty();
         return accepted;
+    }
+
+    /**
+     * Life-support consumption for occupants of one canonical sealed room.
+     * This is intentionally separate from filler ticks so several ventilation outlets
+     * can never multiply the per-player breathing cost.
+     */
+    public int consumeOxygen(SealedRoomManager.RoomSnapshot room, int amount) {
+        if (!room.sealed() || amount <= 0) return 0;
+
+        AtmosphereRecord record = rooms.get(room.roomId());
+        if (record == null
+                || record.geometrySignature != room.geometrySignature()
+                || record.pressureState != PressureState.SEALED
+                || !record.operational
+                || record.oxygen <= 0) {
+            return 0;
+        }
+
+        int consumed = Math.min(amount, record.oxygen);
+        if (consumed <= 0) return 0;
+
+        record.oxygen -= consumed;
+        if (record.oxygen <= 0) {
+            record.oxygen = 0;
+            record.operational = false;
+        }
+        setDirty();
+        return consumed;
     }
 
     /** Starts or joins a V62 leak session for a previously sealed room. */
@@ -199,6 +241,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
 
         boolean changed = updateLeak(record, gameTime);
         if (record.pressureState == PressureState.SEALED) {
+            record.operational = false;
             if (record.oxygen > 0) {
                 record.pressureState = PressureState.LEAKING;
                 record.leakStartTime = Math.max(0L, gameTime);
@@ -278,7 +321,8 @@ public final class RoomAtmosphereSavedData extends SavedData {
                 && record.geometrySignature == room.geometrySignature()
                 && record.pressureState == PressureState.SEALED
                 && record.required > 0
-                && record.oxygen >= record.required;
+                && record.operational
+                && record.oxygen > 0;
     }
 
     /** Emergency breathability while V62 pressure is escaping from the old sealed volume. */
@@ -304,6 +348,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
             roomTag.putLong(TAG_GEOMETRY, record.geometrySignature);
             roomTag.putInt(TAG_REQUIRED, record.required);
             roomTag.putInt(TAG_OXYGEN, record.oxygen);
+            roomTag.putBoolean(TAG_OPERATIONAL, record.operational);
             roomTag.putInt(TAG_PRESSURE_STATE, record.pressureState.ordinal());
             roomTag.putLong(TAG_LEAK_START_TIME, record.leakStartTime);
             roomTag.putInt(TAG_LEAK_START_OXYGEN, record.leakStartOxygen);
@@ -320,6 +365,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
         if (record.oxygen <= 0 || record.leakStartOxygen <= 0) {
             record.oxygen = 0;
             record.pressureState = PressureState.DEPRESSURIZED;
+            record.operational = false;
             record.leakStartTime = 0L;
             record.leakStartOxygen = 0;
             return true;
@@ -330,6 +376,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
         if (duration <= 0L || elapsed >= duration) {
             record.oxygen = 0;
             record.pressureState = PressureState.DEPRESSURIZED;
+            record.operational = false;
             record.leakStartTime = 0L;
             record.leakStartOxygen = 0;
             return true;
@@ -435,6 +482,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
         private int required;
         private int oxygen;
         private PressureState pressureState;
+        private boolean operational;
         private long leakStartTime;
         private int leakStartOxygen;
         private final LongOpenHashSet leakOutlets;
@@ -443,6 +491,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
                                  int required,
                                  int oxygen,
                                  PressureState pressureState,
+                                 boolean operational,
                                  long leakStartTime,
                                  int leakStartOxygen,
                                  LongOpenHashSet leakOutlets) {
@@ -450,6 +499,10 @@ public final class RoomAtmosphereSavedData extends SavedData {
             this.required = Math.max(0, required);
             this.oxygen = Math.max(0, Math.min(this.required, oxygen));
             this.pressureState = pressureState == null ? PressureState.SEALED : pressureState;
+            this.operational = this.pressureState == PressureState.SEALED
+                    && this.required > 0
+                    && this.oxygen > 0
+                    && operational;
             this.leakStartTime = Math.max(0L, leakStartTime);
             this.leakStartOxygen = Math.max(0, Math.min(this.required, leakStartOxygen));
             this.leakOutlets = leakOutlets == null ? new LongOpenHashSet() : leakOutlets;

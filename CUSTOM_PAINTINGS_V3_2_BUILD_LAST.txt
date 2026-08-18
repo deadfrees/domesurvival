@@ -1,0 +1,56 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.8/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :compileJava
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\M40MaskRenderLayer.java:25: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\render\OxygenTankCurioRenderer.java:16: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/models/armor/oxygen_tank.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\client\screen\WaterPurifierScreen.java:27: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\DomeSurvival.java:36: warning: [removal] get() in FMLJavaModLoadingContext has been deprecated and marked for removal
+        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+                                                   ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\DomeSurvival.java:54: warning: [removal] get() in ModLoadingContext has been deprecated and marked for removal
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SurfaceHazardConfig.SPEC);
+                         ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\item\MemoryPaintingItem.java:38: error: create(String) has private access in PaintingVariantTags
+            PaintingVariantTags.create(DomeSurvival.MOD_ID + ":memory_paintings");
+                               ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\item\ModCreativeTabs.java:31: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "items");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\item\ModCreativeTabs.java:33: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "reinforced_glass");
+            ^
+C:\domesurvival\src\main\java\com\wasted\domesurvival\forge\transport\energy\EnergyPipeBlock.java:46: warning: [removal] ResourceLocation(String,String) in ResourceLocation has been deprecated and marked for removal
+            new ResourceLocation(DomeSurvival.MOD_ID, "machine_wrench");
+            ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+1 error
+8 warnings
+
+> Task :compileJava FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+> Run with --info option to get more log output.
+> Run with --scan to get full insights.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 17s
+1 actionable task: 1 executed

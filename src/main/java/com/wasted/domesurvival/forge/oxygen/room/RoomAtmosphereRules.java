@@ -22,6 +22,13 @@ public final class RoomAtmosphereRules {
     public static final int ENERGY_FE_PER_OXYGEN_MB = 5;
 
     /**
+     * Life-support demand is deliberately evaluated once per second, never every game tick.
+     * One active survival/adventure player consumes one room-O2 unit per interval.
+     */
+    public static final int OCCUPANT_CONSUMPTION_INTERVAL_TICKS = 20;
+    public static final int OCCUPANT_OXYGEN_PER_PLAYER = 1;
+
+    /**
      * Exact average oxygen-loss rate for an actively leaking room: 11 / 2 mB/t.
      *
      * Since room capacity is volume * OXYGEN_MB_PER_BLOCK, a larger room contains
@@ -45,6 +52,12 @@ public final class RoomAtmosphereRules {
         if (volume <= 0) return 0;
         long required = (long) volume * OXYGEN_MB_PER_BLOCK;
         return required > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) required;
+    }
+
+    public static int occupantOxygenDemand(int playerCount) {
+        if (playerCount <= 0) return 0;
+        long demand = (long) playerCount * OCCUPANT_OXYGEN_PER_PLAYER;
+        return demand > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) demand;
     }
 
     /** Full refill duration for a completely empty sealed room. */

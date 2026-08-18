@@ -77,6 +77,7 @@ public final class ModCreativeTabs {
             // Row 4: tools, filters and portable oxygen equipment.
             "machine_wrench",
             "airlock_binding_key",
+            "memory_painting",
             "water_filter_cartridge",
             "improved_water_filter",
             "industrial_water_filter",

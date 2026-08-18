@@ -2,6 +2,8 @@ package com.wasted.domesurvival.forge.integration.customnpcs;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.wasted.domesurvival.forge.progression.DomeProgressSavedData;
+import com.wasted.domesurvival.forge.progression.WorkshopProject;
 import com.wasted.domesurvival.forge.progression.WorkshopUpgradeApplier;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -31,12 +33,32 @@ public final class JosephScriptCommand {
     private static final String SCRIPT_FILE = "joseph_cooper_gui.js";
     private static final String RESET_LOCK_KEY = "domesurvival.release.logical_reset.v70";
     private static final String PREPARED_KEY = "domesurvival.release.prepared.v70";
+    private static final String STAGE1_COMPLETE_KEY = "domesurvival.stage01.complete.v71";
+    private static final String STAGE2_EXTRAS_COMPLETE_KEY = "domesurvival.stage02.extras.complete.v71";
+    private static final String STAGE2_RESET_CORE_COMPLETE_KEY = "domesurvival.stage02.resetcore.complete.v70";
+    private static final String STAGE3_COMPLETE_KEY = "domesurvival.stage03.complete.v71";
+    private static final String STAGE4_COMPLETE_KEY = "domesurvival.stage04.complete.v71";
+    private static final String STAGE5_COMPLETE_KEY = "domesurvival.stage05.complete.v71";
+    private static final String STAGE6_COMPLETE_KEY = "domesurvival.stage06.complete.v71";
+    private static final String STAGE7_COMPLETE_KEY = "domesurvival.stage07.complete.v71";
+    private static final String STAGE8_COMPLETE_KEY = "domesurvival.stage08.complete.v71";
+    private static final String STAGE9_COMPLETE_KEY = "domesurvival.stage09.complete.v74";
+    private static final String STAGE10_COMPLETE_KEY = "domesurvival.stage10.complete.v74";
+    private static final String STAGE11_COMPLETE_KEY = "domesurvival.stage11.complete.v74";
+    private static final String STAGE12_COMPLETE_KEY = "domesurvival.stage12.complete.v74";
     private static final String[] RESET_PREFIXES = {
         "domesurvival.stage01.", "domesurvival.stage1.",
         "domesurvival.stage02.", "domesurvival.stage2.",
         "domesurvival.stage03.", "domesurvival.stage3.",
         "domesurvival.stage04.", "domesurvival.stage4.",
         "domesurvival.stage05.", "domesurvival.stage5.",
+        "domesurvival.stage06.", "domesurvival.stage6.",
+        "domesurvival.stage07.", "domesurvival.stage7.",
+        "domesurvival.stage08.", "domesurvival.stage8.",
+        "domesurvival.stage09.", "domesurvival.stage9.",
+        "domesurvival.stage10.", "domesurvival.stage10.",
+        "domesurvival.stage11.", "domesurvival.stage11.",
+        "domesurvival.stage12.", "domesurvival.stage12.",
         "domesurvival.workshop.",
         "domesurvival.warehouse.",
         "domesurvival.release."
@@ -62,6 +84,8 @@ public final class JosephScriptCommand {
                     .executes(context -> clearConsole(context.getSource())))
                 .then(Commands.literal("resetprogress")
                     .executes(context -> resetProgress(context.getSource())))
+                .then(Commands.literal("nextstage")
+                    .executes(context -> completeNextStage(context.getSource())))
                 .then(Commands.literal("resetworkshop")
                     .executes(context -> resetWorkshop(context.getSource())))
                 .then(Commands.literal("resettest")
@@ -211,6 +235,121 @@ public final class JosephScriptCommand {
         return 1;
     }
 
+    private static int completeNextStage(CommandSourceStack source) throws CommandSyntaxException {
+        ServerPlayer player = source.getPlayerOrException();
+        IData data = getQuestStoredData(player);
+
+        if (data == null) {
+            source.sendFailure(Component.literal(
+                "[JosephScript] CustomNPCs world StoredData is unavailable."
+            ));
+            return 0;
+        }
+
+        int stage = currentQuestStageForTesting(data);
+        if (stage > 12) {
+            source.sendSuccess(() -> Component.literal(
+                "[JosephScript] Все тестируемые этапы 01-12 уже завершены."
+            ), false);
+            return 1;
+        }
+
+        switch (stage) {
+            case 1 -> data.put(STAGE1_COMPLETE_KEY, 1);
+            case 2 -> {
+                data.put(STAGE2_EXTRAS_COMPLETE_KEY, 1);
+
+                if (storedFlag(data, RESET_LOCK_KEY)) {
+                    data.put(STAGE2_RESET_CORE_COMPLETE_KEY, 1);
+                } else {
+                    DomeProgressSavedData progress = DomeProgressSavedData.get(player.serverLevel());
+                    progress.addWorkshopContribution(
+                        WorkshopProject.IRON_REQUIRED,
+                        WorkshopProject.COPPER_REQUIRED,
+                        WorkshopProject.REDSTONE_REQUIRED
+                    );
+                }
+            }
+            case 3 -> data.put(STAGE3_COMPLETE_KEY, 1);
+            case 4 -> data.put(STAGE4_COMPLETE_KEY, 1);
+            case 5 -> data.put(STAGE5_COMPLETE_KEY, 1);
+            case 6 -> data.put(STAGE6_COMPLETE_KEY, 1);
+            case 7 -> data.put(STAGE7_COMPLETE_KEY, 1);
+            case 8 -> data.put(STAGE8_COMPLETE_KEY, 1);
+            case 9 -> data.put(STAGE9_COMPLETE_KEY, 1);
+            case 10 -> data.put(STAGE10_COMPLETE_KEY, 1);
+            case 11 -> data.put(STAGE11_COMPLETE_KEY, 1);
+            case 12 -> data.put(STAGE12_COMPLETE_KEY, 1);
+            default -> {
+                return 0;
+            }
+        }
+
+        final int completedStage = stage;
+        source.sendSuccess(() -> Component.literal(
+            String.format(
+                Locale.ROOT,
+                "[JosephScript] ТЕСТ: этап %02d завершён без сдачи предметов. ПКМ по Джозефу — получить награду и открыть следующий этап.",
+                completedStage
+            )
+        ), true);
+
+        if (stage == 2 && !storedFlag(data, RESET_LOCK_KEY)) {
+            source.sendSuccess(() -> Component.literal(
+                "[JosephScript] nextstage заполняет прогресс материалов мастерской, но не используется для проверки её физического строительства. Для этого проходи этап 02 обычной сдачей ресурсов."
+            ), false);
+        }
+
+        return 1;
+    }
+
+    private static int currentQuestStageForTesting(IData data) {
+        if (!storedFlag(data, STAGE1_COMPLETE_KEY)) return 1;
+
+        boolean stage2Core = storedFlag(data, RESET_LOCK_KEY)
+            ? storedFlag(data, STAGE2_RESET_CORE_COMPLETE_KEY)
+            : isJavaWorkshopAlreadyComplete();
+        if (!stage2Core || !storedFlag(data, STAGE2_EXTRAS_COMPLETE_KEY)) return 2;
+
+        if (!storedFlag(data, STAGE3_COMPLETE_KEY)) return 3;
+        if (!storedFlag(data, STAGE4_COMPLETE_KEY)) return 4;
+        if (!storedFlag(data, STAGE5_COMPLETE_KEY)) return 5;
+        if (!storedFlag(data, STAGE6_COMPLETE_KEY)) return 6;
+        if (!storedFlag(data, STAGE7_COMPLETE_KEY)) return 7;
+        if (!storedFlag(data, STAGE8_COMPLETE_KEY)) return 8;
+        if (!storedFlag(data, STAGE9_COMPLETE_KEY)) return 9;
+        if (!storedFlag(data, STAGE10_COMPLETE_KEY)) return 10;
+        if (!storedFlag(data, STAGE11_COMPLETE_KEY)) return 11;
+        if (!storedFlag(data, STAGE12_COMPLETE_KEY)) return 12;
+        return 13;
+    }
+
+    private static IData getQuestStoredData(ServerPlayer player) {
+        try {
+            NpcAPI api = NpcAPI.Instance();
+            if (api == null) return null;
+
+            IWorld world = api.getIWorld(player.serverLevel());
+            if (world == null) return null;
+
+            return world.getStoreddata();
+        } catch (Throwable error) {
+            error.printStackTrace();
+            return null;
+        }
+    }
+
+    private static boolean storedFlag(IData data, String key) {
+        if (data == null || key == null || !data.has(key)) return false;
+        try {
+            Object raw = data.get(key);
+            if (raw instanceof Number number) return number.intValue() > 0;
+            return Integer.parseInt(String.valueOf(raw)) > 0;
+        } catch (Throwable ignored) {
+            return false;
+        }
+    }
+
     private static int resetProgress(CommandSourceStack source) throws CommandSyntaxException {
         ServerPlayer player = source.getPlayerOrException();
         ResetResult result = clearQuestStoredData(player);
@@ -243,7 +382,7 @@ public final class JosephScriptCommand {
         }
 
         source.sendSuccess(() -> Component.literal(
-            "[JosephScript] Right-click Joseph: Stage 01 should be active, Stages 02-05 locked."
+            "[JosephScript] Right-click Joseph: Stage 01 should be active, Stages 02-13 locked. Test helper: /josephscript nextstage"
         ), false);
         return 1;
     }
@@ -324,7 +463,7 @@ public final class JosephScriptCommand {
                 + removed
         ), true);
         source.sendSuccess(() -> Component.literal(
-            "[JosephScript] Теперь Stage 01 активен, Stage 02-05 закрыты. "
+            "[JosephScript] Теперь Stage 01 активен, Stage 02-13 закрыты. "
                 + "После повторного выполнения Stage 02 мастерская построится заново."
         ), false);
         return 1;
@@ -354,7 +493,7 @@ public final class JosephScriptCommand {
             "[JosephScript] Base-world progression prepared. Removed StoredData keys: " + removed
         ), true);
         source.sendSuccess(() -> Component.literal(
-            "[JosephScript] Start state: Stage 01 active; Stages 02-05 locked."
+            "[JosephScript] Start state: Stage 01 active; Stages 02-13 locked."
         ), false);
         source.sendSuccess(() -> Component.literal(
             "[JosephScript] World blocks/buildings are NOT rolled back by this command. "
@@ -489,12 +628,14 @@ public final class JosephScriptCommand {
 
         containers.add(container);
 
+        clearLegacyInteractSpeech(npc);
+
         npc.updateClient();
 
         final String finalLanguage = language;
 
         source.sendSuccess(() -> Component.literal(
-            "[JosephScript] Old inline scripts removed. "
+            "[JosephScript] Old inline scripts removed; legacy interact speech cleared. "
                 + SCRIPT_FILE + " linked. language=" + finalLanguage
         ), true);
 
@@ -505,6 +646,55 @@ public final class JosephScriptCommand {
         return 1;
     }
 
+
+    /**
+     * Clears old CustomNPCs Advanced -> Interact Lines left from early
+     * development (for example "Hello Dev").
+     *
+     * This is intentionally reflection-based because CustomNPCs unofficial
+     * ports have changed internal data classes between builds.
+     */
+    private static void clearLegacyInteractSpeech(EntityNPCInterface npc) {
+        if (npc == null) {
+            return;
+        }
+
+        try {
+            Object advanced = readFieldRecursive(npc, "advanced");
+            if (advanced == null) {
+                return;
+            }
+
+            Object interactLines = readFieldRecursive(advanced, "interactLines");
+            if (interactLines == null) {
+                return;
+            }
+
+            Object lines = readFieldRecursive(interactLines, "lines");
+            if (lines instanceof Map<?, ?> map) {
+                map.clear();
+            }
+        } catch (Throwable error) {
+            System.err.println("[DomeSurvival] Could not clear legacy Joseph interact lines:");
+            error.printStackTrace();
+        }
+    }
+
+    private static Object readFieldRecursive(Object owner, String fieldName) throws ReflectiveOperationException {
+        Class<?> type = owner.getClass();
+
+        while (type != null) {
+            try {
+                java.lang.reflect.Field field = type.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                return field.get(owner);
+            } catch (NoSuchFieldException ignored) {
+                type = type.getSuperclass();
+            }
+        }
+
+        throw new NoSuchFieldException(fieldName);
+    }
     private static EntityNPCInterface findJoseph(ServerPlayer player) {
         AABB search = player.getBoundingBox().inflate(48.0D);
 
