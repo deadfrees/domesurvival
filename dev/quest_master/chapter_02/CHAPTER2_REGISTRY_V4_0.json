@@ -1,0 +1,141 @@
+{
+  "version": "4.0",
+  "chapter": {
+    "index": 2,
+    "id": "643138B0A36D1017",
+    "title": "За воротами",
+    "quest_count": 17
+  },
+  "previous_final_dependency": "20BBB183D71C8B21",
+  "final_story_flag": "FIRST_SUPPLY_RUN",
+  "rules": {
+    "oxygen_production": false,
+    "oxygen_tank_required": false,
+    "distant_structures": false,
+    "night_stays": false,
+    "deep_mining": false,
+    "operation_max_radius_from_dome_center": 75,
+    "surface_shell_radius": 50,
+    "max_operation_distance_beyond_shell": 25,
+    "short_return_seconds": 20
+  },
+  "quests": [
+    {
+      "number": 1,
+      "id": "22A15C3103B3C972",
+      "title": "За воротами",
+      "internal_reward_id": "378FE151B83C6637"
+    },
+    {
+      "number": 2,
+      "id": "27E07D3391F38082",
+      "title": "Инструменты короткого рейса",
+      "internal_reward_id": "6FBBA82A01124CD2"
+    },
+    {
+      "number": 3,
+      "id": "574F6AEDDDF744D6",
+      "title": "Еда на обратную дорогу",
+      "internal_reward_id": "33E8D50C2A3A2BC2"
+    },
+    {
+      "number": 4,
+      "id": "695753BBA21407FF",
+      "title": "Световой запас",
+      "internal_reward_id": "0F3E353AC0EC9343"
+    },
+    {
+      "number": 5,
+      "id": "6B2D5CF1BE75BAA6",
+      "title": "Блоки вместо героизма",
+      "internal_reward_id": "374DBB7FE47443F8"
+    },
+    {
+      "number": 6,
+      "id": "0E8DC0D91D317772",
+      "title": "Сначала панель",
+      "internal_reward_id": "0D74CDDE1D7B34A1"
+    },
+    {
+      "number": 7,
+      "id": "7B75F0B3F90809EB",
+      "title": "Первый шаг наружу",
+      "internal_reward_id": "66F02FB98C2E5EDC"
+    },
+    {
+      "number": 8,
+      "id": "68986BCB1E8DB7B7",
+      "title": "Только ближний периметр",
+      "internal_reward_id": "04AA04283728ABF9"
+    },
+    {
+      "number": 9,
+      "id": "01415509426039D2",
+      "title": "Оставь свет у дороги",
+      "internal_reward_id": "5A9600B459179B15"
+    },
+    {
+      "number": 10,
+      "id": "706EFE49CEFC5DF3",
+      "title": "Временный ориентир",
+      "internal_reward_id": "23272D253A0174DF"
+    },
+    {
+      "number": 11,
+      "id": "24D239E4026B64A5",
+      "title": "То, чего нет под стеклом",
+      "internal_reward_id": "6759F88184E05929"
+    },
+    {
+      "number": 12,
+      "id": "27AACD200A156F63",
+      "title": "Вышел — вернись",
+      "internal_reward_id": "27D54729D4F03D0B"
+    },
+    {
+      "number": 13,
+      "id": "77C38BD299258425",
+      "title": "Повтори без спешки",
+      "internal_reward_id": "4C7AB084E1718C99"
+    },
+    {
+      "number": 14,
+      "id": "1403CDFAA5692780",
+      "title": "Маршрут должен быть скучным",
+      "internal_reward_id": "60622BA2081EBB37"
+    },
+    {
+      "number": 15,
+      "id": "4485BFC51558EF4D",
+      "title": "Вернуться с грузом",
+      "internal_reward_id": "13982AB8BE01B066"
+    },
+    {
+      "number": 16,
+      "id": "0CCF557303F71196",
+      "title": "Закрой операцию",
+      "internal_reward_id": "7C7F697DEB0319E3"
+    },
+    {
+      "number": 17,
+      "id": "0553FD8AE147C7D2",
+      "title": "Первый рейс снабжения",
+      "internal_reward_id": "0C06F69CE257E942"
+    }
+  ],
+  "action_advancements": [
+    "domesurvival:quest_actions/ch2_intro",
+    "domesurvival:quest_actions/ch2_precheck",
+    "domesurvival:quest_actions/ch2_first_exit",
+    "domesurvival:quest_actions/ch2_near_perimeter",
+    "domesurvival:quest_actions/ch2_torch_marker",
+    "domesurvival:quest_actions/ch2_temp_marker",
+    "domesurvival:quest_actions/ch2_fast_return",
+    "domesurvival:quest_actions/ch2_second_sortie",
+    "domesurvival:quest_actions/ch2_controlled_sortie",
+    "domesurvival:quest_actions/ch2_supply_return",
+    "domesurvival:quest_actions/ch2_postcheck",
+    "domesurvival:quest_actions/ch2_finale"
+  ],
+  "background": "domesurvival:textures/gui/quests/chapter_02_beyond_gate.png"
+}

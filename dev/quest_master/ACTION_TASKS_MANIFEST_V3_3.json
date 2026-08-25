@@ -1,0 +1,122 @@
+{
+  "version": "3.3",
+  "chapter0_id": "5017105A9984A511",
+  "chapter1_id": "38F6E366B367B563",
+  "manual_checkmark_tasks_remaining": 0,
+  "advancement_action_tasks": 16,
+  "item_tasks": 15,
+  "action_advancements": [
+    {
+      "quest_id": "574CF865DA07FAA8",
+      "action": "CH0_INTRO",
+      "advancement": "domesurvival:quest_actions/ch0_intro",
+      "task_title": "Автоматически: находиться внутри стартового Купола",
+      "subtitle": "Начните путь в безопасной зоне Купола"
+    },
+    {
+      "quest_id": "152DB9A14CA5E5EC",
+      "action": "CH0_BREATHABLE_DOME",
+      "advancement": "domesurvival:quest_actions/ch0_breathable_dome",
+      "task_title": "Автоматически: подтвердить безопасную дыхательную зону",
+      "subtitle": "Останьтесь внутри Купола и убедитесь, что здесь можно дышать"
+    },
+    {
+      "quest_id": "1CC685A27E7F8753",
+      "action": "CH0_NO_AIR_OUTSIDE",
+      "advancement": "domesurvival:quest_actions/ch0_no_air_outside",
+      "task_title": "Автоматически: реально выйти за пределы Купола",
+      "subtitle": "Выйдите наружу и испытайте непригодную атмосферу"
+    },
+    {
+      "quest_id": "63EB53B2B8F791B2",
+      "action": "CH0_SOLAR",
+      "advancement": "domesurvival:quest_actions/ch0_solar",
+      "task_title": "Автоматически: ~2 секунды под открытым небом в ясный день",
+      "subtitle": "Испытайте солнечную опасность снаружи"
+    },
+    {
+      "quest_id": "4E9628EFAC01DCEC",
+      "action": "CH0_WEATHER_CHECK",
+      "advancement": "domesurvival:quest_actions/ch0_weather_check",
+      "task_title": "Автоматически: использовать панель управления шлюзом",
+      "subtitle": "Проверьте условия перед выходом"
+    },
+    {
+      "quest_id": "27ACBC4CB0FD500B",
+      "action": "CH0_JOSEPH_CONTACT",
+      "advancement": "domesurvival:quest_actions/ch0_joseph_contact",
+      "task_title": "Автоматически: поговорить с Джозефом Куппером",
+      "subtitle": "Найдите Джозефа и откройте его интерфейс"
+    },
+    {
+      "quest_id": "3F46DFCB027B910D",
+      "action": "CH0_AIRLOCK_GATE",
+      "advancement": "domesurvival:quest_actions/ch0_airlock_gate",
+      "task_title": "Автоматически: взаимодействовать с воротами шлюза",
+      "subtitle": "Осмотрите реальные ворота стартового шлюза"
+    },
+    {
+      "quest_id": "50DA62AD2BA7A7B2",
+      "action": "CH0_SHADE_NOT_AIR",
+      "advancement": "domesurvival:quest_actions/ch0_shade_not_air",
+      "task_title": "Автоматически: ~2 секунды снаружи под крышей",
+      "subtitle": "Проверьте разницу между укрытием и воздухом"
+    },
+    {
+      "quest_id": "78AB2063F7341353",
+      "action": "CH0_RETURN_RULE",
+      "advancement": "domesurvival:quest_actions/ch0_return_rule",
+      "task_title": "Автоматически: выйти наружу и реально вернуться в Купол",
+      "subtitle": "Совершите короткий выход и вернитесь в безопасную зону"
+    },
+    {
+      "quest_id": "4E6B940013A62F56",
+      "action": "CH0_FINALE",
+      "advancement": "domesurvival:quest_actions/ch0_finale",
+      "task_title": "Автоматически: завершить все необходимые задачи пролога",
+      "subtitle": "Закройте обязательные задачи пролога"
+    },
+    {
+      "quest_id": "517EC9D8E689AF18",
+      "action": "CH1_INTRO",
+      "advancement": "domesurvival:quest_actions/ch1_intro",
+      "task_title": "Автоматически: завершить пролог",
+      "subtitle": "Глава начнётся после завершения «Под Куполом»"
+    },
+    {
+      "quest_id": "7070CC231A5FD78B",
+      "action": "CH1_WEATHER_CHECK",
+      "advancement": "domesurvival:quest_actions/ch1_weather_check",
+      "task_title": "Автоматически: проверить выход через панель шлюза",
+      "subtitle": "Перед выходом используйте панель управления шлюзом"
+    },
+    {
+      "quest_id": "1E17F741B3D2B089",
+      "action": "CH1_MANEOGFLOW",
+      "advancement": "domesurvival:quest_actions/ch1_maneogflow",
+      "task_title": "Автоматически: взаимодействовать с maneogflow",
+      "subtitle": "Найдите maneogflow и поговорите с ним"
+    },
+    {
+      "quest_id": "5D607F103EF876B1",
+      "action": "CH1_AIRLOCK_WORKSPACE",
+      "advancement": "domesurvival:quest_actions/ch1_airlock_workspace",
+      "task_title": "Автоматически: повторно использовать панель после подготовки зоны",
+      "subtitle": "Проверьте подготовленную рабочую зону шлюза"
+    },
+    {
+      "quest_id": "3E0DBA929C2D708C",
+      "action": "CH1_READINESS",
+      "advancement": "domesurvival:quest_actions/ch1_readiness",
+      "task_title": "Автоматически: стоять в шлюзе с ведром, 6 хлебами и 10 факелами",
+      "subtitle": "Соберите короткий аварийный набор и подойдите к шлюзу"
+    },
+    {
+      "quest_id": "20BBB183D71C8B21",
+      "action": "CH1_FINALE",
+      "advancement": "domesurvival:quest_actions/ch1_finale",
+      "task_title": "Автоматически: завершить обязательные задачи Главы 1",
+      "subtitle": "Подготовьте поселение к первым коротким выходам"
+    }
+  ]
+}

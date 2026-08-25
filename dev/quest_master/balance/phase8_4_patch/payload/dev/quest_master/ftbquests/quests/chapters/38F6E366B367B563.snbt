@@ -1,0 +1,1016 @@
+{
+  id: "38F6E366B367B563"
+  group: ""
+  order_index: 1
+  filename: "38F6E366B367B563"
+  title: "{\"text\":\"Первые дни\",\"color\":\"#C8D9A6\",\"bold\":true}"
+  icon: "minecraft:oak_sapling"
+  autofocus_id: "517EC9D8E689AF18"
+  default_quest_shape: "rsquare"
+  default_quest_size: 1.0d
+  default_min_width: 340
+  default_hide_dependency_lines: false
+  progression_mode: "linear"
+  hide_quest_until_deps_complete: false
+  hide_quest_until_deps_visible: false
+  require_sequential_tasks: false
+  quests: [
+  {
+    id: "517EC9D8E689AF18"
+    title: "Первые дни"
+    icon: "minecraft:clock"
+    tags: ["ds_visual_story"]
+    x: 0.0d
+    y: 0.0d
+    shape: "hexagon"
+    size: 1.18d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["4E6B940013A62F56"]
+    description: [
+      "Мы знаем, что снаружи опасно. Теперь нужно сделать так, чтобы внутри Купола можно было не просто переждать ночь, а жить.",
+      "",
+      "Эта глава посвящена запасам, простому хозяйству и подготовке рабочей зоны. Дальних вылазок всё ещё нет.",
+      "",
+      "Пока кислород не производится, главный ресурс поселения — время, которое не приходится проводить снаружи.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Завершите финальный квест Главы 0 «Под Куполом».\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически после выполнения зависимости.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "24D7BD101F998BB3"
+          type: "advancement"
+          title: "Автоматически: завершить пролог"
+          advancement: "domesurvival:quest_actions/ch1_intro"
+          criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+                id: "63DFD2E2301A2550"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 517EC9D8E689AF18 normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "472DAEDCCF25053E"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:bread"
+                      count: 2
+                  }
+    ]
+  },
+  {
+    id: "307036CB8D873212"
+    title: "Дерево не должно кончаться"
+    icon: "minecraft:oak_log"
+    tags: ["ds_visual_resource"]
+    x: -3.0d
+    y: 2.0d
+    shape: "square"
+    size: 1.00d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["517EC9D8E689AF18"]
+    description: [
+      "Собери рабочий запас древесины.",
+      "",
+      "Она уйдёт на инструменты, сундуки, ограждения, рабочие столы и временные конструкции.",
+      "",
+      "Не нужно вырубать всё вокруг. Нам важнее стабильный запас, чем одна огромная куча.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Соберите минимум 20 дубовых брёвен.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество в инвентаре.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "430D8961157BD742"
+          type: "item"
+          item: "minecraft:oak_log"
+          count: 20L
+      }
+    ]
+    rewards: [
+      {
+                id: "485B33DB63A22DC5"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 307036CB8D873212 normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "552C108C3D58BC8C"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:oak_planks"
+                      count: 8
+                  }
+    ]
+  },
+  {
+    id: "0AA41F06987375BB"
+    title: "Камень под рукой"
+    icon: "minecraft:cobblestone"
+    tags: ["ds_visual_resource"]
+    x: -1.0d
+    y: 2.0d
+    shape: "square"
+    size: 1.00d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["517EC9D8E689AF18"]
+    description: [
+      "Подготовь запас обычного камня для первых строительных и хозяйственных работ.",
+      "",
+      "Сейчас нас интересует добыча рядом с безопасной зоной, а не глубокая шахта.",
+      "",
+      "Настоящие подземные экспедиции начнутся намного позже, когда появится достаточный запас кислорода.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Соберите минимум 40 булыжника.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество в инвентаре.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "2F5E9774D081FB7E"
+          type: "item"
+          item: "minecraft:cobblestone"
+          count: 40L
+      }
+    ]
+    rewards: [
+      {
+                id: "02A58506C19440FA"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 0AA41F06987375BB normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "4EFEA1B71096D723"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:charcoal"
+                      count: 4
+                  }
+    ]
+  },
+  {
+    id: "30DDB7BA6393BE83"
+    title: "Инструмент для работы"
+    icon: "minecraft:stone_axe"
+    tags: ["ds_visual_resource"]
+    x: -4.0d
+    y: 4.0d
+    shape: "square"
+    size: 1.00d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["307036CB8D873212"]
+    description: [
+      "Сделай каменный топор.",
+      "",
+      "Хороший инструмент уменьшает время любой работы. Для нашего поселения это важнее, чем кажется: чем меньше времени уходит на бытовые задачи, тем меньше причин рисковать снаружи.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Сделайте или получите 1 каменный топор.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет предмет.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "222B6D9F3DE43C3C"
+          type: "item"
+          item: "minecraft:stone_axe"
+      }
+    ]
+    rewards: [
+      {
+                id: "2D57755A5870954F"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 30DDB7BA6393BE83 normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "6FC979196412DCFB"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:apple"
+                      count: 2
+                  }
+    ]
+  },
+  {
+    id: "50248AE6CB9519A1"
+    title: "Земля под стеклом"
+    icon: "minecraft:stone_hoe"
+    tags: ["ds_visual_farming"]
+    x: 1.0d
+    y: 4.0d
+    shape: "rsquare"
+    size: 1.05d
+    icon_scale: 0.88d
+    min_width: 340
+    dependencies: ["0AA41F06987375BB"]
+    description: [
+      "Подготовь инструмент для первой грядки.",
+      "",
+      "Еда, которую можно выращивать внутри Купола, ценнее любой случайной находки снаружи.",
+      "",
+      "Каждый урожай уменьшает количество опасных выходов за припасами.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Сделайте или получите 1 каменную мотыгу.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет предмет.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "17C510DA25BA10A6"
+          type: "item"
+          item: "minecraft:stone_hoe"
+      }
+    ]
+    rewards: [
+      {
+                id: "4746F8CC72A8754B"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 50248AE6CB9519A1 normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "7E006611973E2E25"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:wheat_seeds"
+                      count: 4
+                  }
+    ]
+  },
+  {
+    id: "7A4B380CD2589F41"
+    title: "Первый посев"
+    icon: "minecraft:wheat_seeds"
+    tags: ["ds_visual_farming"]
+    x: 1.0d
+    y: 6.0d
+    shape: "rsquare"
+    size: 1.05d
+    icon_scale: 0.88d
+    min_width: 340
+    dependencies: ["50248AE6CB9519A1"]
+    description: [
+      "Собери семена и заложи первую небольшую грядку внутри безопасной зоны.",
+      "",
+      "Большая ферма пока не нужна. Нам важно доказать, что еда может воспроизводиться без постоянных походов наружу.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Соберите минимум 10 семян пшеницы.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "2EB68F76D0487277"
+          type: "item"
+          item: "minecraft:wheat_seeds"
+          count: 10L
+      }
+    ]
+    rewards: [
+      {
+                id: "70D01A0F66C8997B"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 7A4B380CD2589F41 normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "419577FC84C0F244"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:bone_meal"
+                      count: 4
+                  }
+    ]
+  },
+  {
+    id: "148982D154C24E63"
+    title: "Первый урожай"
+    icon: "minecraft:wheat"
+    tags: ["ds_visual_farming"]
+    x: 1.0d
+    y: 8.0d
+    shape: "rsquare"
+    size: 1.14d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["7A4B380CD2589F41"]
+    description: [
+      "Собери первый нормальный урожай.",
+      "",
+      "Это маленький шаг, но он меняет поселение: часть еды теперь появляется не благодаря удачной вылазке, а потому что мы сами её вырастили.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Соберите минимум 10 пшеницы.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "74124950575CD534"
+          type: "item"
+          item: "minecraft:wheat"
+          count: 10L
+      }
+    ]
+    rewards: [
+      {
+                id: "50009E4713B8EE61"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 148982D154C24E63 milestone -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "6651974DD175EC48"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:bread"
+                      count: 3
+                  }
+    ]
+  },
+  {
+    id: "1D9C983649926D1E"
+    title: "Первый промышленный металл"
+    icon: "minecraft:copper_ingot"
+    tags: ["ds_visual_resource"]
+    x: -2.0d
+    y: 5.0d
+    shape: "square"
+    size: 1.00d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["0AA41F06987375BB"]
+    description: [
+      "Собери небольшой запас меди.",
+      "",
+      "Пока это просто металл. Позже медь станет одной из основ наших машин, труб и энергетики.",
+      "",
+      "Не превращай эту задачу в дальнюю экспедицию: нужное количество должно добываться в пределах безопасно контролируемой зоны.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Получите минимум 10 медных слитков.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "49D60FE3A668A76C"
+          type: "item"
+          item: "minecraft:copper_ingot"
+          count: 10L
+      }
+    ]
+    rewards: [
+      {
+                id: "39799DE979E94CF9"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 1D9C983649926D1E normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "6C4DC7B0626FF673"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:copper_ingot"
+                      count: 2
+                  }
+    ]
+  },
+  {
+    id: "350FB0BD7B2E3A7B"
+    title: "Железо — уже ответственность"
+    icon: "minecraft:iron_ingot"
+    tags: ["ds_visual_resource"]
+    x: -2.0d
+    y: 7.0d
+    shape: "square"
+    size: 1.00d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["1D9C983649926D1E"]
+    description: [
+      "Подготовь первые железные слитки.",
+      "",
+      "Железо понадобится почти в каждой серьёзной системе поселения, поэтому мы начинаем собирать его заранее.",
+      "",
+      "Но большие партии и настоящая промышленная переработка появятся позже.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Получите минимум 8 железных слитков.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "183B5A40E69A5729"
+          type: "item"
+          item: "minecraft:iron_ingot"
+          count: 8L
+      }
+    ]
+    rewards: [
+      {
+                id: "0DA468B061913696"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 350FB0BD7B2E3A7B normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "71706AA20FD15223"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:iron_nugget"
+                      count: 9
+                  }
+    ]
+  },
+  {
+    id: "2327F36796AD9481"
+    title: "Вода должна быть рядом"
+    icon: "minecraft:bucket"
+    tags: ["ds_visual_resource"]
+    x: -2.0d
+    y: 9.0d
+    shape: "square"
+    size: 1.00d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["350FB0BD7B2E3A7B", "148982D154C24E63"]
+    description: [
+      "Сделай ведро и организуй воду для хозяйства внутри Купола.",
+      "",
+      "Позже вода станет промышленным сырьём: её придётся очищать и подавать в кислородную систему.",
+      "",
+      "Сейчас она нужна прежде всего ферме и обычной жизни.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Сделайте или получите 1 ведро.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет предмет.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "0ACFD76B19B5C4E7"
+          type: "item"
+          item: "minecraft:bucket"
+      }
+    ]
+    rewards: [
+      {
+                id: "7894FB902D87B66E"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 2327F36796AD9481 normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "5949973F0EF6D022"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:clay_ball"
+                      count: 4
+                  }
+    ]
+  },
+  {
+    id: "76CC190EA3C2AF43"
+    title: "Навес — это план, а не воздух"
+    icon: "minecraft:stone_slab"
+    tags: ["ds_visual_airlock"]
+    x: 4.0d
+    y: 4.0d
+    shape: "gear"
+    size: 1.10d
+    icon_scale: 0.82d
+    min_width: 340
+    dependencies: ["517EC9D8E689AF18"]
+    description: [
+      "Подготовь материалы для небольшого навеса у рабочей зоны шлюза.",
+      "",
+      "Такое укрытие помогает от прямого солнца и части погодных угроз, потому что закрывает небо.",
+      "",
+      "Но оно НЕ создаёт пригодную атмосферу. Снаружи под крышей всё равно требуется кислород.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Подготовьте минимум 20 каменных плит.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "3016DD0E85BE0FF3"
+          type: "item"
+          item: "minecraft:stone_slab"
+          count: 20L
+      }
+    ]
+    rewards: [
+      {
+                id: "7BDB2B08922F067F"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 76CC190EA3C2AF43 normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "79A37FE260960310"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:torch"
+                      count: 8
+                  }
+    ]
+  },
+  {
+    id: "7070CC231A5FD78B"
+    title: "Сначала посмотри наверх"
+    icon: "minecraft:spyglass"
+    tags: ["ds_visual_environment"]
+    x: 4.0d
+    y: 6.0d
+    shape: "circle"
+    size: 1.00d
+    icon_scale: 0.88d
+    min_width: 340
+    dependencies: ["76CC190EA3C2AF43"]
+    description: [
+      "Перед каждым выходом оцени погоду и освещение.",
+      "",
+      "Ясный день означает солнечную опасность. Дождь, гроза или песчаная буря могут быть опасны сами по себе.",
+      "",
+      "Случайная погода никогда не будет обязательным условием прохождения — задача в том, чтобы научиться принимать её во внимание.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"После подготовки навеса взаимодействуйте с airlock control panel.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически при фактическом использовании панели.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "0BDEF48D713482AB"
+          type: "advancement"
+          title: "Автоматически: проверить выход через панель шлюза"
+          advancement: "domesurvival:quest_actions/ch1_weather_check"
+          criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+                id: "01B454FE9D7E10EB"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 7070CC231A5FD78B normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "26FED10928EE73BF"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:baked_potato"
+                      count: 2
+                  }
+    ]
+  },
+  {
+    id: "1E17F741B3D2B089"
+    title: "maneogflow"
+    icon: "minecraft:music_disc_13"
+    tags: ["ds_visual_npc"]
+    x: 6.0d
+    y: 6.0d
+    shape: "pentagon"
+    size: 1.10d
+    icon_scale: 0.88d
+    min_width: 340
+    dependencies: ["7070CC231A5FD78B"]
+    description: [
+      "Найди maneogflow.",
+      "",
+      "Он останется одним из людей, с которыми будут связаны внешние операции, ночные выходы и экспедиции.",
+      "",
+      "Пока достаточно познакомиться и запомнить: если кто-то говорит о выходе наружу слишком уверенно, сначала проверь его баллон. Даже если баллонов у нас ещё нет.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Найдите NPC maneogflow и взаимодействуйте с ним.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически по фактическому взаимодействию с NPC.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "3FD6CDA9C4423442"
+          type: "advancement"
+          title: "Автоматически: взаимодействовать с maneogflow"
+          advancement: "domesurvival:quest_actions/ch1_maneogflow"
+          criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+                id: "281B1A4724B3428F"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 1E17F741B3D2B089 normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "0CA9D8703DC596CB"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:cookie"
+                      count: 2
+                  }
+    ]
+  },
+  {
+    id: "154A94C130095453"
+    title: "Запас у выхода"
+    icon: "minecraft:chest"
+    tags: ["ds_visual_airlock"]
+    x: 3.0d
+    y: 8.0d
+    shape: "gear"
+    size: 1.10d
+    icon_scale: 0.82d
+    min_width: 340
+    dependencies: ["7070CC231A5FD78B", "148982D154C24E63"]
+    description: [
+      "Собери небольшой аварийный запас возле внутренней стороны шлюза.",
+      "",
+      "Минимум: сундук, еда и освещение.",
+      "",
+      "Позже здесь появятся настоящие expedition kits, баллоны и резервные системы. Сейчас мы просто учимся не начинать выход с поиска припасов по всему Куполу.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Имейте одновременно: 1 сундук, 6 хлеба и 10 факелов.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет все три предмета.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "5A10CDC53424CB01"
+          type: "item"
+          item: "minecraft:chest"
+      },
+      {
+          id: "16297EA89B255FDC"
+          type: "item"
+          item: "minecraft:bread"
+          count: 6L
+      },
+      {
+          id: "7DE32539C625EF16"
+          type: "item"
+          item: "minecraft:torch"
+          count: 10L
+      }
+    ]
+    rewards: [
+      {
+                id: "6438510AEFF7FB79"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 154A94C130095453 normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "33848EEACAFE4F64"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:coal"
+                      count: 4
+                  }
+    ]
+  },
+  {
+    id: "5D607F103EF876B1"
+    title: "Рабочая зона шлюза"
+    icon: "domesurvival:airlock_control_panel"
+    tags: ["ds_visual_airlock"]
+    x: 5.0d
+    y: 9.0d
+    shape: "gear"
+    size: 1.10d
+    icon_scale: 0.82d
+    min_width: 340
+    dependencies: ["154A94C130095453", "1E17F741B3D2B089"]
+    description: [
+      "Осмотри место у шлюза и оставь вокруг него достаточно пространства для будущего оборудования.",
+      "",
+      "Здесь со временем появятся запасы, защитное снаряжение и узлы жизнеобеспечения.",
+      "",
+      "Панель шлюза сама по себе не требует FE. Не закладывай в план отдельное питание панели — энергия понадобится кислородным машинам.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"После подготовки запаса у выхода и разговора с maneogflow снова используйте панель шлюза.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически при взаимодействии с airlock control panel после выполнения зависимостей.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "7132B9904ED163AB"
+          type: "advancement"
+          title: "Автоматически: повторно использовать панель после подготовки зоны"
+          advancement: "domesurvival:quest_actions/ch1_airlock_workspace"
+          criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+                id: "730DC4A0A8BAC2A1"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 5D607F103EF876B1 normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "2AFA75F3055487DC"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:lever"
+                  }
+    ]
+  },
+  {
+    id: "3E0DBA929C2D708C"
+    title: "Никакого героизма"
+    icon: "minecraft:shield"
+    tags: ["ds_visual_milestone"]
+    x: 0.0d
+    y: 11.0d
+    shape: "diamond"
+    size: 1.30d
+    icon_scale: 0.82d
+    min_width: 340
+    dependencies: ["2327F36796AD9481", "5D607F103EF876B1"]
+    description: [
+      "До производства кислорода мы не планируем дальние выходы, ночёвки или походы к структурам.",
+      "",
+      "Если ресурс требует длинной дороги — значит, сейчас это не наш ресурс.",
+      "",
+      "Следующая глава научит коротким контролируемым выходам за ворота, а настоящая свобода начнётся только после появления собственного воздуха.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Встаньте внутри зоны шлюза, имея при себе 1 ведро, 6 хлеба и 10 факелов.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически по вашему положению и содержимому инвентаря.\",\"color\":\"gray\"}",
+      "",
+      "{\"text\":\"⚠ Важно\",\"color\":\"yellow\",\"bold\":true}",
+      "{\"text\":\"Это проверка готовности, а не приглашение к дальней экспедиции.\",\"color\":\"yellow\"}"
+    ]
+    tasks: [
+      {
+          id: "5101F226BE5A7C58"
+          type: "advancement"
+          title: "Автоматически: стоять в шлюзе с ведром, 6 хлебами и 10 факелами"
+          advancement: "domesurvival:quest_actions/ch1_readiness"
+          criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+                id: "022F4C9FF0FC2D29"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 3E0DBA929C2D708C normal -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "2A24C9C3890E7018"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:cooked_beef"
+                      count: 2
+                  }
+    ]
+  },
+  {
+    id: "20BBB183D71C8B21"
+    title: "Теперь здесь можно жить"
+    icon: "minecraft:oak_sapling"
+    tags: ["ds_visual_milestone"]
+    x: 0.0d
+    y: 13.0d
+    shape: "octagon"
+    size: 1.48d
+    icon_scale: 0.80d
+    min_width: 340
+    dependencies: ["3E0DBA929C2D708C"]
+    description: [
+      "У нас есть материалы, первый урожай, простая вода, запас у шлюза и понятные правила работы.",
+      "",
+      "Купол всё ещё ограничивает нас, но внутри него уже появляется настоящее поселение.",
+      "",
+      "Следующий шаг — научиться ненадолго выходить за ворота и возвращаться с тем, чего внутри получить нельзя.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Выполните все обязательные зависимости этого квеста.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически. Ручного подтверждения нет.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+          id: "34CC3A6849E108A5"
+          type: "advancement"
+          title: "Автоматически: завершить обязательные задачи Главы 1"
+          advancement: "domesurvival:quest_actions/ch1_finale"
+          criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+                id: "01A985A25BD12C67"
+                type: "command"
+                team_reward: true
+                title: " "
+                icon: "minecraft:gray_stained_glass_pane"
+                command: "/domequest complete 20BBB183D71C8B21 chapter -"
+                elevate_perms: true
+                silent: true
+                auto: "invisible"
+                exclude_from_claim_all: true
+                ignore_reward_blocking: true
+            },
+      {
+                      id: "3EE78ECD5661A261"
+                      type: "item"
+                      exclude_from_claim_all: true
+                      auto: "enabled"
+                      team_reward: true
+                      item: "minecraft:golden_carrot"
+                      count: 2
+                  }
+    ]
+  }
+  ]
+  quest_links: []
+}

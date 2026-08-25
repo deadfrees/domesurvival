@@ -1,0 +1,161 @@
+{
+  "version": "6.1",
+  "chapter_id": "2D984F68E1AC5B77",
+  "title": "Не одним хлебом",
+  "background_source": "тёплая_ферма_под_стеклянным_куполом.png",
+  "background_runtime": "assets/domesurvival/textures/gui/quests/chapter_04_food_system.png",
+  "background_size": [
+    1024,
+    576
+  ],
+  "layout_principle": "main vertical spine + left support branch + right reserve branch + one final convergence",
+  "quest_positions": {
+    "0B9F786C486E6E23": {
+      "x": 0.0,
+      "y": 0.0,
+      "dependencies": [
+        "6EA480B356153363"
+      ]
+    },
+    "37C9F7FA846C095D": {
+      "x": -4.5,
+      "y": 2.4,
+      "dependencies": [
+        "0B9F786C486E6E23"
+      ]
+    },
+    "2E2A6D29AD4B2AE2": {
+      "x": -1.5,
+      "y": 2.4,
+      "dependencies": [
+        "0B9F786C486E6E23"
+      ]
+    },
+    "6B8C0D8C9A026814": {
+      "x": 1.5,
+      "y": 2.4,
+      "dependencies": [
+        "0B9F786C486E6E23"
+      ]
+    },
+    "3B9EAABCFAE6CE18": {
+      "x": 4.5,
+      "y": 2.4,
+      "dependencies": [
+        "0B9F786C486E6E23"
+      ]
+    },
+    "2B7E534D6B75AD7A": {
+      "x": 0.0,
+      "y": 4.8,
+      "dependencies": [
+        "37C9F7FA846C095D",
+        "2E2A6D29AD4B2AE2",
+        "6B8C0D8C9A026814",
+        "3B9EAABCFAE6CE18"
+      ]
+    },
+    "5CE40D096707A2AD": {
+      "x": 0.0,
+      "y": 7.2,
+      "dependencies": [
+        "2B7E534D6B75AD7A"
+      ]
+    },
+    "4F0ECE3FD861C35C": {
+      "x": 0.0,
+      "y": 9.6,
+      "dependencies": [
+        "5CE40D096707A2AD"
+      ]
+    },
+    "55DE54410BA15E1E": {
+      "x": 0.0,
+      "y": 12.0,
+      "dependencies": [
+        "4F0ECE3FD861C35C"
+      ]
+    },
+    "73B2F7B80876F16E": {
+      "x": 0.0,
+      "y": 14.4,
+      "dependencies": [
+        "55DE54410BA15E1E"
+      ]
+    },
+    "3F6584DAD2270EE2": {
+      "x": 0.0,
+      "y": 16.8,
+      "dependencies": [
+        "73B2F7B80876F16E"
+      ]
+    },
+    "2492885B9D8F12E9": {
+      "x": 0.0,
+      "y": 19.2,
+      "dependencies": [
+        "3F6584DAD2270EE2"
+      ]
+    },
+    "335799FD690F911A": {
+      "x": 4.2,
+      "y": 9.6,
+      "dependencies": [
+        "5CE40D096707A2AD"
+      ]
+    },
+    "0445603F30A02E87": {
+      "x": 4.2,
+      "y": 12.0,
+      "dependencies": [
+        "4F0ECE3FD861C35C"
+      ]
+    },
+    "3595CC264502D856": {
+      "x": 4.2,
+      "y": 19.2,
+      "dependencies": [
+        "2492885B9D8F12E9",
+        "335799FD690F911A",
+        "0445603F30A02E87"
+      ]
+    },
+    "6137A02708AF6AD5": {
+      "x": -4.2,
+      "y": 7.2,
+      "dependencies": [
+        "2B7E534D6B75AD7A"
+      ]
+    },
+    "5A8D75EB2724CC12": {
+      "x": -4.2,
+      "y": 19.2,
+      "dependencies": [
+        "6137A02708AF6AD5"
+      ]
+    },
+    "1F81854C544FB87C": {
+      "x": -2.2,
+      "y": 21.6,
+      "dependencies": [
+        "2492885B9D8F12E9",
+        "5A8D75EB2724CC12"
+      ]
+    },
+    "6216E581C8FE6295": {
+      "x": 2.2,
+      "y": 21.6,
+      "dependencies": [
+        "3595CC264502D856",
+        "1F81854C544FB87C"
+      ]
+    },
+    "1A7234374FC8891A": {
+      "x": 0.0,
+      "y": 24.0,
+      "dependencies": [
+        "6216E581C8FE6295"
+      ]
+    }
+  }
+}

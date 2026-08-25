@@ -1,0 +1,354 @@
+{
+  "schema": 2,
+  "ftb_quests_target": "2001.4.22",
+  "minecraft": "1.20.1",
+  "forge": "47.4.x",
+  "id_rule": "16 uppercase hex, positive signed long: 0000000000000002..7FFFFFFFFFFFFFFF",
+  "visible_chapters": [
+    {
+      "index": 0,
+      "id": "5017105A9984A511",
+      "title": "Под Куполом",
+      "design_slots": 14
+    },
+    {
+      "index": 1,
+      "id": "38F6E366B367B563",
+      "title": "Первые дни",
+      "design_slots": 17
+    },
+    {
+      "index": 2,
+      "id": "643138B0A36D1017",
+      "title": "За воротами",
+      "design_slots": 17
+    },
+    {
+      "index": 3,
+      "id": "270E74565C81C894",
+      "title": "Здесь будут жить",
+      "design_slots": 15
+    },
+    {
+      "index": 4,
+      "id": "23B2052E4DA60D0E",
+      "title": "Не одним хлебом",
+      "design_slots": 20
+    },
+    {
+      "index": 5,
+      "id": "7E8BFDBBF2CA9449",
+      "title": "Всё своё не унесёшь",
+      "design_slots": 14
+    },
+    {
+      "index": 6,
+      "id": "649FCBF9F0251A82",
+      "title": "Пусть горит свет",
+      "design_slots": 20
+    },
+    {
+      "index": 7,
+      "id": "76CBABB04B110F16",
+      "title": "Промышленный район",
+      "design_slots": 22
+    },
+    {
+      "index": 8,
+      "id": "6337B45648BD526C",
+      "title": "Всё должно двигаться",
+      "design_slots": 20
+    },
+    {
+      "index": 9,
+      "id": "196E68C2962C3B35",
+      "title": "Мир оказался больше",
+      "design_slots": 16
+    },
+    {
+      "index": 10,
+      "id": "4AD0CB6A893E6C72",
+      "title": "Когда садится солнце",
+      "design_slots": 14
+    },
+    {
+      "index": 11,
+      "id": "6005DCEA27FE984A",
+      "title": "Мир под миром",
+      "design_slots": 18
+    },
+    {
+      "index": 12,
+      "id": "76A5C21355A7B525",
+      "title": "Большая индустрия",
+      "design_slots": 22
+    },
+    {
+      "index": 13,
+      "id": "536DFF5B20B5A853",
+      "title": "Предел реальности",
+      "design_slots": 14
+    },
+    {
+      "index": 14,
+      "id": "2AB55D6EE31F1278",
+      "title": "Программа «Исход»",
+      "design_slots": 21
+    },
+    {
+      "index": 15,
+      "id": "05CA25527DF36F80",
+      "title": "Первый запуск",
+      "design_slots": 12
+    },
+    {
+      "index": 16,
+      "id": "3D7991DCEE3B0E8E",
+      "title": "Планетарные операции",
+      "design_slots": 22
+    },
+    {
+      "index": 17,
+      "id": "3093ECA3AE9C0CE9",
+      "title": "Собирайте вещи",
+      "design_slots": 14
+    },
+    {
+      "index": 18,
+      "id": "500B57532F96332F",
+      "title": "Другой дом",
+      "design_slots": 10
+    }
+  ],
+  "chapter0": {
+    "chapter_id": "5017105A9984A511",
+    "filename": "5017105A9984A511.snbt",
+    "quest_count": 14,
+    "first_quest_id": "574CF865DA07FAA8",
+    "final_quest_id": "4E6B940013A62F56",
+    "quests": [
+      {
+        "number": 1,
+        "key": "intro",
+        "id": "574CF865DA07FAA8",
+        "title": "Под Куполом",
+        "task_id": "5701C6982DD28F03",
+        "reward_ids": [
+          "42D43545A8391DDD",
+          "7D0D8AED96C484CD"
+        ],
+        "dependencies": [],
+        "flag": "DOME_SURVIVAL_STARTED"
+      },
+      {
+        "number": 2,
+        "key": "breathable_dome",
+        "id": "152DB9A14CA5E5EC",
+        "title": "Воздух — часть стены",
+        "task_id": "77D6BE0B310C0810",
+        "reward_ids": [],
+        "dependencies": [
+          "574CF865DA07FAA8"
+        ],
+        "flag": null
+      },
+      {
+        "number": 3,
+        "key": "no_air_outside",
+        "id": "1CC685A27E7F8753",
+        "title": "За воротами нет воздуха",
+        "task_id": "0A4CACCEC19E9FB5",
+        "reward_ids": [],
+        "dependencies": [
+          "152DB9A14CA5E5EC"
+        ],
+        "flag": null
+      },
+      {
+        "number": 4,
+        "key": "solar",
+        "id": "63EB53B2B8F791B2",
+        "title": "Солнце тоже враг",
+        "task_id": "255130F61481132C",
+        "reward_ids": [],
+        "dependencies": [
+          "1CC685A27E7F8753"
+        ],
+        "flag": null
+      },
+      {
+        "number": 5,
+        "key": "weather",
+        "id": "4E9628EFAC01DCEC",
+        "title": "Погода здесь не фон",
+        "task_id": "65B0E52877AE5C0F",
+        "reward_ids": [],
+        "dependencies": [
+          "1CC685A27E7F8753"
+        ],
+        "flag": null
+      },
+      {
+        "number": 6,
+        "key": "crafting_table",
+        "id": "3993B25DBE806706",
+        "title": "Верстак — первая машина",
+        "task_id": "4FED12DC1469EF01",
+        "reward_ids": [
+          "4A469930690D06FE"
+        ],
+        "dependencies": [
+          "574CF865DA07FAA8"
+        ],
+        "flag": null
+      },
+      {
+        "number": 7,
+        "key": "stone_pickaxe",
+        "id": "6580F2A6EBD94BBB",
+        "title": "Камень работает дольше",
+        "task_id": "1C35A7C3FB1E9744",
+        "reward_ids": [
+          "3780E1172CC55DFB"
+        ],
+        "dependencies": [
+          "3993B25DBE806706"
+        ],
+        "flag": null
+      },
+      {
+        "number": 8,
+        "key": "storage",
+        "id": "38DAA584DC6775BA",
+        "title": "Склад до экспедиции",
+        "task_id": "3936E54F4FC4B191",
+        "reward_ids": [
+          "600935C1DF8F9EBF"
+        ],
+        "dependencies": [
+          "3993B25DBE806706"
+        ],
+        "flag": null
+      },
+      {
+        "number": 9,
+        "key": "torches",
+        "id": "06FCA2E6E6EB913C",
+        "title": "Свет — это время",
+        "task_id": "026DF1F5BDDB0961",
+        "reward_ids": [
+          "01E42C55CC9655B9"
+        ],
+        "dependencies": [
+          "38DAA584DC6775BA"
+        ],
+        "flag": null
+      },
+      {
+        "number": 10,
+        "key": "joseph",
+        "id": "27ACBC4CB0FD500B",
+        "title": "Джозеф Куппер",
+        "task_id": "049D9E070CC33D89",
+        "reward_ids": [],
+        "dependencies": [
+          "574CF865DA07FAA8"
+        ],
+        "flag": null
+      },
+      {
+        "number": 11,
+        "key": "airlock",
+        "id": "3F46DFCB027B910D",
+        "title": "Найди шлюз",
+        "task_id": "4A90428942E31451",
+        "reward_ids": [],
+        "dependencies": [
+          "27ACBC4CB0FD500B"
+        ],
+        "flag": null
+      },
+      {
+        "number": 12,
+        "key": "shade_not_air",
+        "id": "50DA62AD2BA7A7B2",
+        "title": "Навес не атмосфера",
+        "task_id": "399D4DCF1C90F315",
+        "reward_ids": [],
+        "dependencies": [
+          "63EB53B2B8F791B2",
+          "4E9628EFAC01DCEC"
+        ],
+        "flag": null
+      },
+      {
+        "number": 13,
+        "key": "return_rule",
+        "id": "78AB2063F7341353",
+        "title": "Правило возврата",
+        "task_id": "547D17FC32090851",
+        "reward_ids": [],
+        "dependencies": [
+          "1CC685A27E7F8753",
+          "06FCA2E6E6EB913C",
+          "3F46DFCB027B910D"
+        ],
+        "flag": null
+      },
+      {
+        "number": 14,
+        "key": "finale",
+        "id": "4E6B940013A62F56",
+        "title": "Пока это наш дом",
+        "task_id": "29D9247CE91537C5",
+        "reward_ids": [
+          "0E3EC79BC78DEE41",
+          "78C77CAE8DD00031"
+        ],
+        "dependencies": [
+          "6580F2A6EBD94BBB",
+          "50DA62AD2BA7A7B2",
+          "78AB2063F7341353"
+        ],
+        "flag": "DOME_PROLOGUE_COMPLETE"
+      }
+    ]
+  },
+  "joseph_hidden_bridge": {
+    "chapter_id": "11FF60B844BBED5B",
+    "filename": "11FF60B844BBED5B.snbt",
+    "quests": [
+      {
+        "flag": "JOSEPH_STAGE_13_COMPLETE",
+        "quest_id": "31C0FE8D1487EA37",
+        "task_id": "32E37037B9EA96A1",
+        "reward_id": "31575EFFA06EFCB2"
+      },
+      {
+        "flag": "JOSEPH_STAGE_14_COMPLETE",
+        "quest_id": "3EFBBB5CC946B65C",
+        "task_id": "59336C6705670A07",
+        "reward_id": "2424BA730B149C6C"
+      },
+      {
+        "flag": "JOSEPH_STAGE_15_COMPLETE",
+        "quest_id": "2B5067C09FEEEDED",
+        "task_id": "7C663747FE4E9E78",
+        "reward_id": "1D0B776469BF7FCB"
+      },
+      {
+        "flag": "JOSEPH_STAGE_16_COMPLETE",
+        "quest_id": "702F331B702620A5",
+        "task_id": "499FC8C61C803DDC",
+        "reward_id": "1653B8F2F3DF7971"
+      },
+      {
+        "flag": "JOSEPH_FINAL_COMPLETE",
+        "quest_id": "643B5A663ED36317",
+        "task_id": "620A5B915CC9E573",
+        "reward_id": "71E6EC217D05269B"
+      }
+    ]
+  },
+  "canonical_final_quest_target": "290-310"
+}

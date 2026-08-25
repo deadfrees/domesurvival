@@ -3,13 +3,17 @@ package com.wasted.domesurvival.forge.environment;
 import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.config.SurfaceHazardConfig;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Mob;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 /** Server-authoritative sun, acid-rain and sandstorm damage. */
 @Mod.EventBusSubscriber(modid = DomeSurvival.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class SurfaceHazardService {
+    private static final int MOB_SOLAR_FIRE_SECONDS = 3;
+
     private SurfaceHazardService() {
     }
 
@@ -20,9 +24,6 @@ public final class SurfaceHazardService {
         }
 
         int intervalTicks = SurfaceHazardConfig.DAMAGE_INTERVAL_TICKS.get();
-        // 10 ticks is the default because vanilla LivingEntity hurt cooldown makes
-        // substantially faster repeated hurt() calls unreliable. The +5 phase offset keeps
-        // surface hits between the oxygen system's normal whole-second boundaries.
         if (Math.floorMod(event.getServer().getTickCount() - 5, intervalTicks) != 0) {
             return;
         }
@@ -32,13 +33,43 @@ public final class SurfaceHazardService {
         }
     }
 
+    /**
+     * Passive, neutral, hostile and modded mobs use the same solar exposure
+     * classification as players. They visibly burn with vanilla fire rendering,
+     * while the actual solar damage remains generic so fire immunity does not
+     * protect a mob from the lethal sun.
+     */
+    @SubscribeEvent
+    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        if (!(event.getEntity() instanceof Mob mob)
+                || !mob.isAlive()
+                || mob.level().isClientSide()) {
+            return;
+        }
+
+        int intervalTicks = SurfaceHazardConfig.DAMAGE_INTERVAL_TICKS.get();
+        if (Math.floorMod(mob.tickCount - 5, intervalTicks) != 0) {
+            return;
+        }
+
+        if (!SurfaceHazardConfig.SOLAR_ENABLED.get()) {
+            return;
+        }
+
+        float amount = SurfaceHazardConfig.SOLAR_DAMAGE.get().floatValue();
+        if (amount <= 0.0F || SurfaceHazardEnvironment.exposure(mob) != SurfaceExposure.SOLAR) {
+            return;
+        }
+
+        mob.setSecondsOnFire(MOB_SOLAR_FIRE_SECONDS);
+        mob.hurt(mob.damageSources().generic(), amount);
+    }
+
     private static void tickPlayer(ServerPlayer player) {
         if (!player.isAlive() || player.isCreative() || player.isSpectator()) {
             return;
         }
 
-        // A complete surface suit blocks all DomeSurvival weather hazards. Oxygen remains
-        // independent and is still handled by OxygenService through mask + tank.
         if (SurfaceSuitEquipment.hasFullSuit(player)) {
             return;
         }

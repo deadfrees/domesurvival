@@ -1,0 +1,381 @@
+{
+  "schema": 1,
+  "chapter": 1,
+  "chapter_id": "38F6E366B367B563",
+  "title": "Первые дни",
+  "quest_count": 17,
+  "first_quest_id": "517EC9D8E689AF18",
+  "final_quest_id": "20BBB183D71C8B21",
+  "depends_on_chapter0_final": "4E6B940013A62F56",
+  "quests": [
+    {
+      "number": 1,
+      "key": "intro",
+      "id": "517EC9D8E689AF18",
+      "title": "Первые дни",
+      "task_ids": [
+        "24D7BD101F998BB3"
+      ],
+      "reward_ids": [
+        "472DAEDCCF25053E",
+        "4A4001CD53F21EB2"
+      ],
+      "dependencies": [
+        "4E6B940013A62F56"
+      ],
+      "visible_reward": {
+        "item": "minecraft:bread",
+        "count": 2
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 2,
+      "key": "wood_stock",
+      "id": "307036CB8D873212",
+      "title": "Дерево не должно кончаться",
+      "task_ids": [
+        "430D8961157BD742"
+      ],
+      "reward_ids": [
+        "552C108C3D58BC8C",
+        "484E89CB06FDD154"
+      ],
+      "dependencies": [
+        "517EC9D8E689AF18"
+      ],
+      "visible_reward": {
+        "item": "minecraft:oak_planks",
+        "count": 8
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 3,
+      "key": "stone_stock",
+      "id": "0AA41F06987375BB",
+      "title": "Камень под рукой",
+      "task_ids": [
+        "2F5E9774D081FB7E"
+      ],
+      "reward_ids": [
+        "4EFEA1B71096D723",
+        "04C4EE6CD40FF4B4"
+      ],
+      "dependencies": [
+        "517EC9D8E689AF18"
+      ],
+      "visible_reward": {
+        "item": "minecraft:charcoal",
+        "count": 4
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 4,
+      "key": "stone_axe",
+      "id": "30DDB7BA6393BE83",
+      "title": "Инструмент для работы",
+      "task_ids": [
+        "222B6D9F3DE43C3C"
+      ],
+      "reward_ids": [
+        "6FC979196412DCFB",
+        "04E973A782B7A140"
+      ],
+      "dependencies": [
+        "307036CB8D873212"
+      ],
+      "visible_reward": {
+        "item": "minecraft:apple",
+        "count": 2
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 5,
+      "key": "hoe",
+      "id": "50248AE6CB9519A1",
+      "title": "Земля под стеклом",
+      "task_ids": [
+        "17C510DA25BA10A6"
+      ],
+      "reward_ids": [
+        "7E006611973E2E25",
+        "2A530EA1DDC96B80"
+      ],
+      "dependencies": [
+        "0AA41F06987375BB"
+      ],
+      "visible_reward": {
+        "item": "minecraft:wheat_seeds",
+        "count": 4
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 6,
+      "key": "seeds",
+      "id": "7A4B380CD2589F41",
+      "title": "Первый посев",
+      "task_ids": [
+        "2EB68F76D0487277"
+      ],
+      "reward_ids": [
+        "419577FC84C0F244",
+        "509CB455B2CED203"
+      ],
+      "dependencies": [
+        "50248AE6CB9519A1"
+      ],
+      "visible_reward": {
+        "item": "minecraft:bone_meal",
+        "count": 4
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 7,
+      "key": "wheat",
+      "id": "148982D154C24E63",
+      "title": "Первый урожай",
+      "task_ids": [
+        "74124950575CD534"
+      ],
+      "reward_ids": [
+        "6651974DD175EC48",
+        "185131700DDD15B4"
+      ],
+      "dependencies": [
+        "7A4B380CD2589F41"
+      ],
+      "visible_reward": {
+        "item": "minecraft:bread",
+        "count": 3
+      },
+      "feedback": "milestone"
+    },
+    {
+      "number": 8,
+      "key": "copper",
+      "id": "1D9C983649926D1E",
+      "title": "Первый промышленный металл",
+      "task_ids": [
+        "49D60FE3A668A76C"
+      ],
+      "reward_ids": [
+        "6C4DC7B0626FF673",
+        "5465B2801BDB3D81"
+      ],
+      "dependencies": [
+        "0AA41F06987375BB"
+      ],
+      "visible_reward": {
+        "item": "minecraft:copper_ingot",
+        "count": 2
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 9,
+      "key": "iron",
+      "id": "350FB0BD7B2E3A7B",
+      "title": "Железо — уже ответственность",
+      "task_ids": [
+        "183B5A40E69A5729"
+      ],
+      "reward_ids": [
+        "71706AA20FD15223",
+        "365FB0F8B29C222A"
+      ],
+      "dependencies": [
+        "1D9C983649926D1E"
+      ],
+      "visible_reward": {
+        "item": "minecraft:iron_nugget",
+        "count": 9
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 10,
+      "key": "bucket",
+      "id": "2327F36796AD9481",
+      "title": "Вода должна быть рядом",
+      "task_ids": [
+        "0ACFD76B19B5C4E7"
+      ],
+      "reward_ids": [
+        "5949973F0EF6D022",
+        "7D822F99D154294C"
+      ],
+      "dependencies": [
+        "350FB0BD7B2E3A7B",
+        "148982D154C24E63"
+      ],
+      "visible_reward": {
+        "item": "minecraft:clay_ball",
+        "count": 4
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 11,
+      "key": "roof_materials",
+      "id": "76CC190EA3C2AF43",
+      "title": "Навес — это план, а не воздух",
+      "task_ids": [
+        "3016DD0E85BE0FF3"
+      ],
+      "reward_ids": [
+        "79A37FE260960310",
+        "585D28BB6818CFF2"
+      ],
+      "dependencies": [
+        "517EC9D8E689AF18"
+      ],
+      "visible_reward": {
+        "item": "minecraft:torch",
+        "count": 8
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 12,
+      "key": "weather_check",
+      "id": "7070CC231A5FD78B",
+      "title": "Сначала посмотри наверх",
+      "task_ids": [
+        "0BDEF48D713482AB"
+      ],
+      "reward_ids": [
+        "26FED10928EE73BF",
+        "0570480B50C59EFC"
+      ],
+      "dependencies": [
+        "76CC190EA3C2AF43"
+      ],
+      "visible_reward": {
+        "item": "minecraft:baked_potato",
+        "count": 2
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 13,
+      "key": "maneogflow",
+      "id": "1E17F741B3D2B089",
+      "title": "maneogflow",
+      "task_ids": [
+        "3FD6CDA9C4423442"
+      ],
+      "reward_ids": [
+        "0CA9D8703DC596CB",
+        "489AE4934722F001"
+      ],
+      "dependencies": [
+        "7070CC231A5FD78B"
+      ],
+      "visible_reward": {
+        "item": "minecraft:cookie",
+        "count": 2
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 14,
+      "key": "gate_cache",
+      "id": "154A94C130095453",
+      "title": "Запас у выхода",
+      "task_ids": [
+        "5A10CDC53424CB01",
+        "16297EA89B255FDC",
+        "7DE32539C625EF16"
+      ],
+      "reward_ids": [
+        "33848EEACAFE4F64",
+        "6B8B49C4A4BAAF7D"
+      ],
+      "dependencies": [
+        "7070CC231A5FD78B",
+        "148982D154C24E63"
+      ],
+      "visible_reward": {
+        "item": "minecraft:coal",
+        "count": 4
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 15,
+      "key": "airlock_workspace",
+      "id": "5D607F103EF876B1",
+      "title": "Рабочая зона шлюза",
+      "task_ids": [
+        "7132B9904ED163AB"
+      ],
+      "reward_ids": [
+        "2AFA75F3055487DC",
+        "4AD84F62FB569275"
+      ],
+      "dependencies": [
+        "154A94C130095453",
+        "1E17F741B3D2B089"
+      ],
+      "visible_reward": {
+        "item": "minecraft:lever",
+        "count": 1
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 16,
+      "key": "no_heroics",
+      "id": "3E0DBA929C2D708C",
+      "title": "Никакого героизма",
+      "task_ids": [
+        "5101F226BE5A7C58"
+      ],
+      "reward_ids": [
+        "2A24C9C3890E7018",
+        "227A365D274B2C47"
+      ],
+      "dependencies": [
+        "2327F36796AD9481",
+        "5D607F103EF876B1"
+      ],
+      "visible_reward": {
+        "item": "minecraft:cooked_beef",
+        "count": 2
+      },
+      "feedback": "normal"
+    },
+    {
+      "number": 17,
+      "key": "finale",
+      "id": "20BBB183D71C8B21",
+      "title": "Теперь здесь можно жить",
+      "task_ids": [
+        "34CC3A6849E108A5"
+      ],
+      "reward_ids": [
+        "3EE78ECD5661A261",
+        "4860EFD7F0DAD351"
+      ],
+      "dependencies": [
+        "3E0DBA929C2D708C"
+      ],
+      "visible_reward": {
+        "item": "minecraft:golden_carrot",
+        "count": 2
+      },
+      "feedback": "chapter"
+    }
+  ],
+  "internal_reward_visual_policy": {
+    "normal_mode": "auto: invisible -> not rendered by FTB",
+    "editing_mode": "FTB intentionally renders invisible rewards; neutral gray pane replaces command block icon",
+    "neutral_icon": "minecraft:gray_stained_glass_pane",
+    "neutral_title": "single blank space"
+  }
+}

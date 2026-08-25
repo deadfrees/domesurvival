@@ -1,0 +1,130 @@
+{
+  id: "11FF60B844BBED5B"
+  group: ""
+  order_index: 999
+  filename: "11FF60B844BBED5B"
+  title: "__Dome Survival Joseph Bridge"
+  icon: "minecraft:barrier"
+  always_invisible: true
+  default_quest_shape: "none"
+  default_hide_dependency_lines: true
+  progression_mode: "linear"
+  quests: [
+  {
+    id: "31C0FE8D1487EA37"
+    title: "__JOSEPH_STAGE_13_COMPLETE"
+    x: 0.0d
+    y: 0.0d
+    disable_toast: true
+    tasks: [
+      {
+        id: "32E37037B9EA96A1"
+        type: "checkmark"
+      }
+    ]
+    rewards: [
+      {
+        id: "31575EFFA06EFCB2"
+        type: "command"
+        command: "/domequest gate set JOSEPH_STAGE_13_COMPLETE"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+      }
+    ]
+  },
+  {
+    id: "3EFBBB5CC946B65C"
+    title: "__JOSEPH_STAGE_14_COMPLETE"
+    x: 1.0d
+    y: 0.0d
+    disable_toast: true
+    tasks: [
+      {
+        id: "59336C6705670A07"
+        type: "checkmark"
+      }
+    ]
+    rewards: [
+      {
+        id: "2424BA730B149C6C"
+        type: "command"
+        command: "/domequest gate set JOSEPH_STAGE_14_COMPLETE"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+      }
+    ]
+  },
+  {
+    id: "2B5067C09FEEEDED"
+    title: "__JOSEPH_STAGE_15_COMPLETE"
+    x: 2.0d
+    y: 0.0d
+    disable_toast: true
+    tasks: [
+      {
+        id: "7C663747FE4E9E78"
+        type: "checkmark"
+      }
+    ]
+    rewards: [
+      {
+        id: "1D0B776469BF7FCB"
+        type: "command"
+        command: "/domequest gate set JOSEPH_STAGE_15_COMPLETE"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+      }
+    ]
+  },
+  {
+    id: "702F331B702620A5"
+    title: "__JOSEPH_STAGE_16_COMPLETE"
+    x: 3.0d
+    y: 0.0d
+    disable_toast: true
+    tasks: [
+      {
+        id: "499FC8C61C803DDC"
+        type: "checkmark"
+      }
+    ]
+    rewards: [
+      {
+        id: "1653B8F2F3DF7971"
+        type: "command"
+        command: "/domequest gate set JOSEPH_STAGE_16_COMPLETE"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+      }
+    ]
+  },
+  {
+    id: "643B5A663ED36317"
+    title: "__JOSEPH_FINAL_COMPLETE"
+    x: 4.0d
+    y: 0.0d
+    disable_toast: true
+    tasks: [
+      {
+        id: "620A5B915CC9E573"
+        type: "checkmark"
+      }
+    ]
+    rewards: [
+      {
+        id: "71E6EC217D05269B"
+        type: "command"
+        command: "/domequest gate set JOSEPH_FINAL_COMPLETE"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+      }
+    ]
+  }
+  ]
+  quest_links: []
+}

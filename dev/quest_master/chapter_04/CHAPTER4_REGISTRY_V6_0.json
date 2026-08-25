@@ -1,0 +1,145 @@
+{
+  "version": "6.0",
+  "chapter": {
+    "index": 4,
+    "id": "2D984F68E1AC5B77",
+    "title": "Не одним хлебом",
+    "quest_count": 20
+  },
+  "previous_final_dependency": "6EA480B356153363",
+  "final_story_flag": "FOOD_SYSTEM_ESTABLISHED",
+  "background": "domesurvival:textures/gui/quests/chapter_04_food_system.png",
+  "campaign_visible_quests_total": 83,
+  "action_advancements": [
+    "domesurvival:quest_actions/ch4_intro",
+    "domesurvival:quest_actions/ch4_composter_placed",
+    "domesurvival:quest_actions/ch4_first_wheat_harvest",
+    "domesurvival:quest_actions/ch4_first_carrot_harvest",
+    "domesurvival:quest_actions/ch4_first_potato_harvest",
+    "domesurvival:quest_actions/ch4_farm_lights",
+    "domesurvival:quest_actions/ch4_pantry_placed",
+    "domesurvival:quest_actions/ch4_finale"
+  ],
+  "quests": [
+    {
+      "number": 1,
+      "id": "0B9F786C486E6E23",
+      "title": "Не одним хлебом",
+      "internal_reward_id": "7AA12FB09DBF699D"
+    },
+    {
+      "number": 2,
+      "id": "37C9F7FA846C095D",
+      "title": "Инструмент земледельца",
+      "internal_reward_id": "736BC51DA2EB909E"
+    },
+    {
+      "number": 3,
+      "id": "2E2A6D29AD4B2AE2",
+      "title": "Семенной фонд",
+      "internal_reward_id": "3FD4C34A3CB2B383"
+    },
+    {
+      "number": 4,
+      "id": "6B8C0D8C9A026814",
+      "title": "Вода для грядок",
+      "internal_reward_id": "76238E0423189ACD"
+    },
+    {
+      "number": 5,
+      "id": "3B9EAABCFAE6CE18",
+      "title": "Компост вместо мусора",
+      "internal_reward_id": "6925D4DFF145E7A6"
+    },
+    {
+      "number": 6,
+      "id": "2B7E534D6B75AD7A",
+      "title": "Первый зрелый колос",
+      "internal_reward_id": "4E54141485562422"
+    },
+    {
+      "number": 7,
+      "id": "5CE40D096707A2AD",
+      "title": "Не съедать всё сразу",
+      "internal_reward_id": "7281E1EA4CCA7ECD"
+    },
+    {
+      "number": 8,
+      "id": "4F0ECE3FD861C35C",
+      "title": "Хлебный резерв",
+      "internal_reward_id": "7D713D471839CD67"
+    },
+    {
+      "number": 9,
+      "id": "55DE54410BA15E1E",
+      "title": "Вторая культура",
+      "internal_reward_id": "7E7CE274AA2F7789"
+    },
+    {
+      "number": 10,
+      "id": "73B2F7B80876F16E",
+      "title": "Морковь прижилась",
+      "internal_reward_id": "3E07763162743568"
+    },
+    {
+      "number": 11,
+      "id": "3F6584DAD2270EE2",
+      "title": "Третья культура",
+      "internal_reward_id": "30B6C296D05E570B"
+    },
+    {
+      "number": 12,
+      "id": "2492885B9D8F12E9",
+      "title": "Картофель прижился",
+      "internal_reward_id": "24769995D1355A1F"
+    },
+    {
+      "number": 13,
+      "id": "335799FD690F911A",
+      "title": "Запас в компактной форме",
+      "internal_reward_id": "07D072936ED60E9E"
+    },
+    {
+      "number": 14,
+      "id": "6137A02708AF6AD5",
+      "title": "Удобрение в резерве",
+      "internal_reward_id": "33CB54ADACC89FC8"
+    },
+    {
+      "number": 15,
+      "id": "0445603F30A02E87",
+      "title": "Фрукты с наших деревьев",
+      "internal_reward_id": "4CBED6338597E2E2"
+    },
+    {
+      "number": 16,
+      "id": "5A8D75EB2724CC12",
+      "title": "Свет над полем",
+      "internal_reward_id": "524A50E55E605050"
+    },
+    {
+      "number": 17,
+      "id": "3595CC264502D856",
+      "title": "Отдельная кладовая",
+      "internal_reward_id": "103469287ADA080D"
+    },
+    {
+      "number": 18,
+      "id": "1F81854C544FB87C",
+      "title": "Рацион без монокультуры",
+      "internal_reward_id": "31C5352AD70B0382"
+    },
+    {
+      "number": 19,
+      "id": "6216E581C8FE6295",
+      "title": "Кладовая готова",
+      "internal_reward_id": "267BAC3063241701"
+    },
+    {
+      "number": 20,
+      "id": "1A7234374FC8891A",
+      "title": "Запасы на неделю",
+      "internal_reward_id": "0F04C6879350587F"
+    }
+  ]
+}

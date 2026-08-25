@@ -1,0 +1,119 @@
+{
+  "version": "3.7",
+  "visual_standard": 1,
+  "active_chapters": [
+    {
+      "chapter": 0,
+      "id": "5017105A9984A511",
+      "background": "domesurvival:textures/gui/quests/chapter_00_under_dome.png",
+      "accent": "#E5D39A",
+      "screen_space": "fullscreen",
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "chapter": 1,
+      "id": "38F6E366B367B563",
+      "background": "domesurvival:textures/gui/quests/chapter_01_first_days.png",
+      "accent": "#C8D9A6",
+      "screen_space": "fullscreen",
+      "focus": [
+        0.5,
+        0.5
+      ]
+    }
+  ],
+  "reserved_chapter2": {
+    "selection": "simple Variant 3",
+    "file": "visual_sources/reserved_chapter_02_variant_3.png",
+    "active": false
+  },
+  "styled_quests": 31,
+  "categories": {
+    "story": {
+      "tag": "ds_visual_story",
+      "label": "СЮЖЕТ",
+      "shape": "hexagon",
+      "accent": "#D9B85E",
+      "size": 1.18,
+      "icon_scale": 0.86
+    },
+    "environment": {
+      "tag": "ds_visual_environment",
+      "label": "СРЕДА",
+      "shape": "circle",
+      "accent": "#D77A45",
+      "size": 1.0,
+      "icon_scale": 0.88
+    },
+    "resource": {
+      "tag": "ds_visual_resource",
+      "label": "РЕСУРСЫ",
+      "shape": "square",
+      "accent": "#7EA5BD",
+      "size": 1.0,
+      "icon_scale": 0.86
+    },
+    "farming": {
+      "tag": "ds_visual_farming",
+      "label": "ХОЗЯЙСТВО",
+      "shape": "rsquare",
+      "accent": "#74B46A",
+      "size": 1.05,
+      "icon_scale": 0.88
+    },
+    "airlock": {
+      "tag": "ds_visual_airlock",
+      "label": "ШЛЮЗ",
+      "shape": "gear",
+      "accent": "#58BED1",
+      "size": 1.1,
+      "icon_scale": 0.82
+    },
+    "npc": {
+      "tag": "ds_visual_npc",
+      "label": "ПЕРСОНАЖ",
+      "shape": "pentagon",
+      "accent": "#A987C7",
+      "size": 1.1,
+      "icon_scale": 0.88
+    },
+    "milestone": {
+      "tag": "ds_visual_milestone",
+      "label": "ЭТАП",
+      "shape": "diamond",
+      "accent": "#F2C14E",
+      "size": 1.28,
+      "icon_scale": 0.84
+    }
+  },
+  "background_bounds_standard": {
+    "x": -19.0,
+    "y": -5.5,
+    "width": 48.0,
+    "height": 27.0
+  },
+  "subtitle_format": "plain string, e.g. \"РЕСУРСЫ · Соберите минимум 16 дубовых брёвен.\"",
+  "verification_note": "OK is printed only after all checks pass.",
+  "background_scale_note": "48x27, 1.5x larger than 32x18, same center (5,8)",
+  "quest_subtitle_policy": "disabled; instructions live only in description bottom block",
+  "background_mode": "native FTB Quests ThemeProperties.BACKGROUND",
+  "chapter_image_backgrounds": false,
+  "background_affects_quest_scroll_bounds": false,
+  "background_scaling": "screen quad + UV cover crop; no image stretching",
+  "renderer_api": "MC 1.20.1 BufferBuilder POSITION_COLOR_TEX",
+  "compile_fix": "EventBusSubscriber annotation uses literal modid; local MOD_ID retained for runtime resource path",
+  "runtime_screen_model": "Forge event ScreenWrapper -> reflective getGui() -> FTB QuestScreen",
+  "wrapper_fix": true,
+  "render_phase": "QuestPanel.drawOffsetBackground HEAD",
+  "mixin": "com.wasted.domesurvival.mixin.client.FtbQuestPanelMixin",
+  "mixin_config": "domesurvival.mixins.json",
+  "forge_background_renderer": false,
+  "mixin_background_renderer": false,
+  "chapter_backgrounds": {
+    "5017105A9984A511": "domesurvival:textures/gui/quests/chapter_00_under_dome.png",
+    "38F6E366B367B563": "domesurvival:textures/gui/quests/chapter_01_first_days.png"
+  }
+}

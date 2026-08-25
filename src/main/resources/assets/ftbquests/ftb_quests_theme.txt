@@ -1,0 +1,149 @@
+// Dome Survival FTB Quests visual standard v8.0
+// Native FTB background mode.
+// IMPORTANT: chapter backgrounds are ThemeProperties.BACKGROUND,
+// not ChapterImage objects and not Forge/Mixin render hooks.
+// FTB Quests itself draws this icon over the whole QuestScreen GUI.
+
+[5017105A9984A511]
+background: domesurvival:textures/gui/quests/chapter_00_under_dome.png; color=#FFFFFFFF
+text_color: #F4E8CF
+hover_text_color: #FFE09A
+selected_chapter_highlight_1: #709A8158
+selected_chapter_highlight_2: #405D4D34
+
+[38F6E366B367B563]
+background: domesurvival:textures/gui/quests/chapter_01_first_days.png; color=#FFFFFFFF
+text_color: #EEF2DA
+hover_text_color: #D9F0A8
+selected_chapter_highlight_1: #7087A967
+selected_chapter_highlight_2: #4052693E
+
+
+[643138B0A36D1017]
+background: domesurvival:textures/gui/quests/chapter_02_beyond_gate.png; color=#FFFFFFFF
+text_color: #F3E4CF
+hover_text_color: #FFD6A0
+selected_chapter_highlight_1: #708F6D49
+selected_chapter_highlight_2: #405A432F
+
+
+[5E38036299F32A70]
+background: domesurvival:textures/gui/quests/chapter_03_settlement.png; color=#FFFFFFFF
+text_color: #F6E8D4
+hover_text_color: #FFD8A6
+selected_chapter_highlight_1: #8A6443
+selected_chapter_highlight_2: #543A28
+
+
+[2D984F68E1AC5B77]
+background: domesurvival:textures/gui/quests/chapter_04_food_system.png; color=#FFFFFFFF
+text_color: #F3EDCF
+hover_text_color: #FFF0A8
+selected_chapter_highlight_1: #7A7A3F
+selected_chapter_highlight_2: #4E4B28
+
+
+[4A2E731D5C9B684F]
+background: domesurvival:textures/gui/quests/chapter_06_power.png; color=#FFFFFFFF
+text_color: #F2E6D2
+hover_text_color: #FFD78E
+selected_chapter_highlight_1: #9A6A2D
+selected_chapter_highlight_2: #5C3D20
+
+[#ds_visual_story]
+quest_view_border: #FFD9B85E
+quest_view_title: #FFFFD98A
+tasks_text_color: #FFF0C96E
+rewards_text_color: #FFFFB85C
+quest_not_started_color: #D0D9B85E
+quest_started_color: #FFF1C65F
+quest_completed_color: #FFFFD978
+quest_locked_color: #706C5C36
+dependency_line_completed_color: #BFD9B85E
+dependency_line_uncompleted_color: #A08B763D
+dependency_line_unavailable_color: #A08B763D
+dependency_line_thickness: 0.22
+
+[#ds_visual_environment]
+quest_view_border: #FFD77A45
+quest_view_title: #FFFFA06D
+tasks_text_color: #FFFF9C67
+rewards_text_color: #FFFFC066
+quest_not_started_color: #D0D77A45
+quest_started_color: #FFF19561
+quest_completed_color: #FFFFA36F
+quest_locked_color: #706B3D22
+dependency_line_completed_color: #BFD77A45
+dependency_line_uncompleted_color: #A082482B
+dependency_line_unavailable_color: #A082482B
+dependency_line_thickness: 0.22
+
+[#ds_visual_resource]
+quest_view_border: #FF7EA5BD
+quest_view_title: #FFAED0E2
+tasks_text_color: #FF8FC3DF
+rewards_text_color: #FFFFB85C
+quest_not_started_color: #D07EA5BD
+quest_started_color: #FF91BED6
+quest_completed_color: #FFADD5E8
+quest_locked_color: #70415462
+dependency_line_completed_color: #BF7EA5BD
+dependency_line_uncompleted_color: #A04C6574
+dependency_line_unavailable_color: #A04C6574
+dependency_line_thickness: 0.22
+
+[#ds_visual_farming]
+quest_view_border: #FF74B46A
+quest_view_title: #FFA8DA91
+tasks_text_color: #FF8ED181
+rewards_text_color: #FFFFC266
+quest_not_started_color: #D074B46A
+quest_started_color: #FF89C97D
+quest_completed_color: #FFA9DE99
+quest_locked_color: #70395A35
+dependency_line_completed_color: #BF74B46A
+dependency_line_uncompleted_color: #A0496E43
+dependency_line_unavailable_color: #A0496E43
+dependency_line_thickness: 0.22
+
+[#ds_visual_airlock]
+quest_view_border: #FF58BED1
+quest_view_title: #FF91E0EC
+tasks_text_color: #FF72D5E5
+rewards_text_color: #FFFFBE60
+quest_not_started_color: #D058BED1
+quest_started_color: #FF68D2E4
+quest_completed_color: #FF92E5EF
+quest_locked_color: #702C5E68
+dependency_line_completed_color: #BF58BED1
+dependency_line_uncompleted_color: #A03D7E89
+dependency_line_unavailable_color: #A03D7E89
+dependency_line_thickness: 0.22
+
+[#ds_visual_npc]
+quest_view_border: #FFA987C7
+quest_view_title: #FFD0B5E8
+tasks_text_color: #FFC6A7E2
+rewards_text_color: #FFFFB85C
+quest_not_started_color: #D0A987C7
+quest_started_color: #FFC09BE0
+quest_completed_color: #FFD7B9EC
+quest_locked_color: #70534463
+dependency_line_completed_color: #BFA987C7
+dependency_line_uncompleted_color: #A06A557D
+dependency_line_unavailable_color: #A06A557D
+dependency_line_thickness: 0.22
+
+[#ds_visual_milestone]
+quest_view_border: #FFF2C14E
+quest_view_title: #FFFFE08A
+tasks_text_color: #FFFFD369
+rewards_text_color: #FFFFB347
+quest_not_started_color: #E0F2C14E
+quest_started_color: #FFFFD05B
+quest_completed_color: #FFFFE27C
+quest_locked_color: #70796127
+dependency_line_completed_color: #D0F2C14E
+dependency_line_uncompleted_color: #A090742E
+dependency_line_unavailable_color: #A090742E
+dependency_line_thickness: 0.22

@@ -1,0 +1,198 @@
+[
+  {
+    "number": 1,
+    "quest_id": "574CF865DA07FAA8",
+    "title": "Под Куполом",
+    "item_reward": {
+      "id": "0186B660673BF8FE",
+      "item": "minecraft:bread",
+      "count": 2
+    },
+    "feedback_reward": {
+      "id": "076079227D655FFD",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 2,
+    "quest_id": "152DB9A14CA5E5EC",
+    "title": "Воздух — часть стены",
+    "item_reward": {
+      "id": "1A522247F6ACD831",
+      "item": "minecraft:apple",
+      "count": 2
+    },
+    "feedback_reward": {
+      "id": "598EDA6187B11C93",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 3,
+    "quest_id": "1CC685A27E7F8753",
+    "title": "За воротами нет воздуха",
+    "item_reward": {
+      "id": "612A8E46DA0C2AE2",
+      "item": "minecraft:bread",
+      "count": 2
+    },
+    "feedback_reward": {
+      "id": "3D591EFE3D4F6B41",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 4,
+    "quest_id": "63EB53B2B8F791B2",
+    "title": "Солнце тоже враг",
+    "item_reward": {
+      "id": "30667F20CACC5408",
+      "item": "minecraft:baked_potato",
+      "count": 2
+    },
+    "feedback_reward": {
+      "id": "502F84E970638938",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 5,
+    "quest_id": "4E9628EFAC01DCEC",
+    "title": "Погода здесь не фон",
+    "item_reward": {
+      "id": "5FF09852D500BBAD",
+      "item": "minecraft:leather",
+      "count": 1
+    },
+    "feedback_reward": {
+      "id": "52D4B363E4BF666E",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 6,
+    "quest_id": "3993B25DBE806706",
+    "title": "Верстак — первая машина",
+    "item_reward": {
+      "id": "4EDE6F347BC30196",
+      "item": "minecraft:oak_planks",
+      "count": 8
+    },
+    "feedback_reward": {
+      "id": "738966BE393433E5",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 7,
+    "quest_id": "6580F2A6EBD94BBB",
+    "title": "Камень работает дольше",
+    "item_reward": {
+      "id": "79E9916237B2CDC1",
+      "item": "minecraft:coal",
+      "count": 4
+    },
+    "feedback_reward": {
+      "id": "494FDA897551FB82",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 8,
+    "quest_id": "38DAA584DC6775BA",
+    "title": "Склад до экспедиции",
+    "item_reward": {
+      "id": "0A8379C1214C0392",
+      "item": "minecraft:bread",
+      "count": 2
+    },
+    "feedback_reward": {
+      "id": "6E85DE06C9E07F5F",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 9,
+    "quest_id": "06FCA2E6E6EB913C",
+    "title": "Свет — это время",
+    "item_reward": {
+      "id": "368EC9FC388CDC1F",
+      "item": "minecraft:charcoal",
+      "count": 4
+    },
+    "feedback_reward": {
+      "id": "6F6D093A5299B8FE",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 10,
+    "quest_id": "27ACBC4CB0FD500B",
+    "title": "Джозеф Куппер",
+    "item_reward": {
+      "id": "3FDAE306D59B7DA2",
+      "item": "minecraft:book",
+      "count": 1
+    },
+    "feedback_reward": {
+      "id": "2C6BBFD6729B177B",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 11,
+    "quest_id": "3F46DFCB027B910D",
+    "title": "Найди шлюз",
+    "item_reward": {
+      "id": "2310EB9BCDC87445",
+      "item": "minecraft:iron_nugget",
+      "count": 6
+    },
+    "feedback_reward": {
+      "id": "21470279485DBE07",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 12,
+    "quest_id": "50DA62AD2BA7A7B2",
+    "title": "Навес не атмосфера",
+    "item_reward": {
+      "id": "62CB45E4964FA3A3",
+      "item": "minecraft:cobblestone",
+      "count": 8
+    },
+    "feedback_reward": {
+      "id": "5735A0137C93780A",
+      "tier": "normal"
+    }
+  },
+  {
+    "number": 13,
+    "quest_id": "78AB2063F7341353",
+    "title": "Правило возврата",
+    "item_reward": {
+      "id": "7525F0DDB9CC2DCE",
+      "item": "minecraft:cooked_beef",
+      "count": 2
+    },
+    "feedback_reward": {
+      "id": "5E0BEEF8298C74F2",
+      "tier": "milestone"
+    }
+  },
+  {
+    "number": 14,
+    "quest_id": "4E6B940013A62F56",
+    "title": "Пока это наш дом",
+    "item_reward": {
+      "id": "7042739CC2B68B23",
+      "item": "minecraft:golden_apple",
+      "count": 1
+    },
+    "feedback_reward": {
+      "id": "65824CB66F3B2BF7",
+      "tier": "chapter"
+    }
+  }
+]

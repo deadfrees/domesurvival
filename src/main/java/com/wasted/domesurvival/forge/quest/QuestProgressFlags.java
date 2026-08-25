@@ -1,0 +1,181 @@
+package com.wasted.domesurvival.forge.quest;
+
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+
+/**
+ * Canonical story flag registry for the FTB Quests / Joseph Cooper campaign.
+ *
+ * Phase 1 intentionally keeps this registry free of FTB and CustomNPCs API
+ * dependencies. Both integrations can safely use these stable string IDs.
+ */
+public final class QuestProgressFlags {
+    private static final Set<String> ALL = Collections.unmodifiableSet(
+            new LinkedHashSet<>(List.of(
+            "DOME_SURVIVAL_STARTED",
+            "DOME_PROLOGUE_COMPLETE",
+            "FIRST_SUPPLY_RUN",
+            "SETTLEMENT_ESTABLISHED",
+            "KITCHEN_ONLINE",
+            "FOOD_INFRASTRUCTURE_COMPLETE",
+            "POWER_PROGRAM_STARTED",
+            "BASIC_POWER_GRID_STARTED",
+            "PULSE_MATRIX_AVAILABLE",
+            "FIRST_POWERED_MACHINE_ONLINE",
+            "POWER_FUEL_RESERVE_READY",
+            "POWER_STAGE_1",
+            "DOME_POWER_ONLINE",
+            "OXYGEN_PRODUCTION_ONLINE",
+            "OXYGEN_FILLING_STATION_ONLINE",
+            "FIRST_OXYGEN_TANK_FILLED",
+            "SMALL_OXYGEN_TANK_OPERATIONAL",
+            "FIRST_OXYGEN_SORTIE_COMPLETE",
+            "OXYGEN_INFRASTRUCTURE_READY",
+            "INDUSTRY_STAGE_1",
+            "DOME_LOGISTICS_ONLINE",
+            "AUTOMATION_ONLINE",
+            "FIELD_AIRLOCK_READY",
+            "FIELD_OXYGEN_RESERVE_READY",
+            "FIELD_VENTILATION_ONLINE",
+            "FIRST_FIELD_OXYGEN_BASE_ONLINE",
+            "FIRST_REMOTE_REFILL_COMPLETE",
+            "EXPEDITION_OUTPOST_01_COMPLETE",
+            "NIGHT_OPERATIONS_AVAILABLE",
+            "NIGHT_OUTPOST_CHECK_COMPLETE",
+            "FIRST_NIGHT_CONTACT",
+            "MANEOGFLOW_NIGHT_BRIEFING",
+            "MUTANT_ENCOUNTER_COMPLETE",
+            "FIRST_NIGHT_OUTSIDE",
+            "LARGE_OXYGEN_TANK_READY",
+            "MINESHAFT_EXPEDITION_COMPLETE",
+            "FIRST_LARGE_TANK_EXPEDITION_COMPLETE",
+            "DEEP_MINING_STAGE_1",
+            "NETHER_PROGRAM_AVAILABLE",
+            "HEAVY_INDUSTRY_STARTED",
+            "PLATE_PRODUCTION_ONLINE",
+            "ENDERIO_MATERIALS_ONLINE",
+            "INDUSTRIAL_LOGISTICS_ONLINE",
+            "POWER_STORAGE_STAGE_1",
+            "NETHER_LIFE_SUPPORT_KIT_READY",
+            "EARTH_CORE_PORTAL_READY",
+            "EARTH_CORE_REACHED",
+            "EARTH_CORE_POWER_ONLINE",
+            "EARTH_CORE_AIRLOCK_ONLINE",
+            "EARTH_CORE_VENTILATION_ONLINE",
+            "FIRST_INTERDIMENSIONAL_BREATHABLE_BASE",
+            "FIRST_EARTH_CORE_BARTER",
+            "REALITY_EDGE_COMPASS_ACQUIRED",
+            "NETHER_EXPEDITION_COMPLETE",
+            "REALITY_EDGE_ROUTE_STARTED",
+            "REALITY_ROUTE_OUTPOST_KIT_READY",
+            "REALITY_ROUTE_OUTPOST_01_ONLINE",
+            "REALITY_STRONGHOLD_FOUND",
+            "REALITY_PORTAL_CHAMBER_FOUND",
+            "REALITY_EDGE_DEPLOYMENT_READY",
+            "REALITY_EDGE_REACHED",
+            "REALITY_EDGE_POWER_ONLINE",
+            "REALITY_EDGE_AIRLOCK_ONLINE",
+            "REALITY_EDGE_BASE_ONLINE",
+            "ENDER_DRAGON_DEFEATED",
+            "END_CITY_DISCOVERED",
+            "END_EXPEDITION_COMPLETE",
+            "INTERDIMENSIONAL_SURVIVAL_STAGE_2",
+            "SPACE_PROGRAM_PROPOSED",
+            "SPACE_PROGRAM_STARTED",
+            "SPACE_INDUSTRY_STAGE_1",
+            "ROCKET_FUEL_PRODUCTION_ONLINE",
+            "SPACE_PROGRAM_POWER_READY",
+            "LAUNCH_COMPLEX_STAGE_1",
+            "FIRST_LUNAR_BASE_KIT_READY",
+            "JOSEPH_GATE_FIRST_LAUNCH_READY",
+            "FIRST_ROCKET_BUILT",
+            "FIRST_ROCKET_FUELED",
+            "LUNAR_DEPLOYMENT_CARGO_READY",
+            "FIRST_LAUNCH_READY",
+            "FIRST_LAUNCH_COMPLETE",
+            "HUMAN_SPACEFLIGHT_STARTED",
+            "MOON_REACHED",
+            "LUNAR_POWER_ONLINE",
+            "LUNAR_AIRLOCK_ONLINE",
+            "LUNAR_VENTILATION_ONLINE",
+            "FIRST_LUNAR_BASE_ONLINE",
+            "LUNARIAN_SETTLEMENT_DISCOVERED",
+            "LUNARIAN_CONTACT_ESTABLISHED",
+            "FIRST_LUNARIAN_TRADE",
+            "DESH_ACQUIRED",
+            "FIRST_LUNAR_EXPEDITION_COMPLETE",
+            "FIRST_SPACE_RETURN_COMPLETE",
+            "DESH_TECH_AVAILABLE",
+            "PLANETARY_STAGE_1",
+            "PLANETARY_OPERATIONS_STARTED",
+            "DESH_PRODUCTION_ONLINE",
+            "DESH_TECH_ONLINE",
+            "AD_ASTRA_LIFE_SUPPORT_ONLINE",
+            "STANDARD_PLANETARY_BASE_KIT_READY",
+            "TIER_2_ROCKET_READY",
+            "MARS_REACHED",
+            "MARS_BASE_ONLINE",
+            "OSTRUM_ACQUIRED",
+            "FIRST_PLANETARY_FIELD_OUTPOST",
+            "OSTRUM_TECH_ONLINE",
+            "TIER_3_ROCKET_READY",
+            "MERCURY_REACHED",
+            "VENUS_REACHED",
+            "PLANETARY_BASE_STANDARD_PROVEN",
+            "CALORITE_ACQUIRED",
+            "CALORITE_TECH_ONLINE",
+            "TIER_4_ROCKET_READY",
+            "GLACIO_REACHED",
+            "FINAL_WORLD_SURVEY_COMPLETE",
+            "PLANETARY_STAGE_2",
+            "FINAL_WORLD_SELECTED",
+            "FINAL_EVACUATION_APPROVED",
+            "JOSEPH_GATE_FINAL_DECISION",
+            "COLONY_SEED_BANK_READY",
+            "COLONY_FOOD_SUPPLY_READY",
+            "COLONY_BIOSPHERE_STAGE_1",
+            "COLONY_INDUSTRIAL_CORE_READY",
+            "COLONY_POWER_CORE_READY",
+            "COLONY_LIFE_SUPPORT_READY",
+            "HYBRID_LIFE_SUPPORT_MASTERED",
+            "EXODUS_ARCHIVE_COMPLETE",
+            "FINAL_FAREWELLS_COMPLETE",
+            "FINAL_EVACUATION_CARGO_READY",
+            "DOME_EVACUATION_STARTED",
+            "EXODUS_MANIFEST_LOCKED",
+            "DOME_FINAL_WALK_COMPLETE",
+            "EXODUS_VESSEL_READY",
+            "FINAL_DEPARTURE_COMMITTED",
+            "FINAL_LAUNCH_COMPLETE",
+            "DOME_ABANDONED",
+            "FINAL_PLANET_REACHED",
+            "FINAL_COLONY_LIFE_SUPPORT_ONLINE",
+            "FINAL_COLONY_ESTABLISHED",
+            "JOSEPH_FINAL_COMPLETE",
+            "DOME_SURVIVAL_COMPLETE",
+            "STORY_COMPLETE",
+            "JOSEPH_STAGE_13_COMPLETE",
+            "JOSEPH_STAGE_14_COMPLETE",
+            "JOSEPH_STAGE_15_COMPLETE",
+            "JOSEPH_STAGE_16_COMPLETE"
+            ))
+    );
+
+    private QuestProgressFlags() {
+    }
+
+    public static Set<String> all() {
+        return ALL;
+    }
+
+    public static String normalize(String raw) {
+        return raw == null ? "" : raw.trim().toUpperCase(Locale.ROOT);
+    }
+
+    public static boolean isKnown(String raw) {
+        return ALL.contains(normalize(raw));
+    }
+}

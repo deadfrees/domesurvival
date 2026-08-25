@@ -12,6 +12,13 @@ public final class SurfaceHazardConfig {
     public static final ForgeConfigSpec.DoubleValue SOLAR_DAMAGE;
     public static final ForgeConfigSpec.IntValue SOLAR_VISIBILITY;
 
+    public static final ForgeConfigSpec.BooleanValue SOLAR_EVAPORATES_WATER;
+    public static final ForgeConfigSpec.IntValue SOLAR_WATER_EVAPORATION_INTERVAL_TICKS;
+    public static final ForgeConfigSpec.IntValue SOLAR_WATER_EVAPORATION_RADIUS;
+    public static final ForgeConfigSpec.IntValue SOLAR_WATER_EVAPORATION_SAMPLES;
+    public static final ForgeConfigSpec.IntValue SOLAR_WATER_EVAPORATION_MAX_BLOCKS;
+    public static final ForgeConfigSpec.IntValue SOLAR_WATER_EVAPORATION_SPEED_MULTIPLIER;
+
     public static final ForgeConfigSpec.BooleanValue ACID_RAIN_ENABLED;
     public static final ForgeConfigSpec.DoubleValue ACID_RAIN_DAMAGE;
     public static final ForgeConfigSpec.DoubleValue ACID_THUNDER_DAMAGE;
@@ -32,7 +39,7 @@ public final class SurfaceHazardConfig {
 
         DAMAGE_INTERVAL_TICKS = builder
                 .comment(
-                        "How often exposed players receive surface-hazard damage, in ticks.",
+                        "How often exposed players and mobs receive surface-hazard damage, in ticks.",
                         "20 ticks = 1 second. Default 10 means two hazard hits per second.",
                         "Do not set below 10: vanilla LivingEntity hurt cooldown would make faster hurt() calls unreliable."
                 )
@@ -43,11 +50,43 @@ public final class SurfaceHazardConfig {
                 .comment("Whether direct daytime sky exposure outside the dome causes solar damage.")
                 .define("enabled", true);
         SOLAR_DAMAGE = builder
-                .comment("Solar damage per hit, in health points. 2.0 = one heart. Frequency is controlled separately.")
+                .comment(
+                        "Solar damage per hit, in health points. 2.0 = one heart.",
+                        "The same value is used for players and all Mob entities."
+                )
                 .defineInRange("damage", 2.0D, 0.0D, 100.0D);
         SOLAR_VISIBILITY = builder
                 .comment("Maximum client fog distance during lethal clear-sky solar exposure, in blocks.")
                 .defineInRange("visibility", 192, 32, 512);
+
+        SOLAR_EVAPORATES_WATER = builder
+                .comment(
+                        "Whether lethal clear-sky sunlight evaporates open vanilla water outside the dome.",
+                        "Only minecraft:water is targeted; modded fluids such as Ad Astra oil are untouched."
+                )
+                .define("evaporates_water", true);
+        SOLAR_WATER_EVAPORATION_INTERVAL_TICKS = builder
+                .comment("Base interval for water evaporation. V1.1 speed multiplier accelerates the effective interval.")
+                .defineInRange("water_evaporation_interval_ticks", 10, 2, 200);
+        SOLAR_WATER_EVAPORATION_RADIUS = builder
+                .comment(
+                        "Horizontal radius around each overworld player in which exposed surface water may evaporate.",
+                        "The system checks deterministic slices instead of scanning whole chunks/worlds."
+                )
+                .defineInRange("water_evaporation_radius", 48, 8, 128);
+        SOLAR_WATER_EVAPORATION_SAMPLES = builder
+                .comment("Base surface columns checked on each evaporation pass.")
+                .defineInRange("water_evaporation_samples", 48, 1, 512);
+        SOLAR_WATER_EVAPORATION_MAX_BLOCKS = builder
+                .comment("Base maximum water blocks removed per player on one evaporation pass.")
+                .defineInRange("water_evaporation_max_blocks", 12, 1, 128);
+        SOLAR_WATER_EVAPORATION_SPEED_MULTIPLIER = builder
+                .comment(
+                        "V1.1 water evaporation speed multiplier.",
+                        "Default 8 makes small exposed pools begin drying within a few seconds.",
+                        "It multiplies checked columns and removal budget while reducing the effective interval."
+                )
+                .defineInRange("water_evaporation_speed_multiplier", 8, 1, 32);
         builder.pop();
 
         builder.push("acid_rain");

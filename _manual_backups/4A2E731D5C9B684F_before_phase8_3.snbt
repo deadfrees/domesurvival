@@ -1,0 +1,1155 @@
+{
+  id: "4A2E731D5C9B684F"
+  group: ""
+  order_index: 5
+  filename: "4A2E731D5C9B684F"
+  title: "{\"text\":\"Глава 5 — «Пусть горит свет»\",\"color\":\"#E3B05E\",\"bold\":true}"
+  icon: "domesurvival:energy_buffer"
+  autofocus_id: "613FF462EA9C75DC"
+  default_quest_shape: "rsquare"
+  default_quest_size: 1.0d
+  default_min_width: 340
+  default_hide_dependency_lines: false
+  progression_mode: "linear"
+  hide_quest_until_deps_complete: false
+  hide_quest_until_deps_visible: false
+  require_sequential_tasks: false
+  quests: [
+  {
+    id: "613FF462EA9C75DC"
+    title: "Глава 5 — «Пусть горит свет»"
+    icon: "domesurvival:coal_generator"
+    tags: ["ds_visual_story"]
+    x: 0.0d
+    y: 0.0d
+    shape: "hexagon"
+    size: 1.26d
+    icon_scale: 0.82d
+    min_width: 340
+    dependencies: ["1A7234374FC8891A"]
+    description: [
+      "Поселение уже умеет хранить ресурсы и выращивать еду. Теперь ему нужна энергия.",
+      "",
+      "Пока цель простая: собрать первый устойчивый источник FE, провести линию питания, добавить буфер и научиться отличать энергосеть от автономного шлюза.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Завершите Главу 4 «Не одним хлебом».\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически после выполнения зависимости.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "77FCCB9585A181CE"
+        type: "advancement"
+        title: "Автоматическое действие"
+        advancement: "domesurvival:quest_actions/ch6_intro"
+        criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+        id: "6C7947378C6DCF69"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 613FF462EA9C75DC normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "69824A2F544AA44C"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:redstone"
+        count: 8
+      }
+    ]
+  },
+  {
+    id: "61693835470A70E9"
+    title: "Красная пыль"
+    icon: "minecraft:redstone"
+    tags: ["ds_visual_resource"]
+    x: -4.5d
+    y: 2.4d
+    shape: "square"
+    size: 1.04d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["613FF462EA9C75DC"]
+    description: [
+      "Для первых энергетических узлов понадобится приличный запас проводящих и управляющих компонентов.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Подготовьте минимум 24 красной пыли.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "42FC4A51F9A620BF"
+        type: "item"
+        item: "minecraft:redstone"
+        count: 24L
+      }
+    ]
+    rewards: [
+      {
+        id: "563698A442B5A4A1"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 61693835470A70E9 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "6F17D36534E27356"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:repeater"
+        count: 2
+      }
+    ]
+  },
+  {
+    id: "36E13B53347926CA"
+    title: "Медь для проводников"
+    icon: "minecraft:copper_ingot"
+    tags: ["ds_visual_resource"]
+    x: -1.5d
+    y: 2.4d
+    shape: "square"
+    size: 1.04d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["613FF462EA9C75DC"]
+    description: [
+      "Медь станет базовым материалом для проводников и части первых энергетических компонентов.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Подготовьте минимум 24 медных слитка.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "2FC161116D110363"
+        type: "item"
+        item: "minecraft:copper_ingot"
+        count: 24L
+      }
+    ]
+    rewards: [
+      {
+        id: "7CBD07D79579717E"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 36E13B53347926CA normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "4B78345DCEB7BBC0"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:copper_ingot"
+        count: 4
+      }
+    ]
+  },
+  {
+    id: "158F63AD3757B785"
+    title: "Железный каркас"
+    icon: "minecraft:iron_ingot"
+    tags: ["ds_visual_resource"]
+    x: 1.5d
+    y: 2.4d
+    shape: "square"
+    size: 1.04d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["613FF462EA9C75DC"]
+    description: [
+      "Генераторы, накопители и соединительные узлы требуют нормального металлического каркаса.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Подготовьте минимум 24 железных слитка.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "44C443ACFC1F1250"
+        type: "item"
+        item: "minecraft:iron_ingot"
+        count: 24L
+      }
+    ]
+    rewards: [
+      {
+        id: "2CE35A4E18696FF0"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 158F63AD3757B785 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "2067E2EF04642A7E"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:iron_ingot"
+        count: 2
+      }
+    ]
+  },
+  {
+    id: "4D5E49001CD7D6CE"
+    title: "Топливный запас"
+    icon: "minecraft:coal"
+    tags: ["ds_visual_resource"]
+    x: 4.5d
+    y: 2.4d
+    shape: "square"
+    size: 1.04d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["613FF462EA9C75DC"]
+    description: [
+      "Первая энергосистема не должна зависеть от последних двух кусков топлива в печи.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Подготовьте минимум 32 угля.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "15D41DE3EB781F02"
+        type: "item"
+        item: "minecraft:coal"
+        count: 32L
+      }
+    ]
+    rewards: [
+      {
+        id: "40FDFA761260036A"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 4D5E49001CD7D6CE normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "46BD5F45625E1D4F"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:charcoal"
+        count: 8
+      }
+    ]
+  },
+  {
+    id: "473AE864B22D87AB"
+    title: "Управляющие компоненты"
+    icon: "minecraft:comparator"
+    tags: ["ds_visual_resource"]
+    x: -2.0d
+    y: 4.8d
+    shape: "square"
+    size: 1.05d
+    icon_scale: 0.84d
+    min_width: 340
+    dependencies: ["61693835470A70E9", "158F63AD3757B785"]
+    description: [
+      "Простая автоматика пригодится раньше сложных машин.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Подготовьте 2 повторителя и 2 компаратора.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет оба типа компонентов.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "5BBAA9A8C710693B"
+        type: "item"
+        item: "minecraft:repeater"
+        count: 2L
+      },
+      {
+        id: "7C0E0F1568AAD8F7"
+        type: "item"
+        item: "minecraft:comparator"
+        count: 2L
+      }
+    ]
+    rewards: [
+      {
+        id: "424BFDC5710C1189"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 473AE864B22D87AB normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "104E5276D61623C8"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:redstone_torch"
+        count: 4
+      }
+    ]
+  },
+  {
+    id: "27D329DD824D350B"
+    title: "Первый источник FE"
+    icon: "domesurvival:coal_generator"
+    tags: ["ds_visual_milestone"]
+    x: 2.0d
+    y: 4.8d
+    shape: "diamond"
+    size: 1.28d
+    icon_scale: 0.82d
+    min_width: 340
+    dependencies: ["36E13B53347926CA", "4D5E49001CD7D6CE"]
+    description: [
+      "Теперь нужен блок, который действительно играет роль генератора.",
+      "",
+      "Подходит наш угольный генератор и совместимые генераторы из сборки. Проверка сделана без жёсткой зависимости от конкретного mod namespace.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Установите генератор внутри безопасной части Купола.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически по registry path блока: generator / dynamo / alternator.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "77F68EDD02961384"
+        type: "advancement"
+        title: "Автоматическое действие"
+        advancement: "domesurvival:quest_actions/ch6_generator_placed"
+        criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+        id: "052856B88E3B9314"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 27D329DD824D350B milestone -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "4288AD7A8B262125"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:coal"
+        count: 8
+      }
+    ]
+  },
+  {
+    id: "74335F61233E9EB2"
+    title: "Проверь энергетический узел"
+    icon: "domesurvival:coal_generator"
+    tags: ["ds_visual_milestone"]
+    x: 0.0d
+    y: 7.2d
+    shape: "diamond"
+    size: 1.30d
+    icon_scale: 0.82d
+    min_width: 340
+    dependencies: ["473AE864B22D87AB", "27D329DD824D350B"]
+    description: [
+      "Название блока недостаточно. Нам нужен настоящий FE-совместимый узел.",
+      "",
+      "Открой или используй установленный генератор.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Взаимодействуйте с генератором, который предоставляет Forge Energy capability.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Сервер проверяет BlockEntity через ForgeCapabilities.ENERGY.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "6597DB2CF5A59E2B"
+        type: "advancement"
+        title: "Автоматическое действие"
+        advancement: "domesurvival:quest_actions/ch6_generator_checked"
+        criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+        id: "2EDE0F4DCE2C4B22"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 74335F61233E9EB2 milestone -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "00026B889F144C6E"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:redstone"
+        count: 8
+      }
+    ]
+  },
+  {
+    id: "2BF09D9F1F7494B4"
+    title: "Материал линии"
+    icon: "minecraft:copper_ingot"
+    tags: ["ds_visual_resource"]
+    x: -3.4d
+    y: 9.6d
+    shape: "square"
+    size: 1.04d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["74335F61233E9EB2"]
+    description: [
+      "Перед прокладкой сети отдели материалы линии от общего запаса мастерской.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Имейте одновременно 16 меди и 16 красной пыли.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет оба запаса.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "55062D59DF83484F"
+        type: "item"
+        item: "minecraft:copper_ingot"
+        count: 16L
+      },
+      {
+        id: "346E4E39C4458476"
+        type: "item"
+        item: "minecraft:redstone"
+        count: 16L
+      }
+    ]
+    rewards: [
+      {
+        id: "2ED93EB13DAFBA0C"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 2BF09D9F1F7494B4 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "056CE9EA48FA9DDE"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:iron_nugget"
+        count: 8
+      }
+    ]
+  },
+  {
+    id: "3CE842358BCF4A85"
+    title: "Первая линия питания"
+    icon: "domesurvival:basic_energy_pipe"
+    tags: ["ds_visual_milestone"]
+    x: 0.0d
+    y: 9.6d
+    shape: "diamond"
+    size: 1.28d
+    icon_scale: 0.82d
+    min_width: 340
+    dependencies: ["2BF09D9F1F7494B4"]
+    description: [
+      "Источник без линии остаётся отдельной машиной.",
+      "",
+      "Поставь несколько энергетических проводников. Поддерживаются cable, wire, conduit и energy/power pipe по registry path.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Установите 3 энергетических проводника внутри Купола.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Сервер считает подходящие блоки по событиям установки; постоянного сканирования мира нет.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "216BF0F7649F8396"
+        type: "advancement"
+        title: "Автоматическое действие"
+        advancement: "domesurvival:quest_actions/ch6_power_line"
+        criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+        id: "4B0A4B7FC0D656DA"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 3CE842358BCF4A85 milestone -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "40372352B19F8508"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:copper_ingot"
+        count: 4
+      }
+    ]
+  },
+  {
+    id: "4AF191CE8DA34456"
+    title: "Корпус буфера"
+    icon: "minecraft:iron_block"
+    tags: ["ds_visual_resource"]
+    x: 3.4d
+    y: 9.6d
+    shape: "square"
+    size: 1.04d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["74335F61233E9EB2"]
+    description: [
+      "Даже маленькой сети нужен буфер, чтобы генератор и потребители не были связаны напрямую каждую секунду.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Подготовьте 16 железа и 16 красной пыли.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет оба запаса.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "430F2CF4E9C6E556"
+        type: "item"
+        item: "minecraft:iron_ingot"
+        count: 16L
+      },
+      {
+        id: "200FA9AEF49C2FF4"
+        type: "item"
+        item: "minecraft:redstone"
+        count: 16L
+      }
+    ]
+    rewards: [
+      {
+        id: "673AFF25C07CC5C1"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 4AF191CE8DA34456 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "35D7C6FA08EEBFB9"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:redstone"
+        count: 4
+      }
+    ]
+  },
+  {
+    id: "1B3704A32A92C101"
+    title: "Энергетический буфер"
+    icon: "domesurvival:energy_buffer"
+    tags: ["ds_visual_milestone"]
+    x: 0.0d
+    y: 12.0d
+    shape: "diamond"
+    size: 1.30d
+    icon_scale: 0.82d
+    min_width: 340
+    dependencies: ["3CE842358BCF4A85", "4AF191CE8DA34456"]
+    description: [
+      "Добавь накопитель между производством и будущими потребителями.",
+      "",
+      "Подойдут совместимые energy storage / battery / capacitor / accumulator блоки.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Установите энергетический накопитель внутри Купола.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически по registry path накопителя.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "414ADEDFE0E0E89E"
+        type: "advancement"
+        title: "Автоматическое действие"
+        advancement: "domesurvival:quest_actions/ch6_storage_placed"
+        criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+        id: "659F037839112439"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 1B3704A32A92C101 milestone -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "49DE93EF7D61322F"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:iron_ingot"
+        count: 2
+      }
+    ]
+  },
+  {
+    id: "78B0EF958AD81A29"
+    title: "Проверь накопитель"
+    icon: "domesurvival:energy_buffer"
+    tags: ["ds_visual_milestone"]
+    x: 0.0d
+    y: 14.4d
+    shape: "diamond"
+    size: 1.30d
+    icon_scale: 0.82d
+    min_width: 340
+    dependencies: ["1B3704A32A92C101"]
+    description: [
+      "Накопитель должен быть не декоративным блоком, а настоящим FE-узлом.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Взаимодействуйте с установленным накопителем.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Сервер подтверждает наличие Forge Energy capability у BlockEntity.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "7B46414EBCC3569B"
+        type: "advancement"
+        title: "Автоматическое действие"
+        advancement: "domesurvival:quest_actions/ch6_storage_checked"
+        criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+        id: "22A77F154D332E9B"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 78B0EF958AD81A29 milestone -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "70ABCD08EDAE602B"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:redstone"
+        count: 8
+      }
+    ]
+  },
+  {
+    id: "23C744AA7ED56DAD"
+    title: "Свет для мастерской"
+    icon: "minecraft:redstone_lamp"
+    tags: ["ds_visual_environment"]
+    x: -3.6d
+    y: 16.8d
+    shape: "circle"
+    size: 1.10d
+    icon_scale: 0.84d
+    min_width: 340
+    dependencies: ["78B0EF958AD81A29"]
+    description: [
+      "До настоящего электрического освещения ещё далеко, но мастерская уже может получить отдельную управляемую линию света.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Подготовьте 4 редстоуновых лампы и 4 рычага.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет оба типа блоков.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "34F8383717DB48E7"
+        type: "item"
+        item: "minecraft:redstone_lamp"
+        count: 4L
+      },
+      {
+        id: "62DA3891953E35F9"
+        type: "item"
+        item: "minecraft:lever"
+        count: 4L
+      }
+    ]
+    rewards: [
+      {
+        id: "0D5E327BAD3A9B0F"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 23C744AA7ED56DAD normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "36B837C8AE82A65F"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:redstone_torch"
+        count: 4
+      }
+    ]
+  },
+  {
+    id: "0110D171C4CD09E3"
+    title: "Пусть горит"
+    icon: "minecraft:redstone_lamp"
+    tags: ["ds_visual_environment"]
+    x: -3.6d
+    y: 19.2d
+    shape: "circle"
+    size: 1.16d
+    icon_scale: 0.84d
+    min_width: 340
+    dependencies: ["23C744AA7ED56DAD"]
+    description: [
+      "Отдели рабочее освещение от обычных факелов. Это первая визуальная граница будущего промышленного района.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Установите 4 редстоуновые лампы внутри безопасной части Купола.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически по новым установкам ламп.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "708754818E3B3A22"
+        type: "advancement"
+        title: "Автоматическое действие"
+        advancement: "domesurvival:quest_actions/ch6_lighting_placed"
+        criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+        id: "3F4AA70F707A2E3B"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 0110D171C4CD09E3 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "3FA669D98999D2D1"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:glowstone_dust"
+        count: 4
+      }
+    ]
+  },
+  {
+    id: "0A6AF5A9FC8B21F4"
+    title: "Резерв топлива"
+    icon: "minecraft:coal_block"
+    tags: ["ds_visual_resource"]
+    x: 3.6d
+    y: 16.8d
+    shape: "square"
+    size: 1.08d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["78B0EF958AD81A29"]
+    description: [
+      "Энергосистема должна пережить хотя бы небольшой период без добычи нового топлива.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Подготовьте минимум 64 угля.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет количество.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "627F5D72D0E7330F"
+        type: "item"
+        item: "minecraft:coal"
+        count: 64L
+      }
+    ]
+    rewards: [
+      {
+        id: "27841DBFE4CFADB9"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 0A6AF5A9FC8B21F4 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "363D1310A6D168A2"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:coal_block"
+      }
+    ]
+  },
+  {
+    id: "2408F9E69185486E"
+    title: "Запас проводников"
+    icon: "domesurvival:basic_energy_pipe"
+    tags: ["ds_visual_resource"]
+    x: 3.6d
+    y: 19.2d
+    shape: "square"
+    size: 1.08d
+    icon_scale: 0.86d
+    min_width: 340
+    dependencies: ["0A6AF5A9FC8B21F4"]
+    description: [
+      "После первой линии нужно оставить запас на расширение сети, а не разбирать работающий участок.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Имейте 16 меди и 8 красной пыли в резерве.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"FTB автоматически проверяет оба запаса.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "24B4E5EDF3FE91B2"
+        type: "item"
+        item: "minecraft:copper_ingot"
+        count: 16L
+      },
+      {
+        id: "3CE7A2BE86D9E0D5"
+        type: "item"
+        item: "minecraft:redstone"
+        count: 8L
+      }
+    ]
+    rewards: [
+      {
+        id: "00E24BCA6BDB9E0E"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 2408F9E69185486E normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "35106653A336927E"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:copper_ingot"
+        count: 4
+      }
+    ]
+  },
+  {
+    id: "0890245DED286FB4"
+    title: "Шлюз — не потребитель"
+    icon: "domesurvival:airlock_control_panel"
+    tags: ["ds_visual_airlock"]
+    x: 0.0d
+    y: 21.6d
+    shape: "gear"
+    size: 1.18d
+    icon_scale: 0.80d
+    min_width: 340
+    dependencies: ["0110D171C4CD09E3", "2408F9E69185486E"]
+    description: [
+      "Энергосеть растёт, но управляющая панель шлюза остаётся автономной.",
+      "",
+      "Это важное правило сборки: FE нужен промышленности и жизнеобеспечению, но не для самого открытия ворот.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Используйте панель шлюза после запуска первой энергосети.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически при взаимодействии с airlock control panel после выполнения зависимостей.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "6DC164842E00D790"
+        type: "advancement"
+        title: "Автоматическое действие"
+        advancement: "domesurvival:quest_actions/ch6_airlock_separation"
+        criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+        id: "08B6DEF0B712A95C"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 0890245DED286FB4 milestone -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "18613F51F2C7EF7A"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:lever"
+      }
+    ]
+  },
+  {
+    id: "40D4CDA4A2445247"
+    title: "Энергия для следующего шага"
+    icon: "domesurvival:energy_buffer"
+    tags: ["ds_visual_milestone"]
+    x: 0.0d
+    y: 24.0d
+    shape: "diamond"
+    size: 1.34d
+    icon_scale: 0.80d
+    min_width: 340
+    dependencies: ["0890245DED286FB4"]
+    description: [
+      "У нас есть источник, линия, накопитель, запас топлива и отдельная рабочая ветка освещения.",
+      "",
+      "Этого достаточно, чтобы переходить от бытового поселения к настоящей промышленности.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Завершите энергетическую инфраструктуру Главы 5.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически после проверки шлюза и основных энергетических узлов.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "3A277C01F20480F6"
+        type: "advancement"
+        title: "Автоматическое действие"
+        advancement: "domesurvival:quest_actions/ch6_power_ready"
+        criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+        id: "099AC85D0299831D"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 40D4CDA4A2445247 milestone -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "5A001FC6EF9A8A08"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:iron_ingot"
+        count: 2
+      }
+    ]
+  },
+  {
+    id: "267C7B7925B99855"
+    title: "Свет горит"
+    icon: "domesurvival:energy_buffer"
+    tags: ["ds_visual_milestone"]
+    x: 0.0d
+    y: 26.4d
+    shape: "octagon"
+    size: 1.54d
+    icon_scale: 0.78d
+    min_width: 340
+    dependencies: ["40D4CDA4A2445247"]
+    description: [
+      "Первый энергетический контур Купола работает.",
+      "",
+      "Теперь мастерская может расти не только вширь, но и технологически.",
+      "",
+      "Следующий этап — промышленный район и первые серьёзные машины.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Завершите обязательную цепочку Главы 5.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически после подготовки энергосистемы.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "551F949E2AE02AEF"
+        type: "advancement"
+        title: "Автоматическое действие"
+        advancement: "domesurvival:quest_actions/ch6_finale"
+        criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+        id: "7ABE0BED7283141A"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 267C7B7925B99855 chapter POWER_INFRASTRUCTURE_ESTABLISHED"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "7EAB5829E832D9C3"
+        type: "item"
+        exclude_from_claim_all: true
+        auto: "enabled"
+        team_reward: true
+        item: "minecraft:redstone_block"
+      }
+    ]
+  }
+  ]
+  quest_links: []
+}
