@@ -9,6 +9,8 @@ import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.block.ModBlocks;
 import com.wasted.domesurvival.forge.machine.copper.CopperFurnaceBlockEntity;
 import com.wasted.domesurvival.forge.machine.coal.CoalGeneratorBlockEntity;
+import com.wasted.domesurvival.forge.machine.shaft.ShaftFurnaceBlockEntity;
+import com.wasted.domesurvival.forge.machine.shaft.CokeOvenBlockEntity;
 import com.wasted.domesurvival.forge.machine.water.WaterPurifierBlockEntity;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenElectrolyzerBlockEntity;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenFillerBlockEntity;
@@ -35,6 +37,24 @@ public final class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             CoalGeneratorBlockEntity::new,
                             ModBlocks.COAL_GENERATOR.get()
+                    ).build(null)
+            );
+
+    public static final RegistryObject<BlockEntityType<ShaftFurnaceBlockEntity>> SHAFT_FURNACE =
+            BLOCK_ENTITY_TYPES.register(
+                    "shaft_furnace",
+                    () -> BlockEntityType.Builder.of(
+                            ShaftFurnaceBlockEntity::new,
+                            ModBlocks.SHAFT_FURNACE.get()
+                    ).build(null)
+            );
+
+    public static final RegistryObject<BlockEntityType<CokeOvenBlockEntity>> COKE_OVEN =
+            BLOCK_ENTITY_TYPES.register(
+                    "coke_oven",
+                    () -> BlockEntityType.Builder.of(
+                            CokeOvenBlockEntity::new,
+                            ModBlocks.COKE_OVEN.get()
                     ).build(null)
             );
 

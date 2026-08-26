@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["ICJ", "TFL", "JCI"],
+  "key": {
+    "T": { "item": "domesurvival:tin_gear" },
+    "L": { "item": "domesurvival:lead_gear" },
+    "I": { "item": "minecraft:iron_block" },
+    "C": { "item": "minecraft:copper_block" },
+    "F": { "item": "minecraft:blast_furnace" },
+    "J": { "item": "domesurvival:coal_coke" }
+  },
+  "result": { "item": "domesurvival:shaft_furnace" }
+}

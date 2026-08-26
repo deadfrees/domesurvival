@@ -138,7 +138,19 @@ public final class QuestGlobalRegistry {
             new QuestSpec("6BAAE8F963D04339", 7, 19, "q19", "Маска — это не броня"),
             new QuestSpec("478ADE8DCA760CBA", 7, 20, "q20", "Полный запас воздуха"),
             new QuestSpec("7A2AF5AE3520F4A0", 7, 21, "q21", "Первая кислородная вылазка"),
-            new QuestSpec("256D235BCCE50263", 7, 22, "q22", "Воздух с собой")
+            new QuestSpec("256D235BCCE50263", 7, 22, "q22", "Воздух с собой"),
+            new QuestSpec("1EF3AFD5F22CEF3B", 7, 23, "side_ie_01", "Инженер тяжёлой школы"),
+            new QuestSpec("73BAFC4EAC03F601", 7, 24, "side_ie_02", "Стальная водяная линия"),
+            new QuestSpec("78C53741C6AB7F5B", 7, 25, "side_ie_03", "Насос под током"),
+            new QuestSpec("45555AE92619B033", 7, 26, "side_ie_04", "Контроль напряжения"),
+            new QuestSpec("485AFBB5D3AD03EA", 7, 27, "side_mek_01", "Стальной корпус Mekanism"),
+            new QuestSpec("0BC2ABE626556A76", 7, 28, "side_mek_02", "Схемы управления"),
+            new QuestSpec("05250A652A93EC4A", 7, 29, "side_mek_03", "Механическая труба"),
+            new QuestSpec("780B5E94AE3AA047", 7, 30, "side_mek_04", "Лабораторный электролиз"),
+            new QuestSpec("4AA418B9DF3B79A4", 7, 31, "side_genetics_01", "Последние из живых"),
+            new QuestSpec("515C1A05E15F3F67", 7, 32, "side_genetics_02", "Настройка на маяк"),
+            new QuestSpec("0F7B71D5BDCBD296", 7, 33, "side_genetics_03", "Следуй за стрелкой"),
+            new QuestSpec("3B095F94C8D72753", 7, 34, "side_genetics_04", "Последние образцы")
     );
 
     public enum Action {
@@ -416,7 +428,19 @@ public final class QuestGlobalRegistry {
             Map.entry("6BAAE8F963D04339", "1AA98F0D3A7BA916"),
             Map.entry("478ADE8DCA760CBA", "5BC2605C8527AD33"),
             Map.entry("7A2AF5AE3520F4A0", "588BDC44EFABA20F"),
-            Map.entry("256D235BCCE50263", "21ABE9BEE6EB12DA")
+            Map.entry("256D235BCCE50263", "21ABE9BEE6EB12DA"),
+            Map.entry("1EF3AFD5F22CEF3B", "7849DEAB03CF2624"),
+            Map.entry("73BAFC4EAC03F601", "73B1ECB60F327AEE"),
+            Map.entry("78C53741C6AB7F5B", "53958D41D7127D0A"),
+            Map.entry("45555AE92619B033", "5883EE23CF2B1AB6"),
+            Map.entry("485AFBB5D3AD03EA", "509F715386C7942C"),
+            Map.entry("0BC2ABE626556A76", "46452BA75A74527C"),
+            Map.entry("05250A652A93EC4A", "7B8825D61AB63E98"),
+            Map.entry("780B5E94AE3AA047", "4081A78224A9D561"),
+            Map.entry("4AA418B9DF3B79A4", "24C59429F9E4A400"),
+            Map.entry("515C1A05E15F3F67", "51C631631E55D582"),
+            Map.entry("0F7B71D5BDCBD296", "40F643C5A1ADE4A1"),
+            Map.entry("3B095F94C8D72753", "2E613ED275498856")
     );
 
     private QuestGlobalRegistry() {

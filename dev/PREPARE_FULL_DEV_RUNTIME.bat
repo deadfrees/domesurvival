@@ -8,6 +8,10 @@ echo Git-ready JarJar-aware Mixin SRG Bridge
 echo ============================================================
 echo.
 
+call "%~dp0CONFIGURE_JAVA17.bat"
+if errorlevel 1 exit /b 1
+echo.
+
 set "BRIDGE_SRC=%CD%\dev\tools\MixinSrgBridge.java"
 set "BRIDGE_BIN=%CD%\dev\tools\bin"
 

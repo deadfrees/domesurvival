@@ -1,19 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SIS",
-    "IRI",
-    "SIS"
+    "SPS",
+    "NLN",
+    " P "
   ],
   "key": {
     "S": {
-      "tag": "forge:ingots/steel"
+      "item": "domesurvival:steel_gear"
     },
-    "I": {
-      "tag": "forge:ingots/iron"
+    "N": {
+      "item": "domesurvival:nickel_gear"
     },
-    "R": {
-      "item": "mekanism:basic_control_circuit"
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "L": {
+      "item": "domesurvival:lead_gear"
     }
   },
   "result": {

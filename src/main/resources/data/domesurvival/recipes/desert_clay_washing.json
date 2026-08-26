@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["SSS", "SWS", "SSS"],
+  "key": {
+    "S": { "item": "minecraft:sand" },
+    "W": { "item": "minecraft:water_bucket" }
+  },
+  "result": {
+    "item": "minecraft:clay_ball",
+    "count": 4
+  }
+}

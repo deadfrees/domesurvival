@@ -17,6 +17,8 @@ import com.wasted.domesurvival.forge.machine.oxygen.OxygenElectrolyzerBlock;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenFillerBlock;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenPipeBlock;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenPipeTier;
+import com.wasted.domesurvival.forge.machine.shaft.ShaftFurnaceBlock;
+import com.wasted.domesurvival.forge.machine.shaft.CokeOvenBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -40,6 +42,16 @@ public final class ModBlocks {
             () -> new CopperFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)
                     .strength(3.0F, 6.0F)
                     .noOcclusion()));
+
+    public static final RegistryObject<Block> SHAFT_FURNACE = BLOCKS.register("shaft_furnace",
+            () -> new ShaftFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.BLAST_FURNACE)
+                    .strength(4.0F, 8.0F)
+                    .lightLevel(state -> state.getValue(ShaftFurnaceBlock.LIT) ? 10 : 0)));
+
+    public static final RegistryObject<Block> COKE_OVEN = BLOCKS.register("coke_oven",
+            () -> new CokeOvenBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS)
+                    .strength(3.5F, 8.0F)
+                    .lightLevel(state -> state.getValue(CokeOvenBlock.LIT) ? 8 : 0)));
 
     public static final RegistryObject<Block> MACHINE_STABILIZER = BLOCKS.register("machine_stabilizer",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
@@ -158,6 +170,8 @@ public final class ModBlocks {
 
     static {
         ITEMS.register("copper_furnace", () -> new BlockItem(COPPER_FURNACE.get(), new Item.Properties()));
+        ITEMS.register("shaft_furnace", () -> new BlockItem(SHAFT_FURNACE.get(), new Item.Properties()));
+        ITEMS.register("coke_oven", () -> new BlockItem(COKE_OVEN.get(), new Item.Properties()));
         ITEMS.register("machine_stabilizer", () -> new BlockItem(MACHINE_STABILIZER.get(), new Item.Properties()));
         ITEMS.register("coal_generator", () -> new BlockItem(COAL_GENERATOR.get(), new Item.Properties()));
         ITEMS.register("water_purifier", () -> new BlockItem(WATER_PURIFIER.get(), new Item.Properties()));

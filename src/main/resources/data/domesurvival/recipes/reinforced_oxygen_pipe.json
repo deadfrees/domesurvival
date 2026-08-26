@@ -10,7 +10,7 @@
       "tag": "forge:ingots/steel"
     },
     "D": {
-      "item": "enderio:dark_steel_ingot"
+      "tag": "forge:ingots/steel"
     },
     "N": {
       "tag": "forge:ingots/nickel"

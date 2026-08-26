@@ -1,0 +1,39 @@
+{
+  "ambientocclusion": true,
+  "textures": {
+    "particle": "domesurvival:block/metallurgy/coke_oven_brick",
+    "brick": "domesurvival:block/metallurgy/coke_oven_brick",
+    "metal": "domesurvival:block/metallurgy/dark_metal",
+    "front": "domesurvival:block/metallurgy/coke_oven_front"
+  },
+  "elements": [
+    { "from": [1, 1, 1], "to": [15, 15, 15], "faces": {
+      "north": { "texture": "#brick" }, "south": { "texture": "#brick" },
+      "east": { "texture": "#brick" }, "west": { "texture": "#brick" },
+      "up": { "texture": "#brick" }, "down": { "texture": "#metal" }
+    }},
+    { "from": [0, 0, 0], "to": [16, 2, 16], "faces": {
+      "north": { "texture": "#metal" }, "south": { "texture": "#metal" },
+      "east": { "texture": "#metal" }, "west": { "texture": "#metal" },
+      "up": { "texture": "#metal" }, "down": { "texture": "#metal" }
+    }},
+    { "from": [0, 13, 0], "to": [16, 16, 16], "faces": {
+      "north": { "texture": "#metal" }, "south": { "texture": "#metal" },
+      "east": { "texture": "#metal" }, "west": { "texture": "#metal" },
+      "up": { "texture": "#metal" }, "down": { "texture": "#metal" }
+    }},
+    { "from": [2, 3, -0.2], "to": [14, 12, 1.2], "faces": {
+      "north": { "texture": "#front", "uv": [2, 3, 14, 12] },
+      "east": { "texture": "#metal" }, "west": { "texture": "#metal" },
+      "up": { "texture": "#metal" }, "down": { "texture": "#metal" }
+    }},
+    { "from": [0, 2, 0], "to": [2, 14, 2], "faces": {
+      "north": { "texture": "#metal" }, "east": { "texture": "#metal" },
+      "south": { "texture": "#metal" }, "west": { "texture": "#metal" }, "up": { "texture": "#metal" }
+    }},
+    { "from": [14, 2, 0], "to": [16, 14, 2], "faces": {
+      "north": { "texture": "#metal" }, "east": { "texture": "#metal" },
+      "south": { "texture": "#metal" }, "west": { "texture": "#metal" }, "up": { "texture": "#metal" }
+    }}
+  ]
+}

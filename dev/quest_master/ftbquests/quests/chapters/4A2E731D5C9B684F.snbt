@@ -54,7 +54,7 @@
         team_reward: true
         title: " "
         icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 613FF462EA9C75DC normal -"
+        command: "/domequest complete 613FF462EA9C75DC normal POWER_PROGRAM_STARTED"
         elevate_perms: true
         silent: true
         auto: "invisible"
@@ -270,7 +270,7 @@
         team_reward: true
         title: " "
         icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 4D5E49001CD7D6CE normal -"
+        command: "/domequest complete 4D5E49001CD7D6CE normal POWER_FUEL_RESERVE_READY"
         elevate_perms: true
         silent: true
         auto: "invisible"
@@ -330,7 +330,7 @@
         team_reward: true
         title: " "
         icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 473AE864B22D87AB normal -"
+        command: "/domequest complete 473AE864B22D87AB normal PULSE_MATRIX_AVAILABLE"
         elevate_perms: true
         silent: true
         auto: "invisible"
@@ -387,7 +387,7 @@
         team_reward: true
         title: " "
         icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 27D329DD824D350B milestone -"
+        command: "/domequest complete 27D329DD824D350B milestone BASIC_POWER_GRID_STARTED"
         elevate_perms: true
         silent: true
         auto: "invisible"
@@ -444,7 +444,7 @@
         team_reward: true
         title: " "
         icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 74335F61233E9EB2 milestone -"
+        command: "/domequest complete 74335F61233E9EB2 milestone FIRST_POWERED_MACHINE_ONLINE"
         elevate_perms: true
         silent: true
         auto: "invisible"
@@ -561,7 +561,7 @@
         team_reward: true
         title: " "
         icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 3CE842358BCF4A85 milestone -"
+        command: "/domequest complete 3CE842358BCF4A85 milestone POWER_TRANSMISSION_TECH_KNOWN"
         elevate_perms: true
         silent: true
         auto: "invisible"
@@ -733,7 +733,7 @@
         team_reward: true
         title: " "
         icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 78B0EF958AD81A29 milestone -"
+        command: "/domequest complete 78B0EF958AD81A29 milestone POWER_STORAGE_TECH_KNOWN"
         elevate_perms: true
         silent: true
         auto: "invisible"
@@ -1074,7 +1074,7 @@
         team_reward: true
         title: " "
         icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 40D4CDA4A2445247 milestone -"
+        command: "/domequest complete 40D4CDA4A2445247 milestone POWER_STAGE_1"
         elevate_perms: true
         silent: true
         auto: "invisible"
@@ -1134,6 +1134,19 @@
         title: " "
         icon: "minecraft:gray_stained_glass_pane"
         command: "/domequest complete 267C7B7925B99855 chapter POWER_INFRASTRUCTURE_ESTABLISHED"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "0109DDC99512F35C"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest gate set DOME_POWER_ONLINE"
         elevate_perms: true
         silent: true
         auto: "invisible"

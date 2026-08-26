@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "domesurvival:item/genetics/damaged_pig_cryocapsule"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "parent": "domesurvival:block/coke_oven_lower",
+  "textures": { "front": "domesurvival:block/metallurgy/coke_oven_front_on" }
+}

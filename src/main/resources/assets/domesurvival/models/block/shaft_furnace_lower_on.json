@@ -1,0 +1,4 @@
+{
+  "parent": "domesurvival:block/shaft_furnace_lower",
+  "textures": { "front": "domesurvival:block/metallurgy/shaft_furnace_front_on" }
+}

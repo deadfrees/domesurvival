@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "IRI",
-    "RCR",
-    "IRI"
+    "RGR",
+    "RPR",
+    " G "
   ],
   "key": {
-    "I": {
-      "tag": "forge:ingots/iron"
+    "G": {
+      "item": "domesurvival:lead_gear"
     },
     "R": {
       "item": "minecraft:redstone"
     },
-    "C": {
-      "item": "mekanism:basic_control_circuit"
+    "P": {
+      "item": "minecraft:piston"
     }
   },
   "result": {

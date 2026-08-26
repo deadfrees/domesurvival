@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "INI",
+    " I "
+  ],
+  "key": {
+    "I": { "tag": "forge:ingots/nickel" },
+    "N": { "item": "minecraft:iron_nugget" }
+  },
+  "result": { "item": "domesurvival:nickel_gear" }
+}

@@ -1,0 +1,229 @@
+{
+  "version": "9.0",
+  "chapter": {
+    "internal_index": 7,
+    "order_index": 6,
+    "id": "76CBABB04B110F16",
+    "title": "Промышленный район",
+    "required_quests": 22,
+    "optional_quests": 8,
+    "total_quests": 30
+  },
+  "previous_final_dependency": "267C7B7925B99855",
+  "final_story_flags": [
+    "OXYGEN_INFRASTRUCTURE_READY",
+    "INDUSTRY_STAGE_1"
+  ],
+  "campaign_visible_quests_total": 133,
+  "background": {
+    "resource": "domesurvival:textures/gui/quests/chapter_07_industrial_district.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "42AEB90543F4A9004146476FC4D1D1EE967F71FEC94637839A224F7627FDBA32",
+    "generator": "built-in image generator",
+    "mode": "brand-new raster generation",
+    "source_copy": "C:\\Users\\deadfrees\\.codex\\generated_images\\01a03997-bff1-7773-befa-e8cb5176191e\\exec-5afe1474-3011-42b0-b020-9478f17e7181.png",
+    "prompt_summary": "High-detail oxygen industrial district inside a repaired glass dome; water purification, electrolyzer, filling station, tanks and pipework; cool cyan oxygen light with warm amber lamps; no text, UI, logos or people."
+  },
+  "main_route": [
+    {
+      "number": 1,
+      "id": "723BD8C7EB767885",
+      "title": "Промышленный район",
+      "type": "action"
+    },
+    {
+      "number": 2,
+      "id": "7805EEAD5285FB87",
+      "title": "Инструмент инженера",
+      "type": "item"
+    },
+    {
+      "number": 3,
+      "id": "636EE3BD758A2795",
+      "title": "Три опоры машин",
+      "type": "item"
+    },
+    {
+      "number": 4,
+      "id": "029CAC5E844C7EB9",
+      "title": "Сердце автоматики",
+      "type": "item"
+    },
+    {
+      "number": 5,
+      "id": "6AB2D7F0B4A14E41",
+      "title": "Фильтры не вечны",
+      "type": "item"
+    },
+    {
+      "number": 6,
+      "id": "57938AB76CC85A5F",
+      "title": "Водяная магистраль",
+      "type": "item"
+    },
+    {
+      "number": 7,
+      "id": "259B20A21C7C896A",
+      "title": "Резерв чистой воды",
+      "type": "item"
+    },
+    {
+      "number": 8,
+      "id": "30FBCDA1B2B3D398",
+      "title": "Первый очиститель",
+      "type": "item"
+    },
+    {
+      "number": 9,
+      "id": "18B194C25C44CFAF",
+      "title": "Поставь очиститель",
+      "type": "action"
+    },
+    {
+      "number": 10,
+      "id": "7925344428A5F173",
+      "title": "Вода без пыли",
+      "type": "action"
+    },
+    {
+      "number": 11,
+      "id": "1ECEBF8458CC59EA",
+      "title": "Разделить воду",
+      "type": "item"
+    },
+    {
+      "number": 12,
+      "id": "126C8CC96AC3F561",
+      "title": "Поставь электролизёр",
+      "type": "action"
+    },
+    {
+      "number": 13,
+      "id": "6C2401658492032F",
+      "title": "Первый кислород",
+      "type": "action"
+    },
+    {
+      "number": 14,
+      "id": "2C4771CE49E4FCD5",
+      "title": "Синяя магистраль",
+      "type": "item"
+    },
+    {
+      "number": 15,
+      "id": "22DDCEABD0E620B4",
+      "title": "Кислородный контур",
+      "type": "action"
+    },
+    {
+      "number": 16,
+      "id": "3848577B9691EC24",
+      "title": "Заправочная станция",
+      "type": "item"
+    },
+    {
+      "number": 17,
+      "id": "444141AA2A3ACB3E",
+      "title": "Станция на месте",
+      "type": "action"
+    },
+    {
+      "number": 18,
+      "id": "0EB4DDB0F86043F4",
+      "title": "Малый кислородный баллон",
+      "type": "item"
+    },
+    {
+      "number": 19,
+      "id": "6BAAE8F963D04339",
+      "title": "Маска — это не броня",
+      "type": "item"
+    },
+    {
+      "number": 20,
+      "id": "478ADE8DCA760CBA",
+      "title": "Полный запас воздуха",
+      "type": "action"
+    },
+    {
+      "number": 21,
+      "id": "7A2AF5AE3520F4A0",
+      "title": "Первая кислородная вылазка",
+      "type": "action"
+    },
+    {
+      "number": 22,
+      "id": "256D235BCCE50263",
+      "title": "Воздух с собой",
+      "type": "action"
+    }
+  ],
+  "optional_routes": [
+    {
+      "mod": "Immersive Engineering",
+      "quests": [
+        {
+          "id": "1EF3AFD5F22CEF3B",
+          "title": "Инженер тяжёлой школы",
+          "optional": true
+        },
+        {
+          "id": "73BAFC4EAC03F601",
+          "title": "Стальная водяная линия",
+          "optional": true
+        },
+        {
+          "id": "78C53741C6AB7F5B",
+          "title": "Насос под током",
+          "optional": true
+        },
+        {
+          "id": "45555AE92619B033",
+          "title": "Контроль напряжения",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "mod": "Mekanism",
+      "quests": [
+        {
+          "id": "485AFBB5D3AD03EA",
+          "title": "Стальной корпус Mekanism",
+          "optional": true
+        },
+        {
+          "id": "0BC2ABE626556A76",
+          "title": "Схемы управления",
+          "optional": true
+        },
+        {
+          "id": "05250A652A93EC4A",
+          "title": "Механическая труба",
+          "optional": true
+        },
+        {
+          "id": "780B5E94AE3AA047",
+          "title": "Лабораторный электролиз",
+          "optional": true
+        }
+      ]
+    }
+  ],
+  "automatic_checks": {
+    "purifier_placement": true,
+    "purified_water_capability": true,
+    "electrolyzer_placement": true,
+    "oxygen_capability": true,
+    "oxygen_pipe_placements": 6,
+    "filler_placement": true,
+    "full_tank_nbt": true,
+    "oxygen_sortie": {
+      "minimum_ticks": 400,
+      "minimum_radius": 90,
+      "requires_mask_and_filled_tank": true,
+      "requires_safe_return": true
+    }
+  }
+}

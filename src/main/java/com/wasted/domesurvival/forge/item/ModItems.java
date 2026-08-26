@@ -33,6 +33,39 @@ public final class ModItems {
             () -> new Item(new Item.Properties().stacksTo(64))
     );
 
+    /** Early engineering components kept local so Thermal stays progression-locked. */
+    public static final RegistryObject<Item> STEEL_GEAR = engineeringComponent("steel_gear");
+    public static final RegistryObject<Item> TIN_GEAR = engineeringComponent("tin_gear");
+    public static final RegistryObject<Item> LEAD_GEAR = engineeringComponent("lead_gear");
+    public static final RegistryObject<Item> NICKEL_GEAR = engineeringComponent("nickel_gear");
+
+    /** Self-contained early metallurgy materials; no external machine is required to obtain them. */
+    public static final RegistryObject<Item> COAL_COKE = ITEMS.register(
+            "coal_coke",
+            () -> new CoalCokeItem(new Item.Properties().stacksTo(64))
+    );
+    public static final RegistryObject<Item> STEEL_INGOT = engineeringComponent("steel_ingot");
+    public static final RegistryObject<Item> SLAG = engineeringComponent("slag");
+    /** Viable pre-catastrophe animal genomes recovered from the genetic archive. */
+    public static final RegistryObject<Item> CHICKEN_CRYOCAPSULE = ITEMS.register(
+            "chicken_cryocapsule",
+            () -> new CryocapsuleItem(false, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.RARE))
+    );
+    public static final RegistryObject<Item> SHEEP_CRYOCAPSULE = ITEMS.register(
+            "sheep_cryocapsule",
+            () -> new CryocapsuleItem(false, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.RARE))
+    );
+    public static final RegistryObject<Item> COW_CRYOCAPSULE = ITEMS.register(
+            "cow_cryocapsule",
+            () -> new CryocapsuleItem(false, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.RARE))
+    );
+
+    /** Damaged pig genome; preserved for a later research stage. */
+    public static final RegistryObject<Item> DAMAGED_PIG_CRYOCAPSULE = ITEMS.register(
+            "damaged_pig_cryocapsule",
+            () -> new CryocapsuleItem(true, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.UNCOMMON))
+    );
+
     public static final RegistryObject<Item> WATER_FILTER_CARTRIDGE = ITEMS.register(
             "water_filter_cartridge",
             () -> new WaterFilterItem(
@@ -107,6 +140,11 @@ public static final RegistryObject<Item> OXYGEN_MASK = ITEMS.register(
             "memory_painting",
             () -> new MemoryPaintingItem(new Item.Properties().stacksTo(64))
     );
+
+    private static RegistryObject<Item> engineeringComponent(String id) {
+        return ITEMS.register(id, () -> new Item(new Item.Properties().stacksTo(64)));
+    }
+
     private ModItems() {
     }
 }

@@ -2,18 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     " RC",
-    " SR",
-    "S  "
+    "GTR"
   ],
   "key": {
-    "S": {
-      "tag": "forge:ingots/steel"
+    "G": {
+      "item": "domesurvival:steel_gear"
+    },
+    "T": {
+      "item": "domesurvival:tin_gear"
     },
     "R": {
       "item": "minecraft:redstone"
     },
     "C": {
-      "item": "mekanism:basic_control_circuit"
+      "item": "minecraft:compass"
     }
   },
   "result": {

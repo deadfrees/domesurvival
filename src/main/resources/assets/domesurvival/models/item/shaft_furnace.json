@@ -1,0 +1,10 @@
+{
+  "parent": "domesurvival:block/shaft_furnace_item",
+  "display": {
+    "gui": { "rotation": [30, 225, 0], "translation": [0, 0, 0], "scale": [0.72, 0.72, 0.72] },
+    "ground": { "translation": [0, 3, 0], "scale": [0.34, 0.34, 0.34] },
+    "fixed": { "rotation": [0, 180, 0], "scale": [0.58, 0.58, 0.58] },
+    "firstperson_righthand": { "rotation": [0, 45, 0], "scale": [0.52, 0.52, 0.52] },
+    "firstperson_lefthand": { "rotation": [0, 225, 0], "scale": [0.52, 0.52, 0.52] }
+  }
+}

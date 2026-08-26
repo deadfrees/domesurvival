@@ -26,6 +26,7 @@ minecraft {
             // but it cannot make every arbitrary production mixin JAR dev-safe.
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            arg '-mixin.config=domesurvival.mixins.json'
 
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
@@ -41,6 +42,9 @@ minecraft {
         client {}
 
         server {
+            if (project.hasProperty('domeCleanTechTest')) {
+                workingDirectory project.file('run/technology-test')
+            }
             args '--nogui'
         }
 
@@ -152,7 +156,8 @@ jar {
                 'Specification-Version' : '1',
                 'Implementation-Title'  : project.name,
                 'Implementation-Version': project.jar.archiveVersion,
-                'Implementation-Vendor' : mod_authors
+                'Implementation-Vendor' : mod_authors,
+                'MixinConfigs'          : 'domesurvival.mixins.json'
         ])
     }
 

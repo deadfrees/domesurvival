@@ -12,12 +12,12 @@ import java.util.Optional;
 
 public final class ModNetwork {
     /*
-     * Protocol 4 comes from the current shared main branch.
+     * Protocol 5 adds the server-authoritative technology progress sync.
      *
      * Do not return this to protocol 2:
      * current main already contains SurfaceWeatherSyncPacket.
      */
-    private static final String PROTOCOL_VERSION = "4";
+    private static final String PROTOCOL_VERSION = "5";
 
     public static final SimpleChannel CHANNEL =
             NetworkRegistry.newSimpleChannel(
@@ -58,6 +58,15 @@ public final class ModNetwork {
                 SurfaceWeatherSyncPacket::encode,
                 SurfaceWeatherSyncPacket::decode,
                 SurfaceWeatherSyncPacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+        );
+
+        CHANNEL.registerMessage(
+                nextMessageId++,
+                TechnologySyncPacket.class,
+                TechnologySyncPacket::encode,
+                TechnologySyncPacket::decode,
+                TechnologySyncPacket::handle,
                 Optional.of(NetworkDirection.PLAY_TO_CLIENT)
         );
     }

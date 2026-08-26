@@ -124,6 +124,23 @@
         auto: "invisible"
       }
     ]
+  },
+  {
+    id: "70CE4EBCBA38CD21"
+    title: "__GENETIC_ARCHIVE_SIGNAL_FOUND"
+    x: 5.0d
+    y: 0.0d
+    disable_toast: true
+    tasks: [
+      {
+        id: "262095409D684627"
+        type: "advancement"
+        title: "Technical trigger"
+        advancement: "domesurvival:quest_actions/genetic_archive_signal"
+        criterion: "trigger"
+      }
+    ]
+    rewards: []
   }
   ]
   quest_links: []

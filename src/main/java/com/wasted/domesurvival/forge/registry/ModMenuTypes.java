@@ -6,6 +6,8 @@ import com.wasted.domesurvival.forge.machine.energy.TitanEnergyBufferMenu;
 import com.wasted.domesurvival.forge.machine.energy.EnergyBufferMenu;
 import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.machine.coal.CoalGeneratorMenu;
+import com.wasted.domesurvival.forge.machine.shaft.ShaftFurnaceMenu;
+import com.wasted.domesurvival.forge.machine.shaft.CokeOvenMenu;
 import com.wasted.domesurvival.forge.machine.water.WaterPurifierMenu;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenElectrolyzerMenu;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenFillerMenu;
@@ -21,6 +23,12 @@ public final class ModMenuTypes {
 
     public static final RegistryObject<MenuType<CoalGeneratorMenu>> COAL_GENERATOR =
             MENU_TYPES.register("coal_generator", () -> IForgeMenuType.create(CoalGeneratorMenu::new));
+
+    public static final RegistryObject<MenuType<ShaftFurnaceMenu>> SHAFT_FURNACE =
+            MENU_TYPES.register("shaft_furnace", () -> IForgeMenuType.create(ShaftFurnaceMenu::new));
+
+    public static final RegistryObject<MenuType<CokeOvenMenu>> COKE_OVEN =
+            MENU_TYPES.register("coke_oven", () -> IForgeMenuType.create(CokeOvenMenu::new));
 
     public static final RegistryObject<MenuType<WaterPurifierMenu>> WATER_PURIFIER =
             MENU_TYPES.register("water_purifier", () -> IForgeMenuType.create(WaterPurifierMenu::new));

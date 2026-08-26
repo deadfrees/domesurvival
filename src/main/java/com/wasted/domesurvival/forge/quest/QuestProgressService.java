@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.quest;
 
 import com.mojang.logging.LogUtils;
+import com.wasted.domesurvival.forge.technology.TechnologyUnlockService;
 import net.minecraft.server.level.ServerLevel;
 import org.slf4j.Logger;
 
@@ -29,6 +30,7 @@ public final class QuestProgressService {
         boolean changed = QuestProgressSavedData.get(level).setFlag(flag);
         if (changed) {
             LOGGER.info("[DomeQuest] SET flag={} source={}", flag, safeSource(source));
+            TechnologyUnlockService.onFlagChanged(level, flag, true);
             return MutationResult.CHANGED;
         }
 
@@ -44,6 +46,7 @@ public final class QuestProgressService {
         boolean changed = QuestProgressSavedData.get(level).clearFlag(flag);
         if (changed) {
             LOGGER.info("[DomeQuest] CLEAR flag={} source={}", flag, safeSource(source));
+            TechnologyUnlockService.onFlagChanged(level, flag, false);
             return MutationResult.CHANGED;
         }
 

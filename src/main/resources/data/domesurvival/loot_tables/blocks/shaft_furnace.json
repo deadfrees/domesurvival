@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [{
+    "rolls": 1,
+    "entries": [{ "type": "minecraft:item", "name": "domesurvival:shaft_furnace" }],
+    "conditions": [
+      { "condition": "minecraft:survives_explosion" },
+      {
+        "condition": "minecraft:block_state_property",
+        "block": "domesurvival:shaft_furnace",
+        "properties": { "half": "lower" }
+      }
+    ]
+  }]
+}

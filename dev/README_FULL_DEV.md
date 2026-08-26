@@ -22,6 +22,10 @@ DomeSurvival modpack.
 - ForgeGradle 6 / Forge 47.4.x project
 - approved physical third-party modpack in `run/mods`
 
+The launch scripts automatically select an installed JDK 17 from `JAVA_HOME`,
+the standard Oracle/Adoptium/Microsoft installation folders, or the location of
+`javac.exe`. This keeps an older system-default Java from being selected by Gradle.
+
 An optional external repair source can be configured through:
 
     setx DOMESURVIVAL_MODPACK_SOURCE "D:\path\to\approved\mods"

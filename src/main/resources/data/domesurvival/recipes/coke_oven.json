@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["BGB", "CFC", "BGB"],
+  "key": {
+    "B": { "item": "minecraft:bricks" },
+    "G": { "item": "domesurvival:lead_gear" },
+    "C": { "item": "minecraft:clay" },
+    "F": { "item": "minecraft:blast_furnace" }
+  },
+  "result": { "item": "domesurvival:coke_oven" }
+}

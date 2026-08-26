@@ -13,6 +13,8 @@ import com.wasted.domesurvival.forge.client.particle.VentilationBubbleParticle;
 import com.wasted.domesurvival.forge.client.render.OxygenMaskCurioRenderer;
 import com.wasted.domesurvival.forge.client.render.OxygenTankCurioRenderer;
 import com.wasted.domesurvival.forge.client.screen.CoalGeneratorScreen;
+import com.wasted.domesurvival.forge.client.screen.ShaftFurnaceScreen;
+import com.wasted.domesurvival.forge.client.screen.CokeOvenScreen;
 import com.wasted.domesurvival.forge.client.screen.WaterPurifierScreen;
 import com.wasted.domesurvival.forge.client.screen.OxygenElectrolyzerScreen;
 import com.wasted.domesurvival.forge.client.screen.OxygenFillerScreen;
@@ -47,6 +49,8 @@ public final class ClientModEvents {
             MenuScreens.register(ModMenuTypes.ENERGY_BUFFER_TITAN.get(), TitanEnergyBufferScreen::new);
             MenuScreens.register(ModMenuTypes.ENERGY_BUFFER.get(), EnergyBufferScreen::new);
             MenuScreens.register(ModMenuTypes.COAL_GENERATOR.get(), CoalGeneratorScreen::new);
+            MenuScreens.register(ModMenuTypes.SHAFT_FURNACE.get(), ShaftFurnaceScreen::new);
+            MenuScreens.register(ModMenuTypes.COKE_OVEN.get(), CokeOvenScreen::new);
             MenuScreens.register(ModMenuTypes.WATER_PURIFIER.get(), WaterPurifierScreen::new);
             MenuScreens.register(ModMenuTypes.OXYGEN_ELECTROLYZER.get(), OxygenElectrolyzerScreen::new);
             MenuScreens.register(ModMenuTypes.OXYGEN_FILLER.get(), OxygenFillerScreen::new);

@@ -41,3 +41,9 @@ dev/worlds/.extract/
 
 # DomeSurvival generated FULL DEV runtime cache
 dev/generated/
+
+# Local backups created by patch installers
+_manual_backups/
+
+# Local backups created by patch installers
+_manual_backups/

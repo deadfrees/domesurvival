@@ -50,6 +50,8 @@ public final class ModCreativeTabs {
 
             // Row 2: machines and energy storage.
             "coal_generator",
+            "coke_oven",
+            "shaft_furnace",
             "copper_furnace",
             "water_purifier",
             "oxygen_electrolyzer",
@@ -73,6 +75,13 @@ public final class ModCreativeTabs {
             "hopper_upgrade_steel_to_desh",
             "machine_stabilizer",
             "pulse_matrix",
+            "steel_gear",
+            "tin_gear",
+            "lead_gear",
+            "nickel_gear",
+            "coal_coke",
+            "steel_ingot",
+            "slag",
 
             // Row 4: tools, filters and portable oxygen equipment.
             "machine_wrench",
