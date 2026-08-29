@@ -1,6 +1,10 @@
 package com.wasted.domesurvival.forge.enchantment;
 
 import com.wasted.domesurvival.forge.block.ModBlocks;
+import com.wasted.domesurvival.forge.machine.energy.EnergyBufferCapacity;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -13,7 +17,7 @@ public final class EnergyBufferCapacityEnchantment extends Enchantment {
 
     @Override
     public int getMaxLevel() {
-        return 4;
+        return EnergyBufferCapacity.MAX_LEVEL;
     }
 
     @Override
@@ -34,6 +38,18 @@ public final class EnergyBufferCapacityEnchantment extends Enchantment {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return isSupportedEnergyBuffer(stack);
+    }
+
+    @Override
+    public Component getFullname(int level) {
+        MutableComponent name = Component.translatableWithFallback(
+                "enchantment.domesurvival.capacity",
+                "Вместимость"
+        ).withStyle(ChatFormatting.GRAY);
+        if (getMaxLevel() != 1 || level != 1) {
+            name.append(" ").append(Component.translatable("enchantment.level." + level));
+        }
+        return name;
     }
 
     private static boolean isSupportedEnergyBuffer(ItemStack stack) {
