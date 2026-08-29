@@ -7,6 +7,7 @@ import com.wasted.domesurvival.forge.machine.energy.EnergyBufferCapacity;
 import com.wasted.domesurvival.forge.machine.energy.MachineEnergyStorage;
 import com.wasted.domesurvival.forge.machine.energy.TitanEnergyBufferBlockEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -42,20 +43,35 @@ public abstract class EnergyBufferCapacityMixin implements CapacityEnchantedEner
 
         domesurvival$capacityEnchantLevel = clamped;
         energyStorage.setCapacityInternal(EnergyBufferCapacity.applyMultiplier(domesurvival$getBaseCapacity(), clamped));
+        ((BlockEntity) (Object) this).setChanged();
     }
 
     /**
      * Runs before the target load() restores Energy, so a charged enchanted
      * buffer is never temporarily clamped to its unenchanted base capacity.
      */
-    @Inject(method = "load", at = @At("HEAD"))
+    @Inject(
+            method = {
+                    "load(Lnet/minecraft/nbt/CompoundTag;)V",
+                    "m_142466_(Lnet/minecraft/nbt/CompoundTag;)V"
+            },
+            at = @At("HEAD"),
+            remap = false
+    )
     private void domesurvival$loadCapacityBeforeEnergy(CompoundTag tag, CallbackInfo ci) {
         domesurvival$capacityEnchantLevel = EnergyBufferCapacity.readLevel(tag);
         energyStorage.setCapacityInternal(EnergyBufferCapacity.applyMultiplier(
                 domesurvival$getBaseCapacity(), domesurvival$capacityEnchantLevel));
     }
 
-    @Inject(method = "saveAdditional", at = @At("TAIL"))
+    @Inject(
+            method = {
+                    "saveAdditional(Lnet/minecraft/nbt/CompoundTag;)V",
+                    "m_183515_(Lnet/minecraft/nbt/CompoundTag;)V"
+            },
+            at = @At("TAIL"),
+            remap = false
+    )
     private void domesurvival$saveCapacity(CompoundTag tag, CallbackInfo ci) {
         EnergyBufferCapacity.writeLevel(tag, domesurvival$capacityEnchantLevel);
     }
