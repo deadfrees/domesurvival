@@ -6,7 +6,20 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "domesurvival:energy_buffer_titan"
+          "name": "domesurvival:energy_buffer_titan",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "CapacityEnchantLevel",
+                  "target": "BlockEntityTag.CapacityEnchantLevel",
+                  "op": "replace"
+                }
+              ]
+            }
+          ]
         }
       ],
       "conditions": [
