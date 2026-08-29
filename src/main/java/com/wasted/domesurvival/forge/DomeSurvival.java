@@ -10,6 +10,7 @@ import com.wasted.domesurvival.forge.block.ModBlocks;
 import com.wasted.domesurvival.forge.command.DomeCommands;
 import com.wasted.domesurvival.forge.config.SurfaceHazardConfig;
 import com.wasted.domesurvival.forge.dome.DomeGenerationService;
+import com.wasted.domesurvival.forge.enchantment.ModEnchantments;
 import com.wasted.domesurvival.forge.fluid.ModFluids;
 import com.wasted.domesurvival.forge.item.ModItems;
 import com.wasted.domesurvival.forge.machine.oxygen.complex.OxygenComplexRegistry;
@@ -47,6 +48,7 @@ public final class DomeSurvival {
         ModBlocks.BLOCKS.register(modBus);
         ModBlocks.ITEMS.register(modBus);
         ModItems.ITEMS.register(modBus);
+        ModEnchantments.ENCHANTMENTS.register(modBus);
         ModEntityTypes.ENTITY_TYPES.register(modBus);
         ModPaintingVariants.PAINTING_VARIANTS.register(modBus);
         ModSounds.SOUND_EVENTS.register(modBus);
