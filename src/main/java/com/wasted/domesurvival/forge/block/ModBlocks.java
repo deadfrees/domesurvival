@@ -9,6 +9,7 @@ import com.wasted.domesurvival.forge.machine.energy.CreativeEnergyBufferBlock;
 import com.wasted.domesurvival.forge.machine.energy.AdamantiumEnergyBufferBlock;
 import com.wasted.domesurvival.forge.machine.energy.TitanEnergyBufferBlock;
 import com.wasted.domesurvival.forge.machine.energy.EnergyBufferBlock;
+import com.wasted.domesurvival.forge.machine.energy.EnergyBufferBlockItem;
 import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.airlock.AirlockPanelBlock;
 import com.wasted.domesurvival.forge.machine.coal.CoalGeneratorBlock;
@@ -33,11 +34,6 @@ public final class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DomeSurvival.MOD_ID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DomeSurvival.MOD_ID);
 
-
-    /**
-     * Universal passive machine chassis used as the structural base for DomeSurvival machines.
-     * No BlockEntity or ticking is required: this is intentionally a cheap-to-render crafting component.
-     */
     public static final RegistryObject<Block> COPPER_FURNACE = BLOCKS.register("copper_furnace",
             () -> new CopperFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)
                     .strength(3.0F, 6.0F)
@@ -143,12 +139,6 @@ public final class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.SMOOTH_STONE)
                     .strength(30.0F, 1200.0F)));
 
-
-    /*
-     * Legacy block IDs are kept only so older saves can still resolve them.
-     * Their BlockItems are intentionally not registered anymore.
-     * Current gameplay uses airlock_gate + airlock_control_panel.
-     */
     public static final RegistryObject<Block> AIRLOCK_DOOR = BLOCKS.register("airlock_door",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .strength(35.0F, 1200.0F)));
@@ -156,7 +146,6 @@ public final class ModBlocks {
     public static final RegistryObject<Block> AIRLOCK_PANEL = BLOCKS.register("airlock_panel",
             () -> new AirlockPanelBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .strength(15.0F, 1200.0F)));
-
 
     public static final RegistryObject<Block> LANOS_DECORATIVE = BLOCKS.register("lanos_decorative",
             () -> new DecorativeLanosBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
@@ -180,9 +169,9 @@ public final class ModBlocks {
         ITEMS.register("oxygen_pipe", () -> new BlockItem(OXYGEN_PIPE.get(), new Item.Properties()));
         ITEMS.register("reinforced_oxygen_pipe", () -> new BlockItem(REINFORCED_OXYGEN_PIPE.get(), new Item.Properties()));
         ITEMS.register("high_flow_oxygen_pipe", () -> new BlockItem(HIGH_FLOW_OXYGEN_PIPE.get(), new Item.Properties()));
-        ITEMS.register("energy_buffer", () -> new BlockItem(ENERGY_BUFFER.get(), new Item.Properties()));
-        ITEMS.register("energy_buffer_titan", () -> new BlockItem(ENERGY_BUFFER_TITAN.get(), new Item.Properties()));
-        ITEMS.register("energy_buffer_adamantium", () -> new BlockItem(ENERGY_BUFFER_ADAMANTIUM.get(), new Item.Properties()));
+        ITEMS.register("energy_buffer", () -> new EnergyBufferBlockItem(ENERGY_BUFFER.get(), new Item.Properties()));
+        ITEMS.register("energy_buffer_titan", () -> new EnergyBufferBlockItem(ENERGY_BUFFER_TITAN.get(), new Item.Properties()));
+        ITEMS.register("energy_buffer_adamantium", () -> new EnergyBufferBlockItem(ENERGY_BUFFER_ADAMANTIUM.get(), new Item.Properties()));
         ITEMS.register("machine_wrench", () -> new WrenchItem(new Item.Properties().stacksTo(1)));
         ITEMS.register("energy_buffer_creative", () -> new BlockItem(ENERGY_BUFFER_CREATIVE.get(), new Item.Properties()));
         ITEMS.register("basic_energy_pipe",
