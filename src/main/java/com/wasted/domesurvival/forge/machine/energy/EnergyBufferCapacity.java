@@ -1,6 +1,8 @@
 package com.wasted.domesurvival.forge.machine.energy;
 
 import com.wasted.domesurvival.forge.enchantment.ModEnchantments;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
@@ -9,6 +11,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
  */
 public final class EnergyBufferCapacity {
     public static final int MAX_LEVEL = 4;
+    public static final String NBT_LEVEL = "CapacityEnchantLevel";
 
     private EnergyBufferCapacity() {
     }
@@ -28,15 +31,42 @@ public final class EnergyBufferCapacity {
         return (int) Math.min(Integer.MAX_VALUE, capacity);
     }
 
+    public static int applyMultiplier(int baseCapacity, int level) {
+        return apply(baseCapacity, level);
+    }
+
     public static int getLevel(ItemStack stack) {
         if (stack == null || stack.isEmpty()) return 0;
-        return clampLevel(EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CAPACITY.get(), stack));
+
+        int itemLevel = clampLevel(EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CAPACITY.get(), stack));
+        if (itemLevel > 0) return itemLevel;
+
+        CompoundTag root = stack.getTag();
+        if (root != null && root.contains("BlockEntityTag", Tag.TAG_COMPOUND)) {
+            return readLevel(root.getCompound("BlockEntityTag"));
+        }
+        return 0;
+    }
+
+    public static int readLevel(CompoundTag tag) {
+        if (tag == null || !tag.contains(NBT_LEVEL, Tag.TAG_ANY_NUMERIC)) return 0;
+        return clampLevel(tag.getInt(NBT_LEVEL));
+    }
+
+    public static void writeLevel(CompoundTag tag, int level) {
+        if (tag == null) return;
+        int safeLevel = clampLevel(level);
+        if (safeLevel > 0) {
+            tag.putInt(NBT_LEVEL, safeLevel);
+        } else {
+            tag.remove(NBT_LEVEL);
+        }
     }
 
     public static void applyToItem(ItemStack stack, int level) {
         if (stack == null || stack.isEmpty()) return;
         int safeLevel = clampLevel(level);
-        if (safeLevel > 0) {
+        if (safeLevel > 0 && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CAPACITY.get(), stack) < safeLevel) {
             stack.enchant(ModEnchantments.CAPACITY.get(), safeLevel);
         }
     }
