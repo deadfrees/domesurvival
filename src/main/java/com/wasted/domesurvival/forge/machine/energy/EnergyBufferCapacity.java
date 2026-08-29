@@ -4,7 +4,10 @@ import com.wasted.domesurvival.forge.enchantment.ModEnchantments;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+
+import java.util.Map;
 
 /**
  * Shared, dependency-free capacity rules for enchantable energy buffers.
@@ -65,9 +68,15 @@ public final class EnergyBufferCapacity {
 
     public static void applyToItem(ItemStack stack, int level) {
         if (stack == null || stack.isEmpty()) return;
+
         int safeLevel = clampLevel(level);
-        if (safeLevel > 0 && EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.CAPACITY.get(), stack) < safeLevel) {
-            stack.enchant(ModEnchantments.CAPACITY.get(), safeLevel);
-        }
+        if (safeLevel <= 0) return;
+
+        Enchantment capacity = ModEnchantments.CAPACITY.get();
+        if (EnchantmentHelper.getItemEnchantmentLevel(capacity, stack) >= safeLevel) return;
+
+        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(stack);
+        enchantments.put(capacity, safeLevel);
+        EnchantmentHelper.setEnchantments(enchantments, stack);
     }
 }
