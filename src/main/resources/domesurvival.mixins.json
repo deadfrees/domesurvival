@@ -4,7 +4,8 @@
   "package": "com.wasted.domesurvival.forge.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "RecipeManagerMixin"
+    "RecipeManagerMixin",
+    "EnergyBufferCapacityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
