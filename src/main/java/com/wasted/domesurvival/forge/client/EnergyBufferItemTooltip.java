@@ -3,6 +3,7 @@ package com.wasted.domesurvival.forge.client;
 import com.wasted.domesurvival.forge.block.ModBlocks;
 import com.wasted.domesurvival.forge.machine.energy.AdamantiumEnergyBufferBlockEntity;
 import com.wasted.domesurvival.forge.machine.energy.EnergyBufferBlockEntity;
+import com.wasted.domesurvival.forge.machine.energy.EnergyBufferCapacity;
 import com.wasted.domesurvival.forge.machine.energy.TitanEnergyBufferBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -19,14 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-/**
- * Inventory/JEI tooltip for the Energy Block family.
- *
- * This deliberately replaces the old in-world crosshair overlay. The current
- * value is read from BlockEntityTag when an item stack carries preserved block
- * data; otherwise a normal block item starts at 0 FE. The creative tier is
- * always displayed as infinite.
- */
+/** Inventory/JEI tooltip for the Energy Block family. */
 @Mod.EventBusSubscriber(modid = "domesurvival", value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class EnergyBufferItemTooltip {
     private static final NumberFormat NUMBER_FORMAT = NumberFormat.getIntegerInstance(Locale.US);
@@ -48,17 +42,19 @@ public final class EnergyBufferItemTooltip {
             return;
         }
 
-        int capacity;
+        int baseCapacity;
         if (block == ModBlocks.ENERGY_BUFFER.get()) {
-            capacity = EnergyBufferBlockEntity.ENERGY_CAPACITY;
+            baseCapacity = EnergyBufferBlockEntity.ENERGY_CAPACITY;
         } else if (block == ModBlocks.ENERGY_BUFFER_TITAN.get()) {
-            capacity = TitanEnergyBufferBlockEntity.ENERGY_CAPACITY;
+            baseCapacity = TitanEnergyBufferBlockEntity.ENERGY_CAPACITY;
         } else if (block == ModBlocks.ENERGY_BUFFER_ADAMANTIUM.get()) {
-            capacity = AdamantiumEnergyBufferBlockEntity.ENERGY_CAPACITY;
+            baseCapacity = AdamantiumEnergyBufferBlockEntity.ENERGY_CAPACITY;
         } else {
             return;
         }
 
+        int capacityLevel = EnergyBufferCapacity.getLevel(stack);
+        int capacity = EnergyBufferCapacity.apply(baseCapacity, capacityLevel);
         int stored = readStoredEnergy(stack, capacity);
         event.getToolTip().add(
                 Component.translatable(
@@ -74,7 +70,6 @@ public final class EnergyBufferItemTooltip {
         CompoundTag root = stack.getTag();
         if (root == null) return 0;
 
-        // Standard BlockItem location used when block entity data is preserved.
         if (root.contains("BlockEntityTag", Tag.TAG_COMPOUND)) {
             CompoundTag blockEntityTag = root.getCompound("BlockEntityTag");
             if (blockEntityTag.contains("Energy", Tag.TAG_INT)) {
@@ -82,8 +77,6 @@ public final class EnergyBufferItemTooltip {
             }
         }
 
-        // Also support a direct Energy tag for forward compatibility with a
-        // dedicated energy BlockItem, should one be introduced later.
         if (root.contains("Energy", Tag.TAG_INT)) {
             return clampEnergy(root.getInt("Energy"), capacity);
         }
