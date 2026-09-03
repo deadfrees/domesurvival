@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.recipe;
 
 import com.google.gson.JsonObject;
+import com.wasted.domesurvival.forge.machine.forming.FormingOperation;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -25,19 +26,34 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
     private final ItemStack result;
     private final int processingTime;
     private final int energy;
+    private final FormingOperation operation;
 
     public FormingPressRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result,
-                              int processingTime, int energy) {
+                              int processingTime, int energy, FormingOperation operation) {
         this.id = id;
         this.ingredient = ingredient;
         this.result = result.copy();
         this.processingTime = Math.max(1, processingTime);
         this.energy = Math.max(1, energy);
+        this.operation = operation == null ? FormingOperation.PRESS : operation;
+    }
+
+    /**
+     * Legacy constructor retained for Java-side callers. Existing recipes implicitly
+     * remain PRESS recipes, matching the old Forming Press behaviour.
+     */
+    public FormingPressRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result,
+                              int processingTime, int energy) {
+        this(id, ingredient, result, processingTime, energy, FormingOperation.PRESS);
     }
 
     @Override
     public boolean matches(SimpleContainer container, Level level) {
         return ingredient.test(container.getItem(0));
+    }
+
+    public boolean matches(SimpleContainer container, FormingOperation selectedOperation) {
+        return operation == selectedOperation && ingredient.test(container.getItem(0));
     }
 
     @Override
@@ -87,6 +103,10 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
         return energy;
     }
 
+    public FormingOperation getOperation() {
+        return operation;
+    }
+
     public static final class Serializer implements RecipeSerializer<FormingPressRecipe> {
         @Override
         public @NotNull FormingPressRecipe fromJson(@NotNull ResourceLocation recipeId, @NotNull JsonObject json) {
@@ -94,7 +114,10 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
             ItemStack result = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "result"), true);
             int processingTime = GsonHelper.getAsInt(json, "processingTime", DEFAULT_PROCESSING_TIME);
             int energy = GsonHelper.getAsInt(json, "energy", DEFAULT_ENERGY);
-            return new FormingPressRecipe(recipeId, ingredient, result, processingTime, energy);
+            FormingOperation operation = FormingOperation.fromSerializedName(
+                    GsonHelper.getAsString(json, "operation", FormingOperation.PRESS.getSerializedName())
+            );
+            return new FormingPressRecipe(recipeId, ingredient, result, processingTime, energy, operation);
         }
 
         @Override
@@ -104,7 +127,8 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
             ItemStack result = buffer.readItem();
             int processingTime = buffer.readVarInt();
             int energy = buffer.readVarInt();
-            return new FormingPressRecipe(recipeId, ingredient, result, processingTime, energy);
+            FormingOperation operation = FormingOperation.fromOrdinal(buffer.readVarInt());
+            return new FormingPressRecipe(recipeId, ingredient, result, processingTime, energy, operation);
         }
 
         @Override
@@ -113,6 +137,7 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
             buffer.writeItem(recipe.result);
             buffer.writeVarInt(recipe.processingTime);
             buffer.writeVarInt(recipe.energy);
+            buffer.writeVarInt(recipe.operation.ordinal());
         }
     }
 }
