@@ -1,0 +1,24 @@
+{
+  "multipart": [
+    {"when":{"active":"false","facing":"north"},"apply":{"model":"domesurvival:block/forming_press"}},
+    {"when":{"active":"false","facing":"east"},"apply":{"model":"domesurvival:block/forming_press","y":90}},
+    {"when":{"active":"false","facing":"south"},"apply":{"model":"domesurvival:block/forming_press","y":180}},
+    {"when":{"active":"false","facing":"west"},"apply":{"model":"domesurvival:block/forming_press","y":270}},
+    {"when":{"active":"true","facing":"north"},"apply":{"model":"domesurvival:block/forming_press_active"}},
+    {"when":{"active":"true","facing":"east"},"apply":{"model":"domesurvival:block/forming_press_active","y":90}},
+    {"when":{"active":"true","facing":"south"},"apply":{"model":"domesurvival:block/forming_press_active","y":180}},
+    {"when":{"active":"true","facing":"west"},"apply":{"model":"domesurvival:block/forming_press_active","y":270}},
+    {"when":{"port_up":"input"},"apply":{"model":"domesurvival:block/forming_press_input_port_up"}},
+    {"when":{"port_up":"output"},"apply":{"model":"domesurvival:block/forming_press_output_port_up"}},
+    {"when":{"port_down":"input"},"apply":{"model":"domesurvival:block/forming_press_input_port_down"}},
+    {"when":{"port_down":"output"},"apply":{"model":"domesurvival:block/forming_press_output_port_down"}},
+    {"when":{"port_north":"input"},"apply":{"model":"domesurvival:block/forming_press_input_port_north"}},
+    {"when":{"port_north":"output"},"apply":{"model":"domesurvival:block/forming_press_output_port_north"}},
+    {"when":{"port_south":"input"},"apply":{"model":"domesurvival:block/forming_press_input_port_south"}},
+    {"when":{"port_south":"output"},"apply":{"model":"domesurvival:block/forming_press_output_port_south"}},
+    {"when":{"port_west":"input"},"apply":{"model":"domesurvival:block/forming_press_input_port_west"}},
+    {"when":{"port_west":"output"},"apply":{"model":"domesurvival:block/forming_press_output_port_west"}},
+    {"when":{"port_east":"input"},"apply":{"model":"domesurvival:block/forming_press_input_port_east"}},
+    {"when":{"port_east":"output"},"apply":{"model":"domesurvival:block/forming_press_output_port_east"}}
+  ]
+}

@@ -1,0 +1,1 @@
+{"ambientocclusion":false,"textures":{"port":"domesurvival:block/coal_generator_port_fuel"},"elements":[{"from":[-0.001,5.5,5.5],"to":[0.001,10.5,10.5],"shade":false,"faces":{"west":{"uv":[0,0,16,16],"texture":"#port"}}}]}
