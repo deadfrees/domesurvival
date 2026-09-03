@@ -252,13 +252,13 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
 
     private void finishRecipe(FormingPressRecipe recipe) {
         ItemStack input = inventory.getStackInSlot(0);
-        if (input.isEmpty()) {
+        if (input.isEmpty() || input.getCount() < recipe.getInputCount()) {
             return;
         }
 
         ItemStack result = recipe.getResult();
         ItemStack output = inventory.getStackInSlot(1);
-        input.shrink(1);
+        input.shrink(recipe.getInputCount());
         inventory.setStackInSlot(0, input);
 
         if (output.isEmpty()) {
