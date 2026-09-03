@@ -69,9 +69,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
 
         @Override
         protected void onContentsChanged(int slot) {
-            if (slot == 0) {
-                invalidateRecipeCache();
-            }
+            if (slot == 0) invalidateRecipeCache();
             setChanged();
         }
     };
@@ -192,15 +190,11 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     public static void serverTick(Level level, BlockPos pos, BlockState state, FormingPressBlockEntity press) {
         press.processingThisTick = false;
         boolean changed = press.tickProcessing();
-
         if (state.getValue(FormingPressBlock.ACTIVE) != press.processingThisTick) {
             level.setBlock(pos, state.setValue(FormingPressBlock.ACTIVE, press.processingThisTick), 3);
             changed = true;
         }
-
-        if (changed) {
-            press.setChanged();
-        }
+        if (changed) press.setChanged();
     }
 
     private boolean tickProcessing() {
@@ -219,20 +213,14 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
             progress = 0;
             activeRecipeId = recipe.getId();
         }
-
-        if (!canAcceptResult(recipe)) {
-            return false;
-        }
+        if (!canAcceptResult(recipe)) return false;
 
         int requiredEnergy = getEnergyForNextTick(recipe);
-        if (energyStorage.getEnergyStored() < requiredEnergy) {
-            return false;
-        }
+        if (energyStorage.getEnergyStored() < requiredEnergy) return false;
 
         energyStorage.removeEnergyInternal(requiredEnergy);
         progress++;
         processingThisTick = true;
-
         if (progress >= recipe.getProcessingTime()) {
             finishRecipe(recipe);
             progress = 0;
@@ -252,15 +240,12 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
 
     private void finishRecipe(FormingPressRecipe recipe) {
         ItemStack input = inventory.getStackInSlot(0);
-        if (input.isEmpty() || input.getCount() < recipe.getInputCount()) {
-            return;
-        }
+        if (input.isEmpty() || input.getCount() < recipe.getInputCount()) return;
 
         ItemStack result = recipe.getResult();
         ItemStack output = inventory.getStackInSlot(1);
         input.shrink(recipe.getInputCount());
         inventory.setStackInSlot(0, input);
-
         if (output.isEmpty()) {
             inventory.setStackInSlot(1, result);
         } else {
@@ -274,23 +259,17 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     }
 
     public static boolean isValidFormingInput(@Nullable Level level, @NotNull ItemStack stack) {
-        if (level == null || stack.isEmpty()) {
-            return false;
-        }
-        SimpleContainer container = new SimpleContainer(1);
-        container.setItem(0, stack);
-        return level.getRecipeManager().getRecipeFor(ModRecipes.FORMING_TYPE.get(), container, level).isPresent();
+        if (level == null || stack.isEmpty()) return false;
+        return level.getRecipeManager()
+                .getAllRecipesFor(ModRecipes.FORMING_TYPE.get())
+                .stream()
+                .anyMatch(recipe -> recipe.acceptsIngredient(stack));
     }
 
     private Optional<FormingPressRecipe> getCurrentRecipe() {
-        if (level == null) {
-            return Optional.empty();
-        }
-
+        if (level == null) return Optional.empty();
         ItemStack input = inventory.getStackInSlot(0);
-        if (input.isEmpty()) {
-            return Optional.empty();
-        }
+        if (input.isEmpty()) return Optional.empty();
 
         RecipeManager recipeManager = level.getRecipeManager();
         if (recipeCacheValid
@@ -326,12 +305,8 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     private boolean canAcceptResult(FormingPressRecipe recipe) {
         ItemStack result = recipe.getResult();
         ItemStack output = inventory.getStackInSlot(1);
-        if (output.isEmpty()) {
-            return true;
-        }
-        if (!ItemStack.isSameItemSameTags(output, result)) {
-            return false;
-        }
+        if (output.isEmpty()) return true;
+        if (!ItemStack.isSameItemSameTags(output, result)) return false;
         int max = Math.min(output.getMaxStackSize(), inventory.getSlotLimit(1));
         return output.getCount() + result.getCount() <= max;
     }
@@ -340,12 +315,8 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         if (recipe == null) {
             return inventory.getStackInSlot(0).isEmpty() ? STATUS_READY : STATUS_NO_RECIPE;
         }
-        if (!canAcceptResult(recipe)) {
-            return STATUS_OUTPUT_FULL;
-        }
-        if (energyStorage.getEnergyStored() < getEnergyForNextTick(recipe)) {
-            return STATUS_NO_ENERGY;
-        }
+        if (!canAcceptResult(recipe)) return STATUS_OUTPUT_FULL;
+        if (energyStorage.getEnergyStored() < getEnergyForNextTick(recipe)) return STATUS_NO_ENERGY;
         return progress > 0 ? STATUS_FORMING : STATUS_READY;
     }
 
@@ -370,9 +341,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     }
 
     public SideMode cycleSideMode(RelativeSide relativeSide) {
-        if (!isConfigurableSide(relativeSide)) {
-            return SideMode.DISABLED;
-        }
+        if (!isConfigurableSide(relativeSide)) return SideMode.DISABLED;
         Direction direction = relativeSide.resolve(getMachineFacing());
         SideMode mode = sideConfig.cycleMode(direction);
         refreshCapabilities();
@@ -382,13 +351,9 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     }
 
     private void syncPortState(Direction direction) {
-        if (level == null || level.isClientSide) {
-            return;
-        }
+        if (level == null || level.isClientSide) return;
         BlockState state = level.getBlockState(worldPosition);
-        if (!(state.getBlock() instanceof FormingPressBlock)) {
-            return;
-        }
+        if (!(state.getBlock() instanceof FormingPressBlock)) return;
         PortVisual visual = isFrontWorldSide(direction)
                 ? PortVisual.OFF
                 : PortVisual.fromMode(sideConfig.getMode(direction));
@@ -399,14 +364,10 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     }
 
     private void syncAllPortStates() {
-        if (level == null || level.isClientSide) {
-            return;
-        }
+        if (level == null || level.isClientSide) return;
         sideConfig.setMode(getMachineFacing(), SideMode.DISABLED);
         BlockState state = level.getBlockState(worldPosition);
-        if (!(state.getBlock() instanceof FormingPressBlock)) {
-            return;
-        }
+        if (!(state.getBlock() instanceof FormingPressBlock)) return;
         BlockState updated = state;
         for (Direction direction : Direction.values()) {
             PortVisual visual = isFrontWorldSide(direction)
@@ -414,9 +375,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
                     : PortVisual.fromMode(sideConfig.getMode(direction));
             updated = updated.setValue(FormingPressBlock.portProperty(direction), visual);
         }
-        if (!updated.equals(state)) {
-            level.setBlock(worldPosition, updated, 3);
-        }
+        if (!updated.equals(state)) level.setBlock(worldPosition, updated, 3);
     }
 
     @Override
@@ -433,13 +392,8 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
                 : Direction.NORTH;
     }
 
-    public ItemStackHandler getInventory() {
-        return inventory;
-    }
-
-    public ContainerData getDataAccess() {
-        return dataAccess;
-    }
+    public ItemStackHandler getInventory() { return inventory; }
+    public ContainerData getDataAccess() { return dataAccess; }
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
@@ -448,9 +402,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         tag.putInt(NBT_ENERGY, energyStorage.getEnergyStored());
         tag.putInt(NBT_PROGRESS, progress);
         tag.putString(NBT_OPERATION, selectedOperation.getSerializedName());
-        if (activeRecipeId != null) {
-            tag.putString(NBT_RECIPE, activeRecipeId.toString());
-        }
+        if (activeRecipeId != null) tag.putString(NBT_RECIPE, activeRecipeId.toString());
         sideConfig.save(tag);
     }
 
@@ -465,37 +417,25 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
                 ? ResourceLocation.tryParse(tag.getString(NBT_RECIPE))
                 : null;
         invalidateRecipeCache();
-        if (!sideConfig.load(tag)) {
-            applyDefaultSideConfiguration();
-        }
+        if (!sideConfig.load(tag)) applyDefaultSideConfiguration();
         sideConfig.setMode(getMachineFacing(), SideMode.DISABLED);
     }
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == null) {
-                return itemCombinedCapability.cast();
-            }
-            if (isFrontWorldSide(side)) {
-                return LazyOptional.empty();
-            }
-            if (sideConfig.allowsInput(side)) {
-                return itemInputCapability.cast();
-            }
-            if (sideConfig.allowsOutput(side)) {
-                return itemOutputCapability.cast();
-            }
+            if (side == null) return itemCombinedCapability.cast();
+            if (isFrontWorldSide(side)) return LazyOptional.empty();
+            if (sideConfig.allowsInput(side)) return itemInputCapability.cast();
+            if (sideConfig.allowsOutput(side)) return itemOutputCapability.cast();
             return LazyOptional.empty();
         }
-
         if (cap == ForgeCapabilities.ENERGY) {
             if (side == null || (!isFrontWorldSide(side) && sideConfig.allowsInput(side))) {
                 return energyInputCapability.cast();
             }
             return LazyOptional.empty();
         }
-
         return super.getCapability(cap, side);
     }
 
