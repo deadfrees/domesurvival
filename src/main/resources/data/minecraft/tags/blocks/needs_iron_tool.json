@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "domesurvival:forming_press",
     "domesurvival:goteium_ore",
     "domesurvival:deepslate_goteium_ore",
     "domesurvival:goteium_block"
