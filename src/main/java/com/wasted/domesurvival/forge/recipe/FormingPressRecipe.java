@@ -20,40 +20,41 @@ import org.jetbrains.annotations.Nullable;
 public final class FormingPressRecipe implements Recipe<SimpleContainer> {
     public static final int DEFAULT_PROCESSING_TIME = 100;
     public static final int DEFAULT_ENERGY = 2_000;
+    public static final int DEFAULT_INPUT_COUNT = 1;
 
     private final ResourceLocation id;
     private final Ingredient ingredient;
     private final ItemStack result;
+    private final int inputCount;
     private final int processingTime;
     private final int energy;
     private final FormingOperation operation;
 
     public FormingPressRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result,
-                              int processingTime, int energy, FormingOperation operation) {
+                              int inputCount, int processingTime, int energy, FormingOperation operation) {
         this.id = id;
         this.ingredient = ingredient;
         this.result = result.copy();
+        this.inputCount = Math.max(1, inputCount);
         this.processingTime = Math.max(1, processingTime);
         this.energy = Math.max(1, energy);
         this.operation = operation == null ? FormingOperation.PRESS : operation;
     }
 
-    /**
-     * Legacy constructor retained for Java-side callers. Existing recipes implicitly
-     * remain PRESS recipes, matching the old Forming Press behaviour.
-     */
+    /** Legacy constructor: old Java callers remain one-item PRESS recipes. */
     public FormingPressRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result,
                               int processingTime, int energy) {
-        this(id, ingredient, result, processingTime, energy, FormingOperation.PRESS);
+        this(id, ingredient, result, DEFAULT_INPUT_COUNT, processingTime, energy, FormingOperation.PRESS);
     }
 
     @Override
     public boolean matches(SimpleContainer container, Level level) {
-        return ingredient.test(container.getItem(0));
+        ItemStack input = container.getItem(0);
+        return input.getCount() >= inputCount && ingredient.test(input);
     }
 
     public boolean matches(SimpleContainer container, FormingOperation selectedOperation) {
-        return operation == selectedOperation && ingredient.test(container.getItem(0));
+        return operation == selectedOperation && matches(container, null);
     }
 
     @Override
@@ -95,6 +96,10 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
         return result.copy();
     }
 
+    public int getInputCount() {
+        return inputCount;
+    }
+
     public int getProcessingTime() {
         return processingTime;
     }
@@ -112,12 +117,14 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
         public @NotNull FormingPressRecipe fromJson(@NotNull ResourceLocation recipeId, @NotNull JsonObject json) {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient"));
             ItemStack result = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "result"), true);
+            int inputCount = GsonHelper.getAsInt(json, "inputCount", DEFAULT_INPUT_COUNT);
             int processingTime = GsonHelper.getAsInt(json, "processingTime", DEFAULT_PROCESSING_TIME);
             int energy = GsonHelper.getAsInt(json, "energy", DEFAULT_ENERGY);
             FormingOperation operation = FormingOperation.fromSerializedName(
                     GsonHelper.getAsString(json, "operation", FormingOperation.PRESS.getSerializedName())
             );
-            return new FormingPressRecipe(recipeId, ingredient, result, processingTime, energy, operation);
+            return new FormingPressRecipe(recipeId, ingredient, result,
+                    inputCount, processingTime, energy, operation);
         }
 
         @Override
@@ -125,16 +132,19 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
                                                          @NotNull FriendlyByteBuf buffer) {
             Ingredient ingredient = Ingredient.fromNetwork(buffer);
             ItemStack result = buffer.readItem();
+            int inputCount = buffer.readVarInt();
             int processingTime = buffer.readVarInt();
             int energy = buffer.readVarInt();
             FormingOperation operation = FormingOperation.fromOrdinal(buffer.readVarInt());
-            return new FormingPressRecipe(recipeId, ingredient, result, processingTime, energy, operation);
+            return new FormingPressRecipe(recipeId, ingredient, result,
+                    inputCount, processingTime, energy, operation);
         }
 
         @Override
         public void toNetwork(@NotNull FriendlyByteBuf buffer, @NotNull FormingPressRecipe recipe) {
             recipe.ingredient.toNetwork(buffer);
             buffer.writeItem(recipe.result);
+            buffer.writeVarInt(recipe.inputCount);
             buffer.writeVarInt(recipe.processingTime);
             buffer.writeVarInt(recipe.energy);
             buffer.writeVarInt(recipe.operation.ordinal());
