@@ -1,0 +1,9 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "gear",
+  "ingredient": { "tag": "forge:ingots/tin" },
+  "inputCount": 4,
+  "result": { "item": "domesurvival:tin_gear" },
+  "processingTime": 140,
+  "energy": 3200
+}
