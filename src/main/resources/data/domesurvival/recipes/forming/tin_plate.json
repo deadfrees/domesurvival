@@ -1,1 +1,9 @@
-{"type":"domesurvival:forming","ingredient":{"tag":"forge:ingots/tin"},"result":{"item":"domesurvival:tin_plate"},"processingTime":100,"energy":2000}
+{
+  "type": "domesurvival:forming",
+  "operation": "press",
+  "ingredient": { "tag": "forge:ingots/tin" },
+  "inputCount": 1,
+  "result": { "item": "domesurvival:tin_plate" },
+  "processingTime": 100,
+  "energy": 2000
+}
