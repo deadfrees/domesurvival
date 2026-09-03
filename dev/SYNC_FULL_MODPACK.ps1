@@ -1,4 +1,4 @@
-﻿$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Stop'
 
 $ProjectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $Target = Join-Path $ProjectRoot 'run\mods'
@@ -102,6 +102,76 @@ $overlays = @(
         Name = 'CoFH Core'
         FileName = 'cofh_core-1.20.1-11.0.2.56.jar'
         Url = 'https://maven.covers1624.net/repository/maven-hosted/com/teamcofh/cofh_core/1.20.1-11.0.2.56/cofh_core-1.20.1-11.0.2.56.jar'
+    },
+    [pscustomobject]@{
+        Name = 'McJtyLib'
+        FileName = 'mcjtylib-1.20-8.0.8.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/233105/files/8256165/download'
+    },
+    [pscustomobject]@{
+        Name = 'The Lost Cities'
+        FileName = 'lostcities-1.20-7.5.2.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/269024/files/8644739/download'
+    },
+    [pscustomobject]@{
+        Name = 'When Dungeons Arise'
+        FileName = 'DungeonsArise-1.20.1-2.1.57-release.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/442508/files/4798432/download'
+    },
+    [pscustomobject]@{
+        Name = 'Loot Integrations'
+        FileName = 'lootintegrations-1.20.1-4.7.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/580689/files/6640968/download'
+    },
+    [pscustomobject]@{
+        Name = "YUNG's Better Dungeons"
+        FileName = 'YungsBetterDungeons-1.20-Forge-4.0.4.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/510089/files/5271360/download'
+    },
+    [pscustomobject]@{
+        Name = "YUNG's Better Strongholds"
+        FileName = 'YungsBetterStrongholds-1.20-Forge-4.0.3.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/465575/files/4769083/download'
+    },
+    [pscustomobject]@{
+        Name = 'Lost City R.E.A.P Tweaks (Yulari)'
+        FileName = 'yulari-1.20.1-lostcities.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/1559238/files/8437678/download'
+    },
+    [pscustomobject]@{
+        Name = "YUNG's Better Desert Temples"
+        FileName = 'YungsBetterDesertTemples-1.20-Forge-3.0.3.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/631016/files/4769439/download'
+    },
+    [pscustomobject]@{
+        Name = 'Dungeon Crawl'
+        FileName = 'Dungeon Crawl-1.20.1-2.3.15.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/324973/files/6047153/download'
+    },
+    [pscustomobject]@{
+        Name = 'Better Archeology'
+        FileName = 'betterarcheology-1.2.1-1.20.1.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/835687/files/5693368/download'
+    },
+    [pscustomobject]@{
+        Name = "SuperMartijn642's Config Lib (Better Archeology dependency)"
+        FileName = 'supermartijn642configlib-1.1.8-forge-mc1.20.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/438332/files/4715408/download'
+    },
+    [pscustomobject]@{
+        Name = 'The Graveyard'
+        FileName = 'The_Graveyard_3.1_(FORGE)_for_1.20.1.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/531188/files/5114579/download'
+    },
+    [pscustomobject]@{
+        Name = 'GeckoLib (The Graveyard dependency)'
+        FileName = 'geckolib-forge-1.20.1-4.4.9.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/388172/files/5675221/download'
+    },
+    [pscustomobject]@{
+        Name = "Alex's Caves"
+        FileName = 'alexscaves-2.0.2.jar'
+        Url = 'https://www.curseforge.com/api/v1/mods/924854/files/5848216/download'
     }
 )
 
@@ -112,7 +182,10 @@ function Test-ModJar([string]$Path) {
 
     $file = Get-Item -LiteralPath $Path
 
-    if ($file.Length -lt 50000) {
+    # Small server-side utility mods (for example Loot Integrations) can be
+    # well below 50 KiB while still being valid Forge JARs.  The ZIP and
+    # META-INF/mods.toml checks below are the authoritative validation.
+    if ($file.Length -lt 10000) {
         return $false
     }
 
@@ -243,6 +316,13 @@ foreach ($overlay in $overlays) {
     Write-Host "[OK OVERLAY] $($overlay.Name): $($overlay.FileName)" -ForegroundColor Green
 }
 
+# WORLDGEN_COMPAT_V2
+# Run after canonical reconciliation, before PREPARE_FULL_DEV_RUNTIME.
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'PATCH_FULL_MODPACK_RUNTIME_COMPAT.ps1') -ModsDir $Target
+if ($LASTEXITCODE -ne 0) {
+    Write-Host '[ERROR] Runtime compatibility stage failed.' -ForegroundColor Red
+    exit 30
+}
 $active = @(Get-ChildItem -LiteralPath $Target -File -Filter '*.jar' | Sort-Object Name)
 
 # Project integration sanity checks.

@@ -1,0 +1,137 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "port": "domesurvival:block/coal_generator_port_item",
+    "pad": "domesurvival:block/bio/bioincubator_first_connector_pad",
+    "frame": "domesurvival:block/bio/bioincubator_first_frame",
+    "cyan": "domesurvival:block/bio/bioincubator_first_cyan"
+  },
+  "elements": [
+    {
+      "from": [
+        4.65,
+        4.65,
+        15.7
+      ],
+      "to": [
+        11.35,
+        11.35,
+        15.945
+      ],
+      "faces": {
+        "north": {
+          "texture": "#pad"
+        },
+        "south": {
+          "texture": "#pad",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#pad"
+        },
+        "west": {
+          "texture": "#pad"
+        },
+        "up": {
+          "texture": "#pad"
+        },
+        "down": {
+          "texture": "#pad"
+        }
+      }
+    },
+    {
+      "from": [
+        6.8,
+        6.8,
+        15.04
+      ],
+      "to": [
+        9.2,
+        9.2,
+        15.26
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame"
+        },
+        "south": {
+          "texture": "#frame"
+        },
+        "east": {
+          "texture": "#frame"
+        },
+        "west": {
+          "texture": "#frame"
+        },
+        "up": {
+          "texture": "#frame"
+        },
+        "down": {
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "from": [
+        7.35,
+        7.35,
+        15.95
+      ],
+      "to": [
+        8.65,
+        8.65,
+        15.965
+      ],
+      "faces": {
+        "north": {
+          "texture": "#cyan"
+        },
+        "south": {
+          "texture": "#cyan"
+        },
+        "east": {
+          "texture": "#cyan"
+        },
+        "west": {
+          "texture": "#cyan"
+        },
+        "up": {
+          "texture": "#cyan"
+        },
+        "down": {
+          "texture": "#cyan"
+        }
+      }
+    },
+    {
+      "from": [
+        5.5,
+        5.5,
+        15.97
+      ],
+      "to": [
+        10.5,
+        10.5,
+        15.99
+      ],
+      "shade": false,
+      "faces": {
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#port"
+        }
+      }
+    }
+  ]
+}

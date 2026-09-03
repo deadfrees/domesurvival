@@ -17,7 +17,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -32,7 +31,7 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     public static final int SLOT_COAL = 0;
     public static final int SLOT_FUEL = 1;
     public static final int SLOT_COKE = 2;
-    public static final int PROCESS_TIME = 1_200;
+    public static final int PROCESS_TIME = 2_250;
 
     public static final int DATA_PROGRESS = 0;
     public static final int DATA_PROGRESS_MAX = 1;
@@ -53,14 +52,13 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         @Override protected void onContentsChanged(int slot) { setChanged(); }
     };
 
-    private LazyOptional<IItemHandler> fullCapability = LazyOptional.of(() -> inventory);
-    private LazyOptional<IItemHandler> coalCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COAL, SLOT_COAL + 1));
-    private LazyOptional<IItemHandler> fuelCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_FUEL, SLOT_FUEL + 1));
+    private LazyOptional<IItemHandler> inputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COAL, SLOT_FUEL + 1));
     private LazyOptional<IItemHandler> outputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COKE, SLOT_COKE + 1));
 
     private int progress;
     private int burnTime;
     private int burnTimeMax;
+    private boolean legacyPartsChecked;
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -82,6 +80,10 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, CokeOvenBlockEntity oven) {
+        if (!oven.legacyPartsChecked) {
+            CokeOvenBlock.clearLegacyParts(level, pos);
+            oven.legacyPartsChecked = true;
+        }
         boolean changed = false;
         if (oven.burnTime > 0) {
             oven.burnTime--;
@@ -120,13 +122,6 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
             level.setBlock(pos, state.setValue(CokeOvenBlock.LIT, lit), 3);
             changed = true;
         }
-        BlockState upperState = level.getBlockState(pos.above());
-        if (upperState.is(state.getBlock())
-                && upperState.getValue(CokeOvenBlock.HALF) == DoubleBlockHalf.UPPER
-                && upperState.getValue(CokeOvenBlock.LIT) != lit) {
-            level.setBlock(pos.above(), upperState.setValue(CokeOvenBlock.LIT, lit), 3);
-            changed = true;
-        }
         if (changed) oven.setChanged();
     }
 
@@ -162,6 +157,8 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
 
     public ItemStackHandler getInventory() { return inventory; }
     public ContainerData getDataAccess() { return dataAccess; }
+    LazyOptional<IItemHandler> getInputPortCapability() { return inputCapability; }
+    LazyOptional<IItemHandler> getOutputPortCapability() { return outputCapability; }
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
@@ -183,11 +180,15 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == null) return fullCapability.cast();
-            if (side == Direction.UP) return coalCapability.cast();
-            if (side == Direction.DOWN) return outputCapability.cast();
-            return fuelCapability.cast();
+        if (cap == ForgeCapabilities.ITEM_HANDLER && side != null) {
+            Direction facing = getBlockState().getValue(CokeOvenBlock.FACING);
+            if (side == facing.getCounterClockWise() || side == facing.getOpposite()) {
+                return inputCapability.cast();
+            }
+            if (side == facing.getClockWise() || side == Direction.DOWN) {
+                return outputCapability.cast();
+            }
+            return LazyOptional.empty();
         }
         return super.getCapability(cap, side);
     }
@@ -195,15 +196,14 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        fullCapability.invalidate(); coalCapability.invalidate(); fuelCapability.invalidate(); outputCapability.invalidate();
+        inputCapability.invalidate();
+        outputCapability.invalidate();
     }
 
     @Override
     public void reviveCaps() {
         super.reviveCaps();
-        fullCapability = LazyOptional.of(() -> inventory);
-        coalCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COAL, SLOT_COAL + 1));
-        fuelCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_FUEL, SLOT_FUEL + 1));
+        inputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COAL, SLOT_FUEL + 1));
         outputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COKE, SLOT_COKE + 1));
     }
 

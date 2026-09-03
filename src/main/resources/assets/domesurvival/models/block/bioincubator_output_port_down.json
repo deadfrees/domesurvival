@@ -1,0 +1,67 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "port": "domesurvival:block/coal_generator_port_item",
+    "pad": "domesurvival:block/bio/bioincubator_first_connector_pad",
+    "frame": "domesurvival:block/bio/bioincubator_first_frame",
+    "cyan": "domesurvival:block/bio/bioincubator_first_cyan"
+  },
+  "elements": [
+    {
+      "from": [
+        5.15,
+        0.035,
+        5.15
+      ],
+      "to": [
+        10.85,
+        0.3,
+        10.85
+      ],
+      "faces": {
+        "north": {
+          "texture": "#pad"
+        },
+        "south": {
+          "texture": "#pad"
+        },
+        "east": {
+          "texture": "#pad"
+        },
+        "west": {
+          "texture": "#pad"
+        },
+        "up": {
+          "texture": "#pad"
+        },
+        "down": {
+          "texture": "#pad"
+        }
+      }
+    },
+    {
+      "from": [
+        5.5,
+        0.01,
+        5.5
+      ],
+      "to": [
+        10.5,
+        0.03,
+        10.5
+      ],
+      "shade": false,
+      "faces": {
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#port"
+        }
+      }
+    }
+  ]
+}

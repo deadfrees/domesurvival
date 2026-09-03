@@ -1,0 +1,16 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "domesurvival:block/metallurgy/large_coke_oven_fire_off",
+    "fire": "domesurvival:block/metallurgy/large_coke_oven_fire_off"
+  },
+  "elements": [
+    {
+      "from": [3.0, 2.5, -9.54],
+      "to": [14.0, 16.5, -9.34],
+      "faces": {
+        "north": { "texture": "#fire", "uv": [2.0, 1.0, 14.0, 15.0] }
+      }
+    }
+  ]
+}

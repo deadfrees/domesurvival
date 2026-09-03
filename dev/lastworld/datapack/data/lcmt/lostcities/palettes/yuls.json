@@ -1,0 +1,284 @@
+{
+    "palette": [
+      {
+        "char": "Ν",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "Ξ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "͹",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͻ",
+        "block": "minecraft:iron_bars"
+      },
+      {
+        "char": "Ά",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΄",
+        "block": "minecraft:iron_door[facing=east,half=lower,hinge=right,open=true,powered=false,visible=false]"
+      },
+      {
+        "char": "Θ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "Γ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΃",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "΋",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Β",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "΀",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΁",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "΍",
+        "block": "minecraft:black_carpet"
+      },
+      {
+        "char": "ͺ",
+        "block": "minecraft:cyan_terracotta"
+      },
+      {
+        "char": "΅",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "͸",
+        "block": "minecraft:polished_andesite"
+      },
+      {
+        "char": "Ύ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ή",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ϳ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ΐ",
+        "block": "minecraft:iron_door[facing=east,half=upper,hinge=right,open=false,powered=false,visible=true]"
+      },
+      {
+        "char": ";",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "·",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΂",
+        "block": "minecraft:iron_door[facing=east,half=lower,hinge=left,open=false,powered=false,visible=true]"
+      },
+      {
+        "char": "Λ",
+        "block": "minecraft:polished_andesite_stairs[facing=north,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "Ε",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Δ",
+        "block": "minecraft:polished_andesite_stairs[facing=west,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "ͽ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ί",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ι",
+        "block": "minecraft:polished_andesite_stairs[facing=south,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "Ώ",
+        "block": "minecraft:iron_door[facing=east,half=upper,hinge=left,open=false,powered=false,visible=true]"
+      },
+      {
+        "char": "Ζ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "Έ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "Μ",
+        "block": "minecraft:polished_andesite_stairs[facing=west,half=top,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "Α",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͼ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Η",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "Ό",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Κ",
+        "block": "minecraft:polished_andesite_stairs[facing=south,half=top,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "Ͳ",
+        "block": "farmersdelight:roast_chicken_block[facing=west,servings=4]"
+      },
+      {
+        "char": "ͱ",
+        "block": "farmersdelight:shepherds_pie_block[facing=west,servings=4]"
+      },
+      {
+        "char": "n",
+        "block": "minecraft:gray_stained_glass"
+      },
+      {
+        "char": "M",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "k",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "q",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": ",",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "&",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "J",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": ">",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "?",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "s",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "m",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "O",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "<",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "o",
+        "block": "minecraft:gray_concrete"
+      },
+      {
+        "char": "Ͱ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "U",
+        "block": "minecraft:white_carpet"
+      },
+      {
+        "char": "ͷ",
+        "block": "minecraft:ochre_froglight[axis=z]"
+      },
+      {
+        "char": "Ͷ",
+        "block": "minecraft:ochre_froglight[axis=y]"
+      },
+      {
+        "char": "ʹ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "ͳ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "0",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "3",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "N",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "H",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "V",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "͵",
+        "block": "minecraft:ochre_froglight[axis=x]"
+      },
+      {
+        "char": "P",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "I",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "r",
+        "block": "minecraft:polished_deepslate"
+      }
+    ]
+  }

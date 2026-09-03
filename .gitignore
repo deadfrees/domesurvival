@@ -44,3 +44,12 @@ dev/generated/
 
 # Local backups created by patch installers
 _manual_backups/
+
+# Versioned fixed-map audit tools and placement manifests.
+# Generated screenshots and launcher logs remain local.
+!dev/map_audit/
+!dev/map_audit/**
+dev/map_audit/output/*.png
+dev/map_audit/output/*.log
+dev/map_audit/output/*.pid
+dev/map_audit/output/add_missing_storage.mcfunction

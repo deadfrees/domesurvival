@@ -13,9 +13,11 @@ var NPC_TAG = "domesurvival_ambient_security";
 var INTERACT_COOLDOWN_MS = 700;
 var PHRASE = "Player's Club";
 
-var FIXED_X = -534.938;
-var FIXED_Y = 62.0;
-var FIXED_Z = -664.466;
+// Captured from the structure-spawned NPC. Never use source-map coordinates:
+// /domestart may place the whole dome anywhere in LastWorld.
+var POST_X = null;
+var POST_Y = null;
+var POST_Z = null;
 
 var lastInteractByPlayer = {};
 
@@ -29,11 +31,19 @@ function safe(action) {
 var LOOK_RANGE = 48.0;
 var LOOK_RANGE_SQ = LOOK_RANGE * LOOK_RANGE;
 
+function ensurePost(e) {
+    if (POST_X != null) return;
+    POST_X = e.npc.getX();
+    POST_Y = e.npc.getY();
+    POST_Z = e.npc.getZ();
+}
+
 function keepOnPost(e) {
+    ensurePost(e);
     safe(function() { e.npc.getAi().setMovingType(0); });
     safe(function() { e.npc.getAi().setReturnsHome(false); });
     safe(function() {
-        e.npc.setPosition(FIXED_X, FIXED_Y, FIXED_Z);
+        e.npc.setPosition(POST_X, POST_Y, POST_Z);
     });
 }
 
@@ -61,9 +71,9 @@ function nearestPlayer(e) {
         var player = players[i];
 
         try {
-            var dx = player.getX() - FIXED_X;
-            var dy = player.getY() - FIXED_Y;
-            var dz = player.getZ() - FIXED_Z;
+            var dx = player.getX() - POST_X;
+            var dy = player.getY() - POST_Y;
+            var dz = player.getZ() - POST_Z;
             var distanceSq = dx * dx + dy * dy + dz * dz;
 
             if (distanceSq <= closestSq) {
@@ -83,8 +93,8 @@ function facePlayer(e, player) {
     }
 
     try {
-        var dx = player.getX() - FIXED_X;
-        var dz = player.getZ() - FIXED_Z;
+        var dx = player.getX() - POST_X;
+        var dz = player.getZ() - POST_Z;
 
         if (dx * dx + dz * dz < 0.0001) {
             return;
@@ -112,6 +122,7 @@ function updatePostLook(e) {
 }
 
 function init(e) {
+    ensurePost(e);
     safe(function() { e.npc.addTag(NPC_TAG); });
     safe(function() { e.npc.getDisplay().setName("iVan"); });
     safe(function() { e.npc.getDisplay().setTitle("Служба безопасности купола"); });
@@ -128,7 +139,7 @@ function init(e) {
     safe(function() { e.npc.getAi().setInteractWithNPCs(false); });
     safe(function() { e.npc.getAi().setStopOnInteract(false); });
 
-    safe(function() { e.npc.setHome(-535, 62, -664); });
+    safe(function() { e.npc.setHome(Math.floor(POST_X), Math.floor(POST_Y), Math.floor(POST_Z)); });
 
     updatePostLook(e);
     safe(function() { e.npc.updateClient(); });

@@ -1,0 +1,16 @@
+# Materials extracted from the supplied GLB
+newmtl material_0
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.0 0.0 0.0
+d 1.0
+illum 1
+map_Kd domesurvival:block/metallurgy/large_coke_oven_body
+
+newmtl material_1
+Ka 1.0 1.0 1.0
+Kd 1.0 1.0 1.0
+Ks 0.0 0.0 0.0
+d 1.0
+illum 1
+map_Kd domesurvival:block/metallurgy/large_coke_oven_cutout

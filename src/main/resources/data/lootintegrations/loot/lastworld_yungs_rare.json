@@ -1,0 +1,12 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/rare",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "betterdungeons:skeleton_dungeon/chests/middle": 1,
+    "betterdungeons:zombie_dungeon/chests/special": 1,
+    "betterstrongholds:chests/cmd_yung": 1,
+    "betterstrongholds:chests/crypt": 1,
+    "betterstrongholds:chests/trap": 1,
+    "betterstrongholds:chests/treasure": 1
+  }
+}

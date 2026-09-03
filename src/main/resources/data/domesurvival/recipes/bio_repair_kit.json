@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SGS",
+    "GPG",
+    "SRS"
+  ],
+  "key": {
+    "S": { "item": "domesurvival:steel_ingot" },
+    "G": { "item": "minecraft:glass_pane" },
+    "P": { "item": "domesurvival:pulse_matrix" },
+    "R": { "item": "minecraft:redstone" }
+  },
+  "result": { "item": "domesurvival:bio_repair_kit" }
+}

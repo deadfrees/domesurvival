@@ -1,0 +1,11 @@
+{
+  "loader": "forge:obj",
+  "model": "domesurvival:models/block/large_coke_oven.obj",
+  "automatic_culling": false,
+  "shade_quads": true,
+  "flip_v": true,
+  "emissive_ambient": false,
+  "textures": {
+    "particle": "domesurvival:block/metallurgy/large_coke_oven_body"
+  }
+}

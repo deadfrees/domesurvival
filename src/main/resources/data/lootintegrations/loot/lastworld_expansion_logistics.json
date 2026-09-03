@@ -1,0 +1,32 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/logistics",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "lcmt:chests/library_books": 1,
+    "lcmt:chests/shopping_food_basic": 1,
+    "lcmt:chests/shopping_vending_machine": 1,
+    "lcmt:chests/town_office_supplies": 1,
+    "betterdeserttemples:chests/food_storage": 1,
+    "betterdeserttemples:chests/storage": 1,
+    "betterdeserttemples:chests/wardrobe": 1,
+    "dungeoncrawl:chests/food": 1,
+    "dungeoncrawl:chests/supply": 1,
+    "dungeoncrawl:chests/stage_1": 1,
+    "betterarcheology:archeology/chest_catacombs_generic": 1,
+    "betterarcheology:archeology/chest_jungle_temple_food": 1,
+    "betterarcheology:archeology/chest_light_temple_generic": 1,
+    "betterarcheology:archeology/chest_mott": 1,
+    "graveyard:chests/arrow_loot": 1,
+    "graveyard:chests/bone_loot": 1,
+    "graveyard:chests/candle_loot": 1,
+    "graveyard:chests/flesh_loot": 1,
+    "graveyard:chests/flower_loot": 1,
+    "graveyard:chests/misc_loot": 1,
+    "graveyard:chests/small_loot": 1,
+    "graveyard:chests/vase_loot": 1,
+    "alexscaves:chests/caveman_house": 1,
+    "alexscaves:chests/gingerbread_town": 1,
+    "alexscaves:chests/underground_cabin": 1,
+    "alexscaves:chests/underground_cabin_candy_cavity": 1
+  }
+}

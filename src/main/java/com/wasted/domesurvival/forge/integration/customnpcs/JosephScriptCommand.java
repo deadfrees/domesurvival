@@ -21,6 +21,9 @@ import noppes.npcs.controllers.ScriptController;
 import noppes.npcs.entity.EntityNPCInterface;
 import noppes.npcs.entity.data.DataScript;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -257,18 +260,34 @@ public final class JosephScriptCommand {
         switch (stage) {
             case 1 -> data.put(STAGE1_COMPLETE_KEY, 1);
             case 2 -> {
-                data.put(STAGE2_EXTRAS_COMPLETE_KEY, 1);
+                DomeProgressSavedData progress = DomeProgressSavedData.get(player.serverLevel());
+                progress.addWorkshopContribution(
+                    WorkshopProject.IRON_REQUIRED,
+                    WorkshopProject.COPPER_REQUIRED,
+                    WorkshopProject.REDSTONE_REQUIRED
+                );
 
+                WorkshopUpgradeApplier.ApplyResult workshop =
+                    WorkshopUpgradeApplier.applyIfNeeded(player.serverLevel());
+                if (workshop != WorkshopUpgradeApplier.ApplyResult.APPLIED
+                    && workshop != WorkshopUpgradeApplier.ApplyResult.ALREADY_APPLIED) {
+                    source.sendFailure(Component.literal(
+                        "[JosephScript] Этап 02 не завершён: мастерскую не удалось построить ("
+                            + workshop.name() + "). Повтори команду после исправления причины."
+                    ));
+                    return 0;
+                }
+
+                data.put(STAGE2_EXTRAS_COMPLETE_KEY, 1);
                 if (storedFlag(data, RESET_LOCK_KEY)) {
                     data.put(STAGE2_RESET_CORE_COMPLETE_KEY, 1);
-                } else {
-                    DomeProgressSavedData progress = DomeProgressSavedData.get(player.serverLevel());
-                    progress.addWorkshopContribution(
-                        WorkshopProject.IRON_REQUIRED,
-                        WorkshopProject.COPPER_REQUIRED,
-                        WorkshopProject.REDSTONE_REQUIRED
-                    );
                 }
+
+                source.sendSuccess(() -> Component.literal(
+                    workshop == WorkshopUpgradeApplier.ApplyResult.APPLIED
+                        ? "[JosephScript] ТЕСТ: мастерская этапа 02 построена."
+                        : "[JosephScript] ТЕСТ: мастерская этапа 02 уже существует."
+                ), false);
             }
             case 3 -> data.put(STAGE3_COMPLETE_KEY, 1);
             case 4 -> data.put(STAGE4_COMPLETE_KEY, 1);
@@ -293,12 +312,6 @@ public final class JosephScriptCommand {
                 completedStage
             )
         ), true);
-
-        if (stage == 2 && !storedFlag(data, RESET_LOCK_KEY)) {
-            source.sendSuccess(() -> Component.literal(
-                "[JosephScript] nextstage заполняет прогресс материалов мастерской, но не используется для проверки её физического строительства. Для этого проходи этап 02 обычной сдачей ресурсов."
-            ), false);
-        }
 
         return 1;
     }
@@ -644,6 +657,93 @@ public final class JosephScriptCommand {
         ), false);
 
         return 1;
+    }
+
+    /**
+     * Used by the portable LastWorld dome bootstrap after it recreates Joseph.
+     * The Object signature keeps the caller free from a hard CustomNPCs link.
+     */
+    public static boolean attachDefaultScript(Object npcObject) {
+        return attachScript(npcObject, SCRIPT_FILE);
+    }
+
+    /** Links one of the shipped external CustomNPCs scripts to a recreated NPC. */
+    public static boolean attachScript(Object npcObject, String scriptFile) {
+        EntityNPCInterface npc = unwrapNpc(npcObject);
+        if (npc == null || scriptFile == null) {
+            return false;
+        }
+
+        // Remove the stock "Hello Dev" interaction even while the external
+        // script controller is still finishing its world-start initialization.
+        clearLegacyInteractSpeech(npc);
+        npc.updateClient();
+
+        if (ScriptController.Instance == null) {
+            return false;
+        }
+        if (!ScriptController.Instance.scripts.containsKey(scriptFile)
+                && ScriptController.Instance.scripts.isEmpty()) {
+            // CustomNPCs does not always scan its global/world script folders
+            // before /domestart finishes. Explicitly refresh the catalogue.
+            ScriptController.Instance.loadCategories();
+        }
+        if (!ScriptController.Instance.scripts.containsKey(scriptFile)) {
+            String bundled = readBundledScript(scriptFile);
+            if (bundled != null) {
+                ScriptController.Instance.scripts.put(scriptFile, bundled);
+            }
+        }
+        if (!ScriptController.Instance.scripts.containsKey(scriptFile)) {
+            return false;
+        }
+
+        DataScript data = npc.script;
+        String language = data.getLanguage();
+        if (language == null || language.isBlank()) {
+            language = ScriptController.Instance.languages.keySet().stream()
+                    .filter(name -> name.toLowerCase(Locale.ROOT).contains("ecma")
+                            || name.toLowerCase(Locale.ROOT).contains("javascript"))
+                    .findFirst()
+                    .orElse("ECMAScript");
+            data.setLanguage(language);
+        }
+
+        data.setEnabled(true);
+        List<ScriptContainer> containers = data.getScripts();
+        containers.clear();
+        ScriptContainer container = new ScriptContainer(data);
+        container.script = "";
+        container.fullscript = "";
+        container.scripts.clear();
+        container.scripts.add(scriptFile);
+        containers.add(container);
+        npc.updateClient();
+        return true;
+    }
+
+    private static String readBundledScript(String scriptFile) {
+        String path = "/domesurvival/customnpcs_scripts/" + scriptFile;
+        try (InputStream stream = JosephScriptCommand.class.getResourceAsStream(path)) {
+            return stream == null ? null : new String(stream.readAllBytes(), StandardCharsets.UTF_8);
+        } catch (IOException exception) {
+            return null;
+        }
+    }
+
+    private static EntityNPCInterface unwrapNpc(Object npcObject) {
+        if (npcObject instanceof EntityNPCInterface npc) {
+            return npc;
+        }
+        if (npcObject == null) {
+            return null;
+        }
+        try {
+            Object raw = npcObject.getClass().getMethod("getMCEntity").invoke(npcObject);
+            return raw instanceof EntityNPCInterface npc ? npc : null;
+        } catch (ReflectiveOperationException exception) {
+            return null;
+        }
     }
 
 

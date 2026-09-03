@@ -1,4 +1,4 @@
-{
+﻿{
     "airlock_open":  {
                          "subtitle":  "subtitles.domesurvival.airlock_open",
                          "sounds":  [
@@ -34,7 +34,16 @@
                                               "stream":  true
                                           }
                                       ]
-                       },
+                      },
+    "sand_sieve_process":  {
+                                "subtitle":  "subtitles.domesurvival.sand_sieve_process",
+                                "sounds":  [
+                                               {
+                                                   "name":  "domesurvival:machines/sand_sieve_process",
+                                                   "stream":  false
+                                               }
+                                           ]
+                            },
     "machine.coal_generator.loop":  {
                                         "sounds":  [
                                                        {
@@ -83,5 +92,181 @@
                                                       "stream":  false
                                                   }
                                               ]
-                               }
+                               },
+    "music_main_menu":  {
+                            "sounds":  [
+                                           {
+                                               "name":  "domesurvival:music/main_menu",
+                                               "stream":  true
+                                           }
+                                       ]
+                        },
+    "music_01":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/1",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_02":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/2",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_03":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/3",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_05":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/5",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_06":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/6",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_07":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/7",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_08":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/8",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_09":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/9",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_10":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/10",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_11":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/11",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_12":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/12",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_13":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/13",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_14":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/14",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_15":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/15",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_16":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/16",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_17":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/17",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_18":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/18",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_19":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/19",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_20":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/20",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_21":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/21",
+                                        "stream":  true
+                                    }
+                                ]
+                 },
+    "music_22":  {
+                     "sounds":  [
+                                    {
+                                        "name":  "domesurvival:music/22",
+                                        "stream":  true
+                                    }
+                                ]
+                 }
 }

@@ -29,8 +29,8 @@ public final class StarterDomeAirlockV58 {
     private StarterDomeAirlockV58() {
     }
 
-    public static BlockPos innerGateMasterPos() {
-        DomeSpec spec = DomeSpec.wastedV1();
+    public static BlockPos innerGateMasterPos(ServerLevel level) {
+        DomeSpec spec = DomeSavedData.get(level).domeSpec();
         return new BlockPos(
                 spec.airlockCenterX(),
                 spec.airlockDoorMinY() + 2,
@@ -38,8 +38,8 @@ public final class StarterDomeAirlockV58 {
         );
     }
 
-    public static BlockPos outerGateMasterPos() {
-        DomeSpec spec = DomeSpec.wastedV1();
+    public static BlockPos outerGateMasterPos(ServerLevel level) {
+        DomeSpec spec = DomeSavedData.get(level).domeSpec();
         return new BlockPos(
                 spec.airlockCenterX(),
                 spec.airlockDoorMinY() + 2,
@@ -47,21 +47,22 @@ public final class StarterDomeAirlockV58 {
         );
     }
 
-    public static BlockPos gateMasterPos(com.wasted.domesurvival.core.airlock.AirlockDoor side) {
+    public static BlockPos gateMasterPos(ServerLevel level,
+                                         com.wasted.domesurvival.core.airlock.AirlockDoor side) {
         return side == com.wasted.domesurvival.core.airlock.AirlockDoor.INNER
-                ? innerGateMasterPos()
-                : outerGateMasterPos();
+                ? innerGateMasterPos(level)
+                : outerGateMasterPos(level);
     }
 
     public static boolean isInstalled(ServerLevel level) {
         AirlockGateBlock gate = AirlockGateRegistry.AIRLOCK_GATE.get();
-        return gate.isValidMaster(level, innerGateMasterPos())
-                && gate.isValidMaster(level, outerGateMasterPos());
+        return gate.isValidMaster(level, innerGateMasterPos(level))
+                && gate.isValidMaster(level, outerGateMasterPos(level));
     }
 
     public static boolean isGateClosed(ServerLevel level,
                                        com.wasted.domesurvival.core.airlock.AirlockDoor side) {
-        BlockPos masterPos = gateMasterPos(side);
+        BlockPos masterPos = gateMasterPos(level, side);
         BlockState state = level.getBlockState(masterPos);
         return state.getBlock() instanceof AirlockGateBlock gate
                 && gate.isValidMaster(level, masterPos)
@@ -69,7 +70,7 @@ public final class StarterDomeAirlockV58 {
     }
 
     public static InstallResult install(ServerLevel level) {
-        DomeSpec spec = DomeSpec.wastedV1();
+        DomeSpec spec = DomeSavedData.get(level).domeSpec();
 
         PanelTarget innerChamberPanel = resolvePanelTarget(
                 level,
@@ -90,12 +91,12 @@ public final class StarterDomeAirlockV58 {
 
         AirlockGateBlock gate = AirlockGateRegistry.AIRLOCK_GATE.get();
 
-        BlockPos innerMaster = installGate(level, gate, spec.innerDoorZ());
+        BlockPos innerMaster = installGate(level, gate, spec, spec.innerDoorZ());
         if (innerMaster == null) {
             return InstallResult.INNER_GATE_FAILED;
         }
 
-        BlockPos outerMaster = installGate(level, gate, spec.outerDoorZ());
+        BlockPos outerMaster = installGate(level, gate, spec, spec.outerDoorZ());
         if (outerMaster == null) {
             return InstallResult.OUTER_GATE_FAILED;
         }
@@ -119,8 +120,7 @@ public final class StarterDomeAirlockV58 {
     }
 
     @Nullable
-    private static BlockPos installGate(ServerLevel level, AirlockGateBlock gate, int z) {
-        DomeSpec spec = DomeSpec.wastedV1();
+    private static BlockPos installGate(ServerLevel level, AirlockGateBlock gate, DomeSpec spec, int z) {
         BlockPos expectedMaster = new BlockPos(
                 spec.airlockCenterX(),
                 spec.airlockDoorMinY() + 2,

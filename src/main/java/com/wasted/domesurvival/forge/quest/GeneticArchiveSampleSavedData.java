@@ -15,6 +15,7 @@ public final class GeneticArchiveSampleSavedData extends SavedData {
 
     private boolean cachePlaced;
     private long cachePos;
+    private boolean distributionRegistered;
 
     public static GeneticArchiveSampleSavedData get(ServerLevel level) {
         return level.getServer().overworld().getDataStorage().computeIfAbsent(
@@ -28,6 +29,7 @@ public final class GeneticArchiveSampleSavedData extends SavedData {
         GeneticArchiveSampleSavedData data = new GeneticArchiveSampleSavedData();
         data.cachePlaced = tag.getBoolean("CachePlaced");
         data.cachePos = tag.getLong("CachePos");
+        data.distributionRegistered = tag.getBoolean("DistributionRegistered");
         return data;
     }
 
@@ -39,16 +41,28 @@ public final class GeneticArchiveSampleSavedData extends SavedData {
         return BlockPos.of(cachePos);
     }
 
+    public boolean distributionRegistered() {
+        return distributionRegistered;
+    }
+
     public void markCachePlaced(BlockPos pos) {
         cachePlaced = true;
         cachePos = pos.asLong();
         setDirty();
     }
 
+    public void markDistributionRegistered() {
+        if (!distributionRegistered) {
+            distributionRegistered = true;
+            setDirty();
+        }
+    }
+
     @Override
     public CompoundTag save(CompoundTag tag) {
         tag.putBoolean("CachePlaced", cachePlaced);
         tag.putLong("CachePos", cachePos);
+        tag.putBoolean("DistributionRegistered", distributionRegistered);
         return tag;
     }
 }

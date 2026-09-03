@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "source_world": "WASTED_TEST",
+  "rules": {
+    "max_capsules_per_site": 1,
+    "guaranteed_capsules_per_species": 2,
+    "minimum_pair_distance_blocks": 500,
+    "allow_random_extras": true,
+    "random_extras_must_not_replace_guaranteed": true
+  },
+  "guaranteed": [
+    {"entity":"minecraft:cow","rarity":"common","first":{"site":"bandit_farm","damaged":false},"second":{"site":"grocery_store","damaged":true}},
+    {"entity":"minecraft:pig","rarity":"common","first":{"site":"st_parker_estate","damaged":false},"second":{"site":"convenience_store","damaged":true}},
+    {"entity":"minecraft:sheep","rarity":"common","first":{"site":"old_camp_far_west","damaged":false},"second":{"site":"east_bandit_outpost","damaged":true}},
+    {"entity":"minecraft:chicken","rarity":"common","first":{"site":"north_wasteland_shack","damaged":false},"second":{"site":"burnt_store","damaged":true}},
+    {"entity":"minecraft:rabbit","rarity":"common","first":{"site":"old_camp_northwest","damaged":false},"second":{"site":"car_fort","damaged":true}},
+
+    {"entity":"minecraft:horse","rarity":"uncommon","first":{"site":"car_rental","damaged":false},"second":{"site":"lumber_mill","damaged":true}},
+    {"entity":"minecraft:donkey","rarity":"uncommon","first":{"site":"north_trucking_warehouse","damaged":false},"second":{"site":"contraband_warehouse","damaged":true}},
+    {"entity":"minecraft:llama","rarity":"uncommon","first":{"site":"whitehorn_lookout","damaged":false},"second":{"site":"far_east_bandit_house","damaged":true}},
+    {"entity":"minecraft:wolf","rarity":"uncommon","first":{"site":"north_firewatch","damaged":false},"second":{"site":"bandit_camp","damaged":true}},
+    {"entity":"minecraft:cat","rarity":"uncommon","first":{"site":"pet_store","damaged":false},"second":{"site":"bay_hill_hotel","damaged":true}},
+    {"entity":"minecraft:ocelot","rarity":"uncommon","first":{"site":"boat_house","damaged":false},"second":{"site":"pier_bandits","damaged":true}},
+    {"entity":"minecraft:fox","rarity":"uncommon","first":{"site":"west_firewatch","damaged":false},"second":{"site":"office_ruins","damaged":true}},
+    {"entity":"minecraft:goat","rarity":"uncommon","first":{"site":"cedar_peak_lookout","damaged":false},"second":{"site":"east_bandit_hideout","damaged":true}},
+    {"entity":"minecraft:bee","rarity":"uncommon","first":{"site":"country_club","damaged":false},"second":{"site":"elementary_school","damaged":true}},
+
+    {"entity":"minecraft:panda","rarity":"rare","first":{"site":"central_hospital","damaged":true},"second":{"site":"north_college_ruins","damaged":true}},
+    {"entity":"minecraft:turtle","rarity":"rare","first":{"site":"fishing_store","damaged":true},"second":{"site":"boat_town","damaged":true}},
+    {"entity":"minecraft:axolotl","rarity":"rare","first":{"site":"waterworks","damaged":true},"second":{"site":"underground_biolab","damaged":true}},
+    {"entity":"minecraft:frog","rarity":"rare","first":{"site":"pharmaceutical_offices","damaged":true},"second":{"site":"dam_service_area","damaged":true}},
+    {"entity":"minecraft:camel","rarity":"rare","first":{"site":"old_camp_west","damaged":true},"second":{"site":"east_warehouse_second","damaged":true}},
+    {"entity":"minecraft:mooshroom","rarity":"rare","first":{"site":"radio_station","damaged":true},"second":{"site":"east_warehouse_ruin","damaged":true}},
+
+    {"entity":"minecraft:sniffer","rarity":"special","first":{"site":"quanta_labs","damaged":true},"second":{"site":"submarine","damaged":true}},
+    {"entity":"minecraft:strider","rarity":"special","first":{"site":"oil_ship","damaged":true},"second":{"site":"bandit_gas_station","damaged":true}},
+    {"entity":"minecraft:hoglin","rarity":"special","first":{"site":"gun_store","damaged":true},"second":{"site":"state_penitentiary","damaged":true}}
+  ],
+  "optional_random_sites": [
+    "buried_store",
+    "southwest_firewatch",
+    "bandit_high_school",
+    "blown_building",
+    "west_college_ruins",
+    "central_news_building",
+    "south_news_building",
+    "far_west_bandit_house",
+    "bank_vault",
+    "communications_building",
+    "bandit_ship",
+    "office_full_interior",
+    "bandit_store",
+    "fire_station",
+    "police_station",
+    "library",
+    "hardware_ruin",
+    "middle_school",
+    "fort_gunderson",
+    "fort_museum"
+  ]
+}

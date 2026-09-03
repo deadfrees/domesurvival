@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SGS",
+    "GPG",
+    "SMS"
+  ],
+  "key": {
+    "S": {
+      "item": "domesurvival:steel_ingot"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "P": {
+      "item": "domesurvival:pulse_matrix"
+    },
+    "M": {
+      "item": "domesurvival:machine_stabilizer"
+    }
+  },
+  "result": {
+    "item": "domesurvival:bioincubator"
+  }
+}

@@ -26,6 +26,19 @@ public record DomeSpec(
         return new DomeSpec(-506, 62, -641, 50, 3, 45, -64);
     }
 
+    /** Same authored dome geometry anchored at a player-selected LastWorld site. */
+    public DomeSpec at(int newCenterX, int newBaseY, int newCenterZ) {
+        return new DomeSpec(
+                newCenterX,
+                newBaseY,
+                newCenterZ,
+                surfaceRadius,
+                skirtHeight,
+                undergroundRadius,
+                undergroundMinY
+        );
+    }
+
     public int hemisphereCenterY() {
         return baseY + skirtHeight;
     }

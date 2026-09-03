@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    { "id": "alexscaves:underground_cabin", "required": false },
+    { "id": "betterarcheology:archeologist_camp_sand", "required": false },
+    { "id": "betterarcheology:buried_ruins_sand", "required": false },
+    { "id": "betterarcheology:desert_obelisk", "required": false },
+    { "id": "betterdeserttemples:desert_temple", "required": false },
+    { "id": "betterdungeons:skeleton_dungeon", "required": false },
+    { "id": "betterdungeons:small_dungeon", "required": false },
+    { "id": "betterdungeons:spider_dungeon", "required": false },
+    { "id": "betterdungeons:zombie_dungeon", "required": false },
+    { "id": "bettermineshafts:mineshaft_desert", "required": false },
+    { "id": "dungeoncrawl:dungeon", "required": false },
+    { "id": "dungeons_arise:abandoned_temple", "required": false },
+    { "id": "dungeons_arise:illager_fort", "required": false },
+    { "id": "dungeons_arise:small_prairie_house", "required": false },
+    { "id": "dungeons_arise:illager_campsite", "required": false },
+    { "id": "dungeons_arise:merchant_campsite", "required": false },
+    { "id": "dungeons_arise:monastery", "required": false },
+    { "id": "graveyard:small_desert_grave", "required": false },
+    { "id": "graveyard:small_desert_graveyard", "required": false },
+    { "id": "minecraft:village_desert", "required": false }
+  ]
+}

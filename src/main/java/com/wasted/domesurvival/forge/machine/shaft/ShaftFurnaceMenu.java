@@ -44,14 +44,14 @@ public final class ShaftFurnaceMenu extends AbstractContainerMenu {
         checkContainerDataCount(data, ShaftFurnaceBlockEntity.DATA_COUNT);
         addDataSlots(data);
 
-        addSlot(new SlotItemHandler(inventory, ShaftFurnaceBlockEntity.SLOT_IRON, 56, 17) {
+        addSlot(new SlotItemHandler(inventory, ShaftFurnaceBlockEntity.SLOT_IRON, 26, 54) {
             @Override public boolean mayPlace(@NotNull ItemStack stack) { return ShaftFurnaceBlockEntity.isValidIron(stack); }
         });
-        addSlot(new SlotItemHandler(inventory, ShaftFurnaceBlockEntity.SLOT_COKE, 56, 53) {
+        addSlot(new SlotItemHandler(inventory, ShaftFurnaceBlockEntity.SLOT_COKE, 62, 54) {
             @Override public boolean mayPlace(@NotNull ItemStack stack) { return ShaftFurnaceBlockEntity.isValidCoke(stack); }
         });
-        addSlot(new OutputSlot(inventory, ShaftFurnaceBlockEntity.SLOT_STEEL, 116, 17));
-        addSlot(new OutputSlot(inventory, ShaftFurnaceBlockEntity.SLOT_SLAG, 116, 53));
+        addSlot(new OutputSlot(inventory, ShaftFurnaceBlockEntity.SLOT_STEEL, 178, 42));
+        addSlot(new OutputSlot(inventory, ShaftFurnaceBlockEntity.SLOT_SLAG, 178, 72));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -61,14 +61,14 @@ public final class ShaftFurnaceMenu extends AbstractContainerMenu {
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 9; column++) {
                 addSlot(new net.minecraft.world.inventory.Slot(
-                        playerInventory, column + row * 9 + 9, 8 + column * 18, 84 + row * 18));
+                        playerInventory, column + row * 9 + 9, 14 + column * 22, 161 + row * 22));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int column = 0; column < 9; column++) {
-            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, column, 8 + column * 18, 142));
+            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, column, 14 + column * 22, 229));
         }
     }
 
@@ -114,6 +114,12 @@ public final class ShaftFurnaceMenu extends AbstractContainerMenu {
         int max = data.get(ShaftFurnaceBlockEntity.DATA_BURN_TIME_MAX);
         return max <= 0 ? 0 : data.get(ShaftFurnaceBlockEntity.DATA_BURN_TIME) * 13 / max;
     }
+
+    public int getProgress() { return data.get(ShaftFurnaceBlockEntity.DATA_PROGRESS); }
+    public int getProgressMax() { return data.get(ShaftFurnaceBlockEntity.DATA_PROGRESS_MAX); }
+    public int getBurnTime() { return data.get(ShaftFurnaceBlockEntity.DATA_BURN_TIME); }
+    public int getBurnTimeMax() { return data.get(ShaftFurnaceBlockEntity.DATA_BURN_TIME_MAX); }
+    public boolean isWorking() { return getBurnTime() > 0 && getProgress() > 0; }
 
     private static final class OutputSlot extends SlotItemHandler {
         private OutputSlot(IItemHandler inventory, int index, int x, int y) {

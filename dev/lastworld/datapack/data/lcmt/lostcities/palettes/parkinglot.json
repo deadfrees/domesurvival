@@ -1,0 +1,15 @@
+{
+  "palette": [
+       {
+      "char": "8",
+      "block": "minecraft:polished_deepslate",
+      "damaged": "minecraft:iron_bars"
+    },
+     {
+      "char": "7",
+      "block": "minecraft:white_concrete",
+      "damaged": "minecraft:iron_bars"
+    }
+  ]
+}
+         

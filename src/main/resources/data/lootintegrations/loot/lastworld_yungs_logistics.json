@@ -1,0 +1,12 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/logistics",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "betterdungeons:small_dungeon/chests/loot_piles": 2,
+    "betterdungeons:zombie_dungeon/chests/common": 2,
+    "betterdungeons:zombie_dungeon/chests/tombstone": 2,
+    "betterstrongholds:chests/common": 2,
+    "betterstrongholds:chests/mess": 2,
+    "betterstrongholds:chests/prison_lg": 2
+  }
+}

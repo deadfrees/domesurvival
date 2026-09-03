@@ -1,0 +1,7 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/city_salvage",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "lostcities:chests/lostcitychest": 3
+  }
+}

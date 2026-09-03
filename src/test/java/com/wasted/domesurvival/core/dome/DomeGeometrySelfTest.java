@@ -31,6 +31,22 @@ public final class DomeGeometrySelfTest {
         check(spec.foundationMinY() == 59, "foundation depth");
         check(spec.foundationTopY() == 63, "visible foundation top");
 
+        DomeSpec moved = spec.at(128, 74, -320);
+        DomeBounds movedBounds = new DomeBounds(moved);
+        check(moved.centerX() == 128 && moved.baseY() == 74 && moved.centerZ() == -320,
+                "dynamic LastWorld anchor");
+        check(moved.surfaceRadius() == spec.surfaceRadius()
+                        && moved.undergroundRadius() == spec.undergroundRadius(),
+                "dynamic anchor must preserve dome geometry");
+        check(moved.airlockCenterX() - moved.centerX()
+                        == spec.airlockCenterX() - spec.centerX(),
+                "dynamic airlock X offset");
+        check(moved.airlockShellZ() - moved.centerZ()
+                        == spec.airlockShellZ() - spec.centerZ(),
+                "dynamic airlock Z offset");
+        check(movedBounds.classify(128.0, 74.0, -320.0) == DomeZone.SURFACE_SKIRT,
+                "dynamic spawn zone");
+
         check(bounds.classify(-506.0, 62.0, -641.0) == DomeZone.SURFACE_SKIRT, "spawn zone");
         check(bounds.isSafe(-506.0, -64.0, -641.0), "bottom of starter mine must be safe");
         check(!bounds.isSafe(-506.0, -65.0, -641.0), "below world minimum is outside safe volume");
@@ -45,6 +61,21 @@ public final class DomeGeometrySelfTest {
         List<PlannedBlock> v23Upgrade = DomeStructurePlanner.planV23UpgradeFromV2(spec);
 
         check(shell.size() > 12_000, "shell unexpectedly small: " + shell.size());
+        boolean hasVoxelizedOuterEdge = false;
+        long playableRadiusSqr = (long) spec.surfaceRadius() * spec.surfaceRadius();
+        long outerDiameter = 2L * spec.surfaceRadius() + 1L;
+        for (BlockPoint point : shell) {
+            long dx = (long) point.x() - spec.centerX();
+            long dz = (long) point.z() - spec.centerZ();
+            long horizontalSqr = dx * dx + dz * dz;
+            if (horizontalSqr > playableRadiusSqr) {
+                hasVoxelizedOuterEdge = true;
+            }
+            check(4L * horizontalSqr <= outerDiameter * outerDiameter,
+                    "shell exceeds the permitted half-block placement band: " + point);
+        }
+        check(hasVoxelizedOuterEdge,
+                "geometry regression: test no longer exercises the voxelized outer shell edge");
         check(has(full, new BlockPoint(spec.airlockCenterX(), spec.airlockDoorMinY(), spec.innerDoorZ()),
                 StructureMaterial.AIRLOCK_DOOR), "inner shutter missing");
         check(has(full, new BlockPoint(spec.airlockCenterX(), spec.airlockDoorMaxY(), spec.outerDoorZ()),

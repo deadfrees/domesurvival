@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
  * FE storage wired through the same UnifiedSideConfig + PortVisual flow used
  * by CoalGenerator/WaterPurifier/OxygenElectrolyzer.
  */
-public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
+public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider, CapacityEnchantedEnergyBuffer {
     public static final int ENERGY_CAPACITY = 4_000_000;
     public static final int MAX_RECEIVE_PER_TICK = 8_192;
     public static final int MAX_OUTPUT_PER_TICK = 8_192;
@@ -50,6 +50,7 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
     private final UnifiedSideConfig sideConfig = new UnifiedSideConfig();
     private final MachineEnergyStorage energyStorage =
             new MachineEnergyStorage(ENERGY_CAPACITY, MAX_RECEIVE_PER_TICK, MAX_OUTPUT_PER_TICK);
+    private int capacityEnchantLevel;
 
     // Live FE transfer telemetry. These values are intentionally transient: they
     // describe the current/previous server tick and do not belong in saved NBT.
@@ -352,6 +353,35 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
     public ContainerData getDataAccess() {
         return dataAccess;
     }
+    @Override
+    public int getCapacityEnchantLevel() {
+        return capacityEnchantLevel;
+    }
+
+    @Override
+    public void setCapacityEnchantLevel(int level) {
+        int clamped = EnergyBufferCapacity.clampLevel(level);
+        int targetCapacity = EnergyBufferCapacity.apply(ENERGY_CAPACITY, clamped);
+
+        if (capacityEnchantLevel == clamped
+                && energyStorage.getMaxEnergyStored() == targetCapacity) {
+            return;
+        }
+
+        capacityEnchantLevel = clamped;
+        energyStorage.setCapacityInternal(targetCapacity);
+        setChanged();
+
+        if (this.level != null && !this.level.isClientSide) {
+            BlockState current = this.level.getBlockState(worldPosition);
+            this.level.sendBlockUpdated(
+                    worldPosition,
+                    current,
+                    current,
+                    net.minecraft.world.level.block.Block.UPDATE_CLIENTS
+            );
+        }
+    }
 
     public int getEnergyStored() {
         return energyStorage.getEnergyStored();
@@ -365,12 +395,17 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putInt(NBT_ENERGY, energyStorage.getEnergyStored());
+        EnergyBufferCapacity.writeLevel(tag, capacityEnchantLevel);
         sideConfig.save(tag);
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
+        capacityEnchantLevel = EnergyBufferCapacity.readLevel(tag);
+        energyStorage.setCapacityInternal(
+                EnergyBufferCapacity.apply(ENERGY_CAPACITY, capacityEnchantLevel)
+        );
         energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
 
         if (!sideConfig.load(tag)) {

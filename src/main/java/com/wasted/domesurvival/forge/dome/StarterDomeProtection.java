@@ -74,7 +74,7 @@ public final class StarterDomeProtection {
         }
 
         event.getAffectedBlocks().removeIf(pos ->
-                isProtectedPositionAndState(pos, level.getBlockState(pos))
+                isProtectedPositionAndState(level, pos, level.getBlockState(pos))
         );
     }
 
@@ -110,14 +110,14 @@ public final class StarterDomeProtection {
         }
 
         for (BlockPos pos : resolver.getToPush()) {
-            if (isProtectedPositionAndState(pos, level.getBlockState(pos))) {
+            if (isProtectedPositionAndState(level, pos, level.getBlockState(pos))) {
                 event.setCanceled(true);
                 return;
             }
         }
 
         for (BlockPos pos : resolver.getToDestroy()) {
-            if (isProtectedPositionAndState(pos, level.getBlockState(pos))) {
+            if (isProtectedPositionAndState(level, pos, level.getBlockState(pos))) {
                 event.setCanceled(true);
                 return;
             }
@@ -134,11 +134,17 @@ public final class StarterDomeProtection {
             BlockState state
     ) {
         return DomeSavedData.get(level).isGenerated()
-                && isProtectedPositionAndState(pos, state);
+                && isProtectedPositionAndState(level, pos, state);
     }
 
-    private static boolean isProtectedPositionAndState(BlockPos pos, BlockState state) {
-        long packedPos = pos.asLong();
+    private static boolean isProtectedPositionAndState(ServerLevel level, BlockPos pos, BlockState state) {
+        DomeSpec legacy = DomeSpec.wastedV1();
+        DomeSpec current = DomeSavedData.get(level).domeSpec();
+        long packedPos = pos.offset(
+                legacy.centerX() - current.centerX(),
+                legacy.baseY() - current.baseY(),
+                legacy.centerZ() - current.centerZ()
+        ).asLong();
 
         if (PROTECTION_MASK.structurePositions().contains(packedPos)) {
             return isAuthoredStructureState(state);

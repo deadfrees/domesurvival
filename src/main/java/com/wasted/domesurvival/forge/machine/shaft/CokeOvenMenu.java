@@ -43,21 +43,21 @@ public final class CokeOvenMenu extends AbstractContainerMenu {
         checkContainerDataCount(data, CokeOvenBlockEntity.DATA_COUNT);
         addDataSlots(data);
 
-        addSlot(new SlotItemHandler(inventory, CokeOvenBlockEntity.SLOT_COAL, 56, 17) {
+        addSlot(new SlotItemHandler(inventory, CokeOvenBlockEntity.SLOT_COAL, 26, 54) {
             @Override public boolean mayPlace(@NotNull ItemStack stack) { return CokeOvenBlockEntity.isValidCoal(stack); }
         });
-        addSlot(new SlotItemHandler(inventory, CokeOvenBlockEntity.SLOT_FUEL, 56, 53) {
+        addSlot(new SlotItemHandler(inventory, CokeOvenBlockEntity.SLOT_FUEL, 62, 54) {
             @Override public boolean mayPlace(@NotNull ItemStack stack) { return CokeOvenBlockEntity.isValidFuel(stack); }
         });
-        addSlot(new SlotItemHandler(inventory, CokeOvenBlockEntity.SLOT_COKE, 116, 35) {
+        addSlot(new SlotItemHandler(inventory, CokeOvenBlockEntity.SLOT_COKE, 178, 54) {
             @Override public boolean mayPlace(@NotNull ItemStack stack) { return false; }
         });
 
         for (int row = 0; row < 3; row++) for (int column = 0; column < 9; column++)
             addSlot(new net.minecraft.world.inventory.Slot(playerInventory, column + row * 9 + 9,
-                    8 + column * 18, 84 + row * 18));
+                    14 + column * 22, 161 + row * 22));
         for (int column = 0; column < 9; column++)
-            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, column, 8 + column * 18, 142));
+            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, column, 14 + column * 22, 229));
     }
 
     @Override public boolean stillValid(Player player) { return stillValid(access, player, ModBlocks.COKE_OVEN.get()); }
@@ -97,4 +97,10 @@ public final class CokeOvenMenu extends AbstractContainerMenu {
         int max = data.get(CokeOvenBlockEntity.DATA_BURN_TIME_MAX);
         return max <= 0 ? 0 : data.get(CokeOvenBlockEntity.DATA_BURN_TIME) * 13 / max;
     }
+
+    public int getProgress() { return data.get(CokeOvenBlockEntity.DATA_PROGRESS); }
+    public int getProgressMax() { return data.get(CokeOvenBlockEntity.DATA_PROGRESS_MAX); }
+    public int getBurnTime() { return data.get(CokeOvenBlockEntity.DATA_BURN_TIME); }
+    public int getBurnTimeMax() { return data.get(CokeOvenBlockEntity.DATA_BURN_TIME_MAX); }
+    public boolean isWorking() { return getBurnTime() > 0 && getProgress() > 0; }
 }

@@ -1,0 +1,14 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/mining",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "dungeons_arise:chests/mining_system/mining_system_barrels": 2,
+    "dungeons_arise:chests/mushroom_mines/mushroom_mines_barrels": 2,
+    "dungeons_arise:chests/mushroom_mines/mushroom_mines_ores": 2,
+    "dungeons_arise:chests/mushroom_mines/mushroom_mines_tools": 2,
+    "dungeons_arise:chests/scorched_mines/scorched_mines_barrels": 2,
+    "dungeons_arise:chests/scorched_mines/scorched_mines_housing": 2,
+    "dungeons_arise:chests/scorched_mines/scorched_mines_hub": 2,
+    "dungeons_arise:chests/scorched_mines/scorched_mines_normal": 2
+  }
+}

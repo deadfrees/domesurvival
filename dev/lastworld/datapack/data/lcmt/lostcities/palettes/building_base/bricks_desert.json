@@ -1,0 +1,33 @@
+{
+  "palette": [
+    {
+      "char": "X",
+      "block": "minecraft:gray_concrete",
+      "damaged": "minecraft:iron_bars"
+    },
+    {
+      "char": "$",
+      "block": "minecraft:gray_concrete",
+      "damaged": "minecraft:iron_bars"
+    },
+    {
+      "char": "#",
+      "blocks": [
+        {
+          "random": 12,
+          "block": "minecraft:gray_concrete"
+        },
+        {
+          "random": 2000,
+          "block": "minecraft:gray_concrete"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+    },
+    {
+      "char": "}",
+      "block": "minecraft:gray_concrete",
+      "damaged": "minecraft:iron_bars"
+    }
+  ]
+}

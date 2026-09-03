@@ -199,22 +199,25 @@
     },
     {
       "number": 10,
-      "key": "bucket",
+      "key": "sand_sieve",
       "id": "2327F36796AD9481",
-      "title": "Вода должна быть рядом",
+      "title": "Песок становится глиной",
       "task_ids": [
-        "0ACFD76B19B5C4E7"
+        "0ACFD76B19B5C4E7",
+        "A1C4E57B920D6F31",
+        "B2D5F68C031E7A42",
+        "C3E6A79D142F8B53"
       ],
       "reward_ids": [
         "5949973F0EF6D022",
-        "7D822F99D154294C"
+        "7894FB902D87B66E"
       ],
       "dependencies": [
         "350FB0BD7B2E3A7B",
         "148982D154C24E63"
       ],
       "visible_reward": {
-        "item": "minecraft:clay_ball",
+        "item": "minecraft:bone_meal",
         "count": 4
       },
       "feedback": "normal"

@@ -19,7 +19,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -36,7 +35,7 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
     public static final int SLOT_COKE = 1;
     public static final int SLOT_STEEL = 2;
     public static final int SLOT_SLAG = 3;
-    public static final int PROCESS_TIME = 1_600;
+    public static final int PROCESS_TIME = 3_000;
 
     public static final int DATA_PROGRESS = 0;
     public static final int DATA_PROGRESS_MAX = 1;
@@ -67,14 +66,13 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
         }
     };
 
-    private LazyOptional<IItemHandler> fullCapability = LazyOptional.of(() -> inventory);
-    private LazyOptional<IItemHandler> ironCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_IRON, SLOT_IRON + 1));
-    private LazyOptional<IItemHandler> cokeCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COKE, SLOT_COKE + 1));
+    private LazyOptional<IItemHandler> inputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_IRON, SLOT_COKE + 1));
     private LazyOptional<IItemHandler> outputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_STEEL, SLOT_SLAG + 1));
 
     private int progress;
     private int burnTime;
     private int burnTimeMax;
+    private boolean legacyPartsChecked;
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -97,6 +95,10 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, ShaftFurnaceBlockEntity furnace) {
+        if (!furnace.legacyPartsChecked) {
+            ShaftFurnaceBlock.clearStructure(level, pos, state);
+            furnace.legacyPartsChecked = true;
+        }
         boolean changed = false;
 
         if (furnace.burnTime > 0) {
@@ -134,13 +136,6 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
         boolean lit = furnace.burnTime > 0;
         if (state.getValue(ShaftFurnaceBlock.LIT) != lit) {
             level.setBlock(pos, state.setValue(ShaftFurnaceBlock.LIT, lit), 3);
-            changed = true;
-        }
-        BlockState upperState = level.getBlockState(pos.above());
-        if (upperState.is(state.getBlock())
-                && upperState.getValue(ShaftFurnaceBlock.HALF) == DoubleBlockHalf.UPPER
-                && upperState.getValue(ShaftFurnaceBlock.LIT) != lit) {
-            level.setBlock(pos.above(), upperState.setValue(ShaftFurnaceBlock.LIT, lit), 3);
             changed = true;
         }
         if (changed) furnace.setChanged();
@@ -203,6 +198,8 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
 
     public ItemStackHandler getInventory() { return inventory; }
     public ContainerData getDataAccess() { return dataAccess; }
+    LazyOptional<IItemHandler> getInputPortCapability() { return inputCapability; }
+    LazyOptional<IItemHandler> getOutputPortCapability() { return outputCapability; }
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
@@ -224,11 +221,15 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == null) return fullCapability.cast();
-            if (side == Direction.UP) return ironCapability.cast();
-            if (side == Direction.DOWN) return outputCapability.cast();
-            return cokeCapability.cast();
+        if (cap == ForgeCapabilities.ITEM_HANDLER && side != null) {
+            Direction facing = getBlockState().getValue(ShaftFurnaceBlock.FACING);
+            if (side == facing.getCounterClockWise() || side == facing.getOpposite()) {
+                return inputCapability.cast();
+            }
+            if (side == facing.getClockWise() || side == Direction.DOWN) {
+                return outputCapability.cast();
+            }
+            return LazyOptional.empty();
         }
         return super.getCapability(cap, side);
     }
@@ -236,18 +237,14 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        fullCapability.invalidate();
-        ironCapability.invalidate();
-        cokeCapability.invalidate();
+        inputCapability.invalidate();
         outputCapability.invalidate();
     }
 
     @Override
     public void reviveCaps() {
         super.reviveCaps();
-        fullCapability = LazyOptional.of(() -> inventory);
-        ironCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_IRON, SLOT_IRON + 1));
-        cokeCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COKE, SLOT_COKE + 1));
+        inputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_IRON, SLOT_COKE + 1));
         outputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_STEEL, SLOT_SLAG + 1));
     }
 

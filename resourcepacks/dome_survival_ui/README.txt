@@ -1,0 +1,1 @@
+No vanilla widgets.png override in P0. Minecraft 1.20.1 still uses the combined widgets.png atlas, so global replacement would also affect HUD/hotbar. Main UI styling is done safely through FancyMenu widget textures.

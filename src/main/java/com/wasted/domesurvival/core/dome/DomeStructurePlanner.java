@@ -73,7 +73,7 @@ public final class DomeStructurePlanner {
         LinkedHashMap<BlockPoint, StructureMaterial> plan = new LinkedHashMap<>();
         removeLegacyAirlock(plan, spec);
         restoreLegacyOpening(plan, spec);
-        clearAuthorStructure(plan);
+        clearAuthorStructure(plan, spec);
         addFoundation(plan, spec);
         addPathAlignedAirlock(plan, spec);
         carveCurrentAirlockOpening(plan, spec);
@@ -107,7 +107,7 @@ public final class DomeStructurePlanner {
         addFoundation(plan, spec);
         addRibs(plan, spec);
         addMidRing(plan, spec);
-        clearAuthorStructure(plan);
+        clearAuthorStructure(plan, spec);
         addPathAlignedAirlock(plan, spec);
         carveCurrentAirlockOpening(plan, spec);
     }
@@ -304,10 +304,10 @@ public final class DomeStructurePlanner {
      * Exact small author-built object seen immediately beyond the old airlock.
      * Cleanup is conditional in Forge code, so natural sand/stone is left untouched.
      */
-    private static void clearAuthorStructure(Map<BlockPoint, StructureMaterial> plan) {
-        for (int x = -507; x <= -503; x++) {
-            for (int z = -582; z <= -566; z++) {
-                for (int y = 62; y <= 66; y++) {
+    private static void clearAuthorStructure(Map<BlockPoint, StructureMaterial> plan, DomeSpec spec) {
+        for (int x = spec.centerX() - 1; x <= spec.centerX() + 3; x++) {
+            for (int z = spec.centerZ() + 59; z <= spec.centerZ() + 75; z++) {
+                for (int y = spec.baseY(); y <= spec.baseY() + 4; y++) {
                     put(plan, new BlockPoint(x, y, z), StructureMaterial.CLEAR_AUTHOR_BUILD);
                 }
             }

@@ -13,7 +13,10 @@ public record SurfaceWeatherSyncPacket(
         boolean exposed,
         boolean solarActive,
         boolean solarExposed,
-        int secondsRemaining
+        int secondsRemaining,
+        int domeCenterX,
+        int domeBaseY,
+        int domeCenterZ
 ) {
     public static void encode(SurfaceWeatherSyncPacket packet, FriendlyByteBuf buffer) {
         buffer.writeVarInt(packet.weather.ordinal());
@@ -21,6 +24,9 @@ public record SurfaceWeatherSyncPacket(
         buffer.writeBoolean(packet.solarActive);
         buffer.writeBoolean(packet.solarExposed);
         buffer.writeVarInt(Math.max(0, packet.secondsRemaining));
+        buffer.writeInt(packet.domeCenterX);
+        buffer.writeInt(packet.domeBaseY);
+        buffer.writeInt(packet.domeCenterZ);
     }
 
     public static SurfaceWeatherSyncPacket decode(FriendlyByteBuf buffer) {
@@ -34,7 +40,10 @@ public record SurfaceWeatherSyncPacket(
                 buffer.readBoolean(),
                 buffer.readBoolean(),
                 buffer.readBoolean(),
-                buffer.readVarInt()
+                buffer.readVarInt(),
+                buffer.readInt(),
+                buffer.readInt(),
+                buffer.readInt()
         );
     }
 
@@ -45,7 +54,10 @@ public record SurfaceWeatherSyncPacket(
                 packet.exposed,
                 packet.solarActive,
                 packet.solarExposed,
-                packet.secondsRemaining
+                packet.secondsRemaining,
+                packet.domeCenterX,
+                packet.domeBaseY,
+                packet.domeCenterZ
         ));
         context.setPacketHandled(true);
     }

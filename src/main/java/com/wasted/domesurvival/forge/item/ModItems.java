@@ -32,8 +32,7 @@ public final class ModItems {
             "pulse_matrix",
             () -> new Item(new Item.Properties().stacksTo(64))
     );
-
-    /** Early engineering components kept local so Thermal stays progression-locked. */
+/** Early engineering components kept local so Thermal stays progression-locked. */
     public static final RegistryObject<Item> STEEL_GEAR = engineeringComponent("steel_gear");
     public static final RegistryObject<Item> TIN_GEAR = engineeringComponent("tin_gear");
     public static final RegistryObject<Item> LEAD_GEAR = engineeringComponent("lead_gear");
@@ -46,24 +45,59 @@ public final class ModItems {
     );
     public static final RegistryObject<Item> STEEL_INGOT = engineeringComponent("steel_ingot");
     public static final RegistryObject<Item> SLAG = engineeringComponent("slag");
+
+    /** Replaceable meshes for the placeable sand sifter. */
+    public static final RegistryObject<Item> FIBER_SIEVE_MESH = ITEMS.register(
+            "fiber_sieve_mesh",
+            () -> new SieveMeshItem(SieveMeshItem.Tier.FIBER,
+                    new Item.Properties().stacksTo(1).durability(64))
+    );
+    public static final RegistryObject<Item> COPPER_SIEVE_MESH = ITEMS.register(
+            "copper_sieve_mesh",
+            () -> new SieveMeshItem(SieveMeshItem.Tier.COPPER,
+                    new Item.Properties().stacksTo(1).durability(192))
+    );
+    public static final RegistryObject<Item> STEEL_SIEVE_MESH = ITEMS.register(
+            "steel_sieve_mesh",
+            () -> new SieveMeshItem(SieveMeshItem.Tier.STEEL,
+                    new Item.Properties().stacksTo(1).durability(384))
+    );
+
     /** Viable pre-catastrophe animal genomes recovered from the genetic archive. */
     public static final RegistryObject<Item> CHICKEN_CRYOCAPSULE = ITEMS.register(
             "chicken_cryocapsule",
-            () -> new CryocapsuleItem(false, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.RARE))
+            () -> new CryocapsuleItem(new net.minecraft.resources.ResourceLocation("minecraft", "chicken"), false, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.RARE))
     );
     public static final RegistryObject<Item> SHEEP_CRYOCAPSULE = ITEMS.register(
             "sheep_cryocapsule",
-            () -> new CryocapsuleItem(false, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.RARE))
+            () -> new CryocapsuleItem(new net.minecraft.resources.ResourceLocation("minecraft", "sheep"), false, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.RARE))
     );
     public static final RegistryObject<Item> COW_CRYOCAPSULE = ITEMS.register(
             "cow_cryocapsule",
-            () -> new CryocapsuleItem(false, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.RARE))
+            () -> new CryocapsuleItem(new net.minecraft.resources.ResourceLocation("minecraft", "cow"), false, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.RARE))
     );
 
     /** Damaged pig genome; preserved for a later research stage. */
     public static final RegistryObject<Item> DAMAGED_PIG_CRYOCAPSULE = ITEMS.register(
             "damaged_pig_cryocapsule",
-            () -> new CryocapsuleItem(true, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.UNCOMMON))
+            () -> new CryocapsuleItem(new net.minecraft.resources.ResourceLocation("minecraft", "pig"), true, new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.UNCOMMON))
+    );
+
+    /** Data-driven unidentified sample used by generated and fixed-map loot layers. */
+    public static final RegistryObject<Item> BIO_MODULE = ITEMS.register(
+            "bio_module",
+            () -> new BioModuleItem(new Item.Properties().stacksTo(1).rarity(net.minecraft.world.item.Rarity.RARE))
+    );
+
+    /** Universal consumables for restoring damaged biological modules. */
+    public static final RegistryObject<Item> BIO_REPAIR_KIT = engineeringComponent("bio_repair_kit");
+    public static final RegistryObject<Item> BIOGEL = ITEMS.register(
+            "biogel",
+            () -> new Item(new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.UNCOMMON))
+    );
+    public static final RegistryObject<Item> NUTRIENT_MIX = ITEMS.register(
+            "nutrient_mix",
+            () -> new Item(new Item.Properties().stacksTo(16))
     );
 
     public static final RegistryObject<Item> WATER_FILTER_CARTRIDGE = ITEMS.register(

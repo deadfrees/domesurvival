@@ -11,6 +11,8 @@ import com.wasted.domesurvival.forge.machine.shaft.CokeOvenMenu;
 import com.wasted.domesurvival.forge.machine.water.WaterPurifierMenu;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenElectrolyzerMenu;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenFillerMenu;
+import com.wasted.domesurvival.forge.machine.bio.BioincubatorMenu;
+import com.wasted.domesurvival.forge.machine.sieve.SandSieveMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,8 +22,7 @@ import net.minecraftforge.registries.RegistryObject;
 public final class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENU_TYPES =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, DomeSurvival.MOD_ID);
-
-    public static final RegistryObject<MenuType<CoalGeneratorMenu>> COAL_GENERATOR =
+public static final RegistryObject<MenuType<CoalGeneratorMenu>> COAL_GENERATOR =
             MENU_TYPES.register("coal_generator", () -> IForgeMenuType.create(CoalGeneratorMenu::new));
 
     public static final RegistryObject<MenuType<ShaftFurnaceMenu>> SHAFT_FURNACE =
@@ -39,6 +40,10 @@ public final class ModMenuTypes {
     public static final RegistryObject<MenuType<OxygenFillerMenu>> OXYGEN_FILLER =
             MENU_TYPES.register("oxygen_filler", () -> IForgeMenuType.create(OxygenFillerMenu::new));
 
+    public static final RegistryObject<MenuType<BioincubatorMenu>> BIOINCUBATOR =
+            MENU_TYPES.register("bioincubator", () -> IForgeMenuType.create(BioincubatorMenu::new));
+    public static final RegistryObject<MenuType<SandSieveMenu>> SAND_SIEVE =
+            MENU_TYPES.register("sand_sieve", () -> IForgeMenuType.create(SandSieveMenu::new));
     public static final RegistryObject<MenuType<EnergyBufferMenu>> ENERGY_BUFFER =
             MENU_TYPES.register("energy_buffer", () -> IForgeMenuType.create(EnergyBufferMenu::new));
 

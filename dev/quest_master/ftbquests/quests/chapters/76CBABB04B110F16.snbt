@@ -145,8 +145,10 @@
       "",
       "Подготовьте отдельный стабилизатор для каждой основной машины.",
       "",
+      "На этом же уровне металлургии усильте медную сетку сталью: она даёт лучший выход глины и отделяет редкие примеси.",
+      "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 3 стабилизатора машин.\",\"color\":\"white\",\"bold\":false}",
+      "{\"text\":\"Имейте 3 стабилизатора машин и 1 стальную сетку просеивателя.\",\"color\":\"white\",\"bold\":false}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
       "{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
@@ -157,6 +159,11 @@
         type: "item"
         item: "domesurvival:machine_stabilizer"
         count: 3L
+      },
+      {
+        id: "AE42B7F5C8E31096"
+        type: "item"
+        item: "domesurvival:steel_sieve_mesh"
       }
     ]
     rewards: [
@@ -1184,8 +1191,8 @@
   },
   {
     id: "7A2AF5AE3520F4A0"
-    title: "Первая кислородная вылазка"
-    icon: "domesurvival:oxygen_mask"
+    title: "Первая защищённая вылазка"
+    icon: "domesurvival:surface_suit_chestplate"
     tags: ["ds_visual_milestone"]
     x: 0.0d
     y: 35.0d
@@ -1195,15 +1202,16 @@
     min_width: 340
     dependencies: ["478ADE8DCA760CBA"]
     description: [
-      "Переносной воздух должен изменить радиус операций, а не стать украшением склада.",
+      "Переносной воздух позволяет дышать, но от опасной погоды поверхности защищает только полный костюм.",
       "",
-      "Экипируйте маску и заправленный баллон, выйдите далеко за прежний ближний периметр и вернитесь.",
+      "Соберите и наденьте все четыре части защитного комплекта, кислородную маску и заправленный баллон.",
+      "Комплект требует промышленной стали, свинцовой защиты, фильтра и импульсных матриц — обычная железная броня для поверхности недостаточна.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Проведите снаружи не менее 20 секунд, удалитесь минимум на 90 блоков от центра и вернитесь в Купол.\",\"color\":\"white\",\"bold\":false}",
+      "{\"text\":\"Имейте полный костюм, проведите снаружи не менее 20 секунд, удалитесь минимум на 90 блоков от центра и вернитесь в Купол.\",\"color\":\"white\",\"bold\":false}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Сервер отслеживает экипировку, время, максимальную дальность и безопасное возвращение.\",\"color\":\"gray\",\"bold\":false}"
+      "{\"text\":\"FTB проверяет части костюма, а сервер — надетую экипировку, время, дальность и безопасное возвращение.\",\"color\":\"gray\",\"bold\":false}"
     ]
     tasks: [
       {
@@ -1212,6 +1220,26 @@
         title: "Автоматическое действие"
         advancement: "domesurvival:quest_actions/ch7_oxygen_sortie"
         criterion: "trigger"
+      },
+      {
+        id: "D4F7B8AE25309C64"
+        type: "item"
+        item: "domesurvival:surface_suit_helmet"
+      },
+      {
+        id: "E508C9BF3641AD75"
+        type: "item"
+        item: "domesurvival:surface_suit_chestplate"
+      },
+      {
+        id: "F619DAC04752BE86"
+        type: "item"
+        item: "domesurvival:surface_suit_leggings"
+      },
+      {
+        id: "072AEBD15863CF97"
+        type: "item"
+        item: "domesurvival:surface_suit_boots"
       }
     ]
     rewards: [
@@ -1257,7 +1285,7 @@
       "Промышленный район завершён. Следующая глава превратит отдельные машины в автоматизированную логистическую сеть.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Завершите первую кислородную вылазку.\",\"color\":\"white\",\"bold\":false}",
+      "{\"text\":\"Завершите первую защищённую вылазку.\",\"color\":\"white\",\"bold\":false}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
       "{\"text\":\"Автоматически после выполнения всей обязательной цепочки.\",\"color\":\"gray\",\"bold\":false}"
@@ -1782,7 +1810,7 @@
     description: [
       "Через десять минут после запуска кислородной инфраструктуры Джозеф поднял старый фрагмент архива.",
       "",
-      "Точные координаты повреждены. Сохранилась только привязка к старому навигационному маяку.",
+      "Точные координаты повреждены. Система выделила подходящий довоенный объект среди построек, сгенерированных именно в этом мире.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
       "{\"text\":\"Скрафтите или найдите обычный ванильный компас.\",\"color\":\"white\",\"bold\":false}",
@@ -1816,7 +1844,7 @@
   },
   {
     id: "515C1A05E15F3F67"
-    title: "Настройка на маяк"
+    title: "Настройка на архивный сигнал"
     icon: "minecraft:compass"
     tags: ["ds_visual_npc"]
     x: 8.5d
@@ -1829,7 +1857,7 @@
     hide_until_deps_complete: true
     optional: true
     description: [
-      "Джозеф восстановил достаточно данных, чтобы настроить стрелку на старый маяк.",
+      "Джозеф восстановил достаточно данных, чтобы настроить стрелку на найденный архивный сигнал.",
       "",
       "Когда предыдущий этап завершён, система найдёт один обычный непривязанный компас в инвентаре и запишет в него цель.",
       "",
@@ -1837,7 +1865,7 @@
       "{\"text\":\"Держите обычный компас в инвентаре и дождитесь его настройки.\",\"color\":\"white\",\"bold\":false}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Автоматически, когда vanilla compass получает Lodestone-цель старого маяка.\",\"color\":\"gray\",\"bold\":false}"
+      "{\"text\":\"Автоматически, когда vanilla compass получает цель структуры, выбранной для текущего мира.\",\"color\":\"gray\",\"bold\":false}"
     ]
     tasks: [
       {
@@ -1881,13 +1909,13 @@
     description: [
       "Стрелка знает больше, чем повреждённый архив.",
       "",
-      "Идите в Overworld по направлению компаса. Точка находится достаточно далеко от Купола, чтобы это была настоящая вылазка, но маршрут рассчитан под уже открытую кислородную инфраструктуру.",
+      "Идите в Overworld по направлению компаса. Цель выбирается среди реально сгенерированных исследовательских, военных и архивных построек этого мира.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Подойдите к скрытой точке старого генетического объекта.\",\"color\":\"white\",\"bold\":false}",
+      "{\"text\":\"Доберитесь до отмеченной структуры и найдите архивный контейнер.\",\"color\":\"white\",\"bold\":false}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Автоматически в радиусе 18 блоков. Координаты в журнал не выводятся.\",\"color\":\"gray\",\"bold\":false}"
+      "{\"text\":\"Автоматически в радиусе 32 блоков по горизонтали. Координаты в журнал не выводятся.\",\"color\":\"gray\",\"bold\":false}"
     ]
     tasks: [
       {
@@ -1929,15 +1957,15 @@
     hide_until_deps_complete: true
     optional: true
     description: [
-      "Внутри старого комплекса сохранился небольшой контейнер с довоенными генетическими образцами.",
+      "Рядом с выбранной структурой система аварийного хранения восстановила контейнер с довоенными биологическими модулями.",
       "",
-      "Большая часть архива погибла. Но несколько капсул всё ещё показывают стабильные параметры.",
+      "Архивная база повреждена: содержимое и состояние найденных модулей пока невозможно определить.",
       "",
       "{\"text\":\"◆ Что забрать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"2 капсулы курицы, 2 капсулы овцы и 2 капсулы коровы.\",\"color\":\"white\",\"bold\":false}",
+      "{\"text\":\"Заберите по одному неизвестному модулю курицы, овцы и коровы. Повреждённый модуль свиньи пригодится позднее для восстановления.\",\"color\":\"white\",\"bold\":false}",
       "",
-      "{\"text\":\"◆ Повреждённый образец\",\"color\":\"light_purple\",\"bold\":true}",
-      "{\"text\":\"Капсула свиньи повреждена. Не выбрасывайте её — Джозеф попробует восстановить геном позже.\",\"color\":\"gray\",\"bold\":false}",
+      "{\"text\":\"◆ Восстановление базы\",\"color\":\"light_purple\",\"bold\":true}",
+      "{\"text\":\"После доставки Джозеф восстановит каталог: уже найденные модули раскроются автоматически.\",\"color\":\"gray\",\"bold\":false}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
       "{\"text\":\"FTB автоматически проверяет найденные криокапсулы в инвентаре команды.\",\"color\":\"gray\",\"bold\":false}"
@@ -1947,19 +1975,19 @@
         id: "305CC7924140EEE3"
         type: "item"
         item: "domesurvival:chicken_cryocapsule"
-        count: 2L
+        count: 1L
       },
       {
         id: "4C38BD08669ADCC3"
         type: "item"
         item: "domesurvival:sheep_cryocapsule"
-        count: 2L
+        count: 1L
       },
       {
         id: "683E2DA3614B3868"
         type: "item"
         item: "domesurvival:cow_cryocapsule"
-        count: 2L
+        count: 1L
       }
     ]
     rewards: [
@@ -1988,8 +2016,145 @@
         auto: "invisible"
         exclude_from_claim_all: true
         ignore_reward_blocking: true
+      },
+      {
+        id: "A72D44E8309F271C"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest gate set BIO_MODULE_IDENTIFICATION_UNLOCKED"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
       }
     ]
-  }  ]
+  }  ,
+  {
+    id: "4D7992E0A771B3A1"
+    title: "Биоинкубатор"
+    icon: "domesurvival:bioincubator"
+    tags: ["ds_visual_technology"]
+    x: 11.0d
+    y: 35.0d
+    shape: "rsquare"
+    size: 1.18d
+    min_width: 340
+    dependencies: ["3B095F94C8D72753"]
+    hide_until_deps_complete: true
+    optional: true
+    description: [
+      "Образцы удалось вернуть под Купол. Теперь нужен аппарат, способный превратить сохранённый геном в живой организм.",
+      "",
+      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Соберите Биоинкубатор и подключите его к FE и линии очищенной воды.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Важно\",\"color\":\"light_purple\",\"bold\":true}",
+      "{\"text\":\"Исправные модули используйте в режиме «Инкубация». Повреждённые сначала восстановите во втором режиме.\",\"color\":\"gray\"}",
+      "",
+      "{\"text\":\"◆ Восстановление\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Нужны ремкомплект биологического модуля, биогель, питательная смесь и 1000 mB очищенной воды.\",\"color\":\"white\"}"
+    ]
+    tasks: [
+      {
+        id: "523B2281DE8036E0"
+        type: "item"
+        item: "domesurvival:bioincubator"
+        count: 1L
+      }
+    ]
+    rewards: [
+      {
+        id: "62A158B1DB78F2A4"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 4D7992E0A771B3A1 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "6C55A8DBB0146170"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest gate set BIOINCUBATOR_READY"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      }
+    ]
+  },
+  {
+    id: "6274AE251790C825"
+    title: "Первое дыхание"
+    icon: "minecraft:wheat"
+    tags: ["ds_visual_npc"]
+    x: 13.5d
+    y: 35.0d
+    shape: "hexagon"
+    size: 1.26d
+    min_width: 340
+    dependencies: ["4D7992E0A771B3A1"]
+    hide_until_deps_complete: true
+    optional: true
+    description: [
+      "FE подано. Очищенная вода поступает в камеру. Осталось запустить первый жизнеспособный образец.",
+      "",
+      "{\"text\":\"◆ Рецепты инкубации\",\"color\":\"gold\",\"bold\":true}",
+      "{\"text\":\"Обычным видам требуется 2–3 порции питательной смеси и очищенная вода.\",\"color\":\"white\"}",
+      "{\"text\":\"Необычным видам требуется 4 порции, редким — 6, особым — 8.\",\"color\":\"white\"}",
+      "",
+      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
+      "{\"text\":\"Автоматически после первого успешного рождения животного.\",\"color\":\"gray\"}"
+    ]
+    tasks: [
+      {
+        id: "68F37F729971FD2C"
+        type: "advancement"
+        title: "Первая жизнь"
+        advancement: "domesurvival:quest_actions/bioincubator_first_birth"
+        criterion: "trigger"
+      }
+    ]
+    rewards: [
+      {
+        id: "1C9F570D4DA1D0E2"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 6274AE251790C825 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "326E57E0C5B6E8B9"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest gate set FAUNA_RESTORATION_STARTED"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      }
+    ]
+  }
+]
   quest_links: []
 }

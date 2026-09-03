@@ -1,0 +1,20 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/medical_research",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "dungeons_arise:chests/aviary/aviary_barrels": 2,
+    "dungeons_arise:chests/aviary/aviary_normal": 2,
+    "dungeons_arise:chests/bandit_towers/bandit_towers_gardens": 2,
+    "dungeons_arise:chests/infested_temple/infested_temple_room_bookshelf": 2,
+    "dungeons_arise:chests/infested_temple/infested_temple_room_garden": 2,
+    "dungeons_arise:chests/keep_kayra/keep_kayra_garden_normal": 2,
+    "dungeons_arise:chests/keep_kayra/keep_kayra_library_normal": 2,
+    "dungeons_arise:chests/plague_asylum/plague_asylum_barrels": 2,
+    "dungeons_arise:chests/plague_asylum/plague_asylum_cells": 2,
+    "dungeons_arise:chests/plague_asylum/plague_asylum_normal": 2,
+    "dungeons_arise:chests/plague_asylum/plague_asylum_potions": 2,
+    "dungeons_arise:chests/plague_asylum/plague_asylum_storage": 2,
+    "dungeons_arise:chests/shiraz_palace/shiraz_palace_gardens": 2,
+    "dungeons_arise:chests/shiraz_palace/shiraz_palace_library": 2
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:glass_bottle",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 3
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "weight": 9,
+          "functions": [
+            {
+              "function": "minecraft:set_potion",
+              "id": "minecraft:water"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1,
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:emerald",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1,
+              "add": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{CustomPotionCminecraft:polished_deepslate,CustomPotionEffects:[{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate},{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate}],display:{Name:'[{\"text\":\"???\",\"italic\":false}]'},HideFminecraft:polished_deepslate}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1,
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{CustomPotionCminecraft:polished_deepslate,CustomPotionEffects:[{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate},{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate}],display:{Name:'[{\"text\":\"???\",\"italic\":false}]'},HideFminecraft:polished_deepslate}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1,
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{CustomPotionCminecraft:polished_deepslate,CustomPotionEffects:[{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate},{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate}],display:{Name:'[{\"text\":\"???\",\"italic\":false}]'},HideFminecraft:polished_deepslate}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1,
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{CustomPotionCminecraft:polished_deepslate,CustomPotionEffects:[{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate},{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate}],display:{Name:'[{\"text\":\"???\",\"italic\":false}]'},HideFminecraft:polished_deepslate}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1,
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{CustomPotionCminecraft:polished_deepslate,CustomPotionEffects:[{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate},{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate}],display:{Name:'[{\"text\":\"???\",\"italic\":false}]'},HideFminecraft:polished_deepslate}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1,
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{CustomPotionCminecraft:polished_deepslate,CustomPotionEffects:[{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate},{Iminecraft:polished_deepslate,Dminecraft:polished_deepslate,Aminecraft:polished_deepslate}],display:{Name:'[{\"text\":\"???\",\"italic\":false}]'},HideFminecraft:polished_deepslate}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": 1,
+              "add": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "random_sequence": "lcmt:chests/shopping_vending_machine"
+}

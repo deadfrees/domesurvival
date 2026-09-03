@@ -1,0 +1,393 @@
+{
+  "palette": [
+        {
+      "char": "S",
+      "blocks": [
+        {
+          "random": 40,
+          "block": "minecraft:polished_deepslate"
+        },
+        {
+          "random": 40,
+          "block": "minecraft:polished_deepslate"
+        },
+        {
+          "random": 1000,
+          "block": "minecraft:gray_concrete"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+    },
+    {
+      "char": "A",
+      "blocks": [
+        {
+          "random": 32,
+          "block": "minecraft:polished_andesite"
+        },
+        {
+          "random": 1000,
+          "block": "minecraft:smooth_stone_slab[type=double]"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+    },
+    {
+      "char": "a",
+      "blocks": [
+        {
+          "random": 40,
+          "block": "minecraft:andesite_wall"
+        },
+        {
+          "random": 1000,
+          "block": "minecraft:andesite_wall"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+    },
+  {
+      "char": "W",
+      "blocks": [
+        {
+          "random": 40,
+          "block": "minecraft:andesite_wall"
+        },
+        {
+          "random": 1000,
+          "block": "minecraft:andesite_wall"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+    },
+ {
+      "char": "w",
+      "blocks": [
+        {
+          "random": 40,
+          "block": "minecraft:andesite_wall"
+        },
+        {
+          "random": 1000,
+          "block": "minecraft:andesite_wall"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+    },
+ {
+      "char": "e",
+      "blocks": [
+        {
+          "random": 40,
+          "block": "minecraft:redstone_lamp"
+        },
+        {
+          "random": 1000,
+          "block": "minecraft:redstone_lamp"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+    },
+{
+      "char": "§",
+      "blocks": [
+        {
+          "random": 40,
+          "block": "minecraft:andesite_wall"
+        },
+        {
+          "random": 1000,
+          "block": "minecraft:andesite_wall"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+    },
+    {
+      "char": "P",
+      "block": "minecraft:iron_bars",
+      "damaged": "minecraft:iron_bars"
+    },
+    {
+      "char": "Q",
+      "block": "minecraft:iron_bars",
+      "damaged": "minecraft:iron_bars"
+    },
+    {
+      "char": "j",
+      "block": "minecraft:composter[level=8]"
+    },
+    {
+      "char": "k",
+      "variant": "lcmt:stone_brick_stairs_bottom_east",
+      "damaged": "minecraft:cobblestone_slab[type=bottom,waterlogged=false]"
+    },
+    {
+      "char": "m",
+      "variant": "lcmt:stone_brick_stairs_bottom_south",
+      "damaged": "minecraft:cobblestone_slab[type=bottom,waterlogged=false]"
+    },
+    {
+      "char": "n",
+      "variant": "lcmt:stone_brick_stairs_bottom_north",
+      "damaged": "minecraft:cobblestone_slab[type=bottom,waterlogged=false]"
+    },
+    {
+      "char": "o",
+      "block": "minecraft:spruce_trapdoor[facing=north,half=bottom,open=true,powered=false,waterlogged=false]"
+    },
+    {
+      "char": "s",
+      "block": "minecraft:spruce_trapdoor[facing=east,half=bottom,open=true,powered=false,waterlogged=false]"
+    },
+    {
+      "char": "q",
+      "block": "minecraft:spruce_trapdoor[facing=west,half=bottom,open=true,powered=false,waterlogged=false]"
+    },
+    {
+      "char": "r",
+      "block": "minecraft:polished_deepslate"
+    },
+    {
+      "char": "H",
+      "block": "minecraft:spruce_trapdoor[facing=south,half=bottom,open=true,powered=false,waterlogged=false]"
+    },
+     {
+      "char": "-",
+      "blocks": [
+        {
+          "random": 8,
+          "block": "minecraft:polished_deepslate"
+        },
+        {
+          "random": 15,
+          "block": "minecraft:polished_deepslate"
+        },
+         {
+          "random": 15,
+          "block": "minecraft:polished_deepslate"
+         },
+         {
+          "random": 1,
+          "block": "minecraft:iron_bars"
+         },
+         {
+          "random": 2,
+          "block": "minecraft:polished_deepslate"
+         },
+         {
+          "random": 4,
+          "block": "minecraft:polished_deepslate"
+         },
+          {
+        "random": 4,
+        "block": "minecraft:polished_deepslate"
+        },
+        {
+        "random": 1000,
+        "block": "minecraft:air"
+        }
+       ],
+      "damaged": "minecraft:iron_bars"
+     },
+     {
+        "char": "M",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "&",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "<",
+        "block": "minecraft:air"
+      },
+      {
+        "char": "U",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "I",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "0",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "O",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "V",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": ">",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "N",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "J",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "3",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͳ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": ";",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͱ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ͷ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͷ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "?",
+        "blocks": [
+        {
+          "random": 32,
+          "block": "minecraft:polished_deepslate"
+        },
+         {
+          "random": 1000,
+          "block": "minecraft:air"
+         }
+      ],
+      "damaged": "minecraft:iron_bars"
+      },
+      {
+        "char": "ʹ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": ",",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "͵",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "͸",
+        "blocks": [
+        {
+          "random": 32,
+          "block": "minecraft:polished_deepslate"
+        },
+         {
+          "random": 1000,
+          "block": "minecraft:air"
+         }
+      ],
+      "damaged": "minecraft:iron_bars"
+      },
+      {
+        "char": "Ͳ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ͱ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ϳ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΁",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": ";",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͼ",
+        "block": "minecraft:air"
+      },
+      {
+        "char": "΀",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "͹",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "ͻ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "ͺ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "ͽ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΂",
+        "block": "minecraft:air"
+      },
+      {
+        "char": "΅",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "΃",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "΄",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "Ά",
+        "block": "minecraft:air"
+      },
+      {
+        "char": "·",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "Ί",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "Έ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "Ή",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "Ό",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "΍",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "΋",
+        "block": "minecraft:acacia_leaves"
+      }
+  ]
+}

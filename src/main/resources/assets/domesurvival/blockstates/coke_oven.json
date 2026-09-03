@@ -1,20 +1,14 @@
 {
-  "variants": {
-    "facing=north,half=lower,lit=false": { "model": "domesurvival:block/coke_oven_lower" },
-    "facing=east,half=lower,lit=false": { "model": "domesurvival:block/coke_oven_lower", "y": 90 },
-    "facing=south,half=lower,lit=false": { "model": "domesurvival:block/coke_oven_lower", "y": 180 },
-    "facing=west,half=lower,lit=false": { "model": "domesurvival:block/coke_oven_lower", "y": 270 },
-    "facing=north,half=lower,lit=true": { "model": "domesurvival:block/coke_oven_lower_on" },
-    "facing=east,half=lower,lit=true": { "model": "domesurvival:block/coke_oven_lower_on", "y": 90 },
-    "facing=south,half=lower,lit=true": { "model": "domesurvival:block/coke_oven_lower_on", "y": 180 },
-    "facing=west,half=lower,lit=true": { "model": "domesurvival:block/coke_oven_lower_on", "y": 270 },
-    "facing=north,half=upper,lit=false": { "model": "domesurvival:block/coke_oven_upper" },
-    "facing=east,half=upper,lit=false": { "model": "domesurvival:block/coke_oven_upper", "y": 90 },
-    "facing=south,half=upper,lit=false": { "model": "domesurvival:block/coke_oven_upper", "y": 180 },
-    "facing=west,half=upper,lit=false": { "model": "domesurvival:block/coke_oven_upper", "y": 270 },
-    "facing=north,half=upper,lit=true": { "model": "domesurvival:block/coke_oven_upper" },
-    "facing=east,half=upper,lit=true": { "model": "domesurvival:block/coke_oven_upper", "y": 90 },
-    "facing=south,half=upper,lit=true": { "model": "domesurvival:block/coke_oven_upper", "y": 180 },
-    "facing=west,half=upper,lit=true": { "model": "domesurvival:block/coke_oven_upper", "y": 270 }
-  }
+  "multipart": [
+    { "when": { "facing": "north", "lit": "false" }, "apply": { "model": "domesurvival:block/coke_oven_ready" } },
+    { "when": { "facing": "east",  "lit": "false" }, "apply": { "model": "domesurvival:block/coke_oven_ready", "y": 90 } },
+    { "when": { "facing": "south", "lit": "false" }, "apply": { "model": "domesurvival:block/coke_oven_ready", "y": 180 } },
+    { "when": { "facing": "west",  "lit": "false" }, "apply": { "model": "domesurvival:block/coke_oven_ready", "y": 270 } },
+    { "when": { "facing": "north", "lit": "true" }, "apply": { "model": "domesurvival:block/coke_oven_ready_on" } },
+    { "when": { "facing": "east",  "lit": "true" }, "apply": { "model": "domesurvival:block/coke_oven_ready_on", "y": 90 } },
+    { "when": { "facing": "south", "lit": "true" }, "apply": { "model": "domesurvival:block/coke_oven_ready_on", "y": 180 } },
+    { "when": { "facing": "west",  "lit": "true" }, "apply": { "model": "domesurvival:block/coke_oven_ready_on", "y": 270 } },
+
+    { "apply": { "model": "domesurvival:block/coke_oven_bottom_output" } }
+  ]
 }

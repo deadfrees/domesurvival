@@ -16,30 +16,12 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.List;
 
 /**
- * Places two vanilla hostile-mob spawners inside the selected genetic archive building.
- *
- * The building itself already exists on the authored map. This service never scans the world
- * and never forces chunks: it only searches a tiny local volume after the archive chunk is loaded.
+ * Places two vanilla hostile-mob spawners near the map-independent archive cache.
+ * It only inspects already loaded blocks and never forces structure chunks.
  */
 @Mod.EventBusSubscriber(modid = DomeSurvival.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class GeneticArchiveSpawnerService {
     private static final String SIGNAL_FLAG = "GENETIC_ARCHIVE_SIGNAL_FOUND";
-
-    // Selected building / archive point from V1.3.
-    private static final BlockPos ARCHIVE_CENTER = new BlockPos(-1088, 92, -676);
-
-    // Search two opposite interior zones around the arrival point.
-    private static final List<BlockPos> ZOMBIE_ANCHORS = List.of(
-            ARCHIVE_CENTER.offset(7, 0, 0),
-            ARCHIVE_CENTER.offset(6, 0, 4),
-            ARCHIVE_CENTER.offset(4, 0, 7)
-    );
-
-    private static final List<BlockPos> SKELETON_ANCHORS = List.of(
-            ARCHIVE_CENTER.offset(-7, 0, 0),
-            ARCHIVE_CENTER.offset(-6, 0, -4),
-            ARCHIVE_CENTER.offset(-4, 0, -7)
-    );
 
     private static final int LOCAL_SEARCH_RADIUS = 4;
     private static final int VERTICAL_SEARCH_RADIUS = 3;
@@ -65,13 +47,26 @@ public final class GeneticArchiveSpawnerService {
             return;
         }
 
-        // Never load/generate the archive chunk just to place spawners.
-        if (!level.hasChunkAt(ARCHIVE_CENTER)) {
+        BlockPos target = GeneticArchiveDiscoverySavedData.get(level).target();
+        if (target == null || !level.hasChunkAt(target)) {
             return;
         }
 
+        GeneticArchiveSampleSavedData sampleData = GeneticArchiveSampleSavedData.get(level);
+        BlockPos center = sampleData.cachePlaced() ? sampleData.cachePos() : target;
+        List<BlockPos> zombieAnchors = List.of(
+                center.offset(7, 0, 0),
+                center.offset(6, 0, 4),
+                center.offset(4, 0, 7)
+        );
+        List<BlockPos> skeletonAnchors = List.of(
+                center.offset(-7, 0, 0),
+                center.offset(-6, 0, -4),
+                center.offset(-4, 0, -7)
+        );
+
         if (!data.zombiePlaced()) {
-            BlockPos zombie = findInteriorSpot(level, ZOMBIE_ANCHORS, null);
+            BlockPos zombie = findInteriorSpot(level, zombieAnchors, center, null);
             if (zombie != null && placeSpawner(level, zombie, EntityType.ZOMBIE)) {
                 data.markZombiePlaced(zombie);
             }
@@ -79,7 +74,7 @@ public final class GeneticArchiveSpawnerService {
 
         if (!data.skeletonPlaced()) {
             BlockPos avoid = data.zombiePlaced() ? data.zombiePos() : null;
-            BlockPos skeleton = findInteriorSpot(level, SKELETON_ANCHORS, avoid);
+            BlockPos skeleton = findInteriorSpot(level, skeletonAnchors, center, avoid);
             if (skeleton != null && placeSpawner(level, skeleton, EntityType.SKELETON)) {
                 data.markSkeletonPlaced(skeleton);
             }
@@ -89,6 +84,7 @@ public final class GeneticArchiveSpawnerService {
     private static BlockPos findInteriorSpot(
             ServerLevel level,
             List<BlockPos> anchors,
+            BlockPos center,
             BlockPos avoid
     ) {
         for (BlockPos anchor : anchors) {
@@ -111,7 +107,7 @@ public final class GeneticArchiveSpawnerService {
                             }
 
                             // Do not put a cage directly on the arrival point.
-                            if (pos.distSqr(ARCHIVE_CENTER) < 16.0D) {
+                            if (pos.distSqr(center) < 16.0D) {
                                 continue;
                             }
 

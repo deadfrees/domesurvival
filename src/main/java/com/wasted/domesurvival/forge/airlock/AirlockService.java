@@ -28,7 +28,7 @@ public final class AirlockService {
 
     /** Legacy full-block panel handler, kept for existing unmigrated panels. */
     public static void handlePanelUse(ServerLevel level, BlockPos panelPos, Player player) {
-        AirlockDoor side = legacyPanelSide(panelPos);
+        AirlockDoor side = legacyPanelSide(level, panelPos);
         if (side == null) {
             player.displayClientMessage(Component.literal("[ШЛЮЗ] Неизвестная панель управления.")
                     .withStyle(ChatFormatting.YELLOW), false);
@@ -56,7 +56,7 @@ public final class AirlockService {
             return;
         }
 
-        AirlockDoor side = mountedPanelSide(panelPos, panelState);
+        AirlockDoor side = mountedPanelSide(level, panelPos, panelState);
         if (side == null) {
             player.displayClientMessage(Component.literal(
                     "[ШЛЮЗ] Эта панель не привязана к стартовому шлюзу."
@@ -98,7 +98,7 @@ public final class AirlockService {
 
     private static AirlockTransition toggleV58Gate(ServerLevel level, AirlockDoor side) {
         AirlockGateBlock gate = AirlockGateRegistry.AIRLOCK_GATE.get();
-        BlockPos masterPos = StarterDomeAirlockV58.gateMasterPos(side);
+        BlockPos masterPos = StarterDomeAirlockV58.gateMasterPos(level, side);
         AirlockGateBlock.ToggleResult result = gate.requestToggle(level, masterPos);
         AirlockState current = state(level);
 
@@ -143,8 +143,8 @@ public final class AirlockService {
     public static void reset(ServerLevel level) {
         if (StarterDomeAirlockV58.isInstalled(level)) {
             AirlockGateBlock gate = AirlockGateRegistry.AIRLOCK_GATE.get();
-            requestCloseIfOpen(level, gate, StarterDomeAirlockV58.innerGateMasterPos());
-            requestCloseIfOpen(level, gate, StarterDomeAirlockV58.outerGateMasterPos());
+            requestCloseIfOpen(level, gate, StarterDomeAirlockV58.innerGateMasterPos(level));
+            requestCloseIfOpen(level, gate, StarterDomeAirlockV58.outerGateMasterPos(level));
             DomeSavedData.get(level).resetAirlock();
             return;
         }
@@ -185,7 +185,7 @@ public final class AirlockService {
     }
 
     private static void syncPanelVisuals(ServerLevel level, AirlockState state) {
-        DomeSpec spec = DomeSpec.wastedV1();
+        DomeSpec spec = DomeSavedData.get(level).domeSpec();
 
         applyPanelVisual(level,
                 new BlockPos(spec.airlockPanelX(), spec.airlockPanelY(), spec.innerPanelZ()),
@@ -289,8 +289,8 @@ public final class AirlockService {
                 .withStyle(ChatFormatting.YELLOW);
     }
 
-    private static AirlockDoor legacyPanelSide(BlockPos pos) {
-        DomeSpec spec = DomeSpec.wastedV1();
+    private static AirlockDoor legacyPanelSide(ServerLevel level, BlockPos pos) {
+        DomeSpec spec = DomeSavedData.get(level).domeSpec();
         if (pos.getX() != spec.airlockPanelX() || pos.getY() != spec.airlockPanelY()) return null;
 
         if (pos.getZ() == spec.innerPanelZ() || pos.getZ() == spec.innerDomePanelZ()) {
@@ -306,16 +306,16 @@ public final class AirlockService {
      * Resolves a wall-mounted panel through its support wall block.
      * Migration places that support exactly at the old panel coordinate.
      */
-    private static AirlockDoor mountedPanelSide(BlockPos panelPos, BlockState panelState) {
+    private static AirlockDoor mountedPanelSide(ServerLevel level, BlockPos panelPos, BlockState panelState) {
         if (!panelState.hasProperty(AirlockControlPanelBlock.FACING)) return null;
 
         Direction facing = panelState.getValue(AirlockControlPanelBlock.FACING);
         BlockPos supportPos = panelPos.relative(facing.getOpposite());
-        return legacyPanelSide(supportPos);
+        return legacyPanelSide(level, supportPos);
     }
 
     private static void applyDoorVisual(ServerLevel level, AirlockDoor side, boolean open) {
-        DomeSpec spec = DomeSpec.wastedV1();
+        DomeSpec spec = DomeSavedData.get(level).domeSpec();
         int z = side == AirlockDoor.INNER ? spec.innerDoorZ() : spec.outerDoorZ();
 
         for (int x = spec.airlockCenterX() - spec.airlockDoorHalfWidth();
@@ -333,7 +333,7 @@ public final class AirlockService {
     }
 
     private static void playDoorSound(ServerLevel level, AirlockDoor side, boolean opened) {
-        DomeSpec spec = DomeSpec.wastedV1();
+        DomeSpec spec = DomeSavedData.get(level).domeSpec();
         int z = side == AirlockDoor.INNER ? spec.innerDoorZ() : spec.outerDoorZ();
         BlockPos soundPos = new BlockPos(spec.airlockCenterX(), spec.baseY() + 2, z);
 

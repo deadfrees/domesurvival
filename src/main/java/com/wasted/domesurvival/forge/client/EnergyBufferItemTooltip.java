@@ -3,6 +3,7 @@ package com.wasted.domesurvival.forge.client;
 import com.wasted.domesurvival.forge.block.ModBlocks;
 import com.wasted.domesurvival.forge.machine.energy.AdamantiumEnergyBufferBlockEntity;
 import com.wasted.domesurvival.forge.machine.energy.EnergyBufferBlockEntity;
+import com.wasted.domesurvival.forge.machine.energy.EnergyBufferCapacity;
 import com.wasted.domesurvival.forge.machine.energy.TitanEnergyBufferBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -48,17 +49,19 @@ public final class EnergyBufferItemTooltip {
             return;
         }
 
-        int capacity;
+        int baseCapacity;
         if (block == ModBlocks.ENERGY_BUFFER.get()) {
-            capacity = EnergyBufferBlockEntity.ENERGY_CAPACITY;
+            baseCapacity = EnergyBufferBlockEntity.ENERGY_CAPACITY;
         } else if (block == ModBlocks.ENERGY_BUFFER_TITAN.get()) {
-            capacity = TitanEnergyBufferBlockEntity.ENERGY_CAPACITY;
+            baseCapacity = TitanEnergyBufferBlockEntity.ENERGY_CAPACITY;
         } else if (block == ModBlocks.ENERGY_BUFFER_ADAMANTIUM.get()) {
-            capacity = AdamantiumEnergyBufferBlockEntity.ENERGY_CAPACITY;
+            baseCapacity = AdamantiumEnergyBufferBlockEntity.ENERGY_CAPACITY;
         } else {
             return;
         }
 
+        int capacityLevel = EnergyBufferCapacity.getLevel(stack);
+        int capacity = EnergyBufferCapacity.apply(baseCapacity, capacityLevel);
         int stored = readStoredEnergy(stack, capacity);
         event.getToolTip().add(
                 Component.translatable(

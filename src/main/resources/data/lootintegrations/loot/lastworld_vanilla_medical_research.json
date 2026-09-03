@@ -1,0 +1,9 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/medical_research",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "minecraft:chests/igloo_chest": 1,
+    "minecraft:chests/stronghold_library": 1,
+    "minecraft:chests/village/village_temple": 1
+  }
+}

@@ -194,6 +194,7 @@ public final class SurfaceWeatherService {
         int secondsRemaining = weather == SurfaceWeatherType.SANDSTORM
                 ? sandstormSecondsRemaining(level)
                 : 0;
+        var domeSpec = DomeSavedData.get(level).domeSpec();
 
         SyncKey key = new SyncKey(weather, exposed, solarActive, solarExposed);
         SyncKey old = LAST_SYNC.put(player.getUUID(), key);
@@ -206,7 +207,10 @@ public final class SurfaceWeatherService {
                 exposed,
                 solarActive,
                 solarExposed,
-                secondsRemaining
+                secondsRemaining,
+                domeSpec.centerX(),
+                domeSpec.baseY(),
+                domeSpec.centerZ()
         ));
     }
 

@@ -34,4 +34,14 @@ public final class MachineEnergyStorage extends EnergyStorage {
     public void setEnergyStoredInternal(int amount) {
         energy = Math.max(0, Math.min(capacity, amount));
     }
+
+    /**
+     * Changes runtime FE capacity while preserving valid stored energy.
+     */
+    public void setCapacityInternal(int newCapacity) {
+        capacity = Math.max(0, newCapacity);
+        if (energy > capacity) {
+            energy = capacity;
+        }
+    }
 }

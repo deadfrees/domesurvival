@@ -1,0 +1,9 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/medical_research",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "betterdungeons:spider_dungeon/chests/egg_room": 2,
+    "betterstrongholds:chests/grand_library": 2,
+    "betterstrongholds:chests/library_md": 2
+  }
+}

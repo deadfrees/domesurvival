@@ -8,12 +8,17 @@ import com.wasted.domesurvival.core.dome.DomeBounds;
 import com.wasted.domesurvival.core.dome.DomeSpec;
 import com.wasted.domesurvival.core.dome.DomeZone;
 import com.wasted.domesurvival.forge.airlock.AirlockService;
+import com.wasted.domesurvival.forge.bio.BioLootData;
+import com.wasted.domesurvival.forge.bio.BioModuleDistributionSavedData;
 import com.wasted.domesurvival.forge.data.DomeSavedData;
 import com.wasted.domesurvival.forge.dome.DomeGenerationService;
 import com.wasted.domesurvival.forge.dome.DomePreview;
+import com.wasted.domesurvival.forge.dome.LastWorldDomeTransfer;
+import com.wasted.domesurvival.forge.dome.LastWorldStartService;
 import com.wasted.domesurvival.forge.environment.SurfaceExposure;
 import com.wasted.domesurvival.forge.environment.SurfaceHazardEnvironment;
 import com.wasted.domesurvival.forge.item.ModItems;
+import com.wasted.domesurvival.forge.loot.GeneratedStructureStorageSavedData;
 import com.wasted.domesurvival.forge.oxygen.OxygenEnvironment;
 import com.wasted.domesurvival.forge.oxygen.OxygenEquipment;
 import com.wasted.domesurvival.forge.oxygen.OxygenService;
@@ -21,6 +26,7 @@ import com.wasted.domesurvival.forge.oxygen.PlayerOxygenData;
 import com.wasted.domesurvival.forge.weather.SurfaceWeatherService;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -33,6 +39,19 @@ public final class DomeCommands {
     }
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(Commands.literal("domestart")
+                .executes(ctx -> domeStart(ctx.getSource())));
+        dispatcher.register(Commands.literal("start")
+                .executes(ctx -> domeStart(ctx.getSource())));
+        // Compatibility with an early instruction that showed "./domestart".
+        // Minecraft interprets that dot as part of the literal command name.
+        dispatcher.register(Commands.literal(".domestart")
+                .executes(ctx -> domeStart(ctx.getSource())));
+        dispatcher.register(Commands.literal(".start")
+                .executes(ctx -> domeStart(ctx.getSource())));
+        dispatcher.register(Commands.literal("старт")
+                .executes(ctx -> domeStart(ctx.getSource())));
+
         dispatcher.register(Commands.literal("dome")
                 .requires(source -> source.hasPermission(2))
                 .then(Commands.literal("preview").executes(ctx -> preview(ctx.getSource())))
@@ -40,6 +59,11 @@ public final class DomeCommands {
                 .then(Commands.literal("upgrade").executes(ctx -> upgrade(ctx.getSource())))
                 .then(Commands.literal("check").executes(ctx -> check(ctx.getSource())))
                 .then(Commands.literal("status").executes(ctx -> status(ctx.getSource())))
+                .then(Commands.literal("bio")
+                        .then(Commands.literal("status").executes(ctx -> bioStatus(ctx.getSource()))))
+                .then(Commands.literal("lastworld")
+                        .then(Commands.literal("export").executes(ctx -> lastWorldExport(ctx.getSource())))
+                        .then(Commands.literal("import").executes(ctx -> lastWorldImport(ctx.getSource()))))
                 .then(Commands.literal("survival")
                         .then(Commands.literal("status").executes(ctx -> survivalStatus(ctx.getSource())))
                         .then(Commands.literal("reset").executes(ctx -> survivalReset(ctx.getSource())))
@@ -72,12 +96,56 @@ public final class DomeCommands {
     private static int preview(CommandSourceStack source) {
         ServerLevel level = source.getLevel();
         int particles = DomePreview.show(level);
-        DomeSpec spec = DomeSpec.wastedV1();
+        DomeSpec spec = DomeSavedData.get(level).domeSpec();
         source.sendSuccess(() -> Component.literal(
                 "Dome preview: center=" + spec.centerX() + "," + spec.baseY() + "," + spec.centerZ()
                         + " R=" + spec.surfaceRadius() + ", airlockX=" + spec.airlockCenterX()
                         + ", particles=" + particles), false);
         return 1;
+    }
+
+    private static int domeStart(CommandSourceStack source)
+            throws com.mojang.brigadier.exceptions.CommandSyntaxException {
+        ServerPlayer player = source.getPlayerOrException();
+        LastWorldStartService.StartResult result = LastWorldStartService.begin(player);
+        Component message = Component.literal("[LastWorld] " + result.message())
+                .withStyle(result.started() ? ChatFormatting.GREEN : ChatFormatting.RED);
+        player.displayClientMessage(message, true);
+        if (result.started()) {
+            source.sendSuccess(() -> message, false);
+            return 1;
+        }
+        source.sendFailure(message);
+        return 0;
+    }
+
+    private static int lastWorldExport(CommandSourceStack source) {
+        LastWorldDomeTransfer.TransferResult result = LastWorldDomeTransfer.exportDome(source.getLevel());
+        Component message = Component.literal(
+                "LastWorld export: tiles=" + result.tiles()
+                        + ", positions=" + result.blockPositions()
+                        + ", bounds=" + LastWorldDomeTransfer.boundsDescription(source.getLevel())
+                        + ". " + result.message());
+        if (result.success()) {
+            source.sendSuccess(() -> message, true);
+            return 1;
+        }
+        source.sendFailure(message);
+        return 0;
+    }
+
+    private static int lastWorldImport(CommandSourceStack source) {
+        LastWorldDomeTransfer.TransferResult result = LastWorldDomeTransfer.importDome(source.getLevel());
+        Component message = Component.literal(
+                "LastWorld import: tiles=" + result.tiles()
+                        + ", positions=" + result.blockPositions()
+                        + ". " + result.message());
+        if (result.success()) {
+            source.sendSuccess(() -> message, true);
+            return 1;
+        }
+        source.sendFailure(message);
+        return 0;
     }
 
     private static int generate(CommandSourceStack source) {
@@ -110,7 +178,7 @@ public final class DomeCommands {
     private static int check(CommandSourceStack source) {
         ServerLevel level = source.getLevel();
         Vec3 pos = source.getPosition();
-        DomeBounds bounds = new DomeBounds(DomeSpec.wastedV1());
+        DomeBounds bounds = new DomeBounds(DomeSavedData.get(level).domeSpec());
         DomeZone zone = bounds.classify(pos.x, pos.y, pos.z);
         boolean safe = zone == DomeZone.AIRLOCK ? AirlockService.isBreathable(level) : zone.isSafe();
         source.sendSuccess(() -> Component.literal(String.format(
@@ -122,7 +190,7 @@ public final class DomeCommands {
     private static int status(CommandSourceStack source) {
         ServerLevel level = source.getLevel();
         DomeSavedData data = DomeSavedData.get(level);
-        DomeSpec spec = DomeSpec.wastedV1();
+        DomeSpec spec = data.domeSpec();
         AirlockState airlock = AirlockService.state(level);
         source.sendSuccess(() -> Component.literal(
                 "Dome status: generated=" + data.isGenerated()
@@ -136,6 +204,20 @@ public final class DomeCommands {
                         + ", outerOpen=" + airlock.outerOpen()
                         + ", airlock=" + spec.airlockCenterX() + "," + spec.baseY() + "," + spec.airlockStartZ()
                         + ".." + spec.airlockEndZ()), false);
+        return 1;
+    }
+
+    private static int bioStatus(CommandSourceStack source) {
+        ServerLevel level = source.getServer().overworld();
+        BioModuleDistributionSavedData distribution = BioModuleDistributionSavedData.get(level);
+        int available = BioLootData.allSpecies().size();
+        source.sendSuccess(() -> Component.literal(
+                "Bio distribution: species=" + distribution.assignedSpeciesCount() + "/" + available
+                        + ", paired=" + distribution.pairedSpeciesCount() + "/" + available
+                        + ", occupiedBuildings=" + distribution.occupiedLocationCount()
+                        + ", storageResolved="
+                        + GeneratedStructureStorageSavedData.get(level).handledCount()
+        ).withStyle(ChatFormatting.AQUA), false);
         return 1;
     }
 
@@ -160,7 +242,7 @@ public final class DomeCommands {
         ServerPlayer player = source.getPlayerOrException();
         ServerLevel level = player.serverLevel();
 
-        DomeBounds bounds = new DomeBounds(DomeSpec.wastedV1());
+        DomeBounds bounds = new DomeBounds(DomeSavedData.get(level).domeSpec());
         DomeZone zone = bounds.classify(player.getX(), player.getY(), player.getZ());
         boolean breathable = OxygenEnvironment.isBreathable(player);
         boolean mask = OxygenEquipment.hasMask(player);

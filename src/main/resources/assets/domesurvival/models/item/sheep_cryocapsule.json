@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "domesurvival:item/genetics/sheep_cryocapsule"
-  }
+  "parent": "domesurvival:item/bio_module"
 }

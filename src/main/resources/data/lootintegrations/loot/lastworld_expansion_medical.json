@@ -1,0 +1,20 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/medical_research",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "betterdeserttemples:chests/lab": 1,
+    "betterdeserttemples:chests/library": 1,
+    "dungeoncrawl:chests/library": 1,
+    "betterarcheology:archeology/chest_catacombs_library": 1,
+    "betterarcheology:archeology/chest_catacombs_potion": 1,
+    "betterarcheology:archeology/chest_light_temple_book": 1,
+    "betterarcheology:archeology/chest_radiance_totem": 1,
+    "graveyard:chests/brewing_loot": 1,
+    "graveyard:chests/crypt_urn_loot": 1,
+    "alexscaves:chests/abyssal_ruins": 1,
+    "alexscaves:chests/forlorn_ruins": 1,
+    "alexscaves:chests/underground_cabin_abyssal_chasm": 1,
+    "alexscaves:chests/underground_cabin_forlorn_hollows": 1,
+    "alexscaves:chests/witch_hut": 1
+  }
+}

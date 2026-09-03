@@ -37,7 +37,7 @@ public final class QuestGlobalRegistry {
             new QuestSpec("148982D154C24E63", 1, 7, "wheat", "Первый урожай"),
             new QuestSpec("1D9C983649926D1E", 1, 8, "copper", "Первый промышленный металл"),
             new QuestSpec("350FB0BD7B2E3A7B", 1, 9, "iron", "Железо — уже ответственность"),
-            new QuestSpec("2327F36796AD9481", 1, 10, "bucket", "Вода должна быть рядом"),
+            new QuestSpec("2327F36796AD9481", 1, 10, "sand_sieve", "Песок становится глиной"),
             new QuestSpec("76CC190EA3C2AF43", 1, 11, "roof_materials", "Навес — это план, а не воздух"),
             new QuestSpec("7070CC231A5FD78B", 1, 12, "weather_check", "Сначала посмотри наверх"),
             new QuestSpec("1E17F741B3D2B089", 1, 13, "maneogflow", "maneogflow"),
@@ -137,7 +137,7 @@ public final class QuestGlobalRegistry {
             new QuestSpec("0EB4DDB0F86043F4", 7, 18, "q18", "Малый кислородный баллон"),
             new QuestSpec("6BAAE8F963D04339", 7, 19, "q19", "Маска — это не броня"),
             new QuestSpec("478ADE8DCA760CBA", 7, 20, "q20", "Полный запас воздуха"),
-            new QuestSpec("7A2AF5AE3520F4A0", 7, 21, "q21", "Первая кислородная вылазка"),
+            new QuestSpec("7A2AF5AE3520F4A0", 7, 21, "q21", "Первая защищённая вылазка"),
             new QuestSpec("256D235BCCE50263", 7, 22, "q22", "Воздух с собой"),
             new QuestSpec("1EF3AFD5F22CEF3B", 7, 23, "side_ie_01", "Инженер тяжёлой школы"),
             new QuestSpec("73BAFC4EAC03F601", 7, 24, "side_ie_02", "Стальная водяная линия"),
@@ -150,7 +150,9 @@ public final class QuestGlobalRegistry {
             new QuestSpec("4AA418B9DF3B79A4", 7, 31, "side_genetics_01", "Последние из живых"),
             new QuestSpec("515C1A05E15F3F67", 7, 32, "side_genetics_02", "Настройка на маяк"),
             new QuestSpec("0F7B71D5BDCBD296", 7, 33, "side_genetics_03", "Следуй за стрелкой"),
-            new QuestSpec("3B095F94C8D72753", 7, 34, "side_genetics_04", "Последние образцы")
+            new QuestSpec("3B095F94C8D72753", 7, 34, "side_genetics_04", "Последние образцы"),
+            new QuestSpec("4D7992E0A771B3A1", 7, 35, "side_genetics_05", "Биоинкубатор"),
+            new QuestSpec("6274AE251790C825", 7, 36, "side_genetics_06", "Первое дыхание")
     );
 
     public enum Action {
@@ -440,7 +442,9 @@ public final class QuestGlobalRegistry {
             Map.entry("4AA418B9DF3B79A4", "24C59429F9E4A400"),
             Map.entry("515C1A05E15F3F67", "51C631631E55D582"),
             Map.entry("0F7B71D5BDCBD296", "40F643C5A1ADE4A1"),
-            Map.entry("3B095F94C8D72753", "2E613ED275498856")
+            Map.entry("3B095F94C8D72753", "2E613ED275498856"),
+            Map.entry("4D7992E0A771B3A1", "62A158B1DB78F2A4"),
+            Map.entry("6274AE251790C825", "1C9F570D4DA1D0E2")
     );
 
     private QuestGlobalRegistry() {

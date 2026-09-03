@@ -1,0 +1,32 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/rare",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "lcmt:chests/center_advanced_components": 1,
+    "lcmt:chests/factory_barrel_valuables": 1,
+    "lcmt:chests/shopping_valuables": 1,
+    "lcmt:chests/town_valuables": 1,
+    "betterdeserttemples:chests/pharaoh_hidden": 1,
+    "betterdeserttemples:chests/tomb": 1,
+    "betterdeserttemples:chests/tomb_pharaoh": 1,
+    "dungeoncrawl:chests/secret_room": 1,
+    "dungeoncrawl:chests/stage_5": 1,
+    "dungeoncrawl:chests/treasure": 1,
+    "betterarcheology:archeology/chest_catacombs_golden": 1,
+    "betterarcheology:archeology/chest_jungle_temple_generic": 1,
+    "betterarcheology:archeology/chest_jungle_temple_treasure": 1,
+    "betterarcheology:archeology/chest_light_temple_treasure": 1,
+    "betterarcheology:archeology/chest_sculk_sword": 1,
+    "betterarcheology:archeology/chest_underwater": 1,
+    "graveyard:chests/crypt_loot": 1,
+    "graveyard:chests/desert_graveyard_loot": 1,
+    "graveyard:chests/great_crypt_loot": 1,
+    "graveyard:chests/large_graveyard_loot": 1,
+    "graveyard:chests/medium_graveyard_loot": 1,
+    "graveyard:chests/small_graveyard_loot": 1,
+    "graveyard:chests/swamp_graveyard_loot": 1,
+    "graveyard:chests/totem_loot": 1,
+    "alexscaves:chests/licowitch_tower": 1,
+    "alexscaves:chests/licowitch_tower_secret": 1
+  }
+}

@@ -10,8 +10,8 @@
       "quest_id": "574CF865DA07FAA8",
       "action": "CH0_INTRO",
       "advancement": "domesurvival:quest_actions/ch0_intro",
-      "task_title": "Автоматически: находиться внутри стартового Купола",
-      "subtitle": "Начните путь в безопасной зоне Купола"
+      "task_title": "Автоматически: успешно развернуть Купол через /domestart",
+      "subtitle": "Выберите место и дождитесь полного развёртывания Купола"
     },
     {
       "quest_id": "152DB9A14CA5E5EC",

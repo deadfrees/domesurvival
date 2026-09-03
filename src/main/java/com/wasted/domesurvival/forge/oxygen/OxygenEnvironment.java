@@ -1,7 +1,6 @@
 package com.wasted.domesurvival.forge.oxygen;
 
 import com.wasted.domesurvival.core.dome.DomeBounds;
-import com.wasted.domesurvival.core.dome.DomeSpec;
 import com.wasted.domesurvival.core.dome.DomeZone;
 import com.wasted.domesurvival.forge.airlock.AirlockService;
 import com.wasted.domesurvival.forge.data.DomeSavedData;
@@ -18,8 +17,6 @@ import net.minecraft.world.level.Level;
  * V61 player-built rooms are queried only through the already-discovered SealedRoomManager cache.
  */
 public final class OxygenEnvironment {
-    private static final DomeBounds START_DOME = new DomeBounds(DomeSpec.wastedV1());
-
     private OxygenEnvironment() {
     }
 
@@ -45,7 +42,8 @@ public final class OxygenEnvironment {
             return true;
         }
 
-        DomeZone zone = START_DOME.classify(player.getX(), player.getY(), player.getZ());
+        DomeZone zone = new DomeBounds(DomeSavedData.get(level).domeSpec())
+                .classify(player.getX(), player.getY(), player.getZ());
         if (zone == DomeZone.AIRLOCK) {
             return AirlockService.isBreathable(level);
         }

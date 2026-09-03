@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.client.weather;
 
 import com.wasted.domesurvival.core.weather.SurfaceWeatherType;
+import com.wasted.domesurvival.core.dome.DomeSpec;
 
 /** Client-only mirror of the authoritative server surface-weather state. */
 public final class ClientSurfaceWeatherState {
@@ -9,6 +10,9 @@ public final class ClientSurfaceWeatherState {
     private static volatile boolean solarActive;
     private static volatile boolean solarExposed;
     private static volatile int secondsRemaining;
+    private static volatile int domeCenterX = DomeSpec.wastedV1().centerX();
+    private static volatile int domeBaseY = DomeSpec.wastedV1().baseY();
+    private static volatile int domeCenterZ = DomeSpec.wastedV1().centerZ();
 
     private ClientSurfaceWeatherState() {
     }
@@ -17,16 +21,24 @@ public final class ClientSurfaceWeatherState {
                               boolean newExposed,
                               boolean newSolarActive,
                               boolean newSolarExposed,
-                              int newSecondsRemaining) {
+                              int newSecondsRemaining,
+                              int newDomeCenterX,
+                              int newDomeBaseY,
+                              int newDomeCenterZ) {
         weather = newWeather == null ? SurfaceWeatherType.CLEAR : newWeather;
         exposed = newExposed;
         solarActive = newSolarActive;
         solarExposed = newSolarExposed;
         secondsRemaining = Math.max(0, newSecondsRemaining);
+        domeCenterX = newDomeCenterX;
+        domeBaseY = newDomeBaseY;
+        domeCenterZ = newDomeCenterZ;
     }
 
     public static void clear() {
-        update(SurfaceWeatherType.CLEAR, false, false, false, 0);
+        DomeSpec legacy = DomeSpec.wastedV1();
+        update(SurfaceWeatherType.CLEAR, false, false, false, 0,
+                legacy.centerX(), legacy.baseY(), legacy.centerZ());
     }
 
     public static SurfaceWeatherType weather() {
@@ -53,5 +65,9 @@ public final class ClientSurfaceWeatherState {
 
     public static boolean weatherActive() {
         return weather != SurfaceWeatherType.CLEAR;
+    }
+
+    public static DomeSpec domeSpec() {
+        return DomeSpec.wastedV1().at(domeCenterX, domeBaseY, domeCenterZ);
     }
 }

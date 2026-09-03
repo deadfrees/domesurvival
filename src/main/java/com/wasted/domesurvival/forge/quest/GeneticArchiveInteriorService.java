@@ -66,6 +66,16 @@ public final class GeneticArchiveInteriorService {
             return;
         }
 
+        // This decorator belongs only to the authored legacy archive. In a
+        // normal generated LastWorld save the selected archive is dynamic, so
+        // never touch the old map coordinates unless they are also the target
+        // chosen for this world.
+        BlockPos selectedTarget = GeneticArchiveDiscoverySavedData.get(level).target();
+        if (selectedTarget == null
+                || horizontalDistanceSqr(selectedTarget, ARCHIVE_CENTER) > 64L * 64L) {
+            return;
+        }
+
         for (BlockPos pos : REQUIRED_LOADED_POINTS) {
             if (!level.hasChunkAt(pos)) {
                 return;
@@ -273,5 +283,11 @@ public final class GeneticArchiveInteriorService {
         if (canPlace(level, pos)) {
             level.setBlockAndUpdate(pos, state);
         }
+    }
+
+    private static long horizontalDistanceSqr(BlockPos first, BlockPos second) {
+        long dx = (long) first.getX() - second.getX();
+        long dz = (long) first.getZ() - second.getZ();
+        return dx * dx + dz * dz;
     }
 }

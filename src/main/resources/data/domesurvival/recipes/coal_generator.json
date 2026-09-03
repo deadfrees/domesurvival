@@ -3,13 +3,14 @@
   "pattern": [
     "IPI",
     "DFD",
-    "DDD"
+    "DMD"
   ],
   "key": {
     "I": { "tag": "forge:ingots/iron" },
     "P": { "item": "minecraft:piston" },
     "D": { "item": "minecraft:cobbled_deepslate" },
-    "F": { "item": "domesurvival:copper_furnace" }
+    "F": { "item": "domesurvival:copper_furnace" },
+    "M": { "item": "domesurvival:pulse_matrix" }
   },
   "result": {
     "item": "domesurvival:coal_generator",

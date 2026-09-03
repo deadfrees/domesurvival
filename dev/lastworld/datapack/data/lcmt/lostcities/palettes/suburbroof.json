@@ -1,0 +1,292 @@
+{
+    "palette": [
+      {
+        "char": "͸",
+        "block": "minecraft:oak_planks"
+      },
+      {
+        "char": "΁",
+        "block": "minecraft:oak_stairs[facing=south,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "΀",
+        "block": "minecraft:oak_stairs[facing=south,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "΄",
+        "block": "minecraft:oak_stairs[facing=west,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "ͼ",
+        "block": "minecraft:oak_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "΅",
+        "block": "minecraft:oak_stairs[facing=north,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "Ϳ",
+        "block": "minecraft:oak_stairs[facing=east,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": ";",
+        "block": "minecraft:oak_slab[type=bottom,waterlogged=false]"
+      },
+      {
+        "char": "ͻ",
+        "block": "minecraft:oak_stairs[facing=east,half=bottom,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": "ͷ",
+        "block": "minecraft:oak_log[axis=y]"
+      },
+      {
+        "char": "Ά",
+        "block": "minecraft:oak_stairs[facing=west,half=bottom,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": "ͽ",
+        "block": "minecraft:oak_stairs[facing=north,half=bottom,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": "Ή",
+        "block": "minecraft:oak_trapdoor[facing=north,half=bottom,open=true,powered=false,waterlogged=false]"
+      },
+      {
+        "char": "Ί",
+        "block": "minecraft:oak_trapdoor[facing=south,half=bottom,open=true,powered=false,waterlogged=false]"
+      },
+      {
+        "char": "·",
+        "block": "minecraft:redstone_block"
+      },
+      {
+        "char": "Έ",
+        "block": "minecraft:oak_stairs[facing=north,half=bottom,shape=inner_left,waterlogged=false]"
+      },
+      {
+        "char": "΃",
+        "block": "minecraft:oak_stairs[facing=west,half=bottom,shape=inner_right,waterlogged=false]"
+      },
+      {
+        "char": "͹",
+        "block": "minecraft:oak_stairs[facing=east,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "ͺ",
+        "block": "minecraft:oak_stairs[facing=west,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "΂",
+        "block": "minecraft:oak_stairs[facing=east,half=bottom,shape=inner_left,waterlogged=false]"
+      },
+      {
+        "char": "s",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "V",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "n",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "J",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "H",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "I",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "O",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "U",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "o",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "P",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "M",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "k",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "r",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "m",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "N",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "q",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ώ",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Κ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ι",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͳ",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Η",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Π",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Δ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "<",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Ο",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "&",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Ζ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Γ",
+        "block": "minecraft:stripped_acacia_wood"
+      },
+      {
+        "char": "Ε",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "3",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΋",
+        "block": "minecraft:pearlescent_froglight[axis=y]"
+      },
+      {
+        "char": ",",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Θ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "?",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Μ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ΐ",
+        "block": "minecraft:verdant_froglight[axis=z]"
+      },
+      {
+        "char": "Α",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "Ύ",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Ξ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ͱ",
+        "block": "minecraft:gray_stained_glass"
+      },
+      {
+        "char": "Β",
+        "block": "minecraft:stripped_acacia_wood"
+      },
+      {
+        "char": "ʹ",
+        "block": "minecraft:pearlescent_froglight[axis=x]"
+      },
+      {
+        "char": "ͱ",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "΍",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Ν",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "͵",
+        "block": "minecraft:white_concrete"
+      },
+      {
+        "char": "0",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Ͳ",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": ">",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Λ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ό",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Ͷ",
+        "block": "minecraft:red_concrete"
+      }
+    ]
+  }

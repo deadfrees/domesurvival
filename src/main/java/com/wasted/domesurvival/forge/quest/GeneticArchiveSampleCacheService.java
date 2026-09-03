@@ -1,24 +1,27 @@
 package com.wasted.domesurvival.forge.quest;
 
 import com.wasted.domesurvival.forge.DomeSurvival;
+import com.wasted.domesurvival.forge.bio.BioLootData;
+import com.wasted.domesurvival.forge.bio.BioModuleDistributionSavedData;
 import com.wasted.domesurvival.forge.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.BarrelBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BarrelBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.List;
-
 /**
- * Places the physical genetic samples inside the selected archive building.
+ * Places the physical genetic samples at the generated structure selected for this world.
  *
  * The service performs only a tiny local search after the archive chunk is already loaded.
  * It never scans the world and never forces/generates chunks.
@@ -26,19 +29,9 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = DomeSurvival.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class GeneticArchiveSampleCacheService {
     private static final String SIGNAL_FLAG = "GENETIC_ARCHIVE_SIGNAL_FOUND";
-    private static final BlockPos ARCHIVE_CENTER = new BlockPos(-1088, 92, -676);
-
-    private static final List<BlockPos> CACHE_ANCHORS = List.of(
-            ARCHIVE_CENTER.offset(2, 0, 0),
-            ARCHIVE_CENTER.offset(-2, 0, 0),
-            ARCHIVE_CENTER.offset(0, 0, 2),
-            ARCHIVE_CENTER.offset(0, 0, -2),
-            ARCHIVE_CENTER.offset(3, 0, 1),
-            ARCHIVE_CENTER.offset(-3, 0, -1)
-    );
-
-    private static final int SEARCH_RADIUS = 2;
-    private static final int VERTICAL_RADIUS = 2;
+    private static final int CONTAINER_CHUNK_RADIUS = 4;
+    private static final int PLACEMENT_RADIUS = 8;
+    private static final int VERTICAL_RADIUS = 6;
 
     private GeneticArchiveSampleCacheService() {
     }
@@ -57,53 +50,121 @@ public final class GeneticArchiveSampleCacheService {
 
         GeneticArchiveSampleSavedData data = GeneticArchiveSampleSavedData.get(level);
         if (data.cachePlaced()) {
+            registerGuaranteedDistribution(level, data);
             return;
         }
 
-        if (!level.hasChunkAt(ARCHIVE_CENTER)) {
+        BlockPos target = GeneticArchiveDiscoverySavedData.get(level).target();
+        if (target == null || !level.hasChunkAt(target)) {
             return;
         }
 
-        BlockPos pos = findCacheSpot(level);
+        BlockPos container = findNearestLoadedContainer(level, target);
+        BlockPos pos = null;
+        if (container != null) {
+            pos = findCacheSpot(level, container, true);
+            if (pos == null) {
+                pos = findCacheSpot(level, container, false);
+            }
+        }
+        if (pos == null) {
+            // Structure locators are allowed to return a technical Y (commonly
+            // zero). If the building has no loaded storage of its own, anchor
+            // the guaranteed archive barrel to the actual surface instead of
+            // searching an arbitrary underground layer forever.
+            int surfaceY = level.getHeight(
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    target.getX(),
+                    target.getZ()
+            );
+            BlockPos surfaceAnchor = new BlockPos(target.getX(), surfaceY, target.getZ());
+            pos = findCacheSpot(level, surfaceAnchor, false);
+            if (pos == null && isSafePlacement(level, surfaceAnchor, false)) {
+                pos = surfaceAnchor;
+            }
+        }
         if (pos != null && placeCache(level, pos)) {
             data.markCachePlaced(pos);
+            registerGuaranteedDistribution(level, data);
         }
     }
 
-    private static BlockPos findCacheSpot(ServerLevel level) {
-        for (BlockPos anchor : CACHE_ANCHORS) {
-            for (int radius = 0; radius <= SEARCH_RADIUS; radius++) {
-                for (int dy = -VERTICAL_RADIUS; dy <= VERTICAL_RADIUS; dy++) {
-                    for (int dx = -radius; dx <= radius; dx++) {
-                        for (int dz = -radius; dz <= radius; dz++) {
-                            if (Math.max(Math.abs(dx), Math.abs(dz)) != radius) {
-                                continue;
-                            }
+    private static void registerGuaranteedDistribution(
+            ServerLevel level,
+            GeneticArchiveSampleSavedData data
+    ) {
+        if (data.distributionRegistered()) {
+            return;
+        }
 
-                            BlockPos pos = anchor.offset(dx, dy, dz);
+        BlockPos cachePos = data.cachePos();
+        if (!level.hasChunkAt(cachePos)) {
+            return;
+        }
 
-                            if (!level.hasChunkAt(pos)) {
-                                continue;
-                            }
+        BioModuleDistributionSavedData.get(level).recordGuaranteedArchiveSamples(
+                cachePos,
+                BioLootData.distributionLocationKey(level, cachePos)
+        );
+        data.markDistributionRegistered();
+    }
 
-                            // Keep the crate close to the selected interior arrival point.
-                            if (pos.distSqr(ARCHIVE_CENTER) > 16.0D) {
-                                continue;
-                            }
+    private static BlockPos findNearestLoadedContainer(ServerLevel level, BlockPos target) {
+        BlockPos best = null;
+        double bestDistance = Double.MAX_VALUE;
+        int targetChunkX = target.getX() >> 4;
+        int targetChunkZ = target.getZ() >> 4;
 
-                            if (isSafePlacement(level, pos)) {
-                                return pos.immutable();
-                            }
+        for (int chunkX = targetChunkX - CONTAINER_CHUNK_RADIUS;
+             chunkX <= targetChunkX + CONTAINER_CHUNK_RADIUS; chunkX++) {
+            for (int chunkZ = targetChunkZ - CONTAINER_CHUNK_RADIUS;
+                 chunkZ <= targetChunkZ + CONTAINER_CHUNK_RADIUS; chunkZ++) {
+                BlockPos chunkProbe = new BlockPos(chunkX << 4, target.getY(), chunkZ << 4);
+                if (!level.hasChunkAt(chunkProbe)) {
+                    continue;
+                }
+
+                LevelChunk chunk = level.getChunk(chunkX, chunkZ);
+                for (BlockEntity blockEntity : chunk.getBlockEntities().values()) {
+                    if (!(blockEntity instanceof Container)) {
+                        continue;
+                    }
+
+                    BlockPos pos = blockEntity.getBlockPos();
+                    double distance = horizontalDistanceSqr(pos, target);
+                    if (distance < bestDistance) {
+                        best = pos.immutable();
+                        bestDistance = distance;
+                    }
+                }
+            }
+        }
+        return best;
+    }
+
+    private static BlockPos findCacheSpot(ServerLevel level, BlockPos anchor, boolean sheltered) {
+        for (int radius = 1; radius <= PLACEMENT_RADIUS; radius++) {
+            for (int dy = -VERTICAL_RADIUS; dy <= VERTICAL_RADIUS; dy++) {
+                for (int dx = -radius; dx <= radius; dx++) {
+                    for (int dz = -radius; dz <= radius; dz++) {
+                        if (Math.max(Math.abs(dx), Math.abs(dz)) != radius) {
+                            continue;
+                        }
+                        BlockPos pos = anchor.offset(dx, dy, dz);
+                        if (isSafePlacement(level, pos, sheltered)) {
+                            return pos.immutable();
                         }
                     }
                 }
             }
         }
-
         return null;
     }
 
-    private static boolean isSafePlacement(ServerLevel level, BlockPos pos) {
+    private static boolean isSafePlacement(ServerLevel level, BlockPos pos, boolean sheltered) {
+        if (!level.hasChunkAt(pos)) {
+            return false;
+        }
         if (!level.getBlockState(pos).isAir()) {
             return false;
         }
@@ -113,8 +174,7 @@ public final class GeneticArchiveSampleCacheService {
             return false;
         }
 
-        // Keep the sample cache inside the building.
-        if (level.canSeeSky(pos.above())) {
+        if (sheltered && level.canSeeSky(pos.above())) {
             return false;
         }
 
@@ -135,13 +195,21 @@ public final class GeneticArchiveSampleCacheService {
             return false;
         }
 
-        barrel.setItem(2, new ItemStack(ModItems.CHICKEN_CRYOCAPSULE.get(), 2));
-        barrel.setItem(6, new ItemStack(ModItems.SHEEP_CRYOCAPSULE.get(), 2));
-        barrel.setItem(10, new ItemStack(ModItems.COW_CRYOCAPSULE.get(), 2));
+        // Each archive contributes only one specimen of a species. Additional
+        // modules must be recovered from the global structure-loot system.
+        barrel.setItem(2, new ItemStack(ModItems.CHICKEN_CRYOCAPSULE.get(), 1));
+        barrel.setItem(6, new ItemStack(ModItems.SHEEP_CRYOCAPSULE.get(), 1));
+        barrel.setItem(10, new ItemStack(ModItems.COW_CRYOCAPSULE.get(), 1));
         barrel.setItem(14, new ItemStack(ModItems.DAMAGED_PIG_CRYOCAPSULE.get(), 1));
         barrel.setChanged();
 
         level.sendBlockUpdated(pos, barrelState, barrelState, 3);
         return true;
+    }
+
+    private static double horizontalDistanceSqr(BlockPos first, BlockPos second) {
+        double dx = first.getX() - second.getX();
+        double dz = first.getZ() - second.getZ();
+        return dx * dx + dz * dz;
     }
 }

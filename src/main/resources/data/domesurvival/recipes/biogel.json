@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:clay_ball" },
+    { "item": "minecraft:bone_meal" },
+    { "item": "minecraft:sugar" },
+    { "item": "minecraft:glass_bottle" }
+  ],
+  "result": {
+    "item": "domesurvival:biogel",
+    "count": 2
+  }
+}

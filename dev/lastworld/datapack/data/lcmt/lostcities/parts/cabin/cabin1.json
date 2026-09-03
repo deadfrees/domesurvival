@@ -1,0 +1,246 @@
+{
+  "xsize": 16,
+  "zsize": 16,
+  "palette": {
+    "palette": [
+      {
+        "char": "m",
+        "block": "minecraft:air"
+      },
+      {
+        "char": "n",
+        "block": "minecraft:campfire[facing=west,lit=true,signal_fire=false,waterlogged=false]"
+      },
+      {
+        "char": ",",
+        "block": "minecraft:iron_bars"
+      },
+      {
+        "char": "Ͱ",
+        "block": "minecraft:iron_bars"
+      },
+      {
+        "char": "k",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "<",
+        "block": "minecraft:iron_bars"
+      },
+      {
+        "char": "J",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "&",
+        "block": "minecraft:iron_bars"
+      },
+      {
+        "char": "r",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "I",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "q",
+        "block": "minecraft:dark_oak_wood[axis=y]"
+      },
+      {
+        "char": ">",
+        "block": "minecraft:chest[facing=south,type=single,waterlogged=false]"
+      },
+      {
+        "char": "0",
+        "block": "minecraft:iron_bars"
+      },
+      {
+        "char": "M",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͱ",
+        "block": "minecraft:dark_oak_wood[axis=z]"
+      },
+      {
+        "char": "N",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "O",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "V",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "H",
+        "block": "minecraft:dark_oak_wood[axis=x]"
+      },
+      {
+        "char": "s",
+        "block": "minecraft:campfire[facing=east,lit=true,signal_fire=false,waterlogged=false]"
+      },
+      {
+        "char": "o",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "?",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "U",
+        "block": "minecraft:polished_deepslate"
+      }
+     ]
+   },
+  "slices": [
+      [
+        "                ",
+        "                ",
+        "                ",
+        "   ############ ",
+        "   ############ ",
+        "   ############ ",
+        "   ##########   ",
+        "   ##########   ",
+        "   ##########   ",
+        "   ##########   ",
+        "   ##########   ",
+        "   ##########   ",
+        "   ##########   ",
+        "                ",
+        "                ",
+        "                "
+      ],
+      [
+        "                ",
+        "                ",
+        "                ",
+        "   ############ ",
+        "   ############ ",
+        "   ############ ",
+        "   ##########   ",
+        "   ##########   ",
+        "   ##########   ",
+        "   ##########   ",
+        "   ##########   ",
+        "   ##########   ",
+        "   ##########   ",
+        "                ",
+        "                ",
+        "                "
+      ],
+      [
+        "                ",
+        "                ",
+        "                ",
+        "   ############ ",
+        "   ############ ",
+        "   ############ ",
+        "   ########k#   ",
+        "   ##########   ",
+        "   ####mm####   ",
+        "   ####mm####   ",
+        "   ##########   ",
+        "   ##########   ",
+        "   ##########   ",
+        "                ",
+        "                ",
+        "                "
+      ],
+      [
+        "                ",
+        "                ",
+        "                ",
+        "   noqqqqqqqr s ",
+        "    oqqqqqHqr   ",
+        "       II       ",
+        "   JJJJ  JJJJ   ",
+        "   M        M   ",
+        "   JJJ    JCJ   ",
+        "            N   ",
+        "   JCJO  NJJJ   ",
+        "   U       V    ",
+        "   JJJJ  JJJJ   ",
+        "                ",
+        "                ",
+        "                "
+      ],
+      [
+        "                ",
+        "                ",
+        "                ",
+        "     0&&&&&<    ",
+        "     >     >    ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                "
+      ],
+      [
+        "                ",
+        "                ",
+        "                ",
+        "        ,       ",
+        "        ?       ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                "
+      ],
+      [
+        "                ",
+        "                ",
+        "                ",
+        "        ,       ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                "
+      ],
+      [
+        "                ",
+        "                ",
+        "                ",
+        "        Ͱ       ",
+        "        ͱ       ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                ",
+        "                "
+      ]
+  ]
+}

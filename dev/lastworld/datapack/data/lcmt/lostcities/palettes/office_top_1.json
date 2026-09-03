@@ -1,0 +1,101 @@
+ 
+{
+  "palette": [
+      {
+        "char": "U",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "q",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "N",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "&",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "M",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "r",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "H",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Ͱ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "k",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "J",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "o",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "m",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "O",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "V",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": ",",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "s",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "3",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "?",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "P",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "<",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": ">",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "I",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "0",
+        "block": "minecraft:gray_stained_glass"
+      },
+      {
+        "char": "n",
+        "block": "minecraft:polished_deepslate"
+      }
+  ]
+}

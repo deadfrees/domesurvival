@@ -1,0 +1,7 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/mining",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "betterdungeons:skeleton_dungeon/chests/common": 2
+  }
+}

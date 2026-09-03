@@ -1,0 +1,32 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "minecraft:block/polished_deepslate",
+    "casing": "minecraft:block/polished_deepslate",
+    "panel": "domesurvival:block/shaft_furnace_dark/bftoolst"
+  },
+  "elements": [
+    {
+      "name": "rear_input_collar",
+      "from": [5.0, 5.0, 16.405],
+      "to": [11.0, 11.0, 16.72],
+      "faces": {
+        "down": { "texture": "#casing" },
+        "up": { "texture": "#casing" },
+        "north": { "texture": "#casing" },
+        "south": { "texture": "#panel", "uv": [3, 3, 13, 13] },
+        "west": { "texture": "#casing" },
+        "east": { "texture": "#casing" }
+      }
+    },
+    {
+      "name": "rear_input_socket",
+      "from": [6.25, 6.25, 16.715],
+      "to": [9.75, 9.75, 16.725],
+      "shade": false,
+      "faces": {
+        "south": { "texture": "#panel", "uv": [5, 5, 11, 11] }
+      }
+    }
+  ]
+}

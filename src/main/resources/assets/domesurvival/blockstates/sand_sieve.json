@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "active=false,facing=north": { "model": "domesurvival:block/sand_sieve" },
+    "active=false,facing=east":  { "model": "domesurvival:block/sand_sieve", "y": 90 },
+    "active=false,facing=south": { "model": "domesurvival:block/sand_sieve", "y": 180 },
+    "active=false,facing=west":  { "model": "domesurvival:block/sand_sieve", "y": 270 },
+    "active=true,facing=north":  { "model": "domesurvival:block/sand_sieve" },
+    "active=true,facing=east":   { "model": "domesurvival:block/sand_sieve", "y": 90 },
+    "active=true,facing=south":  { "model": "domesurvival:block/sand_sieve", "y": 180 },
+    "active=true,facing=west":   { "model": "domesurvival:block/sand_sieve", "y": 270 }
+  }
+}

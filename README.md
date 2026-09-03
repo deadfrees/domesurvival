@@ -1,4 +1,4 @@
-# Dome Survival — stable 0.1.1
+# Dome Survival — stable 0.2.0
 
 Minecraft Forge mod for the WASTED / GOTEICRAFT survival project.
 
@@ -23,7 +23,7 @@ flat-directory dependency block is no longer required.
 
 ## Stable scope
 
-The 0.1.1 stable snapshot contains the current production code for:
+The 0.2.0 stable snapshot contains the current production code for:
 
 - dome survival and surface hazards;
 - oxygen equipment and sealed-room oxygen simulation;
@@ -34,7 +34,12 @@ The 0.1.1 stable snapshot contains the current production code for:
 - airlock gate/control system;
 - oxygen reclamation complex;
 - technical service pass-through;
-- CustomNPCs progression integration.
+- portable LastWorld world setup and `/domestart` starter dome deployment;
+- CustomNPCs and FTB Quests progression integration;
+- genetic archives, cryocapsules and the bioincubator progression;
+- sand screening, coke oven and shaft furnace metallurgy;
+- desert world generation, structure loot and GOTEICRAFT materials;
+- modpack menu, music and environmental presentation assets.
 
 Historical patch archives, build logs, test-world copies, Forge MDK duplicates and local
 modpack jars are intentionally excluded from source control.

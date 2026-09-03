@@ -2,8 +2,12 @@
   "replace": false,
   "values": [
     "domesurvival:coal_generator",
+    "domesurvival:coke_oven",
+    "domesurvival:coke_oven_part",
     "domesurvival:water_purifier",
     "domesurvival:oxygen_electrolyzer",
-    "domesurvival:machine_stabilizer"
+    "domesurvival:machine_stabilizer",
+    "domesurvival:shaft_furnace",
+    "domesurvival:shaft_furnace_part"
   ]
 }

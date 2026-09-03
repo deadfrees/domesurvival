@@ -32,27 +32,26 @@ public final class ModCreativeTabs {
     private static final ResourceLocation PREFERRED_ICON =
             new ResourceLocation(DomeSurvival.MOD_ID, "reinforced_glass");
 
-    /*
-     * Stable thematic order for the Dome Survival tab. Transport pipes remain
-     * one contiguous row; machine families and multiblock modules stay grouped.
-     */
+    /** Stable thematic order: materials, life support, power, technology, biology, misc. */
     private static final List<String> DISPLAY_ORDER = List.of(
-            // Row 1: all transport pipes.
-            "basic_energy_pipe",
-            "reinforced_energy_pipe",
-            "high_voltage_energy_pipe",
-            "basic_fluid_pipe",
-            "reinforced_fluid_pipe",
-            "high_pressure_fluid_pipe",
-            "oxygen_pipe",
-            "reinforced_oxygen_pipe",
-            "high_flow_oxygen_pipe",
+            // 1. Base materials and components.
+            "steel_ingot",
+            "coal_coke",
+            "slag",
+            "steel_gear",
+            "tin_gear",
+            "lead_gear",
+            "nickel_gear",
+            "pulse_matrix",
+            "machine_stabilizer",
+            "water_filter_cartridge",
+            "improved_water_filter",
+            "industrial_water_filter",
+            "hopper_upgrade_vanilla_to_copper",
+            "hopper_upgrade_copper_to_steel",
+            "hopper_upgrade_steel_to_desh",
 
-            // Row 2: machines and energy storage.
-            "coal_generator",
-            "coke_oven",
-            "shaft_furnace",
-            "copper_furnace",
+            // 2. Oxygen and life-support equipment.
             "water_purifier",
             "oxygen_electrolyzer",
             "oxygen_filler",
@@ -60,42 +59,59 @@ public final class ModCreativeTabs {
             "oxygen_complex_filtration",
             "oxygen_complex_compression",
             "oxygen_complex_output",
-            "energy_buffer",
-            "energy_buffer_titan",
-            "energy_buffer_adamantium",
-            "energy_buffer_creative",
-
-            // Row 3: bulk storage, logistics and core components.
-            "universal_tank",
-            "copper_hopper",
-            "steel_hopper",
-            "desh_hopper",
-            "hopper_upgrade_vanilla_to_copper",
-            "hopper_upgrade_copper_to_steel",
-            "hopper_upgrade_steel_to_desh",
-            "machine_stabilizer",
-            "pulse_matrix",
-            "steel_gear",
-            "tin_gear",
-            "lead_gear",
-            "nickel_gear",
-            "coal_coke",
-            "steel_ingot",
-            "slag",
-
-            // Row 4: tools, filters and portable oxygen equipment.
-            "machine_wrench",
-            "airlock_binding_key",
-            "memory_painting",
-            "water_filter_cartridge",
-            "improved_water_filter",
-            "industrial_water_filter",
             "oxygen_mask",
             "small_oxygen_tank",
             "medium_oxygen_tank",
             "large_oxygen_tank",
+            "oxygen_pipe",
+            "reinforced_oxygen_pipe",
+            "high_flow_oxygen_pipe",
 
-            // Row 5: suit and authored dome/airlock blocks.
+            // 3. Power generation, storage and transport.
+            "coal_generator",
+            "energy_buffer",
+            "energy_buffer_titan",
+            "energy_buffer_adamantium",
+            "energy_buffer_creative",
+            "basic_energy_pipe",
+            "reinforced_energy_pipe",
+            "high_voltage_energy_pipe",
+
+            // 4. Tanks, processing machines and technical logistics.
+            "universal_tank",
+            "basic_fluid_pipe",
+            "reinforced_fluid_pipe",
+            "high_pressure_fluid_pipe",
+            "copper_furnace",
+            "coke_oven",
+            "shaft_furnace",
+            "copper_hopper",
+            "steel_hopper",
+            "desh_hopper",
+            "copper_item_pipe",
+            "steel_item_pipe",
+            "desh_item_pipe",
+            "filtering_item_pipe",
+            "service_pass_through",
+
+            // 5. Fauna restoration.
+            "bioincubator",
+            "bio_repair_kit",
+            "biogel",
+            "nutrient_mix",
+            "chicken_cryocapsule",
+            "sheep_cryocapsule",
+            "cow_cryocapsule",
+            "damaged_pig_cryocapsule",
+
+            // 6. Tools, suit, construction and decorative content.
+            "sand_sieve",
+            "fiber_sieve_mesh",
+            "copper_sieve_mesh",
+            "steel_sieve_mesh",
+            "machine_wrench",
+            "airlock_binding_key",
+            "memory_painting",
             "surface_suit_helmet",
             "surface_suit_chestplate",
             "surface_suit_leggings",
@@ -103,7 +119,6 @@ public final class ModCreativeTabs {
             "airlock_gate",
             "airlock_control_panel",
 
-            // Remaining authored/legacy blocks.
             "lanos_decorative",
             "lanos_abandoned"
     );
@@ -123,7 +138,8 @@ public final class ModCreativeTabs {
                         .displayItems((parameters, output) ->
                                 ForgeRegistries.ITEMS.getValues().stream()
                                         .filter(ModCreativeTabs::isDomeSurvivalItem)
-                                        .sorted(CreativeItemOrder.COMPARATOR)
+                                        .sorted(Comparator.comparingInt(ModCreativeTabs::displayRank)
+                                                .thenComparing(ModCreativeTabs::registryPath))
                                         .forEach(output::accept))
                         .build()
         ));
@@ -141,6 +157,7 @@ public final class ModCreativeTabs {
         // registered and obtainable through /give, but stay out of creative.
         return !"airlock_door".equals(path)
                 && !"airlock_panel".equals(path)
+                && !"bio_module".equals(path)
                 && !"reinforced_glass".equals(path)
                 && !"dome_frame".equals(path)
                 && !"dome_foundation".equals(path);

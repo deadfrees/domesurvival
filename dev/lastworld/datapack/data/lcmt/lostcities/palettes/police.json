@@ -1,0 +1,228 @@
+{
+    "palette": [
+      {
+        "char": "V",
+        "block": "minecraft:structure_void"
+      },
+      {
+        "char": "s",
+        "block": "minecraft:sand"
+      },
+      {
+        "char": "H",
+        "block": "minecraft:sandstone"
+      },
+      {
+        "char": "Ϣ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Ϫ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ϯ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "Ϙ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "ϣ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Ϲ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "ϙ",
+        "block": "minecraft:iron_bars"
+      },
+      {
+        "char": "ϲ",
+        "block": "minecraft:red_concrete"
+      },
+      {
+        "char": "ϰ",
+        "block": "minecraft:gray_stained_glass_pane"
+      },
+      {
+        "char": "Ϩ",
+        "block": "minecraft:stone_stairs[facing=west,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "ϱ",
+        "block": "minecraft:polished_deepslate_slab"
+      },
+      {
+        "char": "ϫ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ϭ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ϳ",
+        "block": "minecraft:white_concrete"
+      },
+      {
+        "char": "ϼ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "Ͻ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "ϵ",
+        "block": "minecraft:stone_stairs[facing=south,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "ϟ",
+        "block": "minecraft:stone_stairs[facing=south,half=top,shape=inner_left,waterlogged=false]"
+      },
+      {
+        "char": "ϸ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "ϓ",
+        "block": "minecraft:gray_stained_glass_pane"
+      },
+      {
+        "char": "Ϝ",
+        "block": "minecraft:stone_stairs[facing=east,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "Ͽ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "Ϻ",
+        "block": "minecraft:stone_stairs[facing=north,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "Ϯ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "Ϟ",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "϶",
+        "block": "minecraft:stone_stairs[facing=south,half=top,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "ϴ",
+        "block": "minecraft:blue_concrete"
+      },
+      {
+        "char": "ϑ",
+        "block": "minecraft:chiseled_quartz_block"
+      },
+      {
+        "char": "ϖ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "ϗ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Ϛ",
+        "block": "minecraft:stone_stairs[facing=north,half=top,shape=inner_right,waterlogged=false]"
+      },
+      {
+        "char": "ϡ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "ϥ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "ϒ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "ϛ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "ϧ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ϭ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ϧ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "ύ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "ϔ",
+        "block": "minecraft:gray_concrete"
+      },
+      {
+        "char": "ϕ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "Ϗ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Ϡ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "ό",
+        "block": "minecraft:polished_andesite"
+      },
+      {
+        "char": "ϝ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ϩ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "ϻ",
+        "block": "minecraft:stone_stairs[facing=north,half=top,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": "ώ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Ϸ",
+        "block": "minecraft:stone_stairs[facing=west,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "ϐ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Ϥ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Ͼ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "k",
+        "block": "minecraft:polished_deepslate"
+      }
+    ]
+  }

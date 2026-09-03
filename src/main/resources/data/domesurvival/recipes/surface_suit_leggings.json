@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "SSS",
+    "L L",
+    "S S"
+  ],
+  "key": {
+    "S": { "tag": "forge:ingots/steel" },
+    "L": { "tag": "forge:ingots/lead" }
+  },
+  "result": {
+    "item": "domesurvival:surface_suit_leggings",
+    "count": 1
+  }
+}

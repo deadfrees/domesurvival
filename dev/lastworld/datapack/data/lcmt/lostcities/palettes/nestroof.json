@@ -1,0 +1,104 @@
+{
+    "palette": [
+      {
+        "char": "΂",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΄",
+        "block": "minecraft:yellow_concrete"
+      },
+      {
+        "char": "?",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͷ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΅",
+        "block": "minecraft:black_concrete"
+      },
+      {
+        "char": "ͱ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΃",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ͷ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ά",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ϳ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "·",
+        "block": "minecraft:glowstone"
+      },
+      {
+        "char": "͸",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "͵",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "ʹ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͺ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": ";",
+        "block": "minecraft:stripped_acacia_wood"
+      },
+      {
+        "char": "΁",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "͹",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ͳ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΀",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "Ͱ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͼ",
+        "block": "minecraft:stripped_acacia_wood"
+      },
+      {
+        "char": "ͽ",
+        "block": "minecraft:stripped_acacia_wood"
+      },
+      {
+        "char": "ͻ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "ͳ",
+        "block": "minecraft:polished_deepslate"
+      }
+    ]
+  }

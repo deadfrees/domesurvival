@@ -1,0 +1,244 @@
+{
+    "palette": [
+      {
+        "char": "΁",
+        "block": "minecraft:stone_stairs[facing=south,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "΍",
+        "block": "minecraft:black_wool"
+      },
+      {
+        "char": "π",
+        "block": "minecraft:stone_stairs[facing=south,half=bottom,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": "Ώ",
+        "block": "minecraft:pearlescent_froglight[axis=z]"
+      },
+      {
+        "char": "U",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "͸",
+        "block": "minecraft:stone_stairs[facing=west,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "P",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "<",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ͷ",
+        "block": "minecraft:stone_stairs[facing=east,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "ͽ",
+        "block": "minecraft:stone_stairs[facing=north,half=top,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": "ο",
+        "block": "minecraft:stone_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "ͳ",
+        "block": "minecraft:stone_stairs[facing=south,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "Ό",
+        "block": "minecraft:white_concrete"
+      },
+      {
+        "char": ">",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "ͻ",
+        "block": "minecraft:stone_stairs[facing=west,half=top,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "Ύ",
+        "block": "minecraft:pearlescent_froglight[axis=y]"
+      },
+      {
+        "char": "·",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "΋",
+        "block": "minecraft:end_rod[facing=up]"
+      },
+      {
+        "char": "ρ",
+        "block": "minecraft:stone_stairs[facing=east,half=bottom,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": "&",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "ͷ",
+        "block": "minecraft:gray_stained_glass_pane"
+      },
+      {
+        "char": "ʹ",
+        "block": "minecraft:stone_stairs[facing=south,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "q",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "΂",
+        "block": "minecraft:stone_stairs[facing=east,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "Έ",
+        "block": "minecraft:stone_stairs[facing=north,half=bottom,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": ",",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "΅",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "o",
+        "block": "minecraft:mossy_stone_bricks"
+      },
+      {
+        "char": "΀",
+        "block": "minecraft:stone_stairs[facing=south,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "N",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "ͺ",
+        "block": "minecraft:stone_stairs[facing=north,half=top,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "m",
+        "block": "minecraft:sand"
+      },
+      {
+        "char": "΃",
+        "block": "minecraft:air"
+      },
+      {
+        "char": ";",
+        "block": "minecraft:stone_stairs[facing=east,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "Ί",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "ͱ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "ς",
+        "block": "minecraft:stone_stairs[facing=west,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "O",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "I",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "n",
+        "block": "minecraft:stone_bricks"
+      },
+      {
+        "char": "r",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "Ά",
+        "block": "minecraft:stone_stairs[facing=north,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "΄",
+        "block": "minecraft:stone_stairs[facing=west,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "Β",
+        "block": "minecraft:stone_stairs[facing=west,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "ΐ",
+        "block": "minecraft:air"
+      },
+      {
+        "char": "Ͳ",
+        "block": "minecraft:stone_stairs[facing=east,half=top,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "Ή",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "0",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "͵",
+        "block": "minecraft:stone_stairs[facing=south,half=top,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "ͼ",
+        "block": "minecraft:stone_stairs[facing=north,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "Ͱ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "k",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "?",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Γ",
+        "block": "minecraft:stone_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "M",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "J",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "3",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Ϳ",
+        "block": "minecraft:stone_stairs[facing=south,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "͹",
+        "block": "minecraft:black_stained_glass"
+      },
+      {
+        "char": "Α",
+        "block": "minecraft:stone_stairs[facing=east,half=bottom,shape=straight,waterlogged=false]"
+      }
+    ]
+  }

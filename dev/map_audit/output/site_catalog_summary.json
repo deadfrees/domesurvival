@@ -1,0 +1,39 @@
+﻿{
+    "sites":  66,
+    "categories":  [
+                       {
+                           "category":  "DAMAGED_STORAGE",
+                           "sites":  16
+                       },
+                       {
+                           "category":  "FARM_COMMON",
+                           "sites":  2
+                       },
+                       {
+                           "category":  "FARM_UNCOMMON",
+                           "sites":  3
+                       },
+                       {
+                           "category":  "GENETIC_ARCHIVE",
+                           "sites":  3
+                       },
+                       {
+                           "category":  "GENETIC_ARCHIVE_RARE",
+                           "sites":  2
+                       },
+                       {
+                           "category":  "LAB_ANIMALS",
+                           "sites":  4
+                       },
+                       {
+                           "category":  "LOGISTICS_MIXED",
+                           "sites":  17
+                       },
+                       {
+                           "category":  "STORY_GUARANTEED",
+                           "sites":  19
+                       }
+                   ],
+    "sites_with_container_32":  66,
+    "sites_needing_storage_review":  0
+}

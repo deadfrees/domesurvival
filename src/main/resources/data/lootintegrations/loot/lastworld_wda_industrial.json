@@ -1,0 +1,17 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/industrial",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "dungeons_arise:chests/foundry/foundry_chains": 2,
+    "dungeons_arise:chests/foundry/foundry_lava_pit": 2,
+    "dungeons_arise:chests/foundry/foundry_normal": 2,
+    "dungeons_arise:chests/foundry/foundry_passage_exterior": 2,
+    "dungeons_arise:chests/foundry/foundry_passage_normal": 2,
+    "dungeons_arise:chests/infested_temple/infested_temple_room_forge": 2,
+    "dungeons_arise:chests/mechanical_nest/mechanical_nest_equipment": 2,
+    "dungeons_arise:chests/mechanical_nest/mechanical_nest_normal": 2,
+    "dungeons_arise:chests/mechanical_nest/mechanical_nest_supply": 2,
+    "dungeons_arise:chests/small_blimp/small_blimp_coal_storage": 2,
+    "dungeons_arise:chests/small_blimp/small_blimp_redstone_chamber": 2
+  }
+}

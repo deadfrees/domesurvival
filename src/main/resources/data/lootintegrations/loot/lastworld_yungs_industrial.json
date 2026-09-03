@@ -1,0 +1,8 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/industrial",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "betterdungeons:small_nether_dungeon/chests/common": 2,
+    "betterstrongholds:chests/armoury": 2
+  }
+}

@@ -1,0 +1,188 @@
+{
+    "palette": [
+      {
+        "char": "V",
+        "block": "minecraft:structure_void"
+      },
+      {
+        "char": "s",
+        "block": "minecraft:sand"
+      },
+      {
+        "char": "H",
+        "block": "minecraft:sandstone"
+      },
+      {
+        "char": "ν",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ν",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "θ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Δ",
+        "block": "minecraft:gray_concrete"
+      },
+      {
+        "char": "κ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Λ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "δ",
+        "block": "immersiveengineering:sample_drill[facing=north,multiblockslave=true]"
+      },
+      {
+        "char": "Χ",
+        "block": "minecraft:deepslate_iron_ore"
+      },
+      {
+        "char": "Υ",
+        "block": "minecraft:stripped_acacia_wood"
+      },
+      {
+        "char": "Ϊ",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Ϋ",
+        "block": "minecraft:stripped_acacia_wood"
+      },
+      {
+        "char": "ά",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ξ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "μ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ρ",
+        "block": "farmersdelight:organic_compost[composting=1]"
+      },
+      {
+        "char": "γ",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "ή",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Κ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "α",
+        "block": "immersiveengineering:sample_drill[facing=north,multiblockslave=false]"
+      },
+      {
+        "char": "Η",
+        "block": "minecraft:raw_copper_block"
+      },
+      {
+        "char": "ΰ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Μ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Φ",
+        "block": "minecraft:raw_iron_block"
+      },
+      {
+        "char": "ε",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "λ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ζ",
+        "block": "minecraft:stone_bricks"
+      },
+      {
+        "char": "Ω",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ψ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΢",
+        "block": "minecraft:stripped_acacia_wood"
+      },
+      {
+        "char": "β",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "ξ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ε",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "Θ",
+        "block": "minecraft:deepslate_copper_ore"
+      },
+      {
+        "char": "Ι",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ο",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "έ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Π",
+        "block": "minecraft:composter[level=0]"
+      },
+      {
+        "char": "ζ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "ί",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "η",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Τ",
+        "block": "farmersdelight:organic_compost[composting=0]"
+      },
+      {
+        "char": "Σ",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "ι",
+        "block": "minecraft:polished_deepslate"
+      }
+    ]
+  }

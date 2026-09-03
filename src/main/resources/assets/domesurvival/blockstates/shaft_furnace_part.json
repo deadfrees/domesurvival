@@ -1,0 +1,9 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "domesurvival:block/shaft_furnace_part_empty"
+      }
+    }
+  ]
+}

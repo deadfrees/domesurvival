@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    { "id": "betterdeserttemples:desert_temple", "required": false },
+    { "id": "minecraft:desert_pyramid", "required": false },
+    { "id": "graveyard:small_desert_graveyard", "required": false },
+    { "id": "graveyard:small_desert_grave", "required": false },
+    { "id": "graveyard:ruins", "required": false },
+    { "id": "dungeons_arise:abandoned_temple", "required": false },
+    { "id": "dungeons_arise:infested_temple", "required": false },
+    { "id": "dungeons_arise:mining_system", "required": false },
+    { "id": "betterdungeons:skeleton_dungeon", "required": false },
+    { "id": "betterdungeons:small_dungeon", "required": false },
+    { "id": "betterdungeons:spider_dungeon", "required": false },
+    { "id": "betterdungeons:zombie_dungeon", "required": false },
+    { "id": "dungeoncrawl:dungeon", "required": false }
+  ]
+}

@@ -39,11 +39,23 @@ minecraft {
             }
         }
 
-        client {}
+        client {
+            // Optional non-production smoke-test entry point. Example:
+            //   -PdomeQuickPlayWorld=DOMESTART_TEST_COPY_20260901
+            if (project.hasProperty('domeQuickPlayWorld')) {
+                args '--quickPlaySingleplayer', project.property('domeQuickPlayWorld').toString()
+            }
+        }
 
         server {
             if (project.hasProperty('domeCleanTechTest')) {
                 workingDirectory project.file('run/technology-test')
+            }
+            if (project.hasProperty('domeLastWorldServer')) {
+                workingDirectory project.file('run/lastworld-server')
+            }
+            if (project.hasProperty('domeDomeExportServer')) {
+                workingDirectory project.file('run/dome-export-server')
             }
             args '--nogui'
         }
@@ -64,7 +76,7 @@ sourceSets.main.resources {
 }
 
 repositories {
-    maven {
+maven {
         name = 'Team CoFH'
         url = uri('https://maven.covers1624.net/repository/maven-hosted/')
         content {
@@ -87,6 +99,11 @@ repositories {
 }
 
 dependencies {
+    // JEI is optional at runtime, but its API is used to expose every
+    // DomeSurvival machine process in the recipe viewer. The full modpack
+    // supplies the implementation JAR from run/mods.
+    compileOnly fg.deobf(files('run/mods/jei-1.20.1-forge-15.21.0.148.jar'))
+
     // DEV_V5_4_CUSTOMNPCS_DEOBF
     // DomeSurvival automatic subscribers currently reference CustomNPCs classes.
     compileOnly fg.deobf('curse.maven:customnpcs-unofficial-1052708:8414335')
@@ -126,6 +143,18 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
+// Supplies the standalone, read-only/write-audited map tools with the same
+// Minecraft/Forge compile classpath without having to start runClient first.
+tasks.register('writeMapAuditClasspath') {
+    dependsOn tasks.named('compileJava')
+    doLast {
+        def classpathDir = layout.buildDirectory.dir('classpath').get().asFile
+        classpathDir.mkdirs()
+        new File(classpathDir, 'mapAuditClasspath.txt').text =
+                sourceSets.main.compileClasspath.files.collect { it.absolutePath }.join(System.lineSeparator())
+    }
+}
+
 processResources {
     def replaceProperties = [
             minecraft_version      : minecraft_version,
@@ -145,6 +174,16 @@ processResources {
 
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
         expand replaceProperties + [project: project]
+    }
+
+    // CustomNPCs unofficial loads external scripts from each individual
+    // world's directory. Keep the starter NPC logic inside our own JAR as a
+    // guaranteed fallback so freshly created LastWorld saves work unchanged.
+    from('CUSTOMNPCS_STAGE4') {
+        include 'joseph_cooper_gui.js'
+        include 'ambient_security_officer.js'
+        include 'ambient_expedition_soldier.js'
+        into 'domesurvival/customnpcs_scripts'
     }
 }
 
@@ -178,3 +217,18 @@ if (project.hasProperty('domeFullDev')) {
     }
     apply from: domeFullDevScript
 }
+// DOME JEI COMPILE API V1 BEGIN
+// Dome Survival contains source-level JEI integration, so the JEI API must be on compileClasspath.
+// Runtime JEI stays supplied by the full modpack; do not add a second runtime JEI here.
+repositories {
+    maven {
+        name = 'BlameJared'
+        url = uri('https://maven.blamejared.com/')
+    }
+}
+
+dependencies {
+    compileOnly fg.deobf('mezz.jei:jei-1.20.1-common-api:15.21.0.148')
+    compileOnly fg.deobf('mezz.jei:jei-1.20.1-forge-api:15.21.0.148')
+}
+// DOME JEI COMPILE API V1 END

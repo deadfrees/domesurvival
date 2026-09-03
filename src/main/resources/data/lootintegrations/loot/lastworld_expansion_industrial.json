@@ -1,0 +1,18 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/industrial",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "lcmt:chests/center_basic_components": 1,
+    "lcmt:chests/factory_maintenance_kit": 1,
+    "dungeoncrawl:chests/forge": 1,
+    "dungeoncrawl:chests/stage_4": 1,
+    "betterarcheology:archeology/chest_catacombs_combat": 1,
+    "betterarcheology:archeology/chest_jungle_temple_equip": 1,
+    "betterarcheology:archeology/chest_light_temple_pillager": 1,
+    "graveyard:chests/creeper_loot": 1,
+    "graveyard:chests/large_loot": 1,
+    "alexscaves:chests/toxic_ruins": 1,
+    "alexscaves:chests/underground_cabin_magnetic_caves": 1,
+    "alexscaves:chests/underground_cabin_toxic_caves": 1
+  }
+}

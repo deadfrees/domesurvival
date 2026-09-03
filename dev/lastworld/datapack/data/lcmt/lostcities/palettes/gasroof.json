@@ -1,0 +1,124 @@
+      {
+  "palette": [
+          {
+        "char": ">",
+        "block": "minecraft:polished_andesite"
+      },
+      {
+        "char": "o",
+        "block": "minecraft:polished_andesite_stairs[facing=east,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "U",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "n",
+        "block": "minecraft:polished_andesite_stairs[facing=south,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "<",
+        "block": "minecraft:polished_andesite_stairs[facing=north,half=bottom,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": "I",
+        "block": "minecraft:polished_andesite_stairs[facing=west,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "H",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "s",
+        "block": "minecraft:smooth_stone_slab[type=bottom,waterlogged=false]"
+      },
+      {
+        "char": ",",
+        "block": "minecraft:copper_block"
+      },
+      {
+        "char": "Ͳ",
+        "block": "minecraft:stone_brick_stairs[facing=east,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "q",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "ͳ",
+        "block": "minecraft:stone_brick_stairs[facing=west,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "M",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "Ͱ",
+        "block": "minecraft:stone_brick_stairs[facing=south,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "Ͷ",
+        "block": "minecraft:stone_brick_stairs[facing=west,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "0",
+        "block": "minecraft:polished_andesite_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "k",
+        "block": "minecraft:polished_andesite_stairs[facing=east,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "N",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "͵",
+        "block": "minecraft:stone_brick_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "P",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "&",
+        "block": "minecraft:polished_andesite_stairs[facing=north,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "ʹ",
+        "block": "minecraft:stone_brick_stairs[facing=north,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "J",
+        "block": "minecraft:iron_block"
+      },
+      {
+        "char": "V",
+        "block": "minecraft:polished_andesite_stairs[facing=west,half=bottom,shape=inner_right,waterlogged=false]"
+      },
+      {
+        "char": "?",
+        "block": "minecraft:stone_brick_stairs[facing=east,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "ͱ",
+        "block": "minecraft:stone_brick_stairs[facing=west,half=bottom,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": "3",
+        "block": "minecraft:polished_andesite_stairs[facing=west,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "r",
+        "block": "minecraft:polished_andesite_stairs[facing=west,half=bottom,shape=inner_left,waterlogged=false]"
+      },
+      {
+        "char": "m",
+        "block": "minecraft:polished_andesite_stairs[facing=south,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "O",
+        "block": "minecraft:polished_andesite_stairs[facing=east,half=bottom,shape=inner_right,waterlogged=false]"
+      }
+    ]
+  }

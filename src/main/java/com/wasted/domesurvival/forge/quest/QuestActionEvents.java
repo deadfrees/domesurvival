@@ -5,6 +5,7 @@ import com.wasted.domesurvival.core.dome.DomeSpec;
 import com.wasted.domesurvival.core.dome.DomeZone;
 import com.wasted.domesurvival.forge.capability.ModCapabilities;
 import com.wasted.domesurvival.forge.data.DomeSavedData;
+import com.wasted.domesurvival.forge.environment.SurfaceSuitEquipment;
 import com.wasted.domesurvival.forge.item.OxygenTankItem;
 import com.wasted.domesurvival.forge.oxygen.OxygenEquipment;
 import com.wasted.domesurvival.forge.oxygen.OxygenEnvironment;
@@ -38,7 +39,6 @@ import java.util.UUID;
  */
 @Mod.EventBusSubscriber(modid = "domesurvival")
 public final class QuestActionEvents {
-    private static final DomeBounds START_DOME = new DomeBounds(DomeSpec.wastedV1());
     private static final Map<UUID, Integer> LOGIN_DELAY = new HashMap<>();
     private static final Map<UUID, Boolean> HAS_BEEN_OUTSIDE = new HashMap<>();
     private static final Map<UUID, Integer> SOLAR_TICKS = new HashMap<>();
@@ -78,6 +78,26 @@ public final class QuestActionEvents {
     private static final long CH7_SORTIE_MIN_TICKS = 400L;
 
     private QuestActionEvents() {
+    }
+
+    /**
+     * Starts the portable-dome prologue only after /domestart has finished.
+     *
+     * The regular position check below remains as a catch-up path for players
+     * who join an already running world, while this explicit hook makes the
+     * first quest follow the successful construction event rather than legacy
+     * map coordinates or login position.
+     */
+    public static void onDomeStarted(ServerPlayer player) {
+        UUID id = player.getUUID();
+        HAS_BEEN_OUTSIDE.put(id, false);
+        SOLAR_TICKS.remove(id);
+        SHADE_TICKS.remove(id);
+        CH2_SORTIE_START.remove(id);
+        CH2_SORTIE_MAX_RADIUS.remove(id);
+        CH2_VALID_RETURNS.remove(id);
+        CH2_TEMP_BLOCKS.remove(id);
+        tryAction(player, QuestGlobalRegistry.Action.CH0_INTRO);
     }
 
     @SubscribeEvent
@@ -143,9 +163,9 @@ public final class QuestActionEvents {
             return;
         }
 
-        DomeZone zone = START_DOME.classify(player.getX(), player.getY(), player.getZ());
+        DomeZone zone = domeBounds(player).classify(player.getX(), player.getY(), player.getZ());
         boolean breathable = OxygenEnvironment.isBreathable(player);
-        double horizontalRadius = horizontalRadius(player.getX(), player.getZ());
+        double horizontalRadius = horizontalRadius(player, player.getX(), player.getZ());
         boolean wasOutside = Boolean.TRUE.equals(HAS_BEEN_OUTSIDE.get(id));
 
         if (zone.isSafe()) {
@@ -255,6 +275,10 @@ public final class QuestActionEvents {
             return;
         }
 
+        if (!DomeSavedData.get(player.serverLevel()).isGenerated()) {
+            return;
+        }
+
         ResourceLocation id = ForgeRegistries.BLOCKS.getKey(
                 player.level().getBlockState(event.getPos()).getBlock()
         );
@@ -297,7 +321,14 @@ public final class QuestActionEvents {
             }
         }
 
-        if ("domesurvival:airlock_control_panel".equals(key)) {
+        DomeZone interactionZone = domeBounds(player).classify(
+                event.getPos().getX() + 0.5D,
+                event.getPos().getY() + 0.5D,
+                event.getPos().getZ() + 0.5D
+        );
+        boolean starterAirlock = interactionZone == DomeZone.AIRLOCK;
+
+        if (starterAirlock && "domesurvival:airlock_control_panel".equals(key)) {
             // Deliberate pre-exit environmental check.
             tryAction(player, QuestGlobalRegistry.Action.CH0_WEATHER_CHECK);
             tryAction(player, QuestGlobalRegistry.Action.CH1_WEATHER_CHECK);
@@ -306,7 +337,7 @@ public final class QuestActionEvents {
             tryAction(player, QuestGlobalRegistry.Action.CH2_POSTCHECK);
             tryAction(player, QuestGlobalRegistry.Action.CH3_SETTLEMENT_CHECK);
             tryAction(player, QuestGlobalRegistry.Action.CH6_AIRLOCK_SEPARATION);
-        } else if ("domesurvival:airlock_gate".equals(key)) {
+        } else if (starterAirlock && "domesurvival:airlock_gate".equals(key)) {
             tryAction(player, QuestGlobalRegistry.Action.CH0_AIRLOCK_GATE);
         }
     }
@@ -318,8 +349,12 @@ public final class QuestActionEvents {
             return;
         }
 
+        if (!DomeSavedData.get(player.serverLevel()).isGenerated()) {
+            return;
+        }
+
         BlockPos pos = event.getPos();
-        DomeZone zone = START_DOME.classify(
+        DomeZone zone = domeBounds(player).classify(
                 pos.getX() + 0.5D,
                 pos.getY() + 0.5D,
                 pos.getZ() + 0.5D
@@ -337,7 +372,7 @@ public final class QuestActionEvents {
 
         // Chapter 2: only the short external operation ring.
         if (zone == DomeZone.OUTSIDE) {
-            double radius = horizontalRadius(
+            double radius = horizontalRadius(player,
                     pos.getX() + 0.5D,
                     pos.getZ() + 0.5D
             );
@@ -479,7 +514,7 @@ public final class QuestActionEvents {
             }
         }
 
-        if (isNearInnerAirlockWorkZone(pos)) {
+        if (isNearInnerAirlockWorkZone(player, pos)) {
             int airlockMask = CH3_AIRLOCK_WORK_MASK.getOrDefault(playerId, 0);
 
             if ("minecraft:chest".equals(key) || "minecraft:barrel".equals(key)) {
@@ -505,7 +540,11 @@ public final class QuestActionEvents {
             return;
         }
 
-        DomeZone zone = START_DOME.classify(
+        if (!DomeSavedData.get(player.serverLevel()).isGenerated()) {
+            return;
+        }
+
+        DomeZone zone = domeBounds(player).classify(
                 event.getPos().getX() + 0.5D,
                 event.getPos().getY() + 0.5D,
                 event.getPos().getZ() + 0.5D
@@ -536,26 +575,41 @@ public final class QuestActionEvents {
 
     @SubscribeEvent
     public static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
-        if (!(event.getEntity() instanceof ServerPlayer player)) {
+        if (!(event.getEntity() instanceof ServerPlayer player)
+                || !Level.OVERWORLD.equals(player.level().dimension())
+                || !DomeSavedData.get(player.serverLevel()).isGenerated()) {
+            return;
+        }
+
+        DomeZone targetZone = domeBounds(player).classify(
+                event.getTarget().getX(),
+                event.getTarget().getY(),
+                event.getTarget().getZ()
+        );
+        if (!targetZone.isSafe()) {
             return;
         }
 
         String name = event.getTarget().getName().getString()
                 .trim()
                 .toLowerCase(Locale.ROOT);
+        var tags = event.getTarget().getTags();
 
-        if (name.equals("joseph cooper")
+        if (tags.contains("domesurvival_joseph_kupper")
+                || name.equals("joseph cooper")
                 || name.equals("joseph")
                 || name.equals("джозеф куппер")
                 || name.equals("джозеф")) {
             tryAction(player, QuestGlobalRegistry.Action.CH0_JOSEPH_CONTACT);
         }
 
-        if (name.equals("maneogflow")) {
+        if (tags.contains("domesurvival_ambient_expedition")
+                || name.equals("maneogflow")) {
             tryAction(player, QuestGlobalRegistry.Action.CH1_MANEOGFLOW);
         }
 
-        if (name.equals("ivan")
+        if (tags.contains("domesurvival_ambient_security")
+                || name.equals("ivan")
                 || name.equals("i van")
                 || name.equals("иван")) {
             tryAction(player, QuestGlobalRegistry.Action.CH3_IVAN_CONTACT);
@@ -678,14 +732,15 @@ public final class QuestActionEvents {
                 || "minecraft:soul_lantern".equals(blockId);
     }
 
-    private static boolean isNearInnerAirlockWorkZone(BlockPos pos) {
-        int dx = pos.getX() - START_DOME.spec().airlockPanelX();
-        int dz = pos.getZ() - START_DOME.spec().innerDomePanelZ();
+    private static boolean isNearInnerAirlockWorkZone(ServerPlayer player, BlockPos pos) {
+        DomeSpec spec = DomeSavedData.get(player.serverLevel()).domeSpec();
+        int dx = pos.getX() - spec.airlockPanelX();
+        int dz = pos.getZ() - spec.innerDomePanelZ();
 
         return Math.abs(dx) <= 7
                 && Math.abs(dz) <= 7
-                && pos.getY() >= START_DOME.spec().baseY() - 1
-                && pos.getY() <= START_DOME.spec().airlockCeilingY() + 2;
+                && pos.getY() >= spec.baseY() - 1
+                && pos.getY() <= spec.airlockCeilingY() + 2;
     }
 
     private static void handleChapter2Return(ServerPlayer player, UUID id) {
@@ -732,6 +787,7 @@ public final class QuestActionEvents {
         OxygenEquipment.TankView tank = OxygenEquipment.tank(player);
         boolean ready = OxygenEquipment.tankEquipmentReady(player, tank)
                 && tank.oxygen() > 0
+                && SurfaceSuitEquipment.hasFullSuit(player)
                 && QuestGlobalSyncService.isGlobalCompleted(player, "478ADE8DCA760CBA");
 
         if (!ready) {
@@ -792,10 +848,15 @@ public final class QuestActionEvents {
                 && tank.getOxygen(stack) >= tank.capacity();
     }
 
-    private static double horizontalRadius(double x, double z) {
-        double dx = x - START_DOME.spec().centerX();
-        double dz = z - START_DOME.spec().centerZ();
+    private static double horizontalRadius(ServerPlayer player, double x, double z) {
+        DomeSpec spec = DomeSavedData.get(player.serverLevel()).domeSpec();
+        double dx = x - spec.centerX();
+        double dz = z - spec.centerZ();
         return Math.sqrt(dx * dx + dz * dz);
+    }
+
+    private static DomeBounds domeBounds(ServerPlayer player) {
+        return new DomeBounds(DomeSavedData.get(player.serverLevel()).domeSpec());
     }
 
     private static boolean tryAction(ServerPlayer player, QuestGlobalRegistry.Action action) {

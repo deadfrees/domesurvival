@@ -38,9 +38,6 @@ import org.joml.Vector3f;
  */
 @Mod.EventBusSubscriber(modid = DomeSurvival.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public final class SurfaceWeatherClientEvents {
-    private static final DomeBounds START_DOME = new DomeBounds(DomeSpec.wastedV1());
-    private static final DomeSpec DOME = START_DOME.spec();
-
     private static final DustParticleOptions SOLAR_DUST =
             new DustParticleOptions(new Vector3f(1.00F, 0.54F, 0.10F), 0.20F);
     private static final ResourceLocation SOLAR_HEAT_VIGNETTE = new ResourceLocation(
@@ -555,8 +552,9 @@ public final class SurfaceWeatherClientEvents {
     private static ShellView viewedShell(LocalPlayer player) {
         Vec3 eye = player.getEyePosition();
         Vec3 look = player.getViewVector(1.0F).normalize();
-        Vec3 sphereCenter = new Vec3(DOME.centerX(), DOME.hemisphereCenterY(), DOME.centerZ());
-        double radius = DOME.surfaceRadius();
+        DomeSpec dome = ClientSurfaceWeatherState.domeSpec();
+        Vec3 sphereCenter = new Vec3(dome.centerX(), dome.hemisphereCenterY(), dome.centerZ());
+        double radius = dome.surfaceRadius();
 
         Vec3 m = eye.subtract(sphereCenter);
         double b = m.dot(look);
@@ -566,15 +564,15 @@ public final class SurfaceWeatherClientEvents {
             double t = -b + Math.sqrt(discriminant);
             if (t > 0.0D) {
                 Vec3 hit = eye.add(look.scale(t));
-                if (hit.y >= DOME.hemisphereCenterY() - 0.35D) {
+                if (hit.y >= dome.hemisphereCenterY() - 0.35D) {
                     Vec3 normal = hit.subtract(sphereCenter).normalize();
                     return shellView(hit, normal, true);
                 }
             }
         }
 
-        double ox = eye.x - DOME.centerX();
-        double oz = eye.z - DOME.centerZ();
+        double ox = eye.x - dome.centerX();
+        double oz = eye.z - dome.centerZ();
         double dx = look.x;
         double dz = look.z;
         double a = dx * dx + dz * dz;
@@ -586,8 +584,8 @@ public final class SurfaceWeatherClientEvents {
                 double t = (-qb + Math.sqrt(qd)) / a;
                 if (t > 0.0D) {
                     Vec3 hit = eye.add(look.scale(t));
-                    if (hit.y >= DOME.baseY() - 0.5D && hit.y <= DOME.hemisphereCenterY() + 0.75D) {
-                        Vec3 normal = new Vec3(hit.x - DOME.centerX(), 0.0D, hit.z - DOME.centerZ()).normalize();
+                    if (hit.y >= dome.baseY() - 0.5D && hit.y <= dome.hemisphereCenterY() + 0.75D) {
+                        Vec3 normal = new Vec3(hit.x - dome.centerX(), 0.0D, hit.z - dome.centerZ()).normalize();
                         return shellView(hit, normal, false);
                     }
                 }
@@ -596,16 +594,16 @@ public final class SurfaceWeatherClientEvents {
 
         Vec3 horizontal = new Vec3(look.x, 0.0D, look.z);
         if (horizontal.lengthSqr() < 1.0E-6D) {
-            horizontal = new Vec3(eye.x - DOME.centerX(), 0.0D, eye.z - DOME.centerZ());
+            horizontal = new Vec3(eye.x - dome.centerX(), 0.0D, eye.z - dome.centerZ());
         }
         if (horizontal.lengthSqr() < 1.0E-6D) {
             horizontal = new Vec3(0.0D, 0.0D, 1.0D);
         }
         Vec3 normal = horizontal.normalize();
         Vec3 hit = new Vec3(
-                DOME.centerX() + normal.x * radius,
-                Mth.clamp(eye.y, DOME.baseY() + 0.25D, DOME.hemisphereCenterY() + 0.25D),
-                DOME.centerZ() + normal.z * radius
+                dome.centerX() + normal.x * radius,
+                Mth.clamp(eye.y, dome.baseY() + 0.25D, dome.hemisphereCenterY() + 0.25D),
+                dome.centerZ() + normal.z * radius
         );
         return shellView(hit, normal, false);
     }
@@ -621,38 +619,41 @@ public final class SurfaceWeatherClientEvents {
 
     private static Vec3 projectToShell(Vec3 candidate, boolean spherical) {
         if (spherical) {
-            Vec3 center = new Vec3(DOME.centerX(), DOME.hemisphereCenterY(), DOME.centerZ());
+            DomeSpec dome = ClientSurfaceWeatherState.domeSpec();
+            Vec3 center = new Vec3(dome.centerX(), dome.hemisphereCenterY(), dome.centerZ());
             Vec3 relative = candidate.subtract(center);
             if (relative.lengthSqr() < 1.0E-6D) {
                 relative = new Vec3(0.0D, 1.0D, 0.0D);
             }
-            Vec3 projected = center.add(relative.normalize().scale(DOME.surfaceRadius()));
-            if (projected.y >= DOME.hemisphereCenterY() - 0.25D) {
+            Vec3 projected = center.add(relative.normalize().scale(dome.surfaceRadius()));
+            if (projected.y >= dome.hemisphereCenterY() - 0.25D) {
                 return projected;
             }
         }
 
-        double dx = candidate.x - DOME.centerX();
-        double dz = candidate.z - DOME.centerZ();
+        DomeSpec dome = ClientSurfaceWeatherState.domeSpec();
+        double dx = candidate.x - dome.centerX();
+        double dz = candidate.z - dome.centerZ();
         double length = Math.sqrt(dx * dx + dz * dz);
         if (length < 1.0E-6D) {
             dx = 0.0D;
             dz = 1.0D;
             length = 1.0D;
         }
-        double scale = DOME.surfaceRadius() / length;
+        double scale = dome.surfaceRadius() / length;
         return new Vec3(
-                DOME.centerX() + dx * scale,
-                Mth.clamp(candidate.y, DOME.baseY() + 0.15D, DOME.hemisphereCenterY() + 0.35D),
-                DOME.centerZ() + dz * scale
+                dome.centerX() + dx * scale,
+                Mth.clamp(candidate.y, dome.baseY() + 0.15D, dome.hemisphereCenterY() + 0.35D),
+                dome.centerZ() + dz * scale
         );
     }
 
     private static Vec3 shellNormal(Vec3 surface, boolean spherical) {
-        if (spherical && surface.y >= DOME.hemisphereCenterY() - 0.25D) {
-            return surface.subtract(new Vec3(DOME.centerX(), DOME.hemisphereCenterY(), DOME.centerZ())).normalize();
+        DomeSpec dome = ClientSurfaceWeatherState.domeSpec();
+        if (spherical && surface.y >= dome.hemisphereCenterY() - 0.25D) {
+            return surface.subtract(new Vec3(dome.centerX(), dome.hemisphereCenterY(), dome.centerZ())).normalize();
         }
-        return new Vec3(surface.x - DOME.centerX(), 0.0D, surface.z - DOME.centerZ()).normalize();
+        return new Vec3(surface.x - dome.centerX(), 0.0D, surface.z - dome.centerZ()).normalize();
     }
 
     private record ShellView(
@@ -906,6 +907,7 @@ public final class SurfaceWeatherClientEvents {
 
 
     private static boolean isInsideDome(LocalPlayer player) {
-        return START_DOME.classify(player.getX(), player.getY(), player.getZ()) != DomeZone.OUTSIDE;
+        return new DomeBounds(ClientSurfaceWeatherState.domeSpec())
+                .classify(player.getX(), player.getY(), player.getZ()) != DomeZone.OUTSIDE;
     }
 }

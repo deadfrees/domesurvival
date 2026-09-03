@@ -1,7 +1,6 @@
 package com.wasted.domesurvival.forge.environment;
 
 import com.wasted.domesurvival.core.dome.DomeBounds;
-import com.wasted.domesurvival.core.dome.DomeSpec;
 import com.wasted.domesurvival.core.dome.DomeZone;
 import com.wasted.domesurvival.core.weather.SurfaceWeatherType;
 import com.wasted.domesurvival.forge.data.DomeSavedData;
@@ -13,8 +12,6 @@ import net.minecraft.world.level.Level;
 
 /** O(1) physical exposure classification shared by weather damage and weather visuals. */
 public final class SurfaceHazardEnvironment {
-    private static final DomeBounds START_DOME = new DomeBounds(DomeSpec.wastedV1());
-
     private SurfaceHazardEnvironment() {
     }
 
@@ -35,7 +32,7 @@ public final class SurfaceHazardEnvironment {
             return SurfaceExposure.NONE;
         }
 
-        if (!isOutsideDome(entity.getX(), entity.getY(), entity.getZ())) {
+        if (!isOutsideDome(level, entity.getX(), entity.getY(), entity.getZ())) {
             return SurfaceExposure.NONE;
         }
 
@@ -61,7 +58,7 @@ public final class SurfaceHazardEnvironment {
         }
 
         if (!DomeSavedData.get(level).isGenerated()
-                || !isOutsideDome(entity.getX(), entity.getY(), entity.getZ())) {
+                || !isOutsideDome(level, entity.getX(), entity.getY(), entity.getZ())) {
             return false;
         }
 
@@ -82,7 +79,7 @@ public final class SurfaceHazardEnvironment {
             return false;
         }
 
-        if (!isOutsideDome(
+        if (!isOutsideDome(level,
                 pos.getX() + 0.5D,
                 pos.getY() + 0.5D,
                 pos.getZ() + 0.5D
@@ -95,8 +92,8 @@ public final class SurfaceHazardEnvironment {
         return level.canSeeSky(pos.above());
     }
 
-    private static boolean isOutsideDome(double x, double y, double z) {
-        DomeZone zone = START_DOME.classify(x, y, z);
+    private static boolean isOutsideDome(ServerLevel level, double x, double y, double z) {
+        DomeZone zone = new DomeBounds(DomeSavedData.get(level).domeSpec()).classify(x, y, z);
         return zone == DomeZone.OUTSIDE;
     }
 

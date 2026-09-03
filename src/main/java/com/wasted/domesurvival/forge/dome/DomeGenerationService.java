@@ -54,7 +54,7 @@ public final class DomeGenerationService {
         if (running) return StartResult.ALREADY_RUNNING;
         if (DomeSavedData.get(level).isGenerated()) return StartResult.ALREADY_GENERATED;
 
-        List<PlannedBlock> plan = DomeStructurePlanner.planFullV23(DomeSpec.wastedV1());
+        List<PlannedBlock> plan = DomeStructurePlanner.planFullV23(DomeSavedData.get(level).domeSpec());
         resetAirlockOnFinish = true;
         begin(plan, CURRENT_STRUCTURE_VERSION, Operation.GENERATE);
         return StartResult.STARTED;
@@ -66,7 +66,7 @@ public final class DomeGenerationService {
         if (version < 1) return StartResult.NOT_GENERATED;
         if (version >= CURRENT_STRUCTURE_VERSION) return StartResult.UP_TO_DATE;
 
-        DomeSpec spec = DomeSpec.wastedV1();
+        DomeSpec spec = DomeSavedData.get(level).domeSpec();
         List<PlannedBlock> v2 = DomeStructurePlanner.planV2UpgradeFromV14(spec);
         List<PlannedBlock> v23 = DomeStructurePlanner.planV23UpgradeFromV2(spec);
         List<PlannedBlock> plan = switch (version) {
@@ -133,7 +133,7 @@ public final class DomeGenerationService {
         }
 
         if (QUEUE.isEmpty()) {
-            DomeSpec spec = DomeSpec.wastedV1();
+            DomeSpec spec = DomeSavedData.get(level).domeSpec();
 
             StarterDomeAirlockV58.InstallResult airlockResult =
                     StarterDomeAirlockV58.install(level);
@@ -205,7 +205,7 @@ public final class DomeGenerationService {
             }
             case CLEAR_LEGACY_FOUNDATION -> {
                 if (level.getBlockState(pos).is(ModBlocks.DOME_FOUNDATION.get())) {
-                    DomeSpec spec = DomeSpec.wastedV1();
+                    DomeSpec spec = DomeSavedData.get(level).domeSpec();
                     if (pos.getY() >= spec.baseY()) {
                         level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
                     } else if (pos.getY() == spec.airlockFloorY()) {

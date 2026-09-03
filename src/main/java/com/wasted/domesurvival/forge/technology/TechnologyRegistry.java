@@ -52,6 +52,8 @@ public final class TechnologyRegistry {
             "heavy_industry", "Тяжёлая промышленность", "HEAVY_INDUSTRY_STARTED");
     private static final Technology AUTOMATION = technology(
             "automation", "Промышленная автоматизация", "AUTOMATION_ONLINE");
+    private static final Technology BIOLOGICAL_ARCHIVE = technology(
+            "biological_archive", "Восстановление биологического архива", "BIO_MODULE_IDENTIFICATION_UNLOCKED");
     private static final Technology DEEP_MINING = technology(
             "deep_mining", "Глубинная добыча", "DEEP_MINING_STAGE_1");
     private static final Technology SPACE = technology(
@@ -111,6 +113,11 @@ public final class TechnologyRegistry {
                 "domesurvival:service_pass_through",
                 "domesurvival:improved_water_filter");
         exact(AUTOMATION, "domesurvival:filtering_item_pipe");
+        exact(BIOLOGICAL_ARCHIVE,
+                "domesurvival:bioincubator",
+                "domesurvival:bio_repair_kit",
+                "domesurvival:biogel",
+                "domesurvival:nutrient_mix");
         exact(DEEP_MINING, "domesurvival:large_oxygen_tank");
         exact(technology("oxygen_infrastructure", "Стационарные кислородные резервы", "OXYGEN_INFRASTRUCTURE_READY"),
                 "domesurvival:medium_oxygen_tank");
@@ -147,14 +154,14 @@ public final class TechnologyRegistry {
 
         materialPrefixes("mekanism",
                 "ingot_", "nugget_", "block_", "raw_", "dust_", "dirty_dust_",
-                "clump_", "shard_", "crystal_", "alloy_", "enriched_", "pellet_",
+                "clump_", "shard_", "crystal_",
                 "salt", "fluorite", "osmium", "tin", "lead", "uranium", "bronze", "steel");
         materialPrefixes("immersiveengineering",
                 "ingot_", "nugget_", "plate_", "dust_", "wire_", "stick_", "component_",
                 "treated_wood", "coal_coke", "coke", "slag", "hemp", "fiber_", "fabric_");
         materialPrefixes("thermal",
-                "ingot_", "nugget_", "dust_", "plate_", "gear_", "raw_", "block_",
-                "*_ingot", "*_nugget", "*_dust", "*_plate", "*_gear", "*_block",
+                "ingot_", "nugget_", "dust_", "plate_", "raw_", "block_",
+                "*_ingot", "*_nugget", "*_dust", "*_plate", "*_block",
                 "apatite", "cinnabar", "sulfur", "niter");
     }
 

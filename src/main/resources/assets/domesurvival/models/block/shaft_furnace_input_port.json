@@ -1,0 +1,13 @@
+{
+  "textures": {
+    "particle": "domesurvival:block/metallurgy/detailed/input_connector",
+    "port": "domesurvival:block/metallurgy/detailed/input_connector"
+  },
+  "elements": [
+    {
+      "from": [12.86, 4.5, 5.0],
+      "to": [12.98, 12.0, 11.0],
+      "faces": { "west": { "texture": "#port", "uv": [3, 2, 13, 14] } }
+    }
+  ]
+}

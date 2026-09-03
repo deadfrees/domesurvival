@@ -1,0 +1,304 @@
+{
+    "palette": [
+      {
+        "char": "΅",
+        "block": "minecraft:oak_stairs[facing=north,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "?",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ό",
+        "block": "minecraft:oak_stairs[facing=north,half=bottom,shape=inner_right,waterlogged=false]"
+      },
+      {
+        "char": "͸",
+        "block": "minecraft:oak_fence[east=true,north=false,south=false,waterlogged=false,west=true]"
+      },
+      {
+        "char": "Ͷ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "U",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͻ",
+        "blocks": [
+        {
+          "random": 40,
+          "block": "minecraft:polished_deepslate"
+        },
+        {
+          "random": 1000,
+          "block": "minecraft:air"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+      },
+      {
+        "char": "Ά",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ώ",
+        "block": "minecraft:oak_stairs[facing=east,half=bottom,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": "Ύ",
+        "block": "minecraft:oak_stairs[facing=north,half=bottom,shape=outer_left,waterlogged=false]"
+      },
+      {
+        "char": "0",
+        "block": "minecraft:red_carpet"
+      },
+      {
+        "char": "΍",
+        "block": "minecraft:oak_stairs[facing=north,half=bottom,shape=inner_left,waterlogged=false]"
+      },
+      {
+        "char": "H",
+        "block": "minecraft:oak_leaves[distance=5,persistent=true,waterlogged=false]"
+      },
+      {
+        "char": "Ͳ",
+        "block": "minecraft:stripped_acacia_wood"
+      },
+      {
+        "char": ">",
+        "block": "minecraft:barrel"
+      },
+      {
+      "char": "M",
+      "blocks": [
+        {
+          "random": 40,
+          "block": "minecraft:terracotta"
+        },
+        {
+          "random": 1000,
+          "block": "minecraft:terracotta"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+      },
+      {
+        "char": "΃",
+        "block": "minecraft:oak_stairs[facing=east,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "o",
+        "block": "minecraft:oak_leaves[distance=2,persistent=true,waterlogged=false]"
+      },
+      {
+        "char": "ʹ",
+        "block": "minecraft:iron_door[facing=north,half=lower,hinge=right,open=false,powered=false,visible=true]"
+      },
+      {
+        "char": "V",
+        "block": "minecraft:iron_door[facing=west,half=lower,hinge=right,open=true,powered=false,visible=false]"
+      },
+      {
+        "char": "΄",
+        "block": "minecraft:oak_stairs[facing=west,half=top,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "k",
+        "block": "minecraft:sand"
+      },
+      {
+        "char": "΂",
+        "block": "minecraft:iron_door[facing=north,half=upper,hinge=right,open=false,powered=false,visible=true]"
+      },
+      {
+        "char": "q",
+        "block": "minecraft:oak_leaves[distance=1,persistent=true,waterlogged=false]"
+      },
+      {
+        "char": "<",
+        "block": "farmersdelight:stove[facing=north,lit=true]"
+      },
+      {
+        "char": "N",
+        "block": "minecraft:oak_planks"
+      },
+      {
+        "char": "ͺ",
+        "block": "farmersdelight:cooking_pot[facing=north,support=none,waterlogged=false]"
+      },
+      {
+        "char": "΀",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "·",
+        "block": "farmersdelight:dark_oak_cabinet[facing=north,open=false]"
+      },
+      {
+        "char": "P",
+        "block": "minecraft:oak_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "΋",
+        "block": "minecraft:oak_stairs[facing=north,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "΁",
+        "block": "minecraft:iron_door[facing=north,half=upper,hinge=left,open=false,powered=false,visible=true]"
+      },
+      {
+        "char": "Ί",
+        "block": "minecraft:oak_stairs[facing=west,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "n",
+        "block": "minecraft:sandstone_path"
+      },
+      {
+        "char": "s",
+        "block": "minecraft:oak_leaves[distance=4,persistent=true,waterlogged=false]"
+      },
+      {
+        "char": "Ͱ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "ΐ",
+        "block": "minecraft:oak_stairs[facing=west,half=bottom,shape=outer_right,waterlogged=false]"
+      },
+      {
+        "char": "ͽ",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "J",
+        "block": "minecraft:oak_log[axis=y]"
+      },
+      {
+        "char": ",",
+        "block": "minecraft:iron_door[facing=north,half=lower,hinge=right,open=true,powered=false,visible=false]"
+      },
+      {
+        "char": "Ή",
+        "block": "minecraft:ochre_froglight[axis=x]"
+      },
+        {
+      "char": "ͷ",
+      "blocks": [
+        {
+          "random": 40,
+          "block": "minecraft:polished_deepslate"
+        },
+        {
+          "random": 1000,
+          "block": "minecraft:air"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+      },
+      {
+        "char": ";",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "O",
+        "block": "minecraft:stripped_oak_wood[axis=y]"
+      },
+      {
+        "char": "͵",
+        "block": "minecraft:oak_fence[east=false,north=true,south=true,waterlogged=false,west=false]"
+      },
+      {
+        "char": "ͳ",
+        "block": "minecraft:iron_door[facing=north,half=lower,hinge=left,open=false,powered=false,visible=true]"
+      },
+      {
+        "char": "I",
+        "block": "minecraft:oak_leaves[distance=6,persistent=true,waterlogged=false]"
+      },
+      {
+        "char": "m",
+        "block": "minecraft:sandstone"
+      },
+      {
+        "char": "ͱ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Έ",
+        "block": "minecraft:oak_stairs[facing=east,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "͹",
+        "block": "minecraft:iron_door[facing=west,half=upper,hinge=right,open=true,powered=false,visible=false]"
+      },
+      {
+        "char": "3",
+        "blocks": [
+        {
+          "random": 40,
+          "block": "minecraft:air"
+        },
+        {
+          "random": 1000,
+          "block": "minecraft:polished_deepslate"
+        }
+      ],
+      "damaged": "minecraft:iron_bars"
+      },
+      {
+        "char": "ͼ",
+        "block": "minecraft:iron_door[facing=north,half=upper,hinge=right,open=false,powered=false,visible=true]"
+      },
+      {
+        "char": "r",
+        "block": "minecraft:oak_leaves[distance=3,persistent=true,waterlogged=false]"
+      },
+      {
+        "char": "&",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "Ϳ",
+        "block": "minecraft:polished_deepslate"
+      },
+        {
+        "char": "Η",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Γ",
+        "block": "minecraft:air"
+      },
+      {
+        "char": "Ζ",
+        "block": "minecraft:gray_stained_glass"
+      },
+      {
+        "char": "Β",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Δ",
+        "block": "minecraft:air"
+      },
+      {
+        "char": "Ε",
+        "block": "minecraft:iron_door[facing=north,half=lower,hinge=left,open=false,powered=false,visible=true]"
+      },
+      {
+        "char": "Ι",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Θ",
+        "block": "minecraft:iron_door[facing=north,half=upper,hinge=left,open=false,powered=false,visible=true]"
+      },
+      {
+        "char": "Α",
+        "block": "minecraft:polished_deepslate"
+      }
+    ]
+  }

@@ -1,0 +1,245 @@
+{
+    "palette":  [
+                    {
+                        "char":  "r",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "Ό",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "Ά",
+                        "block":  "minecraft:redstone_lamp"
+                    },
+                    {
+                        "char":  "΋",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "΀",
+                        "block":  "minecraft:pearlescent_froglight[axis=y]"
+                    },
+                    {
+                        "char":  ",",
+                        "block":  "minecraft:barrel[facing=up]",
+                        "loot":  "lcmt:town_loot"
+                    },
+                    {
+                        "char":  "J",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "·",
+                        "block":  "minecraft:stripped_acacia_wood"
+                    },
+                    {
+                        "char":  "m",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "΅",
+                        "block":  "minecraft:verdant_froglight[axis=z]"
+                    },
+                    {
+                        "char":  "΍",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "Α",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "ͻ",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "ͱ",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "ΐ",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "Ͷ",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "I",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "ͽ",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "s",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "Έ",
+                        "block":  "minecraft:stripped_acacia_wood"
+                    },
+                    {
+                        "char":  "N",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "3",
+                        "block":  "minecraft:barrel[facing=up]",
+                        "loot":  "lcmt:town_loot"
+                    },
+                    {
+                        "char":  "͵",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "O",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "ͼ",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "Ύ",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "U",
+                        "block":  "minecraft:barrel"
+                    },
+                    {
+                        "char":  "Ϳ",
+                        "block":  "minecraft:white_concrete"
+                    },
+                    {
+                        "char":  "ͷ",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "?",
+                        "block":  "minecraft:gray_stained_glass"
+                    },
+                    {
+                        "char":  "k",
+                        "block":  "minecraft:sand"
+                    },
+                    {
+                        "char":  "΁",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "H",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "ͺ",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "V",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "q",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "\u003e",
+                        "block":  "minecraft:polished_andesite"
+                    },
+                    {
+                        "char":  "͹",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "΂",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "͸",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "o",
+                        "block":  "minecraft:pearlescent_froglight[axis=x]"
+                    },
+                    {
+                        "char":  "Ώ",
+                        "block":  "minecraft:barrel[facing=up]",
+                        "loot":  "lcmt:town_loot"
+                    },
+                    {
+                        "char":  "΄",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "Ͱ",
+                        "block":  "minecraft:polished_deepslate_slab"
+                    },
+                    {
+                        "char":  "΃",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "Ή",
+                        "block":  "minecraft:redstone_lamp"
+                    },
+                    {
+                        "char":  ";",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "Β",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "ͳ",
+                        "block":  "minecraft:red_concrete"
+                    },
+                    {
+                        "char":  "Ͳ",
+                        "block":  "minecraft:barrel[facing=up]",
+                        "loot":  "lcmt:town_loot"
+                    },
+                    {
+                        "char":  "\u003c",
+                        "block":  "minecraft:iron_block"
+                    },
+                    {
+                        "char":  "Γ",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "\u0026",
+                        "block":  "minecraft:iron_block"
+                    },
+                    {
+                        "char":  "M",
+                        "block":  "minecraft:polished_deepslate"
+                    },
+                    {
+                        "char":  "Ί",
+                        "block":  "minecraft:barrel[facing=up]",
+                        "loot":  "lcmt:town_loot"
+                    },
+                    {
+                        "char":  "P",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "0",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    },
+                    {
+                        "char":  "n",
+                        "block":  "minecraft:pearlescent_froglight[axis=z]"
+                    },
+                    {
+                        "char":  "ʹ",
+                        "block":  "minecraft:polished_deepslate_stairs"
+                    }
+                ]
+}

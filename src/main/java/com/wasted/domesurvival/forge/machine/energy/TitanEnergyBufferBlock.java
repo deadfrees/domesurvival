@@ -160,6 +160,9 @@ public final class TitanEnergyBufferBlock extends BaseEntityBlock implements cof
         net.minecraft.world.level.block.entity.BlockEntity blockEntity = level.getBlockEntity(pos);
         if (!stack.isEmpty() && blockEntity != null) {
             blockEntity.saveToItem(stack);
+            if (blockEntity instanceof CapacityEnchantedEnergyBuffer capacityBuffer) {
+                EnergyBufferCapacity.applyToItem(stack, capacityBuffer.getCapacityEnchantLevel());
+            }
         }
         return stack;
     }

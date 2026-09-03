@@ -1,0 +1,4 @@
+[profiles]
+dimensionsWithProfiles = ["minecraft:overworld=lastworld"]
+optimizedHeightmap = false
+heightSampleSize = 3

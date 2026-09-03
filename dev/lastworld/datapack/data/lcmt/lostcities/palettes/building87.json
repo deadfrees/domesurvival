@@ -1,0 +1,516 @@
+{
+"palette": [
+      {
+        "char": "o",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "n",
+        "block": "minecraft:gray_stained_glass_pane"
+      },
+      {
+        "char": "q",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "k",
+        "block": "minecraft:dark_oak_log[axis=y]"
+      },
+      {
+        "char": "m",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "r",
+        "block": "minecraft:polished_deepslate_stairs"
+      },
+      {
+        "char": "Ά",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΂",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "ͽ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": ";",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "H",
+        "block": "minecraft:sandstone"
+      },
+      {
+        "char": "M",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "Ͱ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΃",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "N",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "s",
+        "block": "minecraft:sand"
+      },
+      {
+        "char": "ͷ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Ώ",
+        "block": "minecraft:dark_oak_log[axis=x]"
+      },
+      {
+        "char": "ͺ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "ͳ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "͸",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "U",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "·",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Β",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΍",
+        "block": "immersiveengineering:stairs_steel_scaffolding_standard[facing=west,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "&",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "<",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "͵",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "Ύ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "P",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": ">",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "΋",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ΐ",
+        "block": "minecraft:dark_oak_log[axis=z]"
+      },
+      {
+        "char": "I",
+        "block": "minecraft:ochre_froglight[axis=z]"
+      },
+      {
+        "char": "Ί",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ϳ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "V",
+        "block": "minecraft:structure_void"
+      },
+      {
+        "char": "ͼ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Α",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "O",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "Ό",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ͻ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "΁",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "ʹ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "΄",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Έ",
+        "block": "farmersdelight:shepherds_pie_block[facing=east,servings=4]"
+      },
+      {
+        "char": "Ή",
+        "block": "farmersdelight:roast_chicken_block[facing=east,servings=4]"
+      },
+      {
+        "char": "3",
+        "block": "immersiveengineering:stairs_steel_scaffolding_standard[facing=east,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "J",
+        "block": "minecraft:ochre_froglight[axis=x]"
+      },
+      {
+        "char": "0",
+        "block": "minecraft:red_carpet"
+      },
+      {
+        "char": "΅",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Ͳ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "?",
+        "block": "minecraft:ochre_froglight[axis=y]"
+      },
+      {
+        "char": "͹",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "ͱ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": ",",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "΀",
+        "block": "minecraft:redstone_lamp"
+      },
+      {
+        "char": "Ͷ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Η",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Ν",
+        "block": "farmersdelight:shepherds_pie_block[facing=south,servings=4]"
+      },
+      {
+        "char": "Δ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "Ι",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "Κ",
+        "block": "farmersdelight:shepherds_pie_block[facing=west,servings=4]"
+      },
+      {
+        "char": "Ζ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Γ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "Θ",
+        "block": "minecraft:iron_door"
+      },
+      {
+        "char": "Ε",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Λ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "Μ",
+        "block": "farmersdelight:roast_chicken_block[facing=west,servings=4]"
+      },
+      {
+        "char": ";",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "΢",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Τ",
+        "block": "farmersdelight:roast_chicken_block[facing=west,servings=4]"
+      },
+      {
+        "char": "Υ",
+        "block": "farmersdelight:shepherds_pie_block[facing=west,servings=4]"
+      },
+      {
+        "char": "Ρ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Σ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Ψ",
+        "block": "farmersdelight:shepherds_pie_block[facing=south,servings=4]"
+      },
+      {
+        "char": "Ο",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Ξ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Π",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Χ",
+        "block": "farmersdelight:roast_chicken_block[facing=north,servings=4]"
+      },
+      {
+        "char": "Φ",
+        "block": "farmersdelight:shepherds_pie_block[facing=north,servings=4]"
+      },
+      {
+        "char": "Τ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Ρ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Σ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Υ",
+        "block": "farmersdelight:roast_chicken_block[facing=north,servings=4]"
+      },
+      {
+        "char": ";",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Φ",
+        "block": "farmersdelight:shepherds_pie_block[facing=north,servings=4]"
+      },
+      {
+        "char": "Ο",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Π",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Ψ",
+        "block": "farmersdelight:roast_chicken_block[facing=south,servings=4]"
+      },
+      {
+        "char": "΢",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "Ϊ",
+        "block": "farmersdelight:shepherds_pie_block[facing=south,servings=4]"
+      },
+      {
+        "char": "Ω",
+        "block": "farmersdelight:shepherds_pie_block[facing=east,servings=4]"
+      },
+      {
+        "char": "Χ",
+        "block": "farmersdelight:roast_chicken_block[facing=east,servings=4]"
+      },
+      {
+        "char": "Ξ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "ϋ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "έ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "φ",
+        "block": "farmersdelight:full_tatami_mat[facing=west,part=head]"
+      },
+      {
+        "char": "χ",
+        "block": "farmersdelight:full_tatami_mat[facing=west,part=foot]"
+      },
+      {
+        "char": "α",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ω",
+        "block": "farmersdelight:cooking_pot[facing=west,support=none,waterlogged=false]"
+      },
+      {
+        "char": "ά",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "δ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "λ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "θ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "μ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ξ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ν",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "τ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "κ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "ρ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "Ϋ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "ε",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "η",
+        "block": "farmersdelight:stove[facing=west,lit=true]"
+      },
+      {
+        "char": "ψ",
+        "block": "farmersdelight:cutting_board[facing=north,waterlogged=false]"
+      },
+      {
+        "char": "ς",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "ή",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "γ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "π",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "υ",
+        "block": "farmersdelight:skillet[facing=east,support=false,waterlogged=false]"
+      },
+      {
+        "char": "β",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "ο",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ΰ",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "ί",
+        "block": "minecraft:dark_oak_stairs[facing=east,half=bottom,shape=straight,waterlogged=false]"
+      },
+      {
+        "char": "ζ",
+        "block": "minecraft:barrel"
+      },
+      {
+        "char": "ι",
+        "block": "minecraft:polished_deepslate"
+      },
+      {
+        "char": "σ",
+        "block": "minecraft:acacia_leaves"
+      },
+      {
+        "char": "ϊ",
+        "block": "minecraft:polished_deepslate"
+      }
+    ]
+  }

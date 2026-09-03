@@ -2,13 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "IGI",
-    "LCL"
+    "LCL",
+    " F "
   ],
   "key": {
-    "I": { "item": "minecraft:iron_nugget" },
+    "I": { "tag": "forge:ingots/iron" },
     "G": { "item": "minecraft:glass_pane" },
     "L": { "item": "minecraft:leather" },
-    "C": { "tag": "forge:ingots/copper" }
+    "C": { "tag": "forge:ingots/copper" },
+    "F": { "item": "domesurvival:water_filter_cartridge" }
   },
   "result": {
     "item": "domesurvival:oxygen_mask",

@@ -10,10 +10,14 @@ import com.wasted.domesurvival.forge.block.ModBlocks;
 import com.wasted.domesurvival.forge.machine.copper.CopperFurnaceBlockEntity;
 import com.wasted.domesurvival.forge.machine.coal.CoalGeneratorBlockEntity;
 import com.wasted.domesurvival.forge.machine.shaft.ShaftFurnaceBlockEntity;
+import com.wasted.domesurvival.forge.machine.shaft.ShaftFurnacePartBlockEntity;
 import com.wasted.domesurvival.forge.machine.shaft.CokeOvenBlockEntity;
+import com.wasted.domesurvival.forge.machine.shaft.CokeOvenPartBlockEntity;
 import com.wasted.domesurvival.forge.machine.water.WaterPurifierBlockEntity;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenElectrolyzerBlockEntity;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenFillerBlockEntity;
+import com.wasted.domesurvival.forge.machine.bio.BioincubatorBlockEntity;
+import com.wasted.domesurvival.forge.machine.sieve.SandSieveBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,8 +26,7 @@ import net.minecraftforge.registries.RegistryObject;
 public final class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, DomeSurvival.MOD_ID);
-
-    public static final RegistryObject<BlockEntityType<CopperFurnaceBlockEntity>> COPPER_FURNACE =
+public static final RegistryObject<BlockEntityType<CopperFurnaceBlockEntity>> COPPER_FURNACE =
             BLOCK_ENTITY_TYPES.register(
                     "copper_furnace",
                     () -> BlockEntityType.Builder.of(
@@ -49,12 +52,30 @@ public final class ModBlockEntities {
                     ).build(null)
             );
 
+    public static final RegistryObject<BlockEntityType<ShaftFurnacePartBlockEntity>> SHAFT_FURNACE_PART =
+            BLOCK_ENTITY_TYPES.register(
+                    "shaft_furnace_part",
+                    () -> BlockEntityType.Builder.of(
+                            ShaftFurnacePartBlockEntity::new,
+                            ModBlocks.SHAFT_FURNACE_PART.get()
+                    ).build(null)
+            );
+
     public static final RegistryObject<BlockEntityType<CokeOvenBlockEntity>> COKE_OVEN =
             BLOCK_ENTITY_TYPES.register(
                     "coke_oven",
                     () -> BlockEntityType.Builder.of(
                             CokeOvenBlockEntity::new,
                             ModBlocks.COKE_OVEN.get()
+                    ).build(null)
+            );
+
+    public static final RegistryObject<BlockEntityType<CokeOvenPartBlockEntity>> COKE_OVEN_PART =
+            BLOCK_ENTITY_TYPES.register(
+                    "coke_oven_part",
+                    () -> BlockEntityType.Builder.of(
+                            CokeOvenPartBlockEntity::new,
+                            ModBlocks.COKE_OVEN_PART.get()
                     ).build(null)
             );
 
@@ -85,6 +106,22 @@ public final class ModBlockEntities {
                     ).build(null)
             );
 
+    public static final RegistryObject<BlockEntityType<BioincubatorBlockEntity>> BIOINCUBATOR =
+            BLOCK_ENTITY_TYPES.register(
+                    "bioincubator",
+                    () -> BlockEntityType.Builder.of(
+                            BioincubatorBlockEntity::new,
+                            ModBlocks.BIOINCUBATOR.get()
+                    ).build(null)
+            );
+    public static final RegistryObject<BlockEntityType<SandSieveBlockEntity>> SAND_SIEVE =
+            BLOCK_ENTITY_TYPES.register(
+                    "sand_sieve",
+                    () -> BlockEntityType.Builder.of(
+                            SandSieveBlockEntity::new,
+                            ModBlocks.SAND_SIEVE.get()
+                    ).build(null)
+            );
     public static final RegistryObject<BlockEntityType<EnergyBufferBlockEntity>> ENERGY_BUFFER =
             BLOCK_ENTITY_TYPES.register(
                     "energy_buffer",

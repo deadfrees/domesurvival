@@ -368,6 +368,15 @@ function interact(e) {
     migrateStage1IfNeeded(e.player);
     grantPendingRewards(e.player);
     ensureStage1PathUpgrade(e.player);
+
+    /* Self-heal saves where the old /josephscript nextstage completed Stage 02
+       without placing its physical workshop reward. */
+    if (stage2Complete(e.player) && !workshopBuilt()) {
+        var workshopRepair = finalizeWorkshopIfReady(e.player);
+        if (workshopRepair != null && workshopRepair.length > 0) {
+            try { e.player.message("§e[КУПОЛ] " + workshopRepair); } catch (ignoredRepairMessage) {}
+        }
+    }
     openMain(e.player);
 }
 

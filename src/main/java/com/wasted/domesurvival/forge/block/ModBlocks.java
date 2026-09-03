@@ -9,16 +9,21 @@ import com.wasted.domesurvival.forge.machine.energy.CreativeEnergyBufferBlock;
 import com.wasted.domesurvival.forge.machine.energy.AdamantiumEnergyBufferBlock;
 import com.wasted.domesurvival.forge.machine.energy.TitanEnergyBufferBlock;
 import com.wasted.domesurvival.forge.machine.energy.EnergyBufferBlock;
+import com.wasted.domesurvival.forge.machine.energy.EnergyBufferBlockItem;
 import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.airlock.AirlockPanelBlock;
 import com.wasted.domesurvival.forge.machine.coal.CoalGeneratorBlock;
 import com.wasted.domesurvival.forge.machine.water.WaterPurifierBlock;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenElectrolyzerBlock;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenFillerBlock;
+import com.wasted.domesurvival.forge.machine.bio.BioincubatorBlock;
+import com.wasted.domesurvival.forge.machine.sieve.SandSieveBlock;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenPipeBlock;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenPipeTier;
 import com.wasted.domesurvival.forge.machine.shaft.ShaftFurnaceBlock;
+import com.wasted.domesurvival.forge.machine.shaft.ShaftFurnacePartBlock;
 import com.wasted.domesurvival.forge.machine.shaft.CokeOvenBlock;
+import com.wasted.domesurvival.forge.machine.shaft.CokeOvenPartBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -46,12 +51,24 @@ public final class ModBlocks {
     public static final RegistryObject<Block> SHAFT_FURNACE = BLOCKS.register("shaft_furnace",
             () -> new ShaftFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.BLAST_FURNACE)
                     .strength(4.0F, 8.0F)
+                    .noOcclusion()
                     .lightLevel(state -> state.getValue(ShaftFurnaceBlock.LIT) ? 10 : 0)));
+
+    public static final RegistryObject<Block> SHAFT_FURNACE_PART = BLOCKS.register("shaft_furnace_part",
+            () -> new ShaftFurnacePartBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .strength(4.0F, 8.0F)
+                    .noOcclusion()));
 
     public static final RegistryObject<Block> COKE_OVEN = BLOCKS.register("coke_oven",
             () -> new CokeOvenBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS)
                     .strength(3.5F, 8.0F)
+                    .noOcclusion()
                     .lightLevel(state -> state.getValue(CokeOvenBlock.LIT) ? 8 : 0)));
+
+    public static final RegistryObject<Block> COKE_OVEN_PART = BLOCKS.register("coke_oven_part",
+            () -> new CokeOvenPartBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .strength(3.5F, 8.0F)
+                    .noOcclusion()));
 
     public static final RegistryObject<Block> MACHINE_STABILIZER = BLOCKS.register("machine_stabilizer",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
@@ -78,6 +95,14 @@ public final class ModBlocks {
                     .strength(3.5F, 6.0F)
                     .lightLevel(state -> state.getValue(OxygenFillerBlock.LIT) ? 4 : 0)));
 
+    public static final RegistryObject<Block> BIOINCUBATOR = BLOCKS.register("bioincubator",
+            () -> new BioincubatorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .strength(4.0F, 8.0F)
+                    .lightLevel(state -> state.getValue(BioincubatorBlock.LIT) ? 5 : 0)));
+    public static final RegistryObject<Block> SAND_SIEVE = BLOCKS.register("sand_sieve",
+            () -> new SandSieveBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_TILES)
+                    .strength(2.5F, 6.0F)
+                    .noOcclusion()));
     public static final RegistryObject<Block> OXYGEN_PIPE = BLOCKS.register("oxygen_pipe",
             () -> new OxygenPipeBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .strength(1.5F, 4.0F)
@@ -177,12 +202,16 @@ public final class ModBlocks {
         ITEMS.register("water_purifier", () -> new BlockItem(WATER_PURIFIER.get(), new Item.Properties()));
         ITEMS.register("oxygen_electrolyzer", () -> new BlockItem(OXYGEN_ELECTROLYZER.get(), new Item.Properties()));
         ITEMS.register("oxygen_filler", () -> new BlockItem(OXYGEN_FILLER.get(), new Item.Properties()));
+        ITEMS.register("bioincubator", () -> new BlockItem(BIOINCUBATOR.get(), new Item.Properties()));
+        // Keeps the former hand-sieve registry id so existing inventories migrate
+        // naturally to the new placeable machine.
+        ITEMS.register("sand_sieve", () -> new BlockItem(SAND_SIEVE.get(), new Item.Properties()));
         ITEMS.register("oxygen_pipe", () -> new BlockItem(OXYGEN_PIPE.get(), new Item.Properties()));
         ITEMS.register("reinforced_oxygen_pipe", () -> new BlockItem(REINFORCED_OXYGEN_PIPE.get(), new Item.Properties()));
         ITEMS.register("high_flow_oxygen_pipe", () -> new BlockItem(HIGH_FLOW_OXYGEN_PIPE.get(), new Item.Properties()));
-        ITEMS.register("energy_buffer", () -> new BlockItem(ENERGY_BUFFER.get(), new Item.Properties()));
-        ITEMS.register("energy_buffer_titan", () -> new BlockItem(ENERGY_BUFFER_TITAN.get(), new Item.Properties()));
-        ITEMS.register("energy_buffer_adamantium", () -> new BlockItem(ENERGY_BUFFER_ADAMANTIUM.get(), new Item.Properties()));
+        ITEMS.register("energy_buffer", () -> new EnergyBufferBlockItem(ENERGY_BUFFER.get(), new Item.Properties()));
+        ITEMS.register("energy_buffer_titan", () -> new EnergyBufferBlockItem(ENERGY_BUFFER_TITAN.get(), new Item.Properties()));
+        ITEMS.register("energy_buffer_adamantium", () -> new EnergyBufferBlockItem(ENERGY_BUFFER_ADAMANTIUM.get(), new Item.Properties()));
         ITEMS.register("machine_wrench", () -> new WrenchItem(new Item.Properties().stacksTo(1)));
         ITEMS.register("energy_buffer_creative", () -> new BlockItem(ENERGY_BUFFER_CREATIVE.get(), new Item.Properties()));
         ITEMS.register("basic_energy_pipe",

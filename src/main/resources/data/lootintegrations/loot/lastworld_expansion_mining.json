@@ -1,0 +1,21 @@
+{
+  "loot_table": "domesurvival:chests/lastworld/mining",
+  "max_result_itemcount": 12,
+  "integrated_loot_tables": {
+    "lcmt:chests/factory_barrel_fuel": 1,
+    "lcmt:chests/factory_barrel_metal": 1,
+    "lcmt:chests/factory_barrel_raw_ores": 1,
+    "betterdeserttemples:chests/pot": 1,
+    "betterdeserttemples:chests/statue": 1,
+    "dungeoncrawl:chests/stage_2": 1,
+    "dungeoncrawl:chests/stage_3": 1,
+    "betterarcheology:archeology/chest_buried_ruins_sand": 1,
+    "betterarcheology:archeology/chest_loot_prototype": 1,
+    "betterarcheology:archeology/chest_mesa_ruins": 1,
+    "betterarcheology:archeology/chest_tumulus": 1,
+    "graveyard:chests/medium_loot": 1,
+    "graveyard:chests/ore_loot": 1,
+    "alexscaves:chests/magnetic_ruins": 1,
+    "alexscaves:chests/underground_cabin_primordial_caves": 1
+  }
+}
