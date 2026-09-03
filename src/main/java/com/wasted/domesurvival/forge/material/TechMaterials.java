@@ -69,6 +69,10 @@ public final class TechMaterials {
     public static final RegistryObject<Item> SOLARITE_SHARD = item("solarite_shard");
     public static final RegistryObject<Item> SOLARITE_CRYSTAL = item("solarite_crystal");
 
+    /** First Forming Press products migrated from GOTEICRAFT. */
+    public static final RegistryObject<Item> COPPER_PLATE = item("copper_plate");
+    public static final RegistryObject<Item> TIN_PLATE = item("tin_plate");
+
     static {
         blockItem("tin_ore", TIN_ORE);
         blockItem("deepslate_tin_ore", DEEPSLATE_TIN_ORE);
