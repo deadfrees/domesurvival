@@ -1,9 +1,0 @@
-{
-  "loader": "forge:obj",
-  "flip_v": true,
-  "model": "domesurvival:models/block/metal_furnace.obj",
-  "textures": {
-    "texture0": "domesurvival:block/metallurgy/metal_furnace_on",
-    "particle": "domesurvival:block/metallurgy/metal_furnace"
-  }
-}

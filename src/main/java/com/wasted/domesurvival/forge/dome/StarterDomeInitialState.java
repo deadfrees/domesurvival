@@ -47,8 +47,7 @@ public final class StarterDomeInitialState {
             "coke_oven",
             "coke_oven_part",
             "shaft_furnace",
-            "shaft_furnace_part",
-            "metal_furnace"
+            "shaft_furnace_part"
     );
 
     private StarterDomeInitialState() {

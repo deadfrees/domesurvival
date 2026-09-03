@@ -53,3 +53,21 @@ dev/map_audit/output/*.png
 dev/map_audit/output/*.log
 dev/map_audit/output/*.pid
 dev/map_audit/output/add_missing_storage.mcfunction
+
+# Generated map-audit reports. Keep the tools and source manifests only.
+dev/map_audit/output/
+
+# Local patch bundles and installer checkpoints.
+/.last_*_backup.txt
+/music_*/
+/horror_*/
+/native_horror_*/
+/bbm_compat_*/
+/remove_katana_system/
+/spider_audit_fix_*/
+
+# Extracted third-party data and local art/model references.
+/dev/LCMT_*
+/dev/lastworld/*_inspect/
+/dev/art_reference/
+/dependency_audit/
