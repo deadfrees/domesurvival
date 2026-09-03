@@ -27,6 +27,7 @@ public final class FormingPressMenu extends AbstractContainerMenu {
     private static final int PLAYER_INVENTORY_END = 29;
     private static final int HOTBAR_START = 29;
     private static final int HOTBAR_END = 38;
+    private static final int OPERATION_BUTTON = 50;
     private static final int SIDE_BUTTON_BASE = 100;
 
     private final Level level;
@@ -145,6 +146,13 @@ public final class FormingPressMenu extends AbstractContainerMenu {
 
     @Override
     public boolean clickMenuButton(Player player, int id) {
+        if (id == OPERATION_BUTTON) {
+            if (press != null) {
+                press.cycleOperation();
+            }
+            return true;
+        }
+
         int sideIndex = id - SIDE_BUTTON_BASE;
         if (sideIndex < 0 || sideIndex >= RelativeSide.values().length) {
             return false;
@@ -161,6 +169,10 @@ public final class FormingPressMenu extends AbstractContainerMenu {
         return true;
     }
 
+    public static int operationButtonId() {
+        return OPERATION_BUTTON;
+    }
+
     public static int sideButtonId(RelativeSide side) {
         return SIDE_BUTTON_BASE + side.ordinal();
     }
@@ -171,6 +183,9 @@ public final class FormingPressMenu extends AbstractContainerMenu {
     public int progressMax() { return data.get(FormingPressBlockEntity.DATA_MAX_PROGRESS); }
     public int recipeEnergy() { return data.get(FormingPressBlockEntity.DATA_RECIPE_ENERGY); }
     public int status() { return data.get(FormingPressBlockEntity.DATA_STATUS); }
+    public FormingOperation operation() {
+        return FormingOperation.fromOrdinal(data.get(FormingPressBlockEntity.DATA_OPERATION));
+    }
 
     public SideMode getSideMode(RelativeSide side) {
         if (!FormingPressBlockEntity.isConfigurableSide(side)) {
