@@ -4,6 +4,18 @@
     "domesurvival:coal_generator",
     "domesurvival:water_purifier",
     "domesurvival:oxygen_electrolyzer",
-    "domesurvival:machine_stabilizer"
+    "domesurvival:machine_stabilizer",
+    "domesurvival:tin_ore",
+    "domesurvival:deepslate_tin_ore",
+    "domesurvival:tin_block",
+    "domesurvival:lead_ore",
+    "domesurvival:deepslate_lead_ore",
+    "domesurvival:lead_block",
+    "domesurvival:silver_ore",
+    "domesurvival:deepslate_silver_ore",
+    "domesurvival:silver_block",
+    "domesurvival:nickel_ore",
+    "domesurvival:deepslate_nickel_ore",
+    "domesurvival:nickel_block"
   ]
 }

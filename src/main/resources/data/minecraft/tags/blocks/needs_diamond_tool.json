@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "domesurvival:voltarium_ore",
+    "domesurvival:deepslate_voltarium_ore",
+    "domesurvival:voltarium_block",
+    "domesurvival:solarite_ore",
+    "domesurvival:deepslate_solarite_ore",
+    "domesurvival:solarite_block"
+  ]
+}
