@@ -49,12 +49,16 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer container, Level level) {
-        ItemStack input = container.getItem(0);
-        return input.getCount() >= inputCount && ingredient.test(input);
+        return matchesInput(container);
     }
 
     public boolean matches(SimpleContainer container, FormingOperation selectedOperation) {
-        return operation == selectedOperation && matches(container, null);
+        return operation == selectedOperation && matchesInput(container);
+    }
+
+    private boolean matchesInput(SimpleContainer container) {
+        ItemStack input = container.getItem(0);
+        return input.getCount() >= inputCount && ingredient.test(input);
     }
 
     @Override
