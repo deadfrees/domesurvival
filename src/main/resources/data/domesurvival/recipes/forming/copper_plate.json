@@ -1,1 +1,9 @@
-{"type":"domesurvival:forming","ingredient":{"tag":"forge:ingots/copper"},"result":{"item":"domesurvival:copper_plate"},"processingTime":100,"energy":2000}
+{
+  "type": "domesurvival:forming",
+  "operation": "press",
+  "ingredient": { "tag": "forge:ingots/copper" },
+  "inputCount": 1,
+  "result": { "item": "domesurvival:copper_plate" },
+  "processingTime": 100,
+  "energy": 2000
+}
