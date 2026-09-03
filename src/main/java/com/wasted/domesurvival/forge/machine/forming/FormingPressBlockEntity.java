@@ -302,9 +302,10 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
 
         SimpleContainer container = new SimpleContainer(1);
         container.setItem(0, input);
-        Optional<FormingPressRecipe> found = recipeManager.getAllRecipesFor(ModRecipes.FORMING_TYPE.get())
+        Optional<FormingPressRecipe> found = recipeManager
+                .getRecipesFor(ModRecipes.FORMING_TYPE.get(), container, level)
                 .stream()
-                .filter(recipe -> recipe.matches(container, selectedOperation))
+                .filter(recipe -> recipe.getOperation() == selectedOperation)
                 .findFirst();
 
         cachedRecipeManager = recipeManager;
