@@ -1,0 +1,9 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "gear",
+  "ingredient": { "tag": "forge:ingots/steel" },
+  "inputCount": 4,
+  "result": { "item": "domesurvival:steel_gear" },
+  "processingTime": 180,
+  "energy": 4400
+}
