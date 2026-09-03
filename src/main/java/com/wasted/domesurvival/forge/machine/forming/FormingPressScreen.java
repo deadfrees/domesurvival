@@ -20,6 +20,10 @@ public final class FormingPressScreen extends AbstractContainerScreen<FormingPre
     private static final int PROGRESS_Y = 67;
     private static final int PROGRESS_W = 34;
     private static final int PROGRESS_H = 8;
+    private static final int OPERATION_X = 55;
+    private static final int OPERATION_Y = 82;
+    private static final int OPERATION_W = 106;
+    private static final int OPERATION_H = 14;
 
     private static final EnumMap<RelativeSide, Rect> SIDE_RECTS = createSideRects();
 
@@ -53,6 +57,16 @@ public final class FormingPressScreen extends AbstractContainerScreen<FormingPre
             return;
         }
 
+        if (isHovering(OPERATION_X, OPERATION_Y, OPERATION_W, OPERATION_H, mouseX, mouseY)) {
+            graphics.renderTooltip(
+                    font,
+                    Component.translatable("gui.domesurvival.forming_press.operation_hint"),
+                    mouseX,
+                    mouseY
+            );
+            return;
+        }
+
         RelativeSide side = hoveredSide(mouseX, mouseY);
         if (side != null) {
             String sideKey = side.name().toLowerCase(java.util.Locale.ROOT);
@@ -67,10 +81,14 @@ public final class FormingPressScreen extends AbstractContainerScreen<FormingPre
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (button == 0) {
+        if (button == 0 && minecraft != null && minecraft.gameMode != null) {
+            if (isHovering(OPERATION_X, OPERATION_Y, OPERATION_W, OPERATION_H, mouseX, mouseY)) {
+                minecraft.gameMode.handleInventoryButtonClick(menu.containerId, FormingPressMenu.operationButtonId());
+                return true;
+            }
+
             RelativeSide side = hoveredSide(mouseX, mouseY);
-            if (side != null && FormingPressBlockEntity.isConfigurableSide(side)
-                    && minecraft != null && minecraft.gameMode != null) {
+            if (side != null && FormingPressBlockEntity.isConfigurableSide(side)) {
                 minecraft.gameMode.handleInventoryButtonClick(menu.containerId, FormingPressMenu.sideButtonId(side));
                 return true;
             }
@@ -110,6 +128,12 @@ public final class FormingPressScreen extends AbstractContainerScreen<FormingPre
                     x + PROGRESS_X + 3 + progress, y + PROGRESS_Y + PROGRESS_H - 3, 0xFFD38B46);
         }
 
+        panel(graphics, x + OPERATION_X, y + OPERATION_Y, OPERATION_W, OPERATION_H, 0xFF11171B);
+        if (isHovering(OPERATION_X, OPERATION_Y, OPERATION_W, OPERATION_H, mouseX, mouseY)) {
+            graphics.fill(x + OPERATION_X + 3, y + OPERATION_Y + 3,
+                    x + OPERATION_X + OPERATION_W - 3, y + OPERATION_Y + OPERATION_H - 3, 0xFF38434A);
+        }
+
         for (var entry : SIDE_RECTS.entrySet()) {
             Rect rect = entry.getValue();
             SideMode mode = entry.getKey() == RelativeSide.FRONT
@@ -139,8 +163,16 @@ public final class FormingPressScreen extends AbstractContainerScreen<FormingPre
                 Component.translatable("gui.domesurvival.forming_press.output"), 143, 43, 0xFFBFC8CC);
         graphics.drawCenteredString(font,
                 Component.translatable("gui.domesurvival.forming_press.sides"), 190, 18, 0xFFBFC8CC);
-        graphics.drawCenteredString(font, statusText(), 108, 94, statusColor());
+        graphics.drawCenteredString(font, operationText(), OPERATION_X + OPERATION_W / 2,
+                OPERATION_Y + 3, 0xFFD9E1E4);
+        graphics.drawCenteredString(font, statusText(), 108, 100, statusColor());
         graphics.drawString(font, playerInventoryTitle, inventoryLabelX, inventoryLabelY, 0xFFBFC8CC, false);
+    }
+
+    private Component operationText() {
+        return Component.translatable(
+                "gui.domesurvival.forming_press.operation." + menu.operation().getSerializedName()
+        );
     }
 
     private Component statusText() {
