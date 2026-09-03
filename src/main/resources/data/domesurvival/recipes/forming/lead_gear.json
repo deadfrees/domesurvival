@@ -1,0 +1,9 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "gear",
+  "ingredient": { "tag": "forge:ingots/lead" },
+  "inputCount": 4,
+  "result": { "item": "domesurvival:lead_gear" },
+  "processingTime": 160,
+  "energy": 3600
+}
