@@ -56,9 +56,13 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
         return operation == selectedOperation && matchesInput(container);
     }
 
+    public boolean acceptsIngredient(ItemStack stack) {
+        return !stack.isEmpty() && ingredient.test(stack);
+    }
+
     private boolean matchesInput(SimpleContainer container) {
         ItemStack input = container.getItem(0);
-        return input.getCount() >= inputCount && ingredient.test(input);
+        return input.getCount() >= inputCount && acceptsIngredient(input);
     }
 
     @Override
