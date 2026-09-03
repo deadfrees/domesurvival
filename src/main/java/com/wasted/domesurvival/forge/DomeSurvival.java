@@ -1,7 +1,6 @@
 package com.wasted.domesurvival.forge;
 
 import com.wasted.domesurvival.forge.airlock.gate.AirlockGateRegistry;
-
 import com.wasted.domesurvival.forge.airlock.AirlockPanelRegistry;
 import com.wasted.domesurvival.forge.transport.fluid.FluidPipeRegistry;
 import com.wasted.domesurvival.forge.hopper.HopperRegistryEvents;
@@ -15,6 +14,7 @@ import com.wasted.domesurvival.forge.enchantment.ModEnchantments;
 import com.wasted.domesurvival.forge.fluid.ModFluids;
 import com.wasted.domesurvival.forge.item.ModItems;
 import com.wasted.domesurvival.forge.loot.ModLootModifiers;
+import com.wasted.domesurvival.forge.material.TechMaterials;
 import com.wasted.domesurvival.forge.machine.oxygen.complex.OxygenComplexRegistry;
 import com.wasted.domesurvival.forge.network.ModNetwork;
 import com.wasted.domesurvival.forge.particle.ModParticles;
@@ -50,6 +50,8 @@ public final class DomeSurvival {
         ModBlocks.BLOCKS.register(modBus);
         ModBlocks.ITEMS.register(modBus);
         ModItems.ITEMS.register(modBus);
+        TechMaterials.BLOCKS.register(modBus);
+        TechMaterials.ITEMS.register(modBus);
         ModEnchantments.ENCHANTMENTS.register(modBus);
         ModLootModifiers.SERIALIZERS.register(modBus);
         ModEntityTypes.ENTITY_TYPES.register(modBus);

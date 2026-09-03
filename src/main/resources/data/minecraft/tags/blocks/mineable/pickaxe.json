@@ -42,6 +42,27 @@
     "domesurvival:steel_hopper",
     "domesurvival:steel_item_pipe",
     "domesurvival:universal_tank",
-    "domesurvival:water_purifier"
+    "domesurvival:water_purifier",
+    "domesurvival:tin_ore",
+    "domesurvival:deepslate_tin_ore",
+    "domesurvival:tin_block",
+    "domesurvival:lead_ore",
+    "domesurvival:deepslate_lead_ore",
+    "domesurvival:lead_block",
+    "domesurvival:silver_ore",
+    "domesurvival:deepslate_silver_ore",
+    "domesurvival:silver_block",
+    "domesurvival:nickel_ore",
+    "domesurvival:deepslate_nickel_ore",
+    "domesurvival:nickel_block",
+    "domesurvival:goteium_ore",
+    "domesurvival:deepslate_goteium_ore",
+    "domesurvival:goteium_block",
+    "domesurvival:voltarium_ore",
+    "domesurvival:deepslate_voltarium_ore",
+    "domesurvival:voltarium_block",
+    "domesurvival:solarite_ore",
+    "domesurvival:deepslate_solarite_ore",
+    "domesurvival:solarite_block"
   ]
 }
