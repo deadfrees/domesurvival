@@ -18,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -48,13 +49,15 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     public static final int DATA_MAX_PROGRESS = 3;
     public static final int DATA_RECIPE_ENERGY = 4;
     public static final int DATA_STATUS = 5;
-    public static final int DATA_SIDES_START = 6;
+    public static final int DATA_OPERATION = 6;
+    public static final int DATA_SIDES_START = 7;
     public static final int DATA_COUNT = DATA_SIDES_START + 6;
 
     private static final String NBT_INVENTORY = "Inventory";
     private static final String NBT_ENERGY = "Energy";
     private static final String NBT_PROGRESS = "Progress";
     private static final String NBT_RECIPE = "ActiveRecipe";
+    private static final String NBT_OPERATION = "Operation";
 
     private final UnifiedSideConfig sideConfig = new UnifiedSideConfig();
 
@@ -66,6 +69,9 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
 
         @Override
         protected void onContentsChanged(int slot) {
+            if (slot == 0) {
+                invalidateRecipeCache();
+            }
             setChanged();
         }
     };
@@ -130,7 +136,14 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
 
     private int progress;
     private boolean processingThisTick;
+    private FormingOperation selectedOperation = FormingOperation.PRESS;
     @Nullable private ResourceLocation activeRecipeId;
+
+    @Nullable private RecipeManager cachedRecipeManager;
+    private ItemStack cachedRecipeInput = ItemStack.EMPTY;
+    private FormingOperation cachedRecipeOperation = FormingOperation.PRESS;
+    private Optional<FormingPressRecipe> cachedRecipe = Optional.empty();
+    private boolean recipeCacheValid;
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -142,6 +155,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
             if (index == DATA_MAX_PROGRESS) return recipe == null ? 0 : recipe.getProcessingTime();
             if (index == DATA_RECIPE_ENERGY) return recipe == null ? 0 : recipe.getEnergy();
             if (index == DATA_STATUS) return getStatus(recipe);
+            if (index == DATA_OPERATION) return selectedOperation.ordinal();
             if (index >= DATA_SIDES_START && index < DATA_SIDES_START + 6) {
                 Direction direction = Direction.values()[index - DATA_SIDES_START];
                 return sideConfig.getMode(direction).ordinal();
@@ -269,12 +283,43 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     }
 
     private Optional<FormingPressRecipe> getCurrentRecipe() {
-        if (level == null || inventory.getStackInSlot(0).isEmpty()) {
+        if (level == null) {
             return Optional.empty();
         }
+
+        ItemStack input = inventory.getStackInSlot(0);
+        if (input.isEmpty()) {
+            return Optional.empty();
+        }
+
+        RecipeManager recipeManager = level.getRecipeManager();
+        if (recipeCacheValid
+                && cachedRecipeManager == recipeManager
+                && cachedRecipeOperation == selectedOperation
+                && ItemStack.isSameItemSameTags(cachedRecipeInput, input)) {
+            return cachedRecipe;
+        }
+
         SimpleContainer container = new SimpleContainer(1);
-        container.setItem(0, inventory.getStackInSlot(0));
-        return level.getRecipeManager().getRecipeFor(ModRecipes.FORMING_TYPE.get(), container, level);
+        container.setItem(0, input);
+        Optional<FormingPressRecipe> found = recipeManager.getAllRecipesFor(ModRecipes.FORMING_TYPE.get())
+                .stream()
+                .filter(recipe -> recipe.matches(container, selectedOperation))
+                .findFirst();
+
+        cachedRecipeManager = recipeManager;
+        cachedRecipeInput = input.copyWithCount(1);
+        cachedRecipeOperation = selectedOperation;
+        cachedRecipe = found;
+        recipeCacheValid = true;
+        return found;
+    }
+
+    private void invalidateRecipeCache() {
+        recipeCacheValid = false;
+        cachedRecipeManager = null;
+        cachedRecipeInput = ItemStack.EMPTY;
+        cachedRecipe = Optional.empty();
     }
 
     private boolean canAcceptResult(FormingPressRecipe recipe) {
@@ -301,6 +346,26 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
             return STATUS_NO_ENERGY;
         }
         return progress > 0 ? STATUS_FORMING : STATUS_READY;
+    }
+
+    public FormingOperation getSelectedOperation() {
+        return selectedOperation;
+    }
+
+    public FormingOperation cycleOperation() {
+        return setSelectedOperation(selectedOperation.next());
+    }
+
+    public FormingOperation setSelectedOperation(FormingOperation operation) {
+        FormingOperation sanitized = operation == null ? FormingOperation.PRESS : operation;
+        if (selectedOperation != sanitized) {
+            selectedOperation = sanitized;
+            progress = 0;
+            activeRecipeId = null;
+            invalidateRecipeCache();
+            setChanged();
+        }
+        return selectedOperation;
     }
 
     public SideMode cycleSideMode(RelativeSide relativeSide) {
@@ -356,6 +421,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     @Override
     public void onLoad() {
         super.onLoad();
+        invalidateRecipeCache();
         syncAllPortStates();
     }
 
@@ -380,6 +446,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         tag.put(NBT_INVENTORY, inventory.serializeNBT());
         tag.putInt(NBT_ENERGY, energyStorage.getEnergyStored());
         tag.putInt(NBT_PROGRESS, progress);
+        tag.putString(NBT_OPERATION, selectedOperation.getSerializedName());
         if (activeRecipeId != null) {
             tag.putString(NBT_RECIPE, activeRecipeId.toString());
         }
@@ -392,9 +459,11 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         inventory.deserializeNBT(tag.getCompound(NBT_INVENTORY));
         energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
         progress = Math.max(0, tag.getInt(NBT_PROGRESS));
+        selectedOperation = FormingOperation.fromSerializedName(tag.getString(NBT_OPERATION));
         activeRecipeId = tag.contains(NBT_RECIPE)
                 ? ResourceLocation.tryParse(tag.getString(NBT_RECIPE))
                 : null;
+        invalidateRecipeCache();
         if (!sideConfig.load(tag)) {
             applyDefaultSideConfiguration();
         }
