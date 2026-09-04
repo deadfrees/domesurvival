@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PGP",
+    "WCW",
+    "PRP"
+  ],
+  "key": {
+    "P": {
+      "tag": "forge:plates/steel"
+    },
+    "G": {
+      "item": "domesurvival:steel_gear"
+    },
+    "W": {
+      "tag": "forge:wires/copper"
+    },
+    "C": {
+      "item": "minecraft:furnace"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "domesurvival:filter_regeneration_station"
+  }
+}

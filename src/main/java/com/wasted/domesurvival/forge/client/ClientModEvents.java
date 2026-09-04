@@ -19,6 +19,8 @@ import com.wasted.domesurvival.forge.client.screen.WaterPurifierScreen;
 import com.wasted.domesurvival.forge.client.screen.OxygenElectrolyzerScreen;
 import com.wasted.domesurvival.forge.client.screen.OxygenFillerScreen;
 import com.wasted.domesurvival.forge.machine.bio.BioincubatorScreen;
+import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationRegistry;
+import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationScreen;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressScreen;
 import com.wasted.domesurvival.forge.machine.sieve.SandSieveScreen;
@@ -71,6 +73,7 @@ public final class ClientModEvents {
             MenuScreens.register(ModMenuTypes.BIOINCUBATOR.get(), BioincubatorScreen::new);
             MenuScreens.register(ModMenuTypes.SAND_SIEVE.get(), SandSieveScreen::new);
             MenuScreens.register(FormingPressRegistry.FORMING_PRESS_MENU.get(), FormingPressScreen::new);
+            MenuScreens.register(FilterRegenerationRegistry.FILTER_REGENERATION_MENU.get(), FilterRegenerationScreen::new);
             CuriosRendererRegistry.register(
                     ModItems.OXYGEN_MASK.get(),
                     OxygenMaskCurioRenderer::new
@@ -144,7 +147,6 @@ public final class ClientModEvents {
                 OxygenTankModel::createLargeBodyLayer
         );
     }
-
 
     @SubscribeEvent
     public static void registerParticles(

@@ -16,6 +16,7 @@ import com.wasted.domesurvival.forge.item.ModItems;
 import com.wasted.domesurvival.forge.loot.ModLootModifiers;
 import com.wasted.domesurvival.forge.material.TechComponents;
 import com.wasted.domesurvival.forge.material.TechMaterials;
+import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationRegistry;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
 import com.wasted.domesurvival.forge.machine.oxygen.complex.OxygenComplexRegistry;
 import com.wasted.domesurvival.forge.network.ModNetwork;
@@ -49,6 +50,7 @@ public final class DomeSurvival {
         UniversalTankRegistry.register(modBus);
         OxygenComplexRegistry.register(modBus);
         FormingPressRegistry.register(modBus);
+        FilterRegenerationRegistry.register(modBus);
         ModRecipes.register(modBus);
         ModFluids.FLUID_TYPES.register(modBus);
         ModFluids.FLUIDS.register(modBus);
