@@ -13,7 +13,7 @@ $BridgeReport = Join-Path $GeneratedDir 'mixin_srg_bridge_report.txt'
 $SrgToMcp = Join-Path $ProjectRoot 'build\createSrgToMcp\output.srg'
 $BridgeClassDir = Join-Path $PSScriptRoot 'tools\bin'
 
-$GeneratorVersion = '6.9.1-alexscaves-camera-getter-guard'
+$GeneratorVersion = '6.9.2-thirdparty-registry-dev-guard'
 
 New-Item -ItemType Directory -Force -Path $GeneratedDir | Out-Null
 New-Item -ItemType Directory -Force -Path $CacheDir | Out-Null
@@ -35,11 +35,16 @@ if ($jars.Count -eq 0) {
     exit 3
 }
 
+# Production JARs below are intentionally omitted only from MojMap FULL DEV.
+# They remain untouched in run\mods and are restored for production testing.
+# CustomNPCs is also compileOnly-gated in build.gradle during domeFullDev.
 $excludePatterns = @(
     '^curios-forge-',
     '^cofh_core-',
     '^thermal_core-',
     '^CustomNPCs',
+    '^customnpcs-',
+    '^betterarcheology-',
     '^domesurvival-'
 )
 
