@@ -1,4 +1,4 @@
-# DomeSurvival FULL DEV V6.8 STABLE
+# DomeSurvival FULL DEV V6.9 STABLE
 
 This is the canonical Forge 1.20.1 development profile for the complete
 DomeSurvival modpack.
@@ -13,6 +13,8 @@ DomeSurvival modpack.
 - A Java 17 development-only bridge repairs production SRG references that
   ForgeGradle does not remap inside problematic Mixin strings and nested JarJar
   archives.
+- FULL DEV V6.9 invalidates older generated caches and explicitly verifies the
+  Alex's Caves Minecraft camera mixin remap (`m_91288_ -> setCameraEntity`).
 - Original `run/mods` JARs are never modified.
 - Generated data lives under `dev/generated/` and is not committed.
 
@@ -48,6 +50,14 @@ complete FULL DEV environment.
 ## Direct full run without Git pull
 
     .\dev\RUN_DEV_FULL.bat
+
+## Force rebuild after a bridge/cache compatibility failure
+
+    .\dev\FORCE_REBUILD_FULL_CACHE.bat
+    .\dev\RUN_DEV_FULL.bat
+
+Use this path instead of invoking `gradlew -PdomeFullDev=true runClient` directly
+when the generated deobfuscation cache may be stale.
 
 ## Recovery after interrupted Java/Gradle process
 
