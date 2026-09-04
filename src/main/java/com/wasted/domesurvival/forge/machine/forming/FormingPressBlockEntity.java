@@ -193,16 +193,13 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     }
 
     /**
-     * The rear connector is a guaranteed Forge Energy input, matching the original GOTEICRAFT
-     * machine layout. Other faces configured as INPUT remain valid FE inputs for automation.
-     * Keeping the rear independent from saved generic side modes also repairs old worlds where
-     * a stale side configuration could make the press invisible to EnderIO/Mekanism/Thermal cables.
+     * Forge Energy is receive-only and exposed on every physical face except the reserved front.
+     * Item routing remains controlled by the unified side configuration. Keeping FE discovery
+     * independent from item modes is important for EnderIO, Mekanism and Thermal cables, which
+     * probe sided capabilities before they decide whether a connection is valid.
      */
     private boolean isEnergyInputSide(@Nullable Direction side) {
-        if (side == null) return true;
-        if (isFrontWorldSide(side)) return false;
-        Direction rear = RelativeSide.BACK.resolve(getMachineFacing());
-        return side == rear || sideConfig.allowsInput(side);
+        return side == null || !isFrontWorldSide(side);
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, FormingPressBlockEntity press) {
