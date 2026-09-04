@@ -3,7 +3,7 @@ setlocal EnableExtensions
 cd /d "%~dp0.."
 
 echo ============================================================
-echo Dome Survival - PREPARE FULL DEV V6.8
+echo Dome Survival - PREPARE FULL DEV V6.9
 echo Git-ready JarJar-aware Mixin SRG Bridge
 echo ============================================================
 echo.
@@ -69,5 +69,5 @@ if errorlevel 1 exit /b 1
 
 echo.
 echo [4/4] FULL DEV runtime preparation complete
-echo [OK] Git-ready FULL DEV V6.8 prepared.
+echo [OK] Git-ready FULL DEV V6.9 prepared.
 exit /b 0
