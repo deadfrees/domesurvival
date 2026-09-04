@@ -14,6 +14,7 @@ import com.wasted.domesurvival.forge.enchantment.ModEnchantments;
 import com.wasted.domesurvival.forge.fluid.ModFluids;
 import com.wasted.domesurvival.forge.item.ModItems;
 import com.wasted.domesurvival.forge.loot.ModLootModifiers;
+import com.wasted.domesurvival.forge.material.TechComponents;
 import com.wasted.domesurvival.forge.material.TechMaterials;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
 import com.wasted.domesurvival.forge.machine.oxygen.complex.OxygenComplexRegistry;
@@ -56,6 +57,7 @@ public final class DomeSurvival {
         ModItems.ITEMS.register(modBus);
         TechMaterials.BLOCKS.register(modBus);
         TechMaterials.ITEMS.register(modBus);
+        TechComponents.ITEMS.register(modBus);
         ModEnchantments.ENCHANTMENTS.register(modBus);
         ModLootModifiers.SERIALIZERS.register(modBus);
         ModEntityTypes.ENTITY_TYPES.register(modBus);
