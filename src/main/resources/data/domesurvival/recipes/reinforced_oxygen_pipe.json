@@ -1,25 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SDS",
+    "STS",
     "NPN",
     "GDG"
   ],
   "key": {
     "S": {
-      "tag": "forge:ingots/steel"
+      "tag": "domesurvival:tubes/steel"
     },
-    "D": {
-      "tag": "forge:ingots/steel"
+    "T": {
+      "tag": "domesurvival:tubes/steel"
     },
     "N": {
-      "tag": "forge:ingots/nickel"
+      "tag": "domesurvival:tubes/nickel"
     },
     "P": {
       "item": "domesurvival:oxygen_pipe"
     },
     "G": {
       "item": "minecraft:glass"
+    },
+    "D": {
+      "tag": "domesurvival:tubes/steel"
     }
   },
   "result": {
