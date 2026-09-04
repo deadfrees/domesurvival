@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CGC",
+    "TGT",
     "GIG",
-    "CGC"
+    "TGT"
   ],
   "key": {
-    "C": {
-      "tag": "forge:ingots/copper"
+    "T": {
+      "tag": "domesurvival:tubes/copper"
     },
     "G": {
       "item": "minecraft:glass"
