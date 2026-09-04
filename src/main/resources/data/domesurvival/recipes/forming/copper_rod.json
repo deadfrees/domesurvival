@@ -1,0 +1,8 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "rod",
+  "ingredient": {"tag": "forge:ingots/copper"},
+  "result": {"item": "domesurvival:copper_rod", "count": 2},
+  "processingTime": 80,
+  "energy": 1600
+}

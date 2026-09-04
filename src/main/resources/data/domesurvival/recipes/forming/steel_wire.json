@@ -1,0 +1,8 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "wire",
+  "ingredient": {"tag": "forge:rods/steel"},
+  "result": {"item": "domesurvival:steel_wire", "count": 2},
+  "processingTime": 90,
+  "energy": 2000
+}

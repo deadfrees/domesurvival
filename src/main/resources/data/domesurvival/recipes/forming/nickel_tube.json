@@ -1,0 +1,8 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "tube",
+  "ingredient": {"tag": "forge:plates/nickel"},
+  "result": {"item": "domesurvival:nickel_tube"},
+  "processingTime": 150,
+  "energy": 3200
+}

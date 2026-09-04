@@ -1,0 +1,8 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "press",
+  "ingredient": {"tag": "forge:ingots/steel"},
+  "result": {"item": "domesurvival:steel_plate"},
+  "processingTime": 120,
+  "energy": 2600
+}

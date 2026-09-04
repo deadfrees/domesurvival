@@ -1,0 +1,8 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "tube",
+  "ingredient": {"tag": "forge:plates/tin"},
+  "result": {"item": "domesurvival:tin_tube"},
+  "processingTime": 120,
+  "energy": 2200
+}
