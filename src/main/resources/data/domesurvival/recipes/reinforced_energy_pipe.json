@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "BBB",
-    "BSB",
+    "BWB",
     "BBB"
   ],
   "key": {
     "B": {
       "item": "domesurvival:basic_energy_pipe"
     },
-    "S": {
-      "tag": "forge:ingots/steel"
+    "W": {
+      "tag": "forge:wires/steel"
     }
   },
   "result": {
