@@ -10,7 +10,7 @@
       "tag": "forge:ingots/iron"
     },
     "T": {
-      "tag": "forge:ingots/tin"
+      "tag": "domesurvival:tubes/tin"
     },
     "G": {
       "item": "minecraft:glass"
