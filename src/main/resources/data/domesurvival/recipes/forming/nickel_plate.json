@@ -1,0 +1,8 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "press",
+  "ingredient": {"tag": "forge:ingots/nickel"},
+  "result": {"item": "domesurvival:nickel_plate"},
+  "processingTime": 130,
+  "energy": 2800
+}

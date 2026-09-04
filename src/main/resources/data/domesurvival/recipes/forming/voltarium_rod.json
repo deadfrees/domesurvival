@@ -1,0 +1,8 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "rod",
+  "ingredient": {"tag": "forge:ingots/voltarium"},
+  "result": {"item": "domesurvival:voltarium_rod", "count": 2},
+  "processingTime": 140,
+  "energy": 4000
+}

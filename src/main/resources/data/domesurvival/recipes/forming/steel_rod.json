@@ -1,0 +1,8 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "rod",
+  "ingredient": {"tag": "forge:ingots/steel"},
+  "result": {"item": "domesurvival:steel_rod", "count": 2},
+  "processingTime": 100,
+  "energy": 2200
+}
