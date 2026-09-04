@@ -1,29 +1,38 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CMC",
-    "OTO",
-    "CBC"
+    "CSC",
+    "VTV",
+    "OGO"
   ],
   "key": {
     "C": {
       "item": "ad_astra:calorite_plate"
     },
-    "M": {
-      "item": "domesurvival:pulse_matrix"
+    "S": {
+      "item": "domesurvival:solarite_crystal"
     },
-    "O": {
-      "item": "ad_astra:ostrum_plate"
+    "V": {
+      "tag": "forge:plates/voltarium"
     },
     "T": {
       "item": "domesurvival:energy_buffer_titan"
     },
-    "B": {
-      "item": "domesurvival:machine_stabilizer"
+    "O": {
+      "item": "ad_astra:ostrum_plate"
+    },
+    "G": {
+      "tag": "forge:gears/voltarium"
     }
   },
   "result": {
     "item": "domesurvival:energy_buffer_adamantium",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ad_astra"
+    }
+  ]
 }

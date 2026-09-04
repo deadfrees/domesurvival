@@ -23,6 +23,10 @@ public final class TechComponents {
     public static final RegistryObject<Item> NICKEL_TUBE = component("nickel_tube");
     public static final RegistryObject<Item> SILVER_ROD = component("silver_rod");
     public static final RegistryObject<Item> SILVER_WIRE = component("silver_wire");
+    public static final RegistryObject<Item> GOTEIUM_PLATE = component("goteium_plate");
+    public static final RegistryObject<Item> GOTEIUM_GEAR = component("goteium_gear");
+    public static final RegistryObject<Item> VOLTARIUM_PLATE = component("voltarium_plate");
+    public static final RegistryObject<Item> VOLTARIUM_GEAR = component("voltarium_gear");
     public static final RegistryObject<Item> VOLTARIUM_ROD = component("voltarium_rod");
     public static final RegistryObject<Item> VOLTARIUM_WIRE = component("voltarium_wire");
 

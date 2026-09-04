@@ -1,0 +1,8 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "press",
+  "ingredient": {"tag": "forge:ingots/goteium"},
+  "result": {"item": "domesurvival:goteium_plate"},
+  "processingTime": 180,
+  "energy": 5200
+}

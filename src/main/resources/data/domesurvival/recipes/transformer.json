@@ -13,7 +13,7 @@
       "tag": "forge:wires/silver"
     },
     "G": {
-      "item": "domesurvival:steel_gear"
+      "tag": "forge:gears/goteium"
     },
     "V": {
       "tag": "forge:wires/voltarium"

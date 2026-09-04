@@ -1,0 +1,9 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "gear",
+  "ingredient": {"tag": "forge:ingots/voltarium"},
+  "inputCount": 4,
+  "result": {"item": "domesurvival:voltarium_gear"},
+  "processingTime": 300,
+  "energy": 11000
+}

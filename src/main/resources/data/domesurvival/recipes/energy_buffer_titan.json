@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "DMD",
-    "NSN",
+    "GSG",
     "DBD"
   ],
   "key": {
@@ -12,8 +12,8 @@
     "M": {
       "item": "domesurvival:pulse_matrix"
     },
-    "N": {
-      "tag": "forge:ingots/nickel"
+    "G": {
+      "tag": "forge:plates/goteium"
     },
     "S": {
       "item": "domesurvival:energy_buffer"
@@ -25,5 +25,11 @@
   "result": {
     "item": "domesurvival:energy_buffer_titan",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ad_astra"
+    }
+  ]
 }

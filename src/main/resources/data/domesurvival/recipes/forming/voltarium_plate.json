@@ -1,0 +1,8 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "press",
+  "ingredient": {"tag": "forge:ingots/voltarium"},
+  "result": {"item": "domesurvival:voltarium_plate"},
+  "processingTime": 220,
+  "energy": 7200
+}

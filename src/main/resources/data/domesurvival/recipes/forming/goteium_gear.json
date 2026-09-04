@@ -1,0 +1,9 @@
+{
+  "type": "domesurvival:forming",
+  "operation": "gear",
+  "ingredient": {"tag": "forge:ingots/goteium"},
+  "inputCount": 4,
+  "result": {"item": "domesurvival:goteium_gear"},
+  "processingTime": 240,
+  "energy": 7600
+}
