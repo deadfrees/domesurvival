@@ -3,7 +3,7 @@ setlocal EnableExtensions
 cd /d "%~dp0.."
 
 echo ============================================================
-echo Dome Survival - FORCE FULL DEV V6.8 REBUILD
+echo Dome Survival - FORCE FULL DEV V6.9 REBUILD
 echo ============================================================
 echo.
 
