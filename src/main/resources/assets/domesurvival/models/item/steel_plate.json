@@ -1,1 +1,1 @@
-{"parent":"minecraft:item/generated","textures":{"layer0":"domesurvival:item/steel_ingot"}}
+{"parent":"minecraft:item/generated","textures":{"layer0":"domesurvival:item/metallurgy/steel_ingot"}}
