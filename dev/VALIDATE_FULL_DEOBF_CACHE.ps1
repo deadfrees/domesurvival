@@ -30,12 +30,12 @@ if ($coords.Count -ne $jars.Count -or $coords.Count -eq 0) {
     exit 3
 }
 
-if ($version -ne '6.9-alexscaves-camera-guard') {
-    Write-Host '[ERROR] FULL DEV cache is stale. Force a V6.9 rebuild.' -ForegroundColor Red
+if ($version -ne '6.9.1-alexscaves-camera-getter-guard') {
+    Write-Host '[ERROR] FULL DEV cache is stale. Rebuild V6.9 cache.' -ForegroundColor Red
     exit 4
 }
 
-if ($bridge -notmatch 'JarJar-aware Mixin SRG Bridge V6\.8') {
+if ($bridge -notmatch 'JarJar-aware Mixin SRG Bridge V6\.9') {
     Write-Host '[ERROR] Mixin bridge report is missing or incompatible.' -ForegroundColor Red
     exit 5
 }
@@ -65,10 +65,15 @@ if ($bridge -notmatch 'RAW_NESTED\s+m_195834_\s+->\s+') {
     exit 11
 }
 
-if ($bridge -notmatch 'RAW_TOP_MIXIN\s+m_91288_\s+->\s+setCameraEntity') {
-    Write-Host '[ERROR] Alexs Caves Minecraft.setCameraEntity mixin remap missing.' -ForegroundColor Red
-    Write-Host '        Expected: RAW_TOP_MIXIN m_91288_ -> setCameraEntity' -ForegroundColor DarkYellow
+if ($bridge -notmatch 'm_91288_\s+->\s+getCameraEntity') {
+    Write-Host '[ERROR] Minecraft.m_91288_ mapping is not getCameraEntity.' -ForegroundColor Red
     exit 12
+}
+
+if ($bridge -notmatch 'RAW_TOP_MIXIN\s+m_91288_\s+->\s+getCameraEntity') {
+    Write-Host '[ERROR] Alexs Caves Minecraft.getCameraEntity mixin remap missing.' -ForegroundColor Red
+    Write-Host '        Expected: RAW_TOP_MIXIN m_91288_ -> getCameraEntity' -ForegroundColor DarkYellow
+    exit 13
 }
 
 Write-Host '[OK] V6.9 FULL DEV cache validation passed.' -ForegroundColor Green
