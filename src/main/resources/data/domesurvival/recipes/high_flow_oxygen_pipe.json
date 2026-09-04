@@ -25,5 +25,11 @@
   "result": {
     "item": "domesurvival:high_flow_oxygen_pipe",
     "count": 4
-  }
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ad_astra"
+    }
+  ]
 }
