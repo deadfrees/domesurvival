@@ -117,8 +117,13 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     };
 
     private final IEnergyStorage energyInputView = new IEnergyStorage() {
-        @Override public int receiveEnergy(int maxReceive, boolean simulate) {
-            return energyStorage.receiveEnergy(maxReceive, simulate);
+        @Override
+        public int receiveEnergy(int maxReceive, boolean simulate) {
+            int accepted = energyStorage.receiveEnergy(maxReceive, simulate);
+            if (!simulate && accepted > 0) {
+                setChanged();
+            }
+            return accepted;
         }
         @Override public int extractEnergy(int maxExtract, boolean simulate) { return 0; }
         @Override public int getEnergyStored() { return energyStorage.getEnergyStored(); }
@@ -185,6 +190,19 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
 
     private boolean isFrontWorldSide(Direction side) {
         return side == getMachineFacing();
+    }
+
+    /**
+     * The rear connector is a guaranteed Forge Energy input, matching the original GOTEICRAFT
+     * machine layout. Other faces configured as INPUT remain valid FE inputs for automation.
+     * Keeping the rear independent from saved generic side modes also repairs old worlds where
+     * a stale side configuration could make the press invisible to EnderIO/Mekanism/Thermal cables.
+     */
+    private boolean isEnergyInputSide(@Nullable Direction side) {
+        if (side == null) return true;
+        if (isFrontWorldSide(side)) return false;
+        Direction rear = RelativeSide.BACK.resolve(getMachineFacing());
+        return side == rear || sideConfig.allowsInput(side);
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, FormingPressBlockEntity press) {
@@ -431,10 +449,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
             return LazyOptional.empty();
         }
         if (cap == ForgeCapabilities.ENERGY) {
-            if (side == null || (!isFrontWorldSide(side) && sideConfig.allowsInput(side))) {
-                return energyInputCapability.cast();
-            }
-            return LazyOptional.empty();
+            return isEnergyInputSide(side) ? energyInputCapability.cast() : LazyOptional.empty();
         }
         return super.getCapability(cap, side);
     }
@@ -442,9 +457,11 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     private void refreshCapabilities() {
         itemInputCapability.invalidate();
         itemOutputCapability.invalidate();
+        itemCombinedCapability.invalidate();
         energyInputCapability.invalidate();
         itemInputCapability = LazyOptional.of(() -> itemInputView);
         itemOutputCapability = LazyOptional.of(() -> itemOutputView);
+        itemCombinedCapability = LazyOptional.of(() -> itemCombinedView);
         energyInputCapability = LazyOptional.of(() -> energyInputView);
     }
 
