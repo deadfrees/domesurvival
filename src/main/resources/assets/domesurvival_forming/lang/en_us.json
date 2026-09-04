@@ -24,5 +24,19 @@
   "gui.domesurvival.forming_press.front_reserved": "Front side is reserved",
   "gui.domesurvival.forming_press.mode.disabled": "Disabled",
   "gui.domesurvival.forming_press.mode.input": "Input",
-  "gui.domesurvival.forming_press.mode.output": "Output"
+  "gui.domesurvival.forming_press.mode.output": "Output",
+  "item.domesurvival.copper_rod": "Copper Rod",
+  "item.domesurvival.copper_wire": "Copper Wire",
+  "item.domesurvival.copper_tube": "Copper Tube Blank",
+  "item.domesurvival.tin_tube": "Tin Tube Blank",
+  "item.domesurvival.steel_plate": "Steel Plate",
+  "item.domesurvival.steel_rod": "Steel Rod",
+  "item.domesurvival.steel_wire": "Steel Wire",
+  "item.domesurvival.steel_tube": "Steel Tube Blank",
+  "item.domesurvival.nickel_plate": "Nickel Plate",
+  "item.domesurvival.nickel_tube": "Nickel Tube Blank",
+  "item.domesurvival.silver_rod": "Silver Rod",
+  "item.domesurvival.silver_wire": "Silver Wire",
+  "item.domesurvival.voltarium_rod": "Voltarium Rod",
+  "item.domesurvival.voltarium_wire": "Voltarium Wire"
 }
