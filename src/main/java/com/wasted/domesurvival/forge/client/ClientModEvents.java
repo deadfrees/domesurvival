@@ -24,6 +24,8 @@ import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationScreen;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressScreen;
 import com.wasted.domesurvival.forge.machine.sieve.SandSieveScreen;
+import com.wasted.domesurvival.forge.machine.transformer.TransformerRegistry;
+import com.wasted.domesurvival.forge.machine.transformer.TransformerScreen;
 import com.wasted.domesurvival.forge.client.render.SandSieveBlockEntityRenderer;
 import com.wasted.domesurvival.forge.item.SieveMeshItem;
 import com.wasted.domesurvival.forge.item.ModItems;
@@ -74,6 +76,7 @@ public final class ClientModEvents {
             MenuScreens.register(ModMenuTypes.SAND_SIEVE.get(), SandSieveScreen::new);
             MenuScreens.register(FormingPressRegistry.FORMING_PRESS_MENU.get(), FormingPressScreen::new);
             MenuScreens.register(FilterRegenerationRegistry.FILTER_REGENERATION_MENU.get(), FilterRegenerationScreen::new);
+            MenuScreens.register(TransformerRegistry.TRANSFORMER_MENU.get(), TransformerScreen::new);
             CuriosRendererRegistry.register(
                     ModItems.OXYGEN_MASK.get(),
                     OxygenMaskCurioRenderer::new

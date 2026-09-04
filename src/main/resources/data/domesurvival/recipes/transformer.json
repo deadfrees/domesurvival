@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PSP",
+    "GVG",
+    "PRP"
+  ],
+  "key": {
+    "P": {
+      "tag": "forge:plates/steel"
+    },
+    "S": {
+      "tag": "forge:wires/silver"
+    },
+    "G": {
+      "item": "domesurvival:steel_gear"
+    },
+    "V": {
+      "tag": "forge:wires/voltarium"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "domesurvival:transformer"
+  }
+}
