@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CRC",
+    "WRW",
     "RIR",
-    "CRC"
+    "WRW"
   ],
   "key": {
-    "C": {
-      "tag": "forge:ingots/copper"
+    "W": {
+      "tag": "forge:wires/copper"
     },
     "R": {
       "item": "minecraft:redstone"
