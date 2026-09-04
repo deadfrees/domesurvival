@@ -1,5 +1,6 @@
 package com.wasted.domesurvival.forge.item;
 
+import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -24,11 +25,14 @@ public final class AirFilterItem extends Item {
         int max = Math.max(1, stack.getMaxDamage());
         int used = Math.max(0, Math.min(max, stack.getDamageValue()));
         int remaining = Math.max(0, max - used);
+        int regenerations = FilterRegenerationBlockEntity.getRegenerationCycles(stack);
 
         tooltip.add(Component.translatable("tooltip.domesurvival.air_filter.purpose").withStyle(ChatFormatting.GREEN));
         tooltip.add(Component.translatable("tooltip.domesurvival.air_filter.usage").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("Ресурс: " + remaining + " / " + max).withStyle(ChatFormatting.GREEN));
         tooltip.add(Component.literal("Отработано: " + used + " / " + max).withStyle(ChatFormatting.DARK_GRAY));
+        tooltip.add(Component.literal("Регенерации: " + regenerations + " / "
+                + FilterRegenerationBlockEntity.MAX_REGENERATION_CYCLES).withStyle(ChatFormatting.AQUA));
         super.appendHoverText(stack, level, tooltip, flag);
     }
 }

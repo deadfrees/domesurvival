@@ -1,5 +1,6 @@
 package com.wasted.domesurvival.forge.item;
 
+import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -37,6 +38,7 @@ public final class WaterFilterItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
+        int regenerations = FilterRegenerationBlockEntity.getRegenerationCycles(stack);
         tooltip.add(Component.translatable(
                 "tooltip.domesurvival.water_filter.cycles", cyclesRemaining(stack), stack.getMaxDamage()
         ).withStyle(ChatFormatting.GRAY));
@@ -46,6 +48,8 @@ public final class WaterFilterItem extends Item {
         tooltip.add(Component.translatable(
                 "tooltip.domesurvival.water_filter.energy", energyPerTick
         ).withStyle(ChatFormatting.DARK_GRAY));
+        tooltip.add(Component.literal("Регенерации: " + regenerations + " / "
+                + FilterRegenerationBlockEntity.MAX_REGENERATION_CYCLES).withStyle(ChatFormatting.AQUA));
         super.appendHoverText(stack, level, tooltip, flag);
     }
 }
