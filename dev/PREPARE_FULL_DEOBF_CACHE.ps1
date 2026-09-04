@@ -13,7 +13,7 @@ $BridgeReport = Join-Path $GeneratedDir 'mixin_srg_bridge_report.txt'
 $SrgToMcp = Join-Path $ProjectRoot 'build\createSrgToMcp\output.srg'
 $BridgeClassDir = Join-Path $PSScriptRoot 'tools\bin'
 
-$GeneratorVersion = '6.9-alexscaves-camera-guard'
+$GeneratorVersion = '6.9.1-alexscaves-camera-getter-guard'
 
 New-Item -ItemType Directory -Force -Path $GeneratedDir | Out-Null
 New-Item -ItemType Directory -Force -Path $CacheDir | Out-Null
@@ -93,10 +93,10 @@ $cacheReady = (
 if ($cacheReady) {
     $bridge = [IO.File]::ReadAllText($BridgeReport)
 
-    if ($bridge -notmatch 'JarJar-aware Mixin SRG Bridge V6\.8' -or
+    if ($bridge -notmatch 'JarJar-aware Mixin SRG Bridge V6\.9' -or
         $bridge -notmatch 'Raw SRG top-level non-mixin changes:\s+0' -or
         $bridge -notmatch 'ACCESSOR\s+getF_62776_\s+->\s+getLevel' -or
-        $bridge -notmatch 'RAW_TOP_MIXIN\s+m_91288_\s+->\s+setCameraEntity') {
+        $bridge -notmatch 'RAW_TOP_MIXIN\s+m_91288_\s+->\s+getCameraEntity') {
         $cacheReady = $false
     }
 }
@@ -143,30 +143,40 @@ if ($LASTEXITCODE -ne 0) {
 
 $bridge = [IO.File]::ReadAllText($BridgeReport)
 
+if ($bridge -notmatch 'JarJar-aware Mixin SRG Bridge V6\.9') {
+    Write-Host '[ERROR] Mixin bridge report is not V6.9.' -ForegroundColor Red
+    exit 11
+}
+
 if ($bridge -notmatch 'Raw SRG top-level non-mixin changes:\s+0') {
     Write-Host '[ERROR] Scope safety invariant failed.' -ForegroundColor Red
-    exit 11
+    exit 12
 }
 
 if ($bridge -notmatch 'ACCESSOR\s+getF_62776_\s+->\s+getLevel') {
     Write-Host '[ERROR] Enhanced Celestials accessor repair was not applied.' -ForegroundColor Red
-    exit 12
+    exit 13
 }
 
 if ($bridge -notmatch 'RAW_NESTED\s+m_91087_\s+->\s+getInstance') {
     Write-Host '[ERROR] Nested JarJar Minecraft.m_91087_ was not remapped.' -ForegroundColor Red
-    exit 13
+    exit 14
 }
 
 if ($bridge -notmatch 'RAW_NESTED\s+m_195834_\s+->\s+') {
     Write-Host '[ERROR] Nested JarJar DetectedVersion.m_195834_ was not remapped.' -ForegroundColor Red
-    exit 14
+    exit 15
 }
 
-if ($bridge -notmatch 'RAW_TOP_MIXIN\s+m_91288_\s+->\s+setCameraEntity') {
-    Write-Host '[ERROR] Alexs Caves Minecraft.setCameraEntity mixin remap was not applied.' -ForegroundColor Red
-    Write-Host '        Expected: RAW_TOP_MIXIN m_91288_ -> setCameraEntity' -ForegroundColor DarkYellow
-    exit 15
+if ($bridge -notmatch 'm_91288_\s+->\s+getCameraEntity') {
+    Write-Host '[ERROR] ForgeGradle mapping table does not map Minecraft.m_91288_ to getCameraEntity.' -ForegroundColor Red
+    exit 16
+}
+
+if ($bridge -notmatch 'RAW_TOP_MIXIN\s+m_91288_\s+->\s+getCameraEntity') {
+    Write-Host '[ERROR] Alexs Caves Minecraft.getCameraEntity mixin remap was not applied.' -ForegroundColor Red
+    Write-Host '        Expected: RAW_TOP_MIXIN m_91288_ -> getCameraEntity' -ForegroundColor DarkYellow
+    exit 17
 }
 
 $gradleText = @"
