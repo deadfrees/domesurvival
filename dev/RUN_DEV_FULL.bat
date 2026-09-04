@@ -14,7 +14,7 @@ if not exist "%HOLD%" mkdir "%HOLD%"
 if not exist "%LOGDIR%" mkdir "%LOGDIR%"
 
 echo ============================================================
-echo Dome Survival - FULL DEV V6.8 STABLE
+echo Dome Survival - FULL DEV V6.9 STABLE
 echo ForgeGradle fg.deobf + scoped Mixin/JarJar bridge
 echo ============================================================
 echo.
@@ -80,9 +80,9 @@ for %%F in ("%HOLD%\*.jar") do (
 
 echo.
 if "!RESULT!"=="0" (
-    echo [OK] FULL DEV V6.8 exited normally.
+    echo [OK] FULL DEV V6.9 exited normally.
 ) else (
-    echo [ERROR] FULL DEV V6.8 returned code !RESULT!.
+    echo [ERROR] FULL DEV V6.9 returned code !RESULT!.
     echo.
     echo Logs:
     echo   run\logs\FULL_DEV_GRADLE_LAST.txt
