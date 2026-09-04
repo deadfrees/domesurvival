@@ -107,7 +107,13 @@ dependencies {
     // DEV_V5_4_CUSTOMNPCS_DEOBF
     // DomeSurvival automatic subscribers currently reference CustomNPCs classes.
     compileOnly fg.deobf('curse.maven:customnpcs-unofficial-1052708:8414335')
-    runtimeOnly fg.deobf('curse.maven:customnpcs-unofficial-1052708:8414335')
+    // CustomNPCs is not MojMap-dev safe in FULL DEV: its block-entity registration
+    // resolves a null production registry entry after ForgeGradle remapping.
+    // Keep it for ordinary runClient, but let FULL DEV omit it from runtime while
+    // preserving compile-time APIs for DomeSurvival subscribers.
+    if (!project.hasProperty('domeFullDev')) {
+        runtimeOnly fg.deobf('curse.maven:customnpcs-unofficial-1052708:8414335')
+    }
     // DEV_V5_3_CORE_DEOBF
     // Hard/runtime mod APIs used by DomeSurvival must be remapped by ForgeGradle.
 
