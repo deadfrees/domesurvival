@@ -24,5 +24,19 @@
   "gui.domesurvival.forming_press.front_reserved": "Лицевая сторона зарезервирована",
   "gui.domesurvival.forming_press.mode.disabled": "Отключено",
   "gui.domesurvival.forming_press.mode.input": "Вход",
-  "gui.domesurvival.forming_press.mode.output": "Выход"
+  "gui.domesurvival.forming_press.mode.output": "Выход",
+  "item.domesurvival.copper_rod": "Медный стержень",
+  "item.domesurvival.copper_wire": "Медная проволока",
+  "item.domesurvival.copper_tube": "Медная трубная заготовка",
+  "item.domesurvival.tin_tube": "Оловянная трубная заготовка",
+  "item.domesurvival.steel_plate": "Стальная пластина",
+  "item.domesurvival.steel_rod": "Стальной стержень",
+  "item.domesurvival.steel_wire": "Стальная проволока",
+  "item.domesurvival.steel_tube": "Стальная трубная заготовка",
+  "item.domesurvival.nickel_plate": "Никелевая пластина",
+  "item.domesurvival.nickel_tube": "Никелевая трубная заготовка",
+  "item.domesurvival.silver_rod": "Серебряный стержень",
+  "item.domesurvival.silver_wire": "Серебряная проволока",
+  "item.domesurvival.voltarium_rod": "Вольтариумовый стержень",
+  "item.domesurvival.voltarium_wire": "Вольтариумовая проволока"
 }
