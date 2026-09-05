@@ -6,6 +6,8 @@ $CacheDir = Join-Path $Generated 'fullmods'
 $BridgeReport = Join-Path $Generated 'mixin_srg_bridge_report.txt'
 $VersionFile = Join-Path $Generated 'full_modpack.generator_version.txt'
 
+$ExpectedGeneratorVersion = '6.9.2-thirdparty-registry-dev-guard'
+
 if (-not (Test-Path $GradleFile)) { exit 1 }
 if (-not (Test-Path $BridgeReport)) { exit 2 }
 if (-not (Test-Path $VersionFile)) { exit 10 }
@@ -30,8 +32,10 @@ if ($coords.Count -ne $jars.Count -or $coords.Count -eq 0) {
     exit 3
 }
 
-if ($version -ne '6.9.1-alexscaves-camera-getter-guard') {
+if ($version -ne $ExpectedGeneratorVersion) {
     Write-Host '[ERROR] FULL DEV cache is stale. Rebuild V6.9 cache.' -ForegroundColor Red
+    Write-Host "        Expected: $ExpectedGeneratorVersion" -ForegroundColor DarkYellow
+    Write-Host "        Actual:   $version" -ForegroundColor DarkYellow
     exit 4
 }
 
