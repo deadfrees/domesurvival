@@ -28,7 +28,7 @@ public final class FilterRegenerationRegistry {
 
     public static final RegistryObject<Block> FILTER_REGENERATION_STATION = BLOCKS.register(
             "filter_regeneration_station",
-            () -> new FilterRegenerationBlock(BlockBehaviour.Properties.copy(Blocks.BLAST_FURNACE)
+            () -> new FilterRegenerationBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                     .strength(4.0F, 8.0F))
     );
 
