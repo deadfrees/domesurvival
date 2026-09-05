@@ -75,6 +75,24 @@ sourceSets.main.resources {
     srcDir 'src/generated/resources'
 }
 
+// FULL DEV intentionally omits CustomNPCs from the runtime because the
+// unofficial production JAR is not MojMap-dev safe. JosephScriptCommand is an
+// optional developer/admin integration but is annotated as an automatic Forge
+// subscriber and therefore would be eagerly loaded before the game starts.
+// Exclude only that subscriber in FULL DEV; normal/production builds keep it.
+if (project.hasProperty('domeFullDev')) {
+    sourceSets.main.java.exclude 'com/wasted/domesurvival/forge/integration/customnpcs/JosephScriptCommand.java'
+
+    // Guard against a stale class left by an earlier non-FULL-DEV compile.
+    tasks.named('compileJava').configure {
+        doFirst {
+            delete layout.buildDirectory.file(
+                    'classes/java/main/com/wasted/domesurvival/forge/integration/customnpcs/JosephScriptCommand.class'
+            ).get().asFile
+        }
+    }
+}
+
 repositories {
 maven {
         name = 'Team CoFH'
