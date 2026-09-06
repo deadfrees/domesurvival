@@ -257,6 +257,13 @@ public final class OxygenComplexBlockEntity extends BlockEntity implements MenuP
         return OxygenComplexFilters.isAirFilter(filterInventory.getStackInSlot(0));
     }
 
+    private boolean hasUsableAirFilter() {
+        ItemStack stack = filterInventory.getStackInSlot(0);
+        return OxygenComplexFilters.isAirFilter(stack)
+                && stack.isDamageableItem()
+                && stack.getDamageValue() < stack.getMaxDamage();
+    }
+
     public int getAirFilterDamage() {
         ItemStack stack = filterInventory.getStackInSlot(0);
         return hasAirFilter() && stack.isDamageableItem() ? stack.getDamageValue() : 0;
@@ -269,7 +276,9 @@ public final class OxygenComplexBlockEntity extends BlockEntity implements MenuP
 
     private void tickAirFilterWear() {
         ItemStack stack = filterInventory.getStackInSlot(0);
-        if (!OxygenComplexFilters.isAirFilter(stack) || !stack.isDamageableItem()) {
+        if (!OxygenComplexFilters.isAirFilter(stack)
+                || !stack.isDamageableItem()
+                || stack.getDamageValue() >= stack.getMaxDamage()) {
             filterWearTicks = 0;
             return;
         }
@@ -279,13 +288,9 @@ public final class OxygenComplexBlockEntity extends BlockEntity implements MenuP
         }
 
         filterWearTicks = 0;
-        int nextDamage = stack.getDamageValue() + 1;
-        if (nextDamage >= stack.getMaxDamage()) {
-            filterInventory.setStackInSlot(0, ItemStack.EMPTY);
-        } else {
-            stack.setDamageValue(nextDamage);
-            filterInventory.setStackInSlot(0, stack);
-        }
+        int nextDamage = Math.min(stack.getMaxDamage(), stack.getDamageValue() + 1);
+        stack.setDamageValue(nextDamage);
+        filterInventory.setStackInSlot(0, stack);
         setChanged();
     }
 
@@ -426,7 +431,7 @@ public final class OxygenComplexBlockEntity extends BlockEntity implements MenuP
             compressionRan = true;
         }
 
-        if (machine.hasAirFilter()
+        if (machine.hasUsableAirFilter()
                 && machine.collectedAir >= FILTER_INPUT_PER_TICK
                 && FILTERED_AIR_CAPACITY - machine.filteredAir >= FILTER_OUTPUT_PER_TICK
                 && machine.energyStorage.getEnergyStored() >= OPERATING_ENERGY_PER_TICK) {
@@ -479,7 +484,7 @@ public final class OxygenComplexBlockEntity extends BlockEntity implements MenuP
                 && oxygenStorage.getMaxOxygenStored() - oxygenStorage.getOxygenStored() >= OXYGEN_OUTPUT_PER_TICK)
                 || (filteredAir >= COMPRESS_INPUT_PER_TICK
                 && COMPRESSED_FEED_CAPACITY - compressedFeed >= COMPRESS_OUTPUT_PER_TICK)
-                || (hasAirFilter()
+                || (hasUsableAirFilter()
                 && collectedAir >= FILTER_INPUT_PER_TICK
                 && FILTERED_AIR_CAPACITY - filteredAir >= FILTER_OUTPUT_PER_TICK)
                 || (atmosphereAvailable && COLLECTED_AIR_CAPACITY - collectedAir >= INTAKE_AIR_PER_TICK);

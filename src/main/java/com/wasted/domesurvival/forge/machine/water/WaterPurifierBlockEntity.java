@@ -334,9 +334,14 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
     private void damageFilter() {
         ItemStack filter = inventory.getStackInSlot(SLOT_FILTER);
         if (filter.isEmpty()) return;
-        int nextDamage = filter.getDamageValue() + 1;
-        if (nextDamage >= filter.getMaxDamage()) inventory.setStackInSlot(SLOT_FILTER, ItemStack.EMPTY);
-        else { filter.setDamageValue(nextDamage); inventory.setStackInSlot(SLOT_FILTER, filter); }
+        int maxDamage = Math.max(1, filter.getMaxDamage());
+        int nextDamage = Math.min(maxDamage, filter.getDamageValue() + 1);
+        if (nextDamage != filter.getDamageValue()) {
+            // Keep an exhausted cartridge in the slot so its NBT (including the
+            // regeneration counter) survives and the cartridge can be regenerated.
+            filter.setDamageValue(nextDamage);
+            inventory.setStackInSlot(SLOT_FILTER, filter);
+        }
     }
 
     public ItemStackHandler getInventory() { return inventory; }

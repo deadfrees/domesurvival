@@ -207,7 +207,8 @@ public final class FilterRegenerationBlockEntity extends BlockEntity implements 
 
     public static int getRegenerationCycles(ItemStack stack) {
         if (stack.isEmpty() || !stack.hasTag()) return 0;
-        return Math.max(0, stack.getTag().getInt(FILTER_NBT_REGEN_CYCLES));
+        return Math.max(0, Math.min(MAX_REGENERATION_CYCLES,
+                stack.getTag().getInt(FILTER_NBT_REGEN_CYCLES)));
     }
 
     private static void setRegenerationCycles(ItemStack stack, int cycles) {
