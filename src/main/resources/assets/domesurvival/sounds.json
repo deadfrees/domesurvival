@@ -1,4 +1,4 @@
-﻿{
+{
     "airlock_open":  {
                          "subtitle":  "subtitles.domesurvival.airlock_open",
                          "sounds":  [
@@ -60,7 +60,14 @@
                                                        }
                                                    ]
                                     },
-    "machine.electrolyzer.loop":  {
+    "machine.filter_regenerator.loop":  {
+                                           "sounds":  [
+                                                          {
+                                                              "name":  "domesurvival:machines/water_purifier_loop",
+                                                              "stream":  true
+                                                          }
+                                                      ]
+                                       },    "machine.electrolyzer.loop":  {
                                       "sounds":  [
                                                      {
                                                          "name":  "domesurvival:machines/electrolyzer_loop",

@@ -20,6 +20,7 @@ public final class MachineAmbientSoundService {
     public enum MachineType {
         COAL_GENERATOR(MachineSoundEvents.COAL_GENERATOR_LOOP, 0.14F),
         WATER_PURIFIER(MachineSoundEvents.WATER_PURIFIER_LOOP, 0.10F),
+        FILTER_REGENERATOR(MachineSoundEvents.FILTER_REGENERATOR_LOOP, 0.09F),
         OXYGEN_ELECTROLYZER(MachineSoundEvents.OXYGEN_ELECTROLYZER_LOOP, 0.11F),
         OXYGEN_FILLER(MachineSoundEvents.OXYGEN_FILLER_LOOP, 0.09F),
         OXYGEN_COMPLEX(MachineSoundEvents.OXYGEN_COMPLEX_LOOP, 0.12F);

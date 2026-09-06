@@ -80,9 +80,10 @@ public final class RoomAtmosphereSavedData extends SavedData {
                 leakStartOxygen = 0;
                 leakOutlets.clear();
             }
-            if (pressureState != PressureState.SEALED || oxygen <= 0) {
-                operational = false;
-            }
+            // SEALED_ROOM_BREATHABLE_WITH_ANY_OXYGEN:
+            // for a sealed room the actual O2 amount, not 100% fullness,
+            // determines whether the atmosphere can support breathing.
+            operational = pressureState == PressureState.SEALED && oxygen > 0;
 
             AtmosphereRecord record = new AtmosphereRecord(
                     geometry,
@@ -149,7 +150,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
                     leaking.pressureState = PressureState.SEALED;
                     leaking.leakStartTime = 0L;
                     leaking.leakStartOxygen = 0;
-                    leaking.operational = leaking.required > 0 && leaking.oxygen >= leaking.required;
+                    leaking.operational = leaking.oxygen > 0;
                     changed = true;
                 } else {
                     leaking.leakOutlets.remove(outletKey);
@@ -171,7 +172,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
             exact.pressureState = PressureState.SEALED;
             exact.leakStartTime = 0L;
             exact.leakStartOxygen = 0;
-            exact.operational = exact.required > 0 && exact.oxygen >= exact.required;
+            exact.operational = exact.oxygen > 0;
             if (changed || exact.pressureState == PressureState.SEALED) setDirty();
         }
 
@@ -190,7 +191,7 @@ public final class RoomAtmosphereSavedData extends SavedData {
         if (accepted <= 0) return 0;
 
         record.oxygen += accepted;
-        if (record.required > 0 && record.oxygen >= record.required) {
+        if (record.oxygen > 0) {
             record.operational = true;
         }
         setDirty();
@@ -209,7 +210,6 @@ public final class RoomAtmosphereSavedData extends SavedData {
         if (record == null
                 || record.geometrySignature != room.geometrySignature()
                 || record.pressureState != PressureState.SEALED
-                || !record.operational
                 || record.oxygen <= 0) {
             return 0;
         }
@@ -313,15 +313,16 @@ public final class RoomAtmosphereSavedData extends SavedData {
         }
     }
 
-    /** V61 behavior remains: a normal sealed room becomes breathable only at 100%. */
+    /**
+     * A sealed room is breathable while it contains real oxygen.
+     * Fullness is a storage/filler state, not a binary breathing threshold.
+     */
     public boolean isBreathable(SealedRoomManager.RoomSnapshot room) {
         if (!room.sealed()) return false;
         AtmosphereRecord record = rooms.get(room.roomId());
         return record != null
                 && record.geometrySignature == room.geometrySignature()
                 && record.pressureState == PressureState.SEALED
-                && record.required > 0
-                && record.operational
                 && record.oxygen > 0;
     }
 

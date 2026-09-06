@@ -1,12 +1,8 @@
 {
-  "parent": "minecraft:block/cube",
+  "parent": "minecraft:block/orientable",
   "textures": {
-    "particle": "domesurvival:block/filter_regeneration_station_side",
-    "down": "domesurvival:block/filter_regeneration_station_side",
-    "up": "domesurvival:block/filter_regeneration_station_top",
-    "north": "domesurvival:block/filter_regeneration_station_front",
-    "south": "domesurvival:block/filter_regeneration_station_side",
-    "east": "domesurvival:block/filter_regeneration_station_side",
-    "west": "domesurvival:block/filter_regeneration_station_side"
+    "top": "domesurvival:block/coal_generator_top",
+    "front": "domesurvival:block/filter_regeneration_station_front",
+    "side": "domesurvival:block/coal_generator_side"
   }
 }

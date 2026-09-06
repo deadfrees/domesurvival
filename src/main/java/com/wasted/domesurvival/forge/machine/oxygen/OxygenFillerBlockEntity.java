@@ -89,6 +89,9 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
     private static final String NBT_INVENTORY = "Inventory";
     private static final String NBT_MODE = "OperatingMode";
     private static final int VENTILATION_PARTICLE_INTERVAL = 12;
+    /** Keeps visuals/sound stable between 1-second occupant O2 maintenance pulses. */
+    private static final int VENTILATION_ACTIVITY_HOLD_TICKS =
+            RoomAtmosphereRules.OCCUPANT_CONSUMPTION_INTERVAL_TICKS + 5;
 
     private final UnifiedSideConfig sideConfig = new UnifiedSideConfig();
     private final MachineEnergyStorage energyStorage =
@@ -169,6 +172,7 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
     private int roomOxygen;
     private int roomOxygenRequired;
     private int ambientSoundTick;
+    private int ventilationActivityHoldTicks;
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -235,6 +239,7 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
         }
 
         boolean working = false;
+        boolean ventilatedThisTick = false;
 
         if (machine.status == STATUS_FILLING) {
             ItemStack stack = machine.inventory.getStackInSlot(SLOT_TANK);
@@ -254,18 +259,41 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
             int transferred = machine.fillSealedRoom(serverLevel);
             if (transferred > 0) {
                 working = true;
+                ventilatedThisTick = true;
                 changed = true;
             }
         }
 
         machine.status = machine.calculateStatus();
+
+        // The room consumes O2 once per second. Without a visual hold the filler
+        // flashes for a single refill tick and immediately turns off again.
+        // This hold affects only LIT/sound; oxygen and FE are still consumed only
+        // for the amount actually transferred by fillSealedRoom().
+        boolean visualWorking = working;
+        if (machine.operatingMode == OxygenFillerMode.VENTILATION) {
+            if (ventilatedThisTick) {
+                machine.ventilationActivityHoldTicks = VENTILATION_ACTIVITY_HOLD_TICKS;
+            } else if (machine.ventilationActivityHoldTicks > 0) {
+                machine.ventilationActivityHoldTicks--;
+            }
+
+            if (machine.status == STATUS_VENTILATING || machine.status == STATUS_VENT_ROOM_FULL) {
+                visualWorking |= machine.ventilationActivityHoldTicks > 0;
+            } else {
+                machine.ventilationActivityHoldTicks = 0;
+            }
+        } else {
+            machine.ventilationActivityHoldTicks = 0;
+        }
+
         machine.ambientSoundTick = MachineAmbientSoundService.tick(
-                level, pos, working, machine.ambientSoundTick,
+                level, pos, visualWorking, machine.ambientSoundTick,
                 MachineAmbientSoundService.MachineType.OXYGEN_FILLER
         );
 
-        if (state.getValue(OxygenFillerBlock.LIT) != working) {
-            level.setBlock(pos, state.setValue(OxygenFillerBlock.LIT, working), 3);
+        if (state.getValue(OxygenFillerBlock.LIT) != visualWorking) {
+            level.setBlock(pos, state.setValue(OxygenFillerBlock.LIT, visualWorking), 3);
             changed = true;
         }
 

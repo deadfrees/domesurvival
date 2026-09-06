@@ -36,6 +36,10 @@ public final class ModCreativeTabs {
     private static final List<String> DISPLAY_ORDER = List.of(
             // 1. Base materials and components.
             "steel_ingot",
+            "steel_nugget",
+            "steel_block",
+            "solarite_crystal",
+            "solarite_block",
             "coal_coke",
             "slag",
             "steel_gear",

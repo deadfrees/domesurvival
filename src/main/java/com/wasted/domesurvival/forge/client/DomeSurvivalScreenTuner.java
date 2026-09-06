@@ -45,7 +45,10 @@ public final class DomeSurvivalScreenTuner {
         String name = screen.getClass().getName();
         String lower = name.toLowerCase(Locale.ROOT);
 
-        if (simple.equals("TitleScreen") || isLoadingScreen(simple, screen) || screen instanceof AbstractContainerScreen<?>) {
+        if (simple.equals("TitleScreen")
+                || isLoadingScreen(simple, screen)
+                || screen instanceof AbstractContainerScreen<?>
+                || lower.startsWith("mezz.jei.")) {
             return null;
         }
 

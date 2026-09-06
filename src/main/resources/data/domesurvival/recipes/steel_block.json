@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "SSS",
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:ingots/steel"
+    }
+  },
+  "result": {
+    "item": "domesurvival:steel_block"
+  }
+}

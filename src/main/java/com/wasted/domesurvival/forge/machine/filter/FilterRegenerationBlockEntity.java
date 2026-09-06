@@ -4,6 +4,7 @@ import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.item.WaterFilterItem;
 import com.wasted.domesurvival.forge.machine.energy.MachineEnergyStorage;
 import com.wasted.domesurvival.forge.machine.oxygen.complex.OxygenComplexFilters;
+import com.wasted.domesurvival.forge.sound.MachineAmbientSoundService;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -131,6 +132,7 @@ public final class FilterRegenerationBlockEntity extends BlockEntity implements 
 
     private int progress;
     private boolean processingThisTick;
+    private int ambientSoundTick;
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -160,6 +162,14 @@ public final class FilterRegenerationBlockEntity extends BlockEntity implements 
                                   FilterRegenerationBlockEntity station) {
         station.processingThisTick = false;
         boolean changed = station.tickRegeneration();
+
+        station.ambientSoundTick = MachineAmbientSoundService.tick(
+                level,
+                pos,
+                station.processingThisTick,
+                station.ambientSoundTick,
+                MachineAmbientSoundService.MachineType.FILTER_REGENERATOR
+        );
 
         if (state.getValue(FilterRegenerationBlock.ACTIVE) != station.processingThisTick) {
             level.setBlock(pos, state.setValue(FilterRegenerationBlock.ACTIVE, station.processingThisTick), 3);

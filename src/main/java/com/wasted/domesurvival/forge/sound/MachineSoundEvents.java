@@ -13,6 +13,7 @@ import net.minecraftforge.registries.RegisterEvent;
 public final class MachineSoundEvents {
     public static final ResourceLocation COAL_GENERATOR_LOOP = id("machine.coal_generator.loop");
     public static final ResourceLocation WATER_PURIFIER_LOOP = id("machine.water_purifier.loop");
+    public static final ResourceLocation FILTER_REGENERATOR_LOOP = id("machine.filter_regenerator.loop");
     public static final ResourceLocation OXYGEN_ELECTROLYZER_LOOP = id("machine.electrolyzer.loop");
     public static final ResourceLocation OXYGEN_FILLER_LOOP = id("machine.oxygen_filler.loop");
     public static final ResourceLocation OXYGEN_COMPLEX_LOOP = id("machine.oxygen_complex.loop");
@@ -25,6 +26,7 @@ public final class MachineSoundEvents {
         event.register(ForgeRegistries.Keys.SOUND_EVENTS, helper -> {
             helper.register(COAL_GENERATOR_LOOP, SoundEvent.createVariableRangeEvent(COAL_GENERATOR_LOOP));
             helper.register(WATER_PURIFIER_LOOP, SoundEvent.createVariableRangeEvent(WATER_PURIFIER_LOOP));
+            helper.register(FILTER_REGENERATOR_LOOP, SoundEvent.createVariableRangeEvent(FILTER_REGENERATOR_LOOP));
             helper.register(OXYGEN_ELECTROLYZER_LOOP, SoundEvent.createVariableRangeEvent(OXYGEN_ELECTROLYZER_LOOP));
             helper.register(OXYGEN_FILLER_LOOP, SoundEvent.createVariableRangeEvent(OXYGEN_FILLER_LOOP));
             helper.register(OXYGEN_COMPLEX_LOOP, SoundEvent.createVariableRangeEvent(OXYGEN_COMPLEX_LOOP));

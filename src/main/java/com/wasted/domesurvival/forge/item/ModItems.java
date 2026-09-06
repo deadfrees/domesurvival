@@ -47,6 +47,7 @@ public final class ModItems {
     public static final RegistryObject<Item> FILTER_REGENERATION_MEDIA =
             engineeringComponent("filter_regeneration_media");
     public static final RegistryObject<Item> STEEL_INGOT = engineeringComponent("steel_ingot");
+    public static final RegistryObject<Item> STEEL_NUGGET = engineeringComponent("steel_nugget");
     public static final RegistryObject<Item> SLAG = engineeringComponent("slag");
 
     /** Replaceable meshes for the placeable sand sifter. */

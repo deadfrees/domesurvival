@@ -27,31 +27,57 @@ public final class FilterRegenerationMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public FilterRegenerationMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
-        this(containerId, playerInventory, null, new ItemStackHandler(2),
-                new SimpleContainerData(FilterRegenerationBlockEntity.DATA_COUNT), extraData.readBlockPos());
+        this(
+                containerId,
+                playerInventory,
+                null,
+                new ItemStackHandler(2),
+                new SimpleContainerData(FilterRegenerationBlockEntity.DATA_COUNT),
+                extraData.readBlockPos()
+        );
     }
 
-    public FilterRegenerationMenu(int containerId, Inventory playerInventory,
-                                  FilterRegenerationBlockEntity station) {
-        this(containerId, playerInventory, station, station.getInventory(), station.getDataAccess(), station.getBlockPos());
+    public FilterRegenerationMenu(
+            int containerId,
+            Inventory playerInventory,
+            FilterRegenerationBlockEntity station
+    ) {
+        this(
+                containerId,
+                playerInventory,
+                station,
+                station.getInventory(),
+                station.getDataAccess(),
+                station.getBlockPos()
+        );
     }
 
-    private FilterRegenerationMenu(int containerId, Inventory playerInventory,
-                                   @Nullable FilterRegenerationBlockEntity station,
-                                   IItemHandler machineInventory, ContainerData data, BlockPos blockPos) {
+    private FilterRegenerationMenu(
+            int containerId,
+            Inventory playerInventory,
+            @Nullable FilterRegenerationBlockEntity station,
+            IItemHandler machineInventory,
+            ContainerData data,
+            BlockPos blockPos
+    ) {
         super(FilterRegenerationRegistry.FILTER_REGENERATION_MENU.get(), containerId);
+
         this.access = ContainerLevelAccess.create(playerInventory.player.level(), blockPos);
         this.data = data;
+
         checkContainerDataCount(data, FilterRegenerationBlockEntity.DATA_COUNT);
         addDataSlots(data);
 
-        addSlot(new SlotItemHandler(machineInventory, 0, 64, 62) {
+        // Same item-centering offset used by CoalGeneratorMenu:
+        // 24x24 visual cell -> vanilla slot starts +4px inside it.
+        addSlot(new SlotItemHandler(machineInventory, 0, 150, 106) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return FilterRegenerationBlockEntity.isEligibleFilter(stack);
             }
         });
-        addSlot(new SlotItemHandler(machineInventory, 1, 100, 62) {
+
+        addSlot(new SlotItemHandler(machineInventory, 1, 182, 106) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return FilterRegenerationBlockEntity.isRegenerationMedia(stack);
@@ -68,8 +94,8 @@ public final class FilterRegenerationMenu extends AbstractContainerMenu {
                 addSlot(new net.minecraft.world.inventory.Slot(
                         playerInventory,
                         column + row * 9 + 9,
-                        12 + column * 22,
-                        132 + row * 22
+                        14 + column * 22,
+                        161 + row * 22
                 ));
             }
         }
@@ -80,52 +106,91 @@ public final class FilterRegenerationMenu extends AbstractContainerMenu {
             addSlot(new net.minecraft.world.inventory.Slot(
                     playerInventory,
                     column,
-                    12 + column * 22,
-                    198
+                    14 + column * 22,
+                    229
             ));
         }
     }
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(access, player, FilterRegenerationRegistry.FILTER_REGENERATION_STATION.get());
+        return stillValid(
+                access,
+                player,
+                FilterRegenerationRegistry.FILTER_REGENERATION_STATION.get()
+        );
     }
 
     @Override
     public @NotNull ItemStack quickMoveStack(Player player, int index) {
-        if (index < 0 || index >= slots.size()) return ItemStack.EMPTY;
+        if (index < 0 || index >= slots.size()) {
+            return ItemStack.EMPTY;
+        }
+
         var slot = slots.get(index);
-        if (!slot.hasItem()) return ItemStack.EMPTY;
+        if (!slot.hasItem()) {
+            return ItemStack.EMPTY;
+        }
 
         ItemStack stack = slot.getItem();
         ItemStack result = stack.copy();
 
         if (index == FILTER_SLOT_INDEX || index == MEDIA_SLOT_INDEX) {
-            if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, HOTBAR_END, true)) return ItemStack.EMPTY;
+            if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, HOTBAR_END, true)) {
+                return ItemStack.EMPTY;
+            }
         } else if (FilterRegenerationBlockEntity.isEligibleFilter(stack)
                 && moveItemStackTo(stack, FILTER_SLOT_INDEX, FILTER_SLOT_INDEX + 1, false)) {
-            // Moved into filter slot.
+            // Moved into the filter slot.
         } else if (FilterRegenerationBlockEntity.isRegenerationMedia(stack)
                 && moveItemStackTo(stack, MEDIA_SLOT_INDEX, MEDIA_SLOT_INDEX + 1, false)) {
-            // Moved into media slot.
+            // Moved into the media slot.
         } else if (index >= PLAYER_INVENTORY_START && index < PLAYER_INVENTORY_END) {
-            if (!moveItemStackTo(stack, HOTBAR_START, HOTBAR_END, false)) return ItemStack.EMPTY;
+            if (!moveItemStackTo(stack, HOTBAR_START, HOTBAR_END, false)) {
+                return ItemStack.EMPTY;
+            }
         } else if (index >= HOTBAR_START && index < HOTBAR_END) {
-            if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END, false)) return ItemStack.EMPTY;
+            if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END, false)) {
+                return ItemStack.EMPTY;
+            }
         } else {
             return ItemStack.EMPTY;
         }
 
-        if (stack.isEmpty()) slot.set(ItemStack.EMPTY);
-        else slot.setChanged();
+        if (stack.isEmpty()) {
+            slot.set(ItemStack.EMPTY);
+        } else {
+            slot.setChanged();
+        }
+
         return result;
     }
 
-    public int energyStored() { return data.get(FilterRegenerationBlockEntity.DATA_ENERGY); }
-    public int energyCapacity() { return data.get(FilterRegenerationBlockEntity.DATA_CAPACITY); }
-    public int progress() { return data.get(FilterRegenerationBlockEntity.DATA_PROGRESS); }
-    public int progressMax() { return data.get(FilterRegenerationBlockEntity.DATA_MAX_PROGRESS); }
-    public int status() { return data.get(FilterRegenerationBlockEntity.DATA_STATUS); }
-    public int regenerationCycles() { return data.get(FilterRegenerationBlockEntity.DATA_REGEN_CYCLES); }
-    public int maxRegenerationCycles() { return data.get(FilterRegenerationBlockEntity.DATA_MAX_REGEN_CYCLES); }
+    public int energyStored() {
+        return data.get(FilterRegenerationBlockEntity.DATA_ENERGY);
+    }
+
+    public int energyCapacity() {
+        return data.get(FilterRegenerationBlockEntity.DATA_CAPACITY);
+    }
+
+    public int progress() {
+        return data.get(FilterRegenerationBlockEntity.DATA_PROGRESS);
+    }
+
+    public int progressMax() {
+        return data.get(FilterRegenerationBlockEntity.DATA_MAX_PROGRESS);
+    }
+
+    public int status() {
+        return data.get(FilterRegenerationBlockEntity.DATA_STATUS);
+    }
+
+    public int regenerationCycles() {
+        return data.get(FilterRegenerationBlockEntity.DATA_REGEN_CYCLES);
+    }
+
+    public int maxRegenerationCycles() {
+        return data.get(FilterRegenerationBlockEntity.DATA_MAX_REGEN_CYCLES);
+    }
 }

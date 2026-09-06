@@ -155,6 +155,10 @@ public final class ModBlocks {
                             .sound(SoundType.METAL)
                             .noOcclusion()));
 
+    /** Compact storage form for DomeSurvival steel. */
+    public static final RegistryObject<Block> STEEL_BLOCK = BLOCKS.register("steel_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .strength(5.0F, 8.0F)));
     public static final RegistryObject<Block> REINFORCED_GLASS = BLOCKS.register("reinforced_glass",
             () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS)
                     .strength(50.0F, 1200.0F)
@@ -223,6 +227,7 @@ public final class ModBlocks {
         ITEMS.register("high_voltage_energy_pipe",
                 () -> new EnergyPipeBlockItem(HIGH_VOLTAGE_ENERGY_PIPE.get(), new Item.Properties(),
                         EnergyPipeTier.HIGH_VOLTAGE.transferPerTick()));
+        ITEMS.register("steel_block", () -> new BlockItem(STEEL_BLOCK.get(), new Item.Properties()));
         ITEMS.register("reinforced_glass", () -> new BlockItem(REINFORCED_GLASS.get(), new Item.Properties()));
         ITEMS.register("dome_frame", () -> new BlockItem(DOME_FRAME.get(), new Item.Properties()));
         ITEMS.register("dome_foundation", () -> new BlockItem(DOME_FOUNDATION.get(), new Item.Properties()));
