@@ -1,5 +1,6 @@
 package com.wasted.domesurvival.forge.machine.filter;
 
+import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.item.WaterFilterItem;
 import com.wasted.domesurvival.forge.machine.energy.MachineEnergyStorage;
 import com.wasted.domesurvival.forge.machine.oxygen.complex.OxygenComplexFilters;
@@ -7,13 +8,16 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -29,8 +33,9 @@ import org.jetbrains.annotations.Nullable;
 public final class FilterRegenerationBlockEntity extends BlockEntity implements MenuProvider {
     public static final int ENERGY_CAPACITY = 20_000;
     public static final int MAX_INPUT_PER_TICK = 64;
-    public static final int ENERGY_PER_TICK = 20;
+    public static final int ENERGY_PER_TICK = 40;
     public static final int PROCESSING_TICKS = 200;
+    public static final int ENERGY_PER_REGENERATION = ENERGY_PER_TICK * PROCESSING_TICKS;
     public static final int MAX_REGENERATION_CYCLES = 8;
 
     public static final int STATUS_READY = 0;
@@ -54,6 +59,9 @@ public final class FilterRegenerationBlockEntity extends BlockEntity implements 
     private static final String NBT_ENERGY = "Energy";
     private static final String NBT_PROGRESS = "Progress";
     private static final String FILTER_NBT_REGEN_CYCLES = "DomeRegenCycles";
+    private static final TagKey<Item> REGENERATION_MEDIA_TAG = ItemTags.create(
+            new ResourceLocation(DomeSurvival.MOD_ID, "filter_regeneration_media")
+    );
 
     private final ItemStackHandler inventory = new ItemStackHandler(2) {
         @Override
@@ -90,7 +98,35 @@ public final class FilterRegenerationBlockEntity extends BlockEntity implements 
         @Override public boolean canReceive() { return true; }
     };
 
-    private LazyOptional<IItemHandler> itemCapability = LazyOptional.of(() -> inventory);
+    /**
+     * Automation view: pipes/hoppers may feed filters and regeneration media,
+     * but they cannot steal media or pull a filter in the middle of a repair chain.
+     * A filter becomes extractable once it is healthy or its regeneration limit is exhausted.
+     */
+    private final IItemHandler automationItemView = new IItemHandler() {
+        @Override public int getSlots() { return inventory.getSlots(); }
+        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
+
+        @Override
+        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            return inventory.insertItem(slot, stack, simulate);
+        }
+
+        @Override
+        public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+            if (slot != 0 || progress > 0) return ItemStack.EMPTY;
+            ItemStack filter = inventory.getStackInSlot(0);
+            if (filter.isEmpty() || canRegenerateFilter(filter)) return ItemStack.EMPTY;
+            return inventory.extractItem(0, amount, simulate);
+        }
+
+        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
+        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return inventory.isItemValid(slot, stack);
+        }
+    };
+
+    private LazyOptional<IItemHandler> itemCapability = LazyOptional.of(() -> automationItemView);
     private LazyOptional<IEnergyStorage> energyCapability = LazyOptional.of(() -> energyInputView);
 
     private int progress;
@@ -196,7 +232,7 @@ public final class FilterRegenerationBlockEntity extends BlockEntity implements 
     }
 
     public static boolean isRegenerationMedia(ItemStack stack) {
-        return !stack.isEmpty() && stack.is(Items.CHARCOAL);
+        return !stack.isEmpty() && stack.is(REGENERATION_MEDIA_TAG);
     }
 
     public static boolean canRegenerateFilter(ItemStack stack) {
@@ -254,7 +290,7 @@ public final class FilterRegenerationBlockEntity extends BlockEntity implements 
     @Override
     public void reviveCaps() {
         super.reviveCaps();
-        itemCapability = LazyOptional.of(() -> inventory);
+        itemCapability = LazyOptional.of(() -> automationItemView);
         energyCapability = LazyOptional.of(() -> energyInputView);
     }
 

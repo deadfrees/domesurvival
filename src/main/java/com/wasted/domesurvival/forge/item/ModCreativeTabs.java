@@ -47,6 +47,7 @@ public final class ModCreativeTabs {
             "water_filter_cartridge",
             "improved_water_filter",
             "industrial_water_filter",
+            "filter_regeneration_media",
             "hopper_upgrade_vanilla_to_copper",
             "hopper_upgrade_copper_to_steel",
             "hopper_upgrade_steel_to_desh",

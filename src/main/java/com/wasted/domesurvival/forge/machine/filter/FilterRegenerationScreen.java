@@ -82,11 +82,19 @@ public final class FilterRegenerationScreen extends AbstractContainerScreen<Filt
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
         graphics.drawCenteredString(font, title, WIDTH / 2, 10, 0xFFD6E0E4);
         graphics.drawCenteredString(font, Component.literal("Фильтр"), 71, 43, 0xFFBFC8CC);
-        graphics.drawCenteredString(font, Component.literal("Уголь"), 107, 43, 0xFFBFC8CC);
+        graphics.drawCenteredString(font, Component.literal("Сорбент"), 107, 43, 0xFFBFC8CC);
         graphics.drawCenteredString(font, statusText(), 110, 103, statusColor());
+        int progressPercent = Math.min(100,
+                (int) ((long) menu.progress() * 100 / Math.max(1, menu.progressMax())));
         graphics.drawString(font,
-                Component.literal("Регенерации: " + menu.regenerationCycles() + " / " + menu.maxRegenerationCycles()),
-                145, 62, 0xFFBFC8CC, false);
+                Component.literal("Циклы: " + menu.regenerationCycles() + " / " + menu.maxRegenerationCycles()),
+                145, 58, 0xFFBFC8CC, false);
+        graphics.drawString(font,
+                Component.literal("Процесс: " + progressPercent + "%"),
+                145, 72, 0xFFBFC8CC, false);
+        graphics.drawString(font,
+                Component.literal("Цена: " + FilterRegenerationBlockEntity.ENERGY_PER_REGENERATION + " FE"),
+                145, 86, 0xFFBFC8CC, false);
         graphics.drawString(font, playerInventoryTitle, inventoryLabelX, inventoryLabelY, 0xFFBFC8CC, false);
     }
 
@@ -95,7 +103,7 @@ public final class FilterRegenerationScreen extends AbstractContainerScreen<Filt
             case FilterRegenerationBlockEntity.STATUS_REGENERATING -> Component.literal("Регенерация");
             case FilterRegenerationBlockEntity.STATUS_NO_ENERGY -> Component.literal("Недостаточно энергии");
             case FilterRegenerationBlockEntity.STATUS_NO_FILTER -> Component.literal("Установите фильтр");
-            case FilterRegenerationBlockEntity.STATUS_NO_MEDIA -> Component.literal("Нужен древесный уголь");
+            case FilterRegenerationBlockEntity.STATUS_NO_MEDIA -> Component.literal("Нет регенерационного сорбента");
             case FilterRegenerationBlockEntity.STATUS_FILTER_HEALTHY -> Component.literal("Фильтр не повреждён");
             case FilterRegenerationBlockEntity.STATUS_EXHAUSTED -> Component.literal("Ресурс регенерации исчерпан");
             default -> Component.literal("Готово к работе");

@@ -390,6 +390,7 @@
     "block.domesurvival.shaft_furnace":  "Шахтная плавильня",
     "block.domesurvival.shaft_furnace_part":  "Конструкция шахтной плавильни",
     "item.domesurvival.coal_coke":  "Каменноугольный кокс",
+    "item.domesurvival.filter_regeneration_media":  "Регенерационный сорбент",
     "item.domesurvival.steel_ingot":  "Стальной слиток",
     "item.domesurvival.slag":  "Шлак",
     "item.domesurvival.chicken_cryocapsule":  "Криокапсула: курица",

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CSC",
+    "SRS",
+    "CSC"
+  ],
+  "key": {
+    "C": {
+      "item": "domesurvival:coal_coke"
+    },
+    "S": {
+      "item": "minecraft:sand"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "domesurvival:filter_regeneration_media",
+    "count": 2
+  }
+}
