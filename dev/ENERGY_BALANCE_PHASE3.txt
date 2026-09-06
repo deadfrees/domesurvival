@@ -1,0 +1,30 @@
+﻿DomeSurvival Energy Balance Phase 3
+Generated: 2026-09-06 16:30:01
+
+GENERATOR:
+  Coal Generator = 64 FE/t generation
+  Max output = 128 FE/t
+  Buffer = 50,000 FE
+  Accepted fuel = coal, charcoal, DomeSurvival coal coke
+
+FUEL YIELD IN COAL GENERATOR:
+  Coal/charcoal = 1600 t = 102,400 FE
+  Coal coke     = 3200 t = 204,800 FE
+
+COKE ECONOMY:
+  Coke Oven process = 1600 t per coke
+  Coal coke burn time = 3200 t
+  1 normal coal fuel can heat one coke conversion
+  1 coke fuel can heat two coke conversions
+  No free energy multiplication: coke is denser fuel / steel feedstock
+
+PIPE CRAFTS:
+  Tier I remains 8 pipes from copper wire/redstone/iron
+  Tier II: 4 Basic + 4 steel wire + 1 steel ingot -> 4 Reinforced
+  Tier III: 4 Reinforced + 4 voltarium wire + 1 solarite crystal -> 4 Tier III
+
+STORAGE CRAFT:
+  Base energy block now includes 2 EnderIO dark steel ingots
+
+UI:
+  Coal Generator now displays FE instead of RF

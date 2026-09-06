@@ -13,7 +13,7 @@
       "tag": "forge:ingots/copper"
     },
     "D": {
-      "tag": "forge:ingots/steel"
+      "item": "enderio:dark_steel_ingot"
     },
     "B": {
       "item": "domesurvival:machine_stabilizer"
@@ -25,5 +25,11 @@
   "result": {
     "item": "domesurvival:energy_buffer",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "enderio"
+    }
+  ]
 }

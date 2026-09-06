@@ -1,0 +1,1 @@
+{"ambientocclusion":false,"textures":{"port":"domesurvival:block/transformer_port_input"},"elements":[{"from":[5,5,-0.002],"to":[11,11,0.002],"shade":false,"faces":{"north":{"uv":[0,0,16,16],"texture":"#port"}}}]}

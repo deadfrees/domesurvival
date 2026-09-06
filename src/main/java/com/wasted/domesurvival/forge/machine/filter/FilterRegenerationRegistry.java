@@ -37,7 +37,7 @@ public final class FilterRegenerationRegistry {
             () -> new BlockItem(FILTER_REGENERATION_STATION.get(), new Item.Properties()) {
                 @Override
                 public Component getName(ItemStack stack) {
-                    return Component.literal("Станция регенерации фильтров");
+                    return Component.literal("Регенератор фильтров");
                 }
             }
     );

@@ -33,8 +33,8 @@ import org.jetbrains.annotations.Nullable;
  */
 public final class EnergyBufferBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider, CapacityEnchantedEnergyBuffer {
     public static final int ENERGY_CAPACITY = 250_000;
-    public static final int MAX_RECEIVE_PER_TICK = 400;
-    public static final int MAX_OUTPUT_PER_TICK = 400;
+    public static final int MAX_RECEIVE_PER_TICK = 256;
+    public static final int MAX_OUTPUT_PER_TICK = 256;
 
     public static final int DATA_ENERGY = 0;
     public static final int DATA_CAPACITY = 1;

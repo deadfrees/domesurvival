@@ -2,6 +2,8 @@ package com.wasted.domesurvival.forge.machine.forming;
 
 import com.wasted.domesurvival.forge.machine.side.RelativeSide;
 import com.wasted.domesurvival.forge.machine.side.SideMode;
+import com.wasted.domesurvival.forge.recipe.FormingPressRecipe;
+import com.wasted.domesurvival.forge.recipe.ModRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.FriendlyByteBuf;
@@ -20,6 +22,10 @@ import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Forming Press menu using the same slot geometry as CoalGeneratorMenu:
+ * 22 px visual inventory cells with one authoritative vanilla item render.
+ */
 public final class FormingPressMenu extends AbstractContainerMenu {
     private static final int INPUT_SLOT_INDEX = 0;
     private static final int OUTPUT_SLOT_INDEX = 1;
@@ -27,7 +33,8 @@ public final class FormingPressMenu extends AbstractContainerMenu {
     private static final int PLAYER_INVENTORY_END = 29;
     private static final int HOTBAR_START = 29;
     private static final int HOTBAR_END = 38;
-    private static final int OPERATION_BUTTON = 50;
+
+    private static final int OPERATION_BUTTON_BASE = 50;
     private static final int SIDE_BUTTON_BASE = 100;
 
     private final Level level;
@@ -37,33 +44,55 @@ public final class FormingPressMenu extends AbstractContainerMenu {
     @Nullable private final FormingPressBlockEntity press;
 
     public FormingPressMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
-        this(containerId, playerInventory, null, new ItemStackHandler(2),
-                new SimpleContainerData(FormingPressBlockEntity.DATA_COUNT), extraData.readBlockPos());
+        this(
+                containerId,
+                playerInventory,
+                null,
+                new ItemStackHandler(2),
+                new SimpleContainerData(FormingPressBlockEntity.DATA_COUNT),
+                extraData.readBlockPos()
+        );
     }
 
     public FormingPressMenu(int containerId, Inventory playerInventory, FormingPressBlockEntity press) {
-        this(containerId, playerInventory, press, press.getInventory(), press.getDataAccess(), press.getBlockPos());
+        this(
+                containerId,
+                playerInventory,
+                press,
+                press.getInventory(),
+                press.getDataAccess(),
+                press.getBlockPos()
+        );
     }
 
-    private FormingPressMenu(int containerId, Inventory playerInventory,
-                             @Nullable FormingPressBlockEntity press,
-                             IItemHandler machineInventory, ContainerData data, BlockPos blockPos) {
+    private FormingPressMenu(
+            int containerId,
+            Inventory playerInventory,
+            @Nullable FormingPressBlockEntity press,
+            IItemHandler machineInventory,
+            ContainerData data,
+            BlockPos blockPos
+    ) {
         super(FormingPressRegistry.FORMING_PRESS_MENU.get(), containerId);
         this.level = playerInventory.player.level();
         this.blockPos = blockPos;
         this.access = ContainerLevelAccess.create(level, blockPos);
         this.data = data;
         this.press = press;
+
         checkContainerDataCount(data, FormingPressBlockEntity.DATA_COUNT);
         addDataSlots(data);
 
-        addSlot(new SlotItemHandler(machineInventory, 0, 64, 62) {
+        // Visual frames are 24x24; vanilla 16x16 slots are centered with +4 px inset,
+        // exactly like CoalGeneratorMenu's fuel slot.
+        addSlot(new SlotItemHandler(machineInventory, 0, 46, 66) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return FormingPressBlockEntity.isValidFormingInput(level, stack);
             }
         });
-        addSlot(new SlotItemHandler(machineInventory, 1, 136, 62) {
+
+        addSlot(new SlotItemHandler(machineInventory, 1, 182, 66) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return false;
@@ -80,8 +109,8 @@ public final class FormingPressMenu extends AbstractContainerMenu {
                 addSlot(new net.minecraft.world.inventory.Slot(
                         playerInventory,
                         column + row * 9 + 9,
-                        12 + column * 22,
-                        132 + row * 22
+                        14 + column * 22,
+                        161 + row * 22
                 ));
             }
         }
@@ -92,8 +121,8 @@ public final class FormingPressMenu extends AbstractContainerMenu {
             addSlot(new net.minecraft.world.inventory.Slot(
                     playerInventory,
                     column,
-                    12 + column * 22,
-                    198
+                    14 + column * 22,
+                    229
             ));
         }
     }
@@ -123,7 +152,7 @@ public final class FormingPressMenu extends AbstractContainerMenu {
             }
         } else if (FormingPressBlockEntity.isValidFormingInput(level, stack)
                 && moveItemStackTo(stack, INPUT_SLOT_INDEX, INPUT_SLOT_INDEX + 1, false)) {
-            // Moved into machine input.
+            // valid forming input
         } else if (index >= PLAYER_INVENTORY_START && index < PLAYER_INVENTORY_END) {
             if (!moveItemStackTo(stack, HOTBAR_START, HOTBAR_END, false)) {
                 return ItemStack.EMPTY;
@@ -141,14 +170,16 @@ public final class FormingPressMenu extends AbstractContainerMenu {
         } else {
             slot.setChanged();
         }
+
         return result;
     }
 
     @Override
     public boolean clickMenuButton(Player player, int id) {
-        if (id == OPERATION_BUTTON) {
+        int operationIndex = id - OPERATION_BUTTON_BASE;
+        if (operationIndex >= 0 && operationIndex < FormingOperation.values().length) {
             if (press != null) {
-                press.cycleOperation();
+                press.setSelectedOperation(FormingOperation.fromOrdinal(operationIndex));
             }
             return true;
         }
@@ -169,32 +200,77 @@ public final class FormingPressMenu extends AbstractContainerMenu {
         return true;
     }
 
-    public static int operationButtonId() {
-        return OPERATION_BUTTON;
+    public static int operationButtonId(FormingOperation operation) {
+        FormingOperation safe = operation == null ? FormingOperation.PRESS : operation;
+        return OPERATION_BUTTON_BASE + safe.ordinal();
     }
 
     public static int sideButtonId(RelativeSide side) {
         return SIDE_BUTTON_BASE + side.ordinal();
     }
 
-    public int energyStored() { return data.get(FormingPressBlockEntity.DATA_ENERGY); }
-    public int energyCapacity() { return data.get(FormingPressBlockEntity.DATA_CAPACITY); }
-    public int progress() { return data.get(FormingPressBlockEntity.DATA_PROGRESS); }
-    public int progressMax() { return data.get(FormingPressBlockEntity.DATA_MAX_PROGRESS); }
-    public int recipeEnergy() { return data.get(FormingPressBlockEntity.DATA_RECIPE_ENERGY); }
-    public int status() { return data.get(FormingPressBlockEntity.DATA_STATUS); }
+    public int energyStored() {
+        return data.get(FormingPressBlockEntity.DATA_ENERGY);
+    }
+
+    public int energyCapacity() {
+        return data.get(FormingPressBlockEntity.DATA_CAPACITY);
+    }
+
+    public int progress() {
+        return data.get(FormingPressBlockEntity.DATA_PROGRESS);
+    }
+
+    public int progressMax() {
+        return data.get(FormingPressBlockEntity.DATA_MAX_PROGRESS);
+    }
+
+    public int recipeEnergy() {
+        return data.get(FormingPressBlockEntity.DATA_RECIPE_ENERGY);
+    }
+
+    public int status() {
+        return data.get(FormingPressBlockEntity.DATA_STATUS);
+    }
+
+    public int requiredInputCount() {
+        return data.get(FormingPressBlockEntity.DATA_REQUIRED_INPUT);
+    }
+
+    public int inputCount() {
+        return data.get(FormingPressBlockEntity.DATA_INPUT_COUNT);
+    }
+
     public FormingOperation operation() {
         return FormingOperation.fromOrdinal(data.get(FormingPressBlockEntity.DATA_OPERATION));
+    }
+
+    public @Nullable FormingOperation suggestedOperation() {
+        ItemStack input = slots.get(INPUT_SLOT_INDEX).getItem();
+        if (input.isEmpty()) {
+            return null;
+        }
+
+        return level.getRecipeManager()
+                .getAllRecipesFor(ModRecipes.FORMING_TYPE.get())
+                .stream()
+                .filter(recipe -> recipe.acceptsIngredient(input))
+                .map(FormingPressRecipe::getOperation)
+                .findFirst()
+                .orElse(null);
     }
 
     public SideMode getSideMode(RelativeSide side) {
         if (!FormingPressBlockEntity.isConfigurableSide(side)) {
             return SideMode.DISABLED;
         }
+
         Direction worldDirection = side.resolve(getFacing());
         int ordinal = data.get(FormingPressBlockEntity.DATA_SIDES_START + worldDirection.ordinal());
         SideMode[] modes = SideMode.values();
-        return ordinal >= 0 && ordinal < modes.length ? modes[ordinal] : SideMode.DISABLED;
+        return ordinal >= 0 && ordinal < modes.length
+                ? modes[ordinal]
+                : SideMode.DISABLED;
     }
 
     public Direction getFacing() {
@@ -202,5 +278,9 @@ public final class FormingPressMenu extends AbstractContainerMenu {
         return state.hasProperty(FormingPressBlock.FACING)
                 ? state.getValue(FormingPressBlock.FACING)
                 : Direction.NORTH;
+    }
+
+    public BlockPos getBlockPos() {
+        return blockPos;
     }
 }

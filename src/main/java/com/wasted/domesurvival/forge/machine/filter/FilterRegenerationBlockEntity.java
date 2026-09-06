@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 
 public final class FilterRegenerationBlockEntity extends BlockEntity implements MenuProvider {
     public static final int ENERGY_CAPACITY = 20_000;
-    public static final int MAX_INPUT_PER_TICK = 128;
+    public static final int MAX_INPUT_PER_TICK = 64;
     public static final int ENERGY_PER_TICK = 20;
     public static final int PROCESSING_TICKS = 200;
     public static final int MAX_REGENERATION_CYCLES = 8;

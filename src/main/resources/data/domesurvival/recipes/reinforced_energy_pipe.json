@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "BBB",
     "BWB",
-    "BBB"
+    "WSW",
+    "BWB"
   ],
   "key": {
     "B": {
@@ -11,10 +11,13 @@
     },
     "W": {
       "tag": "forge:wires/steel"
+    },
+    "S": {
+      "tag": "forge:ingots/steel"
     }
   },
   "result": {
     "item": "domesurvival:reinforced_energy_pipe",
-    "count": 8
+    "count": 4
   }
 }

@@ -34,8 +34,8 @@ import org.jetbrains.annotations.Nullable;
 
 public final class CoalGeneratorBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
     public static final int ENERGY_CAPACITY = 50_000;
-    public static final int GENERATION_PER_TICK = 20;
-    public static final int MAX_OUTPUT_PER_TICK = 80;
+    public static final int GENERATION_PER_TICK = 64;
+    public static final int MAX_OUTPUT_PER_TICK = 128;
 
     public static final int DATA_ENERGY = 0;
     public static final int DATA_CAPACITY = 1;
@@ -208,10 +208,21 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
     }
 
     private static int getFuelBurnTime(ItemStack stack) {
-        if (stack.isEmpty()) return 0;
-        // Uses the same Forge furnace-fuel hook as normal smelting, so compatible modded
-        // furnace fuels work automatically without hard-coded mod integration.
-        return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING);
+        if (stack.isEmpty()) {
+            return 0;
+        }
+
+        // Keep the early generator economy deterministic even with large tech mods loaded.
+        if (stack.is(com.wasted.domesurvival.forge.item.ModItems.COAL_COKE.get())) {
+            return com.wasted.domesurvival.forge.item.CoalCokeItem.BURN_TIME;
+        }
+
+        if (stack.is(net.minecraft.world.item.Items.COAL)
+                || stack.is(net.minecraft.world.item.Items.CHARCOAL)) {
+            return 1_600;
+        }
+
+        return 0;
     }
 
     private void consumeOneFuel() {

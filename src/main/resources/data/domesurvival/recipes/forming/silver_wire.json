@@ -1,8 +1,13 @@
 {
   "type": "domesurvival:forming",
   "operation": "wire",
-  "ingredient": {"tag": "forge:rods/silver"},
-  "result": {"item": "domesurvival:silver_wire", "count": 2},
+  "ingredient": {
+    "tag": "forge:rods/silver"
+  },
+  "result": {
+    "item": "domesurvival:silver_wire",
+    "count": 2
+  },
   "processingTime": 90,
   "energy": 2200
 }

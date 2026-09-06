@@ -1,7 +1,14 @@
 package com.wasted.domesurvival.forge.machine.transformer;
 
 import com.wasted.domesurvival.forge.transport.energy.EnergyPipeTier;
+import org.jetbrains.annotations.Nullable;
 
+/**
+ * Automatic transformer pair.
+ *
+ * <p>Only adjacent voltage classes are convertible. BASIC <-> HIGH_VOLTAGE therefore
+ * requires two transformers with a REINFORCED segment between them.</p>
+ */
 public enum TransformerMode {
     LV_TO_MV(EnergyPipeTier.BASIC, EnergyPipeTier.REINFORCED),
     MV_TO_LV(EnergyPipeTier.REINFORCED, EnergyPipeTier.BASIC),
@@ -32,13 +39,29 @@ public enum TransformerMode {
         return outputTier.transferPerTick();
     }
 
-    public TransformerMode next() {
-        TransformerMode[] values = values();
-        return values[(ordinal() + 1) % values.length];
+    @Nullable
+    public static TransformerMode fromTiers(
+            @Nullable EnergyPipeTier inputTier,
+            @Nullable EnergyPipeTier outputTier
+    ) {
+        if (inputTier == null || outputTier == null) {
+            return null;
+        }
+
+        for (TransformerMode mode : values()) {
+            if (mode.inputTier == inputTier && mode.outputTier == outputTier) {
+                return mode;
+            }
+        }
+
+        return null;
     }
 
-    public static TransformerMode fromOrdinal(int ordinal) {
+    @Nullable
+    public static TransformerMode fromOrdinalOrNull(int ordinal) {
         TransformerMode[] values = values();
-        return ordinal >= 0 && ordinal < values.length ? values[ordinal] : LV_TO_MV;
+        return ordinal >= 0 && ordinal < values.length
+                ? values[ordinal]
+                : null;
     }
 }

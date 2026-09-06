@@ -31,7 +31,7 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     public static final int SLOT_COAL = 0;
     public static final int SLOT_FUEL = 1;
     public static final int SLOT_COKE = 2;
-    public static final int PROCESS_TIME = 2_250;
+    public static final int PROCESS_TIME = 1_600;
 
     public static final int DATA_PROGRESS = 0;
     public static final int DATA_PROGRESS_MAX = 1;

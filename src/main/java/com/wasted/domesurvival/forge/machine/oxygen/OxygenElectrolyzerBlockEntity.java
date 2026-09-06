@@ -34,7 +34,7 @@ import org.jetbrains.annotations.Nullable;
 
 public final class OxygenElectrolyzerBlockEntity extends BlockEntity implements MenuProvider {
     public static final int ENERGY_CAPACITY = 30_000;
-    public static final int MAX_ENERGY_INPUT_PER_TICK = 240;
+    public static final int MAX_ENERGY_INPUT_PER_TICK = 64;
     public static final int ENERGY_PER_TICK = 12;
     public static final int PROCESS_TICKS = 200;
     public static final int WATER_TANK_CAPACITY = 4_000;

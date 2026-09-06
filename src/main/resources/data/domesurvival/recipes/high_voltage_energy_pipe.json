@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "RRR",
     "RVR",
-    "RRR"
+    "VSV",
+    "RVR"
   ],
   "key": {
     "R": {
@@ -11,10 +11,13 @@
     },
     "V": {
       "tag": "forge:wires/voltarium"
+    },
+    "S": {
+      "item": "domesurvival:solarite_crystal"
     }
   },
   "result": {
     "item": "domesurvival:high_voltage_energy_pipe",
-    "count": 8
+    "count": 4
   }
 }

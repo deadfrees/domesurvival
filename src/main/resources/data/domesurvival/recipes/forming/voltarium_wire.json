@@ -1,8 +1,13 @@
 {
   "type": "domesurvival:forming",
   "operation": "wire",
-  "ingredient": {"tag": "forge:rods/voltarium"},
-  "result": {"item": "domesurvival:voltarium_wire", "count": 2},
+  "ingredient": {
+    "tag": "forge:rods/voltarium"
+  },
+  "result": {
+    "item": "domesurvival:voltarium_wire",
+    "count": 2
+  },
   "processingTime": 120,
   "energy": 3600
 }

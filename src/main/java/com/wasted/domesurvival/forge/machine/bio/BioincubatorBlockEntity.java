@@ -55,8 +55,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class BioincubatorBlockEntity extends BlockEntity implements MenuProvider {
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final Set<String> REPORTED_INVALID_SAMPLES = ConcurrentHashMap.newKeySet();
-    public static final int ENERGY_CAPACITY = 20_000;
-    public static final int MAX_ENERGY_INPUT_PER_TICK = 400;
+    public static final int ENERGY_CAPACITY = 60_000;
+    public static final int MAX_ENERGY_INPUT_PER_TICK = 128;
     public static final int WATER_CAPACITY = 6_000;
 
     public static final int SLOT_CAPSULE = 0;

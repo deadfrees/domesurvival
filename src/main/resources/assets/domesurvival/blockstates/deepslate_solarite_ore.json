@@ -1,1 +1,6 @@
-{"variants":{"":{"model":"domesurvival:block/deepslate_solarite_ore"}}}
+{
+  "variants": {
+    "lit=false": { "model": "domesurvival:block/deepslate_solarite_ore" },
+    "lit=true":  { "model": "domesurvival:block/deepslate_solarite_ore" }
+  }
+}

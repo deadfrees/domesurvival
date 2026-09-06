@@ -1,6 +1,12 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "all": "minecraft:block/smooth_stone"
+    "particle": "domesurvival:block/transformer_side",
+    "down": "domesurvival:block/transformer_side",
+    "up": "domesurvival:block/transformer_top",
+    "north": "domesurvival:block/transformer_front",
+    "south": "domesurvival:block/transformer_back",
+    "east": "domesurvival:block/transformer_side",
+    "west": "domesurvival:block/transformer_side"
   }
 }

@@ -1,0 +1,155 @@
+﻿DomeSurvival local energy audit
+Generated: 2026-09-06 15:42:21
+Project: C:\domesurvival
+
+=== JAVA CONSTANTS ===
+
+[src\main\java\com\wasted\domesurvival\forge\machine\bio\BioincubatorBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 20_000;
+  public static final int MAX_ENERGY_INPUT_PER_TICK = 400;
+  public static final int REPAIR_ENERGY_PER_TICK = 80;
+  public static final int REPAIR_PROCESS_TICKS = 1_800;
+  new MachineEnergyStorage(ENERGY_CAPACITY, MAX_ENERGY_INPUT_PER_TICK, 0);
+  if (energyStorage.getEnergyStored() < REPAIR_ENERGY_PER_TICK) return STATUS_NO_ENERGY;
+  return mode == MODE_REPAIR ? REPAIR_ENERGY_PER_TICK : recipe == null ? 0 : recipe.energyPerTick();
+  ? 0 : REPAIR_PROCESS_TICKS;
+
+[src\main\java\com\wasted\domesurvival\forge\machine\coal\CoalGeneratorBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 50_000;
+  public static final int GENERATION_PER_TICK = 20;
+  public static final int MAX_OUTPUT_PER_TICK = 80;
+  new MachineEnergyStorage(ENERGY_CAPACITY, 0, MAX_OUTPUT_PER_TICK);
+  int generated = generator.energyStorage.addEnergyInternal(GENERATION_PER_TICK);
+  int remainingOutput = MAX_OUTPUT_PER_TICK - totalTransferred;
+
+[src\main\java\com\wasted\domesurvival\forge\machine\energy\AdamantiumEnergyBufferBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 4_000_000;
+  public static final int MAX_RECEIVE_PER_TICK = 8_192;
+  public static final int MAX_OUTPUT_PER_TICK = 8_192;
+  new MachineEnergyStorage(ENERGY_CAPACITY, MAX_RECEIVE_PER_TICK, MAX_OUTPUT_PER_TICK);
+  int remainingOutput = MAX_OUTPUT_PER_TICK - totalTransferred;
+  int targetCapacity = EnergyBufferCapacity.apply(ENERGY_CAPACITY, clamped);
+  EnergyBufferCapacity.apply(ENERGY_CAPACITY, capacityEnchantLevel)
+
+[src\main\java\com\wasted\domesurvival\forge\machine\energy\AdamantiumEnergyBufferMenu.java]
+  return AdamantiumEnergyBufferBlockEntity.MAX_RECEIVE_PER_TICK;
+  return AdamantiumEnergyBufferBlockEntity.MAX_OUTPUT_PER_TICK;
+
+[src\main\java\com\wasted\domesurvival\forge\machine\energy\CreativeEnergyBufferBlockEntity.java]
+  public static final int MAX_RECEIVE_PER_TICK = Integer.MAX_VALUE;
+  public static final int MAX_OUTPUT_PER_TICK = Integer.MAX_VALUE;
+
+[src\main\java\com\wasted\domesurvival\forge\machine\energy\CreativeEnergyBufferMenu.java]
+  return CreativeEnergyBufferBlockEntity.MAX_RECEIVE_PER_TICK;
+  return CreativeEnergyBufferBlockEntity.MAX_OUTPUT_PER_TICK;
+
+[src\main\java\com\wasted\domesurvival\forge\machine\energy\EnergyBufferBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 250_000;
+  public static final int MAX_RECEIVE_PER_TICK = 400;
+  public static final int MAX_OUTPUT_PER_TICK = 400;
+  new MachineEnergyStorage(ENERGY_CAPACITY, MAX_RECEIVE_PER_TICK, MAX_OUTPUT_PER_TICK);
+  int remainingOutput = MAX_OUTPUT_PER_TICK - totalTransferred;
+  int targetCapacity = EnergyBufferCapacity.apply(ENERGY_CAPACITY, clamped);
+  EnergyBufferCapacity.apply(ENERGY_CAPACITY, capacityEnchantLevel)
+
+[src\main\java\com\wasted\domesurvival\forge\machine\energy\EnergyBufferMenu.java]
+  return EnergyBufferBlockEntity.MAX_RECEIVE_PER_TICK;
+  return EnergyBufferBlockEntity.MAX_OUTPUT_PER_TICK;
+
+[src\main\java\com\wasted\domesurvival\forge\machine\energy\TitanEnergyBufferBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 1_000_000;
+  public static final int MAX_RECEIVE_PER_TICK = 2_048;
+  public static final int MAX_OUTPUT_PER_TICK = 2_048;
+  new MachineEnergyStorage(ENERGY_CAPACITY, MAX_RECEIVE_PER_TICK, MAX_OUTPUT_PER_TICK);
+  int remainingOutput = MAX_OUTPUT_PER_TICK - totalTransferred;
+  int targetCapacity = EnergyBufferCapacity.apply(ENERGY_CAPACITY, clamped);
+  EnergyBufferCapacity.apply(ENERGY_CAPACITY, capacityEnchantLevel)
+
+[src\main\java\com\wasted\domesurvival\forge\machine\energy\TitanEnergyBufferMenu.java]
+  return TitanEnergyBufferBlockEntity.MAX_RECEIVE_PER_TICK;
+  return TitanEnergyBufferBlockEntity.MAX_OUTPUT_PER_TICK;
+
+[src\main\java\com\wasted\domesurvival\forge\machine\filter\FilterRegenerationBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 20_000;
+  public static final int MAX_INPUT_PER_TICK = 128;
+  public static final int ENERGY_PER_TICK = 20;
+  public static final int PROCESSING_TICKS = 200;
+  new MachineEnergyStorage(ENERGY_CAPACITY, MAX_INPUT_PER_TICK, 0);
+  case DATA_MAX_PROGRESS -> PROCESSING_TICKS;
+  if (energyStorage.getEnergyStored() < ENERGY_PER_TICK) {
+  energyStorage.removeEnergyInternal(ENERGY_PER_TICK);
+  if (progress >= PROCESSING_TICKS) {
+  if (energyStorage.getEnergyStored() < ENERGY_PER_TICK) return STATUS_NO_ENERGY;
+  progress = Math.max(0, Math.min(PROCESSING_TICKS - 1, tag.getInt(NBT_PROGRESS)));
+
+[src\main\java\com\wasted\domesurvival\forge\machine\forming\FormingPressBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 20_000;
+  public static final int MAX_INPUT_PER_TICK = 128;
+  new MachineEnergyStorage(ENERGY_CAPACITY, MAX_INPUT_PER_TICK, 0);
+
+[src\main\java\com\wasted\domesurvival\forge\machine\oxygen\complex\OxygenComplexBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 50_000;
+  new MachineEnergyStorage(ENERGY_CAPACITY, MAX_ENERGY_INPUT, 0);
+  case DATA_ENERGY_CAPACITY -> ENERGY_CAPACITY;
+
+[src\main\java\com\wasted\domesurvival\forge\machine\oxygen\OxygenElectrolyzerBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 30_000;
+  public static final int MAX_ENERGY_INPUT_PER_TICK = 240;
+  public static final int ENERGY_PER_TICK = 12;
+  public static final int PROCESS_TICKS = 200;
+  private final MachineEnergyStorage energyStorage = new MachineEnergyStorage(ENERGY_CAPACITY, MAX_ENERGY_INPUT_PER_TICK, 0);
+  if (index == DATA_PROGRESS_MAX) return PROCESS_TICKS;
+  int removed = machine.energyStorage.removeEnergyInternal(ENERGY_PER_TICK);
+  if (removed == ENERGY_PER_TICK) {
+  if (machine.progress >= PROCESS_TICKS) {
+  if (energyStorage.getEnergyStored() < ENERGY_PER_TICK) return STATUS_NO_ENERGY;
+  @Override public void load(CompoundTag tag) { super.load(tag); energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY)); waterTank.readFromNBT(tag.getCompound(NBT_WATER)); oxygenStorage.setStoredInternal(tag.getInt(NBT_OXYGEN)); progress = Math.max(0, Math.min(PROCESS_TICKS - 1, tag.getInt(NBT_PROGRESS))); if (!sideConfig.load(tag)) applyDefaultSideConfiguration(); sideConfig.setMode(getMachineFacing(), SideMode.DISABLED); status = calculateStatus(); }
+
+[src\main\java\com\wasted\domesurvival\forge\machine\oxygen\OxygenFillerBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 20_000;
+  public static final int MAX_ENERGY_INPUT_PER_TICK = 200;
+  new MachineEnergyStorage(ENERGY_CAPACITY, MAX_ENERGY_INPUT_PER_TICK, 0);
+
+[src\main\java\com\wasted\domesurvival\forge\machine\transformer\TransformerBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 100_000;
+  new MachineEnergyStorage(ENERGY_CAPACITY, 0, 0);
+
+[src\main\java\com\wasted\domesurvival\forge\machine\water\WaterPurifierBlockEntity.java]
+  public static final int ENERGY_CAPACITY = 20_000;
+  public static final int MAX_ENERGY_INPUT_PER_TICK = 200;
+  public static final int ENERGY_PER_TICK = ModItems.BASIC_FILTER_ENERGY_PER_TICK;
+  public static final int PROCESS_TICKS = ModItems.BASIC_FILTER_PROCESS_TICKS;
+  private final MachineEnergyStorage energyStorage = new MachineEnergyStorage(ENERGY_CAPACITY, MAX_ENERGY_INPUT_PER_TICK, 0);
+  return filter != null ? filter.processTicks() : PROCESS_TICKS;
+  return filter != null ? filter.energyPerTick() : ENERGY_PER_TICK;
+
+=== FORMING RECIPE ENERGY ===
+copper_plate.json: op=press; inputCount=1; energy=2000 FE; time=100 t; avg=20 FE/t
+copper_rod.json: op=rod; inputCount=1; energy=1600 FE; time=80 t; avg=20 FE/t
+copper_tube.json: op=tube; inputCount=1; energy=2200 FE; time=120 t; avg=18,33 FE/t
+copper_wire.json: op=wire; inputCount=1; energy=1400 FE; time=70 t; avg=20 FE/t
+goteium_gear.json: op=gear; inputCount=4; energy=7600 FE; time=240 t; avg=31,67 FE/t
+goteium_plate.json: op=press; inputCount=1; energy=5200 FE; time=180 t; avg=28,89 FE/t
+lead_gear.json: op=gear; inputCount=4; energy=3600 FE; time=160 t; avg=22,5 FE/t
+nickel_gear.json: op=gear; inputCount=4; energy=4200 FE; time=180 t; avg=23,33 FE/t
+nickel_plate.json: op=press; inputCount=1; energy=2800 FE; time=130 t; avg=21,54 FE/t
+nickel_tube.json: op=tube; inputCount=1; energy=3200 FE; time=150 t; avg=21,33 FE/t
+silver_rod.json: op=rod; inputCount=1; energy=2400 FE; time=100 t; avg=24 FE/t
+silver_wire.json: op=wire; inputCount=1; energy=2200 FE; time=90 t; avg=24,44 FE/t
+steel_gear.json: op=gear; inputCount=4; energy=4400 FE; time=180 t; avg=24,44 FE/t
+steel_plate.json: op=press; inputCount=1; energy=2600 FE; time=120 t; avg=21,67 FE/t
+steel_rod.json: op=rod; inputCount=1; energy=2200 FE; time=100 t; avg=22 FE/t
+steel_tube.json: op=tube; inputCount=1; energy=3000 FE; time=140 t; avg=21,43 FE/t
+steel_wire.json: op=wire; inputCount=1; energy=2000 FE; time=90 t; avg=22,22 FE/t
+tin_gear.json: op=gear; inputCount=4; energy=3200 FE; time=140 t; avg=22,86 FE/t
+tin_plate.json: op=press; inputCount=1; energy=2000 FE; time=100 t; avg=20 FE/t
+tin_tube.json: op=tube; inputCount=1; energy=2200 FE; time=120 t; avg=18,33 FE/t
+voltarium_gear.json: op=gear; inputCount=4; energy=11000 FE; time=300 t; avg=36,67 FE/t
+voltarium_plate.json: op=press; inputCount=1; energy=7200 FE; time=220 t; avg=32,73 FE/t
+voltarium_rod.json: op=rod; inputCount=1; energy=4000 FE; time=140 t; avg=28,57 FE/t
+voltarium_wire.json: op=wire; inputCount=1; energy=3600 FE; time=120 t; avg=30 FE/t
+
+=== ENERGY PIPE TIERS ===
+BASIC(256),
+REINFORCED(1_024),
+HIGH_VOLTAGE(4_096);

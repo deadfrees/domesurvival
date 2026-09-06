@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DCD",
+    "RMR",
+    "DBD"
+  ],
+  "key": {
+    "D": {
+      "item": "enderio:dark_steel_ingot"
+    },
+    "C": {
+      "item": "mekanism:advanced_control_circuit"
+    },
+    "R": {
+      "item": "domesurvival:reinforced_energy_pipe"
+    },
+    "M": {
+      "item": "domesurvival:machine_stabilizer"
+    },
+    "B": {
+      "item": "immersiveengineering:circuit_board"
+    }
+  },
+  "result": {
+    "item": "domesurvival:forming_press",
+    "count": 1
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "enderio"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "immersiveengineering"
+    }
+  ]
+}

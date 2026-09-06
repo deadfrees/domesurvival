@@ -38,7 +38,7 @@ import org.jetbrains.annotations.Nullable;
 
 public final class WaterPurifierBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
     public static final int ENERGY_CAPACITY = 20_000;
-    public static final int MAX_ENERGY_INPUT_PER_TICK = 200;
+    public static final int MAX_ENERGY_INPUT_PER_TICK = 64;
     /** Fallback values used only while no cartridge is installed. */
     public static final int ENERGY_PER_TICK = ModItems.BASIC_FILTER_ENERGY_PER_TICK;
     public static final int PROCESS_TICKS = ModItems.BASIC_FILTER_PROCESS_TICKS;

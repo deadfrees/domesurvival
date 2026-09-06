@@ -12,7 +12,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -42,6 +41,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     public static final int STATUS_NO_ENERGY = 2;
     public static final int STATUS_NO_RECIPE = 3;
     public static final int STATUS_OUTPUT_FULL = 4;
+    public static final int STATUS_NOT_ENOUGH_INPUT = 5;
 
     public static final int DATA_ENERGY = 0;
     public static final int DATA_CAPACITY = 1;
@@ -50,7 +50,9 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     public static final int DATA_RECIPE_ENERGY = 4;
     public static final int DATA_STATUS = 5;
     public static final int DATA_OPERATION = 6;
-    public static final int DATA_SIDES_START = 7;
+    public static final int DATA_REQUIRED_INPUT = 7;
+    public static final int DATA_INPUT_COUNT = 8;
+    public static final int DATA_SIDES_START = 9;
     public static final int DATA_COUNT = DATA_SIDES_START + 6;
 
     private static final String NBT_INVENTORY = "Inventory";
@@ -159,6 +161,8 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
             if (index == DATA_RECIPE_ENERGY) return recipe == null ? 0 : recipe.getEnergy();
             if (index == DATA_STATUS) return getStatus(recipe);
             if (index == DATA_OPERATION) return selectedOperation.ordinal();
+            if (index == DATA_REQUIRED_INPUT) return recipe == null ? 0 : recipe.getInputCount();
+            if (index == DATA_INPUT_COUNT) return inventory.getStackInSlot(0).getCount();
             if (index >= DATA_SIDES_START && index < DATA_SIDES_START + 6) {
                 Direction direction = Direction.values()[index - DATA_SIDES_START];
                 return sideConfig.getMode(direction).ordinal();
@@ -224,6 +228,13 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         }
 
         FormingPressRecipe recipe = recipeOptional.get();
+        if (!hasRequiredInput(recipe)) {
+            boolean changed = progress != 0 || activeRecipeId != null;
+            progress = 0;
+            activeRecipeId = null;
+            return changed;
+        }
+
         if (activeRecipeId == null || !activeRecipeId.equals(recipe.getId())) {
             progress = 0;
             activeRecipeId = recipe.getId();
@@ -294,12 +305,11 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
             return cachedRecipe;
         }
 
-        SimpleContainer container = new SimpleContainer(1);
-        container.setItem(0, input);
         Optional<FormingPressRecipe> found = recipeManager
-                .getRecipesFor(ModRecipes.FORMING_TYPE.get(), container, level)
+                .getAllRecipesFor(ModRecipes.FORMING_TYPE.get())
                 .stream()
                 .filter(recipe -> recipe.getOperation() == selectedOperation)
+                .filter(recipe -> recipe.acceptsIngredient(input))
                 .findFirst();
 
         cachedRecipeManager = recipeManager;
@@ -317,6 +327,12 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         cachedRecipe = Optional.empty();
     }
 
+    private boolean hasRequiredInput(FormingPressRecipe recipe) {
+        ItemStack input = inventory.getStackInSlot(0);
+        return recipe != null
+                && recipe.acceptsIngredient(input)
+                && input.getCount() >= recipe.getInputCount();
+    }
     private boolean canAcceptResult(FormingPressRecipe recipe) {
         ItemStack result = recipe.getResult();
         ItemStack output = inventory.getStackInSlot(1);
@@ -330,6 +346,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         if (recipe == null) {
             return inventory.getStackInSlot(0).isEmpty() ? STATUS_READY : STATUS_NO_RECIPE;
         }
+        if (!hasRequiredInput(recipe)) return STATUS_NOT_ENOUGH_INPUT;
         if (!canAcceptResult(recipe)) return STATUS_OUTPUT_FULL;
         if (energyStorage.getEnergyStored() < getEnergyForNextTick(recipe)) return STATUS_NO_ENERGY;
         return progress > 0 ? STATUS_FORMING : STATUS_READY;
@@ -360,7 +377,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         Direction direction = relativeSide.resolve(getMachineFacing());
         SideMode mode = sideConfig.cycleMode(direction);
         refreshCapabilities();
-        syncPortState(direction);
+        syncAllPortStates();
         setChanged();
         return mode;
     }

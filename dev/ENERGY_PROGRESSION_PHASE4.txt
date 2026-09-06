@@ -1,0 +1,30 @@
+﻿DomeSurvival Energy / Technology Progression Phase 4
+Generated: 2026-09-06 16:59:06
+
+EARTH PROGRESSION:
+  Stage 03: Coal Generator / emergency generation (64 FE/t)
+  Stage 04-05: water + oxygen infrastructure
+  Stage 06: first outside expedition; raw resource acquisition begins
+  Stage 07: Basic Energy Pipe (256 FE/t)
+  Stage 08: Steel Energy Buffer (250k FE) + Reinforced Energy Pipe (1024 FE/t)
+  Stage 09: DomeSurvival Forming Press enters progression
+  Stage 11: 4 DomeSurvival steel gears prove Forming Press production capability
+  Stage 12: Tier III trunk energy pipe (4096 FE/t) + 4 Steel Energy Buffers
+
+WHY 4 STEEL BUFFERS AT STAGE 12:
+  4 x 250,000 FE = 1,000,000 FE total reserve
+  4 x 256 FE/t = up to 1024 FE/t aggregate I/O when deployed in parallel
+  This is the same capacity class as Titan without requiring Moon-only Desh.
+
+SPACE PROGRESSION:
+  Titan Energy Buffer remains a post-Earth / lunar upgrade because its recipe uses Desh.
+  Adamantium remains later still because its recipe uses later Ad Astra materials.
+
+FORMING PRESS RECIPE:
+  4 Dark Steel + 1 Mekanism Advanced Control Circuit
+  + 2 Reinforced Energy Pipes + 1 Machine Stabilizer
+  + 1 Immersive Engineering Circuit Board
+
+RULE FOR NEXT BALANCE PASSES:
+  Do not balance against machines/materials that have not entered the story stage yet.
+  Earlier stages must remain viable using only technology already unlocked by that stage.

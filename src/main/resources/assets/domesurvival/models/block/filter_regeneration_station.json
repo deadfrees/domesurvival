@@ -1,6 +1,12 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "all": "minecraft:block/iron_block"
+    "particle": "domesurvival:block/filter_regeneration_station_side",
+    "down": "domesurvival:block/filter_regeneration_station_side",
+    "up": "domesurvival:block/filter_regeneration_station_top",
+    "north": "domesurvival:block/filter_regeneration_station_front",
+    "south": "domesurvival:block/filter_regeneration_station_side",
+    "east": "domesurvival:block/filter_regeneration_station_side",
+    "west": "domesurvival:block/filter_regeneration_station_side"
   }
 }

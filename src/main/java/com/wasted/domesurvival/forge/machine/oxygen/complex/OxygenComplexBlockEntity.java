@@ -38,7 +38,7 @@ import org.jetbrains.annotations.Nullable;
  * Only the OUTPUT role executes the production tick and owns resources.
  */
 public final class OxygenComplexBlockEntity extends BlockEntity implements MenuProvider {
-    public static final int ENERGY_CAPACITY = 50_000;
+    public static final int ENERGY_CAPACITY = 160_000;
     public static final int MAX_ENERGY_INPUT = 512;
     public static final int COLLECTED_AIR_CAPACITY = 8_000;
     public static final int FILTERED_AIR_CAPACITY = 8_000;
@@ -57,7 +57,7 @@ public final class OxygenComplexBlockEntity extends BlockEntity implements MenuP
     /**
      * Fixed operating draw for the complete 2x2 Oxygen Complex.
      * If at least one processing stage runs during a server tick, the
-     * multiblock consumes exactly 512 FE once for that tick.
+     * multiblock consumes the fixed OPERATING_ENERGY_PER_TICK draw once for that tick.
      */
     public static final int OPERATING_ENERGY_PER_TICK = 256;
 

@@ -147,7 +147,7 @@ var S9_COMPLETE = "domesurvival.stage09.complete.v74";
 var S9 = [
     { key: "domesurvival.stage09.radio.v74", id: "ad_astra:radio", name: "Радиостанция (Ad Astra)", req: 2 },
     { key: "domesurvival.stage09.cable.v74", id: "ad_astra:steel_cable", name: "Стальной кабель (Ad Astra)", req: 16 },
-    { key: "domesurvival.stage09.press.v74", id: "thermal:machine_press", name: "Механический пресс (Thermal)", req: 1 },
+    { key: "domesurvival.stage09.forming_press.v76", id: "domesurvival:forming_press", name: "Формовочный пресс", req: 1 },
     { key: "domesurvival.stage09.circuit.v74", id: "mekanism:advanced_control_circuit", name: "Продвинутая схема управления (Mekanism)", req: 4 },
     { key: "domesurvival.stage09.alloy.v74", id: "mekanism:alloy_reinforced", name: "Укреплённый сплав (Mekanism)", req: 4 },
     { key: "domesurvival.stage09.board.v74", id: "immersiveengineering:circuit_board", name: "Печатная плата (Immersive Engineering)", req: 4 },
@@ -174,7 +174,7 @@ var S11 = [
     { key: "domesurvival.stage11.ogear.v74", id: "ad_astra:oxygen_gear", name: "Кислородное снаряжение (Ad Astra)", req: 1 },
     { key: "domesurvival.stage11.otank.v74", id: "ad_astra:oxygen_tank", name: "Кислородный баллон (Ad Astra)", req: 2 },
     { key: "domesurvival.stage11.gastank.v74", id: "ad_astra:large_gas_tank", name: "Большой газовый баллон (Ad Astra)", req: 1 },
-    { key: "domesurvival.stage11.press.v74", id: "thermal:machine_press", name: "Механический пресс (Thermal)", req: 1 },
+    { key: "domesurvival.stage11.steel_gears.v76", id: "domesurvival:steel_gear", name: "Стальная шестерня", req: 4 },
     { key: "domesurvival.stage11.circuit.v74", id: "mekanism:advanced_control_circuit", name: "Продвинутая схема управления (Mekanism)", req: 4 },
     { key: "domesurvival.stage11.board.v74", id: "immersiveengineering:circuit_board", name: "Печатная плата (Immersive Engineering)", req: 4 },
     { key: "domesurvival.stage11.obsidian.v75", id: "minecraft:obsidian", name: "Обсидиан", req: 16 }
@@ -186,8 +186,8 @@ var S12 = [
     { key: "domesurvival.stage12.cable.v75", id: "ad_astra:steel_cable", name: "Стальной кабель (Ad Astra)", req: 32 },
     { key: "domesurvival.stage12.genericplate.v75", id: "ad_astra:steel_plate", ids: ["ad_astra:steel_plate", "immersiveengineering:plate_steel", "mekanism:plate_steel", "thermal:steel_plate"], tag: "forge:plates/steel", name: "Стальная пластина", req: 32 },
     { key: "domesurvival.stage12.refinery.v75", id: "thermal:machine_refinery", name: "Фракционирующий перегонный аппарат (Thermal)", req: 1 },
-    { key: "domesurvival.stage12.energy.v75", id: "domesurvival:high_voltage_energy_pipe", name: "Высоковольтная энерготруба III уровня", req: 12 },
-    { key: "domesurvival.stage12.buffer.v75", id: "domesurvival:energy_buffer_titan", name: "Энергоблок серии «Титан»", req: 1 },
+    { key: "domesurvival.stage12.energy.v75", id: "domesurvival:high_voltage_energy_pipe", name: "Магистральная энерготруба III уровня", req: 12 },
+    { key: "domesurvival.stage12.reserve.v76", id: "domesurvival:energy_buffer", name: "Энергоблок серии «Сталь»", req: 4 },
     { key: "domesurvival.stage12.board.v75", id: "immersiveengineering:circuit_board", name: "Печатная плата (Immersive Engineering)", req: 6 },
     { key: "domesurvival.stage12.darksteel.v75", id: "enderio:dark_steel_ingot", name: "Слиток тёмной стали (Ender IO)", req: 12 },
     { key: "domesurvival.stage12.blaze.v75", id: "minecraft:blaze_powder", name: "Огненный порошок", req: 32 }
@@ -299,7 +299,7 @@ var R12 = [
     { id: "ad_astra:hammer", count: 1, name: "Молот (Ad Astra)" },
     { id: "ad_astra:oxygen_gear", count: 1, name: "Кислородное снаряжение (Ad Astra)" },
     { id: "ad_astra:oxygen_tank", count: 2, name: "Кислородный баллон (Ad Astra)" },
-    { id: "domesurvival:high_voltage_energy_pipe", count: 8, name: "Высоковольтная энерготруба III уровня" },
+    { id: "domesurvival:high_voltage_energy_pipe", count: 8, name: "Магистральная энерготруба III уровня" },
     { id: "farmersdelight:roast_chicken_block", count: 1, name: "Жареная курица (Farmer's Delight)" },
     { id: "brewinandchewin:jerky", count: 16, name: "Вяленое мясо (Brewin' And Chewin')" },
     { id: "minecraft:golden_apple", count: 8, name: "Золотое яблоко" }

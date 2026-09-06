@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.material;
 
 import com.wasted.domesurvival.forge.DomeSurvival;
+import com.wasted.domesurvival.forge.block.SolariteOreBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -63,8 +64,16 @@ public final class TechMaterials {
     public static final RegistryObject<Item> VOLTARIUM_INGOT = item("voltarium_ingot");
     public static final RegistryObject<Item> VOLTARIUM_NUGGET = item("voltarium_nugget");
 
-    public static final RegistryObject<Block> SOLARITE_ORE = ore("solarite_ore");
-    public static final RegistryObject<Block> DEEPSLATE_SOLARITE_ORE = deepslateOre("deepslate_solarite_ore");
+    public static final RegistryObject<Block> SOLARITE_ORE = BLOCKS.register(
+            "solarite_ore",
+            () -> new SolariteOreBlock(BlockBehaviour.Properties.copy(Blocks.IRON_ORE)
+                    .lightLevel(state -> state.getValue(SolariteOreBlock.LIT) ? 6 : 0))
+    );
+    public static final RegistryObject<Block> DEEPSLATE_SOLARITE_ORE = BLOCKS.register(
+            "deepslate_solarite_ore",
+            () -> new SolariteOreBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE)
+                    .lightLevel(state -> state.getValue(SolariteOreBlock.LIT) ? 6 : 0))
+    );
     public static final RegistryObject<Block> SOLARITE_BLOCK = storageBlock("solarite_block");
     public static final RegistryObject<Item> SOLARITE_SHARD = item("solarite_shard");
     public static final RegistryObject<Item> SOLARITE_CRYSTAL = item("solarite_crystal");

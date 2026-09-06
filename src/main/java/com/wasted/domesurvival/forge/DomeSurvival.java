@@ -7,6 +7,7 @@ import com.wasted.domesurvival.forge.hopper.HopperRegistryEvents;
 import com.wasted.domesurvival.forge.airlock.AirlockService;
 import com.wasted.domesurvival.forge.block.ModBlocks;
 import com.wasted.domesurvival.forge.command.DomeCommands;
+import com.wasted.domesurvival.forge.progression.ProgressionCommands;
 import com.wasted.domesurvival.forge.compat.lostcities.LostCitiesBuildingCompat;
 import com.wasted.domesurvival.forge.config.SurfaceHazardConfig;
 import com.wasted.domesurvival.forge.dome.DomeGenerationService;
@@ -19,7 +20,6 @@ import com.wasted.domesurvival.forge.material.TechMaterials;
 import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationRegistry;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
 import com.wasted.domesurvival.forge.machine.oxygen.complex.OxygenComplexRegistry;
-import com.wasted.domesurvival.forge.machine.transformer.TransformerRegistry;
 import com.wasted.domesurvival.forge.network.ModNetwork;
 import com.wasted.domesurvival.forge.particle.ModParticles;
 import com.wasted.domesurvival.forge.recipe.ModRecipes;
@@ -52,7 +52,6 @@ public final class DomeSurvival {
         OxygenComplexRegistry.register(modBus);
         FormingPressRegistry.register(modBus);
         FilterRegenerationRegistry.register(modBus);
-        TransformerRegistry.register(modBus);
         ModRecipes.register(modBus);
         ModFluids.FLUID_TYPES.register(modBus);
         ModFluids.FLUIDS.register(modBus);
@@ -82,6 +81,7 @@ public final class DomeSurvival {
 
     private void registerCommands(RegisterCommandsEvent event) {
         DomeCommands.register(event.getDispatcher());
+        ProgressionCommands.register(event.getDispatcher());
     }
 
     private void onServerStarted(ServerStartedEvent event) {

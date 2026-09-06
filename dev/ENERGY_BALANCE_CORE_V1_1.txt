@@ -1,0 +1,38 @@
+﻿DomeSurvival Energy Balance Core V1.1
+Generated: 2026-09-06 15:52:55
+
+TRANSPORT:
+  Basic pipe:       256 FE/t
+  Reinforced pipe: 1024 FE/t
+  High tier pipe:  4096 FE/t
+
+GENERATOR:
+  Coal Generator: 50,000 FE buffer | 64 FE/t generation | 128 FE/t max output
+  4 coal generators = 256 FE/t = one Basic pipe at full continuous load
+
+STORAGE:
+  Base:       250,000 FE | 256 in / 256 out FE/t
+  Titan:    1,000,000 FE | 1024 in / 1024 out FE/t
+  Adamantium:4,000,000 FE | 4096 in / 4096 out FE/t
+  Each normal storage tier holds ~48.8 s at its full transfer rate
+
+CONSUMER INPUT CEILINGS:
+  Filter regeneration: 64 FE/t
+  Water purifier:      64 FE/t
+  Oxygen electrolyzer: 64 FE/t
+  Oxygen filler:       64 FE/t
+  Forming press:      128 FE/t
+  Bioincubator:       128 FE/t
+  Oxygen Complex:     512 FE/t
+
+RESERVES:
+  Forming press: 20,000 FE
+  Water purifier: 20,000 FE
+  Oxygen electrolyzer: 30,000 FE
+  Oxygen filler: 20,000 FE
+  Bioincubator: 60,000 FE
+  Oxygen Complex: 160,000 FE
+
+UNCHANGED CONSUMPTION:
+  Existing machine FE/t and recipe FE totals are intentionally retained in V1.
+  This patch balances generation, transfer ceilings, and reserves first.

@@ -1,8 +1,12 @@
 {
   "type": "domesurvival:forming",
   "operation": "tube",
-  "ingredient": {"tag": "forge:plates/steel"},
-  "result": {"item": "domesurvival:steel_tube"},
+  "ingredient": {
+    "tag": "forge:plates/steel"
+  },
+  "result": {
+    "item": "domesurvival:steel_tube"
+  },
   "processingTime": 140,
   "energy": 3000
 }

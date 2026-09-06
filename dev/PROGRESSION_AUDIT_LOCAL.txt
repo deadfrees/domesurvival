@@ -1,0 +1,2311 @@
+﻿DomeSurvival progression audit
+Generated: 2026-09-06 17:20:49
+Project: C:\domesurvival
+
+IMPORTANT:
+This report does not assume Joseph Cooper is the progression authority.
+It inventories FTB Quests, KubeJS, CustomNPCs and existing stage-like data.
+
+=== INSTALLED FTB / PROGRESSION MOD JARS ===
+C:\domesurvival\run\mods\ftb-chunks-forge-2001.3.8.jar
+C:\domesurvival\run\mods\ftb-library-forge-2001.2.13.jar
+C:\domesurvival\run\mods\ftb-quests-forge-2001.4.22.jar
+C:\domesurvival\run\mods\ftb-teams-forge-2001.3.2.jar
+C:\domesurvival\run\mods\kubejs-forge-2001.6.5-build.26.jar
+
+=== FTB QUESTS FILES ===
+
+--- C:\domesurvival\run\config\ftbquests\quests\chapter_groups.snbt ---
+size=28
+L2: chapter_groups: [ ]
+
+--- C:\domesurvival\run\config\ftbquests\quests\chapters\11FF60B844BBED5B.snbt ---
+size=2622
+L2: always_invisible: true
+L3: default_hide_dependency_lines: true
+L6: group: ""
+L16: rewards: [{
+L17: auto: "invisible"
+L18: command: "/domequest gate set JOSEPH_STAGE_13_COMPLETE"
+L22: type: "command"
+L24: tasks: [{
+L28: title: "__JOSEPH_STAGE_13_COMPLETE"
+L35: rewards: [{
+L36: auto: "invisible"
+L37: command: "/domequest gate set JOSEPH_STAGE_14_COMPLETE"
+L41: type: "command"
+L43: tasks: [{
+L47: title: "__JOSEPH_STAGE_14_COMPLETE"
+L54: rewards: [{
+L55: auto: "invisible"
+L56: command: "/domequest gate set JOSEPH_STAGE_15_COMPLETE"
+L60: type: "command"
+L62: tasks: [{
+L66: title: "__JOSEPH_STAGE_15_COMPLETE"
+L73: rewards: [{
+L74: auto: "invisible"
+L75: command: "/domequest gate set JOSEPH_STAGE_16_COMPLETE"
+L79: type: "command"
+L81: tasks: [{
+L85: title: "__JOSEPH_STAGE_16_COMPLETE"
+L92: rewards: [{
+L93: auto: "invisible"
+L94: command: "/domequest gate set JOSEPH_FINAL_COMPLETE"
+L98: type: "command"
+L100: tasks: [{
+L104: title: "__JOSEPH_FINAL_COMPLETE"
+L111: tasks: [{
+L115: title: "Technical trigger"
+L118: title: "__GENETIC_ARCHIVE_SIGNAL_FOUND"
+L123: title: "__Dome Survival Joseph Bridge"
+
+--- C:\domesurvival\run\config\ftbquests\quests\chapters\2D984F68E1AC5B77.snbt ---
+size=35891
+L3: default_hide_dependency_lines: false
+L7: group: ""
+L15: dependencies: ["6EA480B356153363"]
+L31: rewards: [
+L33: auto: "invisible"
+L34: command: "/domequest complete 0B9F786C486E6E23 normal -"
+L39: ignore_reward_blocking: true
+L41: team_reward: true
+L42: title: " "
+L43: type: "command"
+L50: item: "minecraft:bread"
+L51: team_reward: true
+L52: type: "item"
+L58: tasks: [{
+L62: title: "Автоматическое действие"
+L65: title: "Не одним хлебом"
+L70: dependencies: ["0B9F786C486E6E23"]
+L90: rewards: [
+L92: auto: "invisible"
+L93: command: "/domequest complete 37C9F7FA846C095D normal -"
+L98: ignore_reward_blocking: true
+L100: team_reward: true
+L101: title: " "
+L102: type: "command"
+L109: item: "minecraft:wheat_seeds"
+L110: team_reward: true
+L111: type: "item"
+L117: tasks: [{
+L119: item: {
+L126: type: "item"
+L128: title: "Инструмент земледельца"
+L133: dependencies: ["0B9F786C486E6E23"]
+L149: rewards: [
+L151: auto: "invisible"
+L152: command: "/domequest complete 2E2A6D29AD4B2AE2 normal -"
+L157: ignore_reward_blocking: true
+L159: team_reward: true
+L160: title: " "
+L161: type: "command"
+L168: item: "minecraft:bone_meal"
+L169: team_reward: true
+L170: type: "item"
+L176: tasks: [{
+L179: item: "minecraft:wheat_seeds"
+L180: type: "item"
+L182: title: "Семенной фонд"
+L187: dependencies: ["0B9F786C486E6E23"]
+L201: rewards: [
+L203: auto: "invisible"
+L204: command: "/domequest complete 6B8C0D8C9A026814 normal -"
+L209: ignore_reward_blocking: true
+L211: team_reward: true
+L212: title: " "
+L213: type: "command"
+L219: item: "minecraft:bucket"
+L220: team_reward: true
+L221: type: "item"
+L227: tasks: [{
+L229: item: "minecraft:water_bucket"
+L230: type: "item"
+L232: title: "Вода для грядок"
+L237: dependencies: ["0B9F786C486E6E23"]
+L253: rewards: [
+L255: auto: "invisible"
+L256: command: "/domequest complete 3B9EAABCFAE6CE18 normal -"
+L261: ignore_reward_blocking: true
+L263: team_reward: true
+L264: title: " "
+L265: type: "command"
+L272: item: "minecraft:bone_meal"
+L273: team_reward: true
+L274: type: "item"
+L280: tasks: [{
+L284: title: "Автоматическое действие"
+L287: title: "Компост вместо мусора"
+L292: dependencies: [
+L313: rewards: [
+L315: auto: "invisible"
+L316: command: "/domequest complete 2B7E534D6B75AD7A milestone -"
+L321: ignore_reward_blocking: true
+L323: team_reward: true
+L324: title: " "
+L325: type: "command"
+L332: item: "minecraft:bread"
+L333: team_reward: true
+L334: type: "item"
+L340: tasks: [{
+L344: title: "Автоматическое действие"
+L347: title: "Первый зрелый колос"
+L352: dependencies: ["2B7E534D6B75AD7A"]
+L366: rewards: [
+L368: auto: "invisible"
+L369: command: "/domequest complete 5CE40D096707A2AD normal -"
+L374: ignore_reward_blocking: true
+L376: team_reward: true
+L377: title: " "
+L378: type: "command"
+L385: item: "minecraft:carrot"
+L386: team_reward: true
+L387: type: "item"
+L393: tasks: [{
+L396: item: "minecraft:wheat"
+L397: type: "item"
+L399: title: "Не съедать всё сразу"
+L404: dependencies: ["5CE40D096707A2AD"]
+L418: rewards: [
+L420: auto: "invisible"
+L421: command: "/domequest complete 4F0ECE3FD861C35C normal -"
+L426: ignore_reward_blocking: true
+L428: team_reward: true
+L429: title: " "
+L430: type: "command"
+L437: item: "minecraft:carrot"
+L438: team_reward: true
+L439: type: "item"
+L445: tasks: [{
+L448: item: "minecraft:bread"
+L449: type: "item"
+L451: title: "Хлебный резерв"
+L456: dependencies: ["4F0ECE3FD861C35C"]
+L472: rewards: [
+L474: auto: "invisible"
+L475: command: "/domequest complete 55DE54410BA15E1E normal -"
+L480: ignore_reward_blocking: true
+L482: team_reward: true
+L483: title: " "
+L484: type: "command"
+L491: item: "minecraft:bone_meal"
+L492: team_reward: true
+L493: type: "item"
+L499: tasks: [{
+L502: item: "minecraft:carrot"
+L503: type: "item"
+L505: title: "Вторая культура"
+L510: dependencies: ["55DE54410BA15E1E"]
+L526: rewards: [
+L528: auto: "invisible"
+L529: command: "/domequest complete 73B2F7B80876F16E milestone -"
+L534: ignore_reward_blocking: true
+L536: team_reward: true
+L537: title: " "
+L538: type: "command"
+L545: item: "minecraft:potato"
+L546: team_reward: true
+L547: type: "item"
+L553: tasks: [{
+L557: title: "Автоматическое действие"
+L560: title: "Морковь прижилась"
+L565: dependencies: ["73B2F7B80876F16E"]
+L581: rewards: [
+L583: auto: "invisible"
+L584: command: "/domequest complete 3F6584DAD2270EE2 normal -"
+L589: ignore_reward_blocking: true
+L591: team_reward: true
+L592: title: " "
+L593: type: "command"
+L600: item: "minecraft:bone_meal"
+L601: team_reward: true
+L602: type: "item"
+L608: tasks: [{
+L611: item: "minecraft:potato"
+L612: type: "item"
+L614: title: "Третья культура"
+L619: dependencies: ["3F6584DAD2270EE2"]
+L635: rewards: [
+L637: auto: "invisible"
+L638: command: "/domequest complete 2492885B9D8F12E9 milestone -"
+L643: ignore_reward_blocking: true
+L645: team_reward: true
+L646: title: " "
+L647: type: "command"
+L654: item: "minecraft:coal"
+L655: team_reward: true
+L656: type: "item"
+L662: tasks: [{
+L666: title: "Автоматическое действие"
+L669: title: "Картофель прижился"
+L674: dependencies: ["5CE40D096707A2AD"]
+L688: rewards: [
+L690: auto: "invisible"
+L691: command: "/domequest complete 335799FD690F911A normal -"
+L696: ignore_reward_blocking: true
+L698: team_reward: true
+L699: title: " "
+L700: type: "command"
+L707: item: "minecraft:wheat_seeds"
+L708: team_reward: true
+L709: type: "item"
+L715: tasks: [{
+L718: item: "minecraft:hay_block"
+L719: type: "item"
+L721: title: "Запас в компактной форме"
+L726: dependencies: ["2B7E534D6B75AD7A"]
+L742: rewards: [
+L744: auto: "invisible"
+L745: command: "/domequest complete 6137A02708AF6AD5 normal -"
+L750: ignore_reward_blocking: true
+L752: team_reward: true
+L753: title: " "
+L754: type: "command"
+L761: item: "minecraft:lantern"
+L762: team_reward: true
+L763: type: "item"
+L769: tasks: [{
+L772: item: "minecraft:bone_meal"
+L773: type: "item"
+L775: title: "Удобрение в резерве"
+L780: dependencies: ["4F0ECE3FD861C35C"]
+L796: rewards: [
+L798: auto: "invisible"
+L799: command: "/domequest complete 0445603F30A02E87 normal -"
+L804: ignore_reward_blocking: true
+L806: team_reward: true
+L807: title: " "
+L808: type: "command"
+L815: item: "minecraft:gold_nugget"
+L816: team_reward: true
+L817: type: "item"
+L823: tasks: [{
+L826: item: "minecraft:apple"
+L827: type: "item"
+L829: title: "Фрукты с наших деревьев"
+L834: dependencies: ["6137A02708AF6AD5"]
+L850: rewards: [
+L852: auto: "invisible"
+L853: command: "/domequest complete 5A8D75EB2724CC12 normal -"
+L858: ignore_reward_blocking: true
+L860: team_reward: true
+L861: title: " "
+L862: type: "command"
+L869: item: "minecraft:lantern"
+L870: team_reward: true
+L871: type: "item"
+L877: tasks: [{
+L881: title: "Автоматическое действие"
+L884: title: "Свет над полем"
+L889: dependencies: [
+L907: rewards: [
+L909: auto: "invisible"
+L910: command: "/domequest complete 3595CC264502D856 normal -"
+L915: ignore_reward_blocking: true
+L917: team_reward: true
+L918: title: " "
+L919: type: "command"
+L926: item: "minecraft:oak_sign"
+L927: team_reward: true
+L928: type: "item"
+L934: tasks: [{
+L937: item: "minecraft:barrel"
+L938: type: "item"
+<truncated after 250 matching lines>
+
+--- C:\domesurvival\run\config\ftbquests\quests\chapters\38F6E366B367B563.snbt ---
+size=35482
+L3: default_hide_dependency_lines: false
+L7: group: ""
+L15: dependencies: ["4E6B940013A62F56"]
+L33: rewards: [
+L35: auto: "invisible"
+L36: command: "/domequest complete 517EC9D8E689AF18 normal -"
+L41: ignore_reward_blocking: true
+L43: team_reward: true
+L44: title: " "
+L45: type: "command"
+L52: item: "minecraft:bread"
+L53: team_reward: true
+L54: type: "item"
+L60: tasks: [{
+L64: title: "Автоматически: завершить пролог"
+L67: title: "Первые дни"
+L72: dependencies: ["517EC9D8E689AF18"]
+L90: rewards: [
+L92: auto: "invisible"
+L93: command: "/domequest complete 307036CB8D873212 normal -"
+L98: ignore_reward_blocking: true
+L100: team_reward: true
+L101: title: " "
+L102: type: "command"
+L109: item: "minecraft:oak_planks"
+L110: team_reward: true
+L111: type: "item"
+L117: tasks: [{
+L120: item: "minecraft:oak_log"
+L121: type: "item"
+L123: title: "Дерево не должно кончаться"
+L128: dependencies: ["517EC9D8E689AF18"]
+L146: rewards: [
+L148: auto: "invisible"
+L149: command: "/domequest complete 0AA41F06987375BB normal -"
+L154: ignore_reward_blocking: true
+L156: team_reward: true
+L157: title: " "
+L158: type: "command"
+L165: item: "minecraft:charcoal"
+L166: team_reward: true
+L167: type: "item"
+L173: tasks: [{
+L176: item: "minecraft:cobblestone"
+L177: type: "item"
+L179: title: "Камень под рукой"
+L184: dependencies: ["307036CB8D873212"]
+L206: rewards: [
+L208: auto: "invisible"
+L209: command: "/domequest complete 30DDB7BA6393BE83 normal -"
+L214: ignore_reward_blocking: true
+L216: team_reward: true
+L217: title: " "
+L218: type: "command"
+L225: item: "minecraft:apple"
+L226: team_reward: true
+L227: type: "item"
+L233: tasks: [{
+L235: item: {
+L242: type: "item"
+L244: title: "Инструмент для работы"
+L249: dependencies: ["0AA41F06987375BB"]
+L273: rewards: [
+L275: auto: "invisible"
+L276: command: "/domequest complete 50248AE6CB9519A1 normal -"
+L281: ignore_reward_blocking: true
+L283: team_reward: true
+L284: title: " "
+L285: type: "command"
+L292: item: "minecraft:wheat_seeds"
+L293: team_reward: true
+L294: type: "item"
+L300: tasks: [{
+L302: item: {
+L309: type: "item"
+L311: title: "Земля под стеклом"
+L316: dependencies: ["50248AE6CB9519A1"]
+L332: rewards: [
+L334: auto: "invisible"
+L335: command: "/domequest complete 7A4B380CD2589F41 normal -"
+L340: ignore_reward_blocking: true
+L342: team_reward: true
+L343: title: " "
+L344: type: "command"
+L351: item: "minecraft:bone_meal"
+L352: team_reward: true
+L353: type: "item"
+L359: tasks: [{
+L362: item: "minecraft:wheat_seeds"
+L363: type: "item"
+L365: title: "Первый посев"
+L370: dependencies: ["7A4B380CD2589F41"]
+L386: rewards: [
+L388: auto: "invisible"
+L389: command: "/domequest complete 148982D154C24E63 milestone -"
+L394: ignore_reward_blocking: true
+L396: team_reward: true
+L397: title: " "
+L398: type: "command"
+L405: item: "minecraft:bread"
+L406: team_reward: true
+L407: type: "item"
+L413: tasks: [{
+L416: item: "minecraft:wheat"
+L417: type: "item"
+L419: title: "Первый урожай"
+L424: dependencies: ["0AA41F06987375BB"]
+L442: rewards: [
+L444: auto: "invisible"
+L445: command: "/domequest complete 1D9C983649926D1E normal -"
+L450: ignore_reward_blocking: true
+L452: team_reward: true
+L453: title: " "
+L454: type: "command"
+L461: item: "minecraft:copper_ingot"
+L462: team_reward: true
+L463: type: "item"
+L469: tasks: [{
+L472: item: "minecraft:copper_ingot"
+L473: type: "item"
+L475: title: "Первый промышленный металл"
+L480: dependencies: ["1D9C983649926D1E"]
+L498: rewards: [
+L500: auto: "invisible"
+L501: command: "/domequest complete 350FB0BD7B2E3A7B normal -"
+L506: ignore_reward_blocking: true
+L508: team_reward: true
+L509: title: " "
+L510: type: "command"
+L517: item: "minecraft:iron_nugget"
+L518: team_reward: true
+L519: type: "item"
+L525: tasks: [{
+L528: item: "minecraft:iron_ingot"
+L529: type: "item"
+L531: title: "Железо — уже ответственность"
+L536: dependencies: [
+L557: rewards: [
+L559: auto: "invisible"
+L560: command: "/domequest complete 2327F36796AD9481 normal -"
+L565: ignore_reward_blocking: true
+L567: team_reward: true
+L568: title: " "
+L569: type: "command"
+L576: item: "minecraft:bone_meal"
+L577: team_reward: true
+L578: type: "item"
+L584: tasks: [
+L587: item: "minecraft:bucket"
+L588: type: "item"
+L592: item: "domesurvival:sand_sieve"
+L593: type: "item"
+L597: item: {
+L604: type: "item"
+L609: item: "minecraft:clay_ball"
+L610: type: "item"
+L613: title: "Песок становится глиной"
+L618: dependencies: ["517EC9D8E689AF18"]
+L636: rewards: [
+L638: auto: "invisible"
+L639: command: "/domequest complete 76CC190EA3C2AF43 normal -"
+L644: ignore_reward_blocking: true
+L646: team_reward: true
+L647: title: " "
+L648: type: "command"
+L655: item: "minecraft:torch"
+L656: team_reward: true
+L657: type: "item"
+L663: tasks: [{
+L666: item: "minecraft:stone_slab"
+L667: type: "item"
+L669: title: "Навес — это план, а не воздух"
+L674: dependencies: ["76CC190EA3C2AF43"]
+L692: rewards: [
+L694: auto: "invisible"
+L695: command: "/domequest complete 7070CC231A5FD78B normal -"
+L700: ignore_reward_blocking: true
+L702: team_reward: true
+L703: title: " "
+L704: type: "command"
+L711: item: "minecraft:baked_potato"
+L712: team_reward: true
+L713: type: "item"
+L719: tasks: [{
+L723: title: "Автоматически: проверить выход через панель шлюза"
+L726: title: "Сначала посмотри наверх"
+L731: dependencies: ["7070CC231A5FD78B"]
+L749: rewards: [
+L751: auto: "invisible"
+L752: command: "/domequest complete 1E17F741B3D2B089 normal -"
+L757: ignore_reward_blocking: true
+L759: team_reward: true
+L760: title: " "
+L761: type: "command"
+L768: item: "minecraft:cookie"
+L769: team_reward: true
+L770: type: "item"
+L776: tasks: [{
+L780: title: "Автоматически: взаимодействовать с maneogflow"
+L783: title: "maneogflow"
+L788: dependencies: [
+L809: rewards: [
+L811: auto: "invisible"
+L812: command: "/domequest complete 154A94C130095453 normal -"
+L817: ignore_reward_blocking: true
+L819: team_reward: true
+L820: title: " "
+L821: type: "command"
+L828: item: "minecraft:coal"
+L829: team_reward: true
+L830: type: "item"
+L836: tasks: [
+L839: item: "minecraft:chest"
+L840: type: "item"
+L845: item: "minecraft:bread"
+L846: type: "item"
+L851: item: "minecraft:torch"
+L852: type: "item"
+L855: title: "Запас у выхода"
+L860: dependencies: [
+L881: rewards: [
+L883: auto: "invisible"
+L884: command: "/domequest complete 5D607F103EF876B1 normal -"
+L889: ignore_reward_blocking: true
+L891: team_reward: true
+L892: title: " "
+L893: type: "command"
+L899: item: "minecraft:lever"
+L900: team_reward: true
+L901: type: "item"
+L907: tasks: [{
+L908: advancement: "domesurvival:quest_actions/ch1_airlock_workspace"
+L911: title: "Автоматически: повторно использовать панель после подготовки зоны"
+L914: title: "Рабочая зона шлюза"
+L919: dependencies: [
+L949: rewards: [
+L951: auto: "invisible"
+L952: command: "/domequest complete 3E0DBA929C2D708C normal -"
+L957: ignore_reward_blocking: true
+L959: team_reward: true
+L960: title: " "
+L961: type: "command"
+L968: item: "minecraft:cooked_beef"
+L969: team_reward: true
+L970: type: "item"
+L976: tasks: [{
+L980: title: "Автоматически: стоять в шлюзе с ведром, 6 хлебами и 10 факелами"
+L983: title: "Никакого героизма"
+L988: dependencies: ["3E0DBA929C2D708C"]
+L1006: rewards: [
+<truncated after 250 matching lines>
+
+--- C:\domesurvival\run\config\ftbquests\quests\chapters\4A2E731D5C9B684F.snbt ---
+size=37035
+L3: default_hide_dependency_lines: false
+L7: group: ""
+L8: icon: "domesurvival:energy_buffer"
+L15: dependencies: ["1A7234374FC8891A"]
+L31: rewards: [
+L33: auto: "invisible"
+L34: command: "/domequest complete 613FF462EA9C75DC normal POWER_PROGRAM_STARTED"
+L39: ignore_reward_blocking: true
+L41: team_reward: true
+L42: title: " "
+L43: type: "command"
+L50: item: "minecraft:redstone"
+L51: team_reward: true
+L52: type: "item"
+L58: tasks: [{
+L62: title: "Автоматическое действие"
+L65: title: "Пусть горит свет"
+L70: dependencies: ["613FF462EA9C75DC"]
+L84: rewards: [
+L86: auto: "invisible"
+L87: command: "/domequest complete 61693835470A70E9 normal -"
+L92: ignore_reward_blocking: true
+L94: team_reward: true
+L95: title: " "
+L96: type: "command"
+L103: item: "minecraft:repeater"
+L104: team_reward: true
+L105: type: "item"
+L111: tasks: [{
+L114: item: "minecraft:redstone"
+L115: type: "item"
+L117: title: "Красная пыль"
+L122: dependencies: ["613FF462EA9C75DC"]
+L138: rewards: [
+L140: auto: "invisible"
+L141: command: "/domequest complete 36E13B53347926CA normal -"
+L146: ignore_reward_blocking: true
+L148: team_reward: true
+L149: title: " "
+L150: type: "command"
+L157: item: "minecraft:copper_ingot"
+L158: team_reward: true
+L159: type: "item"
+L165: tasks: [
+L169: item: "minecraft:copper_ingot"
+L170: type: "item"
+L174: item: {
+L181: type: "item"
+L184: title: "Медь для проводников"
+L189: dependencies: ["613FF462EA9C75DC"]
+L203: rewards: [
+L205: auto: "invisible"
+L206: command: "/domequest complete 158F63AD3757B785 normal -"
+L211: ignore_reward_blocking: true
+L213: team_reward: true
+L214: title: " "
+L215: type: "command"
+L222: item: "minecraft:iron_ingot"
+L223: team_reward: true
+L224: type: "item"
+L230: tasks: [{
+L233: item: "minecraft:iron_ingot"
+L234: type: "item"
+L236: title: "Железный каркас"
+L241: dependencies: ["613FF462EA9C75DC"]
+L255: rewards: [
+L257: auto: "invisible"
+L258: command: "/domequest complete 4D5E49001CD7D6CE normal POWER_FUEL_RESERVE_READY"
+L263: ignore_reward_blocking: true
+L265: team_reward: true
+L266: title: " "
+L267: type: "command"
+L274: item: "minecraft:charcoal"
+L275: team_reward: true
+L276: type: "item"
+L282: tasks: [{
+L285: item: "minecraft:coal"
+L286: type: "item"
+L288: title: "Топливный запас"
+L293: dependencies: [
+L310: rewards: [
+L312: auto: "invisible"
+L313: command: "/domequest complete 473AE864B22D87AB normal PULSE_MATRIX_AVAILABLE"
+L318: ignore_reward_blocking: true
+L320: team_reward: true
+L321: title: " "
+L322: type: "command"
+L329: item: "minecraft:redstone_torch"
+L330: team_reward: true
+L331: type: "item"
+L337: tasks: [
+L341: item: "minecraft:repeater"
+L342: type: "item"
+L347: item: "minecraft:comparator"
+L348: type: "item"
+L351: title: "Управляющие компоненты"
+L356: dependencies: [
+L363: "Подходит наш угольный генератор и совместимые генераторы из сборки. Проверка сделана без жёсткой зависимости от конкретного mod namespace."
+L375: rewards: [
+L377: auto: "invisible"
+L378: command: "/domequest complete 27D329DD824D350B milestone BASIC_POWER_GRID_STARTED"
+L383: ignore_reward_blocking: true
+L385: team_reward: true
+L386: title: " "
+L387: type: "command"
+L394: item: "minecraft:coal"
+L395: team_reward: true
+L396: type: "item"
+L402: tasks: [{
+L406: title: "Автоматическое действие"
+L409: title: "Первый источник FE"
+L414: dependencies: [
+L424: "{\"text\":\"Взаимодействуйте с генератором, который предоставляет Forge Energy capability.\",\"color\":\"white\"}"
+L427: "{\"text\":\"Сервер проверяет BlockEntity через ForgeCapabilities.ENERGY.\",\"color\":\"gray\"}"
+L433: rewards: [
+L435: auto: "invisible"
+L436: command: "/domequest complete 74335F61233E9EB2 milestone FIRST_POWERED_MACHINE_ONLINE"
+L441: ignore_reward_blocking: true
+L443: team_reward: true
+L444: title: " "
+L445: type: "command"
+L452: item: "minecraft:redstone"
+L453: team_reward: true
+L454: type: "item"
+L460: tasks: [{
+L464: title: "Автоматическое действие"
+L467: title: "Проверь энергетический узел"
+L472: dependencies: ["74335F61233E9EB2"]
+L486: rewards: [
+L488: auto: "invisible"
+L489: command: "/domequest complete 2BF09D9F1F7494B4 normal -"
+L494: ignore_reward_blocking: true
+L496: team_reward: true
+L497: title: " "
+L498: type: "command"
+L505: item: "minecraft:iron_nugget"
+L506: team_reward: true
+L507: type: "item"
+L513: tasks: [
+L517: item: "minecraft:copper_ingot"
+L518: type: "item"
+L523: item: "minecraft:redstone"
+L524: type: "item"
+L527: title: "Материал линии"
+L532: dependencies: ["2BF09D9F1F7494B4"]
+L536: "Поставь несколько энергетических проводников. Поддерживаются cable, wire, conduit и energy/power pipe по registry path."
+L544: icon: "domesurvival:basic_energy_pipe"
+L548: rewards: [
+L550: auto: "invisible"
+L551: command: "/domequest complete 3CE842358BCF4A85 milestone POWER_TRANSMISSION_TECH_KNOWN"
+L556: ignore_reward_blocking: true
+L558: team_reward: true
+L559: title: " "
+L560: type: "command"
+L567: item: "minecraft:copper_ingot"
+L568: team_reward: true
+L569: type: "item"
+L575: tasks: [{
+L579: title: "Автоматическое действие"
+L582: title: "Первая линия питания"
+L587: dependencies: ["74335F61233E9EB2"]
+L601: rewards: [
+L603: auto: "invisible"
+L604: command: "/domequest complete 4AF191CE8DA34456 normal -"
+L609: ignore_reward_blocking: true
+L611: team_reward: true
+L612: title: " "
+L613: type: "command"
+L620: item: "minecraft:redstone"
+L621: team_reward: true
+L622: type: "item"
+L628: tasks: [
+L632: item: "minecraft:iron_ingot"
+L633: type: "item"
+L638: item: "minecraft:redstone"
+L639: type: "item"
+L642: title: "Корпус буфера"
+L647: dependencies: [
+L654: "Подойдут совместимые energy storage / battery / capacitor / accumulator блоки."
+L662: icon: "domesurvival:energy_buffer"
+L666: rewards: [
+L668: auto: "invisible"
+L669: command: "/domequest complete 1B3704A32A92C101 milestone -"
+L674: ignore_reward_blocking: true
+L676: team_reward: true
+L677: title: " "
+L678: type: "command"
+L685: item: "minecraft:iron_ingot"
+L686: team_reward: true
+L687: type: "item"
+L693: tasks: [{
+L697: title: "Автоматическое действие"
+L700: title: "Энергетический буфер"
+L705: dependencies: ["1B3704A32A92C101"]
+L713: "{\"text\":\"Сервер подтверждает наличие Forge Energy capability у BlockEntity.\",\"color\":\"gray\"}"
+L715: icon: "domesurvival:energy_buffer"
+L719: rewards: [
+L721: auto: "invisible"
+L722: command: "/domequest complete 78B0EF958AD81A29 milestone POWER_STORAGE_TECH_KNOWN"
+L727: ignore_reward_blocking: true
+L729: team_reward: true
+L730: title: " "
+L731: type: "command"
+L738: item: "minecraft:redstone"
+L739: team_reward: true
+L740: type: "item"
+L746: tasks: [{
+L750: title: "Автоматическое действие"
+L753: title: "Проверь накопитель"
+L758: dependencies: ["78B0EF958AD81A29"]
+L772: rewards: [
+L774: auto: "invisible"
+L775: command: "/domequest complete 23C744AA7ED56DAD normal -"
+L780: ignore_reward_blocking: true
+L782: team_reward: true
+L783: title: " "
+L784: type: "command"
+L791: item: "minecraft:redstone_torch"
+L792: team_reward: true
+L793: type: "item"
+L799: tasks: [
+L803: item: "minecraft:redstone_lamp"
+L804: type: "item"
+L809: item: "minecraft:lever"
+L810: type: "item"
+L813: title: "Свет для мастерской"
+L818: dependencies: ["23C744AA7ED56DAD"]
+L832: rewards: [
+L834: auto: "invisible"
+L835: command: "/domequest complete 0110D171C4CD09E3 normal -"
+L840: ignore_reward_blocking: true
+L842: team_reward: true
+L843: title: " "
+L844: type: "command"
+L851: item: "minecraft:glowstone_dust"
+L852: team_reward: true
+L853: type: "item"
+L859: tasks: [{
+L863: title: "Автоматическое действие"
+L866: title: "Пусть горит"
+L871: dependencies: ["78B0EF958AD81A29"]
+L885: rewards: [
+L887: auto: "invisible"
+L888: command: "/domequest complete 0A6AF5A9FC8B21F4 normal -"
+L893: ignore_reward_blocking: true
+L895: team_reward: true
+L896: title: " "
+L897: type: "command"
+L903: item: "minecraft:coal_block"
+L904: team_reward: true
+<truncated after 250 matching lines>
+
+--- C:\domesurvival\run\config\ftbquests\quests\chapters\5017105A9984A511.snbt ---
+size=31963
+L3: default_hide_dependency_lines: false
+L7: group: ""
+L32: rewards: [
+L34: auto: "invisible"
+L35: command: "/domequest complete 574CF865DA07FAA8 normal DOME_SURVIVAL_STARTED"
+L40: ignore_reward_blocking: true
+L42: team_reward: true
+L43: title: " "
+L44: type: "command"
+L50: team_reward: true
+L59: item: "minecraft:bread"
+L60: team_reward: true
+L61: type: "item"
+L67: tasks: [{
+L71: title: "Автоматически: успешно развернуть Купол через /domestart"
+L74: title: "Развернуть Купол"
+L79: dependencies: ["574CF865DA07FAA8"]
+L97: rewards: [
+L99: auto: "invisible"
+L100: command: "/domequest complete 152DB9A14CA5E5EC normal -"
+L105: ignore_reward_blocking: true
+L107: team_reward: true
+L108: title: " "
+L109: type: "command"
+L116: item: "minecraft:apple"
+L117: team_reward: true
+L118: type: "item"
+L124: tasks: [{
+L128: title: "Автоматически: подтвердить безопасную дыхательную зону"
+L131: title: "Воздух — часть стены"
+L136: dependencies: ["152DB9A14CA5E5EC"]
+L157: rewards: [
+L159: auto: "invisible"
+L160: command: "/domequest complete 1CC685A27E7F8753 normal -"
+L165: ignore_reward_blocking: true
+L167: team_reward: true
+L168: title: " "
+L169: type: "command"
+L176: item: "minecraft:bread"
+L177: team_reward: true
+L178: type: "item"
+L184: tasks: [{
+L188: title: "Автоматически: реально выйти за пределы Купола"
+L191: title: "За воротами нет воздуха"
+L196: dependencies: ["1CC685A27E7F8753"]
+L214: rewards: [
+L216: auto: "invisible"
+L217: command: "/domequest complete 63EB53B2B8F791B2 normal -"
+L222: ignore_reward_blocking: true
+L224: team_reward: true
+L225: title: " "
+L226: type: "command"
+L233: item: "minecraft:baked_potato"
+L234: team_reward: true
+L235: type: "item"
+L241: tasks: [{
+L245: title: "Автоматически: ~2 секунды под открытым небом в ясный день"
+L248: title: "Солнце тоже враг"
+L253: dependencies: ["1CC685A27E7F8753"]
+L271: rewards: [
+L273: auto: "invisible"
+L274: command: "/domequest complete 4E9628EFAC01DCEC normal -"
+L279: ignore_reward_blocking: true
+L281: team_reward: true
+L282: title: " "
+L283: type: "command"
+L289: item: "minecraft:leather"
+L290: team_reward: true
+L291: type: "item"
+L297: tasks: [{
+L301: title: "Автоматически: использовать панель управления шлюзом"
+L304: title: "Погода здесь не фон"
+L309: dependencies: ["574CF865DA07FAA8"]
+L327: rewards: [
+L329: auto: "invisible"
+L330: command: "/domequest complete 3993B25DBE806706 normal -"
+L335: ignore_reward_blocking: true
+L337: team_reward: true
+L338: title: " "
+L339: type: "command"
+L345: team_reward: true
+L354: item: "minecraft:oak_planks"
+L355: team_reward: true
+L356: type: "item"
+L362: tasks: [{
+L364: item: "minecraft:crafting_table"
+L365: type: "item"
+L367: title: "Верстак — первая машина"
+L372: dependencies: ["3993B25DBE806706"]
+L394: rewards: [
+L396: auto: "invisible"
+L397: command: "/domequest complete 6580F2A6EBD94BBB normal -"
+L402: ignore_reward_blocking: true
+L404: team_reward: true
+L405: title: " "
+L406: type: "command"
+L412: team_reward: true
+L421: item: "minecraft:coal"
+L422: team_reward: true
+L423: type: "item"
+L429: tasks: [{
+L431: item: {
+L438: type: "item"
+L440: title: "Камень работает дольше"
+L445: dependencies: ["3993B25DBE806706"]
+L463: rewards: [
+L465: auto: "invisible"
+L466: command: "/domequest complete 38DAA584DC6775BA normal -"
+L471: ignore_reward_blocking: true
+L473: team_reward: true
+L474: title: " "
+L475: type: "command"
+L481: team_reward: true
+L490: item: "minecraft:bread"
+L491: team_reward: true
+L492: type: "item"
+L498: tasks: [{
+L500: item: "minecraft:chest"
+L501: type: "item"
+L503: title: "Склад до экспедиции"
+L508: dependencies: ["38DAA584DC6775BA"]
+L526: rewards: [
+L528: auto: "invisible"
+L529: command: "/domequest complete 06FCA2E6E6EB913C normal -"
+L534: ignore_reward_blocking: true
+L536: team_reward: true
+L537: title: " "
+L538: type: "command"
+L544: team_reward: true
+L553: item: "minecraft:charcoal"
+L554: team_reward: true
+L555: type: "item"
+L561: tasks: [{
+L564: item: "minecraft:torch"
+L565: type: "item"
+L567: title: "Свет — это время"
+L572: dependencies: ["574CF865DA07FAA8"]
+L590: rewards: [
+L592: auto: "invisible"
+L593: command: "/domequest complete 27ACBC4CB0FD500B normal -"
+L598: ignore_reward_blocking: true
+L600: team_reward: true
+L601: title: " "
+L602: type: "command"
+L608: item: "minecraft:book"
+L609: team_reward: true
+L610: type: "item"
+L616: tasks: [{
+L620: title: "Автоматически: поговорить с Джозефом Куппером"
+L623: title: "Джозеф Куппер"
+L628: dependencies: ["27ACBC4CB0FD500B"]
+L646: rewards: [
+L648: auto: "invisible"
+L649: command: "/domequest complete 3F46DFCB027B910D normal -"
+L654: ignore_reward_blocking: true
+L656: team_reward: true
+L657: title: " "
+L658: type: "command"
+L665: item: "minecraft:iron_nugget"
+L666: team_reward: true
+L667: type: "item"
+L673: tasks: [{
+L677: title: "Автоматически: взаимодействовать с воротами шлюза"
+L680: title: "Найди шлюз"
+L685: dependencies: [
+L706: rewards: [
+L708: auto: "invisible"
+L709: command: "/domequest complete 50DA62AD2BA7A7B2 normal -"
+L714: ignore_reward_blocking: true
+L716: team_reward: true
+L717: title: " "
+L718: type: "command"
+L725: item: "minecraft:cobblestone"
+L726: team_reward: true
+L727: type: "item"
+L733: tasks: [{
+L737: title: "Автоматически: ~2 секунды снаружи под крышей"
+L740: title: "Навес не атмосфера"
+L745: dependencies: [
+L767: rewards: [
+L769: auto: "invisible"
+L770: command: "/domequest complete 78AB2063F7341353 milestone -"
+L775: ignore_reward_blocking: true
+L777: team_reward: true
+L778: title: " "
+L779: type: "command"
+L786: item: "minecraft:cooked_beef"
+L787: team_reward: true
+L788: type: "item"
+L794: tasks: [{
+L798: title: "Автоматически: выйти наружу и реально вернуться в Купол"
+L801: title: "Правило возврата"
+L806: dependencies: [
+L828: rewards: [
+L830: auto: "invisible"
+L831: command: "/domequest complete 4E6B940013A62F56 chapter DOME_PROLOGUE_COMPLETE"
+L836: ignore_reward_blocking: true
+L838: team_reward: true
+L839: title: " "
+L840: type: "command"
+L846: team_reward: true
+L854: item: "minecraft:golden_apple"
+L855: team_reward: true
+L856: type: "item"
+L862: tasks: [{
+L866: title: "Автоматически: завершить все необходимые задачи пролога"
+L869: title: "Пока это наш дом"
+L874: title: "{\"text\":\"Под Куполом\",\"color\":\"#E5D39A\",\"bold\":true}"
+
+--- C:\domesurvival\run\config\ftbquests\quests\chapters\5E38036299F32A70.snbt ---
+size=29065
+L3: default_hide_dependency_lines: false
+L7: group: ""
+L15: dependencies: ["0553FD8AE147C7D2"]
+L31: rewards: [
+L33: auto: "invisible"
+L34: command: "/domequest complete 72DF8748CA0B1F37 normal -"
+L39: ignore_reward_blocking: true
+L41: team_reward: true
+L42: title: " "
+L43: type: "command"
+L50: item: "minecraft:bread"
+L51: team_reward: true
+L52: type: "item"
+L58: tasks: [{
+L62: title: "Автоматическое действие"
+L65: title: "Здесь будут жить"
+L70: dependencies: ["72DF8748CA0B1F37"]
+L86: rewards: [
+L88: auto: "invisible"
+L89: command: "/domequest complete 06EDD46356BD5799 normal -"
+L94: ignore_reward_blocking: true
+L96: team_reward: true
+L97: title: " "
+L98: type: "command"
+L105: item: "minecraft:oak_sign"
+L106: team_reward: true
+L107: type: "item"
+L113: tasks: [{
+L116: item: "minecraft:chest"
+L117: type: "item"
+L119: title: "Не хранить на полу"
+L124: dependencies: ["06EDD46356BD5799"]
+L140: rewards: [
+L142: auto: "invisible"
+L143: command: "/domequest complete 18ECF20E2F719C86 normal -"
+L148: ignore_reward_blocking: true
+L150: team_reward: true
+L151: title: " "
+L152: type: "command"
+L158: item: "minecraft:barrel"
+L159: team_reward: true
+L160: type: "item"
+L166: tasks: [{
+L170: title: "Автоматическое действие"
+L173: title: "Склад получает адрес"
+L178: dependencies: ["72DF8748CA0B1F37"]
+L194: rewards: [
+L196: auto: "invisible"
+L197: command: "/domequest complete 09BAF6E602A90645 normal -"
+L202: ignore_reward_blocking: true
+L204: team_reward: true
+L205: title: " "
+L206: type: "command"
+L212: item: "minecraft:iron_ingot"
+L213: team_reward: true
+L214: type: "item"
+L220: tasks: [
+L223: item: "minecraft:crafting_table"
+L224: type: "item"
+L228: item: "minecraft:stonecutter"
+L229: type: "item"
+L232: title: "Рабочее место"
+L237: dependencies: ["09BAF6E602A90645"]
+L253: rewards: [
+L255: auto: "invisible"
+L256: command: "/domequest complete 79B3B1F85FC27AC2 milestone -"
+L261: ignore_reward_blocking: true
+L263: team_reward: true
+L264: title: " "
+L265: type: "command"
+L271: item: "minecraft:lantern"
+L272: team_reward: true
+L273: type: "item"
+L279: tasks: [{
+L283: title: "Автоматическое действие"
+L286: title: "Угол мастерской"
+L291: dependencies: ["79B3B1F85FC27AC2"]
+L301: "{\"text\":\"Автоматически по установленному блоку медной печи; проверка не привязана к конкретному mod namespace.\",\"color\":\"gray\"}"
+L307: rewards: [
+L309: auto: "invisible"
+L310: command: "/domequest complete 4074D7E87F7BF8EA milestone -"
+L315: ignore_reward_blocking: true
+L317: team_reward: true
+L318: title: " "
+L319: type: "command"
+L326: item: "minecraft:coal"
+L327: team_reward: true
+L328: type: "item"
+L334: tasks: [{
+L338: title: "Автоматическое действие"
+L341: title: "Медная печь"
+L346: dependencies: ["4074D7E87F7BF8EA"]
+L362: rewards: [
+L364: auto: "invisible"
+L365: command: "/domequest complete 37C8F17969425C02 normal -"
+L370: ignore_reward_blocking: true
+L372: team_reward: true
+L373: title: " "
+L374: type: "command"
+L381: item: "minecraft:charcoal"
+L382: team_reward: true
+L383: type: "item"
+L389: tasks: [{
+L392: item: "minecraft:coal"
+L393: type: "item"
+L395: title: "Топливо должно быть рядом"
+L400: dependencies: ["18ECF20E2F719C86"]
+L416: rewards: [
+L418: auto: "invisible"
+L419: command: "/domequest complete 02E95DC568740CF4 normal -"
+L424: ignore_reward_blocking: true
+L426: team_reward: true
+L427: title: " "
+L428: type: "command"
+L434: item: "minecraft:white_bed"
+L435: team_reward: true
+L436: type: "item"
+L442: tasks: [
+L446: item: "minecraft:white_wool"
+L447: type: "item"
+L452: item: "minecraft:oak_planks"
+L453: type: "item"
+L456: title: "Материалы для жилой зоны"
+L461: dependencies: ["02E95DC568740CF4"]
+L477: rewards: [
+L479: auto: "invisible"
+L480: command: "/domequest complete 390DD88E4D110AFD normal -"
+L485: ignore_reward_blocking: true
+L487: team_reward: true
+L488: title: " "
+L489: type: "command"
+L496: item: "minecraft:lantern"
+L497: team_reward: true
+L498: type: "item"
+L504: tasks: [{
+L508: title: "Автоматическое действие"
+L511: title: "Жилая зона"
+L516: dependencies: ["390DD88E4D110AFD"]
+L532: rewards: [
+L534: auto: "invisible"
+L535: command: "/domequest complete 502616EC28341C00 normal -"
+L540: ignore_reward_blocking: true
+L542: team_reward: true
+L543: title: " "
+L544: type: "command"
+L551: item: "minecraft:candle"
+L552: team_reward: true
+L553: type: "item"
+L559: tasks: [{
+L563: title: "Автоматическое действие"
+L566: title: "Не жить в темноте"
+L571: dependencies: [
+L590: rewards: [
+L592: auto: "invisible"
+L593: command: "/domequest complete 72E112BFA9B18946 normal -"
+L598: ignore_reward_blocking: true
+L600: team_reward: true
+L601: title: " "
+L602: type: "command"
+L608: item: "minecraft:emerald"
+L609: team_reward: true
+L610: type: "item"
+L616: tasks: [{
+L620: title: "Автоматическое действие"
+L623: title: "iVan"
+L628: dependencies: ["37C8F17969425C02"]
+L644: rewards: [
+L646: auto: "invisible"
+L647: command: "/domequest complete 1ED6D6A61A8AE5B8 normal -"
+L652: ignore_reward_blocking: true
+L654: team_reward: true
+L655: title: " "
+L656: type: "command"
+L663: item: "minecraft:torch"
+L664: team_reward: true
+L665: type: "item"
+L671: tasks: [
+L674: item: "minecraft:chest"
+L675: type: "item"
+L679: item: "minecraft:crafting_table"
+L680: type: "item"
+L683: title: "Комплект у шлюза"
+L688: dependencies: ["1ED6D6A61A8AE5B8"]
+L704: rewards: [
+L706: auto: "invisible"
+L707: command: "/domequest complete 508FFFCC14A7E676 milestone -"
+L712: ignore_reward_blocking: true
+L714: team_reward: true
+L715: title: " "
+L716: type: "command"
+L722: item: "minecraft:chest"
+L723: team_reward: true
+L724: type: "item"
+L730: tasks: [{
+L734: title: "Автоматическое действие"
+L737: title: "Рабочая зона шлюза"
+L742: dependencies: [
+L764: rewards: [
+L766: auto: "invisible"
+L767: command: "/domequest complete 507839577C8AFA79 milestone -"
+L772: ignore_reward_blocking: true
+L774: team_reward: true
+L775: title: " "
+L776: type: "command"
+L783: item: "minecraft:iron_ingot"
+L784: team_reward: true
+L785: type: "item"
+L791: tasks: [{
+L795: title: "Автоматическое действие"
+L798: title: "Последний обход"
+L803: dependencies: ["507839577C8AFA79"]
+L824: rewards: [
+L826: auto: "invisible"
+L827: command: "/domequest complete 6EA480B356153363 chapter SETTLEMENT_ESTABLISHED"
+L832: ignore_reward_blocking: true
+L834: team_reward: true
+L835: title: " "
+L836: type: "command"
+L842: item: "minecraft:bell"
+L843: team_reward: true
+L844: type: "item"
+L850: tasks: [{
+L854: title: "Автоматическое действие"
+L857: title: "Поселение"
+L862: title: "{\"text\":\"Здесь будут жить\",\"color\":\"#E7C89A\",\"bold\":true}"
+
+--- C:\domesurvival\run\config\ftbquests\quests\chapters\643138B0A36D1017.snbt ---
+size=34747
+L3: default_hide_dependency_lines: false
+L7: group: ""
+L15: dependencies: ["20BBB183D71C8B21"]
+L36: rewards: [
+L38: auto: "invisible"
+L39: command: "/domequest complete 22A15C3103B3C972 normal -"
+L44: ignore_reward_blocking: true
+L46: team_reward: true
+L47: title: " "
+L48: type: "command"
+L55: item: "minecraft:bread"
+L56: team_reward: true
+L57: type: "item"
+L63: tasks: [{
+L67: title: "Автоматически: intro"
+L70: title: "За воротами"
+L75: dependencies: ["22A15C3103B3C972"]
+L97: rewards: [
+L99: auto: "invisible"
+L100: command: "/domequest complete 27E07D3391F38082 normal -"
+L105: ignore_reward_blocking: true
+L107: team_reward: true
+L108: title: " "
+L109: type: "command"
+L116: item: "minecraft:flint"
+L117: team_reward: true
+L118: type: "item"
+L124: tasks: [
+L127: item: {
+L134: type: "item"
+L138: item: {
+L145: type: "item"
+L148: title: "Инструменты короткого рейса"
+L153: dependencies: ["22A15C3103B3C972"]
+L169: rewards: [
+L171: auto: "invisible"
+L172: command: "/domequest complete 574F6AEDDDF744D6 normal -"
+L177: ignore_reward_blocking: true
+L179: team_reward: true
+L180: title: " "
+L181: type: "command"
+L188: item: "minecraft:cooked_beef"
+L189: team_reward: true
+L190: type: "item"
+L196: tasks: [{
+L199: item: "minecraft:bread"
+L200: type: "item"
+L202: title: "Еда на обратную дорогу"
+L207: dependencies: ["22A15C3103B3C972"]
+L223: rewards: [
+L225: auto: "invisible"
+L226: command: "/domequest complete 695753BBA21407FF normal -"
+L231: ignore_reward_blocking: true
+L233: team_reward: true
+L234: title: " "
+L235: type: "command"
+L242: item: "minecraft:charcoal"
+L243: team_reward: true
+L244: type: "item"
+L250: tasks: [{
+L253: item: "minecraft:torch"
+L254: type: "item"
+L256: title: "Световой запас"
+L261: dependencies: ["22A15C3103B3C972"]
+L277: rewards: [
+L279: auto: "invisible"
+L280: command: "/domequest complete 6B2D5CF1BE75BAA6 normal -"
+L285: ignore_reward_blocking: true
+L287: team_reward: true
+L288: title: " "
+L289: type: "command"
+L296: item: "minecraft:oak_planks"
+L297: team_reward: true
+L298: type: "item"
+L304: tasks: [{
+L307: item: "minecraft:cobblestone"
+L308: type: "item"
+L310: title: "Блоки вместо героизма"
+L315: dependencies: [
+L336: rewards: [
+L338: auto: "invisible"
+L339: command: "/domequest complete 0E8DC0D91D317772 normal -"
+L344: ignore_reward_blocking: true
+L346: team_reward: true
+L347: title: " "
+L348: type: "command"
+L354: item: "minecraft:lever"
+L355: team_reward: true
+L356: type: "item"
+L362: tasks: [{
+L366: title: "Автоматически: precheck"
+L369: title: "Сначала панель"
+L374: dependencies: ["0E8DC0D91D317772"]
+L396: rewards: [
+L398: auto: "invisible"
+L399: command: "/domequest complete 7B75F0B3F90809EB normal -"
+L404: ignore_reward_blocking: true
+L406: team_reward: true
+L407: title: " "
+L408: type: "command"
+L415: item: "minecraft:baked_potato"
+L416: team_reward: true
+L417: type: "item"
+L423: tasks: [{
+L427: title: "Автоматически: first exit"
+L430: title: "Первый шаг наружу"
+L435: dependencies: ["7B75F0B3F90809EB"]
+L454: rewards: [
+L456: auto: "invisible"
+L457: command: "/domequest complete 68986BCB1E8DB7B7 normal -"
+L462: ignore_reward_blocking: true
+L464: team_reward: true
+L465: title: " "
+L466: type: "command"
+L473: item: "minecraft:torch"
+L474: team_reward: true
+L475: type: "item"
+L481: tasks: [{
+L485: title: "Автоматически: near perimeter"
+L488: title: "Только ближний периметр"
+L493: dependencies: ["68986BCB1E8DB7B7"]
+L509: rewards: [
+L511: auto: "invisible"
+L512: command: "/domequest complete 01415509426039D2 normal -"
+L517: ignore_reward_blocking: true
+L519: team_reward: true
+L520: title: " "
+L521: type: "command"
+L528: item: "minecraft:ladder"
+L529: team_reward: true
+L530: type: "item"
+L536: tasks: [{
+L540: title: "Автоматически: torch marker"
+L543: title: "Оставь свет у дороги"
+L548: dependencies: ["68986BCB1E8DB7B7"]
+L564: rewards: [
+L566: auto: "invisible"
+L567: command: "/domequest complete 706EFE49CEFC5DF3 normal -"
+L572: ignore_reward_blocking: true
+L574: team_reward: true
+L575: title: " "
+L576: type: "command"
+L583: item: "minecraft:oak_sign"
+L584: team_reward: true
+L585: type: "item"
+L591: tasks: [{
+L595: title: "Автоматически: temp marker"
+L598: title: "Временный ориентир"
+L603: dependencies: ["68986BCB1E8DB7B7"]
+L622: rewards: [
+L624: auto: "invisible"
+L625: command: "/domequest complete 24D239E4026B64A5 normal -"
+L630: ignore_reward_blocking: true
+L632: team_reward: true
+L633: title: " "
+L634: type: "command"
+L641: item: "minecraft:glass"
+L642: team_reward: true
+L643: type: "item"
+L649: tasks: [{
+L652: item: "minecraft:sand"
+L653: type: "item"
+L655: title: "То, чего нет под стеклом"
+L660: dependencies: [
+L679: rewards: [
+L681: auto: "invisible"
+L682: command: "/domequest complete 27AACD200A156F63 milestone -"
+L687: ignore_reward_blocking: true
+L689: team_reward: true
+L690: title: " "
+L691: type: "command"
+L697: item: "minecraft:golden_carrot"
+L698: team_reward: true
+L699: type: "item"
+L705: tasks: [{
+L709: title: "Автоматически: fast return"
+L712: title: "Вышел — вернись"
+L717: dependencies: ["27AACD200A156F63"]
+L739: rewards: [
+L741: auto: "invisible"
+L742: command: "/domequest complete 77C38BD299258425 normal -"
+L747: ignore_reward_blocking: true
+L749: team_reward: true
+L750: title: " "
+L751: type: "command"
+L758: item: "minecraft:cooked_beef"
+L759: team_reward: true
+L760: type: "item"
+L766: tasks: [{
+L770: title: "Автоматически: second sortie"
+L773: title: "Повтори без спешки"
+L778: dependencies: ["77C38BD299258425"]
+L794: rewards: [
+L796: auto: "invisible"
+L797: command: "/domequest complete 1403CDFAA5692780 milestone -"
+L802: ignore_reward_blocking: true
+L804: team_reward: true
+L805: title: " "
+L806: type: "command"
+L812: item: "minecraft:iron_ingot"
+L813: team_reward: true
+L814: type: "item"
+L820: tasks: [{
+L824: title: "Автоматически: controlled sortie"
+L827: title: "Маршрут должен быть скучным"
+L832: dependencies: [
+L851: rewards: [
+L853: auto: "invisible"
+L854: command: "/domequest complete 4485BFC51558EF4D milestone -"
+L859: ignore_reward_blocking: true
+L861: team_reward: true
+L862: title: " "
+L863: type: "command"
+L870: item: "minecraft:glass"
+L871: team_reward: true
+L872: type: "item"
+L878: tasks: [{
+L882: title: "Автоматически: supply return"
+L885: title: "Вернуться с грузом"
+L890: dependencies: ["4485BFC51558EF4D"]
+L906: rewards: [
+L908: auto: "invisible"
+L909: command: "/domequest complete 0CCF557303F71196 normal -"
+L914: ignore_reward_blocking: true
+L916: team_reward: true
+L917: title: " "
+L918: type: "command"
+L925: item: "minecraft:iron_nugget"
+L926: team_reward: true
+L927: type: "item"
+L933: tasks: [{
+L937: title: "Автоматически: postcheck"
+L940: title: "Закрой операцию"
+L945: dependencies: ["0CCF557303F71196"]
+L966: rewards: [
+L968: auto: "invisible"
+L969: command: "/domequest complete 0553FD8AE147C7D2 chapter FIRST_SUPPLY_RUN"
+L974: ignore_reward_blocking: true
+L976: team_reward: true
+L977: title: " "
+L978: type: "command"
+L984: item: "minecraft:compass"
+L985: team_reward: true
+L986: type: "item"
+L992: tasks: [{
+L996: title: "Автоматически: finale"
+L999: title: "Первый рейс снабжения"
+L1004: title: "{\"text\":\"За воротами\",\"color\":\"#D8B17B\",\"bold\":true}"
+
+--- C:\domesurvival\run\config\ftbquests\quests\chapters\76CBABB04B110F16.snbt ---
+size=72033
+L3: default_hide_dependency_lines: false
+L7: group: ""
+L15: dependencies: ["267C7B7925B99855"]
+L31: rewards: [
+L33: auto: "invisible"
+L34: command: "/domequest complete 723BD8C7EB767885 normal -"
+L39: ignore_reward_blocking: true
+L41: team_reward: true
+L42: title: " "
+L43: type: "command"
+L50: item: "minecraft:iron_ingot"
+L51: team_reward: true
+L52: type: "item"
+L58: tasks: [{
+L62: title: "Автоматическое действие"
+L65: title: "Промышленный район"
+L70: dependencies: ["723BD8C7EB767885"]
+L86: rewards: [
+L88: auto: "invisible"
+L89: command: "/domequest complete 7805EEAD5285FB87 normal -"
+L94: ignore_reward_blocking: true
+L96: team_reward: true
+L97: title: " "
+L98: type: "command"
+L105: item: "minecraft:iron_ingot"
+L106: team_reward: true
+L107: type: "item"
+L113: tasks: [{
+L115: item: "domesurvival:machine_wrench"
+L116: type: "item"
+L118: title: "Инструмент инженера"
+L123: dependencies: ["723BD8C7EB767885"]
+L141: rewards: [
+L143: auto: "invisible"
+L144: command: "/domequest complete 636EE3BD758A2795 normal -"
+L149: ignore_reward_blocking: true
+L151: team_reward: true
+L152: title: " "
+L153: type: "command"
+L160: item: "minecraft:copper_ingot"
+L161: team_reward: true
+L162: type: "item"
+L168: tasks: [
+L172: item: "domesurvival:machine_stabilizer"
+L173: type: "item"
+L177: item: {
+L184: type: "item"
+L187: title: "Три опоры машин"
+L192: dependencies: ["723BD8C7EB767885"]
+L208: rewards: [
+L210: auto: "invisible"
+L211: command: "/domequest complete 029CAC5E844C7EB9 normal -"
+L216: ignore_reward_blocking: true
+L218: team_reward: true
+L219: title: " "
+L220: type: "command"
+L227: item: "minecraft:redstone"
+L228: team_reward: true
+L229: type: "item"
+L235: tasks: [{
+L238: item: "domesurvival:pulse_matrix"
+L239: type: "item"
+L241: title: "Сердце автоматики"
+L246: dependencies: ["723BD8C7EB767885"]
+L268: rewards: [
+L270: auto: "invisible"
+L271: command: "/domequest complete 6AB2D7F0B4A14E41 normal WATER_PURIFICATION_TECH_KNOWN"
+L276: ignore_reward_blocking: true
+L278: team_reward: true
+L279: title: " "
+L280: type: "command"
+L287: item: "minecraft:paper"
+L288: team_reward: true
+L289: type: "item"
+L295: tasks: [{
+L298: item: {
+L305: type: "item"
+L307: title: "Фильтры не вечны"
+L312: dependencies: [
+L331: rewards: [
+L333: auto: "invisible"
+L334: command: "/domequest complete 57938AB76CC85A5F normal -"
+L339: ignore_reward_blocking: true
+L341: team_reward: true
+L342: title: " "
+L343: type: "command"
+L350: item: "minecraft:iron_ingot"
+L351: team_reward: true
+L352: type: "item"
+L358: tasks: [{
+L361: item: "domesurvival:basic_fluid_pipe"
+L362: type: "item"
+L364: title: "Водяная магистраль"
+L369: dependencies: [
+L388: rewards: [
+L390: auto: "invisible"
+L391: command: "/domequest complete 259B20A21C7C896A normal -"
+L396: ignore_reward_blocking: true
+L398: team_reward: true
+L399: title: " "
+L400: type: "command"
+L407: item: "minecraft:glass"
+L408: team_reward: true
+L409: type: "item"
+L415: tasks: [{
+L418: item: "domesurvival:universal_tank"
+L419: type: "item"
+L421: title: "Резерв чистой воды"
+L426: dependencies: [
+L447: rewards: [
+L449: auto: "invisible"
+L450: command: "/domequest complete 30FBCDA1B2B3D398 normal -"
+L455: ignore_reward_blocking: true
+L457: team_reward: true
+L458: title: " "
+L459: type: "command"
+L466: item: "minecraft:coal"
+L467: team_reward: true
+L468: type: "item"
+L474: tasks: [{
+L476: item: "domesurvival:water_purifier"
+L477: type: "item"
+L479: title: "Первый очиститель"
+L484: dependencies: ["30FBCDA1B2B3D398"]
+L500: rewards: [
+L502: auto: "invisible"
+L503: command: "/domequest complete 18B194C25C44CFAF normal -"
+L508: ignore_reward_blocking: true
+L510: team_reward: true
+L511: title: " "
+L512: type: "command"
+L518: item: "minecraft:water_bucket"
+L519: team_reward: true
+L520: type: "item"
+L526: tasks: [{
+L530: title: "Автоматическое действие"
+L533: title: "Поставь очиститель"
+L538: dependencies: ["18B194C25C44CFAF"]
+L554: rewards: [
+L556: auto: "invisible"
+L557: command: "/domequest complete 7925344428A5F173 milestone OXYGEN_ELECTROLYSIS_TECH_KNOWN"
+L562: ignore_reward_blocking: true
+L564: team_reward: true
+L565: title: " "
+L566: type: "command"
+L573: item: "minecraft:lapis_lazuli"
+L574: team_reward: true
+L575: type: "item"
+L581: tasks: [{
+L585: title: "Автоматическое действие"
+L588: title: "Вода без пыли"
+L593: dependencies: ["7925344428A5F173"]
+L609: rewards: [
+L611: auto: "invisible"
+L612: command: "/domequest complete 1ECEBF8458CC59EA normal -"
+L617: ignore_reward_blocking: true
+L619: team_reward: true
+L620: title: " "
+L621: type: "command"
+L628: item: "minecraft:redstone"
+L629: team_reward: true
+L630: type: "item"
+L636: tasks: [{
+L638: item: "domesurvival:oxygen_electrolyzer"
+L639: type: "item"
+L641: title: "Разделить воду"
+L646: dependencies: ["1ECEBF8458CC59EA"]
+L662: rewards: [
+L664: auto: "invisible"
+L665: command: "/domequest complete 126C8CC96AC3F561 normal -"
+L670: ignore_reward_blocking: true
+L672: team_reward: true
+L673: title: " "
+L674: type: "command"
+L681: item: "minecraft:copper_ingot"
+L682: team_reward: true
+L683: type: "item"
+L689: tasks: [{
+L693: title: "Автоматическое действие"
+L696: title: "Поставь электролизёр"
+L701: dependencies: ["126C8CC96AC3F561"]
+L717: rewards: [
+L719: auto: "invisible"
+L720: command: "/domequest complete 6C2401658492032F milestone OXYGEN_PRODUCTION_ONLINE"
+L725: ignore_reward_blocking: true
+L727: team_reward: true
+L728: title: " "
+L729: type: "command"
+L732: auto: "invisible"
+L733: command: "/domequest gate set OXYGEN_DISTRIBUTION_TECH_KNOWN"
+L738: ignore_reward_blocking: true
+L740: team_reward: true
+L741: title: " "
+L742: type: "command"
+L748: item: "minecraft:diamond"
+L749: team_reward: true
+L750: type: "item"
+L756: tasks: [{
+L760: title: "Автоматическое действие"
+L763: title: "Первый кислород"
+L768: dependencies: ["6C2401658492032F"]
+L784: rewards: [
+L786: auto: "invisible"
+L787: command: "/domequest complete 2C4771CE49E4FCD5 normal -"
+L792: ignore_reward_blocking: true
+L794: team_reward: true
+L795: title: " "
+L796: type: "command"
+L803: item: "minecraft:iron_ingot"
+L804: team_reward: true
+L805: type: "item"
+L811: tasks: [{
+L814: item: "domesurvival:oxygen_pipe"
+L815: type: "item"
+L817: title: "Синяя магистраль"
+L822: dependencies: ["2C4771CE49E4FCD5"]
+L838: rewards: [
+L840: auto: "invisible"
+L841: command: "/domequest complete 22DDCEABD0E620B4 normal OXYGEN_FILLING_TECH_KNOWN"
+L846: ignore_reward_blocking: true
+L848: team_reward: true
+L849: title: " "
+L850: type: "command"
+L857: item: "minecraft:glass"
+L858: team_reward: true
+L859: type: "item"
+L865: tasks: [{
+L869: title: "Автоматическое действие"
+L872: title: "Кислородный контур"
+L877: dependencies: ["22DDCEABD0E620B4"]
+L893: rewards: [
+L895: auto: "invisible"
+L896: command: "/domequest complete 3848577B9691EC24 normal -"
+L901: ignore_reward_blocking: true
+L903: team_reward: true
+L904: title: " "
+L905: type: "command"
+L912: item: "minecraft:piston"
+L913: team_reward: true
+L914: type: "item"
+L920: tasks: [{
+L922: item: "domesurvival:oxygen_filler"
+L923: type: "item"
+L925: title: "Заправочная станция"
+L930: dependencies: ["3848577B9691EC24"]
+L946: rewards: [
+L948: auto: "invisible"
+L949: command: "/domequest complete 444141AA2A3ACB3E milestone OXYGEN_FILLING_STATION_ONLINE"
+L954: ignore_reward_blocking: true
+L956: team_reward: true
+<truncated after 250 matching lines>
+
+--- C:\domesurvival\run\config\ftbquests\quests\data.snbt ---
+size=529
+L2: default_autoclaim_rewards: "disabled"
+L3: default_consume_items: false
+L6: default_reward_team: false
+L11: emergency_items_cooldown: 300
+L13: hide_excluded_quests: false
+
+--- C:\domesurvival\run\defaultconfigs\ftbquests\client-config.snbt ---
+size=163
+<no progression-keyword lines>
+
+--- C:\domesurvival\run\saves\WASTED_TEST\ftbquests\380df991-f603-344c-a090-369bad2a924a.snbt ---
+size=49498
+L6: rewards_blocked: false
+L7: task_progress: {
+L804: claimed_rewards: {
+
+--- C:\domesurvival\run\saves\Новый мир\ftbquests\380df991-f603-344c-a090-369bad2a924a.snbt ---
+size=48082
+L6: rewards_blocked: false
+L7: task_progress: {
+L813: claimed_rewards: {
+
+=== KUBEJS PROGRESSION REFERENCES ===
+
+--- C:\domesurvival\kubejs\server_scripts\domesurvival_custom_paintings.js ---
+L27: ServerEvents.recipes(event => {
+
+=== CUSTOMNPCS / JOSEPH REFERENCES ===
+
+--- C:\domesurvival\CUSTOMNPCS_STAGE4\joseph_cooper_gui.js ---
+L21: /* Stage 01 - Dome survival + first Farmer's Delight kitchen tools. */
+L22: var S1_COMPLETE = "domesurvival.stage01.complete.v71";
+L24: { key: "domesurvival.stage01.logs.v73",      id: "minecraft:oak_log",                   name: "Дубовое бревно", req: 32 },
+L25: { key: "domesurvival.stage01.saplings.v73",  id: "minecraft:oak_sapling",               name: "Саженец дуба", req: 8 },
+L26: { key: "domesurvival.stage01.wheat.v73",     id: "minecraft:wheat",                     name: "Пшеница", req: 24 },
+L27: { key: "domesurvival.stage01.charcoal.v73",  id: "minecraft:charcoal",                  name: "Древесный уголь", req: 16 },
+L28: { key: "domesurvival.stage01.glass.v73",     id: "minecraft:glass",                     name: "Стекло", req: 32 },
+L29: { key: "domesurvival.stage01.copper.v73",    id: "minecraft:copper_ingot",              name: "Медный слиток", req: 12 },
+L30: { key: "domesurvival.stage01.board.v73",     id: "farmersdelight:cutting_board",        name: "Разделочная доска", req: 1 },
+L31: { key: "domesurvival.stage01.pot.v73",       id: "farmersdelight:cooking_pot",          name: "Кухонный котёл", req: 1 },
+L32: { key: "domesurvival.stage01.skillet.v73",   id: "farmersdelight:skillet",              name: "Сковорода", req: 1 }
+L35: /* Stage 02 - Workshop. Java Bridge owns the core 64 iron / 32 copper / 24 redstone. */
+L36: var S2_EXTRA_COMPLETE = "domesurvival.stage02.extras.complete.v71";
+L38: { key: "domesurvival.stage02.stone.v73",     id: "minecraft:stone_bricks",                    name: "Каменные кирпичи", req: 32 },
+L39: { key: "domesurvival.stage02.furnace.v73",   id: "domesurvival:copper_furnace",              name: "Медная печь", req: 1 },
+L40: { key: "domesurvival.stage02.hopper.v73",    id: "domesurvival:copper_hopper",               name: "Медная воронка", req: 1 },
+L41: { key: "domesurvival.stage02.ieiron.v73",    id: "immersiveengineering:component_iron",       name: "Железный механический компонент", req: 4 },
+L42: { key: "domesurvival.stage02.iewire.v73",    id: "immersiveengineering:wire_copper",          name: "Медный провод", req: 8 },
+L43: { key: "domesurvival.stage02.mekcircuit.v73",id: "mekanism:basic_control_circuit",            name: "Базовая схема управления", req: 2 },
+L44: { key: "domesurvival.stage02.mekalloy.v73",  id: "mekanism:alloy_infused",                    name: "Наполненный сплав", req: 4 }
+L47: /* Logical-reset fallback for old test worlds where Java workshop SavedData is already complete. */
+L49: var S2_RESET_CORE_COMPLETE = "domesurvival.stage02.resetcore.complete.v70";
+L51: { key: "domesurvival.stage02.resetcore.iron.v70",     id: "minecraft:iron_ingot",   name: "Железный слиток", req: 64 },
+L52: { key: "domesurvival.stage02.resetcore.copper.v70",   id: "minecraft:copper_ingot", name: "Медный слиток", req: 32 },
+L53: { key: "domesurvival.stage02.resetcore.redstone.v70", id: "minecraft:redstone",     name: "Редстоун", req: 24 }
+L56: /* Stage 03 - Emergency power using DomeSurvival + Mekanism + IE + Ender IO. */
+L57: var S3_COMPLETE = "domesurvival.stage03.complete.v71";
+L59: { key: "domesurvival.stage03.generator.v73",   id: "domesurvival:coal_generator",                 name: "Стабилизатор пламени", req: 1 },
+L60: { key: "domesurvival.stage03.matrix.v73",      id: "domesurvival:pulse_matrix",                   name: "Импульсная матрица", req: 2 },
+L61: { key: "domesurvival.stage03.stabilizer.v73",  id: "domesurvival:machine_stabilizer",             name: "Машинный стабилизатор", req: 1 },
+L62: { key: "domesurvival.stage03.tablet.v73",      id: "mekanism:energy_tablet",                       name: "Энергетический планшет", req: 1 },
+L63: { key: "domesurvival.stage03.circuit.v73",     id: "mekanism:basic_control_circuit",              name: "Базовая схема управления", req: 4 },
+L64: { key: "domesurvival.stage03.alloy.v73",       id: "mekanism:alloy_infused",                      name: "Наполненный сплав", req: 8 },
+L65: { key: "domesurvival.stage03.electronic.v73",  id: "immersiveengineering:electron_tube",   name: "Электронная лампа", req: 4 },
+L66: { key: "domesurvival.stage03.copperwire.v73",  id: "immersiveengineering:wire_copper",            name: "Медный провод", req: 12 },
+L67: { key: "domesurvival.stage03.darksteel.v73",   id: "enderio:dark_steel_ingot",                    name: "Слиток тёмной стали", req: 4 },
+L68: { key: "domesurvival.stage03.coal.v73",        id: "minecraft:coal",                               name: "Уголь", req: 32 }
+L71: /* Stage 04 - Water loop and productive soil inside the dome. */
+L72: var S4_COMPLETE = "domesurvival.stage04.complete.v71";
+L74: { key: "domesurvival.stage04.filter.v73",      id: "domesurvival:water_filter_cartridge", name: "Обычный фильтрующий картридж", req: 4 },
+L75: { key: "domesurvival.stage04.ifilter.v73",     id: "domesurvival:improved_water_filter",  name: "Улучшенный фильтрующий картридж", req: 1 },
+L76: { key: "domesurvival.stage04.pipe.v73",        id: "domesurvival:basic_fluid_pipe",       name: "Базовая жидкостная труба", req: 12 },
+L77: { key: "domesurvival.stage04.tank.v73",        id: "domesurvival:universal_tank",         name: "Универсальный резервуар", req: 1 },
+L78: { key: "domesurvival.stage04.compost.v73",     id: "farmersdelight:organic_compost",      name: "Органический компост", req: 4 },
+L79: { key: "domesurvival.stage04.richsoil.v73",    id: "farmersdelight:rich_soil",            name: "Плодородная почва", req: 4 },
+L80: { key: "domesurvival.stage04.copper.v73",      id: "minecraft:copper_ingot",              name: "Медный слиток", req: 16 },
+L81: { key: "domesurvival.stage04.glass.v73",       id: "minecraft:glass",                     name: "Стекло", req: 16 }
+L84: /* Stage 05 - Oxygen infrastructure; tech requirements are deliberately cross-mod. */
+L85: var S5_COMPLETE = "domesurvival.stage05.complete.v71";
+L87: { key: "domesurvival.stage05.matrix.v73",       id: "domesurvival:pulse_matrix",                   name: "Импульсная матрица", req: 2 },
+L88: { key: "domesurvival.stage05.stabilizer.v73",   id: "domesurvival:machine_stabilizer",             name: "Машинный стабилизатор", req: 1 },
+L89: { key: "domesurvival.stage05.pipe.v73",         id: "domesurvival:oxygen_pipe",                    name: "Кислородная труба", req: 16 },
+L90: { key: "domesurvival.stage05.tank.v73",         id: "domesurvival:small_oxygen_tank",              name: "Малый кислородный баллон", req: 2 },
+L91: { key: "domesurvival.stage05.reservoir.v73",    id: "domesurvival:universal_tank",                 name: "Универсальный резервуар", req: 1 },
+L92: { key: "domesurvival.stage05.mekcircuit.v73",   id: "mekanism:advanced_control_circuit",           name: "Продвинутая схема управления", req: 2 },
+L93: { key: "domesurvival.stage05.mekalloy.v73",     id: "mekanism:alloy_reinforced",                   name: "Укреплённый сплав", req: 4 },
+L94: { key: "domesurvival.stage05.iesteel.v73",      id: "immersiveengineering:component_steel",        name: "Стальной механический компонент", req: 4 },
+L95: { key: "domesurvival.stage05.ieadvanced.v73",   id: "immersiveengineering:circuit_board",name: "Электронная лампа_adv", req: 2 },
+L96: { key: "domesurvival.stage05.darksteel.v73",    id: "enderio:dark_steel_ingot",                    name: "Слиток тёмной стали", req: 6 }
+L99: /* Stage 06 - First controlled outside expedition after oxygen is ready. */
+L100: var S6_COMPLETE = "domesurvival.stage06.complete.v71";
+L102: { key: "domesurvival.stage06.rawiron.v73",    id: "minecraft:raw_iron",                        name: "Необработанное железо", req: 32 },
+L103: { key: "domesurvival.stage06.rawcopper.v73",  id: "minecraft:raw_copper",                      name: "Необработанная медь", req: 48 },
+L104: { key: "domesurvival.stage06.gold.v73",       id: "minecraft:gold_ingot",                      name: "Золотой слиток", req: 12 },
+L105: { key: "domesurvival.stage06.diamond.v73",    id: "minecraft:diamond",                         name: "Алмаз", req: 4 },
+L106: { key: "domesurvival.stage06.tomato.v73",     id: "farmersdelight:tomato",                     name: "Томат (Farmer's Delight)", req: 16 },
+L107: { key: "domesurvival.stage06.cabbage.v73",    id: "farmersdelight:cabbage",                    name: "Капуста (Farmer's Delight)", req: 16 },
+L108: { key: "domesurvival.stage06.onion.v73",      id: "farmersdelight:onion",                      name: "Лук (Farmer's Delight)", req: 16 },
+L109: { key: "domesurvival.stage06.jerky.v73",      id: "brewinandchewin:jerky",                     name: "Вяленое мясо (Brewin' And Chewin')", req: 8 },
+L110: { key: "domesurvival.stage06.steelplate.v73", id: "immersiveengineering:plate_steel",          ids: ["ad_astra:steel_plate", "immersiveengineering:plate_steel", "mekanism:plate_steel", "thermal:steel_plate"], tag: "forge:plates/steel", name: "Стальная пластина", req: 8 },
+L111: { key: "domesurvival.stage06.meksteel.v73",   id: "mekanism:ingot_steel",                      ids: ["ad_astra:steel_ingot", "mekanism:ingot_steel", "immersiveengineering:ingot_steel", "thermal:steel_ingot"], tag: "forge:ingots/steel", name: "Стальной слиток", req: 8 }
+L114: /* Stage 07 - Internal logistics with a mix of DomeSurvival and industrial components. */
+L115: var S7_COMPLETE = "domesurvival.stage07.complete.v71";
+L117: { key: "domesurvival.stage07.itempipe.v73",    id: "domesurvival:copper_item_pipe",              name: "Медная транспортная труба", req: 16 },
+L118: { key: "domesurvival.stage07.filterpipe.v73",  id: "domesurvival:filtering_item_pipe",           name: "Фильтрующая транспортная труба", req: 4 },
+L119: { key: "domesurvival.stage07.hopper.v73",      id: "domesurvival:copper_hopper",                 name: "Медная воронка", req: 4 },
+L120: { key: "domesurvival.stage07.energypipe.v73",  id: "domesurvival:basic_energy_pipe",             name: "Энерготруба I уровня", req: 8 },
+L121: { key: "domesurvival.stage07.fluidpipe.v73",   id: "domesurvival:basic_fluid_pipe",              name: "Базовая жидкостная труба", req: 8 },
+L122: { key: "domesurvival.stage07.o2pipe.v73",      id: "domesurvival:oxygen_pipe",                   name: "Кислородная труба", req: 8 },
+L123: { key: "domesurvival.stage07.configurator.v73",id: "mekanism:configurator",                      name: "Конфигуратор", req: 1 },
+L124: { key: "domesurvival.stage07.mekalloy.v73",    id: "mekanism:alloy_infused",                     name: "Наполненный сплав", req: 8 },
+L125: { key: "domesurvival.stage07.electronic.v73",  id: "immersiveengineering:electron_tube",  name: "Электронная лампа", req: 4 },
+L126: { key: "domesurvival.stage07.darksteel.v73",   id: "enderio:dark_steel_ingot",                   name: "Слиток тёмной стали", req: 4 }
+L129: /* Stage 08 - Base reserve: hardware + food reserve + fermentation/morale reserve. */
+L130: var S8_COMPLETE = "domesurvival.stage08.complete.v71";
+L132: { key: "domesurvival.stage08.buffer.v73",      id: "domesurvival:energy_buffer",             name: "Энергоблок серии «Сталь»", req: 1 },
+L133: { key: "domesurvival.stage08.tank.v73",        id: "domesurvival:universal_tank",            name: "Универсальный резервуар", req: 2 },
+L134: { key: "domesurvival.stage08.steelpipe.v73",   id: "domesurvival:steel_item_pipe",           name: "Стальная транспортная труба", req: 8 },
+L135: { key: "domesurvival.stage08.steelhop.v73",    id: "domesurvival:steel_hopper",              name: "Стальная воронка", req: 2 },
+L136: { key: "domesurvival.stage08.energy2.v73",     id: "domesurvival:reinforced_energy_pipe",    name: "Усиленная энерготруба II уровня", req: 4 },
+L137: { key: "domesurvival.stage08.mekalloy.v73",    id: "mekanism:alloy_reinforced",              name: "Укреплённый сплав", req: 8 },
+L138: { key: "domesurvival.stage08.rice.v73",        id: "farmersdelight:rice",                     name: "Рис", req: 32 },
+L139: { key: "domesurvival.stage08.keg.v73",         id: "brewinandchewin:keg",                    name: "Бочонок", req: 1 },
+L140: { key: "domesurvival.stage08.beer.v73",        id: "brewinandchewin:beer",                   name: "Пиво", req: 8 },
+L141: { key: "domesurvival.stage08.mead.v73",        id: "brewinandchewin:mead",                   name: "Медовуха", req: 4 }
+L145: /* Stage 09 - Program Exodus: long-range communications and protected control network. */
+L146: var S9_COMPLETE = "domesurvival.stage09.complete.v74";
+L148: { key: "domesurvival.stage09.radio.v74", id: "ad_astra:radio", name: "Радиостанция (Ad Astra)", req: 2 },
+L149: { key: "domesurvival.stage09.cable.v74", id: "ad_astra:steel_cable", name: "Стальной кабель (Ad Astra)", req: 16 },
+L150: { key: "domesurvival.stage09.forming_press.v76", id: "domesurvival:forming_press", name: "Формовочный пресс", req: 1 },
+L151: { key: "domesurvival.stage09.circuit.v74", id: "mekanism:advanced_control_circuit", name: "Продвинутая схема управления (Mekanism)", req: 4 },
+L152: { key: "domesurvival.stage09.alloy.v74", id: "mekanism:alloy_reinforced", name: "Укреплённый сплав (Mekanism)", req: 4 },
+L153: { key: "domesurvival.stage09.board.v74", id: "immersiveengineering:circuit_board", name: "Печатная плата (Immersive Engineering)", req: 4 },
+L154: { key: "domesurvival.stage09.darksteel.v74", id: "enderio:dark_steel_ingot", name: "Слиток тёмной стали (Ender IO)", req: 8 },
+L155: { key: "domesurvival.stage09.energy.v74", id: "domesurvival:reinforced_energy_pipe", name: "Усиленная энерготруба II уровня", req: 8 }
+L158: var S10_COMPLETE = "domesurvival.stage10.complete.v74";
+L160: { key: "domesurvival.stage10.genericsteel.v75", id: "ad_astra:steel_ingot", ids: ["ad_astra:steel_ingot", "mekanism:ingot_steel", "immersiveengineering:ingot_steel", "thermal:steel_ingot"], tag: "forge:ingots/steel", name: "Стальной слиток", req: 48 },
+L161: { key: "domesurvival.stage10.genericplate.v75", id: "ad_astra:steel_plate", ids: ["ad_astra:steel_plate", "immersiveengineering:plate_steel", "mekanism:plate_steel", "thermal:steel_plate"], tag: "forge:plates/steel", name: "Стальная пластина", req: 36 },
+L162: { key: "domesurvival.stage10.tank.v74", id: "ad_astra:steel_tank", name: "Стальной бак (Ad Astra)", req: 2 },
+L163: { key: "domesurvival.stage10.fan.v74", id: "ad_astra:engine_fan", name: "Вентилятор двигателя (Ad Astra)", req: 2 },
+L164: { key: "domesurvival.stage10.alloy.v75", id: "mekanism:alloy_reinforced", name: "Укреплённый сплав (Mekanism)", req: 8 },
+L165: { key: "domesurvival.stage10.darksteel.v74", id: "enderio:dark_steel_ingot", name: "Слиток тёмной стали (Ender IO)", req: 8 },
+L166: { key: "domesurvival.stage10.obsidian.v75", id: "minecraft:obsidian", name: "Обсидиан", req: 16 }
+L169: var S11_COMPLETE = "domesurvival.stage11.complete.v74";
+L171: { key: "domesurvival.stage11.engine.v74", id: "ad_astra:steel_engine", name: "Стальной ракетный двигатель (Ad Astra)", req: 1 },
+L172: { key: "domesurvival.stage11.fin.v74", id: "ad_astra:rocket_fin", name: "Ракетный стабилизатор (Ad Astra)", req: 4 },
+L173: { key: "domesurvival.stage11.nose.v74", id: "ad_astra:rocket_nose_cone", name: "Носовой обтекатель ракеты (Ad Astra)", req: 1 },
+L174: { key: "domesurvival.stage11.ogear.v74", id: "ad_astra:oxygen_gear", name: "Кислородное снаряжение (Ad Astra)", req: 1 },
+L175: { key: "domesurvival.stage11.otank.v74", id: "ad_astra:oxygen_tank", name: "Кислородный баллон (Ad Astra)", req: 2 },
+L176: { key: "domesurvival.stage11.gastank.v74", id: "ad_astra:large_gas_tank", name: "Большой газовый баллон (Ad Astra)", req: 1 },
+L177: { key: "domesurvival.stage11.steel_gears.v76", id: "domesurvival:steel_gear", name: "Стальная шестерня", req: 4 },
+L178: { key: "domesurvival.stage11.circuit.v74", id: "mekanism:advanced_control_circuit", name: "Продвинутая схема управления (Mekanism)", req: 4 },
+L179: { key: "domesurvival.stage11.board.v74", id: "immersiveengineering:circuit_board", name: "Печатная плата (Immersive Engineering)", req: 4 },
+L180: { key: "domesurvival.stage11.obsidian.v75", id: "minecraft:obsidian", name: "Обсидиан", req: 16 }
+L183: var S12_COMPLETE = "domesurvival.stage12.complete.v74";
+L185: { key: "domesurvival.stage12.radio.v75", id: "ad_astra:radio", name: "Радиостанция (Ad Astra)", req: 1 },
+L186: { key: "domesurvival.stage12.cable.v75", id: "ad_astra:steel_cable", name: "Стальной кабель (Ad Astra)", req: 32 },
+L187: { key: "domesurvival.stage12.genericplate.v75", id: "ad_astra:steel_plate", ids: ["ad_astra:steel_plate", "immersiveengineering:plate_steel", "mekanism:plate_steel", "thermal:steel_plate"], tag: "forge:plates/steel", name: "Стальная пластина", req: 32 },
+L188: { key: "domesurvival.stage12.refinery.v75", id: "thermal:machine_refinery", name: "Фракционирующий перегонный аппарат (Thermal)", req: 1 },
+L189: { key: "domesurvival.stage12.energy.v75", id: "domesurvival:high_voltage_energy_pipe", name: "Магистральная энерготруба III уровня", req: 12 },
+L190: { key: "domesurvival.stage12.reserve.v76", id: "domesurvival:energy_buffer", name: "Энергоблок серии «Сталь»", req: 4 },
+L191: { key: "domesurvival.stage12.board.v75", id: "immersiveengineering:circuit_board", name: "Печатная плата (Immersive Engineering)", req: 6 },
+L192: { key: "domesurvival.stage12.darksteel.v75", id: "enderio:dark_steel_ingot", name: "Слиток тёмной стали (Ender IO)", req: 12 },
+L193: { key: "domesurvival.stage12.blaze.v75", id: "minecraft:blaze_powder", name: "Огненный порошок", req: 32 }
+L197: var R1_KEY = "domesurvival.stage01.reward.v73";
+L205: var R2_KEY = "domesurvival.stage02.reward.v73";
+L214: var R3_KEY = "domesurvival.stage03.reward.v73";
+L222: var R4_KEY = "domesurvival.stage04.reward.v733";
+L231: var R5_KEY = "domesurvival.stage05.reward.v733";
+L241: var R6_KEY = "domesurvival.stage06.reward.v73";
+L251: var R7_KEY = "domesurvival.stage07.reward.v73";
+L260: var R8_KEY = "domesurvival.stage08.reward.v73";
+L270: var R9_KEY = "domesurvival.stage09.reward.v74";
+L279: var R10_KEY = "domesurvival.stage10.reward.v74";
+L288: var R11_KEY = "domesurvival.stage11.reward.v74";
+L297: var R12_KEY = "domesurvival.stage12.reward.v74";
+L302: { id: "domesurvival:high_voltage_energy_pipe", count: 8, name: "Магистральная энерготруба III уровня" },
+L367: /* Existing saves which already finished the original workshop are treated as having finished Stage 01. */
+L368: migrateStage1IfNeeded(e.player);
+L370: ensureStage1PathUpgrade(e.player);
+L372: /* Self-heal saves where the old /josephscript nextstage completed Stage 02
+L374: if (stage2Complete(e.player) && !workshopBuilt()) {
+L392: migrateStage1IfNeeded(e.player);
+L394: if (!stage1Complete(e.player)) {
+L395: var before1 = stage1Complete(e.player);
+L396: var notice1 = contributeSet(e.player, S1, S1_COMPLETE);
+L397: var after1 = stage1Complete(e.player);
+L400: var pathNotice1 = ensureStage1PathUpgrade(e.player);
+L402: notices1.push(grantStageReward(e.player, R1_KEY, R1));
+L409: if (!stage2Complete(e.player)) {
+L410: var before2 = stage2Complete(e.player);
+L413: var resetCoreNotice = contributeSet(e.player, S2_RESET_CORE, S2_RESET_CORE_COMPLETE);
+L415: } else if (!workshopCoreComplete()) {
+L421: var extraNotice = contributeSet(e.player, S2, S2_EXTRA_COMPLETE);
+L423: var after2 = stage2Complete(e.player);
+L429: notices2.push(grantStageReward(e.player, R2_KEY, R2));
+L436: if (!stage3Complete(e.player)) { completeSimpleStage(e.player, S3, S3_COMPLETE, R3_KEY, R3, "§a[КУПОЛ] Этап 03 «Аварийное энергоснабжение» завершён!", "§e[КУПОЛ] Доступен этап 04: «Вода и агроконтур»."); return; }
+L437: if (!stage4Complete(e.player)) { completeSimpleStage(e.player, S4, S4_COMPLETE, R4_KEY, R4, "§a[КУПОЛ] Этап 04 «Вода и агроконтур» завершён!", "§e[КУПОЛ] Доступен этап 05: «Кислородный контур»."); return; }
+L438: if (!stage5Complete(e.player)) { completeSimpleStage(e.player, S5, S5_COMPLETE, R5_KEY, R5, "§a[КУПОЛ] Этап 05 «Кислородный контур» завершён!", "§e[КУПОЛ] Доступен этап 06: «Первая внешняя экспедиция»."); return; }
+L439: if (!stage6Complete(e.player)) { completeSimpleStage(e.player, S6, S6_COMPLETE, R6_KEY, R6, "§a[КУПОЛ] Этап 06 «Первая внешняя экспедиция» завершён!", "§e[КУПОЛ] Доступен этап 07: «Логистика купола»."); return; }
+L440: if (!stage7Complete(e.player)) { completeSimpleStage(e.player, S7, S7_COMPLETE, R7_KEY, R7, "§a[КУПОЛ] Этап 07 «Логистика купола» завершён!", "§e[КУПОЛ] Доступен этап 08: «Аварийный резерв базы»."); return; }
+L441: if (!stage8Complete(e.player)) { completeSimpleStage(e.player, S8, S8_COMPLETE, R8_KEY, R8, "§a[КУПОЛ] Этап 08 «Аварийный резерв базы» завершён!", "§e[КУПОЛ] Открыта программа «Исход»: этап 09 «Дальняя связь»."); return; }
+L442: if (!stage9Complete(e.player)) { completeSimpleStage(e.player, S9, S9_COMPLETE, R9_KEY, R9, "§a[КУПОЛ] Этап 09 «Дальняя связь» завершён!", "§e[КУПОЛ] Доступен этап 10: «Ракетные материалы»."); return; }
+L443: if (!stage10Complete(e.player)) { completeSimpleStage(e.player, S10, S10_COMPLETE, R10_KEY, R10, "§a[КУПОЛ] Этап 10 «Ракетные материалы» завершён!", "§e[КУПОЛ] Доступен этап 11: «Ракетный модуль»."); return; }
+L444: if (!stage11Complete(e.player)) { completeSimpleStage(e.player, S11, S11_COMPLETE, R11_KEY, R11, "§a[КУПОЛ] Этап 11 «Ракетный модуль» завершён!", "§e[КУПОЛ] Доступен этап 12: «Предстартовая готовность»."); return; }
+L445: if (!stage12Complete(e.player)) { completeSimpleStage(e.player, S12, S12_COMPLETE, R12_KEY, R12, "§a[КУПОЛ] Этап 12 «Предстартовая готовность» завершён!", "§e[КУПОЛ] Земная часть программы «Исход» завершена. Следующая глава — Луна."); return; }
+L475: function grantStageReward(player, rewardKey, rewards) {
+L500: granted.push(questItemName(reward) + " x" + reward.count);
+L503: failed.push(questItemName(reward));
+L523: function completeSimpleStage(player, defs, completeKey, rewardKey, rewards, message1, message2) {
+L524: var before = setState(player, defs, completeKey).complete;
+L525: var notice = contributeSet(player, defs, completeKey);
+L526: var after = setState(player, defs, completeKey).complete;
+L530: parts.push(grantStageReward(player, rewardKey, rewards));
+L538: function workshopCoreComplete() {
+L539: try { return !!Bridge.workshopComplete(); } catch (ignored) { return false; }
+L548: if (!stage2Complete(player)) return "";
+L559: function setState(player, defs, completeKey) {
+L562: var complete = true;
+L566: if (value < defs[i].req) complete = false;
+L568: var flag = readInt(data, completeKey) > 0;
+L569: complete = complete || flag;
+L570: if (complete && !flag) writeInt(data, completeKey, 1);
+L571: return { data: data, values: values, complete: complete };
+L574: function fillSet(player, defs, completeKey) {
+L577: writeInt(data, completeKey, 1);
+L585: function migrateStage1IfNeeded(player) {
+L587: if (!workshopCoreComplete()) return;
+L588: var state = setState(player, S1, S1_COMPLETE);
+L589: if (!state.complete) fillSet(player, S1, S1_COMPLETE);
+L592: function stage1Complete(player) {
+L593: migrateStage1IfNeeded(player);
+L594: return setState(player, S1, S1_COMPLETE).complete;
+L597: function stage2ExtrasComplete(player) {
+L598: return setState(player, S2, S2_EXTRA_COMPLETE).complete;
+L601: function stage2CoreComplete(player) {
+L602: if (logicalResetActive(player)) return setState(player, S2_RESET_CORE, S2_RESET_CORE_COMPLETE).complete;
+L603: return workshopCoreComplete();
+L606: function stage2Complete(player) {
+L607: return stage1Complete(player) && stage2CoreComplete(player) && stage2ExtrasComplete(player);
+L610: function stage3Complete(player) {
+L611: if (!stage2Complete(player)) return false;
+L612: return setState(player, S3, S3_COMPLETE).complete;
+L614: function stage4Complete(player) {
+L615: if (!stage3Complete(player)) return false;
+L616: return setState(player, S4, S4_COMPLETE).complete;
+L618: function stage5Complete(player) {
+L619: if (!stage4Complete(player)) return false;
+L620: return setState(player, S5, S5_COMPLETE).complete;
+L622: function stage6Complete(player) {
+L623: if (!stage5Complete(player)) return false;
+L624: return setState(player, S6, S6_COMPLETE).complete;
+L626: function stage7Complete(player) {
+L627: if (!stage6Complete(player)) return false;
+L628: return setState(player, S7, S7_COMPLETE).complete;
+L630: function stage8Complete(player) {
+L631: if (!stage7Complete(player)) return false;
+L632: return setState(player, S8, S8_COMPLETE).complete;
+L634: function stage9Complete(player) {
+L635: if (!stage8Complete(player)) return false;
+L636: return setState(player, S9, S9_COMPLETE).complete;
+L638: function stage10Complete(player) {
+L639: if (!stage9Complete(player)) return false;
+L640: return setState(player, S10, S10_COMPLETE).complete;
+L642: function stage11Complete(player) {
+L643: if (!stage10Complete(player)) return false;
+L644: return setState(player, S11, S11_COMPLETE).complete;
+L646: function stage12Complete(player) {
+L647: if (!stage11Complete(player)) return false;
+L648: return setState(player, S12, S12_COMPLETE).complete;
+L654: if (stage1Complete(player)) { result = grantStageReward(player, R1_KEY, R1); if (result.length > 0) messages.push(result); }
+L655: if (stage2Complete(player)) { result = grantStageReward(player, R2_KEY, R2); if (result.length > 0) messages.push(result); }
+L656: if (stage3Complete(player)) { result = grantStageReward(player, R3_KEY, R3); if (result.length > 0) messages.push(result); }
+L657: if (stage4Complete(player)) { result = grantStageReward(player, R4_KEY, R4); if (result.length > 0) messages.push(result); }
+L658: if (stage5Complete(player)) { result = grantStageReward(player, R5_KEY, R5); if (result.length > 0) messages.push(result); }
+L659: if (stage6Complete(player)) { result = grantStageReward(player, R6_KEY, R6); if (result.length > 0) messages.push(result); }
+L660: if (stage7Complete(player)) { result = grantStageReward(player, R7_KEY, R7); if (result.length > 0) messages.push(result); }
+L661: if (stage8Complete(player)) { result = grantStageReward(player, R8_KEY, R8); if (result.length > 0) messages.push(result); }
+L662: if (stage9Complete(player)) { result = grantStageReward(player, R9_KEY, R9); if (result.length > 0) messages.push(result); }
+L663: if (stage10Complete(player)) { result = grantStageReward(player, R10_KEY, R10); if (result.length > 0) messages.push(result); }
+
+--- C:\domesurvival\run\saves\WASTED_TEST\customnpcs\scripts\ecmascript\joseph_cooper_gui.js ---
+L21: /* Stage 01 - Dome survival + first Farmer's Delight kitchen tools. */
+L22: var S1_COMPLETE = "domesurvival.stage01.complete.v71";
+L24: { key: "domesurvival.stage01.logs.v73",      id: "minecraft:oak_log",                   name: "Дубовое бревно", req: 32 },
+L25: { key: "domesurvival.stage01.saplings.v73",  id: "minecraft:oak_sapling",               name: "Саженец дуба", req: 8 },
+L26: { key: "domesurvival.stage01.wheat.v73",     id: "minecraft:wheat",                     name: "Пшеница", req: 24 },
+L27: { key: "domesurvival.stage01.charcoal.v73",  id: "minecraft:charcoal",                  name: "Древесный уголь", req: 16 },
+L28: { key: "domesurvival.stage01.glass.v73",     id: "minecraft:glass",                     name: "Стекло", req: 32 },
+L29: { key: "domesurvival.stage01.copper.v73",    id: "minecraft:copper_ingot",              name: "Медный слиток", req: 12 },
+L30: { key: "domesurvival.stage01.board.v73",     id: "farmersdelight:cutting_board",        name: "Разделочная доска", req: 1 },
+L31: { key: "domesurvival.stage01.pot.v73",       id: "farmersdelight:cooking_pot",          name: "Кухонный котёл", req: 1 },
+L32: { key: "domesurvival.stage01.skillet.v73",   id: "farmersdelight:skillet",              name: "Сковорода", req: 1 }
+L35: /* Stage 02 - Workshop. Java Bridge owns the core 64 iron / 32 copper / 24 redstone. */
+L36: var S2_EXTRA_COMPLETE = "domesurvival.stage02.extras.complete.v71";
+L38: { key: "domesurvival.stage02.stone.v73",     id: "minecraft:stone_bricks",                    name: "Каменные кирпичи", req: 32 },
+L39: { key: "domesurvival.stage02.furnace.v73",   id: "domesurvival:copper_furnace",              name: "Медная печь", req: 1 },
+L40: { key: "domesurvival.stage02.hopper.v73",    id: "domesurvival:copper_hopper",               name: "Медная воронка", req: 1 },
+L41: { key: "domesurvival.stage02.ieiron.v73",    id: "immersiveengineering:component_iron",       name: "Железный механический компонент", req: 4 },
+L42: { key: "domesurvival.stage02.iewire.v73",    id: "immersiveengineering:wire_copper",          name: "Медный провод", req: 8 },
+L43: { key: "domesurvival.stage02.mekcircuit.v73",id: "mekanism:basic_control_circuit",            name: "Базовая схема управления", req: 2 },
+L44: { key: "domesurvival.stage02.mekalloy.v73",  id: "mekanism:alloy_infused",                    name: "Наполненный сплав", req: 4 }
+L47: /* Logical-reset fallback for old test worlds where Java workshop SavedData is already complete. */
+L49: var S2_RESET_CORE_COMPLETE = "domesurvival.stage02.resetcore.complete.v70";
+L51: { key: "domesurvival.stage02.resetcore.iron.v70",     id: "minecraft:iron_ingot",   name: "Железный слиток", req: 64 },
+L52: { key: "domesurvival.stage02.resetcore.copper.v70",   id: "minecraft:copper_ingot", name: "Медный слиток", req: 32 },
+L53: { key: "domesurvival.stage02.resetcore.redstone.v70", id: "minecraft:redstone",     name: "Редстоун", req: 24 }
+L56: /* Stage 03 - Emergency power using DomeSurvival + Mekanism + IE + Ender IO. */
+L57: var S3_COMPLETE = "domesurvival.stage03.complete.v71";
+L59: { key: "domesurvival.stage03.generator.v73",   id: "domesurvival:coal_generator",                 name: "Стабилизатор пламени", req: 1 },
+L60: { key: "domesurvival.stage03.matrix.v73",      id: "domesurvival:pulse_matrix",                   name: "Импульсная матрица", req: 2 },
+L61: { key: "domesurvival.stage03.stabilizer.v73",  id: "domesurvival:machine_stabilizer",             name: "Машинный стабилизатор", req: 1 },
+L62: { key: "domesurvival.stage03.tablet.v73",      id: "mekanism:energy_tablet",                       name: "Энергетический планшет", req: 1 },
+L63: { key: "domesurvival.stage03.circuit.v73",     id: "mekanism:basic_control_circuit",              name: "Базовая схема управления", req: 4 },
+L64: { key: "domesurvival.stage03.alloy.v73",       id: "mekanism:alloy_infused",                      name: "Наполненный сплав", req: 8 },
+L65: { key: "domesurvival.stage03.electronic.v73",  id: "immersiveengineering:electron_tube",   name: "Электронная лампа", req: 4 },
+L66: { key: "domesurvival.stage03.copperwire.v73",  id: "immersiveengineering:wire_copper",            name: "Медный провод", req: 12 },
+L67: { key: "domesurvival.stage03.darksteel.v73",   id: "enderio:dark_steel_ingot",                    name: "Слиток тёмной стали", req: 4 },
+L68: { key: "domesurvival.stage03.coal.v73",        id: "minecraft:coal",                               name: "Уголь", req: 32 }
+L71: /* Stage 04 - Water loop and productive soil inside the dome. */
+L72: var S4_COMPLETE = "domesurvival.stage04.complete.v71";
+L74: { key: "domesurvival.stage04.filter.v73",      id: "domesurvival:water_filter_cartridge", name: "Обычный фильтрующий картридж", req: 4 },
+L75: { key: "domesurvival.stage04.ifilter.v73",     id: "domesurvival:improved_water_filter",  name: "Улучшенный фильтрующий картридж", req: 1 },
+L76: { key: "domesurvival.stage04.pipe.v73",        id: "domesurvival:basic_fluid_pipe",       name: "Базовая жидкостная труба", req: 12 },
+L77: { key: "domesurvival.stage04.tank.v73",        id: "domesurvival:universal_tank",         name: "Универсальный резервуар", req: 1 },
+L78: { key: "domesurvival.stage04.compost.v73",     id: "farmersdelight:organic_compost",      name: "Органический компост", req: 4 },
+L79: { key: "domesurvival.stage04.richsoil.v73",    id: "farmersdelight:rich_soil",            name: "Плодородная почва", req: 4 },
+L80: { key: "domesurvival.stage04.copper.v73",      id: "minecraft:copper_ingot",              name: "Медный слиток", req: 16 },
+L81: { key: "domesurvival.stage04.glass.v73",       id: "minecraft:glass",                     name: "Стекло", req: 16 }
+L84: /* Stage 05 - Oxygen infrastructure; tech requirements are deliberately cross-mod. */
+L85: var S5_COMPLETE = "domesurvival.stage05.complete.v71";
+L87: { key: "domesurvival.stage05.matrix.v73",       id: "domesurvival:pulse_matrix",                   name: "Импульсная матрица", req: 2 },
+L88: { key: "domesurvival.stage05.stabilizer.v73",   id: "domesurvival:machine_stabilizer",             name: "Машинный стабилизатор", req: 1 },
+L89: { key: "domesurvival.stage05.pipe.v73",         id: "domesurvival:oxygen_pipe",                    name: "Кислородная труба", req: 16 },
+L90: { key: "domesurvival.stage05.tank.v73",         id: "domesurvival:small_oxygen_tank",              name: "Малый кислородный баллон", req: 2 },
+L91: { key: "domesurvival.stage05.reservoir.v73",    id: "domesurvival:universal_tank",                 name: "Универсальный резервуар", req: 1 },
+L92: { key: "domesurvival.stage05.mekcircuit.v73",   id: "mekanism:advanced_control_circuit",           name: "Продвинутая схема управления", req: 2 },
+L93: { key: "domesurvival.stage05.mekalloy.v73",     id: "mekanism:alloy_reinforced",                   name: "Укреплённый сплав", req: 4 },
+L94: { key: "domesurvival.stage05.iesteel.v73",      id: "immersiveengineering:component_steel",        name: "Стальной механический компонент", req: 4 },
+L95: { key: "domesurvival.stage05.ieadvanced.v73",   id: "immersiveengineering:circuit_board",name: "Электронная лампа_adv", req: 2 },
+L96: { key: "domesurvival.stage05.darksteel.v73",    id: "enderio:dark_steel_ingot",                    name: "Слиток тёмной стали", req: 6 }
+L99: /* Stage 06 - First controlled outside expedition after oxygen is ready. */
+L100: var S6_COMPLETE = "domesurvival.stage06.complete.v71";
+L102: { key: "domesurvival.stage06.rawiron.v73",    id: "minecraft:raw_iron",                        name: "Необработанное железо", req: 32 },
+L103: { key: "domesurvival.stage06.rawcopper.v73",  id: "minecraft:raw_copper",                      name: "Необработанная медь", req: 48 },
+L104: { key: "domesurvival.stage06.gold.v73",       id: "minecraft:gold_ingot",                      name: "Золотой слиток", req: 12 },
+L105: { key: "domesurvival.stage06.diamond.v73",    id: "minecraft:diamond",                         name: "Алмаз", req: 4 },
+L106: { key: "domesurvival.stage06.tomato.v73",     id: "farmersdelight:tomato",                     name: "Томат (Farmer's Delight)", req: 16 },
+L107: { key: "domesurvival.stage06.cabbage.v73",    id: "farmersdelight:cabbage",                    name: "Капуста (Farmer's Delight)", req: 16 },
+L108: { key: "domesurvival.stage06.onion.v73",      id: "farmersdelight:onion",                      name: "Лук (Farmer's Delight)", req: 16 },
+L109: { key: "domesurvival.stage06.jerky.v73",      id: "brewinandchewin:jerky",                     name: "Вяленое мясо (Brewin' And Chewin')", req: 8 },
+L110: { key: "domesurvival.stage06.steelplate.v73", id: "immersiveengineering:plate_steel",          ids: ["ad_astra:steel_plate", "immersiveengineering:plate_steel", "mekanism:plate_steel", "thermal:steel_plate"], tag: "forge:plates/steel", name: "Стальная пластина", req: 8 },
+L111: { key: "domesurvival.stage06.meksteel.v73",   id: "mekanism:ingot_steel",                      ids: ["ad_astra:steel_ingot", "mekanism:ingot_steel", "immersiveengineering:ingot_steel", "thermal:steel_ingot"], tag: "forge:ingots/steel", name: "Стальной слиток", req: 8 }
+L114: /* Stage 07 - Internal logistics with a mix of DomeSurvival and industrial components. */
+L115: var S7_COMPLETE = "domesurvival.stage07.complete.v71";
+L117: { key: "domesurvival.stage07.itempipe.v73",    id: "domesurvival:copper_item_pipe",              name: "Медная транспортная труба", req: 16 },
+L118: { key: "domesurvival.stage07.filterpipe.v73",  id: "domesurvival:filtering_item_pipe",           name: "Фильтрующая транспортная труба", req: 4 },
+L119: { key: "domesurvival.stage07.hopper.v73",      id: "domesurvival:copper_hopper",                 name: "Медная воронка", req: 4 },
+L120: { key: "domesurvival.stage07.energypipe.v73",  id: "domesurvival:basic_energy_pipe",             name: "Энерготруба I уровня", req: 8 },
+L121: { key: "domesurvival.stage07.fluidpipe.v73",   id: "domesurvival:basic_fluid_pipe",              name: "Базовая жидкостная труба", req: 8 },
+L122: { key: "domesurvival.stage07.o2pipe.v73",      id: "domesurvival:oxygen_pipe",                   name: "Кислородная труба", req: 8 },
+L123: { key: "domesurvival.stage07.configurator.v73",id: "mekanism:configurator",                      name: "Конфигуратор", req: 1 },
+L124: { key: "domesurvival.stage07.mekalloy.v73",    id: "mekanism:alloy_infused",                     name: "Наполненный сплав", req: 8 },
+L125: { key: "domesurvival.stage07.electronic.v73",  id: "immersiveengineering:electron_tube",  name: "Электронная лампа", req: 4 },
+L126: { key: "domesurvival.stage07.darksteel.v73",   id: "enderio:dark_steel_ingot",                   name: "Слиток тёмной стали", req: 4 }
+L129: /* Stage 08 - Base reserve: hardware + food reserve + fermentation/morale reserve. */
+L130: var S8_COMPLETE = "domesurvival.stage08.complete.v71";
+L132: { key: "domesurvival.stage08.buffer.v73",      id: "domesurvival:energy_buffer",             name: "Энергоблок серии «Сталь»", req: 1 },
+L133: { key: "domesurvival.stage08.tank.v73",        id: "domesurvival:universal_tank",            name: "Универсальный резервуар", req: 2 },
+L134: { key: "domesurvival.stage08.steelpipe.v73",   id: "domesurvival:steel_item_pipe",           name: "Стальная транспортная труба", req: 8 },
+L135: { key: "domesurvival.stage08.steelhop.v73",    id: "domesurvival:steel_hopper",              name: "Стальная воронка", req: 2 },
+L136: { key: "domesurvival.stage08.energy2.v73",     id: "domesurvival:reinforced_energy_pipe",    name: "Усиленная энерготруба II уровня", req: 4 },
+L137: { key: "domesurvival.stage08.mekalloy.v73",    id: "mekanism:alloy_reinforced",              name: "Укреплённый сплав", req: 8 },
+L138: { key: "domesurvival.stage08.rice.v73",        id: "farmersdelight:rice",                     name: "Рис", req: 32 },
+L139: { key: "domesurvival.stage08.keg.v73",         id: "brewinandchewin:keg",                    name: "Бочонок", req: 1 },
+L140: { key: "domesurvival.stage08.beer.v73",        id: "brewinandchewin:beer",                   name: "Пиво", req: 8 },
+L141: { key: "domesurvival.stage08.mead.v73",        id: "brewinandchewin:mead",                   name: "Медовуха", req: 4 }
+L145: /* Stage 09 - Program Exodus: long-range communications and protected control network. */
+L146: var S9_COMPLETE = "domesurvival.stage09.complete.v74";
+L148: { key: "domesurvival.stage09.radio.v74", id: "ad_astra:radio", name: "Радиостанция (Ad Astra)", req: 2 },
+L149: { key: "domesurvival.stage09.cable.v74", id: "ad_astra:steel_cable", name: "Стальной кабель (Ad Astra)", req: 16 },
+L150: { key: "domesurvival.stage09.forming_press.v76", id: "domesurvival:forming_press", name: "Формовочный пресс", req: 1 },
+L151: { key: "domesurvival.stage09.circuit.v74", id: "mekanism:advanced_control_circuit", name: "Продвинутая схема управления (Mekanism)", req: 4 },
+L152: { key: "domesurvival.stage09.alloy.v74", id: "mekanism:alloy_reinforced", name: "Укреплённый сплав (Mekanism)", req: 4 },
+L153: { key: "domesurvival.stage09.board.v74", id: "immersiveengineering:circuit_board", name: "Печатная плата (Immersive Engineering)", req: 4 },
+L154: { key: "domesurvival.stage09.darksteel.v74", id: "enderio:dark_steel_ingot", name: "Слиток тёмной стали (Ender IO)", req: 8 },
+L155: { key: "domesurvival.stage09.energy.v74", id: "domesurvival:reinforced_energy_pipe", name: "Усиленная энерготруба II уровня", req: 8 }
+L158: var S10_COMPLETE = "domesurvival.stage10.complete.v74";
+L160: { key: "domesurvival.stage10.genericsteel.v75", id: "ad_astra:steel_ingot", ids: ["ad_astra:steel_ingot", "mekanism:ingot_steel", "immersiveengineering:ingot_steel", "thermal:steel_ingot"], tag: "forge:ingots/steel", name: "Стальной слиток", req: 48 },
+L161: { key: "domesurvival.stage10.genericplate.v75", id: "ad_astra:steel_plate", ids: ["ad_astra:steel_plate", "immersiveengineering:plate_steel", "mekanism:plate_steel", "thermal:steel_plate"], tag: "forge:plates/steel", name: "Стальная пластина", req: 36 },
+L162: { key: "domesurvival.stage10.tank.v74", id: "ad_astra:steel_tank", name: "Стальной бак (Ad Astra)", req: 2 },
+L163: { key: "domesurvival.stage10.fan.v74", id: "ad_astra:engine_fan", name: "Вентилятор двигателя (Ad Astra)", req: 2 },
+L164: { key: "domesurvival.stage10.alloy.v75", id: "mekanism:alloy_reinforced", name: "Укреплённый сплав (Mekanism)", req: 8 },
+L165: { key: "domesurvival.stage10.darksteel.v74", id: "enderio:dark_steel_ingot", name: "Слиток тёмной стали (Ender IO)", req: 8 },
+L166: { key: "domesurvival.stage10.obsidian.v75", id: "minecraft:obsidian", name: "Обсидиан", req: 16 }
+L169: var S11_COMPLETE = "domesurvival.stage11.complete.v74";
+L171: { key: "domesurvival.stage11.engine.v74", id: "ad_astra:steel_engine", name: "Стальной ракетный двигатель (Ad Astra)", req: 1 },
+L172: { key: "domesurvival.stage11.fin.v74", id: "ad_astra:rocket_fin", name: "Ракетный стабилизатор (Ad Astra)", req: 4 },
+L173: { key: "domesurvival.stage11.nose.v74", id: "ad_astra:rocket_nose_cone", name: "Носовой обтекатель ракеты (Ad Astra)", req: 1 },
+L174: { key: "domesurvival.stage11.ogear.v74", id: "ad_astra:oxygen_gear", name: "Кислородное снаряжение (Ad Astra)", req: 1 },
+L175: { key: "domesurvival.stage11.otank.v74", id: "ad_astra:oxygen_tank", name: "Кислородный баллон (Ad Astra)", req: 2 },
+L176: { key: "domesurvival.stage11.gastank.v74", id: "ad_astra:large_gas_tank", name: "Большой газовый баллон (Ad Astra)", req: 1 },
+L177: { key: "domesurvival.stage11.steel_gears.v76", id: "domesurvival:steel_gear", name: "Стальная шестерня", req: 4 },
+L178: { key: "domesurvival.stage11.circuit.v74", id: "mekanism:advanced_control_circuit", name: "Продвинутая схема управления (Mekanism)", req: 4 },
+L179: { key: "domesurvival.stage11.board.v74", id: "immersiveengineering:circuit_board", name: "Печатная плата (Immersive Engineering)", req: 4 },
+L180: { key: "domesurvival.stage11.obsidian.v75", id: "minecraft:obsidian", name: "Обсидиан", req: 16 }
+L183: var S12_COMPLETE = "domesurvival.stage12.complete.v74";
+L185: { key: "domesurvival.stage12.radio.v75", id: "ad_astra:radio", name: "Радиостанция (Ad Astra)", req: 1 },
+L186: { key: "domesurvival.stage12.cable.v75", id: "ad_astra:steel_cable", name: "Стальной кабель (Ad Astra)", req: 32 },
+L187: { key: "domesurvival.stage12.genericplate.v75", id: "ad_astra:steel_plate", ids: ["ad_astra:steel_plate", "immersiveengineering:plate_steel", "mekanism:plate_steel", "thermal:steel_plate"], tag: "forge:plates/steel", name: "Стальная пластина", req: 32 },
+L188: { key: "domesurvival.stage12.refinery.v75", id: "thermal:machine_refinery", name: "Фракционирующий перегонный аппарат (Thermal)", req: 1 },
+L189: { key: "domesurvival.stage12.energy.v75", id: "domesurvival:high_voltage_energy_pipe", name: "Магистральная энерготруба III уровня", req: 12 },
+L190: { key: "domesurvival.stage12.reserve.v76", id: "domesurvival:energy_buffer", name: "Энергоблок серии «Сталь»", req: 4 },
+L191: { key: "domesurvival.stage12.board.v75", id: "immersiveengineering:circuit_board", name: "Печатная плата (Immersive Engineering)", req: 6 },
+L192: { key: "domesurvival.stage12.darksteel.v75", id: "enderio:dark_steel_ingot", name: "Слиток тёмной стали (Ender IO)", req: 12 },
+L193: { key: "domesurvival.stage12.blaze.v75", id: "minecraft:blaze_powder", name: "Огненный порошок", req: 32 }
+L197: var R1_KEY = "domesurvival.stage01.reward.v73";
+L205: var R2_KEY = "domesurvival.stage02.reward.v73";
+L214: var R3_KEY = "domesurvival.stage03.reward.v73";
+L222: var R4_KEY = "domesurvival.stage04.reward.v733";
+L231: var R5_KEY = "domesurvival.stage05.reward.v733";
+L241: var R6_KEY = "domesurvival.stage06.reward.v73";
+L251: var R7_KEY = "domesurvival.stage07.reward.v73";
+L260: var R8_KEY = "domesurvival.stage08.reward.v73";
+L270: var R9_KEY = "domesurvival.stage09.reward.v74";
+L279: var R10_KEY = "domesurvival.stage10.reward.v74";
+L288: var R11_KEY = "domesurvival.stage11.reward.v74";
+L297: var R12_KEY = "domesurvival.stage12.reward.v74";
+L302: { id: "domesurvival:high_voltage_energy_pipe", count: 8, name: "Магистральная энерготруба III уровня" },
+L367: /* Existing saves which already finished the original workshop are treated as having finished Stage 01. */
+L368: migrateStage1IfNeeded(e.player);
+L370: ensureStage1PathUpgrade(e.player);
+L383: migrateStage1IfNeeded(e.player);
+L385: if (!stage1Complete(e.player)) {
+L386: var before1 = stage1Complete(e.player);
+L387: var notice1 = contributeSet(e.player, S1, S1_COMPLETE);
+L388: var after1 = stage1Complete(e.player);
+L391: var pathNotice1 = ensureStage1PathUpgrade(e.player);
+L393: notices1.push(grantStageReward(e.player, R1_KEY, R1));
+L400: if (!stage2Complete(e.player)) {
+L401: var before2 = stage2Complete(e.player);
+L404: var resetCoreNotice = contributeSet(e.player, S2_RESET_CORE, S2_RESET_CORE_COMPLETE);
+L406: } else if (!workshopCoreComplete()) {
+L412: var extraNotice = contributeSet(e.player, S2, S2_EXTRA_COMPLETE);
+L414: var after2 = stage2Complete(e.player);
+L420: notices2.push(grantStageReward(e.player, R2_KEY, R2));
+L427: if (!stage3Complete(e.player)) { completeSimpleStage(e.player, S3, S3_COMPLETE, R3_KEY, R3, "§a[КУПОЛ] Этап 03 «Аварийное энергоснабжение» завершён!", "§e[КУПОЛ] Доступен этап 04: «Вода и агроконтур»."); return; }
+L428: if (!stage4Complete(e.player)) { completeSimpleStage(e.player, S4, S4_COMPLETE, R4_KEY, R4, "§a[КУПОЛ] Этап 04 «Вода и агроконтур» завершён!", "§e[КУПОЛ] Доступен этап 05: «Кислородный контур»."); return; }
+L429: if (!stage5Complete(e.player)) { completeSimpleStage(e.player, S5, S5_COMPLETE, R5_KEY, R5, "§a[КУПОЛ] Этап 05 «Кислородный контур» завершён!", "§e[КУПОЛ] Доступен этап 06: «Первая внешняя экспедиция»."); return; }
+L430: if (!stage6Complete(e.player)) { completeSimpleStage(e.player, S6, S6_COMPLETE, R6_KEY, R6, "§a[КУПОЛ] Этап 06 «Первая внешняя экспедиция» завершён!", "§e[КУПОЛ] Доступен этап 07: «Логистика купола»."); return; }
+L431: if (!stage7Complete(e.player)) { completeSimpleStage(e.player, S7, S7_COMPLETE, R7_KEY, R7, "§a[КУПОЛ] Этап 07 «Логистика купола» завершён!", "§e[КУПОЛ] Доступен этап 08: «Аварийный резерв базы»."); return; }
+L432: if (!stage8Complete(e.player)) { completeSimpleStage(e.player, S8, S8_COMPLETE, R8_KEY, R8, "§a[КУПОЛ] Этап 08 «Аварийный резерв базы» завершён!", "§e[КУПОЛ] Открыта программа «Исход»: этап 09 «Дальняя связь»."); return; }
+L433: if (!stage9Complete(e.player)) { completeSimpleStage(e.player, S9, S9_COMPLETE, R9_KEY, R9, "§a[КУПОЛ] Этап 09 «Дальняя связь» завершён!", "§e[КУПОЛ] Доступен этап 10: «Ракетные материалы»."); return; }
+L434: if (!stage10Complete(e.player)) { completeSimpleStage(e.player, S10, S10_COMPLETE, R10_KEY, R10, "§a[КУПОЛ] Этап 10 «Ракетные материалы» завершён!", "§e[КУПОЛ] Доступен этап 11: «Ракетный модуль»."); return; }
+L435: if (!stage11Complete(e.player)) { completeSimpleStage(e.player, S11, S11_COMPLETE, R11_KEY, R11, "§a[КУПОЛ] Этап 11 «Ракетный модуль» завершён!", "§e[КУПОЛ] Доступен этап 12: «Предстартовая готовность»."); return; }
+L436: if (!stage12Complete(e.player)) { completeSimpleStage(e.player, S12, S12_COMPLETE, R12_KEY, R12, "§a[КУПОЛ] Этап 12 «Предстартовая готовность» завершён!", "§e[КУПОЛ] Земная часть программы «Исход» завершена. Следующая глава — Луна."); return; }
+L466: function grantStageReward(player, rewardKey, rewards) {
+L491: granted.push(questItemName(reward) + " x" + reward.count);
+L494: failed.push(questItemName(reward));
+L514: function completeSimpleStage(player, defs, completeKey, rewardKey, rewards, message1, message2) {
+L515: var before = setState(player, defs, completeKey).complete;
+L516: var notice = contributeSet(player, defs, completeKey);
+L517: var after = setState(player, defs, completeKey).complete;
+L521: parts.push(grantStageReward(player, rewardKey, rewards));
+L529: function workshopCoreComplete() {
+L530: try { return !!Bridge.workshopComplete(); } catch (ignored) { return false; }
+L539: if (!stage2Complete(player)) return "";
+L550: function setState(player, defs, completeKey) {
+L553: var complete = true;
+L557: if (value < defs[i].req) complete = false;
+L559: var flag = readInt(data, completeKey) > 0;
+L560: complete = complete || flag;
+L561: if (complete && !flag) writeInt(data, completeKey, 1);
+L562: return { data: data, values: values, complete: complete };
+L565: function fillSet(player, defs, completeKey) {
+L568: writeInt(data, completeKey, 1);
+L576: function migrateStage1IfNeeded(player) {
+L578: if (!workshopCoreComplete()) return;
+L579: var state = setState(player, S1, S1_COMPLETE);
+L580: if (!state.complete) fillSet(player, S1, S1_COMPLETE);
+L583: function stage1Complete(player) {
+L584: migrateStage1IfNeeded(player);
+L585: return setState(player, S1, S1_COMPLETE).complete;
+L588: function stage2ExtrasComplete(player) {
+L589: return setState(player, S2, S2_EXTRA_COMPLETE).complete;
+L592: function stage2CoreComplete(player) {
+L593: if (logicalResetActive(player)) return setState(player, S2_RESET_CORE, S2_RESET_CORE_COMPLETE).complete;
+L594: return workshopCoreComplete();
+L597: function stage2Complete(player) {
+L598: return stage1Complete(player) && stage2CoreComplete(player) && stage2ExtrasComplete(player);
+L601: function stage3Complete(player) {
+L602: if (!stage2Complete(player)) return false;
+L603: return setState(player, S3, S3_COMPLETE).complete;
+L605: function stage4Complete(player) {
+L606: if (!stage3Complete(player)) return false;
+L607: return setState(player, S4, S4_COMPLETE).complete;
+L609: function stage5Complete(player) {
+L610: if (!stage4Complete(player)) return false;
+L611: return setState(player, S5, S5_COMPLETE).complete;
+L613: function stage6Complete(player) {
+L614: if (!stage5Complete(player)) return false;
+L615: return setState(player, S6, S6_COMPLETE).complete;
+L617: function stage7Complete(player) {
+L618: if (!stage6Complete(player)) return false;
+L619: return setState(player, S7, S7_COMPLETE).complete;
+L621: function stage8Complete(player) {
+L622: if (!stage7Complete(player)) return false;
+L623: return setState(player, S8, S8_COMPLETE).complete;
+L625: function stage9Complete(player) {
+L626: if (!stage8Complete(player)) return false;
+L627: return setState(player, S9, S9_COMPLETE).complete;
+L629: function stage10Complete(player) {
+L630: if (!stage9Complete(player)) return false;
+L631: return setState(player, S10, S10_COMPLETE).complete;
+L633: function stage11Complete(player) {
+L634: if (!stage10Complete(player)) return false;
+L635: return setState(player, S11, S11_COMPLETE).complete;
+L637: function stage12Complete(player) {
+L638: if (!stage11Complete(player)) return false;
+L639: return setState(player, S12, S12_COMPLETE).complete;
+L645: if (stage1Complete(player)) { result = grantStageReward(player, R1_KEY, R1); if (result.length > 0) messages.push(result); }
+L646: if (stage2Complete(player)) { result = grantStageReward(player, R2_KEY, R2); if (result.length > 0) messages.push(result); }
+L647: if (stage3Complete(player)) { result = grantStageReward(player, R3_KEY, R3); if (result.length > 0) messages.push(result); }
+L648: if (stage4Complete(player)) { result = grantStageReward(player, R4_KEY, R4); if (result.length > 0) messages.push(result); }
+L649: if (stage5Complete(player)) { result = grantStageReward(player, R5_KEY, R5); if (result.length > 0) messages.push(result); }
+L650: if (stage6Complete(player)) { result = grantStageReward(player, R6_KEY, R6); if (result.length > 0) messages.push(result); }
+L651: if (stage7Complete(player)) { result = grantStageReward(player, R7_KEY, R7); if (result.length > 0) messages.push(result); }
+L652: if (stage8Complete(player)) { result = grantStageReward(player, R8_KEY, R8); if (result.length > 0) messages.push(result); }
+L653: if (stage9Complete(player)) { result = grantStageReward(player, R9_KEY, R9); if (result.length > 0) messages.push(result); }
+L654: if (stage10Complete(player)) { result = grantStageReward(player, R10_KEY, R10); if (result.length > 0) messages.push(result); }
+L655: if (stage11Complete(player)) { result = grantStageReward(player, R11_KEY, R11); if (result.length > 0) messages.push(result); }
+L656: if (stage12Complete(player)) { result = grantStageReward(player, R12_KEY, R12); if (result.length > 0) messages.push(result); }
+
+=== NEW DOMESURVIVAL BRIDGE ===
+FTB Quests / NPC / scripts can unlock a global branch with:
+  domeprogress unlock industrial
+Query:
+  domeprogress has industrial
+List:
+  domeprogress status
+
+No transformer branch or transformer dependency is part of this system.
