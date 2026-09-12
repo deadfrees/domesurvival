@@ -1,73 +1,84 @@
 {
-  "stage": "greybox",
+  "stage": "current_game_shape",
   "blender": "5.2.1 LTS",
-  "script_sha256": "2b97953bc96487cb9a2ec230ac83951d7793763956c23ae4fee4b5a99076dc01",
+  "source_models": {
+    "src/main/resources/assets/domesurvival/models/block/basic_energy_pipe_core.json": "1a6bc69ebd211880164499b27cca09b0993d8f368dc27246b39df758e1b25308",
+    "src/main/resources/assets/domesurvival/models/block/basic_energy_pipe_arm.json": "ca74e846f92130bec904dfbd86a2bb859cfa0681e6d841b20ab23df2078cc374",
+    "src/main/resources/assets/domesurvival/models/block/reinforced_energy_pipe_core.json": "c26014eb9da2803bb896c5aeeff948937537d2a74d26e8bf7e9a479eb724c6d4",
+    "src/main/resources/assets/domesurvival/models/block/reinforced_energy_pipe_arm.json": "8b2dde0d8c7518a406bb9571ad7a67a4647cf0ed77b0e866027b6750e20db76d",
+    "src/main/resources/assets/domesurvival/models/block/high_voltage_energy_pipe_core.json": "b795d915aa43673cbb165d5752e8b95ecca2c082a684807df5147408191a1f88",
+    "src/main/resources/assets/domesurvival/models/block/high_voltage_energy_pipe_arm.json": "185bbd8552d31120931a3dfdc321dfe31e896e6773200cee1b08548cafa7d817"
+  },
+  "script_sha256": "7a067a30af294836c0f9200f6184d1bd01d9b38b40031669cd8ac92eba3c59f2",
   "tiers": {
     "1": {
       "quads_by_connections": [
-        46,
-        67,
+        36,
+        62,
         88,
-        109,
-        130,
-        151,
-        172
+        114,
+        140,
+        166,
+        192
       ],
       "part_quads": {
-        "core": 16,
-        "arm": 26,
-        "cap": 5
+        "cap": 0,
+        "core": 36,
+        "arm": 26
       },
       "source_cuboids": {
-        "core": 3,
-        "arm": 6,
-        "cap": 1
+        "cap": 0,
+        "core": 7,
+        "arm": 5
       },
-      "nominal_diameter": 4.5
+      "nominal_diameter": 3.4,
+      "core_outer_size": 3.96
     },
     "2": {
       "quads_by_connections": [
         36,
-        59,
-        82,
-        105,
-        128,
-        151,
-        174
+        62,
+        88,
+        114,
+        140,
+        166,
+        192
       ],
       "part_quads": {
-        "core": 6,
-        "arm": 28,
-        "cap": 5
+        "cap": 0,
+        "core": 36,
+        "arm": 26
       },
       "source_cuboids": {
-        "core": 1,
-        "arm": 6,
-        "cap": 1
+        "cap": 0,
+        "core": 7,
+        "arm": 5
       },
-      "nominal_diameter": 5.5
+      "nominal_diameter": 3.4,
+      "core_outer_size": 3.96
     },
     "3": {
       "quads_by_connections": [
         36,
-        59,
-        82,
-        105,
-        128,
-        151,
-        174
+        62,
+        88,
+        114,
+        140,
+        166,
+        192
       ],
       "part_quads": {
-        "core": 6,
-        "arm": 28,
-        "cap": 5
+        "cap": 0,
+        "core": 36,
+        "arm": 26
       },
       "source_cuboids": {
-        "core": 1,
-        "arm": 7,
-        "cap": 1
+        "cap": 0,
+        "core": 7,
+        "arm": 5
       },
-      "nominal_diameter": 6
+      "nominal_diameter": 3.4,
+      "core_outer_size": 3.96
     }
   },
   "combinations_checked": 192,

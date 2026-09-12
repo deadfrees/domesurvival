@@ -38,43 +38,29 @@ def box(name, minimum, maximum, omit=()):
                 faces=[f for f in FACE_IDS if f not in omit])
 
 
-def cross_profile(name, diameter, middle, start, end, omit_ends=False):
-    """Three touching cuboids form a stepped section without overlapping end faces."""
-    r, m = diameter / 2, middle / 2
-    ends = ("near", "far") if omit_ends else ()
-    return [box(name + "_spine", (-m, start, -r), (m, end, r), ends),
-            box(name + "_left", (-r, start, -m), (-m, end, m), ends + ("right",)),
-            box(name + "_right", (m, start, -m), (r, end, m), ends + ("left",))]
+PIPE_IDS = {1: "basic_energy_pipe", 2: "reinforced_energy_pipe", 3: "high_voltage_energy_pipe"}
+MODEL_ROOT = ROOT / "src/main/resources/assets/domesurvival/models/block"
+MC_FACES = {"north": "far", "south": "near", "east": "right", "west": "left", "up": "top", "down": "bottom"}
 
 
 def templates(tier):
-    if tier == 1:
-        core = cross_profile("center_housing", 4.5, 3.5, -2.25, 2.25)
-        arm = cross_profile("inner_conductor", 3.5, 2.5, 2.25, 7.25, True)
-        arm += cross_profile("connector_ring", 4.5, 3.5, 7.25, 8)
-        cap = [box("end_cap", (-1.4, 2.25, -1.4), (1.4, 2.5, 1.4), ("near",))]
-    elif tier == 2:
-        core = [box("center_housing", (-2.5, -2.5, -2.5), (2.5, 2.5, 2.5))]
-        arm = [box("inner_conductor", (-2, 2.5, -2), (2, 7.55, 2), ("near", "far"))]
-        arm += [box("reinforcement_left", (-2.625, 3.5, -0.9), (-2, 7.55, 0.9), ("near", "far", "right")),
-                box("reinforcement_right", (2, 3.5, -0.9), (2.625, 7.55, 0.9), ("near", "far", "left"))]
-        for name, start, end in (("junction_shoulder", 3, 3.5),
-                                  ("connector_ring_inner", 6.3, 6.75),
-                                  ("connector_ring_outer", 7.55, 8)):
-            arm.append(box(name, (-2.75, start, -2.75), (2.75, end, 2.75)))
-        cap = [box("end_cap", (-2.1, 2.5, -2.1), (2.1, 3, 2.1), ("near",))]
-    else:
-        core = [box("junction", (-2.75, -2.75, -2.75), (2.75, 2.75, 2.75))]
-        arm = [box("inner_conductor", (-2.25, 2.75, -2.25), (2.25, 7, 2.25), ("near", "far"))]
-        arm += [box("reinforcement_left", (-3, 3.75, -1.4), (-2.25, 7, 1.4), ("near", "far", "right")),
-                box("reinforcement_right", (2.25, 3.75, -1.4), (3, 7, 1.4), ("near", "far", "left")),
-                box("reinforcement_top", (-1.4, 3.75, 2.25), (1.4, 7, 3), ("near", "far", "bottom")),
-                box("reinforcement_bottom", (-1.4, 3.75, -3), (1.4, 7, -2.25), ("near", "far", "top"))]
-        for name, start, end in (("junction_armor", 3.25, 3.75), ("machine_coupling", 7, 8)):
-            arm.append(box(name, (-3, start, -3), (3, end, 3)))
-        cap = [box("end_cap", (-2.4, 2.75, -2.4), (2.4, 3, 2.4), ("near",))]
-    return {"core": core, "arm": arm, "cap": cap}
-
+    """Import the actual game geometry, preserving coordinates and authored faces."""
+    parts = {"cap": []}  # Current game uses permanent core panels, no conditional cap.
+    for part in ("core", "arm"):
+        model_path = MODEL_ROOT / f"{PIPE_IDS[tier]}_{part}.json"
+        model = json.loads(model_path.read_text(encoding="utf-8"))
+        parts[part] = []
+        for element in model["elements"]:
+            assert not element.get("rotation"), "Handle rotated JSON elements explicitly before import"
+            lo, hi = element["from"], element["to"]
+            spec = {"name": element["name"],
+                    "minimum": [lo[0]-8, 8-hi[2], lo[1]-8],
+                    "maximum": [hi[0]-8, 8-lo[2], hi[1]-8],
+                    "faces": [MC_FACES[f] for f in element["faces"]],
+                    "source_model": str(model_path.relative_to(ROOT)).replace(chr(92), "/"),
+                    "minecraft_from": lo, "minecraft_to": hi}
+            parts[part].append(spec)
+    return parts
 
 def material(name, color):
     mat = bpy.data.materials.new(name)
@@ -137,7 +123,7 @@ def reset_scene():
     bpy.ops.wm.read_factory_settings(use_empty=True)
     bpy.context.scene.unit_settings.system = "METRIC"
     bpy.context.scene.unit_settings.scale_length = 1 / 16
-    bpy.context.scene["stage"] = "GREYBOX — shape review; not runtime assets"
+    bpy.context.scene["stage"] = "CURRENT GAME SHAPE — exact JSON geometry import"
     bpy.context.scene["minecraft_units_per_block"] = 16
     global CLAY, INK, MUTED, PROXY
     CLAY = material("uniform_grey_clay_all_tiers", (0.38, 0.40, 0.42))
@@ -252,7 +238,10 @@ def check_coplanar_surfaces(parts, enabled_bits):
 
 
 def validate_sources():
-    report = {"stage": "greybox", "blender": bpy.app.version_string,
+    report = {"stage": "current_game_shape", "blender": bpy.app.version_string,
+              "source_models": {str(p.relative_to(ROOT)).replace(chr(92), "/"): hashlib.sha256(p.read_bytes()).hexdigest()
+                                for tier in (1,2,3) for part in ("core","arm")
+                                for p in [MODEL_ROOT / f"{PIPE_IDS[tier]}_{part}.json"]},
               "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "tiers": {},
               "combinations_checked": 0, "runtime_resources_modified": False}
     for tier, parts in SPECS.items():
@@ -275,7 +264,7 @@ def validate_sources():
             report["combinations_checked"] += 1
         report["tiers"][str(tier)] = {"quads_by_connections": quads, "part_quads": counts,
             "source_cuboids": {k: len(v) for k,v in parts.items()},
-            "nominal_diameter": {1: 4.5, 2: 5.5, 3: 6}[tier]}
+            "nominal_diameter": 3.4, "core_outer_size": 3.96}
     # Every adjacent pair ends at the same block plane, including mixed tiers.
     report["mixed_tier_interface_pairs_checked"] = 9 * 6
     for a, b, direction in itertools.product((1,2,3), (1,2,3), DIRECTIONS):
@@ -295,7 +284,7 @@ def create_master(tier):
     camera_setup(1400, 1000, 48)
     assembly(tier, {"north", "south"}, prefix="straight")
     # Separate editable modules are stored in a hidden collection, not exported.
-    modules = bpy.data.collections.new("SOURCE_MODULES_core_arm_cap")
+    modules = bpy.data.collections.new("SOURCE_MODULES_current_game_core_arm")
     bpy.context.scene.collection.children.link(modules)
     for role, specs in SPECS[tier].items():
         for spec in specs:
@@ -307,7 +296,7 @@ def create_master(tier):
     modules.hide_render = True
     modules.hide_viewport = True
     label(f"ENERGY PIPE / TIER {tier}", -21, 12, 1.8)
-    label("GREYBOX MASTER   /   16 UNITS = 1 BLOCK", -21, -13, 0.9, secondary=True)
+    label("CURRENT GAME SHAPE   /   16 UNITS = 1 BLOCK", -21, -13, 0.9, secondary=True)
     # Reference cube uses only a viewport wire display; it is not a render/export part.
     ref = mesh_box(box("reference_block", (-8,-8,-8), (8,8,8)), "reference_block_16_units", CLAY)
     ref.display_type = "WIRE"
@@ -320,14 +309,14 @@ def lineup():
     reset_scene()
     camera_setup(1800, 1000, 78)
     label("DOMESURVIVAL", -35, 18, 1.2, secondary=True)
-    label("ENERGY / THREE TIERS", -35, 14.5, 2.3)
-    for tier, x, subtitle in ((1,-25,"LIGHT CONDUIT"), (2,0,"REINFORCED LINE"), (3,25,"HEAVY MAIN")):
+    label("ENERGY / CURRENT GAME SHAPE", -35, 14.5, 2.0)
+    for tier, x, subtitle in ((1,-25,"BASIC"), (2,0,"REINFORCED"), (3,25,"HIGH VOLTAGE")):
         assembly(tier, {"north","south"}, screen_point(x, 0), prefix=f"tier_{tier}")
         label(f"TIER {tier}", x, -11.5, 1.5, "CENTER")
         label(subtitle, x, -13.8, 0.9, "CENTER", True)
-        label(f"{ {1:4.5,2:5.5,3:6}[tier]:g} / 16 UNITS", x, -15.5, 0.8, "CENTER", True)
-    label("01 / FORM STUDY", -35, -19.8, 0.8, secondary=True)
-    label("SAME SCALE. SAME MATERIAL. NO TEXTURES.", 35, -19.8, 0.8, "RIGHT", True)
+        label("3.4 / 16 UNITS", x, -15.5, 0.8, "CENTER", True)
+    label("01 / EXACT JSON GEOMETRY", -35, -19.8, 0.8, secondary=True)
+    label("ORIGINAL PROPORTIONS. NO NEW RINGS.", 35, -19.8, 0.8, "RIGHT", True)
     save_render("01_energy_pipe_lineup", True)
 
 
@@ -364,11 +353,11 @@ def connections():
     label("CONNECTIONS / SIX DIRECTIONS", -47, 71, 2)
     for tier, x in ((1,-31),(2,0),(3,31)):
         label(f"TIER {tier}", x, 65.5, 1.5, "CENTER")
-    cases = [("ISOLATED / TERMINALS", set()), ("STRAIGHT / 3 BLOCKS", {"north","south"}),
+    cases = [("ISOLATED / ORIGINAL CORE", set()), ("STRAIGHT / 3 BLOCKS", {"north","south"}),
              ("VERTICAL / UP + DOWN", {"up","down"}), ("CORNER / NORTH + EAST", {"north","east"}),
              ("T / THREE CONNECTIONS", {"north","east","west"}),
              ("CROSS / FOUR CONNECTIONS", {"north","south","east","west"}),
-             ("ALL SIX DIRECTIONS", set(DIRECTIONS)), ("COUPLING / PORT PROXY", {"north"})]
+             ("ALL SIX DIRECTIONS", set(DIRECTIONS)), ("CONNECTION / PORT PROXY", {"north"})]
     for row, (title, enabled) in enumerate(cases):
         y = 56 - row * 16.5
         for tier, x in ((1,-31),(2,0),(3,31)):

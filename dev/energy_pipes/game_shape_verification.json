@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "masters_checked": 3,
+  "elements_checked": 36,
+  "results": [
+    {
+      "tier": 1,
+      "part": "core",
+      "elements": 7,
+      "source_sha256": "1a6bc69ebd211880164499b27cca09b0993d8f368dc27246b39df758e1b25308",
+      "vertices_and_face_normals_match": true
+    },
+    {
+      "tier": 1,
+      "part": "arm",
+      "elements": 5,
+      "source_sha256": "ca74e846f92130bec904dfbd86a2bb859cfa0681e6d841b20ab23df2078cc374",
+      "vertices_and_face_normals_match": true
+    },
+    {
+      "tier": 2,
+      "part": "core",
+      "elements": 7,
+      "source_sha256": "c26014eb9da2803bb896c5aeeff948937537d2a74d26e8bf7e9a479eb724c6d4",
+      "vertices_and_face_normals_match": true
+    },
+    {
+      "tier": 2,
+      "part": "arm",
+      "elements": 5,
+      "source_sha256": "8b2dde0d8c7518a406bb9571ad7a67a4647cf0ed77b0e866027b6750e20db76d",
+      "vertices_and_face_normals_match": true
+    },
+    {
+      "tier": 3,
+      "part": "core",
+      "elements": 7,
+      "source_sha256": "b795d915aa43673cbb165d5752e8b95ecca2c082a684807df5147408191a1f88",
+      "vertices_and_face_normals_match": true
+    },
+    {
+      "tier": 3,
+      "part": "arm",
+      "elements": 5,
+      "source_sha256": "185bbd8552d31120931a3dfdc321dfe31e896e6773200cee1b08548cafa7d817",
+      "vertices_and_face_normals_match": true
+    }
+  ]
+}
