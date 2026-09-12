@@ -104,6 +104,10 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
         return result.copy();
     }
 
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
     public int getInputCount() {
         return inputCount;
     }
