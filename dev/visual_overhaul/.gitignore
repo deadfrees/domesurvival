@@ -1,0 +1,4 @@
+# Local recovery snapshot of unrelated work; never include it in overhaul commits.
+preexisting_changes.patch
+preexisting_status.txt
+*.log
