@@ -1,0 +1,710 @@
+{
+  "scope": "Static production asset audit, not an in-game rendering or FPS test",
+  "statesChecked": 192,
+  "sameGeometryAcrossTiers": true,
+  "pipes": [
+    {
+      "id": "domesurvival:basic_energy_pipe",
+      "parts": {
+        "core": {
+          "elements": 7,
+          "faces": 36,
+          "cullfaces": 0,
+          "fullUVFaces": 36,
+          "geometryHash": "c775303220e0c94a8655a1c1b535a278f3d8ac2a1439bf3c8e4d9b39a223b11e",
+          "bounds": {
+            "from": [
+              6.02,
+              6.02,
+              6.02
+            ],
+            "to": [
+              9.98,
+              9.98,
+              9.98
+            ]
+          },
+          "textures": {
+            "body": "domesurvival:block/basic_energy_pipe",
+            "icon": "domesurvival:block/basic_energy_pipe_core",
+            "rail": "domesurvival:block/basic_energy_pipe_detail",
+            "particle": "domesurvival:block/basic_energy_pipe"
+          }
+        },
+        "arm": {
+          "elements": 5,
+          "faces": 26,
+          "cullfaces": 0,
+          "fullUVFaces": 26,
+          "geometryHash": "64d03a23f886f08df0371d4bb8146dd275345a176b206e1561c7ca9cf270654d",
+          "bounds": {
+            "from": [
+              6.3,
+              6.3,
+              0
+            ],
+            "to": [
+              9.7,
+              9.7,
+              6.25
+            ]
+          },
+          "textures": {
+            "0": "domesurvival:block/basic_energy_pipe",
+            "rail": "domesurvival:block/basic_energy_pipe_detail",
+            "particle": "domesurvival:block/basic_energy_pipe"
+          }
+        },
+        "inventory": {
+          "elements": 3,
+          "faces": 18,
+          "cullfaces": 0,
+          "fullUVFaces": 18,
+          "geometryHash": "3c27278116d5945c04532128b7d53367ff9338a29683c2a14f7575c28274efbe",
+          "bounds": {
+            "from": [
+              6.25,
+              6.25,
+              0.65
+            ],
+            "to": [
+              9.75,
+              9.75,
+              15.35
+            ]
+          },
+          "textures": {
+            "body": "domesurvival:block/basic_energy_pipe",
+            "particle": "domesurvival:block/basic_energy_pipe"
+          }
+        }
+      },
+      "textures": [
+        {
+          "filename": "textures/block/basic_energy_pipe.png",
+          "width": 64,
+          "height": 64,
+          "animated": false
+        },
+        {
+          "filename": "textures/block/basic_energy_pipe_core.png",
+          "width": 64,
+          "height": 64,
+          "animated": false
+        },
+        {
+          "filename": "textures/block/basic_energy_pipe_detail.png",
+          "width": 16,
+          "height": 16,
+          "animated": false
+        },
+        {
+          "filename": "textures/block/basic_energy_pipe_arm.png",
+          "width": 16,
+          "height": 16,
+          "animated": false
+        }
+      ],
+      "itemParent": "domesurvival:block/basic_energy_pipe_core",
+      "display": {
+        "gui": {
+          "rotation": [
+            30,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            2.35,
+            2.35,
+            2.35
+          ]
+        },
+        "firstperson_righthand": {
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "translation": [
+            1.13,
+            3.2,
+            1.13
+          ],
+          "scale": [
+            1.2,
+            1.2,
+            1.2
+          ]
+        },
+        "firstperson_lefthand": {
+          "rotation": [
+            0,
+            225,
+            0
+          ],
+          "translation": [
+            -1.13,
+            3.2,
+            1.13
+          ],
+          "scale": [
+            1.2,
+            1.2,
+            1.2
+          ]
+        },
+        "thirdperson_righthand": {
+          "rotation": [
+            75,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.95,
+            0.95,
+            0.95
+          ]
+        },
+        "thirdperson_lefthand": {
+          "rotation": [
+            75,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.95,
+            0.95,
+            0.95
+          ]
+        },
+        "ground": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "translation": [
+            0,
+            2,
+            0
+          ],
+          "scale": [
+            0.75,
+            0.75,
+            0.75
+          ]
+        },
+        "fixed": {
+          "rotation": [
+            0,
+            180,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1.8,
+            1.8,
+            1.8
+          ]
+        }
+      },
+      "quadsByConnectionCount": [
+        36,
+        62,
+        88,
+        114,
+        140,
+        166,
+        192
+      ]
+    },
+    {
+      "id": "domesurvival:reinforced_energy_pipe",
+      "parts": {
+        "core": {
+          "elements": 7,
+          "faces": 36,
+          "cullfaces": 0,
+          "fullUVFaces": 36,
+          "geometryHash": "c775303220e0c94a8655a1c1b535a278f3d8ac2a1439bf3c8e4d9b39a223b11e",
+          "bounds": {
+            "from": [
+              6.02,
+              6.02,
+              6.02
+            ],
+            "to": [
+              9.98,
+              9.98,
+              9.98
+            ]
+          },
+          "textures": {
+            "body": "domesurvival:block/reinforced_energy_pipe",
+            "icon": "domesurvival:block/reinforced_energy_pipe_core",
+            "rail": "domesurvival:block/reinforced_energy_pipe_detail",
+            "particle": "domesurvival:block/reinforced_energy_pipe"
+          }
+        },
+        "arm": {
+          "elements": 5,
+          "faces": 26,
+          "cullfaces": 0,
+          "fullUVFaces": 26,
+          "geometryHash": "64d03a23f886f08df0371d4bb8146dd275345a176b206e1561c7ca9cf270654d",
+          "bounds": {
+            "from": [
+              6.3,
+              6.3,
+              0
+            ],
+            "to": [
+              9.7,
+              9.7,
+              6.25
+            ]
+          },
+          "textures": {
+            "0": "domesurvival:block/reinforced_energy_pipe",
+            "rail": "domesurvival:block/reinforced_energy_pipe_detail",
+            "particle": "domesurvival:block/reinforced_energy_pipe"
+          }
+        },
+        "inventory": {
+          "elements": 3,
+          "faces": 18,
+          "cullfaces": 0,
+          "fullUVFaces": 18,
+          "geometryHash": "3c27278116d5945c04532128b7d53367ff9338a29683c2a14f7575c28274efbe",
+          "bounds": {
+            "from": [
+              6.25,
+              6.25,
+              0.65
+            ],
+            "to": [
+              9.75,
+              9.75,
+              15.35
+            ]
+          },
+          "textures": {
+            "body": "domesurvival:block/reinforced_energy_pipe",
+            "particle": "domesurvival:block/reinforced_energy_pipe"
+          }
+        }
+      },
+      "textures": [
+        {
+          "filename": "textures/block/reinforced_energy_pipe.png",
+          "width": 64,
+          "height": 64,
+          "animated": false
+        },
+        {
+          "filename": "textures/block/reinforced_energy_pipe_core.png",
+          "width": 64,
+          "height": 64,
+          "animated": false
+        },
+        {
+          "filename": "textures/block/reinforced_energy_pipe_detail.png",
+          "width": 16,
+          "height": 16,
+          "animated": false
+        },
+        {
+          "filename": "textures/block/reinforced_energy_pipe_arm.png",
+          "width": 16,
+          "height": 16,
+          "animated": false
+        }
+      ],
+      "itemParent": "domesurvival:block/reinforced_energy_pipe_core",
+      "display": {
+        "gui": {
+          "rotation": [
+            30,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            2.35,
+            2.35,
+            2.35
+          ]
+        },
+        "firstperson_righthand": {
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "translation": [
+            1.13,
+            3.2,
+            1.13
+          ],
+          "scale": [
+            1.2,
+            1.2,
+            1.2
+          ]
+        },
+        "firstperson_lefthand": {
+          "rotation": [
+            0,
+            225,
+            0
+          ],
+          "translation": [
+            -1.13,
+            3.2,
+            1.13
+          ],
+          "scale": [
+            1.2,
+            1.2,
+            1.2
+          ]
+        },
+        "thirdperson_righthand": {
+          "rotation": [
+            75,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.95,
+            0.95,
+            0.95
+          ]
+        },
+        "thirdperson_lefthand": {
+          "rotation": [
+            75,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.95,
+            0.95,
+            0.95
+          ]
+        },
+        "ground": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "translation": [
+            0,
+            2,
+            0
+          ],
+          "scale": [
+            0.75,
+            0.75,
+            0.75
+          ]
+        },
+        "fixed": {
+          "rotation": [
+            0,
+            180,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1.8,
+            1.8,
+            1.8
+          ]
+        }
+      },
+      "quadsByConnectionCount": [
+        36,
+        62,
+        88,
+        114,
+        140,
+        166,
+        192
+      ]
+    },
+    {
+      "id": "domesurvival:high_voltage_energy_pipe",
+      "parts": {
+        "core": {
+          "elements": 7,
+          "faces": 36,
+          "cullfaces": 0,
+          "fullUVFaces": 36,
+          "geometryHash": "c775303220e0c94a8655a1c1b535a278f3d8ac2a1439bf3c8e4d9b39a223b11e",
+          "bounds": {
+            "from": [
+              6.02,
+              6.02,
+              6.02
+            ],
+            "to": [
+              9.98,
+              9.98,
+              9.98
+            ]
+          },
+          "textures": {
+            "body": "domesurvival:block/high_voltage_energy_pipe",
+            "icon": "domesurvival:block/high_voltage_energy_pipe_core",
+            "rail": "domesurvival:block/high_voltage_energy_pipe_detail",
+            "particle": "domesurvival:block/high_voltage_energy_pipe"
+          }
+        },
+        "arm": {
+          "elements": 5,
+          "faces": 26,
+          "cullfaces": 0,
+          "fullUVFaces": 26,
+          "geometryHash": "64d03a23f886f08df0371d4bb8146dd275345a176b206e1561c7ca9cf270654d",
+          "bounds": {
+            "from": [
+              6.3,
+              6.3,
+              0
+            ],
+            "to": [
+              9.7,
+              9.7,
+              6.25
+            ]
+          },
+          "textures": {
+            "0": "domesurvival:block/high_voltage_energy_pipe",
+            "rail": "domesurvival:block/high_voltage_energy_pipe_detail",
+            "particle": "domesurvival:block/high_voltage_energy_pipe"
+          }
+        },
+        "inventory": {
+          "elements": 3,
+          "faces": 18,
+          "cullfaces": 0,
+          "fullUVFaces": 18,
+          "geometryHash": "3c27278116d5945c04532128b7d53367ff9338a29683c2a14f7575c28274efbe",
+          "bounds": {
+            "from": [
+              6.25,
+              6.25,
+              0.65
+            ],
+            "to": [
+              9.75,
+              9.75,
+              15.35
+            ]
+          },
+          "textures": {
+            "body": "domesurvival:block/high_voltage_energy_pipe",
+            "particle": "domesurvival:block/high_voltage_energy_pipe"
+          }
+        }
+      },
+      "textures": [
+        {
+          "filename": "textures/block/high_voltage_energy_pipe.png",
+          "width": 64,
+          "height": 64,
+          "animated": false
+        },
+        {
+          "filename": "textures/block/high_voltage_energy_pipe_core.png",
+          "width": 64,
+          "height": 64,
+          "animated": false
+        },
+        {
+          "filename": "textures/block/high_voltage_energy_pipe_detail.png",
+          "width": 16,
+          "height": 16,
+          "animated": false
+        },
+        {
+          "filename": "textures/block/high_voltage_energy_pipe_arm.png",
+          "width": 16,
+          "height": 16,
+          "animated": false
+        }
+      ],
+      "itemParent": "domesurvival:block/high_voltage_energy_pipe_core",
+      "display": {
+        "gui": {
+          "rotation": [
+            30,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            2.35,
+            2.35,
+            2.35
+          ]
+        },
+        "firstperson_righthand": {
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "translation": [
+            1.13,
+            3.2,
+            1.13
+          ],
+          "scale": [
+            1.2,
+            1.2,
+            1.2
+          ]
+        },
+        "firstperson_lefthand": {
+          "rotation": [
+            0,
+            225,
+            0
+          ],
+          "translation": [
+            -1.13,
+            3.2,
+            1.13
+          ],
+          "scale": [
+            1.2,
+            1.2,
+            1.2
+          ]
+        },
+        "thirdperson_righthand": {
+          "rotation": [
+            75,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.95,
+            0.95,
+            0.95
+          ]
+        },
+        "thirdperson_lefthand": {
+          "rotation": [
+            75,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.95,
+            0.95,
+            0.95
+          ]
+        },
+        "ground": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "translation": [
+            0,
+            2,
+            0
+          ],
+          "scale": [
+            0.75,
+            0.75,
+            0.75
+          ]
+        },
+        "fixed": {
+          "rotation": [
+            0,
+            180,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1.8,
+            1.8,
+            1.8
+          ]
+        }
+      },
+      "quadsByConnectionCount": [
+        36,
+        62,
+        88,
+        114,
+        140,
+        166,
+        192
+      ]
+    }
+  ],
+  "errors": []
+}

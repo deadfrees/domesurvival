@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "blender_version": "5.2.1 LTS",
+  "units_per_block": 16,
+  "reference_dimensions": [
+    16.0,
+    16.0,
+    16.0
+  ],
+  "segment_dimensions": [
+    4.0,
+    4.0,
+    16.0
+  ],
+  "vertices": 16,
+  "faces": 10,
+  "blend": "C:\\domesurvival\\source_assets\\blender\\energy_pipes\\pipeline_test\\test_energy_pipe_pipeline.blend",
+  "intermediate_obj": "C:\\domesurvival\\source_assets\\blender\\energy_pipes\\pipeline_test\\test_energy_pipe_pipeline.obj",
+  "runtime_resources_modified": false
+}
