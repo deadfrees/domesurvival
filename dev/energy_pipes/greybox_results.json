@@ -1,0 +1,84 @@
+{
+  "stage": "greybox",
+  "blender": "5.2.1 LTS",
+  "script_sha256": "2b97953bc96487cb9a2ec230ac83951d7793763956c23ae4fee4b5a99076dc01",
+  "tiers": {
+    "1": {
+      "quads_by_connections": [
+        46,
+        67,
+        88,
+        109,
+        130,
+        151,
+        172
+      ],
+      "part_quads": {
+        "core": 16,
+        "arm": 26,
+        "cap": 5
+      },
+      "source_cuboids": {
+        "core": 3,
+        "arm": 6,
+        "cap": 1
+      },
+      "nominal_diameter": 4.5
+    },
+    "2": {
+      "quads_by_connections": [
+        36,
+        59,
+        82,
+        105,
+        128,
+        151,
+        174
+      ],
+      "part_quads": {
+        "core": 6,
+        "arm": 28,
+        "cap": 5
+      },
+      "source_cuboids": {
+        "core": 1,
+        "arm": 6,
+        "cap": 1
+      },
+      "nominal_diameter": 5.5
+    },
+    "3": {
+      "quads_by_connections": [
+        36,
+        59,
+        82,
+        105,
+        128,
+        151,
+        174
+      ],
+      "part_quads": {
+        "core": 6,
+        "arm": 28,
+        "cap": 5
+      },
+      "source_cuboids": {
+        "core": 1,
+        "arm": 7,
+        "cap": 1
+      },
+      "nominal_diameter": 6
+    }
+  },
+  "combinations_checked": 192,
+  "runtime_resources_modified": false,
+  "mixed_tier_interface_pairs_checked": 54,
+  "limitations": [
+    "Geometry checks are not Minecraft model bake or FE tests.",
+    "Mixed-tier check verifies interface planes, not visual compatibility with real machines.",
+    "Quads are authored faces before chunk culling; no FPS measurements."
+  ],
+  "same_facing_coplanar_overlaps": 0,
+  "production_files_verified_unchanged": 2372,
+  "status": "PASS"
+}

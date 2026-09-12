@@ -1,0 +1,556 @@
+{
+  "1": {
+    "core": [
+      {
+        "name": "center_housing_spine",
+        "minimum": [
+          -1.75,
+          -2.25,
+          -2.25
+        ],
+        "maximum": [
+          1.75,
+          2.25,
+          2.25
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "right",
+          "left"
+        ]
+      },
+      {
+        "name": "center_housing_left",
+        "minimum": [
+          -2.25,
+          -2.25,
+          -1.75
+        ],
+        "maximum": [
+          -1.75,
+          2.25,
+          1.75
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "left"
+        ]
+      },
+      {
+        "name": "center_housing_right",
+        "minimum": [
+          1.75,
+          -2.25,
+          -1.75
+        ],
+        "maximum": [
+          2.25,
+          2.25,
+          1.75
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "right"
+        ]
+      }
+    ],
+    "arm": [
+      {
+        "name": "inner_conductor_spine",
+        "minimum": [
+          -1.25,
+          2.25,
+          -1.75
+        ],
+        "maximum": [
+          1.25,
+          7.25,
+          1.75
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "right",
+          "left"
+        ]
+      },
+      {
+        "name": "inner_conductor_left",
+        "minimum": [
+          -1.75,
+          2.25,
+          -1.25
+        ],
+        "maximum": [
+          -1.25,
+          7.25,
+          1.25
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "left"
+        ]
+      },
+      {
+        "name": "inner_conductor_right",
+        "minimum": [
+          1.25,
+          2.25,
+          -1.25
+        ],
+        "maximum": [
+          1.75,
+          7.25,
+          1.25
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "right"
+        ]
+      },
+      {
+        "name": "connector_ring_spine",
+        "minimum": [
+          -1.75,
+          7.25,
+          -2.25
+        ],
+        "maximum": [
+          1.75,
+          8,
+          2.25
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "right",
+          "left"
+        ]
+      },
+      {
+        "name": "connector_ring_left",
+        "minimum": [
+          -2.25,
+          7.25,
+          -1.75
+        ],
+        "maximum": [
+          -1.75,
+          8,
+          1.75
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "left"
+        ]
+      },
+      {
+        "name": "connector_ring_right",
+        "minimum": [
+          1.75,
+          7.25,
+          -1.75
+        ],
+        "maximum": [
+          2.25,
+          8,
+          1.75
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "right"
+        ]
+      }
+    ],
+    "cap": [
+      {
+        "name": "end_cap",
+        "minimum": [
+          -1.4,
+          2.25,
+          -1.4
+        ],
+        "maximum": [
+          1.4,
+          2.5,
+          1.4
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "far",
+          "right",
+          "left"
+        ]
+      }
+    ]
+  },
+  "2": {
+    "core": [
+      {
+        "name": "center_housing",
+        "minimum": [
+          -2.5,
+          -2.5,
+          -2.5
+        ],
+        "maximum": [
+          2.5,
+          2.5,
+          2.5
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "right",
+          "left"
+        ]
+      }
+    ],
+    "arm": [
+      {
+        "name": "inner_conductor",
+        "minimum": [
+          -2,
+          2.5,
+          -2
+        ],
+        "maximum": [
+          2,
+          7.55,
+          2
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "right",
+          "left"
+        ]
+      },
+      {
+        "name": "reinforcement_left",
+        "minimum": [
+          -2.625,
+          3.5,
+          -0.9
+        ],
+        "maximum": [
+          -2,
+          7.55,
+          0.9
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "left"
+        ]
+      },
+      {
+        "name": "reinforcement_right",
+        "minimum": [
+          2,
+          3.5,
+          -0.9
+        ],
+        "maximum": [
+          2.625,
+          7.55,
+          0.9
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "right"
+        ]
+      },
+      {
+        "name": "junction_shoulder",
+        "minimum": [
+          -2.75,
+          3,
+          -2.75
+        ],
+        "maximum": [
+          2.75,
+          3.5,
+          2.75
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "right",
+          "left"
+        ]
+      },
+      {
+        "name": "connector_ring_inner",
+        "minimum": [
+          -2.75,
+          6.3,
+          -2.75
+        ],
+        "maximum": [
+          2.75,
+          6.75,
+          2.75
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "right",
+          "left"
+        ]
+      },
+      {
+        "name": "connector_ring_outer",
+        "minimum": [
+          -2.75,
+          7.55,
+          -2.75
+        ],
+        "maximum": [
+          2.75,
+          8,
+          2.75
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "right",
+          "left"
+        ]
+      }
+    ],
+    "cap": [
+      {
+        "name": "end_cap",
+        "minimum": [
+          -2.1,
+          2.5,
+          -2.1
+        ],
+        "maximum": [
+          2.1,
+          3,
+          2.1
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "far",
+          "right",
+          "left"
+        ]
+      }
+    ]
+  },
+  "3": {
+    "core": [
+      {
+        "name": "junction",
+        "minimum": [
+          -2.75,
+          -2.75,
+          -2.75
+        ],
+        "maximum": [
+          2.75,
+          2.75,
+          2.75
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "right",
+          "left"
+        ]
+      }
+    ],
+    "arm": [
+      {
+        "name": "inner_conductor",
+        "minimum": [
+          -2.25,
+          2.75,
+          -2.25
+        ],
+        "maximum": [
+          2.25,
+          7,
+          2.25
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "right",
+          "left"
+        ]
+      },
+      {
+        "name": "reinforcement_left",
+        "minimum": [
+          -3,
+          3.75,
+          -1.4
+        ],
+        "maximum": [
+          -2.25,
+          7,
+          1.4
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "left"
+        ]
+      },
+      {
+        "name": "reinforcement_right",
+        "minimum": [
+          2.25,
+          3.75,
+          -1.4
+        ],
+        "maximum": [
+          3,
+          7,
+          1.4
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "right"
+        ]
+      },
+      {
+        "name": "reinforcement_top",
+        "minimum": [
+          -1.4,
+          3.75,
+          2.25
+        ],
+        "maximum": [
+          1.4,
+          7,
+          3
+        ],
+        "faces": [
+          "top",
+          "right",
+          "left"
+        ]
+      },
+      {
+        "name": "reinforcement_bottom",
+        "minimum": [
+          -1.4,
+          3.75,
+          -3
+        ],
+        "maximum": [
+          1.4,
+          7,
+          -2.25
+        ],
+        "faces": [
+          "bottom",
+          "right",
+          "left"
+        ]
+      },
+      {
+        "name": "junction_armor",
+        "minimum": [
+          -3,
+          3.25,
+          -3
+        ],
+        "maximum": [
+          3,
+          3.75,
+          3
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "right",
+          "left"
+        ]
+      },
+      {
+        "name": "machine_coupling",
+        "minimum": [
+          -3,
+          7,
+          -3
+        ],
+        "maximum": [
+          3,
+          8,
+          3
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "near",
+          "far",
+          "right",
+          "left"
+        ]
+      }
+    ],
+    "cap": [
+      {
+        "name": "end_cap",
+        "minimum": [
+          -2.4,
+          2.75,
+          -2.4
+        ],
+        "maximum": [
+          2.4,
+          3,
+          2.4
+        ],
+        "faces": [
+          "bottom",
+          "top",
+          "far",
+          "right",
+          "left"
+        ]
+      }
+    ]
+  }
+}
