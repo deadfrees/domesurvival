@@ -1,15 +1,21 @@
 package com.wasted.domesurvival.forge.machine.organic;
 
+import com.wasted.domesurvival.forge.client.gui.DomeIndustrialGuiStyle;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
 public final class OrganicProcessorScreen extends AbstractContainerScreen<OrganicProcessorMenu> {
+    private static final int WIDTH = 220;
+    private static final int HEIGHT = 266;
+
     public OrganicProcessorScreen(OrganicProcessorMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
-        imageWidth = 176;
-        imageHeight = 222;
+        imageWidth = WIDTH;
+        imageHeight = HEIGHT;
+        inventoryLabelX = 11;
+        inventoryLabelY = 149;
     }
 
     @Override
@@ -24,60 +30,83 @@ public final class OrganicProcessorScreen extends AbstractContainerScreen<Organi
         int x = leftPos;
         int y = topPos;
 
-        graphics.fill(x, y, x + imageWidth, y + imageHeight, 0xFF1F2328);
-        graphics.fill(x + 5, y + 5, x + imageWidth - 5, y + 132, 0xFF30363D);
-        graphics.fill(x + 5, y + 135, x + imageWidth - 5, y + imageHeight - 5, 0xFF262B31);
+        DomeIndustrialGuiStyle.drawPanel(graphics, x, y, imageWidth, imageHeight);
+        DomeIndustrialGuiStyle.drawFrame(graphics, x + 8, y + 27, 204, 118, DomeIndustrialGuiStyle.PANEL_ALT);
 
-        slot(graphics, x + 42, y + 52);
-        slot(graphics, x + 42, y + 80);
-        slot(graphics, x + 130, y + 66);
-        slot(graphics, x + 81, y + 106);
-        slot(graphics, x + 103, y + 106);
+        // Purified water and FE are deliberately separate resources: blue fluid, amber energy.
+        DomeIndustrialGuiStyle.drawVerticalMeter(
+                graphics, x + 15, y + 44, 14, 68,
+                menu.waterStored(), menu.waterCapacity(),
+                DomeIndustrialGuiStyle.FLUID, DomeIndustrialGuiStyle.FLUID_LIGHT
+        );
+        DomeIndustrialGuiStyle.drawVerticalMeter(
+                graphics, x + 33, y + 44, 14, 68,
+                menu.energyStored(), menu.energyCapacity(),
+                DomeIndustrialGuiStyle.ENERGY, DomeIndustrialGuiStyle.ENERGY_LIGHT
+        );
 
-        int progressMax = Math.max(1, menu.progressMax());
-        int progressWidth = Math.min(56, (int) ((long) menu.progress() * 56L / progressMax));
-        graphics.fill(x + 69, y + 66, x + 127, y + 76, 0xFF15181C);
-        if (progressWidth > 0) {
-            graphics.fill(x + 70, y + 67, x + 70 + progressWidth, y + 75, 0xFF6FA66F);
+        DomeIndustrialGuiStyle.drawSlot(graphics, x + 55, y + 58, false);
+        DomeIndustrialGuiStyle.drawSlot(graphics, x + 55, y + 88, false);
+        DomeIndustrialGuiStyle.drawSlot(graphics, x + 166, y + 73, true);
+        DomeIndustrialGuiStyle.drawSlot(graphics, x + 86, y + 118, false);
+        DomeIndustrialGuiStyle.drawSlot(graphics, x + 116, y + 118, false);
+
+        DomeIndustrialGuiStyle.drawProgress(
+                graphics, x + 86, y + 72, 65, 14,
+                menu.progress(), menu.progressMax(),
+                DomeIndustrialGuiStyle.BIO, DomeIndustrialGuiStyle.BIO_LIGHT
+        );
+
+        graphics.fill(x + 76, y + 77, x + 84, y + 80, 0xFF65737A);
+        graphics.fill(x + 151, y + 77, x + 160, y + 80, 0xFF65737A);
+        graphics.fill(x + 157, y + 74, x + 162, y + 83, 0xFF65737A);
+        graphics.fill(x + 160, y + 76, x + 164, y + 81, 0xFF9AB7C2);
+
+        graphics.fill(x + 8, y + 151, x + 212, y + 152, 0xFF14181B);
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 9; col++) {
+                DomeIndustrialGuiStyle.drawInventoryCell(graphics, x + 14 + col * 22, y + 161 + row * 22);
+            }
         }
-
-        int waterCapacity = Math.max(1, menu.waterCapacity());
-        int waterHeight = Math.min(54, (int) ((long) menu.waterStored() * 54L / waterCapacity));
-        graphics.fill(x + 12, y + 38, x + 21, y + 94, 0xFF111418);
-        if (waterHeight > 0) {
-            graphics.fill(x + 13, y + 93 - waterHeight, x + 20, y + 93, 0xFF4A90D9);
+        for (int col = 0; col < 9; col++) {
+            DomeIndustrialGuiStyle.drawInventoryCell(graphics, x + 14 + col * 22, y + 229);
         }
-
-        int energyCapacity = Math.max(1, menu.energyCapacity());
-        int energyHeight = Math.min(54, (int) ((long) menu.energyStored() * 54L / energyCapacity));
-        graphics.fill(x + 25, y + 38, x + 34, y + 94, 0xFF111418);
-        if (energyHeight > 0) {
-            graphics.fill(x + 26, y + 93 - energyHeight, x + 33, y + 93, 0xFFD19A4A);
-        }
-    }
-
-    private static void slot(GuiGraphics graphics, int x, int y) {
-        graphics.fill(x, y, x + 20, y + 20, 0xFF111418);
-        graphics.fill(x + 1, y + 1, x + 19, y + 19, 0xFF4B535C);
     }
 
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        graphics.drawString(font, title, 8, 9, 0xE6EDF3, false);
-        graphics.drawString(font, statusText(), 69, 86, 0xD7DEE7, false);
-        graphics.drawString(font,
+        graphics.drawString(font, title, 10, 10, DomeIndustrialGuiStyle.TEXT, false);
+        graphics.drawString(
+                font,
                 Component.translatable(
                         "gui.domesurvival.organic_processor.water",
                         menu.waterStored(), menu.waterCapacity()
                 ),
-                8, 105, 0x9EC7E8, false);
-        graphics.drawString(font,
+                53, 33, DomeIndustrialGuiStyle.FLUID_LIGHT, false
+        );
+        graphics.drawString(
+                font,
                 Component.translatable(
                         "gui.domesurvival.organic_processor.energy",
                         menu.energyStored(), menu.energyCapacity()
                 ),
-                8, 116, 0xE1BD7A, false);
-        graphics.drawString(font, Component.translatable("container.inventory"), 8, 129, 0xD7DEE7, false);
+                53, 44, DomeIndustrialGuiStyle.ENERGY_LIGHT, false
+        );
+        graphics.drawString(font, statusText(), 86, 96, statusColor(), false);
+        graphics.drawString(font, Component.translatable("container.inventory"),
+                inventoryLabelX, inventoryLabelY, DomeIndustrialGuiStyle.TEXT_MUTED, false);
+    }
+
+    private int statusColor() {
+        return switch (menu.status()) {
+            case OrganicProcessorBlockEntity.PROCESSING -> DomeIndustrialGuiStyle.BIO_LIGHT;
+            case OrganicProcessorBlockEntity.NO_ENERGY,
+                    OrganicProcessorBlockEntity.NO_WATER,
+                    OrganicProcessorBlockEntity.NOT_ENOUGH_INPUT -> DomeIndustrialGuiStyle.WARNING;
+            case OrganicProcessorBlockEntity.OUTPUT_FULL -> DomeIndustrialGuiStyle.ERROR;
+            case OrganicProcessorBlockEntity.NO_RECIPE -> DomeIndustrialGuiStyle.TEXT_DIM;
+            default -> DomeIndustrialGuiStyle.READY;
+        };
     }
 
     private Component statusText() {
