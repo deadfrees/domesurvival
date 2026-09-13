@@ -19,6 +19,7 @@ import com.wasted.domesurvival.forge.material.TechComponents;
 import com.wasted.domesurvival.forge.material.TechMaterials;
 import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationRegistry;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
+import com.wasted.domesurvival.forge.machine.module.ModuleCommands;
 import com.wasted.domesurvival.forge.machine.oxygen.complex.OxygenComplexRegistry;
 import com.wasted.domesurvival.forge.network.ModNetwork;
 import com.wasted.domesurvival.forge.particle.ModParticles;
@@ -84,6 +85,7 @@ public final class DomeSurvival {
         DomeCommands.register(event.getDispatcher());
         ProgressionCommands.register(event.getDispatcher());
         TechnologyCommands.register(event.getDispatcher());
+        ModuleCommands.register(event.getDispatcher());
     }
 
     private void onServerStarted(ServerStartedEvent event) {
