@@ -23,6 +23,7 @@ import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationRegistry;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
 import com.wasted.domesurvival.forge.machine.module.MachineModuleItems;
 import com.wasted.domesurvival.forge.machine.module.ModuleCommands;
+import com.wasted.domesurvival.forge.machine.organic.OrganicProcessorRegistry;
 import com.wasted.domesurvival.forge.machine.oxygen.complex.OxygenComplexRegistry;
 import com.wasted.domesurvival.forge.network.ModNetwork;
 import com.wasted.domesurvival.forge.particle.ModParticles;
@@ -58,6 +59,7 @@ public final class DomeSurvival {
         FormingPressRegistry.register(modBus);
         IndustrialCrusherRegistry.register(modBus);
         CrusherMaterials.register(modBus);
+        OrganicProcessorRegistry.register(modBus);
         MachineModuleItems.register(modBus);
         FilterRegenerationRegistry.register(modBus);
         ModRecipes.register(modBus);
