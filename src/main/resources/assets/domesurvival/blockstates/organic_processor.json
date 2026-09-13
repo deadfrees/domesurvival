@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "active=false,facing=north": { "model": "domesurvival:block/organic_processor" },
+    "active=false,facing=east": { "model": "domesurvival:block/organic_processor", "y": 90 },
+    "active=false,facing=south": { "model": "domesurvival:block/organic_processor", "y": 180 },
+    "active=false,facing=west": { "model": "domesurvival:block/organic_processor", "y": 270 },
+    "active=true,facing=north": { "model": "domesurvival:block/organic_processor_active" },
+    "active=true,facing=east": { "model": "domesurvival:block/organic_processor_active", "y": 90 },
+    "active=true,facing=south": { "model": "domesurvival:block/organic_processor_active", "y": 180 },
+    "active=true,facing=west": { "model": "domesurvival:block/organic_processor_active", "y": 270 }
+  }
+}
