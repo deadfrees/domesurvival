@@ -18,7 +18,7 @@ import net.minecraft.resources.ResourceLocation;
 @JeiPlugin
 public final class DomeSurvivalJeiPlugin implements IModPlugin {
     private static final ResourceLocation UID =
-            ResourceLocation.fromNamespaceAndPath(DomeSurvival.MOD_ID, "jei_plugin");
+            ResourceLocation.fromNamespaceAndPath(DomeSurvival.MOD_ID, "infrastructure_jei_plugin");
 
     public static final RecipeType<IndustrialCrusherRecipe> INDUSTRIAL_CRUSHING =
             RecipeType.create(DomeSurvival.MOD_ID, "industrial_crushing", IndustrialCrusherRecipe.class);
