@@ -11,7 +11,7 @@
       },
       "apply": {
         "model": "domesurvival:block/high_voltage_energy_pipe_arm",
-        "uvlock": false
+        "uvlock": true
       }
     },
     {
@@ -21,7 +21,7 @@
       "apply": {
         "model": "domesurvival:block/high_voltage_energy_pipe_arm",
         "y": 90,
-        "uvlock": false
+        "uvlock": true
       }
     },
     {
@@ -31,7 +31,7 @@
       "apply": {
         "model": "domesurvival:block/high_voltage_energy_pipe_arm",
         "y": 180,
-        "uvlock": false
+        "uvlock": true
       }
     },
     {
@@ -41,7 +41,7 @@
       "apply": {
         "model": "domesurvival:block/high_voltage_energy_pipe_arm",
         "y": 270,
-        "uvlock": false
+        "uvlock": true
       }
     },
     {
@@ -51,7 +51,7 @@
       "apply": {
         "model": "domesurvival:block/high_voltage_energy_pipe_arm",
         "x": 270,
-        "uvlock": false
+        "uvlock": true
       }
     },
     {
@@ -61,7 +61,7 @@
       "apply": {
         "model": "domesurvival:block/high_voltage_energy_pipe_arm",
         "x": 90,
-        "uvlock": false
+        "uvlock": true
       }
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "parent": "domesurvival:block/high_voltage_energy_pipe_inventory",
+  "parent": "domesurvival:block/reinforced_energy_pipe_core",
   "display": {
     "gui": {
       "rotation": [
@@ -13,43 +13,9 @@
         0
       ],
       "scale": [
-        1.0,
-        1.0,
-        1.0
-      ]
-    },
-    "ground": {
-      "rotation": [
-        0,
-        0,
-        0
-      ],
-      "translation": [
-        0,
-        1,
-        0
-      ],
-      "scale": [
-        0.55,
-        0.55,
-        0.55
-      ]
-    },
-    "fixed": {
-      "rotation": [
-        0,
-        45,
-        0
-      ],
-      "translation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        1,
-        1,
-        1
+        2.35,
+        2.35,
+        2.35
       ]
     },
     "firstperson_righthand": {
@@ -59,14 +25,14 @@
         0
       ],
       "translation": [
-        0,
-        1.5,
-        0
+        1.13,
+        3.2,
+        1.13
       ],
       "scale": [
-        0.65,
-        0.65,
-        0.65
+        1.2,
+        1.2,
+        1.2
       ]
     },
     "firstperson_lefthand": {
@@ -76,14 +42,14 @@
         0
       ],
       "translation": [
-        0,
-        1.5,
-        0
+        -1.13,
+        3.2,
+        1.13
       ],
       "scale": [
-        0.65,
-        0.65,
-        0.65
+        1.2,
+        1.2,
+        1.2
       ]
     },
     "thirdperson_righthand": {
@@ -98,9 +64,9 @@
         0
       ],
       "scale": [
-        0.65,
-        0.65,
-        0.65
+        0.95,
+        0.95,
+        0.95
       ]
     },
     "thirdperson_lefthand": {
@@ -115,9 +81,43 @@
         0
       ],
       "scale": [
-        0.65,
-        0.65,
-        0.65
+        0.95,
+        0.95,
+        0.95
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        2.0,
+        0
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.8,
+        1.8,
+        1.8
       ]
     }
   }

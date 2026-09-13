@@ -10,6 +10,9 @@ OUT = ROOT / 'source_assets/blender/energy_pipes'
 DEV = ROOT / 'dev/energy_pipes'
 BACKUP = ROOT / 'source_assets/baseline/energy_pipes/tier1'
 ID = 'basic_energy_pipe'
+PREFIX = 'basic'
+BASELINE_NAME = 'tier1_baseline_hashes.json'
+COMPARISON_PACK = 'energy_pipe_before'
 FILES = [f'models/block/{ID}_{p}.json' for p in ('core','arm','inventory')] + [f'models/item/{ID}.json', f'blockstates/{ID}.json']
 PALETTE = {'body':'596361','shadow':'303a3b','black':'171e20','light':'8f9990','steel':'707c77','amber':'c5a252','darkamber':'836d38'}
 
@@ -63,7 +66,7 @@ def face_size(element, face):
 
 def style_model(part):
     model = json.loads((BACKUP / f'models/block/{ID}_{part}.json').read_text(encoding='utf-8'))
-    model['textures'] = {r:f'domesurvival:block/energy_pipe/basic_{r}' for r in ('body','core','panel','rail','end','edge')}
+    model['textures'] = {r:f'domesurvival:block/energy_pipe/{PREFIX}_{r}' for r in ('body','core','panel','rail','end','edge')}
     model['textures']['particle'] = model['textures']['core']
     for e in model['elements']:
         for direction, f in e['faces'].items():
@@ -83,7 +86,7 @@ def style_model(part):
 
 
 def generate_assets():
-    baseline = DEV / 'tier1_baseline_hashes.json'
+    baseline = DEV / BASELINE_NAME
     if not baseline.exists():
         dump(baseline, {str(p.relative_to(ROOT)).replace(chr(92),'/'): hashlib.sha256(p.read_bytes()).hexdigest()
                         for p in (ROOT/'src/main').rglob('*') if p.is_file()})
@@ -93,9 +96,9 @@ def generate_assets():
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(ASSETS/relative, dest)
     for role in ('body','core','panel','rail','end','edge'):
-        source = OUT / f'textures/basic_{role}.png'
+        source = OUT / f'textures/{PREFIX}_{role}.png'
         png(source, pixels(role))
-        target = ASSETS / f'textures/block/energy_pipe/basic_{role}.png'
+        target = ASSETS / f'textures/block/energy_pipe/{PREFIX}_{role}.png'
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source,target)
     models = {p:style_model(p) for p in ('core','arm')}
@@ -124,8 +127,8 @@ def generate_assets():
         display[name]={'rotation':rotation,'translation':translation,'scale':[scale]*3}
     dump(ASSETS/f'models/item/{ID}.json',{'parent':f'domesurvival:block/{ID}_inventory','display':display})
     # Before/after comparison pack, confined to the isolated test client.
-    pack = ROOT/'run/energy-pipe-visual/resourcepacks/energy_pipe_before'
-    dump(pack/'pack.mcmeta',{'pack':{'pack_format':15,'description':'Energy pipes: original Tier 1 comparison'}})
+    pack = ROOT/'run/energy-pipe-visual/resourcepacks'/COMPARISON_PACK
+    dump(pack/'pack.mcmeta',{'pack':{'pack_format':15,'description':'Energy pipes: original material comparison'}})
     for relative in FILES:
         target=pack/'assets/domesurvival'/relative
         target.parent.mkdir(parents=True,exist_ok=True)
@@ -143,9 +146,9 @@ def texture_objects(objects, models, g, outer=Quaternion(), offset=Vector((0,0,0
     byname={e['name']:e for model in models.values() for e in model['elements']}
     mats={}
     for role in ('body','core','panel','rail','end','edge'):
-        mat=g.material('basic_'+role,(.5,.5,.5))
+        mat=g.material(PREFIX+'_'+role,(.5,.5,.5))
         tex=mat.node_tree.nodes.new('ShaderNodeTexImage')
-        tex.image=bpy.data.images.load(str(OUT/f'textures/basic_{role}.png'),check_existing=False)
+        tex.image=bpy.data.images.load(str(OUT/f'textures/{PREFIX}_{role}.png'),check_existing=False)
         tex.image.pack(); tex.interpolation='Closest'
         mat.node_tree.links.new(tex.outputs['Color'],mat.node_tree.nodes.get('Principled BSDF').inputs['Base Color'])
         mats[role]=mat
@@ -204,7 +207,8 @@ def main():
          'textures':6,'texels_per_unit':2,'runtime_tiers_changed':[1]})
 
 
-try: main()
-except Exception:
-    dump(DEV/'tier1_style_result.json',{'status':'FAIL','error':traceback.format_exc()})
-    raise
+if __name__ == '__main__':
+    try: main()
+    except Exception:
+        dump(DEV/'tier1_style_result.json',{'status':'FAIL','error':traceback.format_exc()})
+        raise
