@@ -43,20 +43,25 @@ public final class OrganicProcessorMenu extends AbstractContainerMenu {
         checkContainerDataCount(data, OrganicProcessorBlockEntity.DATA_COUNT);
         addDataSlots(data);
 
-        addSlot(new SlotItemHandler(machine, OrganicProcessorBlockEntity.SLOT_PRIMARY, 44, 54));
-        addSlot(new SlotItemHandler(machine, OrganicProcessorBlockEntity.SLOT_ADDITIVE, 44, 82));
-        addSlot(outputSlot(machine, OrganicProcessorBlockEntity.SLOT_OUTPUT, 132, 68));
-        addSlot(moduleSlot(modules, 0, 83, 108));
-        addSlot(moduleSlot(modules, 1, 105, 108));
+        // 220x266 industrial layout; player grid deliberately mirrors CoalGeneratorMenu.
+        addSlot(new SlotItemHandler(machine, OrganicProcessorBlockEntity.SLOT_PRIMARY, 55, 58));
+        addSlot(new SlotItemHandler(machine, OrganicProcessorBlockEntity.SLOT_ADDITIVE, 55, 88));
+        addSlot(outputSlot(machine, OrganicProcessorBlockEntity.SLOT_OUTPUT, 166, 73));
+        addSlot(moduleSlot(modules, 0, 86, 118));
+        addSlot(moduleSlot(modules, 1, 116, 118));
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
                 addSlot(new net.minecraft.world.inventory.Slot(
-                        playerInventory, col + row * 9 + 9, 8 + col * 18, 140 + row * 18));
+                        playerInventory,
+                        col + row * 9 + 9,
+                        14 + col * 22,
+                        161 + row * 22
+                ));
             }
         }
         for (int col = 0; col < 9; col++) {
-            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, col, 8 + col * 18, 198));
+            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, col, 14 + col * 22, 229));
         }
     }
 
