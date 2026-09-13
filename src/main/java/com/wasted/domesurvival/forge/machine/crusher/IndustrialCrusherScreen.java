@@ -57,7 +57,10 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
         graphics.drawString(font, title, 8, 9, 0xE6EDF3, false);
         graphics.drawString(font,
-                Component.literal(menu.energyStored() + " / " + menu.energyCapacity() + " FE"),
+                Component.translatable(
+                        "gui.domesurvival.industrial_crusher.energy",
+                        menu.energyStored(), menu.energyCapacity()
+                ),
                 30, 39, 0xD7DEE7, false);
         graphics.drawString(font, statusText(), 70, 82, 0xD7DEE7, false);
         graphics.drawString(font, Component.translatable("container.inventory"), 8, 129, 0xD7DEE7, false);
