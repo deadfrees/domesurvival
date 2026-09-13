@@ -23,14 +23,12 @@ final class DomeMachineRecipeCategory implements IRecipeCategory<DomeMachineReci
 
     private final RecipeType<DomeMachineRecipe> recipeType;
     private final Component title;
-    private final IDrawable background;
     private final IDrawable icon;
 
     DomeMachineRecipeCategory(IGuiHelper guiHelper, RecipeType<DomeMachineRecipe> recipeType,
                               Component title, ItemStack icon) {
         this.recipeType = recipeType;
         this.title = title;
-        this.background = guiHelper.createBlankDrawable(WIDTH, HEIGHT);
         this.icon = guiHelper.createDrawableItemStack(icon);
     }
 
@@ -45,8 +43,13 @@ final class DomeMachineRecipeCategory implements IRecipeCategory<DomeMachineReci
     }
 
     @Override
-    public IDrawable getBackground() {
-        return background;
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
     }
 
     @Override
@@ -73,7 +76,7 @@ final class DomeMachineRecipeCategory implements IRecipeCategory<DomeMachineReci
                     : builder.addInputSlot(position.x(), position.y()).setStandardSlotBackground();
             slot.addItemStacks(ingredients.get(index));
             if (output && !notes.isEmpty()) {
-                slot.addTooltipCallback((view, tooltip) -> tooltip.addAll(notes));
+                slot.addRichTooltipCallback((view, tooltip) -> tooltip.addAll(notes));
             }
         }
     }
