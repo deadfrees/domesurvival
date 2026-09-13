@@ -1,4 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": { "layer0": "minecraft:item/totem_of_undying" }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "domesurvival:item/emergency_protection_module"
+  }
 }
