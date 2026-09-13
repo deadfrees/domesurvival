@@ -29,6 +29,7 @@ import com.wasted.domesurvival.forge.registry.ModEntityTypes;
 import com.wasted.domesurvival.forge.registry.ModPaintingVariants;
 import com.wasted.domesurvival.forge.sound.ModSounds;
 import com.wasted.domesurvival.forge.storage.tank.UniversalTankRegistry;
+import com.wasted.domesurvival.forge.technology.TechnologyCommands;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
@@ -82,6 +83,7 @@ public final class DomeSurvival {
     private void registerCommands(RegisterCommandsEvent event) {
         DomeCommands.register(event.getDispatcher());
         ProgressionCommands.register(event.getDispatcher());
+        TechnologyCommands.register(event.getDispatcher());
     }
 
     private void onServerStarted(ServerStartedEvent event) {
