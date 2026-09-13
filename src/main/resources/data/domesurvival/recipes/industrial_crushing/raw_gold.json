@@ -1,0 +1,10 @@
+{
+  "type": "domesurvival:industrial_crushing",
+  "ingredient": { "tag": "forge:raw_materials/gold" },
+  "inputCount": 1,
+  "result": { "item": "domesurvival:crushed_gold_ore", "count": 1 },
+  "byproduct": { "item": "minecraft:gravel", "count": 1 },
+  "byproductChance": 750,
+  "processingTime": 180,
+  "energy": 5400
+}
