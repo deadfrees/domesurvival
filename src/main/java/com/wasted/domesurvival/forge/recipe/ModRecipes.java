@@ -36,6 +36,17 @@ public final class ModRecipes {
     public static final RegistryObject<RecipeSerializer<IndustrialCrusherRecipe>> INDUSTRIAL_CRUSHER_SERIALIZER =
             RECIPE_SERIALIZERS.register("industrial_crushing", IndustrialCrusherRecipe.Serializer::new);
 
+    public static final RegistryObject<RecipeType<OrganicProcessorRecipe>> ORGANIC_PROCESSOR_TYPE =
+            RECIPE_TYPES.register("organic_processing", () -> new RecipeType<>() {
+                @Override
+                public String toString() {
+                    return DomeSurvival.MOD_ID + ":organic_processing";
+                }
+            });
+
+    public static final RegistryObject<RecipeSerializer<OrganicProcessorRecipe>> ORGANIC_PROCESSOR_SERIALIZER =
+            RECIPE_SERIALIZERS.register("organic_processing", OrganicProcessorRecipe.Serializer::new);
+
     public static void register(IEventBus eventBus) {
         RECIPE_TYPES.register(eventBus);
         RECIPE_SERIALIZERS.register(eventBus);
