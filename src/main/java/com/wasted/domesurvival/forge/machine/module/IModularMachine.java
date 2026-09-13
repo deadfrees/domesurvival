@@ -10,8 +10,18 @@ public interface IModularMachine {
 
     Set<MachineModuleType> allowedModuleTypes();
 
+    /**
+     * Meaningful choices are the default: module families do not stack unless a
+     * specific machine explicitly opts into it.
+     */
+    default int maxModulesOfType(MachineModuleType type) {
+        return 1;
+    }
+
     default boolean allowsModule(MachineModule module) {
-        return module != null && allowedModuleTypes().contains(module.type());
+        return module != null
+                && maxModulesOfType(module.type()) > 0
+                && allowedModuleTypes().contains(module.type());
     }
 
     default boolean allowsCombination(MachineModule first, MachineModule second) {
