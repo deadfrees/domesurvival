@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "domesurvival:item/metallurgy/coal_coke"
+    "layer0": "domesurvival:item/filter_regeneration_media"
   }
 }

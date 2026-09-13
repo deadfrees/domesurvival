@@ -14,6 +14,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -54,6 +55,15 @@ public final class CokeOvenBlock extends BaseEntityBlock {
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         super.setPlacedBy(level, pos, state, placer, stack);
+        if (!level.isClientSide) {
+            clearLegacyParts(level, pos);
+        }
+    }
+
+    public static BlockPos partPosition(BlockPos controller, Direction facing, int localX, int localY, int localZ) {
+        return controller.relative(facing.getClockWise(), localX - 1)
+                .relative(facing, -(localZ - 1))
+                .above(localY);
     }
 
     @Override
@@ -115,6 +125,7 @@ public final class CokeOvenBlock extends BaseEntityBlock {
                     if (!stack.isEmpty()) popResource(level, pos, stack.copy());
                 }
             }
+            clearLegacyParts(level, pos);
         }
         super.onRemove(oldState, level, pos, newState, movedByPiston);
     }

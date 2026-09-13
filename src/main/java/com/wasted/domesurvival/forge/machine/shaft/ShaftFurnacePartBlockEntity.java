@@ -11,7 +11,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-/** Exposes the controller inventory only on the two outward-facing side ports. */
+/** Exposes strict one-way handlers through the two physical side-port cells. */
 public final class ShaftFurnacePartBlockEntity extends BlockEntity {
     public ShaftFurnacePartBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SHAFT_FURNACE_PART.get(), pos, state);
@@ -21,9 +21,7 @@ public final class ShaftFurnacePartBlockEntity extends BlockEntity {
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         BlockState state = getBlockState();
         if (cap == ForgeCapabilities.ITEM_HANDLER
-                && side != null
                 && (ShaftFurnacePartBlock.isInputPort(state) || ShaftFurnacePartBlock.isOutputPort(state))
-                && side == ShaftFurnacePartBlock.portSide(state)
                 && level != null) {
             BlockEntity controller = level.getBlockEntity(ShaftFurnacePartBlock.controllerPosition(worldPosition, state));
             if (controller instanceof ShaftFurnaceBlockEntity furnace) {

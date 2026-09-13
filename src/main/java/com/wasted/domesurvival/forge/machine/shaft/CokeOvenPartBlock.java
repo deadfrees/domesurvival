@@ -44,17 +44,22 @@ public final class CokeOvenPartBlock extends BaseEntityBlock {
     }
 
     public static boolean isInputPort(BlockState state) {
-        return state.getValue(LOCAL_X) == 0 && state.getValue(LOCAL_Y) == 1 && state.getValue(LOCAL_Z) == 1;
+        return state.getValue(LOCAL_X) == 2 && state.getValue(LOCAL_Y) == 1 && state.getValue(LOCAL_Z) == 1;
     }
 
     public static boolean isOutputPort(BlockState state) {
-        return state.getValue(LOCAL_X) == 2 && state.getValue(LOCAL_Y) == 1 && state.getValue(LOCAL_Z) == 1;
+        if (state.getValue(LOCAL_Y) != 1) return false;
+        boolean left = state.getValue(LOCAL_X) == 0 && state.getValue(LOCAL_Z) == 1;
+        boolean rear = state.getValue(LOCAL_X) == 1 && state.getValue(LOCAL_Z) == 2;
+        return left || rear;
     }
 
     public static Direction portSide(BlockState state) {
         Direction facing = state.getValue(FACING);
-        if (isInputPort(state)) return facing.getCounterClockWise();
-        if (isOutputPort(state)) return facing.getClockWise();
+        if (isInputPort(state)) return facing.getClockWise();
+        if (isOutputPort(state)) {
+            return state.getValue(LOCAL_Z) == 2 ? facing.getOpposite() : facing.getCounterClockWise();
+        }
         return Direction.UP;
     }
 

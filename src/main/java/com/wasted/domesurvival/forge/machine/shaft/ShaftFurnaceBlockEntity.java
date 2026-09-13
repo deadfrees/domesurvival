@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.machine.shaft;
 
 import com.wasted.domesurvival.forge.registry.ModBlockEntities;
+import com.wasted.domesurvival.forge.machine.side.CapabilityViews;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -66,13 +67,15 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
         }
     };
 
-    private LazyOptional<IItemHandler> inputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_IRON, SLOT_COKE + 1));
-    private LazyOptional<IItemHandler> outputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_STEEL, SLOT_SLAG + 1));
+    private LazyOptional<IItemHandler> inputCapability = LazyOptional.of(() ->
+            CapabilityViews.inputItems(new RangedWrapper(inventory, SLOT_IRON, SLOT_COKE + 1)));
+    private LazyOptional<IItemHandler> outputCapability = LazyOptional.of(() ->
+            CapabilityViews.outputItems(new RangedWrapper(inventory, SLOT_STEEL, SLOT_SLAG + 1)));
 
     private int progress;
     private int burnTime;
     private int burnTimeMax;
-    private boolean legacyPartsChecked;
+    private int portRepairCooldown;
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -95,9 +98,9 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, ShaftFurnaceBlockEntity furnace) {
-        if (!furnace.legacyPartsChecked) {
+        if (furnace.portRepairCooldown-- <= 0) {
             ShaftFurnaceBlock.clearStructure(level, pos, state);
-            furnace.legacyPartsChecked = true;
+            furnace.portRepairCooldown = 40;
         }
         boolean changed = false;
 
@@ -139,6 +142,32 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
             changed = true;
         }
         if (changed) furnace.setChanged();
+
+        if (level.getGameTime() % 5L == 0L && furnace.exportFinishedProducts(level, pos, state)) {
+            furnace.setChanged();
+        }
+    }
+
+    private boolean exportFinishedProducts(Level level, BlockPos controller, BlockState state) {
+        Direction facing = state.getValue(ShaftFurnaceBlock.FACING);
+        Direction left = facing.getCounterClockWise();
+
+        boolean moved = FurnaceOutputTransfer.push(level, inventory, SLOT_STEEL,
+                controller.relative(left), left.getOpposite());
+        moved |= FurnaceOutputTransfer.push(level, inventory, SLOT_SLAG,
+                controller.relative(left), left.getOpposite());
+
+        Direction rear = facing.getOpposite();
+        moved |= FurnaceOutputTransfer.push(level, inventory, SLOT_STEEL,
+                controller.relative(rear), facing);
+        moved |= FurnaceOutputTransfer.push(level, inventory, SLOT_SLAG,
+                controller.relative(rear), facing);
+
+        moved |= FurnaceOutputTransfer.push(level, inventory, SLOT_STEEL,
+                controller.below(), Direction.UP);
+        moved |= FurnaceOutputTransfer.push(level, inventory, SLOT_SLAG,
+                controller.below(), Direction.UP);
+        return moved;
     }
 
     public static boolean isValidIron(ItemStack stack) {
@@ -223,10 +252,12 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER && side != null) {
             Direction facing = getBlockState().getValue(ShaftFurnaceBlock.FACING);
-            if (side == facing.getCounterClockWise() || side == facing.getOpposite()) {
+            // The right connector is the dedicated ore/fuel feed port.
+            if (side == facing.getClockWise()) {
                 return inputCapability.cast();
             }
-            if (side == facing.getClockWise() || side == Direction.DOWN) {
+            // Steel and slag can be pulled from the left, rear and bottom connectors.
+            if (side == facing.getCounterClockWise() || side == facing.getOpposite() || side == Direction.DOWN) {
                 return outputCapability.cast();
             }
             return LazyOptional.empty();
@@ -244,8 +275,10 @@ public final class ShaftFurnaceBlockEntity extends BlockEntity implements MenuPr
     @Override
     public void reviveCaps() {
         super.reviveCaps();
-        inputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_IRON, SLOT_COKE + 1));
-        outputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_STEEL, SLOT_SLAG + 1));
+        inputCapability = LazyOptional.of(() ->
+                CapabilityViews.inputItems(new RangedWrapper(inventory, SLOT_IRON, SLOT_COKE + 1)));
+        outputCapability = LazyOptional.of(() ->
+                CapabilityViews.outputItems(new RangedWrapper(inventory, SLOT_STEEL, SLOT_SLAG + 1)));
     }
 
     @Override
