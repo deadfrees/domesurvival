@@ -28,8 +28,6 @@ import java.util.*;
 @Mod.EventBusSubscriber(modid = DomeSurvival.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class ItemPipeNetworkManager {
     private static final int MAX_NETWORK_PIPES = 4096;
-    private static final int MAX_ACTIVE_VISUALS = 64;
-    private static final int VISUAL_TICKS_PER_SEGMENT = 8;
     private static final Map<ServerLevel, LevelState> STATES = new WeakHashMap<>();
 
     private ItemPipeNetworkManager() { }
@@ -70,7 +68,6 @@ public final class ItemPipeNetworkManager {
         for (Network network : state.networks) {
             network.tick(level, gameTime);
         }
-        tickTravelVisuals(level, state);
     }
 
     private static void rebuild(ServerLevel level, LevelState state) {
@@ -267,7 +264,9 @@ public final class ItemPipeNetworkManager {
 
                     if (moved > 0) {
                         remaining -= moved;
-                        queueTravelVisual(level, source, plan.route);
+                        ItemStack visualStack = extracted.copy();
+                        visualStack.setCount(moved);
+                        queueTravelVisual(level, source, plan.route, visualStack);
                     }
                 }
             }
@@ -348,12 +347,7 @@ public final class ItemPipeNetworkManager {
         }
     }
 
-    private static void queueTravelVisual(ServerLevel level, Endpoint source, RouteCandidate route) {
-        LevelState state = STATES.computeIfAbsent(level, ignored -> new LevelState());
-        while (state.visuals.size() >= MAX_ACTIVE_VISUALS) {
-            state.visuals.pollFirst();
-        }
-
+    private static void queueTravelVisual(ServerLevel level, Endpoint source, RouteCandidate route, ItemStack stack) {
         List<Vec3> points = new ArrayList<>(route.path.size() + 2);
         points.add(facePoint(source.pipePos, source.direction));
         for (BlockPos pipePos : route.path) {
@@ -365,7 +359,7 @@ public final class ItemPipeNetworkManager {
         points.add(facePoint(route.endpoint.pipePos, route.endpoint.direction));
 
         if (points.size() >= 2) {
-            state.visuals.addLast(new TravelVisual(List.copyOf(points)));
+            ItemPipeVisualNetwork.send(level, points, stack);
         }
     }
 
@@ -378,43 +372,9 @@ public final class ItemPipeNetworkManager {
         );
     }
 
-    private static void tickTravelVisuals(ServerLevel level, LevelState state) {
-        Iterator<TravelVisual> iterator = state.visuals.iterator();
-        while (iterator.hasNext()) {
-            TravelVisual visual = iterator.next();
-            int segmentCount = visual.points.size() - 1;
-            if (segmentCount <= 0) {
-                iterator.remove();
-                continue;
-            }
-
-            double progress = visual.ageTicks / (double) VISUAL_TICKS_PER_SEGMENT;
-            if (progress >= segmentCount) {
-                iterator.remove();
-                continue;
-            }
-
-            int segment = Math.min(segmentCount - 1, (int) Math.floor(progress));
-            double local = progress - segment;
-            Vec3 a = visual.points.get(segment);
-            Vec3 b = visual.points.get(segment + 1);
-            Vec3 p = a.lerp(b, local);
-
-            level.sendParticles(
-                    ItemPipeRegistry.PACKET_PARTICLE.get(),
-                    p.x, p.y, p.z,
-                    1,
-                    0.0D, 0.0D, 0.0D,
-                    0.0D
-            );
-            visual.ageTicks++;
-        }
-    }
-
     private static final class LevelState {
         private final LongOpenHashSet knownPipes = new LongOpenHashSet();
         private final List<Network> networks = new ArrayList<>();
-        private final ArrayDeque<TravelVisual> visuals = new ArrayDeque<>();
         private boolean dirty = true;
     }
 
@@ -425,12 +385,4 @@ public final class ItemPipeNetworkManager {
     private record TransferPlan(RouteCandidate route, int accepted) { }
     private record PathNode(BlockPos pos, List<BlockPos> path) { }
 
-    private static final class TravelVisual {
-        private final List<Vec3> points;
-        private int ageTicks;
-
-        private TravelVisual(List<Vec3> points) {
-            this.points = points;
-        }
-    }
 }

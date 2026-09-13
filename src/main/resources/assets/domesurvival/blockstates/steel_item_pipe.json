@@ -11,7 +11,7 @@
       },
       "apply": {
         "model": "domesurvival:block/steel_item_pipe_arm",
-        "uvlock": true
+        "uvlock": false
       }
     },
     {
@@ -20,7 +20,7 @@
       },
       "apply": {
         "model": "domesurvival:block/steel_item_pipe_arm",
-        "uvlock": true,
+        "uvlock": false,
         "y": 90
       }
     },
@@ -30,7 +30,7 @@
       },
       "apply": {
         "model": "domesurvival:block/steel_item_pipe_arm",
-        "uvlock": true,
+        "uvlock": false,
         "y": 180
       }
     },
@@ -40,7 +40,7 @@
       },
       "apply": {
         "model": "domesurvival:block/steel_item_pipe_arm",
-        "uvlock": true,
+        "uvlock": false,
         "y": 270
       }
     },
@@ -50,7 +50,7 @@
       },
       "apply": {
         "model": "domesurvival:block/steel_item_pipe_arm",
-        "uvlock": true,
+        "uvlock": false,
         "x": 270
       }
     },
@@ -60,7 +60,7 @@
       },
       "apply": {
         "model": "domesurvival:block/steel_item_pipe_arm",
-        "uvlock": true,
+        "uvlock": false,
         "x": 90
       }
     }

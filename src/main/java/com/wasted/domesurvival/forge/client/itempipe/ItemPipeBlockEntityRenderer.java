@@ -6,6 +6,7 @@ import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.itempipe.ItemConnectorMode;
 import com.wasted.domesurvival.forge.itempipe.ItemPipeBlock;
 import com.wasted.domesurvival.forge.itempipe.ItemPipeBlockEntity;
+import com.wasted.domesurvival.forge.itempipe.ItemPipeTier;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -15,12 +16,23 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
+import java.util.EnumMap;
+import java.util.Map;
 
 public final class ItemPipeBlockEntityRenderer implements BlockEntityRenderer<ItemPipeBlockEntity> {
-    private static final ResourceLocation FRAME = texture("connector_frame.png");
-    private static final ResourceLocation INPUT = texture("connector_input.png");
-    private static final ResourceLocation OUTPUT = texture("connector_output.png");
-    private static final ResourceLocation DISABLED = texture("connector_disabled.png");
+    private record ConnectorMaterials(ResourceLocation frame, ResourceLocation input,
+                                      ResourceLocation output, ResourceLocation disabled) { }
+    private static final Map<ItemPipeTier, ConnectorMaterials> MATERIALS = materials();
+
+    private static Map<ItemPipeTier, ConnectorMaterials> materials() {
+        Map<ItemPipeTier, ConnectorMaterials> result = new EnumMap<>(ItemPipeTier.class);
+        for (ItemPipeTier tier : ItemPipeTier.values()) {
+            String prefix = tier.id() + "_item_pipe_connector_";
+            result.put(tier, new ConnectorMaterials(texture(prefix + "frame.png"), texture(prefix + "input.png"),
+                    texture(prefix + "output.png"), texture(prefix + "disabled.png")));
+        }
+        return Map.copyOf(result);
+    }
 
     // Compact coupling around the normal 3px pipe arm. The dimensions are kept
     // intentionally close to the existing GOTEICRAFT machine connector style.
@@ -29,7 +41,7 @@ public final class ItemPipeBlockEntityRenderer implements BlockEntityRenderer<It
     private static final float INNER_MIN = 6.15F / 16.0F;
     private static final float INNER_MAX = 9.85F / 16.0F;
     private static final float DEPTH = 1.65F / 16.0F;
-    private static final float FACE_INSET = 0.20F / 16.0F;
+    private static final float FACE_OFFSET = 0.02F / 16.0F;
 
     public ItemPipeBlockEntityRenderer(BlockEntityRendererProvider.Context context) { }
 
@@ -39,17 +51,20 @@ public final class ItemPipeBlockEntityRenderer implements BlockEntityRenderer<It
         Level level = blockEntity.getLevel();
         if (level == null) return;
 
+        ItemPipeTravelVisuals.render(blockEntity.getBlockPos(), partialTick, poseStack, bufferSource, light, overlay);
+        ConnectorMaterials materials = MATERIALS.get(blockEntity.tier());
+
         for (Direction direction : Direction.values()) {
             if (!ItemPipeBlock.hasObjectConnector(level, blockEntity.getBlockPos(), direction)) continue;
 
             ItemConnectorMode mode = blockEntity.getConnectorMode(direction);
             ResourceLocation faceTexture = switch (mode) {
-                case INPUT -> INPUT;
-                case OUTPUT -> OUTPUT;
-                case DISABLED -> DISABLED;
+                case INPUT -> materials.input;
+                case OUTPUT -> materials.output;
+                case DISABLED -> materials.disabled;
             };
 
-            VertexConsumer frame = bufferSource.getBuffer(RenderType.entityCutoutNoCull(FRAME));
+            VertexConsumer frame = bufferSource.getBuffer(RenderType.entityCutoutNoCull(materials.frame));
             renderConnectorFrame(frame, poseStack.last(), direction, light, overlay);
 
             VertexConsumer face = bufferSource.getBuffer(RenderType.entityCutoutNoCull(faceTexture));
@@ -80,45 +95,47 @@ public final class ItemPipeBlockEntityRenderer implements BlockEntityRenderer<It
 
     private static void renderModeFace(VertexConsumer c, PoseStack.Pose pose,
                                        Direction direction, int light, int overlay) {
-        float n = FACE_INSET;
-        float p = 1.0F - FACE_INSET;
+        // The old panel was inside the opaque collar, hidden behind its box faces.
+        // Put the status plate just outside the face looking back toward the pipe.
+        float n = DEPTH + FACE_OFFSET;
+        float p = 1.0F - DEPTH - FACE_OFFSET;
         switch (direction) {
             case NORTH -> quad(c, pose,
                     INNER_MIN, INNER_MIN, n, 1,1,
                     INNER_MAX, INNER_MIN, n, 0,1,
                     INNER_MAX, INNER_MAX, n, 0,0,
                     INNER_MIN, INNER_MAX, n, 1,0,
-                    0,0,-1, light, overlay);
+                    0,0,1, light, overlay);
             case SOUTH -> quad(c, pose,
                     INNER_MAX, INNER_MIN, p, 1,1,
                     INNER_MIN, INNER_MIN, p, 0,1,
                     INNER_MIN, INNER_MAX, p, 0,0,
                     INNER_MAX, INNER_MAX, p, 1,0,
-                    0,0,1, light, overlay);
+                    0,0,-1, light, overlay);
             case WEST -> quad(c, pose,
                     n, INNER_MIN, INNER_MAX, 1,1,
                     n, INNER_MIN, INNER_MIN, 0,1,
                     n, INNER_MAX, INNER_MIN, 0,0,
                     n, INNER_MAX, INNER_MAX, 1,0,
-                    -1,0,0, light, overlay);
+                    1,0,0, light, overlay);
             case EAST -> quad(c, pose,
                     p, INNER_MIN, INNER_MIN, 1,1,
                     p, INNER_MIN, INNER_MAX, 0,1,
                     p, INNER_MAX, INNER_MAX, 0,0,
                     p, INNER_MAX, INNER_MIN, 1,0,
-                    1,0,0, light, overlay);
+                    -1,0,0, light, overlay);
             case DOWN -> quad(c, pose,
                     INNER_MIN, n, INNER_MIN, 0,0,
                     INNER_MAX, n, INNER_MIN, 1,0,
                     INNER_MAX, n, INNER_MAX, 1,1,
                     INNER_MIN, n, INNER_MAX, 0,1,
-                    0,-1,0, light, overlay);
+                    0,1,0, light, overlay);
             case UP -> quad(c, pose,
                     INNER_MIN, p, INNER_MAX, 0,1,
                     INNER_MAX, p, INNER_MAX, 1,1,
                     INNER_MAX, p, INNER_MIN, 1,0,
                     INNER_MIN, p, INNER_MIN, 0,0,
-                    0,1,0, light, overlay);
+                    0,-1,0, light, overlay);
         }
     }
 
@@ -163,6 +180,6 @@ public final class ItemPipeBlockEntityRenderer implements BlockEntityRenderer<It
     }
 
     private static ResourceLocation texture(String file) {
-        return new ResourceLocation(DomeSurvival.MOD_ID, "textures/block/item_pipe/" + file);
+        return new ResourceLocation(DomeSurvival.MOD_ID, "textures/block/item_pipe_refined/" + file);
     }
 }

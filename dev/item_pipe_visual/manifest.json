@@ -1,0 +1,567 @@
+{
+  "copper_item_pipe": {
+    "atlas_size": 256,
+    "layers": [
+      "cutout metal",
+      "translucent glass"
+    ],
+    "glass_alpha": [
+      0.13,
+      0.28
+    ],
+    "islands": [
+      {
+        "role": "glass",
+        "rect": [
+          4,
+          4,
+          48,
+          100
+        ]
+      },
+      {
+        "role": "rail_window",
+        "rect": [
+          60,
+          4,
+          38,
+          92
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          106,
+          4,
+          3,
+          92
+        ]
+      },
+      {
+        "role": "shell",
+        "rect": [
+          117,
+          4,
+          56,
+          56
+        ]
+      },
+      {
+        "role": "glass",
+        "rect": [
+          4,
+          112,
+          100,
+          48
+        ]
+      },
+      {
+        "role": "end",
+        "rect": [
+          112,
+          112,
+          48,
+          48
+        ]
+      },
+      {
+        "role": "window",
+        "rect": [
+          168,
+          112,
+          46,
+          46
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          222,
+          112,
+          4,
+          46
+        ]
+      },
+      {
+        "role": "rail_window",
+        "rect": [
+          4,
+          168,
+          92,
+          38
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          104,
+          168,
+          3,
+          38
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          115,
+          168,
+          46,
+          4
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          4,
+          214,
+          92,
+          3
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          104,
+          214,
+          38,
+          3
+        ]
+      }
+    ]
+  },
+  "steel_item_pipe": {
+    "atlas_size": 256,
+    "layers": [
+      "cutout metal",
+      "translucent glass"
+    ],
+    "glass_alpha": [
+      0.13,
+      0.28
+    ],
+    "islands": [
+      {
+        "role": "glass",
+        "rect": [
+          4,
+          4,
+          48,
+          100
+        ]
+      },
+      {
+        "role": "rail_window",
+        "rect": [
+          60,
+          4,
+          38,
+          92
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          106,
+          4,
+          3,
+          92
+        ]
+      },
+      {
+        "role": "shell",
+        "rect": [
+          117,
+          4,
+          56,
+          56
+        ]
+      },
+      {
+        "role": "glass",
+        "rect": [
+          4,
+          112,
+          100,
+          48
+        ]
+      },
+      {
+        "role": "end",
+        "rect": [
+          112,
+          112,
+          48,
+          48
+        ]
+      },
+      {
+        "role": "window",
+        "rect": [
+          168,
+          112,
+          46,
+          46
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          222,
+          112,
+          4,
+          46
+        ]
+      },
+      {
+        "role": "rail_window",
+        "rect": [
+          4,
+          168,
+          92,
+          38
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          104,
+          168,
+          3,
+          38
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          115,
+          168,
+          46,
+          4
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          4,
+          214,
+          92,
+          3
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          104,
+          214,
+          38,
+          3
+        ]
+      }
+    ]
+  },
+  "desh_item_pipe": {
+    "atlas_size": 256,
+    "layers": [
+      "cutout metal",
+      "translucent glass"
+    ],
+    "glass_alpha": [
+      0.13,
+      0.28
+    ],
+    "islands": [
+      {
+        "role": "glass",
+        "rect": [
+          4,
+          4,
+          48,
+          100
+        ]
+      },
+      {
+        "role": "rail_window",
+        "rect": [
+          60,
+          4,
+          38,
+          92
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          106,
+          4,
+          3,
+          92
+        ]
+      },
+      {
+        "role": "shell",
+        "rect": [
+          117,
+          4,
+          56,
+          56
+        ]
+      },
+      {
+        "role": "glass",
+        "rect": [
+          4,
+          112,
+          100,
+          48
+        ]
+      },
+      {
+        "role": "end",
+        "rect": [
+          112,
+          112,
+          48,
+          48
+        ]
+      },
+      {
+        "role": "window",
+        "rect": [
+          168,
+          112,
+          46,
+          46
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          222,
+          112,
+          4,
+          46
+        ]
+      },
+      {
+        "role": "rail_window",
+        "rect": [
+          4,
+          168,
+          92,
+          38
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          104,
+          168,
+          3,
+          38
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          115,
+          168,
+          46,
+          4
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          4,
+          214,
+          92,
+          3
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          104,
+          214,
+          38,
+          3
+        ]
+      }
+    ]
+  },
+  "filtering_item_pipe": {
+    "atlas_size": 512,
+    "layers": [
+      "cutout metal",
+      "translucent glass"
+    ],
+    "glass_alpha": [
+      0.13,
+      0.28
+    ],
+    "islands": [
+      {
+        "role": "glass",
+        "rect": [
+          4,
+          4,
+          48,
+          100
+        ]
+      },
+      {
+        "role": "rail_window",
+        "rect": [
+          60,
+          4,
+          38,
+          92
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          106,
+          4,
+          3,
+          92
+        ]
+      },
+      {
+        "role": "shell",
+        "rect": [
+          117,
+          4,
+          56,
+          56
+        ]
+      },
+      {
+        "role": "glass",
+        "rect": [
+          181,
+          4,
+          100,
+          48
+        ]
+      },
+      {
+        "role": "end",
+        "rect": [
+          289,
+          4,
+          48,
+          48
+        ]
+      },
+      {
+        "role": "route_down",
+        "rect": [
+          345,
+          4,
+          46,
+          46
+        ]
+      },
+      {
+        "role": "route_east",
+        "rect": [
+          399,
+          4,
+          46,
+          46
+        ]
+      },
+      {
+        "role": "route_north",
+        "rect": [
+          453,
+          4,
+          46,
+          46
+        ]
+      },
+      {
+        "role": "route_south",
+        "rect": [
+          4,
+          112,
+          46,
+          46
+        ]
+      },
+      {
+        "role": "route_up",
+        "rect": [
+          58,
+          112,
+          46,
+          46
+        ]
+      },
+      {
+        "role": "route_west",
+        "rect": [
+          112,
+          112,
+          46,
+          46
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          166,
+          112,
+          4,
+          46
+        ]
+      },
+      {
+        "role": "rail_window",
+        "rect": [
+          178,
+          112,
+          92,
+          38
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          278,
+          112,
+          3,
+          38
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          289,
+          112,
+          46,
+          4
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          343,
+          112,
+          92,
+          3
+        ]
+      },
+      {
+        "role": "trim",
+        "rect": [
+          443,
+          112,
+          38,
+          3
+        ]
+      }
+    ]
+  }
+}

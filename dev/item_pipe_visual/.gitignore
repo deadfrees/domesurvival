@@ -1,0 +1,7 @@
+*.log
+runtime_initial/
+runtime_before_filter_frame/
+runtime_before_connectors/
+runtime/*.png
+__pycache__/
+greybox_progress.txt

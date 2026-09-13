@@ -1,0 +1,74 @@
+PASS All three configurable connector modes retained for material 0
+PASS All three configurable connector modes retained for material 1
+PASS All three configurable connector modes retained for material 2
+PASS All three configurable connector modes retained for material 3
+PASS Filter accepts diamond east
+PASS Filter rejects diamond west
+PASS Filter blocks gold NONE
+PASS Unmatched redstone remains allowed
+PASS Filter configuration survives NBT round trip
+PASS Item conservation tier 0 age 1
+PASS Throughput tier 0 age 1 expected 4 actual 4
+PASS Item conservation tier 1 age 1
+PASS Throughput tier 1 age 1 expected 16 actual 16
+PASS Item conservation tier 2 age 1
+PASS Throughput tier 2 age 1 expected 32 actual 32
+PASS Item conservation tier 3 age 1
+PASS Item conservation tier 0 age 41
+PASS Throughput tier 0 age 41 expected 8 actual 8
+PASS Item conservation tier 1 age 41
+PASS Throughput tier 1 age 41 expected 48 actual 48
+PASS Item conservation tier 2 age 41
+PASS Throughput tier 2 age 41 expected 160 actual 160
+PASS Item conservation tier 3 age 41
+PASS Item conservation tier 0 age 81
+PASS Throughput tier 0 age 81 expected 12 actual 12
+PASS Item conservation tier 1 age 81
+PASS Throughput tier 1 age 81 expected 80 actual 80
+PASS Item conservation tier 2 age 81
+PASS Throughput tier 2 age 81 expected 192 actual 192
+PASS Item conservation tier 3 age 81
+PASS Item conservation tier 0 age 121
+PASS Throughput tier 0 age 121 expected 16 actual 16
+PASS Item conservation tier 1 age 121
+PASS Throughput tier 1 age 121 expected 112 actual 112
+PASS Item conservation tier 2 age 121
+PASS Throughput tier 2 age 121 expected 192 actual 192
+PASS Item conservation tier 3 age 121
+PASS Item conservation tier 0 age 161
+PASS Throughput tier 0 age 161 expected 20 actual 20
+PASS Item conservation tier 1 age 161
+PASS Throughput tier 1 age 161 expected 144 actual 144
+PASS Item conservation tier 2 age 161
+PASS Throughput tier 2 age 161 expected 192 actual 192
+PASS Item conservation tier 3 age 161
+PASS Filtering transferred diamond and redstone only
+PASS Blocked gold remains at source
+PASS Disabled input stops copper transfer
+PASS All 256 baked connection states contain valid separate metal and glass layers: 256
+PASS Inventory model 0
+PASS Inventory model 1
+PASS Inventory model 2
+PASS Inventory model 3
+PASS Travel packet preserves item, count, NBT and path
+PASS Real server transfers reached client animation queue: 9
+PASS Animation contains the actual transferred item: 4 diamond
+PASS Visual packet for another dimension ignored
+PASS Client queue bounded at 64 cosmetic transfers
+Screenshot 01_four_tiers
+Screenshot tier0_moving_a
+Screenshot tier0_moving_b
+Screenshot tier1_moving_a
+Screenshot tier1_moving_b
+Screenshot tier2_moving_a
+Screenshot tier2_moving_b
+Screenshot tier3_moving_a
+Screenshot tier3_moving_b
+Screenshot 02_junctions
+Screenshot connector_tier0
+Screenshot connector_tier1
+Screenshot connector_tier2
+Screenshot connector_tier3
+Screenshot 03_inventory
+Screenshot 04_in_hand
+RESULT PASS failures=0

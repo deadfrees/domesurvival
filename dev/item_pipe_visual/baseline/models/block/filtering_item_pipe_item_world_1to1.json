@@ -1,0 +1,20 @@
+{
+  "loader": "forge:composite",
+  "children": {
+    "world_core": {
+      "parent": "domesurvival:block/filtering_item_pipe_core"
+    },
+    "world_arm_north": {
+      "parent": "domesurvival:block/filtering_item_pipe_arm"
+    },
+    "world_arm_south": {
+      "parent": "domesurvival:block/filtering_item_pipe_arm",
+      "transform": {
+        "origin": "center",
+        "rotation": {
+          "y": 180
+        }
+      }
+    }
+  }
+}

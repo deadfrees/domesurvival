@@ -1,0 +1,214 @@
+{
+  "pass": true,
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "1ef0ef03cdfc30ac4177c878faf2536a9d51ee9e53a7ad8cbaab5b94b9ce9e80",
+  "bytes": 179399468,
+  "static_checks": 1740,
+  "runtime_checks": 57,
+  "checks": [
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/blockstates/copper_item_pipe.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/blockstates/desh_item_pipe.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/blockstates/filtering_item_pipe.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/blockstates/steel_item_pipe.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/copper_item_pipe_arm.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/copper_item_pipe_core.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/copper_item_pipe_inventory.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/desh_item_pipe_arm.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/desh_item_pipe_core.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/desh_item_pipe_inventory.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/filtering_item_pipe_arm.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/filtering_item_pipe_core.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/filtering_item_pipe_inventory.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/steel_item_pipe_arm.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/steel_item_pipe_core.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/steel_item_pipe_inventory.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/copper_item_pipe.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/copper_item_pipe_connector_disabled.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/copper_item_pipe_connector_frame.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/copper_item_pipe_connector_input.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/copper_item_pipe_connector_output.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/copper_item_pipe_frame.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/copper_item_pipe_glass.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/desh_item_pipe.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/desh_item_pipe_connector_disabled.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/desh_item_pipe_connector_frame.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/desh_item_pipe_connector_input.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/desh_item_pipe_connector_output.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/desh_item_pipe_frame.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/desh_item_pipe_glass.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/filtering_item_pipe.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/filtering_item_pipe_connector_disabled.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/filtering_item_pipe_connector_frame.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/filtering_item_pipe_connector_input.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/filtering_item_pipe_connector_output.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/filtering_item_pipe_frame.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/filtering_item_pipe_glass.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/steel_item_pipe.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/steel_item_pipe_connector_disabled.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/steel_item_pipe_connector_frame.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/steel_item_pipe_connector_input.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/steel_item_pipe_connector_output.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/steel_item_pipe_frame.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/item_pipe_refined/steel_item_pipe_glass.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "No development probes in release"
+    },
+    {
+      "pass": true,
+      "check": "ItemPipeVisualNetwork present in release"
+    },
+    {
+      "pass": true,
+      "check": "ItemPipeTravelVisuals present in release"
+    },
+    {
+      "pass": true,
+      "check": "Production build successful"
+    },
+    {
+      "pass": true,
+      "check": "Final runtime review passed"
+    },
+    {
+      "pass": true,
+      "check": "Geometry, alpha masks, references and scope validated"
+    },
+    {
+      "pass": true,
+      "check": "85 production mod JARs restored"
+    }
+  ]
+}

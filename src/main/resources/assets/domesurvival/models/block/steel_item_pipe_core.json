@@ -1,440 +1,611 @@
 {
   "ambientocclusion": true,
   "textures": {
-    "body": "domesurvival:block/item_pipe/steel_item_pipe",
-    "icon": "domesurvival:block/item_pipe/steel_item_pipe_core",
-    "rail": "domesurvival:block/item_pipe/steel_item_pipe_detail",
-    "particle": "domesurvival:block/item_pipe/steel_item_pipe"
+    "shell": "domesurvival:block/item_pipe_refined/steel_item_pipe",
+    "trim": "domesurvival:block/item_pipe_refined/steel_item_pipe",
+    "window": "domesurvival:block/item_pipe_refined/steel_item_pipe",
+    "particle": "domesurvival:block/item_pipe/steel_item_pipe_detail"
   },
-  "elements": [
-    {
-      "name": "core_body",
-      "from": [
-        6.25,
-        6.25,
-        6.25
-      ],
-      "to": [
-        9.75,
-        9.75,
-        9.75
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
+  "loader": "forge:composite",
+  "children": {
+    "frame": {
+      "render_type": "minecraft:cutout",
+      "ambientocclusion": true,
+      "textures": {
+        "shell": "domesurvival:block/item_pipe_refined/steel_item_pipe_frame",
+        "trim": "domesurvival:block/item_pipe_refined/steel_item_pipe_frame",
+        "window": "domesurvival:block/item_pipe_refined/steel_item_pipe_frame"
+      },
+      "elements": [
+        {
+          "name": "core_body",
+          "from": [
+            6.25,
+            6.25,
+            6.25
           ],
-          "texture": "#body"
+          "to": [
+            9.75,
+            9.75,
+            9.75
+          ],
+          "faces": {
+            "north": {
+              "uv": [
+                7.3125,
+                0.25,
+                10.8125,
+                3.75
+              ],
+              "texture": "#shell"
+            },
+            "south": {
+              "uv": [
+                7.3125,
+                0.25,
+                10.8125,
+                3.75
+              ],
+              "texture": "#shell"
+            },
+            "east": {
+              "uv": [
+                7.3125,
+                0.25,
+                10.8125,
+                3.75
+              ],
+              "texture": "#shell"
+            },
+            "west": {
+              "uv": [
+                7.3125,
+                0.25,
+                10.8125,
+                3.75
+              ],
+              "texture": "#shell"
+            },
+            "up": {
+              "uv": [
+                7.3125,
+                0.25,
+                10.8125,
+                3.75
+              ],
+              "texture": "#shell"
+            },
+            "down": {
+              "uv": [
+                7.3125,
+                0.25,
+                10.8125,
+                3.75
+              ],
+              "texture": "#shell"
+            }
+          }
         },
-        "south": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
+        {
+          "name": "north_energy_panel",
+          "from": [
+            6.55,
+            6.55,
+            6.02
           ],
-          "texture": "#body"
+          "to": [
+            9.45,
+            9.45,
+            6.25
+          ],
+          "faces": {
+            "north": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            },
+            "east": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            },
+            "west": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            },
+            "up": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            },
+            "down": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            }
+          }
         },
-        "east": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
+        {
+          "name": "south_energy_panel",
+          "from": [
+            6.55,
+            6.55,
+            9.75
           ],
-          "texture": "#body"
+          "to": [
+            9.45,
+            9.45,
+            9.98
+          ],
+          "faces": {
+            "south": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            },
+            "east": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            },
+            "west": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            },
+            "up": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            },
+            "down": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            }
+          }
         },
-        "west": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
+        {
+          "name": "west_energy_panel",
+          "from": [
+            6.02,
+            6.55,
+            6.55
           ],
-          "texture": "#body"
+          "to": [
+            6.25,
+            9.45,
+            9.45
+          ],
+          "faces": {
+            "north": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            },
+            "south": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            },
+            "west": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            },
+            "up": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            },
+            "down": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            }
+          }
         },
-        "up": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
+        {
+          "name": "east_energy_panel",
+          "from": [
+            9.75,
+            6.55,
+            6.55
           ],
-          "texture": "#body"
+          "to": [
+            9.98,
+            9.45,
+            9.45
+          ],
+          "faces": {
+            "north": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            },
+            "south": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            },
+            "east": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            },
+            "up": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            },
+            "down": {
+              "uv": [
+                13.875,
+                7.0,
+                14.125,
+                9.875
+              ],
+              "texture": "#trim"
+            }
+          }
         },
-        "down": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
+        {
+          "name": "down_energy_panel",
+          "from": [
+            6.55,
+            6.02,
+            6.55
           ],
-          "texture": "#body"
+          "to": [
+            9.45,
+            6.25,
+            9.45
+          ],
+          "faces": {
+            "north": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            },
+            "south": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            },
+            "east": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            },
+            "west": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            },
+            "down": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            }
+          }
+        },
+        {
+          "name": "up_energy_panel",
+          "from": [
+            6.55,
+            9.75,
+            6.55
+          ],
+          "to": [
+            9.45,
+            9.98,
+            9.45
+          ],
+          "faces": {
+            "north": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            },
+            "south": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            },
+            "east": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            },
+            "west": {
+              "uv": [
+                7.1875,
+                10.5,
+                10.0625,
+                10.75
+              ],
+              "texture": "#trim"
+            },
+            "up": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            }
+          }
         }
-      }
+      ]
     },
-    {
-      "name": "north_energy_panel",
-      "from": [
-        6.55,
-        6.55,
-        6.02
-      ],
-      "to": [
-        9.45,
-        9.45,
-        6.25
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
+    "glass": {
+      "render_type": "minecraft:translucent",
+      "ambientocclusion": false,
+      "textures": {
+        "shell": "domesurvival:block/item_pipe_refined/steel_item_pipe_glass",
+        "trim": "domesurvival:block/item_pipe_refined/steel_item_pipe_glass",
+        "window": "domesurvival:block/item_pipe_refined/steel_item_pipe_glass"
+      },
+      "elements": [
+        {
+          "name": "north_energy_panel",
+          "from": [
+            6.55,
+            6.55,
+            6.02
           ],
-          "texture": "#icon"
+          "to": [
+            9.45,
+            9.45,
+            6.25
+          ],
+          "faces": {
+            "north": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            }
+          }
         },
-        "east": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
+        {
+          "name": "south_energy_panel",
+          "from": [
+            6.55,
+            6.55,
+            9.75
           ],
-          "texture": "#rail"
+          "to": [
+            9.45,
+            9.45,
+            9.98
+          ],
+          "faces": {
+            "south": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            }
+          }
         },
-        "west": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
+        {
+          "name": "west_energy_panel",
+          "from": [
+            6.02,
+            6.55,
+            6.55
           ],
-          "texture": "#rail"
+          "to": [
+            6.25,
+            9.45,
+            9.45
+          ],
+          "faces": {
+            "west": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            }
+          }
         },
-        "up": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
+        {
+          "name": "east_energy_panel",
+          "from": [
+            9.75,
+            6.55,
+            6.55
           ],
-          "texture": "#rail"
+          "to": [
+            9.98,
+            9.45,
+            9.45
+          ],
+          "faces": {
+            "east": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            }
+          }
         },
-        "down": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
+        {
+          "name": "down_energy_panel",
+          "from": [
+            6.55,
+            6.02,
+            6.55
           ],
-          "texture": "#rail"
+          "to": [
+            9.45,
+            6.25,
+            9.45
+          ],
+          "faces": {
+            "down": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            }
+          }
+        },
+        {
+          "name": "up_energy_panel",
+          "from": [
+            6.55,
+            9.75,
+            6.55
+          ],
+          "to": [
+            9.45,
+            9.98,
+            9.45
+          ],
+          "faces": {
+            "up": {
+              "uv": [
+                10.5,
+                7.0,
+                13.375,
+                9.875
+              ],
+              "texture": "#window"
+            }
+          }
         }
-      }
-    },
-    {
-      "name": "south_energy_panel",
-      "from": [
-        6.55,
-        6.55,
-        9.75
-      ],
-      "to": [
-        9.45,
-        9.45,
-        9.98
-      ],
-      "faces": {
-        "south": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#icon"
-        },
-        "east": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "west": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "up": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "down": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        }
-      }
-    },
-    {
-      "name": "west_energy_panel",
-      "from": [
-        6.02,
-        6.55,
-        6.55
-      ],
-      "to": [
-        6.25,
-        9.45,
-        9.45
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "south": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "west": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#icon"
-        },
-        "up": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "down": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        }
-      }
-    },
-    {
-      "name": "east_energy_panel",
-      "from": [
-        9.75,
-        6.55,
-        6.55
-      ],
-      "to": [
-        9.98,
-        9.45,
-        9.45
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "south": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "east": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#icon"
-        },
-        "up": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "down": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        }
-      }
-    },
-    {
-      "name": "down_energy_panel",
-      "from": [
-        6.55,
-        6.02,
-        6.55
-      ],
-      "to": [
-        9.45,
-        6.25,
-        9.45
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "south": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "east": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "west": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "down": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#icon"
-        }
-      }
-    },
-    {
-      "name": "up_energy_panel",
-      "from": [
-        6.55,
-        9.75,
-        6.55
-      ],
-      "to": [
-        9.45,
-        9.98,
-        9.45
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "south": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "east": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "west": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#rail"
-        },
-        "up": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#icon"
-        }
-      }
+      ]
     }
+  },
+  "item_render_order": [
+    "frame",
+    "glass"
   ]
 }
