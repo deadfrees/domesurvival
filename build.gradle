@@ -75,23 +75,9 @@ sourceSets.main.resources {
     srcDir 'src/generated/resources'
 }
 
-// FULL DEV intentionally omits CustomNPCs from the runtime because the
-// unofficial production JAR is not MojMap-dev safe. JosephScriptCommand is an
-// optional developer/admin integration but is annotated as an automatic Forge
-// subscriber and therefore would be eagerly loaded before the game starts.
-// Exclude only that subscriber in FULL DEV; normal/production builds keep it.
-if (project.hasProperty('domeFullDev')) {
-    sourceSets.main.java.exclude 'com/wasted/domesurvival/forge/integration/customnpcs/JosephScriptCommand.java'
-
-    // Guard against a stale class left by an earlier non-FULL-DEV compile.
-    tasks.named('compileJava').configure {
-        doFirst {
-            delete layout.buildDirectory.file(
-                    'classes/java/main/com/wasted/domesurvival/forge/integration/customnpcs/JosephScriptCommand.class'
-            ).get().asFile
-        }
-    }
-}
+// FULL DEV uses the same current physical CustomNPCs JAR as the production
+// pack. PREPARE_FULL_DEOBF_CACHE remaps that JAR and supplies it at runtime,
+// so the NPC script bridge must remain compiled in every build mode.
 
 repositories {
 maven {
@@ -125,10 +111,8 @@ dependencies {
     // DEV_V5_4_CUSTOMNPCS_DEOBF
     // DomeSurvival automatic subscribers currently reference CustomNPCs classes.
     compileOnly fg.deobf('curse.maven:customnpcs-unofficial-1052708:8414335')
-    // CustomNPCs is not MojMap-dev safe in FULL DEV: its block-entity registration
-    // resolves a null production registry entry after ForgeGradle remapping.
-    // Keep it for ordinary runClient, but let FULL DEV omit it from runtime while
-    // preserving compile-time APIs for DomeSurvival subscribers.
+    // Ordinary runClient receives the pinned dependency. FULL DEV receives the
+    // newer physical modpack JAR from its generated deobfuscated runtime.
     if (!project.hasProperty('domeFullDev')) {
         runtimeOnly fg.deobf('curse.maven:customnpcs-unofficial-1052708:8414335')
     }

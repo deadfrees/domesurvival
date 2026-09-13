@@ -35,6 +35,14 @@ public final class BioincubatorScreen extends AbstractContainerScreen<Bioincubat
             new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/bio/cow.png");
     private static final ResourceLocation PIG =
             new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/bio/pig.png");
+    private static final ResourceLocation MULE =
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/bio/mule.png");
+    private static final ResourceLocation PARROT =
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/bio/parrot.png");
+    private static final ResourceLocation POLAR_BEAR =
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/bio/polar_bear.png");
+    private static final ResourceLocation BIO_FACES_ATLAS =
+            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/bio/bio_faces_atlas.png");
 
     private static final int PANEL_WIDTH = 300;
     private static final int PANEL_HEIGHT = 310;
@@ -277,7 +285,7 @@ public final class BioincubatorScreen extends AbstractContainerScreen<Bioincubat
         drawCenteredClampedText(graphics, title, 75, 14, 150, TEXT_MAIN);
 
         graphics.drawString(font, Component.literal("FE"), 18, 30, ENERGY_MAIN, false);
-        graphics.drawString(font, Component.literal("Hв‚‚O"), 259, 30, WATER_BRIGHT, false);
+        graphics.drawString(font, Component.literal("H₂O"), 259, 30, WATER_BRIGHT, false);
 
         drawCenteredScaledText(graphics,
                 Component.translatable("gui.domesurvival.incubator.incubation"),
@@ -358,14 +366,53 @@ public final class BioincubatorScreen extends AbstractContainerScreen<Bioincubat
         ResourceLocation texture = id == null ? null : switch (id.getPath()) {
             case "chicken" -> CHICKEN;
             case "sheep" -> SHEEP;
-            case "cow", "mooshroom" -> COW;
+            case "cow" -> COW;
             case "pig" -> PIG;
+            case "mule" -> MULE;
+            case "parrot" -> PARROT;
+            case "polar_bear" -> POLAR_BEAR;
             default -> null;
         };
 
         if (texture != null) {
             graphics.blit(texture, x + 132, y + 53, 0, 0, 36, 36, 36, 36);
+            return;
         }
+
+        int[] atlasCell = id == null ? null : atlasCell(id.getPath());
+        if (atlasCell != null) {
+            // Atlas cells are native 32x32 pixel art.  Scaling them to 36x36
+            // produces uneven nearest-neighbour columns and makes faces look
+            // visibly crooked, so keep a strict 1:1 scale and center the cell.
+            graphics.blit(BIO_FACES_ATLAS, x + 134, y + 54, 32, 32,
+                    atlasCell[0] * 32.0F, atlasCell[1] * 32.0F,
+                    32, 32, 160, 128);
+        }
+    }
+
+    private static int[] atlasCell(String species) {
+        return switch (species) {
+            case "rabbit" -> new int[]{0, 0};
+            case "horse" -> new int[]{1, 0};
+            case "donkey" -> new int[]{2, 0};
+            case "llama" -> new int[]{3, 0};
+            case "goat" -> new int[]{4, 0};
+            case "camel" -> new int[]{0, 1};
+            case "wolf" -> new int[]{1, 1};
+            case "cat" -> new int[]{2, 1};
+            case "ocelot" -> new int[]{3, 1};
+            case "fox" -> new int[]{4, 1};
+            case "bee" -> new int[]{0, 2};
+            case "panda" -> new int[]{1, 2};
+            case "turtle" -> new int[]{2, 2};
+            case "axolotl" -> new int[]{3, 2};
+            case "frog" -> new int[]{4, 2};
+            case "mooshroom" -> new int[]{0, 3};
+            case "sniffer" -> new int[]{1, 3};
+            case "strider" -> new int[]{2, 3};
+            case "hoglin" -> new int[]{3, 3};
+            default -> null;
+        };
     }
 
     private void drawModeSwitch(GuiGraphics graphics, int x, int y) {

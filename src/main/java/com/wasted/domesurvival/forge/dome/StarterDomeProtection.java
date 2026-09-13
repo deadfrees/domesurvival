@@ -177,6 +177,21 @@ public final class StarterDomeProtection {
 
         for (PlannedBlock planned :
                 DomeStructurePlanner.planFullV23(DomeSpec.wastedV1())) {
+            addProtectedPlannedBlock(structurePositions, panelMountPositions, planned);
+        }
+        for (PlannedBlock planned :
+                DomeStructurePlanner.planUndergroundWall(DomeSpec.wastedV1())) {
+            addProtectedPlannedBlock(structurePositions, panelMountPositions, planned);
+        }
+
+        return new ProtectionMask(structurePositions, panelMountPositions);
+    }
+
+    private static void addProtectedPlannedBlock(
+            LongSet structurePositions,
+            LongSet panelMountPositions,
+            PlannedBlock planned
+    ) {
             StructureMaterial material = planned.material();
 
             if (material != StructureMaterial.GLASS
@@ -184,7 +199,7 @@ public final class StarterDomeProtection {
                     && material != StructureMaterial.FOUNDATION
                     && material != StructureMaterial.AIRLOCK_DOOR
                     && material != StructureMaterial.AIRLOCK_PANEL) {
-                continue;
+                return;
             }
 
             BlockPoint point = planned.point();
@@ -197,9 +212,6 @@ public final class StarterDomeProtection {
                 panelMountPositions.add(new BlockPos(point.x(), point.y(), point.z() - 1).asLong());
                 panelMountPositions.add(new BlockPos(point.x(), point.y(), point.z() + 1).asLong());
             }
-        }
-
-        return new ProtectionMask(structurePositions, panelMountPositions);
     }
 
     private record ProtectionMask(

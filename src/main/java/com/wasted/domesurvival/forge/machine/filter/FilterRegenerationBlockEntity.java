@@ -3,6 +3,7 @@ package com.wasted.domesurvival.forge.machine.filter;
 import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.item.WaterFilterItem;
 import com.wasted.domesurvival.forge.machine.energy.MachineEnergyStorage;
+import com.wasted.domesurvival.forge.machine.side.CapabilityViews;
 import com.wasted.domesurvival.forge.machine.oxygen.complex.OxygenComplexFilters;
 import com.wasted.domesurvival.forge.sound.MachineAmbientSoundService;
 import net.minecraft.core.BlockPos;
@@ -127,7 +128,11 @@ public final class FilterRegenerationBlockEntity extends BlockEntity implements 
         }
     };
 
-    private LazyOptional<IItemHandler> itemCapability = LazyOptional.of(() -> automationItemView);
+    private final IItemHandler itemInputView = CapabilityViews.inputItems(automationItemView);
+    private final IItemHandler itemOutputView = CapabilityViews.outputItems(automationItemView);
+    private LazyOptional<IItemHandler> itemInputCapability = LazyOptional.of(() -> itemInputView);
+    private LazyOptional<IItemHandler> itemOutputCapability = LazyOptional.of(() -> itemOutputView);
+    private LazyOptional<IItemHandler> itemInternalCapability = LazyOptional.of(() -> automationItemView);
     private LazyOptional<IEnergyStorage> energyCapability = LazyOptional.of(() -> energyInputView);
 
     private int progress;
@@ -285,22 +290,35 @@ public final class FilterRegenerationBlockEntity extends BlockEntity implements 
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) return itemCapability.cast();
-        if (cap == ForgeCapabilities.ENERGY) return energyCapability.cast();
+        Direction front = getBlockState().getValue(FilterRegenerationBlock.FACING);
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if (side == null) return itemInternalCapability.cast();
+            if (side == Direction.DOWN) return itemOutputCapability.cast();
+            if (side != front) return itemInputCapability.cast();
+            return LazyOptional.empty();
+        }
+        if (cap == ForgeCapabilities.ENERGY) {
+            if (side == null || (side != front && side != Direction.DOWN)) return energyCapability.cast();
+            return LazyOptional.empty();
+        }
         return super.getCapability(cap, side);
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        itemCapability.invalidate();
+        itemInputCapability.invalidate();
+        itemOutputCapability.invalidate();
+        itemInternalCapability.invalidate();
         energyCapability.invalidate();
     }
 
     @Override
     public void reviveCaps() {
         super.reviveCaps();
-        itemCapability = LazyOptional.of(() -> automationItemView);
+        itemInputCapability = LazyOptional.of(() -> itemInputView);
+        itemOutputCapability = LazyOptional.of(() -> itemOutputView);
+        itemInternalCapability = LazyOptional.of(() -> automationItemView);
         energyCapability = LazyOptional.of(() -> energyInputView);
     }
 

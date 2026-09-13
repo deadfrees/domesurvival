@@ -22,6 +22,7 @@
     tags: ["ds_visual_story"]
     x: 0.0d
     y: 0.0d
+    hide_dependency_lines: false
     shape: "hexagon"
     size: 1.25d
     icon_scale: 0.82d
@@ -77,8 +78,9 @@
     title: "Инструмент земледельца"
     icon: "minecraft:iron_hoe"
     tags: ["ds_visual_farming"]
-    x: -4.5d
-    y: 2.4d
+    x: -1.6d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "rsquare"
     size: 1.03d
     icon_scale: 0.86d
@@ -130,8 +132,9 @@
     title: "Семенной фонд"
     icon: "minecraft:wheat_seeds"
     tags: ["ds_visual_farming"]
-    x: -1.5d
-    y: 2.4d
+    x: -4.8d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "rsquare"
     size: 1.03d
     icon_scale: 0.86d
@@ -186,8 +189,9 @@
     title: "Вода для грядок"
     icon: "minecraft:water_bucket"
     tags: ["ds_visual_farming"]
-    x: 1.5d
-    y: 2.4d
+    x: 4.8d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "rsquare"
     size: 1.03d
     icon_scale: 0.86d
@@ -238,8 +242,9 @@
     title: "Компост вместо мусора"
     icon: "minecraft:composter"
     tags: ["ds_visual_farming"]
-    x: 4.5d
-    y: 2.4d
+    x: 1.6d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "rsquare"
     size: 1.03d
     icon_scale: 0.86d
@@ -296,7 +301,8 @@
     icon: "minecraft:wheat"
     tags: ["ds_visual_farming"]
     x: 0.0d
-    y: 4.8d
+    y: 6.0d
+    hide_dependency_lines: false
     shape: "circle"
     size: 1.14d
     icon_scale: 0.84d
@@ -352,8 +358,9 @@
     title: "Не съедать всё сразу"
     icon: "minecraft:wheat"
     tags: ["ds_visual_resource"]
-    x: 0.0d
-    y: 7.2d
+    x: -1.6d
+    y: 9.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
@@ -363,7 +370,7 @@
       "Один зрелый куст — тест. Теперь нужен реальный запас зерна для кухни и пересадки.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Соберите минимум 40 пшеницы.\",\"color\":\"white\"}",
+      "{\"text\":\"Соберите 24 пшеницы: часть оставьте на семена, часть направьте в пищевой резерв.\",\"color\":\"white\"}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
       "{\"text\":\"FTB автоматически проверяет количество в инвентаре.\",\"color\":\"gray\"}"
@@ -373,7 +380,7 @@
         id: "14A2F681A7392C1F"
           type: "item"
           item: "minecraft:wheat"
-          count: 40L
+          count: 24L
       }
     ]
     rewards: [
@@ -406,8 +413,9 @@
     title: "Хлебный резерв"
     icon: "minecraft:bread"
     tags: ["ds_visual_resource"]
-    x: 0.0d
-    y: 9.6d
+    x: -3.2d
+    y: 12.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
@@ -417,7 +425,7 @@
       "Хлеб остаётся базовой едой, просто теперь он должен быть резервом, а не единственным рационом.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Подготовьте минимум 20 хлеба.\",\"color\":\"white\"}",
+      "{\"text\":\"Подготовьте 12 хлеба, не расходуя семенной фонд.\",\"color\":\"white\"}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
       "{\"text\":\"FTB автоматически проверяет количество.\",\"color\":\"gray\"}"
@@ -427,7 +435,7 @@
         id: "61097746034E51E4"
           type: "item"
           item: "minecraft:bread"
-          count: 20L
+          count: 12L
       }
     ]
     rewards: [
@@ -460,8 +468,9 @@
     title: "Вторая культура"
     icon: "minecraft:carrot"
     tags: ["ds_visual_farming"]
-    x: 0.0d
-    y: 12.0d
+    x: -1.6d
+    y: 15.0d
+    hide_dependency_lines: false
     shape: "rsquare"
     size: 1.04d
     icon_scale: 0.86d
@@ -517,7 +526,8 @@
     icon: "minecraft:carrot"
     tags: ["ds_visual_farming"]
     x: 0.0d
-    y: 14.4d
+    y: 18.0d
+    hide_dependency_lines: false
     shape: "circle"
     size: 1.12d
     icon_scale: 0.84d
@@ -574,7 +584,8 @@
     icon: "minecraft:potato"
     tags: ["ds_visual_farming"]
     x: 0.0d
-    y: 16.8d
+    y: 21.0d
+    hide_dependency_lines: false
     shape: "rsquare"
     size: 1.04d
     icon_scale: 0.86d
@@ -630,7 +641,8 @@
     icon: "minecraft:potato"
     tags: ["ds_visual_farming"]
     x: 0.0d
-    y: 19.2d
+    y: 24.0d
+    hide_dependency_lines: false
     shape: "circle"
     size: 1.12d
     icon_scale: 0.84d
@@ -683,18 +695,20 @@
   },
   {
     id: "335799FD690F911A"
-    title: "Запас в компактной форме"
+    title: "Аварийный запас зерна"
     icon: "minecraft:hay_block"
     tags: ["ds_visual_resource"]
-    x: 4.2d
-    y: 9.6d
+    x: 0.0d
+    y: 12.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
     min_width: 340
     dependencies: ["5CE40D096707A2AD"]
+    optional: true
     description: [
-      "Зерно занимает место. Часть запаса удобнее хранить блоками и разбирать по необходимости.",
+      "Необязательная страховка на случай неурожая: сено удобно хранить и разбирать обратно в зерно.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
       "{\"text\":\"Подготовьте минимум 4 тюка сена.\",\"color\":\"white\"}",
@@ -740,13 +754,15 @@
     title: "Удобрение в резерве"
     icon: "minecraft:bone_meal"
     tags: ["ds_visual_resource"]
-    x: -4.2d
-    y: 7.2d
+    x: 1.6d
+    y: 9.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
     min_width: 340
     dependencies: ["2B7E534D6B75AD7A"]
+    optional: true
     description: [
       "Компостер полезен только тогда, когда результат не исчезает в тот же момент.",
       "",
@@ -796,13 +812,15 @@
     title: "Фрукты с наших деревьев"
     icon: "minecraft:apple"
     tags: ["ds_visual_farming"]
-    x: 4.2d
-    y: 12.0d
+    x: 1.6d
+    y: 15.0d
+    hide_dependency_lines: false
     shape: "rsquare"
     size: 1.04d
     icon_scale: 0.86d
     min_width: 340
     dependencies: ["4F0ECE3FD861C35C"]
+    optional: true
     description: [
       "Деревья под Куполом поддерживают воздух и одновременно дают ещё один простой продукт.",
       "",
@@ -852,13 +870,15 @@
     title: "Свет над полем"
     icon: "minecraft:lantern"
     tags: ["ds_visual_environment"]
-    x: -4.2d
-    y: 19.2d
+    x: 3.2d
+    y: 12.0d
+    hide_dependency_lines: false
     shape: "circle"
     size: 1.14d
     icon_scale: 0.84d
     min_width: 340
     dependencies: ["6137A02708AF6AD5"]
+    optional: true
     description: [
       "Поле внутри Купола должно оставаться рабочим и ночью.",
       "",
@@ -909,13 +929,14 @@
     title: "Отдельная кладовая"
     icon: "minecraft:barrel"
     tags: ["ds_visual_resource"]
-    x: 4.2d
-    y: 19.2d
+    x: 0.0d
+    y: 30.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
     min_width: 340
-    dependencies: ["2492885B9D8F12E9", "335799FD690F911A", "0445603F30A02E87"]
+    dependencies: ["1F81854C544FB87C"]
     description: [
       "Общий склад уже существует. Еда должна лежать отдельно, чтобы не искать хлеб среди деталей машин.",
       "",
@@ -963,20 +984,21 @@
     title: "Рацион без монокультуры"
     icon: "minecraft:baked_potato"
     tags: ["ds_visual_milestone"]
-    x: -2.2d
-    y: 21.6d
+    x: 0.0d
+    y: 27.0d
+    hide_dependency_lines: false
     shape: "diamond"
     size: 1.28d
     icon_scale: 0.82d
     min_width: 340
-    dependencies: ["2492885B9D8F12E9", "5A8D75EB2724CC12"]
+    dependencies: ["2492885B9D8F12E9"]
     description: [
       "Теперь проверим, что новые культуры действительно стали едой, а не декорацией.",
       "",
       "Собери небольшой смешанный резерв.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте одновременно 20 хлеба, 10 моркови и 10 печёного картофеля.\",\"color\":\"white\"}",
+      "{\"text\":\"Имейте одновременно 12 хлеба, 8 моркови и 8 печёных картофелин.\",\"color\":\"white\"}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
       "{\"text\":\"FTB автоматически проверяет все три запаса.\",\"color\":\"gray\"}"
@@ -986,19 +1008,19 @@
         id: "6260AE40038C94A6"
           type: "item"
           item: "minecraft:bread"
-          count: 20L
+          count: 12L
       },
       {
         id: "7DD5A6244DA44A19"
           type: "item"
           item: "minecraft:carrot"
-          count: 10L
+          count: 8L
       },
       {
         id: "503C04C16AFCE8B6"
           type: "item"
           item: "minecraft:baked_potato"
-          count: 10L
+          count: 8L
       }
     ]
     rewards: [
@@ -1021,8 +1043,8 @@
         exclude_from_claim_all: true
         auto: "enabled"
         team_reward: true
-        item: "minecraft:cooked_beef"
-        count: 4
+        item: "minecraft:baked_potato"
+        count: 8
       }
     ]
   },
@@ -1031,13 +1053,14 @@
     title: "Кладовая готова"
     icon: "minecraft:barrel"
     tags: ["ds_visual_milestone"]
-    x: 2.2d
-    y: 21.6d
+    x: 0.0d
+    y: 33.0d
+    hide_dependency_lines: false
     shape: "diamond"
     size: 1.28d
     icon_scale: 0.82d
     min_width: 340
-    dependencies: ["3595CC264502D856", "1F81854C544FB87C"]
+    dependencies: ["3595CC264502D856"]
     description: [
       "Запас есть. Теперь ему нужно постоянное место.",
       "",
@@ -1089,7 +1112,8 @@
     icon: "minecraft:golden_carrot"
     tags: ["ds_visual_milestone"]
     x: 0.0d
-    y: 24.0d
+    y: 36.0d
+    hide_dependency_lines: false
     shape: "octagon"
     size: 1.54d
     icon_scale: 0.78d

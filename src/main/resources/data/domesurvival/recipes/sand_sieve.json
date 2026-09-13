@@ -7,7 +7,7 @@
     "IHI"
   ],
   "key": {
-    "I": { "tag": "forge:ingots/iron" },
+    "I": { "tag": "forge:ingots/tin" },
     "B": { "item": "minecraft:iron_bars" },
     "C": { "tag": "forge:ingots/copper" },
     "P": { "item": "minecraft:piston" },

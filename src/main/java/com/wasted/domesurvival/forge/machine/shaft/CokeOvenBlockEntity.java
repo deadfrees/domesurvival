@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.machine.shaft;
 
 import com.wasted.domesurvival.forge.item.ModItems;
+import com.wasted.domesurvival.forge.machine.side.CapabilityViews;
 import com.wasted.domesurvival.forge.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -52,13 +53,15 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         @Override protected void onContentsChanged(int slot) { setChanged(); }
     };
 
-    private LazyOptional<IItemHandler> inputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COAL, SLOT_FUEL + 1));
-    private LazyOptional<IItemHandler> outputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COKE, SLOT_COKE + 1));
+    private LazyOptional<IItemHandler> inputCapability = LazyOptional.of(() ->
+            CapabilityViews.inputItems(new RangedWrapper(inventory, SLOT_COAL, SLOT_FUEL + 1)));
+    private LazyOptional<IItemHandler> outputCapability = LazyOptional.of(() ->
+            CapabilityViews.outputItems(new RangedWrapper(inventory, SLOT_COKE, SLOT_COKE + 1)));
 
     private int progress;
     private int burnTime;
     private int burnTimeMax;
-    private boolean legacyPartsChecked;
+    private int portRepairCooldown;
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -80,9 +83,12 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, CokeOvenBlockEntity oven) {
-        if (!oven.legacyPartsChecked) {
+        if (oven.portRepairCooldown-- <= 0) {
+            // Old builds occupied the neighbouring pipe cells with invisible
+            // proxy blocks. Remove them so automation can touch the controller
+            // directly; sided capabilities below remain strictly one-way.
             CokeOvenBlock.clearLegacyParts(level, pos);
-            oven.legacyPartsChecked = true;
+            oven.portRepairCooldown = 40;
         }
         boolean changed = false;
         if (oven.burnTime > 0) {
@@ -123,6 +129,24 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
             changed = true;
         }
         if (changed) oven.setChanged();
+
+        if (level.getGameTime() % 5L == 0L && oven.exportFinishedCoke(level, pos, state)) {
+            oven.setChanged();
+        }
+    }
+
+    private boolean exportFinishedCoke(Level level, BlockPos controller, BlockState state) {
+        Direction facing = state.getValue(CokeOvenBlock.FACING);
+        Direction left = facing.getCounterClockWise();
+        if (FurnaceOutputTransfer.push(level, inventory, SLOT_COKE,
+                controller.relative(left), left.getOpposite())) return true;
+
+        Direction rear = facing.getOpposite();
+        if (FurnaceOutputTransfer.push(level, inventory, SLOT_COKE,
+                controller.relative(rear), facing)) return true;
+
+        return FurnaceOutputTransfer.push(level, inventory, SLOT_COKE,
+                controller.below(), Direction.UP);
     }
 
     public static boolean isValidCoal(ItemStack stack) { return stack.is(Items.COAL); }
@@ -182,10 +206,12 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER && side != null) {
             Direction facing = getBlockState().getValue(CokeOvenBlock.FACING);
-            if (side == facing.getCounterClockWise() || side == facing.getOpposite()) {
+            // The right connector is the dedicated feed port.
+            if (side == facing.getClockWise()) {
                 return inputCapability.cast();
             }
-            if (side == facing.getClockWise() || side == Direction.DOWN) {
+            // Finished coke can be pulled from the left, rear and bottom connectors.
+            if (side == facing.getCounterClockWise() || side == facing.getOpposite() || side == Direction.DOWN) {
                 return outputCapability.cast();
             }
             return LazyOptional.empty();
@@ -203,8 +229,10 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     @Override
     public void reviveCaps() {
         super.reviveCaps();
-        inputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COAL, SLOT_FUEL + 1));
-        outputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_COKE, SLOT_COKE + 1));
+        inputCapability = LazyOptional.of(() ->
+                CapabilityViews.inputItems(new RangedWrapper(inventory, SLOT_COAL, SLOT_FUEL + 1)));
+        outputCapability = LazyOptional.of(() ->
+                CapabilityViews.outputItems(new RangedWrapper(inventory, SLOT_COKE, SLOT_COKE + 1)));
     }
 
     @Override public Component getDisplayName() { return Component.translatable("block.domesurvival.coke_oven"); }

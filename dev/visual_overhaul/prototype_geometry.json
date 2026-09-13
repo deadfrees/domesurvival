@@ -1,0 +1,27 @@
+{
+  "cuboids": 69,
+  "quads": 218,
+  "triangles": 436,
+  "removedHiddenFaces": 196,
+  "bounds": [
+    0,
+    0,
+    0,
+    16,
+    16,
+    16
+  ],
+  "textures": [
+    "domesurvival:block/hopper/steel_body",
+    "domesurvival:block/hopper/steel_rim",
+    "domesurvival:block/filter_regenerator_metal_dark",
+    "domesurvival:block/filter_regenerator_black",
+    "domesurvival:block/filter_regenerator_mesh",
+    "domesurvival:block/filter_regenerator_black",
+    "domesurvival:block/filter_regenerator_hazard",
+    "domesurvival:block/filter_regenerator_vent"
+  ],
+  "newTextures": 0,
+  "newBERs": 0,
+  "master": "source_assets\\blockbench\\machines\\filter_regeneration_station.bbmodel"
+}

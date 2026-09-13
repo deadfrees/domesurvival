@@ -13,9 +13,8 @@ import java.util.Locale;
 /**
  * Filter Regeneration Station UI.
  *
- * <p>The visual architecture intentionally mirrors CoalGeneratorScreen:
- * 220x266 industrial panel, identical frame/slot construction, identical
- * inventory spacing, vertical energy meter and horizontal work bar.</p>
+ * <p>Service-cassette prototype: the two existing slots and every menu coordinate
+ * are preserved. The filter is repaired in slot I; slot II supplies the media.</p>
  */
 public final class FilterRegenerationScreen extends AbstractContainerScreen<FilterRegenerationMenu> {
     private static final int PANEL_WIDTH = 220;
@@ -95,13 +94,20 @@ public final class FilterRegenerationScreen extends AbstractContainerScreen<Filt
             return;
         }
 
-        if (isHovering(FILTER_SLOT_BG_X, FILTER_SLOT_BG_Y, MACHINE_SLOT_BG_SIZE, MACHINE_SLOT_BG_SIZE, mouseX, mouseY)) {
-            guiGraphics.renderTooltip(font, Component.literal("Повреждённый фильтр"), mouseX, mouseY);
+        // Keep vanilla item/durability tooltips when a slot contains an item.
+        if (!menu.getSlot(0).hasItem() && isHovering(FILTER_SLOT_BG_X, FILTER_SLOT_BG_Y,
+                MACHINE_SLOT_BG_SIZE, MACHINE_SLOT_BG_SIZE, mouseX, mouseY)) {
+            guiGraphics.renderTooltip(font, Component.literal("I: фильтр восстанавливается в этом же слоте"), mouseX, mouseY);
             return;
         }
 
-        if (isHovering(MEDIA_SLOT_BG_X, MEDIA_SLOT_BG_Y, MACHINE_SLOT_BG_SIZE, MACHINE_SLOT_BG_SIZE, mouseX, mouseY)) {
-            guiGraphics.renderTooltip(font, Component.literal("Регенерационный сорбент"), mouseX, mouseY);
+        if (!menu.getSlot(1).hasItem() && isHovering(MEDIA_SLOT_BG_X, MEDIA_SLOT_BG_Y,
+                MACHINE_SLOT_BG_SIZE, MACHINE_SLOT_BG_SIZE, mouseX, mouseY)) {
+            guiGraphics.renderTooltip(font, Component.literal("II: регенерационный сорбент — расходуется"), mouseX, mouseY);
+            return;
+        }
+        if (isHovering(14, 126, 125, font.lineHeight, mouseX, mouseY)) {
+            guiGraphics.renderTooltip(font, statusText(), mouseX, mouseY);
         }
     }
 
@@ -110,8 +116,10 @@ public final class FilterRegenerationScreen extends AbstractContainerScreen<Filt
         int x = leftPos;
         int y = topPos;
 
-        // Same panel construction and palette as CoalGeneratorScreen.
-        drawIndustrialPanel(guiGraphics, x, y, PANEL_WIDTH, PANEL_HEIGHT, 0xFF30363A);
+        drawIndustrialPanel(guiGraphics, x, y, PANEL_WIDTH, PANEL_HEIGHT, 0xFF353E3D);
+        // Inset header, service dividers and restrained resource identification.
+        guiGraphics.fill(x + 5, y + 5, x + PANEL_WIDTH - 5, y + 20, 0xFF1B2324);
+        guiGraphics.fill(x + 10, y + 20, x + PANEL_WIDTH - 10, y + 21, 0xFF65716B);
 
         // Energy section.
         drawThinFrame(
@@ -133,10 +141,10 @@ public final class FilterRegenerationScreen extends AbstractContainerScreen<Filt
 
         int capacity = Math.max(1, menu.energyCapacity());
         int energyInnerHeight = ENERGY_METER_H - 6;
-        int energyHeight = Math.min(
+        int energyHeight = Math.max(0, Math.min(
                 energyInnerHeight,
                 (int) ((long) menu.energyStored() * energyInnerHeight / capacity)
-        );
+        ));
         if (energyHeight > 0) {
             int fillBottom = y + ENERGY_METER_Y + ENERGY_METER_H - 3;
             int fillTop = fillBottom - energyHeight;
@@ -171,10 +179,10 @@ public final class FilterRegenerationScreen extends AbstractContainerScreen<Filt
         drawSlot(guiGraphics, x + MEDIA_SLOT_BG_X, y + MEDIA_SLOT_BG_Y, MACHINE_SLOT_BG_SIZE);
 
         int progressMax = Math.max(1, menu.progressMax());
-        int processWidth = Math.min(
+        int processWidth = Math.max(0, Math.min(
                 PROCESS_BAR_W - 6,
-                menu.progress() * (PROCESS_BAR_W - 6) / progressMax
-        );
+                (int) ((long) menu.progress() * (PROCESS_BAR_W - 6) / progressMax)
+        ));
         if (processWidth > 0) {
             // Green process accent distinguishes regeneration from combustion,
             // while the frame geometry stays exactly in the generator family.
@@ -216,11 +224,15 @@ public final class FilterRegenerationScreen extends AbstractContainerScreen<Filt
                     INVENTORY_SLOT_SIZE
             );
         }
+        // Slot I is both input and restored result; this is not a third output slot.
+        guiGraphics.fill(x + 10, y + 250, x + PANEL_WIDTH - 10, y + 251, 0xFF65716B);
     }
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         drawClampedText(guiGraphics, title, 10, 8, PANEL_WIDTH - 20, 0xFFE0E4E6);
+        drawCenteredClampedText(guiGraphics, Component.literal("I"), 146, 94, 24, 0xFF9DC2A4);
+        drawCenteredClampedText(guiGraphics, Component.literal("II"), 178, 94, 24, 0xFFC5A252);
 
         drawClampedText(
                 guiGraphics,
@@ -230,6 +242,8 @@ public final class FilterRegenerationScreen extends AbstractContainerScreen<Filt
                 PANEL_WIDTH - 28,
                 0xFFC5CBCD
         );
+        drawClampedText(guiGraphics, Component.literal("I — фильтр · II — сорбент"),
+                10, 254, PANEL_WIDTH - 20, 0xFFACB7AF);
 
         drawCenteredClampedText(
                 guiGraphics,
@@ -348,7 +362,8 @@ public final class FilterRegenerationScreen extends AbstractContainerScreen<Filt
         int inset = Math.max(2, (size - contentSize) / 2);
 
         guiGraphics.fill(x, y, x + size, y + size, 0xFF0D1012);
-        guiGraphics.fill(x + 1, y + 1, x + size - 1, y + size - 1, 0xFF3E464B);
+        guiGraphics.fill(x + 1, y + 1, x + size - 1, y + size - 1, 0xFF65716B);
+        guiGraphics.fill(x + 2, y + 2, x + size - 2, y + size - 2, 0xFF303A3B);
         guiGraphics.fill(
                 x + inset,
                 y + inset,

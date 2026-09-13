@@ -22,6 +22,21 @@ function Require-Text {
     }
 }
 
+function Forbid-Text {
+    param([string]$RelativePath, [string[]]$Needles)
+    $path = Join-Path $projectPath $RelativePath
+    if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
+        $errors.Add("Missing file: $RelativePath")
+        return
+    }
+    $text = Get-Content -LiteralPath $path -Raw
+    foreach ($needle in $Needles) {
+        if ($text.Contains($needle)) {
+            $errors.Add("Obsolete '$needle' remains in $RelativePath")
+        }
+    }
+}
+
 Require-Text "src\main\resources\domesurvival.mixins.json" @("RecipeManagerMixin")
 Require-Text "src\main\java\com\wasted\domesurvival\forge\network\ModNetwork.java" @('PROTOCOL_VERSION = "7"', "TechnologySyncPacket", "BioModuleRegistrySyncPacket")
 Require-Text "src\main\java\com\wasted\domesurvival\forge\technology\TechnologyRegistry.java" @(
@@ -37,12 +52,17 @@ Require-Text "src\main\java\com\wasted\domesurvival\forge\technology\TechnologyR
 )
 Require-Text "src\main\java\com\wasted\domesurvival\forge\machine\shaft\CokeOvenBlockEntity.java" @(
     "ModItems.COAL_COKE",
-    "PROCESS_TIME = 2_250",
+    "PROCESS_TIME = 1_600",
     "Items.COAL",
     "getInputPortCapability",
     "getOutputPortCapability",
     "inputCapability",
-    "outputCapability"
+    "outputCapability",
+    "controller.relative(left)",
+    "controller.relative(rear)",
+    "controller.below()",
+    "if (side == facing.getClockWise())",
+    "if (side == facing.getCounterClockWise() || side == facing.getOpposite() || side == Direction.DOWN)"
 )
 Require-Text "src\main\java\com\wasted\domesurvival\forge\machine\shaft\ShaftFurnaceBlockEntity.java" @(
     "ModItems.STEEL_INGOT",
@@ -56,7 +76,32 @@ Require-Text "src\main\java\com\wasted\domesurvival\forge\machine\shaft\ShaftFur
     "getCounterClockWise",
     "getClockWise",
     "getOpposite",
-    "Direction.DOWN"
+    "Direction.DOWN",
+    "controller.relative(left)",
+    "controller.relative(rear)",
+    "controller.below()",
+    "if (side == facing.getClockWise())",
+    "if (side == facing.getCounterClockWise() || side == facing.getOpposite() || side == Direction.DOWN)"
+)
+Forbid-Text "src\main\java\com\wasted\domesurvival\forge\machine\shaft\CokeOvenBlockEntity.java" @(
+    "ensureAutomationPorts"
+)
+Forbid-Text "src\main\java\com\wasted\domesurvival\forge\machine\shaft\ShaftFurnaceBlockEntity.java" @(
+    "ensureAutomationPorts"
+)
+Require-Text "src\main\resources\assets\domesurvival\models\item\solar_panel_mk1.json" @(
+    "domesurvival:item/solar_generator_mk1"
+)
+Require-Text "src\main\resources\assets\domesurvival\models\item\solar_panel_mk2.json" @(
+    "domesurvival:item/solar_generator_mk2"
+)
+Require-Text "src\main\resources\assets\domesurvival\models\item\solar_panel_mk3.json" @(
+    "domesurvival:item/solar_generator_mk3"
+)
+Require-Text "src\main\resources\assets\domesurvival\lang\ru_ru.json" @(
+    "Солнечная панель класса «Азурит»",
+    "Солнечная панель класса «Малахит»",
+    "Солнечная панель класса «Аметист»"
 )
 Require-Text "src\main\resources\data\domesurvival\recipes\coke_oven.json" @(
     "minecraft:bricks",
@@ -192,9 +237,13 @@ Require-Text "src\main\java\com\wasted\domesurvival\forge\machine\shaft\ShaftFur
 )
 Require-Text "src\main\java\com\wasted\domesurvival\forge\machine\shaft\ShaftFurnacePartBlockEntity.java" @(
     "ForgeCapabilities.ITEM_HANDLER",
-    "portSide",
     "getInputPortCapability",
     "getOutputPortCapability"
+)
+Require-Text "src\main\java\com\wasted\domesurvival\forge\machine\shaft\FurnaceOutputTransfer.java" @(
+    "ItemHandlerHelper.insertItemStacked",
+    "targetFace",
+    "simulate"
 )
 Require-Text "src\main\resources\assets\domesurvival\textures\block\metallurgy\detailed\shaft_furnace_fire.png.mcmeta" @(
     '"frametime": 4',
@@ -327,17 +376,22 @@ foreach ($machineEntity in @("CokeOvenBlockEntity.java", "ShaftFurnaceBlockEntit
     }
 }
 
-foreach ($file in @("38F6E366B367B563.snbt", "4A2E731D5C9B684F.snbt", "76CBABB04B110F16.snbt")) {
-    $source = Join-Path $projectPath "dev\quest_master\ftbquests\quests\chapters\$file"
+foreach ($sourceFile in Get-ChildItem -LiteralPath (Join-Path $projectPath "dev\quest_master\ftbquests\quests\chapters") -Filter "*.snbt" -File) {
+    $file = $sourceFile.Name
+    $source = $sourceFile.FullName
     $runtime = Join-Path $projectPath "run\config\ftbquests\quests\chapters\$file"
-    if ((Test-Path -LiteralPath $runtime) -and
-        ((Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash -ne (Get-FileHash -LiteralPath $runtime -Algorithm SHA256).Hash)) {
+    if (-not (Test-Path -LiteralPath $runtime)) {
+        $errors.Add("Runtime quest is missing: $file")
+    } elseif ((Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash -ne (Get-FileHash -LiteralPath $runtime -Algorithm SHA256).Hash) {
         $errors.Add("Runtime quest differs from source: $file")
     }
 }
 
-$builtJar = Join-Path $projectPath "build\libs\domesurvival-0.1.1.jar"
-$runtimeJar = Join-Path $projectPath "run\mods\domesurvival-0.1.1-dev.jar"
+$versionLine = Get-Content -LiteralPath (Join-Path $projectPath "gradle.properties") |
+    Where-Object { $_ -match '^mod_version=' } | Select-Object -First 1
+$modVersion = ($versionLine -split '=', 2)[1].Trim()
+$builtJar = Join-Path $projectPath "build\libs\domesurvival-$modVersion.jar"
+$runtimeJar = Join-Path $projectPath "run\mods\domesurvival-$modVersion-dev.jar"
 if ((Test-Path -LiteralPath $builtJar) -and (Test-Path -LiteralPath $runtimeJar) -and
     ((Get-FileHash -LiteralPath $builtJar -Algorithm SHA256).Hash -ne (Get-FileHash -LiteralPath $runtimeJar -Algorithm SHA256).Hash)) {
     $errors.Add("Runtime DomeSurvival JAR differs from the freshly built JAR")

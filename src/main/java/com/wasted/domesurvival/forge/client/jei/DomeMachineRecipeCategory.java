@@ -245,6 +245,7 @@ final class DomeMachineRecipeCategory implements IRecipeCategory<DomeMachineReci
                 case SAND_SIEVE -> new SlotLayout(
                         List.of(new Position(18, SLOT_Y), new Position(47, SLOT_Y)),
                         List.of(new Position(76, SLOT_Y)), List.of(O1, O0), List.of());
+                default -> new SlotLayout(                         List.of(new Position(18, SLOT_Y), new Position(47, SLOT_Y)),                         List.of(new Position(76, SLOT_Y)),                         List.of(O1, O0),                         List.of());
             };
         }
     }

@@ -7,19 +7,19 @@
   ],
   "key": {
     "S": {
-      "tag": "forge:ingots/steel"
+      "tag": "forge:plates/steel"
     },
     "A": {
       "tag": "forge:ingots/aluminum"
     },
     "N": {
-      "tag": "forge:ingots/nickel"
+      "tag": "forge:plates/nickel"
     },
     "M": {
       "item": "domesurvival:medium_oxygen_tank"
     },
     "G": {
-      "item": "minecraft:glass"
+      "tag": "forge:plates/goteium"
     }
   },
   "result": {

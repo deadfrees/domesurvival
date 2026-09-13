@@ -8,6 +8,7 @@
 
     { "entity": "minecraft:horse",     "rarity": "uncommon", "loot_group": "farm",            "weight": 9, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 2200, "energy_per_tick": 75, "process_ticks": 1900 },
     { "entity": "minecraft:donkey",    "rarity": "uncommon", "loot_group": "farm",            "weight": 9, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 2100, "energy_per_tick": 72, "process_ticks": 1850 },
+    { "entity": "minecraft:mule",      "rarity": "uncommon", "loot_group": "farm",            "weight": 7, "feed": "domesurvival:nutrient_mix", "feed_count": 5, "water_mb": 2300, "energy_per_tick": 78, "process_ticks": 2050 },
     { "entity": "minecraft:llama",     "rarity": "uncommon", "loot_group": "farm",            "weight": 9, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1900, "energy_per_tick": 68, "process_ticks": 1750 },
     { "entity": "minecraft:goat",      "rarity": "uncommon", "loot_group": "farm",            "weight": 9, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1500, "energy_per_tick": 62, "process_ticks": 1500 },
     { "entity": "minecraft:camel",     "rarity": "rare",     "loot_group": "farm",            "weight": 4, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 2600, "energy_per_tick": 88, "process_ticks": 2300 },
@@ -17,12 +18,14 @@
     { "entity": "minecraft:ocelot",    "rarity": "uncommon", "loot_group": "lab",             "weight": 8, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1300, "energy_per_tick": 62, "process_ticks": 1500 },
     { "entity": "minecraft:fox",       "rarity": "uncommon", "loot_group": "lab",             "weight": 8, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1200, "energy_per_tick": 60, "process_ticks": 1500 },
     { "entity": "minecraft:bee",       "rarity": "uncommon", "loot_group": "lab",             "weight": 8, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1000, "energy_per_tick": 62, "process_ticks": 1550 },
+    { "entity": "minecraft:parrot",    "rarity": "uncommon", "loot_group": "lab",             "weight": 7, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1000, "energy_per_tick": 60, "process_ticks": 1500 },
 
     { "entity": "minecraft:panda",     "rarity": "rare",     "loot_group": "genetic_archive", "weight": 4, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 2200, "energy_per_tick": 90, "process_ticks": 2400 },
     { "entity": "minecraft:turtle",    "rarity": "rare",     "loot_group": "genetic_archive", "weight": 4, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 2400, "energy_per_tick": 92, "process_ticks": 2500 },
     { "entity": "minecraft:axolotl",   "rarity": "rare",     "loot_group": "genetic_archive", "weight": 4, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 3000, "energy_per_tick": 96, "process_ticks": 2600 },
     { "entity": "minecraft:frog",      "rarity": "rare",     "loot_group": "genetic_archive", "weight": 4, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 2000, "energy_per_tick": 86, "process_ticks": 2200 },
     { "entity": "minecraft:mooshroom", "rarity": "rare",     "loot_group": "genetic_archive", "weight": 3, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 2100, "energy_per_tick": 88, "process_ticks": 2300 },
+    { "entity": "minecraft:polar_bear","rarity": "rare",     "loot_group": "genetic_archive", "weight": 3, "feed": "domesurvival:nutrient_mix", "feed_count": 7, "water_mb": 2800, "energy_per_tick":100, "process_ticks": 2750 },
     { "entity": "minecraft:sniffer",   "rarity": "special",  "loot_group": "genetic_archive", "weight": 1, "feed": "domesurvival:nutrient_mix", "feed_count": 8, "water_mb": 3600, "energy_per_tick":120, "process_ticks": 3200 },
 
     { "entity": "minecraft:strider",   "rarity": "special",  "loot_group": "nether",          "weight": 3, "feed": "domesurvival:nutrient_mix", "feed_count": 8, "water_mb": 1800, "energy_per_tick":110, "process_ticks": 2900 },

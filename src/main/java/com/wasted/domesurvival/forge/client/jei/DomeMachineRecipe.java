@@ -28,6 +28,8 @@ public record DomeMachineRecipe(
         OXYGEN_FILLER,
         BIO_REPAIR,
         BIO_INCUBATION,
-        SAND_SIEVE
+        SAND_SIEVE,
+        FORMING_PRESS,
+        FILTER_REGENERATION
     }
 }

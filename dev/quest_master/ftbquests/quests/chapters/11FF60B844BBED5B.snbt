@@ -7,14 +7,15 @@
   icon: "minecraft:barrier"
   always_invisible: true
   default_quest_shape: "none"
-  default_hide_dependency_lines: true
+  default_hide_dependency_lines: false
   progression_mode: "linear"
   quests: [
   {
     id: "31C0FE8D1487EA37"
     title: "__JOSEPH_STAGE_13_COMPLETE"
-    x: 0.0d
+    x: -8.0d
     y: 0.0d
+    hide_dependency_lines: false
     disable_toast: true
     tasks: [
       {
@@ -36,8 +37,9 @@
   {
     id: "3EFBBB5CC946B65C"
     title: "__JOSEPH_STAGE_14_COMPLETE"
-    x: 1.0d
+    x: -4.8d
     y: 0.0d
+    hide_dependency_lines: false
     disable_toast: true
     tasks: [
       {
@@ -59,8 +61,9 @@
   {
     id: "2B5067C09FEEEDED"
     title: "__JOSEPH_STAGE_15_COMPLETE"
-    x: 2.0d
+    x: -1.6d
     y: 0.0d
+    hide_dependency_lines: false
     disable_toast: true
     tasks: [
       {
@@ -82,8 +85,9 @@
   {
     id: "702F331B702620A5"
     title: "__JOSEPH_STAGE_16_COMPLETE"
-    x: 3.0d
+    x: 1.6d
     y: 0.0d
+    hide_dependency_lines: false
     disable_toast: true
     tasks: [
       {
@@ -105,8 +109,9 @@
   {
     id: "643B5A663ED36317"
     title: "__JOSEPH_FINAL_COMPLETE"
-    x: 4.0d
+    x: 4.8d
     y: 0.0d
+    hide_dependency_lines: false
     disable_toast: true
     tasks: [
       {
@@ -128,8 +133,9 @@
   {
     id: "70CE4EBCBA38CD21"
     title: "__GENETIC_ARCHIVE_SIGNAL_FOUND"
-    x: 5.0d
+    x: 8.0d
     y: 0.0d
+    hide_dependency_lines: false
     disable_toast: true
     tasks: [
       {

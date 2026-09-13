@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "CSC",
+    "VPV",
+    "WGW"
+  ],
+  "key": {
+    "C": {
+      "item": "domesurvival:solarite_crystal"
+    },
+    "S": {
+      "item": "domesurvival:solarite_block"
+    },
+    "V": {
+      "tag": "forge:plates/voltarium"
+    },
+    "P": {
+      "item": "domesurvival:solar_panel_mk2"
+    },
+    "W": {
+      "tag": "forge:wires/voltarium"
+    },
+    "G": {
+      "tag": "forge:gears/voltarium"
+    }
+  },
+  "result": {
+    "item": "domesurvival:solar_panel_mk3",
+    "count": 1
+  }
+}

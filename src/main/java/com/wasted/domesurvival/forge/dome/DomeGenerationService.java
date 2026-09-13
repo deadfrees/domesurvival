@@ -28,7 +28,7 @@ import java.util.Set;
 
 /** Builds/updates the dome in batches so one command cannot freeze the server tick. */
 public final class DomeGenerationService {
-    public static final int CURRENT_STRUCTURE_VERSION = 8; // V58: starter dome uses the universal V57 gate system
+    public static final int CURRENT_STRUCTURE_VERSION = 9; // Deep perimeter seal down to bedrock.
     private static final int BLOCKS_PER_TICK = 750;
     private static final Deque<PlannedBlock> QUEUE = new ArrayDeque<>();
 
@@ -54,7 +54,11 @@ public final class DomeGenerationService {
         if (running) return StartResult.ALREADY_RUNNING;
         if (DomeSavedData.get(level).isGenerated()) return StartResult.ALREADY_GENERATED;
 
-        List<PlannedBlock> plan = DomeStructurePlanner.planFullV23(DomeSavedData.get(level).domeSpec());
+        DomeSpec spec = DomeSavedData.get(level).domeSpec();
+        List<PlannedBlock> plan = concat(
+                DomeStructurePlanner.planFullV23(spec),
+                DomeStructurePlanner.planUndergroundWall(spec)
+        );
         resetAirlockOnFinish = true;
         begin(plan, CURRENT_STRUCTURE_VERSION, Operation.GENERATE);
         return StartResult.STARTED;
@@ -69,7 +73,7 @@ public final class DomeGenerationService {
         DomeSpec spec = DomeSavedData.get(level).domeSpec();
         List<PlannedBlock> v2 = DomeStructurePlanner.planV2UpgradeFromV14(spec);
         List<PlannedBlock> v23 = DomeStructurePlanner.planV23UpgradeFromV2(spec);
-        List<PlannedBlock> plan = switch (version) {
+        List<PlannedBlock> surfaceUpgrade = switch (version) {
             case 1 -> concat(concat(DomeStructurePlanner.planV14UpgradeFromV1(spec), v2), v23);
             case 2 -> concat(concat(DomeStructurePlanner.planV14UpgradeFromV11(spec), v2), v23);
             case 3 -> concat(concat(DomeStructurePlanner.planV14UpgradeFromV12(spec), v2), v23);
@@ -79,6 +83,7 @@ public final class DomeGenerationService {
             case 7 -> List.of(); // V58 is finalized by the post-build airlock migration below.
             default -> List.of();
         };
+        List<PlannedBlock> plan = concat(surfaceUpgrade, DomeStructurePlanner.planUndergroundWall(spec));
         resetAirlockOnFinish = version < 6;
         begin(plan, CURRENT_STRUCTURE_VERSION, Operation.UPGRADE);
         return StartResult.STARTED;

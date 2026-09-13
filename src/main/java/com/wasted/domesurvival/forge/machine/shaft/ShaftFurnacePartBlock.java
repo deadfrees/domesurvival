@@ -46,17 +46,17 @@ public final class ShaftFurnacePartBlock extends BaseEntityBlock {
     }
 
     public static boolean isInputPort(BlockState state) {
-        return state.getValue(LOCAL_X) == 0 && state.getValue(LOCAL_Y) == 0;
+        return state.getValue(LOCAL_X) == 2 && state.getValue(LOCAL_Y) == 0;
     }
 
     public static boolean isOutputPort(BlockState state) {
-        return state.getValue(LOCAL_X) == 2 && state.getValue(LOCAL_Y) == 0;
+        return state.getValue(LOCAL_X) == 0 && state.getValue(LOCAL_Y) == 0;
     }
 
     public static Direction portSide(BlockState state) {
         Direction facing = state.getValue(FACING);
-        if (isInputPort(state)) return facing.getCounterClockWise();
-        if (isOutputPort(state)) return facing.getClockWise();
+        if (isInputPort(state)) return facing.getClockWise();
+        if (isOutputPort(state)) return facing.getCounterClockWise();
         return Direction.UP;
     }
 

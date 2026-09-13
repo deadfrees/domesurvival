@@ -44,6 +44,15 @@
                                                }
                                            ]
                             },
+    "lanos_trunk_open":  {
+                              "subtitle":  "subtitles.domesurvival.lanos_trunk_open",
+                              "sounds":  [
+                                             {
+                                                 "name":  "domesurvival:lanos/trunk_open",
+                                                 "stream":  false
+                                             }
+                                         ]
+                          },
     "machine.coal_generator.loop":  {
                                         "sounds":  [
                                                        {

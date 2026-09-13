@@ -23,7 +23,10 @@ public record DomeSpec(
     }
 
     public static DomeSpec wastedV1() {
-        return new DomeSpec(-506, 62, -641, 50, 3, 45, -64);
+        // The underground refuge follows the same playable footprint as the
+        // surface dome. Natural terrain inside that cylinder is never planned
+        // or replaced; only its perimeter is sealed by the structure planner.
+        return new DomeSpec(-506, 62, -641, 50, 3, 50, -64);
     }
 
     /** Same authored dome geometry anchored at a player-selected LastWorld site. */

@@ -197,6 +197,12 @@ public final class ModBlocks {
                     .strength(2.0F, 6.0F)
                     .noOcclusion()));
 
+    // Internal linked cells: deliberately has no BlockItem and never appears in creative/JEI.
+    public static final RegistryObject<Block> LANOS_HITBOX_PART = BLOCKS.register("lanos_hitbox_part",
+            () -> new LanosHitboxPartBlock(BlockBehaviour.Properties.copy(Blocks.BARRIER)
+                    .strength(2.0F, 6.0F)
+                    .noOcclusion()));
+
     static {
         ITEMS.register("copper_furnace", () -> new BlockItem(COPPER_FURNACE.get(), new Item.Properties()));
         ITEMS.register("shaft_furnace", () -> new BlockItem(SHAFT_FURNACE.get(), new Item.Properties()));

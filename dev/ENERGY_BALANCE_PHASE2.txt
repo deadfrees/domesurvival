@@ -5,7 +5,7 @@ TRANSFORMER:
   runtime registration removed
   crafting recipe absent
   no creative/JEI item registry entry
-  legacy Java source kept only as unused development history
+  obsolete Java and resource files removed from the project
 
 ENERGY PIPE PRESENTATION:
   Tier I: 256 FE/t
@@ -15,7 +15,7 @@ ENERGY PIPE PRESENTATION:
 
 PROCESS ECONOMY CHECK:
   Forming Press: ~18.3-36.7 FE/t depending on recipe
-  Filter regeneration: 20 FE/t
+  Filter regeneration: 40 FE/t
   Water purifier: 15/19/25 FE/t depending on filter
   Oxygen electrolyzer: 12 FE/t
   Oxygen filler: 5 FE/t tank filling; ~16.7 FE/t room ventilation

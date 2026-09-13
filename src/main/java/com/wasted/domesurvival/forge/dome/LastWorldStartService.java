@@ -2,6 +2,8 @@ package com.wasted.domesurvival.forge.dome;
 
 import com.mojang.logging.LogUtils;
 import com.wasted.domesurvival.core.dome.DomeSpec;
+import com.wasted.domesurvival.core.dome.DomeStructurePlanner;
+import com.wasted.domesurvival.core.dome.PlannedBlock;
 import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.airlock.StarterDomeAirlockV58;
 import com.wasted.domesurvival.forge.block.ModBlocks;
@@ -50,9 +52,11 @@ public final class LastWorldStartService {
     private static final int TERRAFORM_BLOCKS_PER_TICK = 6000;
     private static final int TERRAFORM_TOP_CLEARANCE = 16;
     private static final int CLEANUP_BLOCKS_PER_TICK = 6000;
+    private static final int DEEP_WALL_BLOCKS_PER_TICK = 6000;
     private static final int TERRAFORM_UPDATE_FLAGS =
             Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_SUPPRESS_DROPS;
     private static final Deque<LastWorldDomeTransfer.Tile> QUEUE = new ArrayDeque<>();
+    private static final Deque<PlannedBlock> DEEP_WALL_QUEUE = new ArrayDeque<>();
 
     private static DomeSpec targetSpec;
     private static boolean running;
@@ -71,6 +75,7 @@ public final class LastWorldStartService {
     private static int removedProgressAnimals;
     private static int preparedSoilBlocks;
     private static int starterLights;
+    private static int deepWallChangedBlocks;
     private static Phase phase = Phase.IDLE;
 
     private LastWorldStartService() {
@@ -102,6 +107,7 @@ public final class LastWorldStartService {
         saved.setDomeLocation(site.center());
         targetSpec = selected;
         QUEUE.clear();
+        DEEP_WALL_QUEUE.clear();
         QUEUE.addAll(LastWorldDomeTransfer.tiles());
         total = QUEUE.size();
         placed = 0;
@@ -162,7 +168,18 @@ public final class LastWorldStartService {
             return;
         }
 
-        if (phase == Phase.CLEANING && !tickCleanup(level)) {
+        if (phase == Phase.CLEANING) {
+            if (!tickCleanup(level)) {
+                return;
+            }
+            beginDeepWall();
+            phase = Phase.SEALING_DEEP;
+            server.getPlayerList().broadcastSystemMessage(Component.literal(
+                    "[LastWorld] Стартовое состояние готово. Герметизируется подземный периметр до бедрока."), false);
+            return;
+        }
+
+        if (phase == Phase.SEALING_DEEP && !tickDeepWall(level)) {
             return;
         }
 
@@ -228,6 +245,7 @@ public final class LastWorldStartService {
     @SubscribeEvent
     public static synchronized void onServerStopped(ServerStoppedEvent event) {
         QUEUE.clear();
+        DEEP_WALL_QUEUE.clear();
         targetSpec = null;
         running = false;
         placed = 0;
@@ -422,6 +440,30 @@ public final class LastWorldStartService {
         return false;
     }
 
+    private static void beginDeepWall() {
+        DEEP_WALL_QUEUE.clear();
+        DEEP_WALL_QUEUE.addAll(DomeStructurePlanner.planUndergroundWall(targetSpec));
+        deepWallChangedBlocks = 0;
+    }
+
+    /** Places only the perimeter seal; natural blocks inside remain untouched. */
+    private static boolean tickDeepWall(ServerLevel level) {
+        int budget = DEEP_WALL_BLOCKS_PER_TICK;
+        while (budget-- > 0) {
+            PlannedBlock planned = DEEP_WALL_QUEUE.pollFirst();
+            if (planned == null) {
+                return true;
+            }
+
+            BlockPos pos = new BlockPos(planned.point().x(), planned.point().y(), planned.point().z());
+            if (!level.getBlockState(pos).is(ModBlocks.DOME_FOUNDATION.get())) {
+                level.setBlock(pos, ModBlocks.DOME_FOUNDATION.get().defaultBlockState(), TERRAFORM_UPDATE_FLAGS);
+                deepWallChangedBlocks++;
+            }
+        }
+        return DEEP_WALL_QUEUE.isEmpty();
+    }
+
     private static boolean isStarterTerrain(BlockState state) {
         if (state.is(Blocks.SAND) || state.is(Blocks.RED_SAND)) {
             return true;
@@ -568,6 +610,7 @@ public final class LastWorldStartService {
 
     private static void fail(MinecraftServer server, String reason) {
         QUEUE.clear();
+        DEEP_WALL_QUEUE.clear();
         running = false;
         phase = Phase.IDLE;
         targetSpec = null;
@@ -597,6 +640,7 @@ public final class LastWorldStartService {
         IDLE,
         PREPARING,
         PLACING,
-        CLEANING
+        CLEANING,
+        SEALING_DEEP
     }
 }

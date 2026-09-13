@@ -7,7 +7,7 @@
   ],
   "key": {
     "I": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:plates/steel"
     },
     "P": {
       "item": "domesurvival:pulse_matrix"
@@ -19,7 +19,7 @@
       "item": "minecraft:green_dye"
     },
     "C": {
-      "item": "minecraft:copper_ingot"
+      "tag": "forge:wires/silver"
     }
   },
   "result": {

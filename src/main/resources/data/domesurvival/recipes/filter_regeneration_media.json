@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "CSC",
-    "SRS",
+    "SNS",
     "CSC"
   ],
   "key": {
@@ -12,8 +12,8 @@
     "S": {
       "item": "minecraft:sand"
     },
-    "R": {
-      "item": "minecraft:redstone"
+    "N": {
+      "tag": "forge:raw_materials/nickel"
     }
   },
   "result": {

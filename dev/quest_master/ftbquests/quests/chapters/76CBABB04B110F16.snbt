@@ -1,2160 +1,2589 @@
 {
-  id: "76CBABB04B110F16"
-  group: ""
-  order_index: 6
-  filename: "76CBABB04B110F16"
-  title: "{\"text\":\"Промышленный район\",\"color\":\"#63D4DF\",\"bold\":true}"
-  icon: "domesurvival:oxygen_electrolyzer"
-  autofocus_id: "723BD8C7EB767885"
-  default_quest_shape: "rsquare"
-  default_quest_size: 1.0d
-  default_min_width: 340
-  default_hide_dependency_lines: false
-  progression_mode: "linear"
-  hide_quest_until_deps_complete: false
-  hide_quest_until_deps_visible: false
-  require_sequential_tasks: false
-  quests: [
-  {
-    id: "723BD8C7EB767885"
-    title: "Промышленный район"
-    icon: "domesurvival:oxygen_electrolyzer"
-    tags: ["ds_visual_story"]
-    x: 0.0d
-    y: 0.0d
-    shape: "hexagon"
-    size: 1.28d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["267C7B7925B99855"]
-    description: [
-      "Энергосеть работает. Теперь Куполу нужен район, где вода превращается в запас воздуха, а машины образуют одну технологическую цепь.",
-      "",
-      "Эта глава строит первую кислородную промышленность и открывает дальние вылазки.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Завершите предыдущую главу «Пусть горит свет».\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Автоматически после выполнения зависимости.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "641E623D7E47C4A2"
-        type: "advancement"
-        title: "Автоматическое действие"
-        advancement: "domesurvival:quest_actions/ch7_intro"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "0D20AFAC4A5791B5"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 723BD8C7EB767885 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "508A417909ABE69F"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:iron_ingot"
-        count: 2
-      }
-    ]
-  },
-  {
-    id: "7805EEAD5285FB87"
-    title: "Инструмент инженера"
-    icon: "domesurvival:machine_wrench"
-    tags: ["ds_visual_resource"]
-    x: -4.5d
-    y: 2.4d
-    shape: "rsquare"
-    size: 0.98d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["723BD8C7EB767885"]
-    description: [
-      "Промышленный участок нельзя собирать наугад: стороны машин и соединения придётся обслуживать.",
-      "",
-      "Ключ понадобится для настройки оборудования и труб.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 1 машинный ключ.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет предмет в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "769ED554D92A2A65"
-        type: "item"
-        item: "domesurvival:machine_wrench"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "7AD3252F1BFC9979"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 7805EEAD5285FB87 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "09833FD81B1DDE20"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:iron_ingot"
-        count: 2
-      }
-    ]
-  },
-  {
-    id: "636EE3BD758A2795"
-    title: "Три опоры машин"
-    icon: "domesurvival:machine_stabilizer"
-    tags: ["ds_visual_resource"]
-    x: -1.5d
-    y: 2.4d
-    shape: "rsquare"
-    size: 0.98d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["723BD8C7EB767885"]
-    description: [
-      "Очиститель, электролизёр и заправщик должны пережить непрерывную работу.",
-      "",
-      "Подготовьте отдельный стабилизатор для каждой основной машины.",
-      "",
-      "На этом же уровне металлургии усильте медную сетку сталью: она даёт лучший выход глины и отделяет редкие примеси.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 3 стабилизатора машин и 1 стальную сетку просеивателя.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "7B30DDEA4E72DA5C"
-        type: "item"
-        item: "domesurvival:machine_stabilizer"
-        count: 3L
-      },
-      {
-        id: "AE42B7F5C8E31096"
-        type: "item"
-        item: "domesurvival:steel_sieve_mesh"
-      }
-    ]
-    rewards: [
-      {
-        id: "7BA51A0EF8EE17A8"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 636EE3BD758A2795 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "1536BB608014B718"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:copper_ingot"
-        count: 4
-      }
-    ]
-  },
-  {
-    id: "029CAC5E844C7EB9"
-    title: "Сердце автоматики"
-    icon: "domesurvival:pulse_matrix"
-    tags: ["ds_visual_resource"]
-    x: 1.5d
-    y: 2.4d
-    shape: "rsquare"
-    size: 0.98d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["723BD8C7EB767885"]
-    description: [
-      "Пульсовая матрица синхронизирует промышленные циклы и защищает узлы от срыва.",
-      "",
-      "Нужны три матрицы — по одной на каждую основную машину.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 3 пульсовые матрицы.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "29D4E4935DFA4537"
-        type: "item"
-        item: "domesurvival:pulse_matrix"
-        count: 3L
-      }
-    ]
-    rewards: [
-      {
-        id: "703CB735BDB7505A"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 029CAC5E844C7EB9 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "4B191B72938B55AE"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:redstone"
-        count: 6
-      }
-    ]
-  },
-  {
-    id: "6AB2D7F0B4A14E41"
-    title: "Фильтры не вечны"
-    icon: "domesurvival:water_filter_cartridge"
-    tags: ["ds_visual_resource"]
-    x: 4.5d
-    y: 2.4d
-    shape: "rsquare"
-    size: 0.98d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["723BD8C7EB767885"]
-    description: [
-      "Пыль и примеси быстро съедают рабочий ресурс фильтра.",
-      "",
-      "Один картридж уйдёт в корпус очистителя, остальные останутся для запуска и резерва.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 4 картриджа водяного фильтра.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "08F09AB1F797E203"
-        type: "item"
-        item: "domesurvival:water_filter_cartridge"
-        count: 4L
-      }
-    ]
-    rewards: [
-      {
-        id: "45FD773B22CDA80F"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 6AB2D7F0B4A14E41 normal WATER_PURIFICATION_TECH_KNOWN"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "54FC8C142AFA8076"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:paper"
-        count: 8
-      }
-    ]
-  },
-  {
-    id: "57938AB76CC85A5F"
-    title: "Водяная магистраль"
-    icon: "domesurvival:basic_fluid_pipe"
-    tags: ["ds_visual_resource"]
-    x: -3.0d
-    y: 5.0d
-    shape: "rsquare"
-    size: 1.02d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["7805EEAD5285FB87", "636EE3BD758A2795"]
-    description: [
-      "Вёдра годятся для аварии, но не для промышленного контура.",
-      "",
-      "Запас труб должен позволить связать источник, очиститель, резервуар и электролизёр.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 16 базовых жидкостных труб.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "4AD4CA81045A60B7"
-        type: "item"
-        item: "domesurvival:basic_fluid_pipe"
-        count: 16L
-      }
-    ]
-    rewards: [
-      {
-        id: "6F7CB9A3AF0539E7"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 57938AB76CC85A5F normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "2A0BAB12ED2D86DA"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:iron_ingot"
-        count: 4
-      }
-    ]
-  },
-  {
-    id: "259B20A21C7C896A"
-    title: "Резерв чистой воды"
-    icon: "domesurvival:universal_tank"
-    tags: ["ds_visual_resource"]
-    x: 0.0d
-    y: 5.0d
-    shape: "rsquare"
-    size: 1.02d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["636EE3BD758A2795", "029CAC5E844C7EB9"]
-    description: [
-      "Производство кислорода не должно останавливаться из-за одного пустого ведра.",
-      "",
-      "Два резервуара разделят сырой и очищенный потоки.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 2 универсальных резервуара.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет оба блока.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "0E1355509ADD5C8D"
-        type: "item"
-        item: "domesurvival:universal_tank"
-        count: 2L
-      }
-    ]
-    rewards: [
-      {
-        id: "3AD1FC41B36AAFEC"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 259B20A21C7C896A normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "540E794248AFC40D"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:glass"
-        count: 8
-      }
-    ]
-  },
-  {
-    id: "30FBCDA1B2B3D398"
-    title: "Первый очиститель"
-    icon: "domesurvival:water_purifier"
-    tags: ["ds_visual_milestone"]
-    x: 3.0d
-    y: 5.0d
-    shape: "diamond"
-    size: 1.30d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["029CAC5E844C7EB9", "6AB2D7F0B4A14E41", "57938AB76CC85A5F", "259B20A21C7C896A"]
-    description: [
-      "Обычная вода слишком грязная для электролизёра.",
-      "",
-      "Соберите машину, которая выдаёт стабильный поток очищенной воды.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 1 очиститель воды.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет блок в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "04729F8C9FF0FB1A"
-        type: "item"
-        item: "domesurvival:water_purifier"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "3776251C1C462B0A"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 30FBCDA1B2B3D398 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "2F86504AB65215E2"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:coal"
-        count: 8
-      }
-    ]
-  },
-  {
-    id: "18B194C25C44CFAF"
-    title: "Поставь очиститель"
-    icon: "domesurvival:water_purifier"
-    tags: ["ds_visual_airlock"]
-    x: 1.5d
-    y: 7.5d
-    shape: "gear"
-    size: 1.15d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["30FBCDA1B2B3D398"]
-    description: [
-      "Корпус готов, но промышленность начинается только после монтажа.",
-      "",
-      "Поставьте очиститель в безопасной части Купола и подключите его к энергосети.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Установите очиститель воды внутри Купола.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Сервер автоматически фиксирует установку блока.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "4550B1D53ACA17AC"
-        type: "advancement"
-        title: "Автоматическое действие"
-        advancement: "domesurvival:quest_actions/ch7_purifier_placed"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "616340DF9D8CE82C"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 18B194C25C44CFAF normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "2794F5A637AE1191"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:water_bucket"
-        count: 1
-      }
-    ]
-  },
-  {
-    id: "7925344428A5F173"
-    title: "Вода без пыли"
-    icon: "minecraft:water_bucket"
-    tags: ["ds_visual_milestone"]
-    x: 0.0d
-    y: 10.0d
-    shape: "diamond"
-    size: 1.28d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["18B194C25C44CFAF"]
-    description: [
-      "Собранная машина ещё ничего не доказывает. Нужен первый настоящий объём очищенной воды.",
-      "",
-      "Подайте сырьё, фильтр и FE, дождитесь цикла, затем проверьте продукт.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Взаимодействуйте с очистителем или баком, где есть очищенная вода.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Сервер проверяет реальную жидкость в ёмкости, а не только наличие машины.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "02F1EEC4B258BD1D"
-        type: "advancement"
-        title: "Автоматическое действие"
-        advancement: "domesurvival:quest_actions/ch7_purified_water_ready"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "6E4841CEBAFBF820"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 7925344428A5F173 milestone OXYGEN_ELECTROLYSIS_TECH_KNOWN"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "18B5D172AE2D645E"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:lapis_lazuli"
-        count: 6
-      }
-    ]
-  },
-  {
-    id: "1ECEBF8458CC59EA"
-    title: "Разделить воду"
-    icon: "domesurvival:oxygen_electrolyzer"
-    tags: ["ds_visual_resource"]
-    x: 0.0d
-    y: 12.5d
-    shape: "gear"
-    size: 1.20d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["7925344428A5F173"]
-    description: [
-      "Очищенная вода — сырьё. Следующий узел отделит кислород и накопит его для выдачи.",
-      "",
-      "Электролизёр потребует одновременно чистую воду и стабильное питание FE.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 1 кислородный электролизёр.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет блок в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "5B8E4111AE737D1D"
-        type: "item"
-        item: "domesurvival:oxygen_electrolyzer"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "078BEAAD54BAD0AB"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 1ECEBF8458CC59EA normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "79D44BD72D5FE7CC"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:redstone"
-        count: 8
-      }
-    ]
-  },
-  {
-    id: "126C8CC96AC3F561"
-    title: "Поставь электролизёр"
-    icon: "domesurvival:oxygen_electrolyzer"
-    tags: ["ds_visual_airlock"]
-    x: 0.0d
-    y: 15.0d
-    shape: "gear"
-    size: 1.20d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["1ECEBF8458CC59EA"]
-    description: [
-      "Новый узел должен войти в уже работающую цепь воды и энергии.",
-      "",
-      "Оставьте место под выход кислорода и будущую синюю магистраль.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Установите кислородный электролизёр внутри Купола.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Сервер автоматически фиксирует установку блока.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "5CD9D2C21E85D265"
-        type: "advancement"
-        title: "Автоматическое действие"
-        advancement: "domesurvival:quest_actions/ch7_electrolyzer_placed"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "30B4A76FB5C6119B"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 126C8CC96AC3F561 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "50AD851D70CD6EC7"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:copper_ingot"
-        count: 8
-      }
-    ]
-  },
-  {
-    id: "6C2401658492032F"
-    title: "Первый кислород"
-    icon: "domesurvival:oxygen_electrolyzer"
-    tags: ["ds_visual_milestone"]
-    x: 0.0d
-    y: 17.5d
-    shape: "diamond"
-    size: 1.38d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["126C8CC96AC3F561"]
-    description: [
-      "Теперь нужно доказать, что весь контур действительно работает под нагрузкой.",
-      "",
-      "Подайте очищенную воду и FE, дождитесь завершения производственного цикла.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Взаимодействуйте с электролизёром, накопившим кислород.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Сервер проверяет фактический объём O₂ во внутреннем хранилище машины.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "00F7C74A3DC3B6BE"
-        type: "advancement"
-        title: "Автоматическое действие"
-        advancement: "domesurvival:quest_actions/ch7_oxygen_produced"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "5FD37F0A55AC22FF"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 6C2401658492032F milestone OXYGEN_PRODUCTION_ONLINE"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "76DBE4F4C947C17B"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest gate set OXYGEN_DISTRIBUTION_TECH_KNOWN"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "21C3974F97228E42"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:diamond"
-        count: 1
-      }
-    ]
-  },
-  {
-    id: "2C4771CE49E4FCD5"
-    title: "Синяя магистраль"
-    icon: "domesurvival:oxygen_pipe"
-    tags: ["ds_visual_resource"]
-    x: -2.5d
-    y: 20.0d
-    shape: "rsquare"
-    size: 1.04d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["6C2401658492032F"]
-    description: [
-      "Кислород нельзя переносить по водяной линии.",
-      "",
-      "Отдельная магистраль исключит смешение контуров и даст запас для расширения.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 16 кислородных труб.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "6CF50093B460F5D7"
-        type: "item"
-        item: "domesurvival:oxygen_pipe"
-        count: 16L
-      }
-    ]
-    rewards: [
-      {
-        id: "49132014E228D314"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 2C4771CE49E4FCD5 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "1AB3C06566FD08C8"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:iron_ingot"
-        count: 8
-      }
-    ]
-  },
-  {
-    id: "22DDCEABD0E620B4"
-    title: "Кислородный контур"
-    icon: "domesurvival:oxygen_pipe"
-    tags: ["ds_visual_airlock"]
-    x: -2.5d
-    y: 22.5d
-    shape: "gear"
-    size: 1.18d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["2C4771CE49E4FCD5"]
-    description: [
-      "Запас в сундуке не является трубопроводом.",
-      "",
-      "Соберите видимый рабочий участок, который можно продолжить до заправочной станции.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Установите не менее 6 кислородных труб внутри Купола.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Сервер считает реально поставленные кислородные трубы.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "103F2782BFCBCF20"
-        type: "advancement"
-        title: "Автоматическое действие"
-        advancement: "domesurvival:quest_actions/ch7_oxygen_line"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "03950238C69BF5C8"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 22DDCEABD0E620B4 normal OXYGEN_FILLING_TECH_KNOWN"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "41A420C0462E4531"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:glass"
-        count: 8
-      }
-    ]
-  },
-  {
-    id: "3848577B9691EC24"
-    title: "Заправочная станция"
-    icon: "domesurvival:oxygen_filler"
-    tags: ["ds_visual_resource"]
-    x: 0.0d
-    y: 25.0d
-    shape: "gear"
-    size: 1.20d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["22DDCEABD0E620B4"]
-    description: [
-      "Произвести кислород мало — его нужно безопасно загнать в переносной баллон.",
-      "",
-      "Заправщик завершает стационарную часть промышленного контура.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 1 кислородный заправщик.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет блок в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "0943D769D2F501B1"
-        type: "item"
-        item: "domesurvival:oxygen_filler"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "3583062412EF9FE9"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 3848577B9691EC24 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "62A3F5DA1302D412"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:piston"
-        count: 2
-      }
-    ]
-  },
-  {
-    id: "444141AA2A3ACB3E"
-    title: "Станция на месте"
-    icon: "domesurvival:oxygen_filler"
-    tags: ["ds_visual_milestone"]
-    x: 0.0d
-    y: 27.5d
-    shape: "gear"
-    size: 1.30d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["3848577B9691EC24"]
-    description: [
-      "Последний стационарный узел должен встать на линию и получить питание.",
-      "",
-      "Разместите станцию так, чтобы до неё дошли FE и кислород.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Установите кислородный заправщик внутри Купола.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Сервер автоматически фиксирует установку блока.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "21E8E73CF48229BA"
-        type: "advancement"
-        title: "Автоматическое действие"
-        advancement: "domesurvival:quest_actions/ch7_filler_placed"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "232DD396CC5745C5"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 444141AA2A3ACB3E milestone OXYGEN_FILLING_STATION_ONLINE"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "4284CE530F3E0B91"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest gate set PORTABLE_OXYGEN_TECH_KNOWN"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "0E56D1F58113DFEB"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:redstone_block"
-        count: 1
-      }
-    ]
-  },
-  {
-    id: "0EB4DDB0F86043F4"
-    title: "Малый кислородный баллон"
-    icon: "domesurvival:small_oxygen_tank"
-    tags: ["ds_visual_resource"]
-    x: -2.0d
-    y: 30.0d
-    shape: "rsquare"
-    size: 1.08d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["444141AA2A3ACB3E"]
-    description: [
-      "Первая переносная ёмкость невелика, зато её уже достаточно для контролируемой операции.",
-      "",
-      "Новый баллон создаётся пустым — впереди обязательная заправка.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 1 малый кислородный баллон.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет предмет в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "4DB1DB851BFBD287"
-        type: "item"
-        item: "domesurvival:small_oxygen_tank"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "7EF1009C9E511EEC"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 0EB4DDB0F86043F4 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "42F7E08522A5B4AB"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:leather"
-        count: 4
-      }
-    ]
-  },
-  {
-    id: "6BAAE8F963D04339"
-    title: "Маска — это не броня"
-    icon: "domesurvival:oxygen_mask"
-    tags: ["ds_visual_resource"]
-    x: 2.0d
-    y: 30.0d
-    shape: "rsquare"
-    size: 1.08d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["444141AA2A3ACB3E"]
-    description: [
-      "Баллон без маски не поддерживает дыхание, а маска без баллона остаётся пустой оболочкой.",
-      "",
-      "Она даёт воздух, но не защищает от солнца, погоды или ударов.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 1 кислородную маску.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет предмет в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "1FA57720198BD4BB"
-        type: "item"
-        item: "domesurvival:oxygen_mask"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "1AA98F0D3A7BA916"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 6BAAE8F963D04339 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "7A54817AFDAA941C"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:cooked_beef"
-        count: 8
-      }
-    ]
-  },
-  {
-    id: "478ADE8DCA760CBA"
-    title: "Полный запас воздуха"
-    icon: "domesurvival:small_oxygen_tank"
-    tags: ["ds_visual_milestone"]
-    x: 0.0d
-    y: 32.5d
-    shape: "diamond"
-    size: 1.42d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["0EB4DDB0F86043F4", "6BAAE8F963D04339"]
-    description: [
-      "Теперь станция должна выполнить работу целиком, а не просто стоять рядом с трубой.",
-      "",
-      "Подайте кислород и FE, вставьте малый баллон и дождитесь полного заполнения.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Получите полностью заправленный кислородный баллон.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Сервер проверяет реальный уровень кислорода в инвентаре или экипированном баллоне.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "13025BF9010C01A6"
-        type: "advancement"
-        title: "Автоматическое действие"
-        advancement: "domesurvival:quest_actions/ch7_tank_filled"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "5BC2605C8527AD33"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 478ADE8DCA760CBA milestone FIRST_OXYGEN_TANK_FILLED"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "55E673F12E3E7FDD"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest gate set SMALL_OXYGEN_TANK_OPERATIONAL"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "1A121DD760D0424C"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:golden_apple"
-        count: 1
-      }
-    ]
-  },
-  {
-    id: "7A2AF5AE3520F4A0"
-    title: "Первая защищённая вылазка"
-    icon: "domesurvival:surface_suit_chestplate"
-    tags: ["ds_visual_milestone"]
-    x: 0.0d
-    y: 35.0d
-    shape: "octagon"
-    size: 1.52d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["478ADE8DCA760CBA"]
-    description: [
-      "Переносной воздух позволяет дышать, но от опасной погоды поверхности защищает только полный костюм.",
-      "",
-      "Соберите и наденьте все четыре части защитного комплекта, кислородную маску и заправленный баллон.",
-      "Комплект требует промышленной стали, свинцовой защиты, фильтра и импульсных матриц — обычная железная броня для поверхности недостаточна.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте полный костюм, проведите снаружи не менее 20 секунд, удалитесь минимум на 90 блоков от центра и вернитесь в Купол.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB проверяет части костюма, а сервер — надетую экипировку, время, дальность и безопасное возвращение.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "5D05E517CA465F31"
-        type: "advancement"
-        title: "Автоматическое действие"
-        advancement: "domesurvival:quest_actions/ch7_oxygen_sortie"
-        criterion: "trigger"
-      },
-      {
-        id: "D4F7B8AE25309C64"
-        type: "item"
-        item: "domesurvival:surface_suit_helmet"
-      },
-      {
-        id: "E508C9BF3641AD75"
-        type: "item"
-        item: "domesurvival:surface_suit_chestplate"
-      },
-      {
-        id: "F619DAC04752BE86"
-        type: "item"
-        item: "domesurvival:surface_suit_leggings"
-      },
-      {
-        id: "072AEBD15863CF97"
-        type: "item"
-        item: "domesurvival:surface_suit_boots"
-      }
-    ]
-    rewards: [
-      {
-        id: "588BDC44EFABA20F"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 7A2AF5AE3520F4A0 milestone FIRST_OXYGEN_SORTIE_COMPLETE"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "1CE841F4EFA906B0"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:diamond"
-        count: 2
-      }
-    ]
-  },
-  {
-    id: "256D235BCCE50263"
-    title: "Воздух с собой"
-    icon: "domesurvival:oxygen_filler"
-    tags: ["ds_visual_milestone"]
-    x: 0.0d
-    y: 37.6d
-    shape: "octagon"
-    size: 1.62d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["7A2AF5AE3520F4A0"]
-    description: [
-      "Купол научился очищать воду, производить кислород и выдавать его в переносной резерв.",
-      "",
-      "Промышленный район завершён. Следующая глава превратит отдельные машины в автоматизированную логистическую сеть.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Завершите первую защищённую вылазку.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Автоматически после выполнения всей обязательной цепочки.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "35297BDDBD6353EF"
-        type: "advancement"
-        title: "Автоматическое действие"
-        advancement: "domesurvival:quest_actions/ch7_finale"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "21ABE9BEE6EB12DA"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 256D235BCCE50263 chapter OXYGEN_INFRASTRUCTURE_READY"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "1EBD435A7FF96B4A"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest gate set INDUSTRY_STAGE_1"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "64B7DB05FECC31F8"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:emerald_block"
-        count: 1
-      }
-    ]
-  },
-  {
-    id: "1EF3AFD5F22CEF3B"
-    title: "Инженер тяжёлой школы"
-    icon: "immersiveengineering:hammer"
-    tags: ["ds_visual_resource"]
-    x: -8.5d
-    y: 10.0d
-    shape: "rsquare"
-    size: 1.04d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["7805EEAD5285FB87"]
-    optional: true
-    description: [
-      "Необязательная ветка: Immersive Engineering предлагает грубые, ремонтопригодные решения для промышленного района.",
-      "",
-      "Начните с инструмента инженера. Эта цепочка не требуется для сюжетного финала.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 1 инженерный молот Immersive Engineering.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет предмет в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "17076BE63FD02551"
-        type: "item"
-        item: "immersiveengineering:hammer"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "7849DEAB03CF2624"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 1EF3AFD5F22CEF3B normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "4DBE5A3B856E3AD2"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:iron_ingot"
-        count: 3
-      }
-    ]
-  },
-  {
-    id: "73BAFC4EAC03F601"
-    title: "Стальная водяная линия"
-    icon: "immersiveengineering:fluid_pipe"
-    tags: ["ds_visual_resource"]
-    x: -10.5d
-    y: 12.5d
-    shape: "rsquare"
-    size: 1.04d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["1EF3AFD5F22CEF3B"]
-    optional: true
-    description: [
-      "Трубы IE полезны там, где нужен прочный открытый участок с понятным обслуживанием.",
-      "",
-      "Соберите резервный комплект для водяной части района.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 8 жидкостных труб Immersive Engineering.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "69883A35FB846300"
-        type: "item"
-        item: "immersiveengineering:fluid_pipe"
-        count: 8L
-      }
-    ]
-    rewards: [
-      {
-        id: "73B1ECB60F327AEE"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 73BAFC4EAC03F601 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "4BA53103AA03C783"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:copper_ingot"
-        count: 4
-      }
-    ]
-  },
-  {
-    id: "78C53741C6AB7F5B"
-    title: "Насос под током"
-    icon: "immersiveengineering:fluid_pump"
-    tags: ["ds_visual_resource"]
-    x: -10.5d
-    y: 15.0d
-    shape: "rsquare"
-    size: 1.04d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["73BAFC4EAC03F601"]
-    optional: true
-    description: [
-      "Высота и расстояние превращают пассивную трубу в узкое место.",
-      "",
-      "Насос IE станет резервным способом протолкнуть воду между промышленными узлами.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 1 жидкостный насос Immersive Engineering.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет блок в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "5FD29342863BA439"
-        type: "item"
-        item: "immersiveengineering:fluid_pump"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "53958D41D7127D0A"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 78C53741C6AB7F5B normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "30F16F226B4AF418"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:redstone"
-        count: 6
-      }
-    ]
-  },
-  {
-    id: "45555AE92619B033"
-    title: "Контроль напряжения"
-    icon: "immersiveengineering:voltmeter"
-    tags: ["ds_visual_resource"]
-    x: -8.5d
-    y: 17.5d
-    shape: "rsquare"
-    size: 1.04d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["78C53741C6AB7F5B"]
-    optional: true
-    description: [
-      "Открытая промышленная линия должна иметь понятный контроль напряжения.",
-      "",
-      "Вольтметр завершает необязательный инженерный узел IE без скрытой зависимости от недоступных изоляторов.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Изготовьте вольтметр Immersive Engineering.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет блок. Основной сюжет от этой ветки не зависит.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "3E0CCBD4D7BC4037"
-        type: "item"
-        item: "immersiveengineering:voltmeter"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "5883EE23CF2B1AB6"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 45555AE92619B033 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "34F5155450EC4C57"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:gold_ingot"
-        count: 2
-      }
-    ]
-  },
-  {
-    id: "485AFBB5D3AD03EA"
-    title: "Стальной корпус Mekanism"
-    icon: "mekanism:steel_casing"
-    tags: ["ds_visual_resource"]
-    x: 8.5d
-    y: 10.0d
-    shape: "rsquare"
-    size: 1.04d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["029CAC5E844C7EB9"]
-    optional: true
-    description: [
-      "Необязательная ветка: Mekanism строит точные машины вокруг унифицированного стального корпуса.",
-      "",
-      "Это параллельная инженерная школа, а не замена кислородной системе DomeSurvival.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 1 стальной корпус Mekanism.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет компонент в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "5DD4F0AAAFF5B074"
-        type: "item"
-        item: "mekanism:steel_casing"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "509F715386C7942C"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 485AFBB5D3AD03EA normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "329815C19035F932"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:iron_ingot"
-        count: 4
-      }
-    ]
-  },
-  {
-    id: "0BC2ABE626556A76"
-    title: "Схемы управления"
-    icon: "mekanism:basic_control_circuit"
-    tags: ["ds_visual_resource"]
-    x: 10.5d
-    y: 12.5d
-    shape: "rsquare"
-    size: 1.04d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["485AFBB5D3AD03EA"]
-    optional: true
-    description: [
-      "Mekanism требует больше электроники, зато его узлы хорошо масштабируются.",
-      "",
-      "Подготовьте схемы не на один рецепт, а на небольшой лабораторный комплект.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 4 базовые схемы управления Mekanism.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "1E8D22716549BCE1"
-        type: "item"
-        item: "mekanism:basic_control_circuit"
-        count: 4L
-      }
-    ]
-    rewards: [
-      {
-        id: "46452BA75A74527C"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 0BC2ABE626556A76 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "49597C448A4926C1"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:redstone"
-        count: 8
-      }
-    ]
-  },
-  {
-    id: "05250A652A93EC4A"
-    title: "Механическая труба"
-    icon: "mekanism:basic_mechanical_pipe"
-    tags: ["ds_visual_resource"]
-    x: 10.5d
-    y: 15.0d
-    shape: "rsquare"
-    size: 1.04d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["0BC2ABE626556A76"]
-    optional: true
-    description: [
-      "Лабораторной машине нужен собственный жидкостный ввод.",
-      "",
-      "Механические трубы Mekanism образуют отдельную совместимую линию воды.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 8 базовых механических труб Mekanism.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "6E75E89ACF9332FE"
-        type: "item"
-        item: "mekanism:basic_mechanical_pipe"
-        count: 8L
-      }
-    ]
-    rewards: [
-      {
-        id: "7B8825D61AB63E98"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 05250A652A93EC4A normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "61B3379B88B3382F"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:iron_ingot"
-        count: 2
-      }
-    ]
-  },
-  {
-    id: "780B5E94AE3AA047"
-    title: "Лабораторный электролиз"
-    icon: "mekanism:electrolytic_separator"
-    tags: ["ds_visual_resource"]
-    x: 8.5d
-    y: 17.5d
-    shape: "rsquare"
-    size: 1.04d
-    icon_scale: 0.82d
-    min_width: 340
-    dependencies: ["05250A652A93EC4A"]
-    optional: true
-    description: [
-      "Электролитический сепаратор даёт альтернативную площадку для экспериментов с газами.",
-      "",
-      "Его газы не заменяют переносной кислород DomeSurvival, но готовят игрока к большой индустрии.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Имейте 1 электролитический сепаратор Mekanism.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет блок. Основной сюжет от этой ветки не зависит.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "2620B99AFDBD0B82"
-        type: "item"
-        item: "mekanism:electrolytic_separator"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "4081A78224A9D561"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 780B5E94AE3AA047 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "35B7AAD7F07BF94A"
-        type: "item"
-        exclude_from_claim_all: true
-        auto: "enabled"
-        team_reward: true
-        item: "minecraft:diamond"
-        count: 1
-      }
-    ]
-  },
-  {
-    id: "4AA418B9DF3B79A4"
-    title: "Последние из живых"
-    icon: "minecraft:compass"
-    tags: ["ds_visual_npc"]
-    x: 8.5d
-    y: 27.5d
-    shape: "hexagon"
-    size: 1.26d
-    icon_scale: 0.84d
-    min_width: 340
-    dependencies: ["70CE4EBCBA38CD21"]
-    hide_until_deps_complete: true
-    optional: true
-    description: [
-      "Через десять минут после запуска кислородной инфраструктуры Джозеф поднял старый фрагмент архива.",
-      "",
-      "Точные координаты повреждены. Система выделила подходящий довоенный объект среди построек, сгенерированных именно в этом мире.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Скрафтите или найдите обычный ванильный компас.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Важно\",\"color\":\"light_purple\",\"bold\":true}",
-      "{\"text\":\"Используется именно minecraft:compass. Точные XYZ игроку не показываются.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "0EA473BE9ED31671"
-        type: "item"
-        item: "minecraft:compass"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "24C59429F9E4A400"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 4AA418B9DF3B79A4 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      }
-    ]
-  },
-  {
-    id: "515C1A05E15F3F67"
-    title: "Настройка на архивный сигнал"
-    icon: "minecraft:compass"
-    tags: ["ds_visual_npc"]
-    x: 8.5d
-    y: 30.0d
-    shape: "rsquare"
-    size: 1.08d
-    icon_scale: 0.84d
-    min_width: 340
-    dependencies: ["4AA418B9DF3B79A4"]
-    hide_until_deps_complete: true
-    optional: true
-    description: [
-      "Джозеф восстановил достаточно данных, чтобы настроить стрелку на найденный архивный сигнал.",
-      "",
-      "Когда предыдущий этап завершён, система найдёт один обычный непривязанный компас в инвентаре и запишет в него цель.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Держите обычный компас в инвентаре и дождитесь его настройки.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Автоматически, когда vanilla compass получает цель структуры, выбранной для текущего мира.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "5A5853D758D16D48"
-        type: "advancement"
-        title: "Компас настроен"
-        advancement: "domesurvival:quest_actions/genetic_archive_compass_bound"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "51C631631E55D582"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 515C1A05E15F3F67 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      }
-    ]
-  },
-  {
-    id: "0F7B71D5BDCBD296"
-    title: "Следуй за стрелкой"
-    icon: "minecraft:lodestone"
-    tags: ["ds_visual_environment"]
-    x: 8.5d
-    y: 32.5d
-    shape: "diamond"
-    size: 1.16d
-    icon_scale: 0.84d
-    min_width: 340
-    dependencies: ["515C1A05E15F3F67"]
-    hide_until_deps_complete: true
-    optional: true
-    description: [
-      "Стрелка знает больше, чем повреждённый архив.",
-      "",
-      "Идите в Overworld по направлению компаса. Цель выбирается среди реально сгенерированных исследовательских, военных и архивных построек этого мира.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Доберитесь до отмеченной структуры и найдите архивный контейнер.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Автоматически в радиусе 32 блоков по горизонтали. Координаты в журнал не выводятся.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "3C6606BF66714539"
-        type: "advancement"
-        title: "Точка найдена"
-        advancement: "domesurvival:quest_actions/genetic_archive_site_reached"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "40F643C5A1ADE4A1"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 0F7B71D5BDCBD296 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      }
-    ]
-  },
-  {
-    id: "3B095F94C8D72753"
-    title: "Последние образцы"
-    icon: "domesurvival:chicken_cryocapsule"
-    tags: ["ds_visual_npc"]
-    x: 8.5d
-    y: 35.0d
-    shape: "hexagon"
-    size: 1.24d
-    icon_scale: 0.86d
-    min_width: 340
-    dependencies: ["0F7B71D5BDCBD296"]
-    hide_until_deps_complete: true
-    optional: true
-    description: [
-      "Рядом с выбранной структурой система аварийного хранения восстановила контейнер с довоенными биологическими модулями.",
-      "",
-      "Архивная база повреждена: содержимое и состояние найденных модулей пока невозможно определить.",
-      "",
-      "{\"text\":\"◆ Что забрать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Заберите по одному неизвестному модулю курицы, овцы и коровы. Повреждённый модуль свиньи пригодится позднее для восстановления.\",\"color\":\"white\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Восстановление базы\",\"color\":\"light_purple\",\"bold\":true}",
-      "{\"text\":\"После доставки Джозеф восстановит каталог: уже найденные модули раскроются автоматически.\",\"color\":\"gray\",\"bold\":false}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет найденные криокапсулы в инвентаре команды.\",\"color\":\"gray\",\"bold\":false}"
-    ]
-    tasks: [
-      {
-        id: "305CC7924140EEE3"
-        type: "item"
-        item: "domesurvival:chicken_cryocapsule"
-        count: 1L
-      },
-      {
-        id: "4C38BD08669ADCC3"
-        type: "item"
-        item: "domesurvival:sheep_cryocapsule"
-        count: 1L
-      },
-      {
-        id: "683E2DA3614B3868"
-        type: "item"
-        item: "domesurvival:cow_cryocapsule"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "2E613ED275498856"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 3B095F94C8D72753 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "52E8013CC5777BB6"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest gate set GENETIC_SAMPLES_RECOVERED"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "A72D44E8309F271C"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest gate set BIO_MODULE_IDENTIFICATION_UNLOCKED"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      }
-    ]
-  }  ,
-  {
-    id: "4D7992E0A771B3A1"
-    title: "Биоинкубатор"
-    icon: "domesurvival:bioincubator"
-    tags: ["ds_visual_technology"]
-    x: 11.0d
-    y: 35.0d
-    shape: "rsquare"
-    size: 1.18d
-    min_width: 340
-    dependencies: ["3B095F94C8D72753"]
-    hide_until_deps_complete: true
-    optional: true
-    description: [
-      "Образцы удалось вернуть под Купол. Теперь нужен аппарат, способный превратить сохранённый геном в живой организм.",
-      "",
-      "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Соберите Биоинкубатор и подключите его к FE и линии очищенной воды.\",\"color\":\"white\"}",
-      "",
-      "{\"text\":\"◆ Важно\",\"color\":\"light_purple\",\"bold\":true}",
-      "{\"text\":\"Исправные модули используйте в режиме «Инкубация». Повреждённые сначала восстановите во втором режиме.\",\"color\":\"gray\"}",
-      "",
-      "{\"text\":\"◆ Восстановление\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Нужны ремкомплект биологического модуля, биогель, питательная смесь и 1000 mB очищенной воды.\",\"color\":\"white\"}"
-    ]
-    tasks: [
-      {
-        id: "523B2281DE8036E0"
-        type: "item"
-        item: "domesurvival:bioincubator"
-        count: 1L
-      }
-    ]
-    rewards: [
-      {
-        id: "62A158B1DB78F2A4"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 4D7992E0A771B3A1 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "6C55A8DBB0146170"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest gate set BIOINCUBATOR_READY"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      }
-    ]
-  },
-  {
-    id: "6274AE251790C825"
-    title: "Первое дыхание"
-    icon: "minecraft:wheat"
-    tags: ["ds_visual_npc"]
-    x: 13.5d
-    y: 35.0d
-    shape: "hexagon"
-    size: 1.26d
-    min_width: 340
-    dependencies: ["4D7992E0A771B3A1"]
-    hide_until_deps_complete: true
-    optional: true
-    description: [
-      "FE подано. Очищенная вода поступает в камеру. Осталось запустить первый жизнеспособный образец.",
-      "",
-      "{\"text\":\"◆ Рецепты инкубации\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Обычным видам требуется 2–3 порции питательной смеси и очищенная вода.\",\"color\":\"white\"}",
-      "{\"text\":\"Необычным видам требуется 4 порции, редким — 6, особым — 8.\",\"color\":\"white\"}",
-      "",
-      "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Автоматически после первого успешного рождения животного.\",\"color\":\"gray\"}"
-    ]
-    tasks: [
-      {
-        id: "68F37F729971FD2C"
-        type: "advancement"
-        title: "Первая жизнь"
-        advancement: "domesurvival:quest_actions/bioincubator_first_birth"
-        criterion: "trigger"
-      }
-    ]
-    rewards: [
-      {
-        id: "1C9F570D4DA1D0E2"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest complete 6274AE251790C825 normal -"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      },
-      {
-        id: "326E57E0C5B6E8B9"
-        type: "command"
-        team_reward: true
-        title: " "
-        icon: "minecraft:gray_stained_glass_pane"
-        command: "/domequest gate set FAUNA_RESTORATION_STARTED"
-        elevate_perms: true
-        silent: true
-        auto: "invisible"
-        exclude_from_claim_all: true
-        ignore_reward_blocking: true
-      }
-    ]
-  }
-]
-  quest_links: []
+	autofocus_id: "723BD8C7EB767885"
+	default_hide_dependency_lines: false
+	default_min_width: 340
+	default_quest_shape: "rsquare"
+	filename: "76CBABB04B110F16"
+	group: ""
+	icon: "domesurvival:oxygen_electrolyzer"
+	id: "76CBABB04B110F16"
+	order_index: 6
+	progression_mode: "linear"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["267C7B7925B99855"]
+			description: [
+				"Энергосеть работает. Теперь Куполу нужен район, где вода превращается в запас воздуха, а машины образуют одну технологическую цепь."
+				""
+				"Эта глава строит первую кислородную промышленность и открывает дальние вылазки."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Завершите предыдущую главу «Пусть горит свет».\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Автоматически после выполнения зависимости.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:oxygen_electrolyzer"
+			icon_scale: 0.82d
+			id: "723BD8C7EB767885"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 723BD8C7EB767885 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "0D20AFAC4A5791B5"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					exclude_from_claim_all: true
+					id: "508A417909ABE69F"
+					item: "minecraft:iron_ingot"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "hexagon"
+			size: 1.28d
+			tags: ["ds_visual_story"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/ch7_intro"
+				criterion: "trigger"
+				id: "641E623D7E47C4A2"
+				title: "Автоматическое действие"
+				type: "advancement"
+			}]
+			title: "Промышленный район"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["723BD8C7EB767885"]
+			description: [
+				"Промышленный участок нельзя собирать наугад: стороны машин и соединения придётся обслуживать."
+				""
+				"Ключ понадобится для настройки оборудования и труб."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 1 машинный ключ.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет предмет в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:machine_wrench"
+			icon_scale: 0.82d
+			id: "7805EEAD5285FB87"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 7805EEAD5285FB87 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "7AD3252F1BFC9979"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					exclude_from_claim_all: true
+					id: "09833FD81B1DDE20"
+					item: "minecraft:iron_ingot"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 0.98d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				id: "769ED554D92A2A65"
+				item: "domesurvival:machine_wrench"
+				type: "item"
+			}]
+			title: "Инструмент инженера"
+			x: -3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["723BD8C7EB767885"]
+			description: [
+				"Очиститель, электролизёр и заправщик должны пережить непрерывную работу."
+				""
+				"Подготовьте отдельный стабилизатор для каждой основной машины."
+				""
+				"На этом же уровне металлургии усильте медную сетку сталью: она даёт лучший выход глины и отделяет редкие примеси."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 3 стабилизатора машин и 1 стальную сетку просеивателя.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:machine_stabilizer"
+			icon_scale: 0.82d
+			id: "636EE3BD758A2795"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 636EE3BD758A2795 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "7BA51A0EF8EE17A8"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 4
+					exclude_from_claim_all: true
+					id: "1536BB608014B718"
+					item: "minecraft:copper_ingot"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 0.98d
+			tags: ["ds_visual_resource"]
+			tasks: [
+				{
+					count: 3L
+					id: "7B30DDEA4E72DA5C"
+					item: "domesurvival:machine_stabilizer"
+					type: "item"
+				}
+				{
+					id: "55E257D78D9B57C0"
+					item: {
+						Count: 1
+						id: "domesurvival:steel_sieve_mesh"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "Три опоры машин"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["723BD8C7EB767885"]
+			description: [
+				"Пульсовая матрица синхронизирует промышленные циклы и защищает узлы от срыва."
+				""
+				"Нужны три матрицы — по одной на каждую основную машину."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 3 пульсовые матрицы.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:pulse_matrix"
+			icon_scale: 0.82d
+			id: "029CAC5E844C7EB9"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 029CAC5E844C7EB9 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "703CB735BDB7505A"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 6
+					exclude_from_claim_all: true
+					id: "4B191B72938B55AE"
+					item: "minecraft:redstone"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 0.98d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				count: 3L
+				id: "29D4E4935DFA4537"
+				item: "domesurvival:pulse_matrix"
+				type: "item"
+			}]
+			title: "Сердце автоматики"
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["723BD8C7EB767885"]
+			description: [
+				"Пыль и примеси быстро съедают рабочий ресурс фильтра."
+				""
+				"Один картридж уйдёт в корпус очистителя, остальные останутся для запуска и резерва."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 4 картриджа водяного фильтра.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: {
+				Count: 1
+				id: "domesurvival:water_filter_cartridge"
+				tag: {
+					Damage: 0
+				}
+			}
+			icon_scale: 0.82d
+			id: "6AB2D7F0B4A14E41"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 6AB2D7F0B4A14E41 normal WATER_PURIFICATION_TECH_KNOWN"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "45FD773B22CDA80F"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 8
+					exclude_from_claim_all: true
+					id: "54FC8C142AFA8076"
+					item: "minecraft:paper"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 0.98d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				count: 4L
+				id: "08F09AB1F797E203"
+				item: {
+					Count: 1
+					id: "domesurvival:water_filter_cartridge"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "Фильтры не вечны"
+			x: -6.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"7805EEAD5285FB87"
+				"636EE3BD758A2795"
+			]
+			description: [
+				"Вёдра годятся для аварии, но не для промышленного контура."
+				""
+				"Запас труб должен позволить связать источник, очиститель, резервуар и электролизёр."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 16 базовых жидкостных труб.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:basic_fluid_pipe"
+			icon_scale: 0.82d
+			id: "57938AB76CC85A5F"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 57938AB76CC85A5F normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "6F7CB9A3AF0539E7"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 4
+					exclude_from_claim_all: true
+					id: "2A0BAB12ED2D86DA"
+					item: "minecraft:iron_ingot"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.02d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				count: 16L
+				id: "4AD4CA81045A60B7"
+				item: "domesurvival:basic_fluid_pipe"
+				type: "item"
+			}]
+			title: "Водяная магистраль"
+			x: -1.5d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"636EE3BD758A2795"
+				"029CAC5E844C7EB9"
+			]
+			description: [
+				"Производство кислорода не должно останавливаться из-за одного пустого ведра."
+				""
+				"Два резервуара разделят сырой и очищенный потоки."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 2 универсальных резервуара.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет оба блока.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:universal_tank"
+			icon_scale: 0.82d
+			id: "259B20A21C7C896A"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 259B20A21C7C896A normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "3AD1FC41B36AAFEC"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 8
+					exclude_from_claim_all: true
+					id: "540E794248AFC40D"
+					item: "minecraft:glass"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.02d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				count: 2L
+				id: "0E1355509ADD5C8D"
+				item: "domesurvival:universal_tank"
+				type: "item"
+			}]
+			title: "Резерв чистой воды"
+			x: 0.5d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"029CAC5E844C7EB9"
+				"6AB2D7F0B4A14E41"
+				"57938AB76CC85A5F"
+				"259B20A21C7C896A"
+			]
+			description: [
+				"Обычная вода слишком грязная для электролизёра."
+				""
+				"Соберите машину, которая выдаёт стабильный поток очищенной воды."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 1 очиститель воды.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет блок в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:water_purifier"
+			icon_scale: 0.82d
+			id: "30FBCDA1B2B3D398"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 30FBCDA1B2B3D398 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "3776251C1C462B0A"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 8
+					exclude_from_claim_all: true
+					id: "2F86504AB65215E2"
+					item: "minecraft:coal"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			size: 1.3d
+			tags: ["ds_visual_milestone"]
+			tasks: [{
+				id: "04729F8C9FF0FB1A"
+				item: "domesurvival:water_purifier"
+				type: "item"
+			}]
+			title: "Первый очиститель"
+			x: 0.0d
+			y: 9.0d
+		}
+		{
+			dependencies: ["30FBCDA1B2B3D398"]
+			description: [
+				"Корпус готов, но промышленность начинается только после монтажа."
+				""
+				"Поставьте очиститель в безопасной части Купола и подключите его к энергосети."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Установите очиститель воды внутри Купола.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Сервер автоматически фиксирует установку блока.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:water_purifier"
+			icon_scale: 0.82d
+			id: "18B194C25C44CFAF"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 18B194C25C44CFAF normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "616340DF9D8CE82C"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "2794F5A637AE1191"
+					item: "minecraft:water_bucket"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.15d
+			tags: ["ds_visual_airlock"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/ch7_purifier_placed"
+				criterion: "trigger"
+				id: "4550B1D53ACA17AC"
+				title: "Автоматическое действие"
+				type: "advancement"
+			}]
+			title: "Поставь очиститель"
+			x: 0.0d
+			y: 12.0d
+		}
+		{
+			dependencies: ["18B194C25C44CFAF"]
+			description: [
+				"Собранная машина ещё ничего не доказывает. Нужен первый настоящий объём очищенной воды."
+				""
+				"Подайте сырьё, фильтр и FE, дождитесь цикла, затем проверьте продукт."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Взаимодействуйте с очистителем или баком, где есть очищенная вода.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Сервер проверяет реальную жидкость в ёмкости, а не только наличие машины.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "minecraft:water_bucket"
+			icon_scale: 0.82d
+			id: "7925344428A5F173"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 7925344428A5F173 milestone OXYGEN_ELECTROLYSIS_TECH_KNOWN"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "6E4841CEBAFBF820"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 6
+					exclude_from_claim_all: true
+					id: "18B5D172AE2D645E"
+					item: "minecraft:lapis_lazuli"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			size: 1.28d
+			tags: ["ds_visual_milestone"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/ch7_purified_water_ready"
+				criterion: "trigger"
+				id: "02F1EEC4B258BD1D"
+				title: "Автоматическое действие"
+				type: "advancement"
+			}]
+			title: "Вода без пыли"
+			x: 0.0d
+			y: 15.0d
+		}
+		{
+			dependencies: ["7925344428A5F173"]
+			description: [
+				"Очищенная вода — сырьё. Следующий узел отделит кислород и накопит его для выдачи."
+				""
+				"Электролизёр потребует одновременно чистую воду и стабильное питание FE."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 1 кислородный электролизёр.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет блок в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:oxygen_electrolyzer"
+			icon_scale: 0.82d
+			id: "1ECEBF8458CC59EA"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 1ECEBF8458CC59EA normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "078BEAAD54BAD0AB"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 8
+					exclude_from_claim_all: true
+					id: "79D44BD72D5FE7CC"
+					item: "minecraft:redstone"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.2d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				id: "5B8E4111AE737D1D"
+				item: "domesurvival:oxygen_electrolyzer"
+				type: "item"
+			}]
+			title: "Разделить воду"
+			x: 0.0d
+			y: 18.0d
+		}
+		{
+			dependencies: ["1ECEBF8458CC59EA"]
+			description: [
+				"Новый узел должен войти в уже работающую цепь воды и энергии."
+				""
+				"Оставьте место под выход кислорода и будущую синюю магистраль."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Установите кислородный электролизёр внутри Купола.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Сервер автоматически фиксирует установку блока.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:oxygen_electrolyzer"
+			icon_scale: 0.82d
+			id: "126C8CC96AC3F561"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 126C8CC96AC3F561 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "30B4A76FB5C6119B"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 8
+					exclude_from_claim_all: true
+					id: "50AD851D70CD6EC7"
+					item: "minecraft:copper_ingot"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.2d
+			tags: ["ds_visual_airlock"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/ch7_electrolyzer_placed"
+				criterion: "trigger"
+				id: "5CD9D2C21E85D265"
+				title: "Автоматическое действие"
+				type: "advancement"
+			}]
+			title: "Поставь электролизёр"
+			x: 0.0d
+			y: 21.0d
+		}
+		{
+			dependencies: ["126C8CC96AC3F561"]
+			description: [
+				"Теперь нужно доказать, что весь контур действительно работает под нагрузкой."
+				""
+				"Подайте очищенную воду и FE, дождитесь завершения производственного цикла."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Взаимодействуйте с электролизёром, накопившим кислород.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Сервер проверяет фактический объём O₂ во внутреннем хранилище машины.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:oxygen_electrolyzer"
+			icon_scale: 0.82d
+			id: "6C2401658492032F"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 6C2401658492032F milestone OXYGEN_PRODUCTION_ONLINE"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "5FD37F0A55AC22FF"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/domequest gate set OXYGEN_DISTRIBUTION_TECH_KNOWN"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "76DBE4F4C947C17B"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "21C3974F97228E42"
+					item: "minecraft:diamond"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			size: 1.38d
+			tags: ["ds_visual_milestone"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/ch7_oxygen_produced"
+				criterion: "trigger"
+				id: "00F7C74A3DC3B6BE"
+				title: "Автоматическое действие"
+				type: "advancement"
+			}]
+			title: "Первый кислород"
+			x: 0.0d
+			y: 24.0d
+		}
+		{
+			dependencies: ["6C2401658492032F"]
+			description: [
+				"Кислород нельзя переносить по водяной линии."
+				""
+				"Отдельная магистраль исключит смешение контуров и даст запас для расширения."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 16 кислородных труб.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:oxygen_pipe"
+			icon_scale: 0.82d
+			id: "2C4771CE49E4FCD5"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 2C4771CE49E4FCD5 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "49132014E228D314"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 8
+					exclude_from_claim_all: true
+					id: "1AB3C06566FD08C8"
+					item: "minecraft:iron_ingot"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.04d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				count: 16L
+				id: "6CF50093B460F5D7"
+				item: "domesurvival:oxygen_pipe"
+				type: "item"
+			}]
+			title: "Синяя магистраль"
+			x: 0.0d
+			y: 27.0d
+		}
+		{
+			dependencies: ["2C4771CE49E4FCD5"]
+			description: [
+				"Запас в сундуке не является трубопроводом."
+				""
+				"Соберите видимый рабочий участок, который можно продолжить до заправочной станции."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Установите не менее 6 кислородных труб внутри Купола.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Сервер считает реально поставленные кислородные трубы.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:oxygen_pipe"
+			icon_scale: 0.82d
+			id: "22DDCEABD0E620B4"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 22DDCEABD0E620B4 normal OXYGEN_FILLING_TECH_KNOWN"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "03950238C69BF5C8"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 8
+					exclude_from_claim_all: true
+					id: "41A420C0462E4531"
+					item: "minecraft:glass"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.18d
+			tags: ["ds_visual_airlock"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/ch7_oxygen_line"
+				criterion: "trigger"
+				id: "103F2782BFCBCF20"
+				title: "Автоматическое действие"
+				type: "advancement"
+			}]
+			title: "Кислородный контур"
+			x: 0.0d
+			y: 30.0d
+		}
+		{
+			dependencies: ["22DDCEABD0E620B4"]
+			description: [
+				"Произвести кислород мало — его нужно безопасно загнать в переносной баллон."
+				""
+				"Заправщик завершает стационарную часть промышленного контура."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 1 кислородный заправщик.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет блок в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:oxygen_filler"
+			icon_scale: 0.82d
+			id: "3848577B9691EC24"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 3848577B9691EC24 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "3583062412EF9FE9"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					exclude_from_claim_all: true
+					id: "62A3F5DA1302D412"
+					item: "minecraft:piston"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.2d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				id: "0943D769D2F501B1"
+				item: "domesurvival:oxygen_filler"
+				type: "item"
+			}]
+			title: "Заправочная станция"
+			x: 0.0d
+			y: 33.0d
+		}
+		{
+			dependencies: ["3848577B9691EC24"]
+			description: [
+				"Последний стационарный узел должен встать на линию и получить питание."
+				""
+				"Разместите станцию так, чтобы до неё дошли FE и кислород."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Установите кислородный заправщик внутри Купола.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Сервер автоматически фиксирует установку блока.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:oxygen_filler"
+			icon_scale: 0.82d
+			id: "444141AA2A3ACB3E"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 444141AA2A3ACB3E milestone OXYGEN_FILLING_STATION_ONLINE"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "232DD396CC5745C5"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/domequest gate set PORTABLE_OXYGEN_TECH_KNOWN"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "4284CE530F3E0B91"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "0E56D1F58113DFEB"
+					item: "minecraft:redstone_block"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.3d
+			tags: ["ds_visual_milestone"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/ch7_filler_placed"
+				criterion: "trigger"
+				id: "21E8E73CF48229BA"
+				title: "Автоматическое действие"
+				type: "advancement"
+			}]
+			title: "Станция на месте"
+			x: 0.0d
+			y: 36.0d
+		}
+		{
+			dependencies: ["444141AA2A3ACB3E"]
+			description: [
+				"Первая переносная ёмкость невелика, зато её уже достаточно для контролируемой операции."
+				""
+				"Новый баллон создаётся пустым — впереди обязательная заправка."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 1 малый кислородный баллон.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет предмет в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:small_oxygen_tank"
+			icon_scale: 0.82d
+			id: "0EB4DDB0F86043F4"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 0EB4DDB0F86043F4 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "7EF1009C9E511EEC"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 4
+					exclude_from_claim_all: true
+					id: "42F7E08522A5B4AB"
+					item: "minecraft:leather"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.08d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				id: "4DB1DB851BFBD287"
+				item: "domesurvival:small_oxygen_tank"
+				type: "item"
+			}]
+			title: "Малый кислородный баллон"
+			x: -1.6d
+			y: 39.0d
+		}
+		{
+			dependencies: ["444141AA2A3ACB3E"]
+			description: [
+				"Баллон без маски не поддерживает дыхание, а маска без баллона остаётся пустой оболочкой."
+				""
+				"Она даёт воздух, но не защищает от солнца, погоды или ударов."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 1 кислородную маску.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет предмет в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:oxygen_mask"
+			icon_scale: 0.82d
+			id: "6BAAE8F963D04339"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 6BAAE8F963D04339 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "1AA98F0D3A7BA916"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 8
+					exclude_from_claim_all: true
+					id: "7A54817AFDAA941C"
+					item: "minecraft:cooked_beef"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.08d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				id: "1FA57720198BD4BB"
+				item: "domesurvival:oxygen_mask"
+				type: "item"
+			}]
+			title: "Маска — это не броня"
+			x: 1.6d
+			y: 39.0d
+		}
+		{
+			dependencies: [
+				"0EB4DDB0F86043F4"
+				"6BAAE8F963D04339"
+			]
+			description: [
+				"Теперь станция должна выполнить работу целиком, а не просто стоять рядом с трубой."
+				""
+				"Подайте кислород и FE, вставьте малый баллон и дождитесь полного заполнения."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Получите полностью заправленный кислородный баллон.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Сервер проверяет реальный уровень кислорода в инвентаре или экипированном баллоне.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:small_oxygen_tank"
+			icon_scale: 0.82d
+			id: "478ADE8DCA760CBA"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 478ADE8DCA760CBA milestone FIRST_OXYGEN_TANK_FILLED"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "5BC2605C8527AD33"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/domequest gate set SMALL_OXYGEN_TANK_OPERATIONAL"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "55E673F12E3E7FDD"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "1A121DD760D0424C"
+					item: "minecraft:golden_apple"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "diamond"
+			size: 1.42d
+			tags: ["ds_visual_milestone"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/ch7_tank_filled"
+				criterion: "trigger"
+				id: "13025BF9010C01A6"
+				title: "Автоматическое действие"
+				type: "advancement"
+			}]
+			title: "Полный запас воздуха"
+			x: 0.0d
+			y: 42.0d
+		}
+		{
+			dependencies: ["478ADE8DCA760CBA"]
+			description: [
+				"Переносной воздух позволяет дышать, но от опасной погоды поверхности защищает только полный костюм."
+				""
+				"Соберите и наденьте все четыре части защитного комплекта, кислородную маску и заправленный баллон."
+				"Комплект требует промышленной стали, свинцовой защиты, фильтра и импульсных матриц — обычная железная броня для поверхности недостаточна."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте полный костюм, проведите снаружи не менее 20 секунд, удалитесь минимум на 90 блоков от центра и вернитесь в Купол.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB проверяет части костюма, а сервер — надетую экипировку, время, дальность и безопасное возвращение.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: {
+				Count: 1
+				id: "domesurvival:surface_suit_chestplate"
+				tag: {
+					Damage: 0
+				}
+			}
+			icon_scale: 0.82d
+			id: "7A2AF5AE3520F4A0"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 7A2AF5AE3520F4A0 milestone FIRST_OXYGEN_SORTIE_COMPLETE"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "588BDC44EFABA20F"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					exclude_from_claim_all: true
+					id: "1CE841F4EFA906B0"
+					item: "minecraft:diamond"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "octagon"
+			size: 1.52d
+			tags: ["ds_visual_milestone"]
+			tasks: [
+				{
+					advancement: "domesurvival:quest_actions/ch7_oxygen_sortie"
+					criterion: "trigger"
+					id: "5D05E517CA465F31"
+					title: "Автоматическое действие"
+					type: "advancement"
+				}
+				{
+					id: "1983ADE078D4A021"
+					item: {
+						Count: 1
+						id: "domesurvival:surface_suit_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "39964FEF20893F06"
+					item: {
+						Count: 1
+						id: "domesurvival:surface_suit_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "2D6A6E12DDB2C88F"
+					item: {
+						Count: 1
+						id: "domesurvival:surface_suit_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "072AEBD15863CF97"
+					item: {
+						Count: 1
+						id: "domesurvival:surface_suit_boots"
+						tag: {
+							Damage: 0
+						}
+					}
+					type: "item"
+				}
+			]
+			title: "Первая защищённая вылазка"
+			x: 0.0d
+			y: 45.0d
+		}
+		{
+			dependencies: ["7A2AF5AE3520F4A0"]
+			description: [
+				"Купол научился очищать воду, производить кислород и выдавать его в переносной резерв."
+				""
+				"Базовый промышленный район завершён. Теперь открываются необязательные ветки тяжёлой инженерии, новых руд, формовки, солнечной энергии и биологического архива."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Завершите первую защищённую вылазку.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Автоматически после выполнения всей обязательной цепочки.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "domesurvival:oxygen_filler"
+			icon_scale: 0.82d
+			id: "256D235BCCE50263"
+			min_width: 340
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 256D235BCCE50263 chapter OXYGEN_INFRASTRUCTURE_READY"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "21ABE9BEE6EB12DA"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/domequest gate set INDUSTRY_STAGE_1"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "1EBD435A7FF96B4A"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/domequest gate set HEAVY_INDUSTRY_STARTED"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "1EBD435A7FF96B4B"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "64B7DB05FECC31F8"
+					item: "minecraft:emerald_block"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "octagon"
+			size: 1.62d
+			tags: ["ds_visual_milestone"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/ch7_finale"
+				criterion: "trigger"
+				id: "35297BDDBD6353EF"
+				title: "Автоматическое действие"
+				type: "advancement"
+			}]
+			title: "Воздух с собой"
+			x: 0.0d
+			y: 48.0d
+		}
+		{
+			dependencies: ["256D235BCCE50263"]
+			description: [
+				"Необязательная ветка: Immersive Engineering предлагает грубые, ремонтопригодные решения для промышленного района."
+				""
+				"Начните с инструмента инженера. Эта цепочка не требуется для сюжетного финала."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 1 инженерный молот Immersive Engineering.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет предмет в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: {
+				Count: 1
+				id: "immersiveengineering:hammer"
+				tag: {
+					Damage: 0
+				}
+			}
+			icon_scale: 0.82d
+			id: "1EF3AFD5F22CEF3B"
+			min_width: 340
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 1EF3AFD5F22CEF3B normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "7849DEAB03CF2624"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 3
+					exclude_from_claim_all: true
+					id: "4DBE5A3B856E3AD2"
+					item: "minecraft:iron_ingot"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.04d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				id: "17076BE63FD02551"
+				item: {
+					Count: 1
+					id: "immersiveengineering:hammer"
+					tag: {
+						Damage: 0
+					}
+				}
+				type: "item"
+			}]
+			title: "Инженер тяжёлой школы"
+			x: 0.0d
+			y: 51.0d
+		}
+		{
+			dependencies: ["1EF3AFD5F22CEF3B"]
+			description: [
+				"Трубы IE полезны там, где нужен прочный открытый участок с понятным обслуживанием."
+				""
+				"Соберите резервный комплект для водяной части района."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 8 жидкостных труб Immersive Engineering.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "immersiveengineering:fluid_pipe"
+			icon_scale: 0.82d
+			id: "73BAFC4EAC03F601"
+			min_width: 340
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 73BAFC4EAC03F601 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "73B1ECB60F327AEE"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 4
+					exclude_from_claim_all: true
+					id: "4BA53103AA03C783"
+					item: "minecraft:copper_ingot"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.04d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				count: 8L
+				id: "69883A35FB846300"
+				item: "immersiveengineering:fluid_pipe"
+				type: "item"
+			}]
+			title: "Стальная водяная линия"
+			x: 0.0d
+			y: 54.0d
+		}
+		{
+			dependencies: ["73BAFC4EAC03F601"]
+			description: [
+				"Высота и расстояние превращают пассивную трубу в узкое место."
+				""
+				"Насос IE станет резервным способом протолкнуть воду между промышленными узлами."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 1 жидкостный насос Immersive Engineering.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет блок в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "immersiveengineering:fluid_pump"
+			icon_scale: 0.82d
+			id: "78C53741C6AB7F5B"
+			min_width: 340
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 78C53741C6AB7F5B normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "53958D41D7127D0A"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 6
+					exclude_from_claim_all: true
+					id: "30F16F226B4AF418"
+					item: "minecraft:redstone"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.04d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				id: "5FD29342863BA439"
+				item: "immersiveengineering:fluid_pump"
+				type: "item"
+			}]
+			title: "Насос под током"
+			x: 0.0d
+			y: 57.0d
+		}
+		{
+			dependencies: ["78C53741C6AB7F5B"]
+			description: [
+				"Открытая промышленная линия должна иметь понятный контроль напряжения."
+				""
+				"Вольтметр завершает необязательный инженерный узел IE без скрытой зависимости от недоступных изоляторов."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Изготовьте вольтметр Immersive Engineering.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет блок. Основной сюжет от этой ветки не зависит.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "immersiveengineering:voltmeter"
+			icon_scale: 0.82d
+			id: "45555AE92619B033"
+			min_width: 340
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 45555AE92619B033 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "5883EE23CF2B1AB6"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					exclude_from_claim_all: true
+					id: "34F5155450EC4C57"
+					item: "minecraft:gold_ingot"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.04d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				id: "3E0CCBD4D7BC4037"
+				item: "immersiveengineering:voltmeter"
+				type: "item"
+			}]
+			title: "Контроль напряжения"
+			x: 0.0d
+			y: 60.0d
+		}
+		{
+			dependencies: ["256D235BCCE50263"]
+			description: [
+				"Необязательная ветка: Mekanism строит точные машины вокруг унифицированного стального корпуса."
+				""
+				"Это параллельная инженерная школа, а не замена кислородной системе DomeSurvival."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 1 стальной корпус Mekanism.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет компонент в инвентаре.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "mekanism:steel_casing"
+			icon_scale: 0.82d
+			id: "485AFBB5D3AD03EA"
+			min_width: 340
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 485AFBB5D3AD03EA normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "509F715386C7942C"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 4
+					exclude_from_claim_all: true
+					id: "329815C19035F932"
+					item: "minecraft:iron_ingot"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.04d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				id: "5DD4F0AAAFF5B074"
+				item: "mekanism:steel_casing"
+				type: "item"
+			}]
+			title: "Стальной корпус Mekanism"
+			x: 4.0d
+			y: 51.0d
+		}
+		{
+			dependencies: ["485AFBB5D3AD03EA"]
+			description: [
+				"Mekanism требует больше электроники, зато его узлы хорошо масштабируются."
+				""
+				"Подготовьте схемы не на один рецепт, а на небольшой лабораторный комплект."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 4 базовые схемы управления Mekanism.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "mekanism:basic_control_circuit"
+			icon_scale: 0.82d
+			id: "0BC2ABE626556A76"
+			min_width: 340
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 0BC2ABE626556A76 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "46452BA75A74527C"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 8
+					exclude_from_claim_all: true
+					id: "49597C448A4926C1"
+					item: "minecraft:redstone"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.04d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				count: 4L
+				id: "1E8D22716549BCE1"
+				item: "mekanism:basic_control_circuit"
+				type: "item"
+			}]
+			title: "Схемы управления"
+			x: 4.0d
+			y: 54.0d
+		}
+		{
+			dependencies: ["0BC2ABE626556A76"]
+			description: [
+				"Лабораторной машине нужен собственный жидкостный ввод."
+				""
+				"Механические трубы Mekanism образуют отдельную совместимую линию воды."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 8 базовых механических труб Mekanism.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет весь запас.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "mekanism:basic_mechanical_pipe"
+			icon_scale: 0.82d
+			id: "05250A652A93EC4A"
+			min_width: 340
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 05250A652A93EC4A normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "7B8825D61AB63E98"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					count: 2
+					exclude_from_claim_all: true
+					id: "61B3379B88B3382F"
+					item: "minecraft:iron_ingot"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.04d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				count: 8L
+				id: "6E75E89ACF9332FE"
+				item: "mekanism:basic_mechanical_pipe"
+				type: "item"
+			}]
+			title: "Механическая труба"
+			x: 4.0d
+			y: 57.0d
+		}
+		{
+			dependencies: ["05250A652A93EC4A"]
+			description: [
+				"Электролитический сепаратор даёт альтернативную площадку для экспериментов с газами."
+				""
+				"Его газы не заменяют переносной кислород DomeSurvival, но готовят игрока к большой индустрии."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Имейте 1 электролитический сепаратор Mekanism.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет блок. Основной сюжет от этой ветки не зависит.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			icon: "mekanism:electrolytic_separator"
+			icon_scale: 0.82d
+			id: "780B5E94AE3AA047"
+			min_width: 340
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 780B5E94AE3AA047 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "4081A78224A9D561"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "35B7AAD7F07BF94A"
+					item: "minecraft:diamond"
+					team_reward: true
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.04d
+			tags: ["ds_visual_resource"]
+			tasks: [{
+				id: "2620B99AFDBD0B82"
+				item: "mekanism:electrolytic_separator"
+				type: "item"
+			}]
+			title: "Лабораторный электролиз"
+			x: 4.0d
+			y: 60.0d
+		}
+		{
+			dependencies: ["70CE4EBCBA38CD21"]
+			description: [
+				"Через десять минут после запуска кислородной инфраструктуры Джозеф поднял старый фрагмент архива."
+				""
+				"Точные координаты повреждены. Система выделила подходящий довоенный объект среди построек, сгенерированных именно в этом мире."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Скрафтите или найдите обычный ванильный компас.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Важно\",\"color\":\"light_purple\",\"bold\":true}"
+				"{\"text\":\"Используется именно minecraft:compass. Точные XYZ игроку не показываются.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: true
+			icon: "minecraft:compass"
+			icon_scale: 0.84d
+			id: "4AA418B9DF3B79A4"
+			min_width: 340
+			optional: true
+			rewards: [{
+				auto: "invisible"
+				command: "/domequest complete 4AA418B9DF3B79A4 normal -"
+				elevate_perms: true
+				exclude_from_claim_all: true
+				icon: "minecraft:gray_stained_glass_pane"
+				id: "24C59429F9E4A400"
+				ignore_reward_blocking: true
+				silent: true
+				team_reward: true
+				title: " "
+				type: "command"
+			}]
+			shape: "hexagon"
+			size: 1.26d
+			tags: ["ds_visual_npc"]
+			tasks: [{
+				id: "0EA473BE9ED31671"
+				item: "minecraft:compass"
+				type: "item"
+			}]
+			title: "Последние из живых"
+			x: 8.0d
+			y: 51.0d
+		}
+		{
+			dependencies: ["4AA418B9DF3B79A4"]
+			description: [
+				"Джозеф восстановил достаточно данных, чтобы настроить стрелку на найденный архивный сигнал."
+				""
+				"Когда предыдущий этап завершён, система найдёт один обычный непривязанный компас в инвентаре и запишет в него цель."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Держите обычный компас в инвентаре и дождитесь его настройки.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Автоматически, когда vanilla compass получает цель структуры, выбранной для текущего мира.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: true
+			icon: "minecraft:compass"
+			icon_scale: 0.84d
+			id: "515C1A05E15F3F67"
+			min_width: 340
+			optional: true
+			rewards: [{
+				auto: "invisible"
+				command: "/domequest complete 515C1A05E15F3F67 normal -"
+				elevate_perms: true
+				exclude_from_claim_all: true
+				icon: "minecraft:gray_stained_glass_pane"
+				id: "51C631631E55D582"
+				ignore_reward_blocking: true
+				silent: true
+				team_reward: true
+				title: " "
+				type: "command"
+			}]
+			shape: "rsquare"
+			size: 1.08d
+			tags: ["ds_visual_npc"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/genetic_archive_compass_bound"
+				criterion: "trigger"
+				id: "5A5853D758D16D48"
+				title: "Компас настроен"
+				type: "advancement"
+			}]
+			title: "Настройка на архивный сигнал"
+			x: 8.0d
+			y: 54.0d
+		}
+		{
+			dependencies: ["515C1A05E15F3F67"]
+			description: [
+				"Стрелка знает больше, чем повреждённый архив."
+				""
+				"Идите в Overworld по направлению компаса. Цель выбирается среди реально сгенерированных исследовательских, военных и архивных построек этого мира."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Доберитесь до отмеченной структуры и найдите архивный контейнер.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Автоматически в радиусе 32 блоков по горизонтали. Координаты в журнал не выводятся.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: true
+			icon: "minecraft:lodestone"
+			icon_scale: 0.84d
+			id: "0F7B71D5BDCBD296"
+			min_width: 340
+			optional: true
+			rewards: [{
+				auto: "invisible"
+				command: "/domequest complete 0F7B71D5BDCBD296 normal -"
+				elevate_perms: true
+				exclude_from_claim_all: true
+				icon: "minecraft:gray_stained_glass_pane"
+				id: "40F643C5A1ADE4A1"
+				ignore_reward_blocking: true
+				silent: true
+				team_reward: true
+				title: " "
+				type: "command"
+			}]
+			shape: "diamond"
+			size: 1.16d
+			tags: ["ds_visual_environment"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/genetic_archive_site_reached"
+				criterion: "trigger"
+				id: "3C6606BF66714539"
+				title: "Точка найдена"
+				type: "advancement"
+			}]
+			title: "Следуй за стрелкой"
+			x: 8.0d
+			y: 57.0d
+		}
+		{
+			dependencies: ["0F7B71D5BDCBD296"]
+			description: [
+				"Рядом с выбранной структурой система аварийного хранения восстановила контейнер с довоенными биологическими модулями."
+				""
+				"Архивная база повреждена: содержимое и состояние найденных модулей пока невозможно определить."
+				""
+				"{\"text\":\"◆ Что забрать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Заберите по одному неизвестному модулю курицы, овцы и коровы. Повреждённый модуль свиньи пригодится позднее для восстановления.\",\"color\":\"white\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Восстановление базы\",\"color\":\"light_purple\",\"bold\":true}"
+				"{\"text\":\"После доставки Джозеф восстановит каталог: уже найденные модули раскроются автоматически.\",\"color\":\"gray\",\"bold\":false}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"FTB автоматически проверяет найденные криокапсулы в инвентаре команды.\",\"color\":\"gray\",\"bold\":false}"
+			]
+			hide_until_deps_complete: true
+			icon: "domesurvival:chicken_cryocapsule"
+			icon_scale: 0.86d
+			id: "3B095F94C8D72753"
+			min_width: 340
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 3B095F94C8D72753 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "2E613ED275498856"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/domequest gate set GENETIC_SAMPLES_RECOVERED"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "52E8013CC5777BB6"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/domequest gate set BIO_MODULE_IDENTIFICATION_UNLOCKED"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "72145F784DEF0C37"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+			]
+			shape: "hexagon"
+			size: 1.24d
+			tags: ["ds_visual_npc"]
+			tasks: [
+				{
+					id: "305CC7924140EEE3"
+					item: "domesurvival:chicken_cryocapsule"
+					type: "item"
+				}
+				{
+					id: "4C38BD08669ADCC3"
+					item: "domesurvival:sheep_cryocapsule"
+					type: "item"
+				}
+				{
+					id: "683E2DA3614B3868"
+					item: "domesurvival:cow_cryocapsule"
+					type: "item"
+				}
+			]
+			title: "Последние образцы"
+			x: 8.0d
+			y: 60.0d
+		}
+		{
+			dependencies: [
+				"3B095F94C8D72753"
+				"5E55C97FB0648C1A"
+			]
+			description: [
+				"Образцы удалось вернуть под Купол. Теперь нужен аппарат, способный превратить сохранённый геном в живой организм."
+				""
+				"{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Соберите Биоинкубатор и подключите его к FE и линии очищенной воды.\",\"color\":\"white\"}"
+				""
+				"{\"text\":\"◆ Важно\",\"color\":\"light_purple\",\"bold\":true}"
+				"{\"text\":\"Исправные модули используйте в режиме «Инкубация». Повреждённые сначала восстановите во втором режиме.\",\"color\":\"gray\"}"
+				""
+				"{\"text\":\"◆ Восстановление\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Нужны ремкомплект биологического модуля, биогель, питательная смесь и 1000 mB очищенной воды.\",\"color\":\"white\"}"
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: true
+			icon: "domesurvival:bioincubator"
+			id: "4D7992E0A771B3A1"
+			min_width: 340
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 4D7992E0A771B3A1 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "62A158B1DB78F2A4"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/domequest gate set BIOINCUBATOR_READY"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "6C55A8DBB0146170"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+			]
+			shape: "rsquare"
+			size: 1.18d
+			tags: ["ds_visual_technology"]
+			tasks: [{
+				id: "523B2281DE8036E0"
+				item: "domesurvival:bioincubator"
+				type: "item"
+			}]
+			title: "Биоинкубатор"
+			x: 2.0d
+			y: 66.0d
+		}
+		{
+			dependencies: ["4D7992E0A771B3A1"]
+			description: [
+				"FE подано. Очищенная вода поступает в камеру. Осталось запустить первый жизнеспособный образец."
+				""
+				"{\"text\":\"◆ Рецепты инкубации\",\"color\":\"gold\",\"bold\":true}"
+				"{\"text\":\"Для инкубации используется обычный корм выбранного вида: например, семена для курицы или пшеница для овцы и коровы.\",\"color\":\"white\"}"
+				"{\"text\":\"Точное количество корма, воды, FE/t и время процесса показаны в JEI и подсказке капсулы.\",\"color\":\"white\"}"
+				""
+				"{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}"
+				"{\"text\":\"Автоматически после первого успешного рождения животного.\",\"color\":\"gray\"}"
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: true
+			icon: "minecraft:wheat"
+			id: "6274AE251790C825"
+			min_width: 340
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 6274AE251790C825 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "1C9F570D4DA1D0E2"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "invisible"
+					command: "/domequest gate set FAUNA_RESTORATION_STARTED"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "326E57E0C5B6E8B9"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+			]
+			shape: "hexagon"
+			size: 1.26d
+			tags: ["ds_visual_npc"]
+			tasks: [{
+				advancement: "domesurvival:quest_actions/bioincubator_first_birth"
+				criterion: "trigger"
+				id: "68F37F729971FD2C"
+				title: "Первая жизнь"
+				type: "advancement"
+			}]
+			title: "Первое дыхание"
+			x: 2.0d
+			y: 69.0d
+		}
+		{
+			dependencies: ["6274AE251790C825"]
+			description: [
+				"Исправная капсула создаёт животное сразу, а повреждённый архивный образец сначала нужно восстановить во втором режиме Биоинкубатора."
+				""
+				"§6◆ Что сделать"
+				"§fИзготовьте ремкомплект биомодуля, биогель и питательную смесь."
+				""
+				"§b◆ Как использовать"
+				"§7Переключите машину в режим «Восстановление». Нужны все три компонента, повреждённая капсула, 1000 mB очищенной воды и FE."
+				""
+				"§d◆ Важно"
+				"§7Биогель и питательная смесь нужны для ремонта капсул, но не заменяют видовой корм в режиме инкубации."
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: true
+			icon: "domesurvival:bio_repair_kit"
+			id: "6A4D2C8E1F705101"
+			min_width: 360
+			optional: true
+			rewards: [
+				{
+					auto: "invisible"
+					command: "/domequest complete 6A4D2C8E1F705101 normal -"
+					elevate_perms: true
+					exclude_from_claim_all: true
+					icon: "minecraft:gray_stained_glass_pane"
+					id: "6A4D2C8E1F705121"
+					ignore_reward_blocking: true
+					silent: true
+					team_reward: true
+					title: " "
+					type: "command"
+				}
+				{
+					auto: "enabled"
+					exclude_from_claim_all: true
+					id: "6A4D2C8E1F705122"
+					team_reward: true
+					type: "xp"
+					xp: 8
+				}
+			]
+			shape: "rsquare"
+			size: 1.14d
+			tags: ["ds_visual_technology"]
+			tasks: [
+				{
+					id: "6A4D2C8E1F705111"
+					item: "domesurvival:bio_repair_kit"
+					type: "item"
+				}
+				{
+					id: "6A4D2C8E1F705112"
+					item: "domesurvival:biogel"
+					type: "item"
+				}
+				{
+					id: "6A4D2C8E1F705113"
+					item: "domesurvival:nutrient_mix"
+					type: "item"
+				}
+			]
+			title: "Вернуть повреждённый геном"
+			x: 2.0d
+			y: 72.0d
+		}
+		{
+			dependencies: ["7A2AF5AE3520F4A0"]
+			description: [
+				"За пределами Купола встречаются жилы металлов, которых не было в старом карьере."
+				""
+				"Соберите образцы олова, свинца, никеля и серебра. Они станут основой для новых машин, фильтров и герметичных ёмкостей."
+				""
+				"§6◆ Что сделать"
+				"§fДобудьте по одному образцу каждой сырой руды."
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: true
+			icon: "domesurvival:raw_tin"
+			id: "1A91E53B7C2048D6"
+			min_width: 340
+			optional: true
+			rewards: [{
+				auto: "invisible"
+				command: "/domequest complete 1A91E53B7C2048D6 normal -"
+				elevate_perms: true
+				exclude_from_claim_all: true
+				icon: "minecraft:gray_stained_glass_pane"
+				id: "70A1B2C3D4E50001"
+				ignore_reward_blocking: true
+				silent: true
+				team_reward: true
+				title: " "
+				type: "command"
+			}]
+			shape: "rsquare"
+			size: 1.08d
+			tags: ["ds_visual_resource"]
+			tasks: [
+				{
+					id: "10A1B2C3D4E50001"
+					item: "domesurvival:raw_tin"
+					type: "item"
+				}
+				{
+					id: "10A1B2C3D4E50002"
+					item: "domesurvival:raw_lead"
+					type: "item"
+				}
+				{
+					id: "10A1B2C3D4E50003"
+					item: "domesurvival:raw_nickel"
+					type: "item"
+				}
+				{
+					id: "10A1B2C3D4E50004"
+					item: "domesurvival:raw_silver"
+					type: "item"
+				}
+			]
+			title: "Промышленные жилы"
+			x: -4.0d
+			y: 51.0d
+		}
+		{
+			dependencies: ["1A91E53B7C2048D6"]
+			description: [
+				"Ниже обычных промышленных жил приборы фиксируют три редких материала."
+				""
+				"Готеиум выдерживает давление, волтариум хорошо проводит энергию, а соларит нужен для оборудования верхнего уровня."
+				""
+				"§6◆ Что сделать"
+				"§fНайдите сырые готеиум и волтариум, затем добудьте осколок соларита."
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: true
+			icon: "domesurvival:solarite_shard"
+			id: "2B82F64C8D3159E7"
+			min_width: 340
+			optional: true
+			rewards: [{
+				auto: "invisible"
+				command: "/domequest complete 2B82F64C8D3159E7 normal -"
+				elevate_perms: true
+				exclude_from_claim_all: true
+				icon: "minecraft:gray_stained_glass_pane"
+				id: "70A1B2C3D4E50002"
+				ignore_reward_blocking: true
+				silent: true
+				team_reward: true
+				title: " "
+				type: "command"
+			}]
+			shape: "hexagon"
+			size: 1.14d
+			tags: ["ds_visual_resource"]
+			tasks: [
+				{
+					id: "20A1B2C3D4E50001"
+					item: "domesurvival:raw_goteium"
+					type: "item"
+				}
+				{
+					id: "20A1B2C3D4E50002"
+					item: "domesurvival:raw_voltarium"
+					type: "item"
+				}
+				{
+					id: "20A1B2C3D4E50003"
+					item: "domesurvival:solarite_shard"
+					type: "item"
+				}
+			]
+			title: "Глубинные сигналы"
+			x: -4.0d
+			y: 54.0d
+		}
+		{
+			dependencies: ["2B82F64C8D3159E7"]
+			description: [
+				"Руда сама по себе не является технологией. Подготовьте чистый запас для точной обработки."
+				""
+				"§6◆ Что сделать"
+				"§fВыплавьте основные и глубинные металлы, соберите цельный кристалл соларита."
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: true
+			icon: "domesurvival:voltarium_ingot"
+			id: "3C73A75D9E426AF8"
+			min_width: 340
+			optional: true
+			rewards: [{
+				auto: "invisible"
+				command: "/domequest complete 3C73A75D9E426AF8 normal -"
+				elevate_perms: true
+				exclude_from_claim_all: true
+				icon: "minecraft:gray_stained_glass_pane"
+				id: "70A1B2C3D4E50003"
+				ignore_reward_blocking: true
+				silent: true
+				team_reward: true
+				title: " "
+				type: "command"
+			}]
+			shape: "rsquare"
+			size: 1.08d
+			tags: ["ds_visual_resource"]
+			tasks: [
+				{
+					id: "30A1B2C3D4E50001"
+					item: "domesurvival:tin_ingot"
+					type: "item"
+				}
+				{
+					id: "30A1B2C3D4E50002"
+					item: "domesurvival:lead_ingot"
+					type: "item"
+				}
+				{
+					id: "30A1B2C3D4E50003"
+					item: "domesurvival:nickel_ingot"
+					type: "item"
+				}
+				{
+					id: "30A1B2C3D4E50004"
+					item: "domesurvival:silver_ingot"
+					type: "item"
+				}
+				{
+					id: "30A1B2C3D4E50005"
+					item: "domesurvival:goteium_ingot"
+					type: "item"
+				}
+				{
+					id: "30A1B2C3D4E50006"
+					item: "domesurvival:voltarium_ingot"
+					type: "item"
+				}
+				{
+					id: "30A1B2C3D4E50007"
+					item: "domesurvival:solarite_crystal"
+					type: "item"
+				}
+			]
+			title: "Чистый технологический запас"
+			x: -4.0d
+			y: 57.0d
+		}
+		{
+			dependencies: ["3C73A75D9E426AF8"]
+			description: [
+				"Слитка достаточно для грубой конструкции, но развитой технике нужны пластины, стержни, проволока, трубы и точные шестерни."
+				""
+				"Металлообрабатывающий станок объединяет эти операции. Для его сборки не требуется проходить ветки Immersive Engineering или Mekanism: достаточно собственной металлургии DomeSurvival."
+				""
+				"§6◆ Что сделать"
+				"§fСоберите и установите формовочный пресс."
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: true
+			icon: "domesurvival:forming_press"
+			id: "4D64B86EAF537B09"
+			min_width: 340
+			optional: true
+			rewards: [{
+				auto: "invisible"
+				command: "/domequest complete 4D64B86EAF537B09 normal -"
+				elevate_perms: true
+				exclude_from_claim_all: true
+				icon: "minecraft:gray_stained_glass_pane"
+				id: "70A1B2C3D4E50004"
+				ignore_reward_blocking: true
+				silent: true
+				team_reward: true
+				title: " "
+				type: "command"
+			}]
+			shape: "hexagon"
+			size: 1.22d
+			tags: ["ds_visual_technology"]
+			tasks: [{
+				id: "40A1B2C3D4E50001"
+				item: "domesurvival:forming_press"
+				type: "item"
+			}]
+			title: "Точная формовка"
+			x: -4.0d
+			y: 60.0d
+		}
+		{
+			dependencies: ["4D64B86EAF537B09"]
+			description: [
+				"Проверьте основные режимы пресса. Продвинутые рецепты теперь используют форму материала, а не только количество слитков."
+				""
+				"§6◆ Что сделать"
+				"§fИзготовьте медную и стальную пластины, стальную и серебряную проволоку, никелевую пластину."
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: true
+			icon: "domesurvival:steel_plate"
+			id: "5E55C97FB0648C1A"
+			min_width: 340
+			optional: true
+			rewards: [{
+				auto: "invisible"
+				command: "/domequest complete 5E55C97FB0648C1A normal -"
+				elevate_perms: true
+				exclude_from_claim_all: true
+				icon: "minecraft:gray_stained_glass_pane"
+				id: "70A1B2C3D4E50005"
+				ignore_reward_blocking: true
+				silent: true
+				team_reward: true
+				title: " "
+				type: "command"
+			}]
+			shape: "rsquare"
+			size: 1.08d
+			tags: ["ds_visual_resource"]
+			tasks: [
+				{
+					id: "50A1B2C3D4E50001"
+					item: "domesurvival:copper_plate"
+					type: "item"
+				}
+				{
+					id: "50A1B2C3D4E50002"
+					item: "domesurvival:steel_plate"
+					type: "item"
+				}
+				{
+					id: "50A1B2C3D4E50003"
+					item: "domesurvival:steel_wire"
+					type: "item"
+				}
+				{
+					id: "50A1B2C3D4E50004"
+					item: "domesurvival:nickel_plate"
+					type: "item"
+				}
+				{
+					id: "50A1B2C3D4E50005"
+					item: "domesurvival:silver_wire"
+					type: "item"
+				}
+			]
+			title: "Не просто слитки"
+			x: -4.0d
+			y: 63.0d
+		}
+		{
+			dependencies: [
+				"5E55C97FB0648C1A"
+				"6AB2D7F0B4A14E41"
+			]
+			description: [
+				"Выбрасывать каждый изношенный фильтр слишком дорого. Станция восстанавливает четверть прочности за один заряд сорбента."
+				""
+				"Один фильтр допускает не более восьми циклов регенерации. Рецепт процесса и затраты энергии показаны в JEI."
+				""
+				"§6◆ Что сделать"
+				"§fСоберите регенератор фильтров и один заряд регенерационной среды."
+			]
+			hide_dependency_lines: false
+			hide_until_deps_complete: false
+			icon: "domesurvival:filter_regeneration_station"
+			id: "6F46DA80C1759D2B"
+			min_width: 340
+			optional: true
+			rewards: [{
+				auto: "invisible"
+				command: "/domequest complete 6F46DA80C1759D2B normal -"
+				elevate_perms: true
+				exclude_from_claim_all: true
+				icon: "minecraft:gray_stained_glass_pane"
+				id: "70A1B2C3D4E50006"
+				ignore_reward_blocking: true
+				silent: true
+				team_reward: true
+				title: " "
+				type: "command"
+			}]
+			shape: "hexagon"
+			size: 1.16d
+			tags: ["ds_visual_technology"]
+			tasks: [
+				{
+					id: "60A1B2C3D4E50001"
+					item: "domesurvival:filter_regeneration_station"
+					type: "item"
+				}
+				{
+					id: "60A1B2C3D4E50002"
+					item: "domesurvival:filter_regeneration_media"
+					type: "item"
+				}
+			]
+			title: "Вторая жизнь фильтра"
+			x: -6.0d
+			y: 66.0d
+		}
+	]
+	title: "{\"text\":\"Промышленный район\",\"color\":\"#63D4DF\",\"bold\":true}"
 }

@@ -1,0 +1,22 @@
+// Isolated visual test client; no production worlds, configs or mod folders are changed.
+gradle.projectsLoaded {
+    gradle.rootProject.afterEvaluate { p ->
+        if (p.hasProperty('domeVisualProbe')) {
+            def probe = p.sourceSets.create('visualProbe') {
+                java.srcDir 'dev/visual_overhaul/runtime_probe'
+                compileClasspath += p.sourceSets.main.output + p.sourceSets.main.compileClasspath
+                runtimeClasspath += p.sourceSets.main.runtimeClasspath
+            }
+            p.minecraft.runs.client.mods.domesurvival.source(probe)
+            p.minecraft.runs.client.property 'dome.visualProbe', 'true'
+            p.tasks.matching { it.name == 'runClient' }.configureEach { dependsOn p.tasks.named('visualProbeClasses') }
+        }
+    }
+}
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    p.minecraft.runs.client {
+        workingDirectory p.file('run/visual-prototype')
+        args '--username', 'VisualAudit', '--width', '1280', '--height', '800'
+    }
+}

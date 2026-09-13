@@ -7,7 +7,7 @@
   ],
   "key": {
     "S": { "tag": "forge:ingots/steel" },
-    "I": { "tag": "forge:ingots/iron" },
+    "I": { "tag": "forge:ingots/lead" },
     "C": { "tag": "forge:ingots/copper" },
     "B": { "item": "minecraft:iron_block" }
   },

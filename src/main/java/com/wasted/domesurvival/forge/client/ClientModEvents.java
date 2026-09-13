@@ -24,6 +24,7 @@ import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationScreen;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressScreen;
 import com.wasted.domesurvival.forge.machine.sieve.SandSieveScreen;
+import com.wasted.domesurvival.forge.lanos.LanosTrunkScreen;
 import com.wasted.domesurvival.forge.client.render.SandSieveBlockEntityRenderer;
 import com.wasted.domesurvival.forge.item.SieveMeshItem;
 import com.wasted.domesurvival.forge.item.ModItems;
@@ -72,6 +73,7 @@ public final class ClientModEvents {
             MenuScreens.register(ModMenuTypes.OXYGEN_FILLER.get(), OxygenFillerScreen::new);
             MenuScreens.register(ModMenuTypes.BIOINCUBATOR.get(), BioincubatorScreen::new);
             MenuScreens.register(ModMenuTypes.SAND_SIEVE.get(), SandSieveScreen::new);
+            MenuScreens.register(ModMenuTypes.LANOS_TRUNK.get(), LanosTrunkScreen::new);
             MenuScreens.register(FormingPressRegistry.FORMING_PRESS_MENU.get(), FormingPressScreen::new);
             MenuScreens.register(FilterRegenerationRegistry.FILTER_REGENERATION_MENU.get(), FilterRegenerationScreen::new);
             CuriosRendererRegistry.register(

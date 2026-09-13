@@ -212,11 +212,12 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
         sideConfig.reset();
         Direction facing = getMachineFacing();
         for (RelativeSide relative : RelativeSide.values()) {
-            if (relative == RelativeSide.FRONT) {
-                sideConfig.setMode(relative.resolve(facing), SideMode.DISABLED);
-            } else {
-                sideConfig.setMode(relative.resolve(facing), SideMode.BOTH);
-            }
+            SideMode mode = switch (relative) {
+                case FRONT -> SideMode.DISABLED;
+                case TOP, LEFT, BACK -> SideMode.INPUT;
+                case RIGHT, BOTTOM -> SideMode.OUTPUT;
+            };
+            sideConfig.setMode(relative.resolve(facing), mode);
         }
     }
 
@@ -263,7 +264,7 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
         if (level == null || level.isClientSide || purifiedWaterTank.isEmpty()) return false;
         boolean changed = false;
         for (Direction direction : Direction.values()) {
-            if (isFrontWorldSide(direction)) continue;
+            if (isFrontWorldSide(direction) || !sideConfig.allowsOutput(direction)) continue;
             BlockEntity neighbor = level.getBlockEntity(worldPosition.relative(direction));
             if (neighbor == null) continue;
             LazyOptional<IFluidHandler> opt = neighbor.getCapability(ForgeCapabilities.FLUID_HANDLER, direction.getOpposite());
@@ -397,23 +398,40 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
         rawWaterTank.readFromNBT(tag.getCompound(NBT_RAW_TANK));
         purifiedWaterTank.readFromNBT(tag.getCompound(NBT_PURIFIED_TANK));
         progress = Math.max(0, Math.min(currentProcessTicks() - 1, tag.getInt(NBT_PROGRESS)));
-        if (!sideConfig.load(tag)) applyDefaultSideConfiguration();
+        boolean loadedSides = sideConfig.load(tag);
         sideConfig.setMode(getMachineFacing(), SideMode.DISABLED);
+        if (!loadedSides || !hasConfiguredInput() || !hasConfiguredOutput()) {
+            applyDefaultSideConfiguration();
+        }
         status = calculateStatus();
+    }
+
+    private boolean hasConfiguredInput() {
+        for (Direction direction : Direction.values()) {
+            if (!isFrontWorldSide(direction) && sideConfig.allowsInput(direction)) return true;
+        }
+        return false;
+    }
+
+    private boolean hasConfiguredOutput() {
+        for (Direction direction : Direction.values()) {
+            if (!isFrontWorldSide(direction) && sideConfig.allowsOutput(direction)) return true;
+        }
+        return false;
     }
 
     @Override public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ENERGY) {
-            // Machine cables may connect to every non-front face. The unified side
-            // panel remains a visual/routing preference, but never hides FE capability.
-            if (side == null || !isFrontWorldSide(side)) return energyInputCapability.cast();
+            if (side == null || (!isFrontWorldSide(side) && sideConfig.allowsInput(side))) {
+                return energyInputCapability.cast();
+            }
             return LazyOptional.empty();
         }
         if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            // Expose one deterministic duplex fluid view on every non-front face:
-            // fill -> raw water tank, drain -> purified water tank. This avoids
-            // pipe mods failing to connect because a saved side mode was OUTPUT.
-            if (side == null || !isFrontWorldSide(side)) return combinedFluidCapability.cast();
+            if (side == null) return combinedFluidCapability.cast();
+            if (isFrontWorldSide(side)) return LazyOptional.empty();
+            if (sideConfig.allowsInput(side)) return rawFluidInputCapability.cast();
+            if (sideConfig.allowsOutput(side)) return purifiedFluidOutputCapability.cast();
             return LazyOptional.empty();
         }
         if (cap == ForgeCapabilities.ITEM_HANDLER) {

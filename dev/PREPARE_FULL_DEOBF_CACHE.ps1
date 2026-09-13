@@ -13,7 +13,7 @@ $BridgeReport = Join-Path $GeneratedDir 'mixin_srg_bridge_report.txt'
 $SrgToMcp = Join-Path $ProjectRoot 'build\createSrgToMcp\output.srg'
 $BridgeClassDir = Join-Path $PSScriptRoot 'tools\bin'
 
-$GeneratorVersion = '6.9.2-thirdparty-registry-dev-guard'
+$GeneratorVersion = '6.9.4-runtime-fingerprint'
 
 New-Item -ItemType Directory -Force -Path $GeneratedDir | Out-Null
 New-Item -ItemType Directory -Force -Path $CacheDir | Out-Null
@@ -37,13 +37,10 @@ if ($jars.Count -eq 0) {
 
 # Production JARs below are intentionally omitted only from MojMap FULL DEV.
 # They remain untouched in run\mods and are restored for production testing.
-# CustomNPCs is also compileOnly-gated in build.gradle during domeFullDev.
 $excludePatterns = @(
     '^curios-forge-',
     '^cofh_core-',
     '^thermal_core-',
-    '^CustomNPCs',
-    '^customnpcs-',
     '^betterarcheology-',
     '^domesurvival-'
 )
@@ -58,7 +55,9 @@ function Is-Excluded([string]$Name) {
 $runtimeJars = @($jars | Where-Object { -not (Is-Excluded $_.Name) })
 
 $rows = New-Object System.Collections.Generic.List[string]
-foreach ($jar in $jars) {
+# Fingerprint only the JARs that are actually copied into the MojMap cache.
+# Excluded overlays and our freshly rebuilt mod must not invalidate it.
+foreach ($jar in $runtimeJars) {
     $hash = (Get-FileHash -LiteralPath $jar.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
     $rows.Add("$($jar.Name)|$($jar.Length)|$hash")
 }

@@ -10,10 +10,10 @@
       "tag": "forge:ingots/aluminum"
     },
     "S": {
-      "tag": "forge:ingots/steel"
+      "tag": "forge:plates/steel"
     },
     "N": {
-      "tag": "forge:ingots/nickel"
+      "tag": "forge:plates/nickel"
     },
     "M": {
       "item": "domesurvival:small_oxygen_tank"

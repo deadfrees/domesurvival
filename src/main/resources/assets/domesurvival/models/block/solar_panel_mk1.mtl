@@ -1,0 +1,12 @@
+# DomeSurvival solar panel material map
+newmtl m_cad19eed-fb86-86f8-c5eb-f1559486b0bb
+map_Kd #panel
+
+newmtl connector_mount
+map_Kd #connector_mount
+
+newmtl connector_body
+map_Kd #connector_body
+
+newmtl connector_contact
+map_Kd #connector_contact

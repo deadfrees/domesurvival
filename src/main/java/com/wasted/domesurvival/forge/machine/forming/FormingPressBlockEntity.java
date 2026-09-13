@@ -196,14 +196,9 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         return side == getMachineFacing();
     }
 
-    /**
-     * Forge Energy is receive-only and exposed on every physical face except the reserved front.
-     * Item routing remains controlled by the unified side configuration. Keeping FE discovery
-     * independent from item modes is important for EnderIO, Mekanism and Thermal cables, which
-     * probe sided capabilities before they decide whether a connection is valid.
-     */
+    /** Forge Energy is receive-only and follows the same physical INPUT mode as item insertion. */
     private boolean isEnergyInputSide(@Nullable Direction side) {
-        return side == null || !isFrontWorldSide(side);
+        return side == null || (!isFrontWorldSide(side) && sideConfig.allowsInput(side));
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, FormingPressBlockEntity press) {

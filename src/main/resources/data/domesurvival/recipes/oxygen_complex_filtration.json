@@ -7,7 +7,7 @@
   ],
   "key": {
     "T": {
-      "tag": "forge:ingots/tin"
+      "tag": "forge:plates/tin"
     },
     "F": {
       "item": "domesurvival:industrial_water_filter"

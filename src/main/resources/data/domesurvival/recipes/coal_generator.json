@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "IPI",
-    "DFD",
-    "DMD"
+    "TPT",
+    "LFL",
+    "TMT"
   ],
   "key": {
-    "I": { "tag": "forge:ingots/iron" },
+    "T": { "tag": "forge:ingots/tin" },
     "P": { "item": "minecraft:piston" },
-    "D": { "item": "minecraft:cobbled_deepslate" },
+    "L": { "tag": "forge:ingots/lead" },
     "F": { "item": "domesurvival:copper_furnace" },
     "M": { "item": "domesurvival:pulse_matrix" }
   },

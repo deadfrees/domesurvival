@@ -22,6 +22,7 @@
     tags: ["ds_visual_story"]
     x: 0.0d
     y: 0.0d
+    hide_dependency_lines: false
     shape: "hexagon"
     size: 1.22d
     icon_scale: 0.84d
@@ -82,8 +83,9 @@
     title: "Инструменты короткого рейса"
     icon: "minecraft:stone_shovel"
     tags: ["ds_visual_resource"]
-    x: -4.5d
-    y: 2.2d
+    x: -4.8d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.00d
     icon_scale: 0.86d
@@ -142,8 +144,9 @@
     title: "Еда на обратную дорогу"
     icon: "minecraft:bread"
     tags: ["ds_visual_resource"]
-    x: -1.5d
-    y: 2.2d
+    x: -1.6d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.00d
     icon_scale: 0.86d
@@ -198,8 +201,9 @@
     title: "Световой запас"
     icon: "minecraft:torch"
     tags: ["ds_visual_resource"]
-    x: 1.5d
-    y: 2.2d
+    x: 1.6d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.00d
     icon_scale: 0.86d
@@ -254,8 +258,9 @@
     title: "Блоки вместо героизма"
     icon: "minecraft:cobblestone"
     tags: ["ds_visual_resource"]
-    x: 4.5d
-    y: 2.2d
+    x: 4.8d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.00d
     icon_scale: 0.86d
@@ -311,7 +316,8 @@
     icon: "domesurvival:airlock_control_panel"
     tags: ["ds_visual_airlock"]
     x: 0.0d
-    y: 4.4d
+    y: 6.0d
+    hide_dependency_lines: false
     shape: "gear"
     size: 1.12d
     icon_scale: 0.82d
@@ -367,7 +373,8 @@
     icon: "minecraft:leather_boots"
     tags: ["ds_visual_environment"]
     x: 0.0d
-    y: 6.5d
+    y: 9.0d
+    hide_dependency_lines: false
     shape: "circle"
     size: 1.12d
     icon_scale: 0.84d
@@ -424,7 +431,8 @@
     icon: "minecraft:spyglass"
     tags: ["ds_visual_environment"]
     x: 0.0d
-    y: 8.6d
+    y: 12.0d
+    hide_dependency_lines: false
     shape: "circle"
     size: 1.16d
     icon_scale: 0.82d
@@ -483,13 +491,15 @@
     title: "Оставь свет у дороги"
     icon: "minecraft:torch"
     tags: ["ds_visual_environment"]
-    x: -3.0d
-    y: 10.8d
+    x: 1.6d
+    y: 15.0d
+    hide_dependency_lines: false
     shape: "circle"
     size: 1.04d
     icon_scale: 0.84d
     min_width: 340
     dependencies: ["68986BCB1E8DB7B7"]
+    optional: true
     description: [
       "Маршрут к шлюзу должен читаться с первого взгляда.",
       "",
@@ -540,13 +550,15 @@
     title: "Временный ориентир"
     icon: "minecraft:cobblestone"
     tags: ["ds_visual_resource"]
-    x: 0.0d
-    y: 10.8d
+    x: 4.8d
+    y: 15.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.84d
     min_width: 340
     dependencies: ["68986BCB1E8DB7B7"]
+    optional: true
     description: [
       "Внешняя точка не должна быть дорогой или красивой.",
       "",
@@ -597,8 +609,9 @@
     title: "То, чего нет под стеклом"
     icon: "minecraft:sand"
     tags: ["ds_visual_resource"]
-    x: 3.0d
-    y: 10.8d
+    x: -4.8d
+    y: 15.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
@@ -657,12 +670,13 @@
     icon: "minecraft:clock"
     tags: ["ds_visual_milestone"]
     x: -1.6d
-    y: 13.0d
+    y: 15.0d
+    hide_dependency_lines: false
     shape: "diamond"
     size: 1.28d
     icon_scale: 0.82d
     min_width: 340
-    dependencies: ["01415509426039D2", "706EFE49CEFC5DF3"]
+    dependencies: ["68986BCB1E8DB7B7"]
     description: [
       "Первое правило внешней работы: возвращение начинается до того, как оно стало срочным.",
       "",
@@ -713,12 +727,14 @@
     icon: "minecraft:leather_boots"
     tags: ["ds_visual_environment"]
     x: 1.6d
-    y: 13.0d
+    y: 18.0d
+    hide_dependency_lines: false
     shape: "circle"
     size: 1.10d
     icon_scale: 0.84d
     min_width: 340
     dependencies: ["27AACD200A156F63"]
+    optional: true
     description: [
       "Один удачный выход может быть случайностью. Повторяемый маршрут — уже процедура.",
       "",
@@ -769,13 +785,15 @@
     title: "Маршрут должен быть скучным"
     icon: "minecraft:map"
     tags: ["ds_visual_milestone"]
-    x: 0.0d
-    y: 15.2d
+    x: 1.6d
+    y: 21.0d
+    hide_dependency_lines: false
     shape: "diamond"
     size: 1.30d
     icon_scale: 0.80d
     min_width: 340
     dependencies: ["77C38BD299258425"]
+    optional: true
     description: [
       "Хороший маршрут не требует импровизации.",
       "",
@@ -825,13 +843,14 @@
     title: "Вернуться с грузом"
     icon: "minecraft:sand"
     tags: ["ds_visual_milestone"]
-    x: 2.2d
-    y: 17.4d
+    x: -1.6d
+    y: 18.0d
+    hide_dependency_lines: false
     shape: "diamond"
     size: 1.32d
     icon_scale: 0.82d
     min_width: 340
-    dependencies: ["24D239E4026B64A5", "1403CDFAA5692780"]
+    dependencies: ["24D239E4026B64A5", "27AACD200A156F63"]
     description: [
       "Теперь соединяем всё вместе: короткая дистанция, понятный маршрут и реальный груз.",
       "",
@@ -882,8 +901,9 @@
     title: "Закрой операцию"
     icon: "domesurvival:airlock_control_panel"
     tags: ["ds_visual_airlock"]
-    x: 0.0d
-    y: 19.5d
+    x: -1.6d
+    y: 21.0d
+    hide_dependency_lines: false
     shape: "gear"
     size: 1.14d
     icon_scale: 0.82d
@@ -940,7 +960,8 @@
     icon: "minecraft:compass"
     tags: ["ds_visual_milestone"]
     x: 0.0d
-    y: 21.8d
+    y: 24.0d
+    hide_dependency_lines: false
     shape: "octagon"
     size: 1.50d
     icon_scale: 0.80d

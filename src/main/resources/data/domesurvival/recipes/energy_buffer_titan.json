@@ -3,7 +3,7 @@
   "pattern": [
     "DMD",
     "GSG",
-    "DBD"
+    "XBX"
   ],
   "key": {
     "D": {
@@ -20,6 +20,9 @@
     },
     "B": {
       "item": "domesurvival:machine_stabilizer"
+    },
+    "X": {
+      "item": "domesurvival:solarite_shard"
     }
   },
   "result": {

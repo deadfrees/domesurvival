@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "forge:obj",
+  "flip_v": true,
+  "model": "domesurvival:models/block/solar_panel_mk2.obj",
+  "textures": {
+    "panel": "domesurvival:block/solar_panel_mk2",
+    "connector_body": "domesurvival:block/solar_connector_body",
+    "connector_contact": "domesurvival:block/solar_connector_contact",
+    "particle": "domesurvival:block/solar_panel_mk2",
+    "connector_mount": "domesurvival:block/solar_connector_mount"
+  }
+}

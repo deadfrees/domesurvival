@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "SSS",
+    "PCP",
+    "WMW"
+  ],
+  "key": {
+    "S": {
+      "item": "domesurvival:solarite_shard"
+    },
+    "P": {
+      "tag": "forge:plates/copper"
+    },
+    "C": {
+      "item": "domesurvival:pulse_matrix"
+    },
+    "W": {
+      "tag": "forge:wires/copper"
+    },
+    "M": {
+      "item": "domesurvival:machine_stabilizer"
+    }
+  },
+  "result": {
+    "item": "domesurvival:solar_panel_mk1",
+    "count": 1
+  }
+}

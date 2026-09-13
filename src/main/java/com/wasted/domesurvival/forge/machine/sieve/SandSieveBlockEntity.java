@@ -2,6 +2,7 @@ package com.wasted.domesurvival.forge.machine.sieve;
 
 import com.wasted.domesurvival.forge.fluid.ModFluids;
 import com.wasted.domesurvival.forge.item.SieveMeshItem;
+import com.wasted.domesurvival.forge.machine.side.CapabilityViews;
 import com.wasted.domesurvival.forge.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -100,10 +101,11 @@ public final class SandSieveBlockEntity extends BlockEntity implements MenuProvi
     };
 
     private LazyOptional<IItemHandler> inputCapability = LazyOptional.of(
-            () -> new RangedWrapper(inventory, SLOT_SAND, SLOT_MESH + 1));
+            () -> CapabilityViews.inputItems(new RangedWrapper(inventory, SLOT_SAND, SLOT_MESH + 1)));
     private LazyOptional<IItemHandler> outputCapability = LazyOptional.of(
-            () -> new RangedWrapper(inventory, SLOT_OUTPUT_FIRST, SLOT_OUTPUT_LAST + 1));
-    private LazyOptional<IFluidHandler> fluidCapability = LazyOptional.of(() -> waterTank);
+            () -> CapabilityViews.outputItems(new RangedWrapper(inventory, SLOT_OUTPUT_FIRST, SLOT_OUTPUT_LAST + 1)));
+    private LazyOptional<IFluidHandler> fluidCapability = LazyOptional.of(
+            () -> CapabilityViews.inputFluid(waterTank));
 
     private int progress;
     private boolean wetCycle;
@@ -382,9 +384,12 @@ public final class SandSieveBlockEntity extends BlockEntity implements MenuProvi
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> capability,
                                                       @Nullable Direction side) {
-        if (capability == ForgeCapabilities.FLUID_HANDLER) return fluidCapability.cast();
+        if (capability == ForgeCapabilities.FLUID_HANDLER) {
+            return side != Direction.DOWN ? fluidCapability.cast() : LazyOptional.empty();
+        }
         if (capability == ForgeCapabilities.ITEM_HANDLER) {
-            return side == Direction.DOWN ? outputCapability.cast() : inputCapability.cast();
+            if (side == Direction.DOWN) return outputCapability.cast();
+            return inputCapability.cast();
         }
         return super.getCapability(capability, side);
     }
@@ -400,9 +405,11 @@ public final class SandSieveBlockEntity extends BlockEntity implements MenuProvi
     @Override
     public void reviveCaps() {
         super.reviveCaps();
-        inputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_SAND, SLOT_MESH + 1));
-        outputCapability = LazyOptional.of(() -> new RangedWrapper(inventory, SLOT_OUTPUT_FIRST, SLOT_OUTPUT_LAST + 1));
-        fluidCapability = LazyOptional.of(() -> waterTank);
+        inputCapability = LazyOptional.of(() ->
+                CapabilityViews.inputItems(new RangedWrapper(inventory, SLOT_SAND, SLOT_MESH + 1)));
+        outputCapability = LazyOptional.of(() ->
+                CapabilityViews.outputItems(new RangedWrapper(inventory, SLOT_OUTPUT_FIRST, SLOT_OUTPUT_LAST + 1)));
+        fluidCapability = LazyOptional.of(() -> CapabilityViews.inputFluid(waterTank));
     }
 
     @Override public Component getDisplayName() { return Component.translatable("block.domesurvival.sand_sieve"); }

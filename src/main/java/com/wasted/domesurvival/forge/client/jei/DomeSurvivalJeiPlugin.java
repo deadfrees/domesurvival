@@ -11,6 +11,9 @@ import com.wasted.domesurvival.forge.item.ModItems;
 import com.wasted.domesurvival.forge.item.OxygenTankItem;
 import com.wasted.domesurvival.forge.item.SieveMeshItem;
 import com.wasted.domesurvival.forge.machine.bio.BioincubatorBlockEntity;
+import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationBlockEntity;
+import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationRegistry;
+import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenElectrolyzerBlockEntity;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenFillerBlockEntity;
 import com.wasted.domesurvival.forge.machine.shaft.CokeOvenBlockEntity;
@@ -18,6 +21,8 @@ import com.wasted.domesurvival.forge.machine.shaft.ShaftFurnaceBlockEntity;
 import com.wasted.domesurvival.forge.machine.water.WaterPurifierBlockEntity;
 import com.wasted.domesurvival.forge.machine.sieve.SandSieveBlockEntity;
 import com.wasted.domesurvival.forge.machine.sieve.SieveDropTable;
+import com.wasted.domesurvival.forge.recipe.FormingPressRecipe;
+import com.wasted.domesurvival.forge.recipe.ModRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
@@ -26,6 +31,7 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.ISubtypeRegistration;
 import net.minecraft.network.chat.Component;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EntityType;
@@ -41,6 +47,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @JeiPlugin
@@ -55,6 +62,8 @@ public final class DomeSurvivalJeiPlugin implements IModPlugin {
     public static final RecipeType<DomeMachineRecipe> BIO_REPAIR = type("bio_repair");
     public static final RecipeType<DomeMachineRecipe> BIO_INCUBATION = type("bio_incubation");
     public static final RecipeType<DomeMachineRecipe> SAND_SIEVE = type("sand_sieve");
+    public static final RecipeType<DomeMachineRecipe> FORMING_PRESS = type("forming_press");
+    public static final RecipeType<DomeMachineRecipe> FILTER_REGENERATION = type("filter_regeneration");
 
     private static volatile List<SpeciesDefinition> bundledSpecies;
 
@@ -100,7 +109,13 @@ public final class DomeSurvivalJeiPlugin implements IModPlugin {
                         new ItemStack(ModBlocks.BIOINCUBATOR.get())),
                 new DomeMachineRecipeCategory(helper, SAND_SIEVE,
                         Component.translatable("jei.domesurvival.sand_sieve"),
-                        new ItemStack(ModBlocks.SAND_SIEVE.get()))
+                        new ItemStack(ModBlocks.SAND_SIEVE.get())),
+                new DomeMachineRecipeCategory(helper, FORMING_PRESS,
+                        Component.translatable("jei.domesurvival.forming_press"),
+                        new ItemStack(FormingPressRegistry.FORMING_PRESS.get())),
+                new DomeMachineRecipeCategory(helper, FILTER_REGENERATION,
+                        Component.translatable("jei.domesurvival.filter_regeneration"),
+                        new ItemStack(FilterRegenerationRegistry.FILTER_REGENERATION_STATION.get()))
         );
     }
 
@@ -114,6 +129,8 @@ public final class DomeSurvivalJeiPlugin implements IModPlugin {
         registration.addRecipes(BIO_REPAIR, biologicalRepairRecipes());
         registration.addRecipes(BIO_INCUBATION, biologicalIncubationRecipes());
         registration.addRecipes(SAND_SIEVE, sandSieveRecipes());
+        registration.addRecipes(FORMING_PRESS, formingPressRecipes());
+        registration.addRecipes(FILTER_REGENERATION, filterRegenerationRecipes());
     }
 
     @Override
@@ -125,6 +142,9 @@ public final class DomeSurvivalJeiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(ModBlocks.OXYGEN_FILLER.get(), OXYGEN_FILLER);
         registration.addRecipeCatalyst(ModBlocks.BIOINCUBATOR.get(), BIO_REPAIR, BIO_INCUBATION);
         registration.addRecipeCatalyst(ModBlocks.SAND_SIEVE.get(), SAND_SIEVE);
+        registration.addRecipeCatalyst(FormingPressRegistry.FORMING_PRESS.get(), FORMING_PRESS);
+        registration.addRecipeCatalyst(FilterRegenerationRegistry.FILTER_REGENERATION_STATION.get(),
+                FILTER_REGENERATION);
     }
 
     private static DomeMachineRecipe cokeRecipe() {
@@ -257,6 +277,57 @@ public final class DomeSurvivalJeiPlugin implements IModPlugin {
                 wetSieveRecipe("copper", ModItems.COPPER_SIEVE_MESH.get(), SieveMeshItem.Tier.COPPER),
                 wetSieveRecipe("steel", ModItems.STEEL_SIEVE_MESH.get(), SieveMeshItem.Tier.STEEL)
         );
+    }
+
+    private static List<DomeMachineRecipe> formingPressRecipes() {
+        var level = Minecraft.getInstance().level;
+        if (level == null) return List.of();
+
+        return level.getRecipeManager().getAllRecipesFor(ModRecipes.FORMING_TYPE.get()).stream()
+                .map(DomeSurvivalJeiPlugin::formingPressRecipe)
+                .toList();
+    }
+
+    private static DomeMachineRecipe formingPressRecipe(FormingPressRecipe source) {
+        List<ItemStack> inputs = Arrays.stream(source.getIngredient().getItems())
+                .map(stack -> {
+                    ItemStack counted = stack.copy();
+                    counted.setCount(source.getInputCount());
+                    return counted;
+                })
+                .toList();
+        int energyPerTick = Math.max(1,
+                (source.getEnergy() + source.getProcessingTime() - 1) / source.getProcessingTime());
+        Component operation = Component.translatable(
+                "gui.domesurvival.forming_press.operation." + source.getOperation().getSerializedName());
+        Component note = Component.translatable("jei.domesurvival.note.forming_operation", operation);
+        return recipe("forming_press/" + pathId(source.getId()), DomeMachineRecipe.Layout.FORMING_PRESS,
+                List.of(inputs), List.of(), List.of(List.of(source.getResult())), List.of(),
+                note, source.getProcessingTime(), energyPerTick);
+    }
+
+    private static List<DomeMachineRecipe> filterRegenerationRecipes() {
+        return List.of(
+                filterRegenerationRecipe("basic", ModItems.WATER_FILTER_CARTRIDGE.get()),
+                filterRegenerationRecipe("improved", ModItems.IMPROVED_WATER_FILTER.get()),
+                filterRegenerationRecipe("air", ModItems.INDUSTRIAL_WATER_FILTER.get())
+        );
+    }
+
+    private static DomeMachineRecipe filterRegenerationRecipe(String name, Item filter) {
+        ItemStack damaged = new ItemStack(filter);
+        damaged.setDamageValue(Math.max(1, damaged.getMaxDamage() / 2));
+        ItemStack repaired = damaged.copy();
+        int repairAmount = Math.max(1, repaired.getMaxDamage() / 4);
+        repaired.setDamageValue(Math.max(0, repaired.getDamageValue() - repairAmount));
+
+        Component note = Component.translatable("jei.domesurvival.note.filter_regeneration",
+                25, FilterRegenerationBlockEntity.MAX_REGENERATION_CYCLES);
+        return recipe("filter_regeneration/" + name, DomeMachineRecipe.Layout.FILTER_REGENERATION,
+                List.of(List.of(damaged), List.of(new ItemStack(ModItems.FILTER_REGENERATION_MEDIA.get()))),
+                List.of(), List.of(List.of(repaired)), List.of(), note,
+                FilterRegenerationBlockEntity.PROCESSING_TICKS,
+                FilterRegenerationBlockEntity.ENERGY_PER_TICK);
     }
 
     private static DomeMachineRecipe drySieveRecipe(String name, Item mesh, SieveMeshItem.Tier tier) {

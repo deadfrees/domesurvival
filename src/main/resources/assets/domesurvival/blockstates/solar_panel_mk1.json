@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "domesurvival:block/solar_panel_mk1"
+    },
+    "facing=east": {
+      "model": "domesurvival:block/solar_panel_mk1",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "domesurvival:block/solar_panel_mk1",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "domesurvival:block/solar_panel_mk1",
+      "y": 270
+    }
+  }
+}

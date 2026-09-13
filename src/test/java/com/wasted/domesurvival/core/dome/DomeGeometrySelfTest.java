@@ -50,8 +50,8 @@ public final class DomeGeometrySelfTest {
         check(bounds.classify(-506.0, 62.0, -641.0) == DomeZone.SURFACE_SKIRT, "spawn zone");
         check(bounds.isSafe(-506.0, -64.0, -641.0), "bottom of starter mine must be safe");
         check(!bounds.isSafe(-506.0, -65.0, -641.0), "below world minimum is outside safe volume");
-        check(bounds.isSafe(-461.0, 0.0, -641.0), "underground radius edge must be safe");
-        check(!bounds.isSafe(-460.0, 0.0, -641.0), "one block outside underground radius must be unsafe");
+        check(bounds.isSafe(-456.0, 0.0, -641.0), "underground radius edge must be safe");
+        check(!bounds.isSafe(-455.0, 0.0, -641.0), "one block outside underground radius must be unsafe");
         check(bounds.classify(-515.0, 63.0, -585.0) == DomeZone.AIRLOCK, "airlock classification");
         check(!DomeZone.AIRLOCK.isSafe(), "airlock must use runtime pressure, not static safety");
 
@@ -59,6 +59,7 @@ public final class DomeGeometrySelfTest {
         List<PlannedBlock> full = DomeStructurePlanner.planFullV23(spec);
         List<PlannedBlock> v2Upgrade = DomeStructurePlanner.planV2UpgradeFromV14(spec);
         List<PlannedBlock> v23Upgrade = DomeStructurePlanner.planV23UpgradeFromV2(spec);
+        List<PlannedBlock> undergroundWall = DomeStructurePlanner.planUndergroundWall(spec);
 
         check(shell.size() > 12_000, "shell unexpectedly small: " + shell.size());
         boolean hasVoxelizedOuterEdge = false;
@@ -88,6 +89,13 @@ public final class DomeGeometrySelfTest {
                 StructureMaterial.AIRLOCK_PANEL), "dome-side inner panel missing");
         check(v2Upgrade.size() == 52, "V1.4 -> V2 should add 50 shutter + 2 panel blocks: " + v2Upgrade.size());
         check(v23Upgrade.size() == 1, "V2 -> V2.3 should add exactly one dome-side panel: " + v23Upgrade.size());
+        check(has(undergroundWall,
+                        new BlockPoint(spec.centerX() + spec.undergroundRadius(), spec.undergroundMinY(), spec.centerZ()),
+                        StructureMaterial.FOUNDATION),
+                "deep wall must reach bedrock at the playable radius");
+        check(!hasAnyAt(undergroundWall,
+                        new BlockPoint(spec.centerX(), spec.undergroundMinY(), spec.centerZ())),
+                "deep wall must preserve natural underground generation inside the dome");
 
         AirlockState state = AirlockState.initial();
         check(state.breathable(), "initial chamber must be breathable");
@@ -128,6 +136,10 @@ public final class DomeGeometrySelfTest {
 
     private static boolean has(List<PlannedBlock> blocks, BlockPoint point, StructureMaterial material) {
         return blocks.stream().anyMatch(b -> b.point().equals(point) && b.material() == material);
+    }
+
+    private static boolean hasAnyAt(List<PlannedBlock> blocks, BlockPoint point) {
+        return blocks.stream().anyMatch(b -> b.point().equals(point));
     }
 
     private static void check(boolean condition, String message) {

@@ -7,13 +7,13 @@
   ],
   "key": {
     "S": {
-      "tag": "forge:ingots/steel"
+      "tag": "forge:plates/steel"
     },
     "P": {
       "item": "minecraft:piston"
     },
     "N": {
-      "tag": "forge:ingots/nickel"
+      "tag": "forge:plates/nickel"
     },
     "B": {
       "item": "domesurvival:machine_stabilizer"

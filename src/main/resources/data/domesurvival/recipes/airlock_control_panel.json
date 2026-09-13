@@ -1,19 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "RGR",
-    "RPR",
-    " G "
+    "WRW",
+    "GPG",
+    " M "
   ],
   "key": {
     "G": {
       "item": "domesurvival:lead_gear"
+    },
+    "W": {
+      "tag": "forge:wires/silver"
     },
     "R": {
       "item": "minecraft:redstone"
     },
     "P": {
       "item": "minecraft:piston"
+    },
+    "M": {
+      "item": "domesurvival:pulse_matrix"
     }
   },
   "result": {

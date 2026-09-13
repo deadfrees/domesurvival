@@ -21,6 +21,33 @@ public final class DomeStructurePlanner {
         return toList(plan);
     }
 
+    /**
+     * Three-block-deep cylindrical seal from the surface foundation to bedrock.
+     *
+     * Only the perimeter is authored. Everything inside the cylinder remains
+     * ordinary world generation, including caves, ores and modded features.
+     */
+    public static List<PlannedBlock> planUndergroundWall(DomeSpec spec) {
+        LinkedHashMap<BlockPoint, StructureMaterial> plan = new LinkedHashMap<>();
+        int radius = spec.undergroundRadius();
+        double innerSq = (radius - 3.0) * (radius - 3.0);
+        double outerSq = (double) radius * radius;
+
+        for (int y = spec.undergroundMinY(); y < spec.foundationMinY(); y++) {
+            for (int dx = -radius; dx <= radius; dx++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    double horizontalSq = dx * dx + dz * dz;
+                    if (horizontalSq >= innerSq && horizontalSq <= outerSq) {
+                        put(plan,
+                                new BlockPoint(spec.centerX() + dx, y, spec.centerZ() + dz),
+                                StructureMaterial.FOUNDATION);
+                    }
+                }
+            }
+        }
+        return toList(plan);
+    }
+
     /** V2 -> V2.3: add one extra inner-door panel on the dome side. */
     public static List<PlannedBlock> planV23UpgradeFromV2(DomeSpec spec) {
         LinkedHashMap<BlockPoint, StructureMaterial> plan = new LinkedHashMap<>();

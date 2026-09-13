@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "RRR",
+    "GRG",
     "RNR",
-    "RRR"
+    "GRG"
   ],
   "key": {
     "R": {
@@ -11,10 +11,13 @@
     },
     "N": {
       "tag": "domesurvival:tubes/nickel"
+    },
+    "G": {
+      "tag": "forge:nuggets/goteium"
     }
   },
   "result": {
     "item": "domesurvival:high_pressure_fluid_pipe",
-    "count": 8
+    "count": 4
   }
 }

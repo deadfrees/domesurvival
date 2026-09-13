@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.Util;
 
 /** Shared JEI renderer that mirrors DomeSurvival's industrial machine GUI language. */
 final class DomeJeiStyle {
@@ -75,8 +74,8 @@ final class DomeJeiStyle {
 
     static float animationFraction(int processTicks) {
         int ticks = Math.max(20, processTicks);
-        long cycleMs = Math.max(1_000L, ticks * 50L);
-        return (Util.getMillis() % cycleMs) / (float) cycleMs;
+        long cycleNanos = Math.max(1_000_000_000L, ticks * 50_000_000L);
+        return (System.nanoTime() % cycleNanos) / (float) cycleNanos;
     }
 
     static void drawCenteredClamped(GuiGraphics graphics, Component text, int centerX, int y,

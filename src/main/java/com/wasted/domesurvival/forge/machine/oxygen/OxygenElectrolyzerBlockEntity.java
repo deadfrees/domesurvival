@@ -112,7 +112,12 @@ public final class OxygenElectrolyzerBlockEntity extends BlockEntity implements 
         sideConfig.reset();
         Direction facing = getMachineFacing();
         for (RelativeSide relative : RelativeSide.values()) {
-            sideConfig.setMode(relative.resolve(facing), relative == RelativeSide.FRONT ? SideMode.DISABLED : SideMode.BOTH);
+            SideMode mode = switch (relative) {
+                case FRONT -> SideMode.DISABLED;
+                case TOP, LEFT, BACK -> SideMode.INPUT;
+                case RIGHT, BOTTOM -> SideMode.OUTPUT;
+            };
+            sideConfig.setMode(relative.resolve(facing), mode);
         }
     }
 
@@ -184,14 +189,14 @@ public final class OxygenElectrolyzerBlockEntity extends BlockEntity implements 
     @Override public void onLoad() { super.onLoad(); syncAllPortStates(); }
     public Direction getMachineFacing() { BlockState state = getBlockState(); return state.hasProperty(OxygenElectrolyzerBlock.FACING) ? state.getValue(OxygenElectrolyzerBlock.FACING) : Direction.NORTH; }
     @Override protected void saveAdditional(CompoundTag tag) { super.saveAdditional(tag); tag.putInt(NBT_ENERGY, energyStorage.getEnergyStored()); tag.put(NBT_WATER, waterTank.writeToNBT(new CompoundTag())); tag.putInt(NBT_OXYGEN, oxygenStorage.getOxygenStored()); tag.putInt(NBT_PROGRESS, progress); sideConfig.save(tag); }
-    @Override public void load(CompoundTag tag) { super.load(tag); energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY)); waterTank.readFromNBT(tag.getCompound(NBT_WATER)); oxygenStorage.setStoredInternal(tag.getInt(NBT_OXYGEN)); progress = Math.max(0, Math.min(PROCESS_TICKS - 1, tag.getInt(NBT_PROGRESS))); if (!sideConfig.load(tag)) applyDefaultSideConfiguration(); sideConfig.setMode(getMachineFacing(), SideMode.DISABLED); status = calculateStatus(); }
+    @Override public void load(CompoundTag tag) { super.load(tag); energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY)); waterTank.readFromNBT(tag.getCompound(NBT_WATER)); oxygenStorage.setStoredInternal(tag.getInt(NBT_OXYGEN)); progress = Math.max(0, Math.min(PROCESS_TICKS - 1, tag.getInt(NBT_PROGRESS))); boolean loadedSides = sideConfig.load(tag); sideConfig.setMode(getMachineFacing(), SideMode.DISABLED); if (!loadedSides || !hasConfiguredInput() || !hasConfiguredOutput()) applyDefaultSideConfiguration(); status = calculateStatus(); }
     @Override public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ENERGY) {
-            if (side == null || !isFrontWorldSide(side)) return energyCapability.cast();
+            if (side == null || (!isFrontWorldSide(side) && sideConfig.allowsInput(side))) return energyCapability.cast();
             return LazyOptional.empty();
         }
         if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            if (side == null || !isFrontWorldSide(side)) return fluidCapability.cast();
+            if (side == null || (!isFrontWorldSide(side) && sideConfig.allowsInput(side))) return fluidCapability.cast();
             return LazyOptional.empty();
         }
         if (cap == ModCapabilities.OXYGEN) {
@@ -200,6 +205,8 @@ public final class OxygenElectrolyzerBlockEntity extends BlockEntity implements 
         }
         return super.getCapability(cap, side);
     }
+    private boolean hasConfiguredInput() { for (Direction direction : Direction.values()) if (!isFrontWorldSide(direction) && sideConfig.allowsInput(direction)) return true; return false; }
+    private boolean hasConfiguredOutput() { for (Direction direction : Direction.values()) if (!isFrontWorldSide(direction) && sideConfig.allowsOutput(direction)) return true; return false; }
     private void refreshCapabilities() { energyCapability.invalidate(); fluidCapability.invalidate(); oxygenCapability.invalidate(); energyCapability = LazyOptional.of(() -> energyInputView); fluidCapability = LazyOptional.of(() -> fluidInputView); oxygenCapability = LazyOptional.of(() -> oxygenOutputView); }
     @Override public void invalidateCaps() { super.invalidateCaps(); energyCapability.invalidate(); fluidCapability.invalidate(); oxygenCapability.invalidate(); }
     @Override public void reviveCaps() { super.reviveCaps(); refreshCapabilities(); }

@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.item;
 
 import com.wasted.domesurvival.forge.DomeSurvival;
+import com.wasted.domesurvival.forge.bio.BioLootData;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -30,18 +31,77 @@ public final class ModCreativeTabs {
     private static final ResourceLocation TAB_ID =
             new ResourceLocation(DomeSurvival.MOD_ID, "items");
     private static final ResourceLocation PREFERRED_ICON =
-            new ResourceLocation(DomeSurvival.MOD_ID, "reinforced_glass");
+            new ResourceLocation(DomeSurvival.MOD_ID, "solarite_crystal");
 
     /** Stable thematic order: materials, life support, power, technology, biology, misc. */
     private static final List<String> DISPLAY_ORDER = List.of(
             // 1. Base materials and components.
+            "tin_ore",
+            "deepslate_tin_ore",
+            "raw_tin",
+            "tin_ingot",
+            "tin_nugget",
+            "tin_block",
+            "lead_ore",
+            "deepslate_lead_ore",
+            "raw_lead",
+            "lead_ingot",
+            "lead_nugget",
+            "lead_block",
+            "silver_ore",
+            "deepslate_silver_ore",
+            "raw_silver",
+            "silver_ingot",
+            "silver_nugget",
+            "silver_block",
+            "nickel_ore",
+            "deepslate_nickel_ore",
+            "raw_nickel",
+            "nickel_ingot",
+            "nickel_nugget",
+            "nickel_block",
+            "goteium_ore",
+            "deepslate_goteium_ore",
+            "raw_goteium",
+            "goteium_ingot",
+            "goteium_nugget",
+            "goteium_block",
+            "voltarium_ore",
+            "deepslate_voltarium_ore",
+            "raw_voltarium",
+            "voltarium_ingot",
+            "voltarium_nugget",
+            "voltarium_block",
+            "solarite_ore",
+            "deepslate_solarite_ore",
+            "solarite_shard",
+            "solarite_crystal",
+            "solarite_block",
             "steel_ingot",
             "steel_nugget",
             "steel_block",
-            "solarite_crystal",
-            "solarite_block",
             "coal_coke",
             "slag",
+            "copper_plate",
+            "copper_rod",
+            "copper_wire",
+            "copper_tube",
+            "tin_plate",
+            "tin_tube",
+            "steel_plate",
+            "steel_rod",
+            "steel_wire",
+            "steel_tube",
+            "nickel_plate",
+            "nickel_tube",
+            "silver_rod",
+            "silver_wire",
+            "goteium_plate",
+            "goteium_gear",
+            "voltarium_plate",
+            "voltarium_gear",
+            "voltarium_rod",
+            "voltarium_wire",
             "steel_gear",
             "tin_gear",
             "lead_gear",
@@ -74,6 +134,9 @@ public final class ModCreativeTabs {
 
             // 3. Power generation, storage and transport.
             "coal_generator",
+            "solar_panel_mk1",
+            "solar_panel_mk2",
+            "solar_panel_mk3",
             "energy_buffer",
             "energy_buffer_titan",
             "energy_buffer_adamantium",
@@ -87,9 +150,15 @@ public final class ModCreativeTabs {
             "basic_fluid_pipe",
             "reinforced_fluid_pipe",
             "high_pressure_fluid_pipe",
+            "sand_sieve",
+            "fiber_sieve_mesh",
+            "copper_sieve_mesh",
+            "steel_sieve_mesh",
             "copper_furnace",
             "coke_oven",
             "shaft_furnace",
+            "forming_press",
+            "filter_regeneration_station",
             "copper_hopper",
             "steel_hopper",
             "desh_hopper",
@@ -110,10 +179,6 @@ public final class ModCreativeTabs {
             "damaged_pig_cryocapsule",
 
             // 6. Tools, suit, construction and decorative content.
-            "sand_sieve",
-            "fiber_sieve_mesh",
-            "copper_sieve_mesh",
-            "steel_sieve_mesh",
             "machine_wrench",
             "airlock_binding_key",
             "memory_painting",
@@ -145,7 +210,14 @@ public final class ModCreativeTabs {
                                         .filter(ModCreativeTabs::isDomeSurvivalItem)
                                         .sorted(Comparator.comparingInt(ModCreativeTabs::displayRank)
                                                 .thenComparing(ModCreativeTabs::registryPath))
-                                        .forEach(output::accept))
+                                        .forEach(item -> {
+                                            output.accept(item);
+                                            if ("damaged_pig_cryocapsule".equals(registryPath(item))) {
+                                                BioLootData.allSpecies().forEach(species ->
+                                                        output.accept(BioModuleItem.create(species.entityId(), false))
+                                                );
+                                            }
+                                        }))
                         .build()
         ));
     }

@@ -222,12 +222,9 @@ public final class BioincubatorMenu extends AbstractContainerMenu {
 
     private boolean isValidCapsuleForMode(ItemStack stack, int requestedMode) {
         BioModuleData.Sample sample = BioModuleData.sample(stack);
-        return BioModuleData.isIdentificationUnlocked(level)
-                && sample != null
-                && sample.damaged() == (requestedMode == BioincubatorBlockEntity.MODE_REPAIR)
-                && (level.isClientSide
-                ? BioModuleClientState.isAllowed(sample.entityId())
-                : BioLootData.isAllowed(sample.entityId()));
+        // Never reject a real capsule at the GUI boundary. Wrong mode, locked
+        // database and unsupported species are reported by machine status.
+        return sample != null;
     }
 
     @Override

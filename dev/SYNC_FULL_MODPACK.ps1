@@ -78,7 +78,24 @@ else {
     Write-Host "[SOURCE] Using installed physical run\mods as local baseline ($($existing.Count) JARs)." -ForegroundColor Cyan
 }
 
-$canonicalJars = @(Get-ChildItem -LiteralPath $canonical -File -Filter '*.jar' | Sort-Object Name)
+$versionLine = Get-Content -LiteralPath (Join-Path $ProjectRoot 'gradle.properties') |
+    Where-Object { $_ -match '^mod_version=' } | Select-Object -First 1
+if (-not $versionLine) {
+    Write-Host '[ERROR] mod_version is missing from gradle.properties.' -ForegroundColor Red
+    exit 3
+}
+$localModVersion = ($versionLine -split '=', 2)[1].Trim()
+$localBuiltMod = Join-Path $ProjectRoot "build\libs\domesurvival-$localModVersion.jar"
+$localRuntimeName = "domesurvival-$localModVersion-dev.jar"
+$localRuntimeMod = Join-Path $Target $localRuntimeName
+
+# DomeSurvival itself is always supplied by this checkout. An older copy in
+# the production baseline must never replace the freshly built development JAR.
+$canonicalJars = @(
+    Get-ChildItem -LiteralPath $canonical -File -Filter '*.jar' |
+        Where-Object { $_.Name -notmatch '^domesurvival-.*\.jar$' } |
+        Sort-Object Name
+)
 
 if ($canonicalJars.Count -lt 20) {
     Write-Host "[ERROR] Selected baseline contains only $($canonicalJars.Count) JARs." -ForegroundColor Red
@@ -222,6 +239,9 @@ if (-not $selfCanonical) {
     foreach ($overlay in $overlays) {
         $expected[$overlay.FileName.ToLowerInvariant()] = $true
     }
+    if (Test-Path -LiteralPath $localBuiltMod -PathType Leaf) {
+        $expected[$localRuntimeName.ToLowerInvariant()] = $true
+    }
 
     foreach ($activeJar in @(Get-ChildItem -LiteralPath $Target -File -Filter '*.jar' | Sort-Object Name)) {
         if (-not $expected.ContainsKey($activeJar.Name.ToLowerInvariant())) {
@@ -261,6 +281,25 @@ if (-not $selfCanonical) {
             Copy-Item -LiteralPath $sourceJar.FullName -Destination $dest -Force
         }
     }
+}
+
+if (Test-Path -LiteralPath $localBuiltMod -PathType Leaf) {
+    $copyLocalMod = $true
+    if (Test-Path -LiteralPath $localRuntimeMod -PathType Leaf) {
+        $sourceHash = (Get-FileHash -LiteralPath $localBuiltMod -Algorithm SHA256).Hash
+        $runtimeHash = (Get-FileHash -LiteralPath $localRuntimeMod -Algorithm SHA256).Hash
+        $copyLocalMod = $sourceHash -ne $runtimeHash
+    }
+    if ($copyLocalMod) {
+        Write-Host "[LOCAL MOD] $localRuntimeName" -ForegroundColor Cyan
+        Copy-Item -LiteralPath $localBuiltMod -Destination $localRuntimeMod -Force
+    }
+    else {
+        Write-Host "[OK LOCAL MOD] $localRuntimeName" -ForegroundColor Green
+    }
+}
+else {
+    Write-Host '[LOCAL MOD] No built JAR yet; FULL DEV will use the Gradle source set.' -ForegroundColor Yellow
 }
 
 # Restore pinned overlays from safe local locations first; download only if absent.

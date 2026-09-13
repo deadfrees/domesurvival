@@ -1,0 +1,589 @@
+{
+  "generatedAt": "2026-09-12T10:12:39.564Z",
+  "root": "C:\\domesurvival",
+  "passed": true,
+  "baseline": {
+    "path": "dev/visual_overhaul/preexisting_src_hashes.json",
+    "pinnedSha256": "f7b50db7484bbf021092ff09f9cf3f07b212a8081633a3e76dbce2a78e49e663",
+    "files": 2375
+  },
+  "allowlist": [
+    "src/main/resources/assets/domesurvival/models/block/filter_regeneration_station.json",
+    "src/main/resources/assets/domesurvival/models/block/filter_regeneration_station_active.json",
+    "src/main/resources/assets/domesurvival/models/item/filter_regeneration_station.json",
+    "src/main/java/com/wasted/domesurvival/forge/machine/filter/FilterRegenerationScreen.java"
+  ],
+  "vanillaArchive": "C:\\Users\\deadfrees\\.gradle\\caches\\forge_gradle\\minecraft_repo\\versions\\1.20.1\\client.jar",
+  "sourceDiff": {
+    "unchanged": 2371,
+    "changed": [
+      "src/main/java/com/wasted/domesurvival/forge/machine/filter/FilterRegenerationScreen.java",
+      "src/main/resources/assets/domesurvival/models/block/filter_regeneration_station.json",
+      "src/main/resources/assets/domesurvival/models/block/filter_regeneration_station_active.json",
+      "src/main/resources/assets/domesurvival/models/item/filter_regeneration_station.json"
+    ],
+    "added": [],
+    "removed": [],
+    "allowedChanged": [
+      "src/main/java/com/wasted/domesurvival/forge/machine/filter/FilterRegenerationScreen.java",
+      "src/main/resources/assets/domesurvival/models/block/filter_regeneration_station.json",
+      "src/main/resources/assets/domesurvival/models/block/filter_regeneration_station_active.json",
+      "src/main/resources/assets/domesurvival/models/item/filter_regeneration_station.json"
+    ]
+  },
+  "checks": [
+    {
+      "name": "Pinned baseline and all src file hashes",
+      "passed": true
+    },
+    {
+      "name": "Local vanilla resource archive",
+      "passed": true
+    },
+    {
+      "name": "Inactive, active and item JSON inheritance contract",
+      "passed": true
+    },
+    {
+      "name": "Geometry / UV / references / display: domesurvival:block/filter_regeneration_station",
+      "passed": true
+    },
+    {
+      "name": "Geometry / UV / references / display: domesurvival:block/filter_regeneration_station_active",
+      "passed": true
+    },
+    {
+      "name": "Geometry / UV / references / display: domesurvival:item/filter_regeneration_station",
+      "passed": true
+    },
+    {
+      "name": "Unchanged facing/active blockstate mapping",
+      "passed": true
+    }
+  ],
+  "models": [
+    {
+      "id": "domesurvival:block/filter_regeneration_station",
+      "source": "src/main/resources/assets/domesurvival/models/block/filter_regeneration_station.json",
+      "parentChain": [
+        "domesurvival:block/filter_regeneration_station",
+        "minecraft:block/block"
+      ],
+      "cuboids": 69,
+      "quads": 218,
+      "triangles": 436,
+      "duplicateFaces": [],
+      "sharedInternalFaces": [],
+      "textures": [
+        "domesurvival:block/filter_regenerator_black",
+        "domesurvival:block/filter_regenerator_hazard",
+        "domesurvival:block/filter_regenerator_mesh",
+        "domesurvival:block/filter_regenerator_metal_dark",
+        "domesurvival:block/filter_regenerator_vent",
+        "domesurvival:block/hopper/steel_body",
+        "domesurvival:block/hopper/steel_rim"
+      ],
+      "display": {
+        "gui": {
+          "rotation": [
+            30,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.625,
+            0.625,
+            0.625
+          ]
+        },
+        "ground": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "translation": [
+            0,
+            3,
+            0
+          ],
+          "scale": [
+            0.25,
+            0.25,
+            0.25
+          ]
+        },
+        "fixed": {
+          "rotation": [
+            0,
+            180,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        "thirdperson_righthand": {
+          "rotation": [
+            75,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.375,
+            0.375,
+            0.375
+          ]
+        },
+        "firstperson_righthand": {
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.4,
+            0.4,
+            0.4
+          ]
+        },
+        "firstperson_lefthand": {
+          "rotation": [
+            0,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.4,
+            0.4,
+            0.4
+          ]
+        },
+        "thirdperson_lefthand": {
+          "rotation": [
+            75,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.375,
+            0.375,
+            0.375
+          ]
+        }
+      }
+    },
+    {
+      "id": "domesurvival:block/filter_regeneration_station_active",
+      "source": "src/main/resources/assets/domesurvival/models/block/filter_regeneration_station_active.json",
+      "parentChain": [
+        "domesurvival:block/filter_regeneration_station_active",
+        "domesurvival:block/filter_regeneration_station",
+        "minecraft:block/block"
+      ],
+      "cuboids": 69,
+      "quads": 218,
+      "triangles": 436,
+      "duplicateFaces": [],
+      "sharedInternalFaces": [],
+      "textures": [
+        "domesurvival:block/filter_regenerator_black",
+        "domesurvival:block/filter_regenerator_hazard",
+        "domesurvival:block/filter_regenerator_lamp_green_active",
+        "domesurvival:block/filter_regenerator_mesh_active",
+        "domesurvival:block/filter_regenerator_metal_dark",
+        "domesurvival:block/filter_regenerator_vent",
+        "domesurvival:block/hopper/steel_body",
+        "domesurvival:block/hopper/steel_rim"
+      ],
+      "display": {
+        "gui": {
+          "rotation": [
+            30,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.625,
+            0.625,
+            0.625
+          ]
+        },
+        "ground": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "translation": [
+            0,
+            3,
+            0
+          ],
+          "scale": [
+            0.25,
+            0.25,
+            0.25
+          ]
+        },
+        "fixed": {
+          "rotation": [
+            0,
+            180,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        "thirdperson_righthand": {
+          "rotation": [
+            75,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.375,
+            0.375,
+            0.375
+          ]
+        },
+        "firstperson_righthand": {
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.4,
+            0.4,
+            0.4
+          ]
+        },
+        "firstperson_lefthand": {
+          "rotation": [
+            0,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.4,
+            0.4,
+            0.4
+          ]
+        },
+        "thirdperson_lefthand": {
+          "rotation": [
+            75,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.375,
+            0.375,
+            0.375
+          ]
+        }
+      }
+    },
+    {
+      "id": "domesurvival:item/filter_regeneration_station",
+      "source": "src/main/resources/assets/domesurvival/models/item/filter_regeneration_station.json",
+      "parentChain": [
+        "domesurvival:item/filter_regeneration_station",
+        "domesurvival:block/filter_regeneration_station",
+        "minecraft:block/block"
+      ],
+      "cuboids": 69,
+      "quads": 218,
+      "triangles": 436,
+      "duplicateFaces": [],
+      "sharedInternalFaces": [],
+      "textures": [
+        "domesurvival:block/filter_regenerator_black",
+        "domesurvival:block/filter_regenerator_hazard",
+        "domesurvival:block/filter_regenerator_mesh",
+        "domesurvival:block/filter_regenerator_metal_dark",
+        "domesurvival:block/filter_regenerator_vent",
+        "domesurvival:block/hopper/steel_body",
+        "domesurvival:block/hopper/steel_rim"
+      ],
+      "display": {
+        "gui": {
+          "rotation": [
+            30,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.625,
+            0.625,
+            0.625
+          ]
+        },
+        "ground": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "translation": [
+            0,
+            3,
+            0
+          ],
+          "scale": [
+            0.25,
+            0.25,
+            0.25
+          ]
+        },
+        "fixed": {
+          "rotation": [
+            0,
+            180,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        "thirdperson_righthand": {
+          "rotation": [
+            75,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.375,
+            0.375,
+            0.375
+          ]
+        },
+        "firstperson_righthand": {
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.4,
+            0.4,
+            0.4
+          ]
+        },
+        "firstperson_lefthand": {
+          "rotation": [
+            0,
+            225,
+            0
+          ],
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.4,
+            0.4,
+            0.4
+          ]
+        },
+        "thirdperson_lefthand": {
+          "rotation": [
+            75,
+            45,
+            0
+          ],
+          "translation": [
+            0,
+            2.5,
+            0
+          ],
+          "scale": [
+            0.375,
+            0.375,
+            0.375
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "domesurvival:block/filter_regeneration_station",
+      "folder": "models",
+      "source": "src/main/resources/assets/domesurvival/models/block/filter_regeneration_station.json",
+      "sha256": "9964ccb8ffef3a6fe7b4347621708c409740be726b7eb74ccedc1df41df4c458"
+    },
+    {
+      "id": "minecraft:block/block",
+      "folder": "models",
+      "source": "C:\\Users\\deadfrees\\.gradle\\caches\\forge_gradle\\minecraft_repo\\versions\\1.20.1\\client.jar!/assets/minecraft/models/block/block.json",
+      "sha256": "3ef6c442f1ab55d2a57fa58e28bb831268159052659f12b453b637b31ded1da8"
+    },
+    {
+      "id": "domesurvival:block/filter_regeneration_station_active",
+      "folder": "models",
+      "source": "src/main/resources/assets/domesurvival/models/block/filter_regeneration_station_active.json",
+      "sha256": "eb888ed63cd6491607f9a856c8c975e441e25aca00c838bf5129470dfc564d64"
+    },
+    {
+      "id": "domesurvival:item/filter_regeneration_station",
+      "folder": "models",
+      "source": "src/main/resources/assets/domesurvival/models/item/filter_regeneration_station.json",
+      "sha256": "3316c233a5ce7453ec9d15c8ebf7955ea13d3b24f4c5d74537b13a1a6c397c35"
+    },
+    {
+      "id": "domesurvival:block/hopper/steel_body",
+      "folder": "textures",
+      "source": "src/main/resources/assets/domesurvival/textures/block/hopper/steel_body.png",
+      "sha256": "7e28d641a02d3a5959fa48c8985e36b9c3723bbef73210c1e7e248e123bdd5f8"
+    },
+    {
+      "id": "domesurvival:block/hopper/steel_rim",
+      "folder": "textures",
+      "source": "src/main/resources/assets/domesurvival/textures/block/hopper/steel_rim.png",
+      "sha256": "578ae53c0ee30b0eb38640ec317abd2343339fbc896d08ce76640e7ecb8bf61d"
+    },
+    {
+      "id": "domesurvival:block/filter_regenerator_metal_dark",
+      "folder": "textures",
+      "source": "src/main/resources/assets/domesurvival/textures/block/filter_regenerator_metal_dark.png",
+      "sha256": "46787ca0e9e786f187242c986a836834e455e6f1467bf8b593860617379416cb"
+    },
+    {
+      "id": "domesurvival:block/filter_regenerator_black",
+      "folder": "textures",
+      "source": "src/main/resources/assets/domesurvival/textures/block/filter_regenerator_black.png",
+      "sha256": "d0be7ebdbbea8b75827adfdc8953e5d7307d51dc5fc7f5d47ad43a17df277126"
+    },
+    {
+      "id": "domesurvival:block/filter_regenerator_mesh",
+      "folder": "textures",
+      "source": "src/main/resources/assets/domesurvival/textures/block/filter_regenerator_mesh.png",
+      "sha256": "533615f3a9ccd4c275e9266d7d55efd291b05668e842b5e88f60b73e429f36f2"
+    },
+    {
+      "id": "domesurvival:block/filter_regenerator_hazard",
+      "folder": "textures",
+      "source": "src/main/resources/assets/domesurvival/textures/block/filter_regenerator_hazard.png",
+      "sha256": "5d4e07c4e8eb092fd33f29c935310cce864e78a37774a0fe9a65c811e5b2cfb8"
+    },
+    {
+      "id": "domesurvival:block/filter_regenerator_vent",
+      "folder": "textures",
+      "source": "src/main/resources/assets/domesurvival/textures/block/filter_regenerator_vent.png",
+      "sha256": "6767cab6d796f5da97d01b53d559d5e6ce7773c03861d0708fd9188babd1b71f"
+    },
+    {
+      "id": "domesurvival:block/filter_regenerator_mesh_active",
+      "folder": "textures",
+      "source": "src/main/resources/assets/domesurvival/textures/block/filter_regenerator_mesh_active.png",
+      "sha256": "eed9b465bf982372816f12fc17750a4aa33d2e79bbacc98b81775bc98727f1b3"
+    },
+    {
+      "id": "domesurvival:block/filter_regenerator_lamp_green_active",
+      "folder": "textures",
+      "source": "src/main/resources/assets/domesurvival/textures/block/filter_regenerator_lamp_green_active.png",
+      "sha256": "a207268be2cea00ace3af653a7d9834cb40e4d54b2455d0f1d5101491ba98ca4"
+    }
+  ],
+  "issues": [],
+  "limitations": [
+    "Hash comparison covers all existing/additional/removed src files against the pinned pre-existing dirty-tree baseline. Files outside src, runtime resource packs, mods, build settings and already existing gameplay defects are not certified.",
+    "FilterRegenerationScreen.java is the sole allowed Java change. Hash allowlisting cannot prove that an arbitrary edit to that screen is purely visual; compilation and human review of its diff remain necessary.",
+    "Seven display contexts are checked after JSON inheritance. Head is an optional eighth context. This verifies presence and finite/nonzero transforms, not actual in-game size or visual quality.",
+    "Quads and triangles are declared effective faces before runtime culling (triangles = quads * 2), not GPU draw calls or measured performance.",
+    "Duplicate-face check finds identical four-vertex polygons, including supported element rotations. It does not detect partial coplanar overlaps, cuboid intersections or near-coplanar depth fighting; opposite internal coincident faces are reported as warnings.",
+    "PNG signatures and resource references are checked; this does not decode texture pixels, assess atlas UV seams, texture resolution quality or effective resource-pack overrides.",
+    "Vanilla resources are read from the local 1.20.1 client jar. Missing archives or unresolved external resources fail rather than being silently assumed valid.",
+    "No Minecraft launch, screenshots, multiplayer test, chunk-reload test, Embeddium test, interaction test or performance benchmark is performed by this script."
+  ]
+}

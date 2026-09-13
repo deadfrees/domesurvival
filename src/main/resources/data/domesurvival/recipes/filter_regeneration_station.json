@@ -10,10 +10,10 @@
       "tag": "forge:plates/steel"
     },
     "G": {
-      "item": "domesurvival:steel_gear"
+      "tag": "forge:gears/tin"
     },
     "W": {
-      "tag": "forge:wires/copper"
+      "tag": "forge:wires/silver"
     },
     "C": {
       "item": "minecraft:furnace"

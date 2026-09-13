@@ -1,13 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SGS",
+    "NWN",
     "GPG",
     "SMS"
   ],
   "key": {
-    "S": {
-      "item": "domesurvival:steel_ingot"
+    "N": {
+      "tag": "forge:plates/nickel"
+    },
+    "W": {
+      "tag": "forge:wires/silver"
     },
     "G": {
       "item": "minecraft:glass"
@@ -17,6 +20,9 @@
     },
     "M": {
       "item": "domesurvival:machine_stabilizer"
+    },
+    "S": {
+      "tag": "forge:plates/goteium"
     }
   },
   "result": {

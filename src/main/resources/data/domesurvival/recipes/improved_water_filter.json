@@ -7,13 +7,13 @@
   ],
   "key": {
     "N": {
-      "tag": "forge:ingots/nickel"
+      "tag": "forge:plates/nickel"
     },
     "C": {
       "tag": "domesurvival:filter_carbon"
     },
     "S": {
-      "tag": "forge:ingots/silver"
+      "tag": "forge:wires/silver"
     },
     "F": {
       "item": "domesurvival:water_filter_cartridge"

@@ -22,6 +22,7 @@
     tags: ["ds_visual_story"]
     x: 0.0d
     y: 0.0d
+    hide_dependency_lines: false
     shape: "hexagon"
     size: 1.26d
     icon_scale: 0.82d
@@ -77,13 +78,15 @@
     title: "Красная пыль"
     icon: "minecraft:redstone"
     tags: ["ds_visual_resource"]
-    x: -4.5d
-    y: 2.4d
+    x: 6.4d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
     min_width: 340
     dependencies: ["613FF462EA9C75DC"]
+    optional: true
     description: [
       "Для первых энергетических узлов понадобится приличный запас проводящих и управляющих компонентов.",
       "",
@@ -131,13 +134,15 @@
     title: "Медь для проводников"
     icon: "minecraft:copper_ingot"
     tags: ["ds_visual_resource"]
-    x: -1.5d
-    y: 2.4d
+    x: 0.0d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
     min_width: 340
     dependencies: ["613FF462EA9C75DC"]
+    optional: true
     description: [
       "Медь станет базовым материалом для проводников и части первых энергетических компонентов.",
       "",
@@ -192,13 +197,15 @@
     title: "Железный каркас"
     icon: "minecraft:iron_ingot"
     tags: ["ds_visual_resource"]
-    x: 1.5d
-    y: 2.4d
+    x: -3.2d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
     min_width: 340
     dependencies: ["613FF462EA9C75DC"]
+    optional: true
     description: [
       "Генераторы, накопители и соединительные узлы требуют нормального металлического каркаса.",
       "",
@@ -246,13 +253,15 @@
     title: "Топливный запас"
     icon: "minecraft:coal"
     tags: ["ds_visual_resource"]
-    x: 4.5d
-    y: 2.4d
+    x: 3.2d
+    y: 3.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
     min_width: 340
     dependencies: ["613FF462EA9C75DC"]
+    optional: true
     description: [
       "Первая энергосистема не должна зависеть от последних двух кусков топлива в печи.",
       "",
@@ -296,38 +305,199 @@
     ]
   },
   {
-    id: "473AE864B22D87AB"
-    title: "Управляющие компоненты"
-    icon: "minecraft:comparator"
+    id: "6B10000000000001"
+    title: "Коксохимия Купола"
+    icon: "domesurvival:coke_oven"
+    tags: ["ds_visual_technology"]
+    x: -6.4d
+    y: 3.0d
+    hide_dependency_lines: false
+    shape: "hexagon"
+    size: 1.16d
+    min_width: 360
+    dependencies: ["613FF462EA9C75DC"]
+    description: [
+      "Для устойчивой металлургии обычного угля недостаточно. Коксовая печь медленно превращает его в более чистое топливо.",
+      "",
+      "§6◆ Что сделать",
+      "§fСоберите коксовую печь. Глина для корпуса добывается мокрым просеиванием песка.",
+      "",
+      "§b◆ Автоматизация",
+      "§7Сырьё и топливо подаются справа, готовый кокс забирается слева или через задний выход."
+    ]
+    tasks: [
+      { id: "6B11000000000001" type: "item" item: "domesurvival:coke_oven" count: 1L }
+    ]
+    rewards: [
+      {
+        id: "6B12000000000001"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 6B10000000000001 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      }
+    ]
+  },
+  {
+    id: "6B10000000000002"
+    title: "Кокс вместо угля"
+    icon: "domesurvival:coal_coke"
     tags: ["ds_visual_resource"]
-    x: -2.0d
-    y: 4.8d
+    x: 0.0d
+    y: 6.0d
+    hide_dependency_lines: false
+    shape: "rsquare"
+    size: 1.08d
+    min_width: 340
+    dependencies: ["6B10000000000001"]
+    description: [
+      "Проведите настоящий цикл, а не просто поставьте корпус машины.",
+      "",
+      "§6◆ Что сделать",
+      "§fПолучите 4 куска кокса в коксовой печи. Процесс идёт медленно — подготовьте топливо заранее."
+    ]
+    tasks: [
+      { id: "6B11000000000002" type: "item" item: "domesurvival:coal_coke" count: 4L }
+    ]
+    rewards: [
+      {
+        id: "6B12000000000002"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 6B10000000000002 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      { id: "6B13000000000002" type: "item" item: "minecraft:coal" count: 4 team_reward: true auto: "enabled" exclude_from_claim_all: true }
+    ]
+  },
+  {
+    id: "6B10000000000003"
+    title: "Шахтная плавильня"
+    icon: "domesurvival:shaft_furnace"
+    tags: ["ds_visual_technology"]
+    x: 0.0d
+    y: 9.0d
+    hide_dependency_lines: false
+    shape: "hexagon"
+    size: 1.16d
+    min_width: 360
+    dependencies: ["6B10000000000002"]
+    description: [
+      "Кокс открывает следующий этап: восстановительную плавку железа в сталь.",
+      "",
+      "§6◆ Что сделать",
+      "§fСоберите шахтную плавильню и оставьте свободное место для её многоблочного корпуса.",
+      "",
+      "§b◆ Автоматизация",
+      "§7Железо и кокс подаются справа, сталь и шлак выходят слева или назад."
+    ]
+    tasks: [
+      { id: "6B11000000000003" type: "item" item: "domesurvival:shaft_furnace" count: 1L }
+    ]
+    rewards: [
+      {
+        id: "6B12000000000003"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 6B10000000000003 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      }
+    ]
+  },
+  {
+    id: "6B10000000000004"
+    title: "Первая сталь"
+    icon: "domesurvival:steel_ingot"
+    tags: ["ds_visual_milestone"]
+    x: 0.0d
+    y: 12.0d
+    hide_dependency_lines: false
+    shape: "diamond"
+    size: 1.20d
+    min_width: 360
+    dependencies: ["6B10000000000003"]
+    description: [
+      "Сталь доказывает, что обе печи образуют рабочую производственную цепь. Шлак подтверждает, что побочный выход тоже не заблокирован.",
+      "",
+      "§6◆ Что сделать",
+      "§fВыплавьте 4 стальных слитка и получите хотя бы 1 кусок шлака.",
+      "",
+      "§b◆ Зачем",
+      "§7Сталь нужна стабилизаторам, ситам, трубам и дальнейшим промышленным машинам."
+    ]
+    tasks: [
+      { id: "6B11000000000004" type: "item" item: "domesurvival:steel_ingot" count: 4L },
+      { id: "6B11000000000005" type: "item" item: "domesurvival:slag" count: 1L }
+    ]
+    rewards: [
+      {
+        id: "6B12000000000004"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 6B10000000000004 milestone STEEL_PRODUCTION_ONLINE"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      { id: "6B13000000000004" type: "xp" xp: 8 team_reward: true auto: "enabled" exclude_from_claim_all: true }
+    ]
+  },
+  {
+    id: "473AE864B22D87AB"
+    title: "Сердце энергосети"
+    icon: "domesurvival:pulse_matrix"
+    tags: ["ds_visual_technology"]
+    x: 0.0d
+    y: 15.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.05d
     icon_scale: 0.84d
     min_width: 340
-    dependencies: ["61693835470A70E9", "158F63AD3757B785"]
+    dependencies: ["6B10000000000004"]
     description: [
-      "Простая автоматика пригодится раньше сложных машин.",
+      "Первая сеть начинается не с груды ванильных компонентов, а с собственного управляющего узла DomeSurvival.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Подготовьте 3 повторителя и 3 компаратора.\",\"color\":\"white\"}",
+      "{\"text\":\"Изготовьте импульсную матрицу и стабилизатор машины. Их рецепты показаны в JEI.\",\"color\":\"white\"}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"FTB автоматически проверяет оба типа компонентов.\",\"color\":\"gray\"}"
+      "{\"text\":\"FTB автоматически проверяет оба инженерных компонента.\",\"color\":\"gray\"}"
     ]
     tasks: [
       {
         id: "5BBAA9A8C710693B"
           type: "item"
-          item: "minecraft:repeater"
-          count: 3L
+          item: "domesurvival:pulse_matrix"
+          count: 1L
       },
       {
         id: "7C0E0F1568AAD8F7"
           type: "item"
-          item: "minecraft:comparator"
-          count: 3L
+          item: "domesurvival:machine_stabilizer"
+          count: 1L
       }
     ]
     rewards: [
@@ -360,25 +530,31 @@
     title: "Первый источник FE"
     icon: "domesurvival:coal_generator"
     tags: ["ds_visual_milestone"]
-    x: 2.0d
-    y: 4.8d
+    x: 0.0d
+    y: 18.0d
+    hide_dependency_lines: false
     shape: "diamond"
     size: 1.28d
     icon_scale: 0.82d
     min_width: 340
-    dependencies: ["36E13B53347926CA", "4D5E49001CD7D6CE"]
+    dependencies: ["473AE864B22D87AB"]
     description: [
       "Теперь нужен блок, который действительно играет роль генератора.",
       "",
-      "Подходит наш угольный генератор и совместимые генераторы из сборки. Проверка сделана без жёсткой зависимости от конкретного mod namespace.",
+      "Соберите угольный генератор DomeSurvival, установите его внутри безопасной части Купола и загрузите топливо.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Установите генератор внутри безопасной части Купола.\",\"color\":\"white\"}",
+      "{\"text\":\"Создайте и установите угольный генератор.\",\"color\":\"white\"}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
-      "{\"text\":\"Автоматически по registry path блока: generator / dynamo / alternator.\",\"color\":\"gray\"}"
+      "{\"text\":\"Наличие блока проверяет FTB, установку подтверждает серверное событие.\",\"color\":\"gray\"}"
     ]
     tasks: [
+      {
+        id: "77F68EDD02961383"
+        type: "item"
+        item: "domesurvival:coal_generator"
+      },
       {
         id: "77F68EDD02961384"
         type: "advancement"
@@ -418,12 +594,13 @@
     icon: "domesurvival:coal_generator"
     tags: ["ds_visual_milestone"]
     x: 0.0d
-    y: 7.2d
+    y: 21.0d
+    hide_dependency_lines: false
     shape: "diamond"
     size: 1.30d
     icon_scale: 0.82d
     min_width: 340
-    dependencies: ["473AE864B22D87AB", "27D329DD824D350B"]
+    dependencies: ["27D329DD824D350B"]
     description: [
       "Название блока недостаточно. Нам нужен настоящий FE-совместимый узел.",
       "",
@@ -471,18 +648,20 @@
   },
   {
     id: "2BF09D9F1F7494B4"
-    title: "Материал линии"
-    icon: "minecraft:copper_ingot"
+    title: "Резерв проводников"
+    icon: "domesurvival:basic_energy_pipe"
     tags: ["ds_visual_resource"]
-    x: -3.4d
-    y: 9.6d
+    x: 0.0d
+    y: 24.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
     min_width: 340
     dependencies: ["74335F61233E9EB2"]
+    optional: true
     description: [
-      "Перед прокладкой сети отдели материалы линии от общего запаса мастерской.",
+      "Необязательный запас на случай расширения сети и ремонта после аварии.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
       "{\"text\":\"Имейте одновременно 20 меди и 20 красной пыли.\",\"color\":\"white\"}",
@@ -534,25 +713,32 @@
     title: "Первая линия питания"
     icon: "domesurvival:basic_energy_pipe"
     tags: ["ds_visual_milestone"]
-    x: 0.0d
-    y: 9.6d
+    x: -3.2d
+    y: 24.0d
+    hide_dependency_lines: false
     shape: "diamond"
     size: 1.28d
     icon_scale: 0.82d
     min_width: 340
-    dependencies: ["2BF09D9F1F7494B4"]
+    dependencies: ["74335F61233E9EB2"]
     description: [
       "Источник без линии остаётся отдельной машиной.",
       "",
       "Поставь несколько энергетических проводников. Поддерживаются cable, wire, conduit и energy/power pipe по registry path.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Установите 4 энергетических проводника внутри Купола.\",\"color\":\"white\"}",
+      "{\"text\":\"Изготовьте и установите не менее 4 базовых энерготруб.\",\"color\":\"white\"}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
       "{\"text\":\"Сервер считает подходящие блоки по событиям установки; постоянного сканирования мира нет.\",\"color\":\"gray\"}"
     ]
     tasks: [
+      {
+        id: "216BF0F7649F8395"
+        type: "item"
+        item: "domesurvival:basic_energy_pipe"
+        count: 4L
+      },
       {
         id: "216BF0F7649F8396"
         type: "advancement"
@@ -588,16 +774,18 @@
   },
   {
     id: "4AF191CE8DA34456"
-    title: "Корпус буфера"
+    title: "Резерв материалов буфера"
     icon: "minecraft:iron_block"
     tags: ["ds_visual_resource"]
-    x: 3.4d
-    y: 9.6d
+    x: 3.2d
+    y: 24.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.04d
     icon_scale: 0.86d
     min_width: 340
     dependencies: ["74335F61233E9EB2"]
+    optional: true
     description: [
       "Даже маленькой сети нужен буфер, чтобы генератор и потребители не были связаны напрямую каждую секунду.",
       "",
@@ -652,24 +840,30 @@
     icon: "domesurvival:energy_buffer"
     tags: ["ds_visual_milestone"]
     x: 0.0d
-    y: 12.0d
+    y: 27.0d
+    hide_dependency_lines: false
     shape: "diamond"
     size: 1.30d
     icon_scale: 0.82d
     min_width: 340
-    dependencies: ["3CE842358BCF4A85", "4AF191CE8DA34456"]
+    dependencies: ["3CE842358BCF4A85"]
     description: [
       "Добавь накопитель между производством и будущими потребителями.",
       "",
       "Подойдут совместимые energy storage / battery / capacitor / accumulator блоки.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Установите энергетический накопитель внутри Купола.\",\"color\":\"white\"}",
+      "{\"text\":\"Изготовьте и установите базовый энергобуфер DomeSurvival.\",\"color\":\"white\"}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
       "{\"text\":\"Автоматически по registry path накопителя.\",\"color\":\"gray\"}"
     ]
     tasks: [
+      {
+        id: "414ADEDFE0E0E89D"
+        type: "item"
+        item: "domesurvival:energy_buffer"
+      },
       {
         id: "414ADEDFE0E0E89E"
         type: "advancement"
@@ -705,21 +899,22 @@
   },
   {
     id: "78B0EF958AD81A29"
-    title: "Проверь накопитель"
+    title: "Заряди накопитель"
     icon: "domesurvival:energy_buffer"
     tags: ["ds_visual_milestone"]
     x: 0.0d
-    y: 14.4d
+    y: 30.0d
+    hide_dependency_lines: false
     shape: "diamond"
     size: 1.30d
     icon_scale: 0.82d
     min_width: 340
     dependencies: ["1B3704A32A92C101"]
     description: [
-      "Накопитель должен быть не декоративным блоком, а настоящим FE-узлом.",
+      "Пустой накопитель — только дорогой корпус. Соедините генератор, трубу и буфер в одну рабочую сеть.",
       "",
       "{\"text\":\"◆ Что сделать\",\"color\":\"gold\",\"bold\":true}",
-      "{\"text\":\"Взаимодействуйте с установленным накопителем.\",\"color\":\"white\"}",
+      "{\"text\":\"Подайте энергию в установленный накопитель и откройте его.\",\"color\":\"white\"}",
       "",
       "{\"text\":\"◆ Как засчитывается\",\"color\":\"aqua\",\"bold\":true}",
       "{\"text\":\"Сервер подтверждает наличие Forge Energy capability у BlockEntity.\",\"color\":\"gray\"}"
@@ -763,13 +958,14 @@
     title: "Свет для мастерской"
     icon: "minecraft:redstone_lamp"
     tags: ["ds_visual_environment"]
-    x: -3.6d
-    y: 16.8d
+    x: -3.2d
+    y: 30.0d
+    hide_dependency_lines: false
     shape: "circle"
     size: 1.10d
     icon_scale: 0.84d
     min_width: 340
-    dependencies: ["78B0EF958AD81A29"]
+    dependencies: ["1B3704A32A92C101"]
     description: [
       "До настоящего электрического освещения ещё далеко, но мастерская уже может получить отдельную управляемую линию света.",
       "",
@@ -823,8 +1019,9 @@
     title: "Пусть горит"
     icon: "minecraft:redstone_lamp"
     tags: ["ds_visual_environment"]
-    x: -3.6d
-    y: 19.2d
+    x: -3.2d
+    y: 33.0d
+    hide_dependency_lines: false
     shape: "circle"
     size: 1.16d
     icon_scale: 0.84d
@@ -878,13 +1075,15 @@
     title: "Резерв топлива"
     icon: "minecraft:coal_block"
     tags: ["ds_visual_resource"]
-    x: 3.6d
-    y: 16.8d
+    x: 0.0d
+    y: 33.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.08d
     icon_scale: 0.86d
     min_width: 340
     dependencies: ["78B0EF958AD81A29"]
+    optional: true
     description: [
       "Энергосистема должна пережить хотя бы небольшой период без добычи нового топлива.",
       "",
@@ -931,13 +1130,15 @@
     title: "Запас проводников"
     icon: "domesurvival:basic_energy_pipe"
     tags: ["ds_visual_resource"]
-    x: 3.6d
-    y: 19.2d
+    x: 0.0d
+    y: 36.0d
+    hide_dependency_lines: false
     shape: "square"
     size: 1.08d
     icon_scale: 0.86d
     min_width: 340
     dependencies: ["0A6AF5A9FC8B21F4"]
+    optional: true
     description: [
       "После первой линии нужно оставить запас на расширение сети, а не разбирать работающий участок.",
       "",
@@ -991,13 +1192,14 @@
     title: "Шлюз — не потребитель"
     icon: "domesurvival:airlock_control_panel"
     tags: ["ds_visual_airlock"]
-    x: 0.0d
-    y: 21.6d
+    x: -3.2d
+    y: 36.0d
+    hide_dependency_lines: false
     shape: "gear"
     size: 1.18d
     icon_scale: 0.80d
     min_width: 340
-    dependencies: ["0110D171C4CD09E3", "2408F9E69185486E"]
+    dependencies: ["0110D171C4CD09E3", "78B0EF958AD81A29"]
     description: [
       "Энергосеть растёт, но управляющая панель шлюза остаётся автономной.",
       "",
@@ -1048,7 +1250,8 @@
     icon: "domesurvival:energy_buffer"
     tags: ["ds_visual_milestone"]
     x: 0.0d
-    y: 24.0d
+    y: 39.0d
+    hide_dependency_lines: false
     shape: "diamond"
     size: 1.34d
     icon_scale: 0.80d
@@ -1105,7 +1308,8 @@
     icon: "domesurvival:energy_buffer"
     tags: ["ds_visual_milestone"]
     x: 0.0d
-    y: 26.4d
+    y: 42.0d
+    hide_dependency_lines: false
     shape: "octagon"
     size: 1.54d
     icon_scale: 0.78d
@@ -1167,6 +1371,163 @@
         auto: "enabled"
         team_reward: true
         item: "minecraft:redstone_block"
+      }
+    ]
+  },
+  {
+    id: "71A2B3C4D5E60001"
+    title: "Автономная генерация"
+    icon: "domesurvival:solar_panel_mk1"
+    tags: ["ds_visual_technology"]
+    x: 3.2d
+    y: 30.0d
+    hide_dependency_lines: false
+    shape: "hexagon"
+    size: 1.18d
+    min_width: 360
+    dependencies: ["1B3704A32A92C101", "5E55C97FB0648C1A"]
+    hide_until_deps_complete: false
+    optional: true
+    description: [
+      "Угольная сеть надёжна, но постоянно расходует топливо. Соларит позволяет собрать первый дневной источник энергии.",
+      "",
+      "Солнечный генератор работает только под открытым небом и отдаёт FE через нижнюю сторону. Подключите его к уже знакомому энергобуферу.",
+      "",
+      "§6◆ Что сделать",
+      "§fСоберите солнечный генератор I и 4 базовые энерготрубы.",
+      "",
+      "§b◆ Зачем",
+      "§7Это первая автономная сеть без постоянного сжигания угля."
+    ]
+    tasks: [
+      { id: "71A2B3C4D5E61001" type: "item" item: "domesurvival:solar_panel_mk1" count: 1L },
+      { id: "71A2B3C4D5E61011" type: "item" item: "domesurvival:basic_energy_pipe" count: 4L }
+    ]
+    rewards: [
+      {
+        id: "71A2B3C4D5E62001"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 71A2B3C4D5E60001 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "71A2B3C4D5E63001"
+        type: "item"
+        item: "minecraft:glowstone_dust"
+        count: 4
+        team_reward: true
+        auto: "enabled"
+        exclude_from_claim_all: true
+      }
+    ]
+  },
+  {
+    id: "71A2B3C4D5E60002"
+    title: "Солнечная сеть II"
+    icon: "domesurvival:solar_panel_mk2"
+    tags: ["ds_visual_technology"]
+    x: 3.2d
+    y: 33.0d
+    hide_dependency_lines: false
+    shape: "hexagon"
+    size: 1.18d
+    min_width: 360
+    dependencies: ["71A2B3C4D5E60001"]
+    hide_until_deps_complete: true
+    optional: true
+    description: [
+      "Вторая ступень должна не просто существовать в инвентаре, а иметь линию, способную передать её повышенную мощность.",
+      "",
+      "§6◆ Что сделать",
+      "§fУлучшите генератор до II ступени и изготовьте 4 усиленные энерготрубы.",
+      "",
+      "§b◆ Зачем",
+      "§7Получится стабильный дневной контур для нескольких машин."
+    ]
+    tasks: [
+      { id: "71A2B3C4D5E61002" type: "item" item: "domesurvival:solar_panel_mk2" count: 1L },
+      { id: "71A2B3C4D5E61012" type: "item" item: "domesurvival:reinforced_energy_pipe" count: 4L }
+    ]
+    rewards: [
+      {
+        id: "71A2B3C4D5E62002"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 71A2B3C4D5E60002 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "71A2B3C4D5E63002"
+        type: "xp"
+        xp: 10
+        team_reward: true
+        auto: "enabled"
+        exclude_from_claim_all: true
+      }
+    ]
+  },
+  {
+    id: "71A2B3C4D5E60003"
+    title: "Промышленная солнечная сеть"
+    icon: "domesurvival:solar_panel_mk3"
+    tags: ["ds_visual_milestone"]
+    x: 3.2d
+    y: 36.0d
+    hide_dependency_lines: false
+    shape: "diamond"
+    size: 1.28d
+    min_width: 360
+    dependencies: ["71A2B3C4D5E60002"]
+    hide_until_deps_complete: true
+    optional: true
+    description: [
+      "Вольтариум и соларит открывают максимальную солнечную ступень Купола.",
+      "",
+      "§6◆ Что сделать",
+      "§fСоберите солнечный генератор III и высоковольтную линию из 4 труб.",
+      "",
+      "§b◆ Зачем",
+      "§7Эта сеть рассчитана на поздние промышленные машины; энергия по-прежнему выходит только снизу генератора."
+    ]
+    tasks: [
+      { id: "71A2B3C4D5E61003" type: "item" item: "domesurvival:solar_panel_mk3" count: 1L },
+      { id: "71A2B3C4D5E61013" type: "item" item: "domesurvival:high_voltage_energy_pipe" count: 4L }
+    ]
+    rewards: [
+      {
+        id: "71A2B3C4D5E62003"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 71A2B3C4D5E60003 milestone SOLAR_NETWORK_ONLINE"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "71A2B3C4D5E63003"
+        type: "item"
+        item: "domesurvival:solarite_crystal"
+        count: 1
+        team_reward: true
+        auto: "enabled"
+        exclude_from_claim_all: true
       }
     ]
   }

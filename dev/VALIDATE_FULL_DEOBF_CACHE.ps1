@@ -6,7 +6,7 @@ $CacheDir = Join-Path $Generated 'fullmods'
 $BridgeReport = Join-Path $Generated 'mixin_srg_bridge_report.txt'
 $VersionFile = Join-Path $Generated 'full_modpack.generator_version.txt'
 
-$ExpectedGeneratorVersion = '6.9.2-thirdparty-registry-dev-guard'
+$ExpectedGeneratorVersion = '6.9.4-runtime-fingerprint'
 
 if (-not (Test-Path $GradleFile)) { exit 1 }
 if (-not (Test-Path $BridgeReport)) { exit 2 }

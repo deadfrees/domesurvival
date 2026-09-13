@@ -111,10 +111,9 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             if (slot == SLOT_CAPSULE) {
                 BioModuleData.Sample sample = BioModuleData.sample(stack);
-                return BioModuleData.isIdentificationUnlocked(level)
-                        && sample != null
-                        && BioLootData.isAllowed(sample.entityId())
-                        && (mode == MODE_REPAIR ? sample.damaged() : !sample.damaged());
+                // Insertion must not depend on research, damage state or the
+                // selected mode. Processing performs those authoritative checks.
+                return sample != null;
             }
             if (slot == SLOT_FEED) {
                 if (mode == MODE_REPAIR) {
@@ -181,8 +180,30 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
             return inventory.insertItem(slot, stack, simulate);
         }
+        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) { return ItemStack.EMPTY; }
+        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
+        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return inventory.isItemValid(slot, stack); }
+    };
+
+    private final IItemHandler itemOutputView = new IItemHandler() {
+        @Override public int getSlots() { return inventory.getSlots(); }
+        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
+        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) { return stack; }
         @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
             return slot == SLOT_OUTPUT ? inventory.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+        }
+        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
+        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return false; }
+    };
+
+    private final IItemHandler itemCombinedView = new IItemHandler() {
+        @Override public int getSlots() { return inventory.getSlots(); }
+        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
+        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            return itemInputView.insertItem(slot, stack, simulate);
+        }
+        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return itemOutputView.extractItem(slot, amount, simulate);
         }
         @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
         @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return inventory.isItemValid(slot, stack); }
@@ -190,7 +211,9 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
 
     private LazyOptional<IEnergyStorage> energyCapability = LazyOptional.of(() -> energyInputView);
     private LazyOptional<IFluidHandler> fluidCapability = LazyOptional.of(() -> fluidInputView);
-    private LazyOptional<IItemHandler> itemCapability = LazyOptional.of(() -> itemInputView);
+    private LazyOptional<IItemHandler> itemInputCapability = LazyOptional.of(() -> itemInputView);
+    private LazyOptional<IItemHandler> itemOutputCapability = LazyOptional.of(() -> itemOutputView);
+    private LazyOptional<IItemHandler> itemCombinedCapability = LazyOptional.of(() -> itemCombinedView);
 
     private int progress;
     private int mode = MODE_INCUBATION;
@@ -235,10 +258,12 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
 
         for (RelativeSide relative : RelativeSide.values()) {
             Direction worldSide = relative.resolve(facing);
-            sideConfig.setMode(
-                    worldSide,
-                    relative == RelativeSide.FRONT ? SideMode.DISABLED : SideMode.INPUT
-            );
+            SideMode mode = switch (relative) {
+                case FRONT -> SideMode.DISABLED;
+                case TOP, LEFT, BACK -> SideMode.INPUT;
+                case RIGHT, BOTTOM -> SideMode.OUTPUT;
+            };
+            sideConfig.setMode(worldSide, mode);
         }
 
         portsNeedSync = true;
@@ -254,11 +279,9 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         }
 
         Direction worldSide = relativeSide.resolve(getMachineFacing());
-        SideMode next = sideConfig.getMode(worldSide) == SideMode.INPUT
-                ? SideMode.DISABLED
-                : SideMode.INPUT;
+        SideMode next = sideConfig.cycleMode(worldSide);
 
-        if (sideConfig.setMode(worldSide, next)) {
+        if (sideConfig.getMode(worldSide) == next) {
             refreshCapabilities();
             syncPortState(worldSide);
             notifyPortVisualUpdate();
@@ -339,7 +362,6 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         if (capsule.isEmpty()) return STATUS_NO_CAPSULE;
         BioModuleData.Sample sample = BioModuleData.sample(capsule);
         if (sample == null) return STATUS_INVALID_CAPSULE;
-        if (!BioModuleData.isIdentificationUnlocked(level)) return STATUS_DATABASE_LOCKED;
         if (!BioLootData.isAllowed(sample.entityId())) return STATUS_INVALID_CAPSULE;
 
         if (mode == MODE_REPAIR) {
@@ -475,7 +497,6 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
     }
 
     private int speciesId() {
-        if (!BioModuleData.isIdentificationUnlocked(level)) return 0;
         BioModuleData.Sample sample = BioModuleData.sample(inventory.getStackInSlot(SLOT_CAPSULE));
         if (sample == null || !BioLootData.isAllowed(sample.entityId())) return 0;
         EntityType<?> type = net.minecraftforge.registries.ForgeRegistries.ENTITY_TYPES.getValue(sample.entityId());
@@ -488,7 +509,7 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
             return null;
         }
         BioModuleData.Sample sample = BioModuleData.sample(capsule);
-        if (sample == null || sample.damaged() || !BioModuleData.isIdentificationUnlocked(level)) {
+        if (sample == null || sample.damaged()) {
             return null;
         }
 
@@ -610,6 +631,9 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         }
 
         sideConfig.setMode(getMachineFacing(), SideMode.DISABLED);
+        if (!hasConfiguredInput() || !hasConfiguredOutput()) {
+            applyDefaultSideConfiguration();
+        }
         portsNeedSync = true;
         status = calculateStatus(currentRecipe());
         refreshCapabilities();
@@ -655,11 +679,11 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
 
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
             if (side == null) {
-                return itemCapability.cast();
+                return itemCombinedCapability.cast();
             }
-            if (!isFrontWorldSide(side) && sideConfig.allowsInput(side)) {
-                return itemCapability.cast();
-            }
+            if (isFrontWorldSide(side)) return LazyOptional.empty();
+            if (sideConfig.allowsInput(side)) return itemInputCapability.cast();
+            if (sideConfig.allowsOutput(side)) return itemOutputCapability.cast();
             return LazyOptional.empty();
         }
 
@@ -669,11 +693,15 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
     private void refreshCapabilities() {
         energyCapability.invalidate();
         fluidCapability.invalidate();
-        itemCapability.invalidate();
+        itemInputCapability.invalidate();
+        itemOutputCapability.invalidate();
+        itemCombinedCapability.invalidate();
 
         energyCapability = LazyOptional.of(() -> energyInputView);
         fluidCapability = LazyOptional.of(() -> fluidInputView);
-        itemCapability = LazyOptional.of(() -> itemInputView);
+        itemInputCapability = LazyOptional.of(() -> itemInputView);
+        itemOutputCapability = LazyOptional.of(() -> itemOutputView);
+        itemCombinedCapability = LazyOptional.of(() -> itemCombinedView);
     }
 
     @Override
@@ -681,7 +709,9 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         super.invalidateCaps();
         energyCapability.invalidate();
         fluidCapability.invalidate();
-        itemCapability.invalidate();
+        itemInputCapability.invalidate();
+        itemOutputCapability.invalidate();
+        itemCombinedCapability.invalidate();
     }
 
     @Override
@@ -689,8 +719,24 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         super.reviveCaps();
         energyCapability = LazyOptional.of(() -> energyInputView);
         fluidCapability = LazyOptional.of(() -> fluidInputView);
-        itemCapability = LazyOptional.of(() -> itemInputView);
+        itemInputCapability = LazyOptional.of(() -> itemInputView);
+        itemOutputCapability = LazyOptional.of(() -> itemOutputView);
+        itemCombinedCapability = LazyOptional.of(() -> itemCombinedView);
         portsNeedSync = true;
+    }
+
+    private boolean hasConfiguredInput() {
+        for (Direction direction : Direction.values()) {
+            if (!isFrontWorldSide(direction) && sideConfig.allowsInput(direction)) return true;
+        }
+        return false;
+    }
+
+    private boolean hasConfiguredOutput() {
+        for (Direction direction : Direction.values()) {
+            if (!isFrontWorldSide(direction) && sideConfig.allowsOutput(direction)) return true;
+        }
+        return false;
     }
 
     public record Recipe(

@@ -21,23 +21,32 @@ $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
 $backupRoot = Join-Path $projectPath ("_manual_backups\phase10_0_technology_" + $timestamp)
 New-Item -ItemType Directory -Path $backupRoot -Force | Out-Null
 
-foreach ($file in @("38F6E366B367B563.snbt", "4A2E731D5C9B684F.snbt", "76CBABB04B110F16.snbt")) {
-    $source = Join-Path $chapterRoot $file
+foreach ($sourceFile in Get-ChildItem -LiteralPath $chapterRoot -Filter "*.snbt" -File | Sort-Object Name) {
+    $file = $sourceFile.Name
+    $source = $sourceFile.FullName
     $target = Join-Path $runtimeRoot $file
-    if (-not (Test-Path -LiteralPath $source -PathType Leaf)) {
-        throw "Source quest is missing: $source"
-    }
     if (Test-Path -LiteralPath $target -PathType Leaf) {
         Copy-Item -LiteralPath $target -Destination (Join-Path $backupRoot $file) -Force
     }
     Copy-Item -LiteralPath $source -Destination $target -Force
 }
 
-$builtJar = Join-Path $projectPath "build\libs\domesurvival-0.1.1.jar"
-$runtimeJar = Join-Path $projectPath "run\mods\domesurvival-0.1.1-dev.jar"
+$versionLine = Get-Content -LiteralPath (Join-Path $projectPath "gradle.properties") |
+    Where-Object { $_ -match '^mod_version=' } | Select-Object -First 1
+if (-not $versionLine) {
+    throw "mod_version is missing from gradle.properties"
+}
+$modVersion = ($versionLine -split '=', 2)[1].Trim()
+$builtJar = Join-Path $projectPath "build\libs\domesurvival-$modVersion.jar"
+$runtimeJar = Join-Path $projectPath "run\mods\domesurvival-$modVersion-dev.jar"
 if (Test-Path -LiteralPath $builtJar -PathType Leaf) {
+    Get-ChildItem -LiteralPath (Join-Path $projectPath "run\mods") -Filter "domesurvival-*.jar" -File |
+        Where-Object { $_.FullName -ne $runtimeJar } |
+        ForEach-Object {
+            Move-Item -LiteralPath $_.FullName -Destination (Join-Path $backupRoot $_.Name) -Force
+        }
     if (Test-Path -LiteralPath $runtimeJar -PathType Leaf) {
-        Copy-Item -LiteralPath $runtimeJar -Destination (Join-Path $backupRoot "domesurvival-0.1.1-dev.jar") -Force
+        Copy-Item -LiteralPath $runtimeJar -Destination (Join-Path $backupRoot (Split-Path $runtimeJar -Leaf)) -Force
     }
     Copy-Item -LiteralPath $builtJar -Destination $runtimeJar -Force
     Write-Host "Runtime mod JAR updated." -ForegroundColor Green

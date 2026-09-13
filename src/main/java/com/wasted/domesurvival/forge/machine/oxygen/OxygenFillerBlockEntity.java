@@ -5,6 +5,7 @@ import com.wasted.domesurvival.forge.capability.ModCapabilities;
 import com.wasted.domesurvival.forge.item.ModItems;
 import com.wasted.domesurvival.forge.item.OxygenTankItem;
 import com.wasted.domesurvival.forge.machine.energy.MachineEnergyStorage;
+import com.wasted.domesurvival.forge.machine.side.CapabilityViews;
 import com.wasted.domesurvival.forge.machine.side.PortVisual;
 import com.wasted.domesurvival.forge.machine.side.RelativeSide;
 import com.wasted.domesurvival.forge.machine.side.SideMode;
@@ -157,10 +158,15 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
         @Override public boolean canExtract() { return true; }
     };
 
+    private final IItemHandler itemInputView = CapabilityViews.inputItems(inventory);
+    private final IItemHandler itemOutputView = CapabilityViews.outputItems(inventory);
+
     private LazyOptional<IEnergyStorage> energyCapability = LazyOptional.of(() -> energyInputView);
     private LazyOptional<IOxygenStorage> oxygenInputCapability = LazyOptional.of(() -> oxygenInputView);
     private LazyOptional<IOxygenStorage> oxygenOutputCapability = LazyOptional.of(() -> oxygenOutputView);
-    private LazyOptional<IItemHandler> itemCapability = LazyOptional.of(() -> inventory);
+    private LazyOptional<IItemHandler> itemInputCapability = LazyOptional.of(() -> itemInputView);
+    private LazyOptional<IItemHandler> itemOutputCapability = LazyOptional.of(() -> itemOutputView);
+    private LazyOptional<IItemHandler> itemInternalCapability = LazyOptional.of(() -> inventory);
 
     private long oxygenOutputBudgetGameTime = Long.MIN_VALUE;
     private int oxygenOutputUsedThisTick;
@@ -667,8 +673,11 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
             return energyCapability.cast();
         }
 
-        if (cap == ForgeCapabilities.ITEM_HANDLER && inputAllowed) {
-            return itemCapability.cast();
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if (side == null) return itemInternalCapability.cast();
+            if (allowsOxygenInputOn(side)) return itemInputCapability.cast();
+            if (allowsOxygenOutputOn(side)) return itemOutputCapability.cast();
+            return LazyOptional.empty();
         }
 
         if (cap == ModCapabilities.OXYGEN) {
@@ -688,12 +697,16 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
         energyCapability.invalidate();
         oxygenInputCapability.invalidate();
         oxygenOutputCapability.invalidate();
-        itemCapability.invalidate();
+        itemInputCapability.invalidate();
+        itemOutputCapability.invalidate();
+        itemInternalCapability.invalidate();
 
         energyCapability = LazyOptional.of(() -> energyInputView);
         oxygenInputCapability = LazyOptional.of(() -> oxygenInputView);
         oxygenOutputCapability = LazyOptional.of(() -> oxygenOutputView);
-        itemCapability = LazyOptional.of(() -> inventory);
+        itemInputCapability = LazyOptional.of(() -> itemInputView);
+        itemOutputCapability = LazyOptional.of(() -> itemOutputView);
+        itemInternalCapability = LazyOptional.of(() -> inventory);
     }
 
     @Override
@@ -702,7 +715,9 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
         energyCapability.invalidate();
         oxygenInputCapability.invalidate();
         oxygenOutputCapability.invalidate();
-        itemCapability.invalidate();
+        itemInputCapability.invalidate();
+        itemOutputCapability.invalidate();
+        itemInternalCapability.invalidate();
     }
 
     @Override

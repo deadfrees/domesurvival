@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "LCL",
-    "DBD",
+    "SBS",
     "LML"
   ],
   "key": {
@@ -12,8 +12,8 @@
     "C": {
       "tag": "forge:ingots/copper"
     },
-    "D": {
-      "item": "enderio:dark_steel_ingot"
+    "S": {
+      "tag": "forge:ingots/silver"
     },
     "B": {
       "item": "domesurvival:machine_stabilizer"
@@ -25,11 +25,5 @@
   "result": {
     "item": "domesurvival:energy_buffer",
     "count": 1
-  },
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "enderio"
-    }
-  ]
+  }
 }

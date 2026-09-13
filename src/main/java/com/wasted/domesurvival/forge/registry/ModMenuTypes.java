@@ -13,6 +13,7 @@ import com.wasted.domesurvival.forge.machine.oxygen.OxygenElectrolyzerMenu;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenFillerMenu;
 import com.wasted.domesurvival.forge.machine.bio.BioincubatorMenu;
 import com.wasted.domesurvival.forge.machine.sieve.SandSieveMenu;
+import com.wasted.domesurvival.forge.lanos.LanosTrunkMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -55,6 +56,9 @@ public static final RegistryObject<MenuType<CoalGeneratorMenu>> COAL_GENERATOR =
 
     public static final RegistryObject<MenuType<CreativeEnergyBufferMenu>> ENERGY_BUFFER_CREATIVE =
             MENU_TYPES.register("energy_buffer_creative", () -> IForgeMenuType.create(CreativeEnergyBufferMenu::new));
+
+    public static final RegistryObject<MenuType<LanosTrunkMenu>> LANOS_TRUNK =
+            MENU_TYPES.register("lanos_trunk", () -> IForgeMenuType.create(LanosTrunkMenu::new));
 
     private ModMenuTypes() {
     }

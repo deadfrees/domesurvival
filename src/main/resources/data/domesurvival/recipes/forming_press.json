@@ -1,43 +1,29 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "DCD",
-    "RMR",
-    "DBD"
+    "GPG",
+    "SMS",
+    "GCG"
   ],
   "key": {
-    "D": {
-      "item": "enderio:dark_steel_ingot"
+    "G": {
+      "tag": "forge:ingots/goteium"
     },
-    "C": {
-      "item": "mekanism:advanced_control_circuit"
+    "P": {
+      "item": "minecraft:piston"
     },
-    "R": {
-      "item": "domesurvival:reinforced_energy_pipe"
+    "S": {
+      "tag": "forge:ingots/steel"
     },
     "M": {
       "item": "domesurvival:machine_stabilizer"
     },
-    "B": {
-      "item": "immersiveengineering:circuit_board"
+    "C": {
+      "item": "domesurvival:copper_furnace"
     }
   },
   "result": {
     "item": "domesurvival:forming_press",
     "count": 1
-  },
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "enderio"
-    },
-    {
-      "type": "forge:mod_loaded",
-      "modid": "mekanism"
-    },
-    {
-      "type": "forge:mod_loaded",
-      "modid": "immersiveengineering"
-    }
-  ]
+  }
 }

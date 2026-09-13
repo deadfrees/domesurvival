@@ -4,11 +4,13 @@ import com.mojang.logging.LogUtils;
 import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.bio.BioLootData;
 import com.wasted.domesurvival.forge.bio.BioModuleData;
+import com.wasted.domesurvival.forge.item.ModItems;
 import com.wasted.domesurvival.forge.network.BioModuleRegistrySyncPacket;
 import com.wasted.domesurvival.forge.network.ModNetwork;
 import com.wasted.domesurvival.forge.quest.QuestProgressService;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
@@ -44,5 +46,37 @@ public final class TechnologyEvents {
         }
         TechnologyUnlockService.sync(player);
         ModNetwork.sendTo(player, new BioModuleRegistrySyncPacket(BioLootData.allSpecies()));
+    }
+
+    /**
+     * FTB command rewards are not guaranteed to run immediately on every team
+     * migration. Make the story condition authoritative in gameplay as well:
+     * once a player actually recovers the three intact archive samples, the
+     * database flag is restored even if the invisible quest reward was missed.
+     */
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END
+                || !(event.player instanceof ServerPlayer player)
+                || player.tickCount % 20 != 0
+                || QuestProgressService.has(player.serverLevel(), BioModuleData.IDENTIFICATION_FLAG)) {
+            return;
+        }
+        if (!hasItem(player, ModItems.CHICKEN_CRYOCAPSULE.get())
+                || !hasItem(player, ModItems.SHEEP_CRYOCAPSULE.get())
+                || !hasItem(player, ModItems.COW_CRYOCAPSULE.get())) {
+            return;
+        }
+        QuestProgressService.set(player.serverLevel(), "GENETIC_SAMPLES_RECOVERED",
+                "inventory:archive_samples");
+        QuestProgressService.set(player.serverLevel(), BioModuleData.IDENTIFICATION_FLAG,
+                "inventory:archive_samples");
+    }
+
+    private static boolean hasItem(ServerPlayer player, net.minecraft.world.item.Item item) {
+        for (net.minecraft.world.item.ItemStack stack : player.getInventory().items) {
+            if (stack.is(item)) return true;
+        }
+        return false;
     }
 }

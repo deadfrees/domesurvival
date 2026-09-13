@@ -40,7 +40,7 @@ public final class QuestGlobalRegistry {
             new QuestSpec("2327F36796AD9481", 1, 10, "sand_sieve", "Песок становится глиной"),
             new QuestSpec("76CC190EA3C2AF43", 1, 11, "roof_materials", "Навес — это план, а не воздух"),
             new QuestSpec("7070CC231A5FD78B", 1, 12, "weather_check", "Сначала посмотри наверх"),
-            new QuestSpec("1E17F741B3D2B089", 1, 13, "maneogflow", "maneogflow"),
+            new QuestSpec("1E17F741B3D2B089", 1, 13, "maneogflow", "Инструктаж перед выходом"),
             new QuestSpec("154A94C130095453", 1, 14, "gate_cache", "Запас у выхода"),
             new QuestSpec("5D607F103EF876B1", 1, 15, "airlock_workspace", "Рабочая зона шлюза"),
             new QuestSpec("3E0DBA929C2D708C", 1, 16, "no_heroics", "Никакого героизма"),
@@ -117,6 +117,13 @@ public final class QuestGlobalRegistry {
             new QuestSpec("0890245DED286FB4", 6, 18, "q18", "Шлюз — не потребитель"),
             new QuestSpec("40D4CDA4A2445247", 6, 19, "q19", "Энергия для следующего шага"),
             new QuestSpec("267C7B7925B99855", 6, 20, "q20", "Свет горит"),
+            new QuestSpec("71A2B3C4D5E60001", 6, 21, "solar_01", "Автономная генерация"),
+            new QuestSpec("71A2B3C4D5E60002", 6, 22, "solar_02", "Солнечная сеть II"),
+            new QuestSpec("71A2B3C4D5E60003", 6, 23, "solar_03", "Промышленная солнечная сеть"),
+            new QuestSpec("6B10000000000001", 6, 24, "metallurgy_01", "Коксохимия Купола"),
+            new QuestSpec("6B10000000000002", 6, 25, "metallurgy_02", "Кокс вместо угля"),
+            new QuestSpec("6B10000000000003", 6, 26, "metallurgy_03", "Шахтная плавильня"),
+            new QuestSpec("6B10000000000004", 6, 27, "metallurgy_04", "Первая сталь"),
             new QuestSpec("723BD8C7EB767885", 7, 1, "q01", "Промышленный район"),
             new QuestSpec("7805EEAD5285FB87", 7, 2, "q02", "Инструмент инженера"),
             new QuestSpec("636EE3BD758A2795", 7, 3, "q03", "Три опоры машин"),
@@ -152,7 +159,14 @@ public final class QuestGlobalRegistry {
             new QuestSpec("0F7B71D5BDCBD296", 7, 33, "side_genetics_03", "Следуй за стрелкой"),
             new QuestSpec("3B095F94C8D72753", 7, 34, "side_genetics_04", "Последние образцы"),
             new QuestSpec("4D7992E0A771B3A1", 7, 35, "side_genetics_05", "Биоинкубатор"),
-            new QuestSpec("6274AE251790C825", 7, 36, "side_genetics_06", "Первое дыхание")
+            new QuestSpec("6274AE251790C825", 7, 36, "side_genetics_06", "Первое дыхание"),
+            new QuestSpec("6A4D2C8E1F705101", 7, 43, "side_genetics_07", "Вернуть повреждённый геном"),
+            new QuestSpec("1A91E53B7C2048D6", 7, 37, "side_materials_01", "Промышленные жилы"),
+            new QuestSpec("2B82F64C8D3159E7", 7, 38, "side_materials_02", "Глубинные сигналы"),
+            new QuestSpec("3C73A75D9E426AF8", 7, 39, "side_materials_03", "Чистый технологический запас"),
+            new QuestSpec("4D64B86EAF537B09", 7, 40, "side_forming_01", "Точная формовка"),
+            new QuestSpec("5E55C97FB0648C1A", 7, 41, "side_forming_02", "Не просто слитки"),
+            new QuestSpec("6F46DA80C1759D2B", 7, 42, "side_filter_regeneration", "Вторая жизнь фильтра")
     );
 
     public enum Action {
@@ -409,6 +423,13 @@ public final class QuestGlobalRegistry {
             Map.entry("0890245DED286FB4", "08B6DEF0B712A95C"),
             Map.entry("40D4CDA4A2445247", "099AC85D0299831D"),
             Map.entry("267C7B7925B99855", "7ABE0BED7283141A"),
+            Map.entry("71A2B3C4D5E60001", "71A2B3C4D5E62001"),
+            Map.entry("71A2B3C4D5E60002", "71A2B3C4D5E62002"),
+            Map.entry("71A2B3C4D5E60003", "71A2B3C4D5E62003"),
+            Map.entry("6B10000000000001", "6B12000000000001"),
+            Map.entry("6B10000000000002", "6B12000000000002"),
+            Map.entry("6B10000000000003", "6B12000000000003"),
+            Map.entry("6B10000000000004", "6B12000000000004"),
             Map.entry("723BD8C7EB767885", "0D20AFAC4A5791B5"),
             Map.entry("7805EEAD5285FB87", "7AD3252F1BFC9979"),
             Map.entry("636EE3BD758A2795", "7BA51A0EF8EE17A8"),
@@ -444,7 +465,14 @@ public final class QuestGlobalRegistry {
             Map.entry("0F7B71D5BDCBD296", "40F643C5A1ADE4A1"),
             Map.entry("3B095F94C8D72753", "2E613ED275498856"),
             Map.entry("4D7992E0A771B3A1", "62A158B1DB78F2A4"),
-            Map.entry("6274AE251790C825", "1C9F570D4DA1D0E2")
+            Map.entry("6274AE251790C825", "1C9F570D4DA1D0E2"),
+            Map.entry("6A4D2C8E1F705101", "6A4D2C8E1F705121"),
+            Map.entry("1A91E53B7C2048D6", "70A1B2C3D4E50001"),
+            Map.entry("2B82F64C8D3159E7", "70A1B2C3D4E50002"),
+            Map.entry("3C73A75D9E426AF8", "70A1B2C3D4E50003"),
+            Map.entry("4D64B86EAF537B09", "70A1B2C3D4E50004"),
+            Map.entry("5E55C97FB0648C1A", "70A1B2C3D4E50005"),
+            Map.entry("6F46DA80C1759D2B", "70A1B2C3D4E50006")
     );
 
     private QuestGlobalRegistry() {

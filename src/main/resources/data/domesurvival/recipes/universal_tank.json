@@ -1,16 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "IGI",
-    "GSG",
-    "IGI"
+    "TGT",
+    "GLG",
+    "TST"
   ],
   "key": {
-    "I": {
-      "item": "minecraft:iron_ingot"
+    "T": {
+      "tag": "forge:ingots/tin"
     },
     "G": {
       "item": "minecraft:glass_pane"
+    },
+    "L": {
+      "tag": "forge:ingots/lead"
     },
     "S": {
       "item": "domesurvival:machine_stabilizer"
