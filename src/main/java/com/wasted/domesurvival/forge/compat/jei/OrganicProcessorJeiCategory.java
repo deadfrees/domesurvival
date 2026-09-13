@@ -36,7 +36,7 @@ public final class OrganicProcessorJeiCategory implements IRecipeCategory<Organi
 
     @Override
     public @NotNull Component getTitle() {
-        return Component.literal("Органическая переработка");
+        return Component.translatable("jei.domesurvival.organic_processing");
     }
 
     @Override public int getWidth() { return WIDTH; }
@@ -71,10 +71,13 @@ public final class OrganicProcessorJeiCategory implements IRecipeCategory<Organi
 
         var font = Minecraft.getInstance().font;
         graphics.drawString(font,
-                Component.literal(recipe.getEnergy() + " FE"),
+                Component.translatable("jei.domesurvival.organic_processing.energy", recipe.getEnergy()),
                 84, 39, 0xFFD8DEE3, false);
         graphics.drawString(font,
-                Component.literal(formatSeconds(recipe.getProcessingTime())),
+                Component.translatable(
+                        "jei.domesurvival.organic_processing.time",
+                        formatSecondsValue(recipe.getProcessingTime())
+                ),
                 84, 50, 0xFFAEB9C2, false);
     }
 
@@ -84,10 +87,10 @@ public final class OrganicProcessorJeiCategory implements IRecipeCategory<Organi
                 .toList();
     }
 
-    private static String formatSeconds(int ticks) {
+    private static String formatSecondsValue(int ticks) {
         int safeTicks = Math.max(0, ticks);
         int whole = safeTicks / 20;
         int tenths = (safeTicks % 20) / 2;
-        return whole + "." + tenths + " s";
+        return whole + "." + tenths;
     }
 }
