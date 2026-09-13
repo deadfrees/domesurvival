@@ -77,44 +77,97 @@ public final class ClientModEvents {
             MenuScreens.register(FormingPressRegistry.FORMING_PRESS_MENU.get(), FormingPressScreen::new);
             MenuScreens.register(IndustrialCrusherRegistry.INDUSTRIAL_CRUSHER_MENU.get(), IndustrialCrusherScreen::new);
             MenuScreens.register(FilterRegenerationRegistry.FILTER_REGENERATION_MENU.get(), FilterRegenerationScreen::new);
-            CuriosRendererRegistry.register(ModItems.OXYGEN_MASK.get(), OxygenMaskCurioRenderer::new);
-            CuriosRendererRegistry.register(ModItems.SMALL_OXYGEN_TANK.get(), OxygenTankCurioRenderer::new);
-            CuriosRendererRegistry.register(ModItems.MEDIUM_OXYGEN_TANK.get(), OxygenTankCurioRenderer::new);
-            CuriosRendererRegistry.register(ModItems.LARGE_OXYGEN_TANK.get(), OxygenTankCurioRenderer::new);
+            CuriosRendererRegistry.register(
+                    ModItems.OXYGEN_MASK.get(),
+                    OxygenMaskCurioRenderer::new
+            );
+            CuriosRendererRegistry.register(
+                    ModItems.SMALL_OXYGEN_TANK.get(),
+                    OxygenTankCurioRenderer::new
+            );
+            CuriosRendererRegistry.register(
+                    ModItems.MEDIUM_OXYGEN_TANK.get(),
+                    OxygenTankCurioRenderer::new
+            );
+            CuriosRendererRegistry.register(
+                    ModItems.LARGE_OXYGEN_TANK.get(),
+                    OxygenTankCurioRenderer::new
+            );
         });
     }
 
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
-        event.registerAbove(VanillaGuiOverlay.AIR_LEVEL.id(), "oxygen", OxygenHudOverlay.HUD);
+        event.registerAbove(
+                VanillaGuiOverlay.AIR_LEVEL.id(),
+                "oxygen",
+                OxygenHudOverlay.HUD
+        );
     }
 
     @SubscribeEvent
     public static void registerMetallurgyItemColors(RegisterColorHandlersEvent.Item event) {
-        event.register((stack, tintIndex) -> 0xFFFFFF, ModItems.STEEL_INGOT.get());
-        event.register((stack, tintIndex) -> 0xFFFFFF, ModItems.COAL_COKE.get());
-        event.register((stack, tintIndex) -> tintIndex == 0 ? 0x9B765B : 0xFFFFFF, ModItems.SLAG.get());
-        event.register((stack, tintIndex) -> stack.getItem() instanceof SieveMeshItem mesh ? mesh.tier().color() : 0xFFFFFF,
-                ModItems.FIBER_SIEVE_MESH.get(), ModItems.COPPER_SIEVE_MESH.get(), ModItems.STEEL_SIEVE_MESH.get());
+        event.register((stack, tintIndex) -> 0xFFFFFF,
+                ModItems.STEEL_INGOT.get());
+        event.register((stack, tintIndex) -> 0xFFFFFF,
+                ModItems.COAL_COKE.get());
+        event.register((stack, tintIndex) -> tintIndex == 0 ? 0x9B765B : 0xFFFFFF,
+                ModItems.SLAG.get());
+        event.register((stack, tintIndex) -> stack.getItem() instanceof SieveMeshItem mesh
+                        ? mesh.tier().color() : 0xFFFFFF,
+                ModItems.FIBER_SIEVE_MESH.get(),
+                ModItems.COPPER_SIEVE_MESH.get(),
+                ModItems.STEEL_SIEVE_MESH.get());
     }
 
     @SubscribeEvent
     public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(com.wasted.domesurvival.forge.registry.ModBlockEntities.SAND_SIEVE.get(), SandSieveBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(
+                com.wasted.domesurvival.forge.registry.ModBlockEntities.SAND_SIEVE.get(),
+                SandSieveBlockEntityRenderer::new
+        );
     }
 
     @SubscribeEvent
-    public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(OxygenMaskModel.LAYER_LOCATION, OxygenMaskModel::createBodyLayer);
-        event.registerLayerDefinition(OxygenTankModel.SMALL_LAYER_LOCATION, OxygenTankModel::createSmallBodyLayer);
-        event.registerLayerDefinition(OxygenTankModel.MEDIUM_LAYER_LOCATION, OxygenTankModel::createMediumBodyLayer);
-        event.registerLayerDefinition(OxygenTankModel.LARGE_LAYER_LOCATION, OxygenTankModel::createLargeBodyLayer);
+    public static void registerLayerDefinitions(
+            EntityRenderersEvent.RegisterLayerDefinitions event
+    ) {
+        event.registerLayerDefinition(
+                OxygenMaskModel.LAYER_LOCATION,
+                OxygenMaskModel::createBodyLayer
+        );
+
+        event.registerLayerDefinition(
+                OxygenTankModel.SMALL_LAYER_LOCATION,
+                OxygenTankModel::createSmallBodyLayer
+        );
+        event.registerLayerDefinition(
+                OxygenTankModel.MEDIUM_LAYER_LOCATION,
+                OxygenTankModel::createMediumBodyLayer
+        );
+        event.registerLayerDefinition(
+                OxygenTankModel.LARGE_LAYER_LOCATION,
+                OxygenTankModel::createLargeBodyLayer
+        );
     }
 
     @SubscribeEvent
-    public static void registerParticles(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ModParticles.ACID_RAIN_STREAK.get(), AcidRainParticle.Provider::new);
-        event.registerSpriteSet(ModParticles.SANDSTORM_MOTE.get(), SandstormParticle.Provider::new);
-        event.registerSpriteSet(ModParticles.VENTILATION_BUBBLE.get(), VentilationBubbleParticle.Provider::new);
+    public static void registerParticles(
+            RegisterParticleProvidersEvent event
+    ) {
+        event.registerSpriteSet(
+                ModParticles.ACID_RAIN_STREAK.get(),
+                AcidRainParticle.Provider::new
+        );
+
+        event.registerSpriteSet(
+                ModParticles.SANDSTORM_MOTE.get(),
+                SandstormParticle.Provider::new
+        );
+
+        event.registerSpriteSet(
+                ModParticles.VENTILATION_BUBBLE.get(),
+                VentilationBubbleParticle.Provider::new
+        );
     }
 }
