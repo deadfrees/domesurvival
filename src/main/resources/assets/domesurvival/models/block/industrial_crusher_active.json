@@ -3,8 +3,6 @@
   "textures": {
     "top": "domesurvival:block/coal_generator_top",
     "front": "domesurvival:block/industrial_crusher/front_active",
-    "side": "domesurvival:block/coal_generator_side",
-    "bottom": "domesurvival:block/coal_generator_side",
-    "particle": "domesurvival:block/industrial_crusher/front"
+    "side": "domesurvival:block/coal_generator_side"
   }
 }
