@@ -1,0 +1,158 @@
+{
+  "status": "PASS",
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "66f91eb5ff983341136eb5971683524e5de24643a702f08fb7b8c59a8cf76a93",
+  "bytes": 178867149,
+  "fluid_resources": 33,
+  "runtime_passed_checks": 150,
+  "checks": [
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/blockstates/basic_fluid_pipe.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/blockstates/high_pressure_fluid_pipe.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/blockstates/reinforced_fluid_pipe.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/basic_fluid_pipe_arm.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/basic_fluid_pipe_core.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/basic_fluid_pipe_inventory.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_pressure_fluid_pipe_arm.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_pressure_fluid_pipe_core.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_pressure_fluid_pipe_inventory.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_fluid_pipe_arm.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_fluid_pipe_core.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_fluid_pipe_inventory.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/item/basic_fluid_pipe.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/item/high_pressure_fluid_pipe.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/item/reinforced_fluid_pipe.json"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_body.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_core.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_edge.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_end.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_panel.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_rail.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_body.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_core.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_edge.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_end.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_panel.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_rail.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_body.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_core.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_edge.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_end.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_panel.png"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_rail.png"
+    },
+    {
+      "pass": true,
+      "check": "No fluid test harness in production JAR"
+    },
+    {
+      "pass": true,
+      "check": "Runtime test passed with zero failed checks"
+    },
+    {
+      "pass": true,
+      "check": "Static mesh/resource checks passed"
+    },
+    {
+      "pass": true,
+      "check": "Gradle build succeeded"
+    }
+  ]
+}

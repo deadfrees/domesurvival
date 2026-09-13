@@ -1,0 +1,19 @@
+// Disposable fluid-only fixture; this source set is never packaged in the mod.
+gradle.projectsLoaded {
+    gradle.rootProject.afterEvaluate { p ->
+        def probe = p.sourceSets.create('fluidPipeProbe') {
+            java.srcDir 'dev/fluid_pipes/runtime_probe'
+            compileClasspath += p.sourceSets.main.output + p.sourceSets.main.compileClasspath
+            runtimeClasspath += p.sourceSets.main.runtimeClasspath
+        }
+        p.minecraft.runs.client.mods.domesurvival.source(probe)
+        p.minecraft.runs.client.property 'dome.fluidPipeProbe', 'true'
+        p.tasks.matching { it.name == 'runClient' }.configureEach { dependsOn p.tasks.named('fluidPipeProbeClasses') }
+    }
+}
+gradle.projectsEvaluated {
+    gradle.rootProject.minecraft.runs.client {
+        workingDirectory gradle.rootProject.file('run/fluid-pipe-visual')
+        args '--username', 'FluidPipeAudit', '--width', '1280', '--height', '800'
+    }
+}
