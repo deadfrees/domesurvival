@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "ingredient": { "item": "domesurvival:crushed_silver_ore" },
+  "result": "domesurvival:silver_ingot",
+  "experience": 0.7,
+  "cookingtime": 100
+}
