@@ -1,0 +1,48 @@
+{
+  "itemGroup.domesurvival.items": "Dome Survival",
+
+  "block.domesurvival.industrial_crusher": "Industrial Crusher",
+  "block.domesurvival.organic_processor": "Organic Processor",
+
+  "item.domesurvival.crushed_iron_ore": "Crushed Iron Ore",
+  "item.domesurvival.crushed_copper_ore": "Crushed Copper Ore",
+  "item.domesurvival.crushed_gold_ore": "Crushed Gold Ore",
+  "item.domesurvival.crushed_tin_ore": "Crushed Tin Ore",
+  "item.domesurvival.crushed_lead_ore": "Crushed Lead Ore",
+  "item.domesurvival.crushed_silver_ore": "Crushed Silver Ore",
+  "item.domesurvival.crushed_nickel_ore": "Crushed Nickel Ore",
+
+  "item.domesurvival.efficiency_module": "Efficiency Module",
+  "item.domesurvival.overdrive_module": "Overdrive Module",
+  "item.domesurvival.buffer_module": "Buffer Module",
+  "item.domesurvival.automation_module": "Automation Module",
+  "item.domesurvival.emergency_protection_module": "Emergency Protection Module",
+  "item.domesurvival.communication_module": "Communication Module",
+
+  "gui.domesurvival.industrial_crusher.energy": "Energy: %s / %s FE",
+  "gui.domesurvival.industrial_crusher.status.ready": "Ready",
+  "gui.domesurvival.industrial_crusher.status.crushing": "Crushing...",
+  "gui.domesurvival.industrial_crusher.status.no_energy": "No energy",
+  "gui.domesurvival.industrial_crusher.status.no_recipe": "No matching recipe",
+  "gui.domesurvival.industrial_crusher.status.not_enough_input": "Not enough input",
+  "gui.domesurvival.industrial_crusher.status.output_full": "Output full",
+
+  "gui.domesurvival.organic_processor.water": "Purified water: %s / %s mB",
+  "gui.domesurvival.organic_processor.energy": "Energy: %s / %s FE",
+  "gui.domesurvival.organic_processor.status.ready": "Ready",
+  "gui.domesurvival.organic_processor.status.processing": "Processing...",
+  "gui.domesurvival.organic_processor.status.no_energy": "No energy",
+  "gui.domesurvival.organic_processor.status.no_recipe": "No matching recipe",
+  "gui.domesurvival.organic_processor.status.not_enough_input": "Not enough ingredients",
+  "gui.domesurvival.organic_processor.status.no_water": "No purified water",
+  "gui.domesurvival.organic_processor.status.output_full": "Output full",
+
+  "jei.domesurvival.industrial_crushing": "Industrial Crushing",
+  "jei.domesurvival.industrial_crushing.energy": "%s FE per cycle",
+  "jei.domesurvival.industrial_crushing.time": "Time: %s s",
+  "jei.domesurvival.industrial_crushing.byproduct_chance": "Byproduct chance: %s",
+
+  "jei.domesurvival.organic_processing": "Organic Processing",
+  "jei.domesurvival.organic_processing.energy": "%s FE per cycle",
+  "jei.domesurvival.organic_processing.time": "Time: %s s"
+}
