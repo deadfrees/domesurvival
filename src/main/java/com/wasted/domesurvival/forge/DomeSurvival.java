@@ -17,6 +17,7 @@ import com.wasted.domesurvival.forge.item.ModItems;
 import com.wasted.domesurvival.forge.loot.ModLootModifiers;
 import com.wasted.domesurvival.forge.material.TechComponents;
 import com.wasted.domesurvival.forge.material.TechMaterials;
+import com.wasted.domesurvival.forge.machine.crusher.CrusherMaterials;
 import com.wasted.domesurvival.forge.machine.crusher.IndustrialCrusherRegistry;
 import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationRegistry;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
@@ -56,6 +57,7 @@ public final class DomeSurvival {
         OxygenComplexRegistry.register(modBus);
         FormingPressRegistry.register(modBus);
         IndustrialCrusherRegistry.register(modBus);
+        CrusherMaterials.register(modBus);
         MachineModuleItems.register(modBus);
         FilterRegenerationRegistry.register(modBus);
         ModRecipes.register(modBus);
