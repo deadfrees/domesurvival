@@ -240,6 +240,26 @@ if (project.hasProperty('domeFullDev')) {
         )
     }
     apply from: domeFullDevScript
+
+    // Direct `gradlew -PdomeFullDev=true runClient` is unsafe while production
+    // JARs are still present in run/mods: Forge scans them in addition to the
+    // remapped FULL DEV cache. Mixin-heavy mods such as Alex's Caves then see
+    // SRG shadow names against MojMap classes and fail before DomeSurvival loads.
+    // RUN_DEV_FULL.bat deliberately hides run/mods before invoking runClient.
+    tasks.named('runClient').configure {
+        doFirst {
+            def physicalRuntimeMods = fileTree('run/mods') {
+                include '*.jar'
+            }.files
+            if (!physicalRuntimeMods.isEmpty()) {
+                throw new GradleException(
+                        'Unsafe FULL DEV launch: run/mods still contains production JARs. ' +
+                        'Use dev\\RUN_DEV_FULL.bat so the production modpack is hidden and the ' +
+                        'ForgeGradle-deobfuscated runtime cache is used instead.'
+                )
+            }
+        }
+    }
 }
 // DOME JEI COMPILE API V1 BEGIN
 // Dome Survival contains source-level JEI integration, so the JEI API must be on compileClasspath.
