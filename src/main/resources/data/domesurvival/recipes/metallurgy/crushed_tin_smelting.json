@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": { "item": "domesurvival:crushed_tin_ore" },
+  "result": "domesurvival:tin_ingot",
+  "experience": 0.5,
+  "cookingtime": 200
+}
