@@ -10,14 +10,20 @@ import java.util.Set;
 public record MachineModule(
         ResourceLocation id,
         MachineModuleType type,
-        Set<MachineModuleType> incompatibleWith
+        Set<MachineModuleType> incompatibleWith,
+        MachineModuleModifiers modifiers
 ) {
     public MachineModule {
+        if (id == null || type == null || modifiers == null) {
+            throw new IllegalArgumentException("Machine module fields cannot be null");
+        }
         incompatibleWith = Set.copyOf(incompatibleWith);
     }
 
     public boolean conflictsWith(MachineModule other) {
-        return incompatibleWith.contains(other.type())
-                || other.incompatibleWith().contains(type);
+        return other != null && (
+                incompatibleWith.contains(other.type())
+                        || other.incompatibleWith().contains(type)
+        );
     }
 }
