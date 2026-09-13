@@ -1,9 +1,13 @@
 {
   "ambientocclusion": true,
   "textures": {
-    "0": "domesurvival:block/reinforced_energy_pipe",
-    "rail": "domesurvival:block/reinforced_energy_pipe_detail",
-    "particle": "domesurvival:block/reinforced_energy_pipe"
+    "body": "domesurvival:block/energy_pipe/reinforced_body",
+    "core": "domesurvival:block/energy_pipe/reinforced_core",
+    "panel": "domesurvival:block/energy_pipe/reinforced_panel",
+    "rail": "domesurvival:block/energy_pipe/reinforced_rail",
+    "end": "domesurvival:block/energy_pipe/reinforced_end",
+    "edge": "domesurvival:block/energy_pipe/reinforced_edge",
+    "particle": "domesurvival:block/energy_pipe/reinforced_core"
   },
   "elements": [
     {
@@ -23,55 +27,57 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            6.0,
+            6.0
           ],
-          "texture": "#0"
+          "texture": "#end"
         },
         "south": {
           "uv": [
             0,
             0,
-            16,
-            16
+            6.0,
+            6.0
           ],
-          "texture": "#0"
+          "texture": "#end"
         },
         "east": {
           "uv": [
             0,
             0,
-            16,
-            16
+            6.0,
+            12.5
           ],
-          "texture": "#0"
+          "texture": "#body",
+          "rotation": 90
         },
         "west": {
           "uv": [
             0,
             0,
-            16,
-            16
+            6.0,
+            12.5
           ],
-          "texture": "#0"
+          "texture": "#body",
+          "rotation": 90
         },
         "up": {
           "uv": [
             0,
             0,
-            16,
-            16
+            6.0,
+            12.5
           ],
-          "texture": "#0"
+          "texture": "#body"
         },
         "down": {
           "uv": [
             0,
             0,
-            16,
-            16
+            6.0,
+            12.5
           ],
-          "texture": "#0"
+          "texture": "#body"
         }
       }
     },
@@ -92,8 +98,8 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            4.8,
+            0.4
           ],
           "texture": "#rail"
         },
@@ -101,8 +107,8 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            4.8,
+            0.4
           ],
           "texture": "#rail"
         },
@@ -110,26 +116,28 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            11.5
           ],
-          "texture": "#rail"
+          "texture": "#rail",
+          "rotation": 90
         },
         "west": {
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            11.5
           ],
-          "texture": "#rail"
+          "texture": "#rail",
+          "rotation": 90
         },
         "up": {
           "uv": [
             0,
             0,
-            16,
-            16
+            4.8,
+            11.5
           ],
           "texture": "#rail"
         }
@@ -152,8 +160,8 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            4.8,
+            0.4
           ],
           "texture": "#rail"
         },
@@ -161,8 +169,8 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            4.8,
+            0.4
           ],
           "texture": "#rail"
         },
@@ -170,26 +178,28 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            11.5
           ],
-          "texture": "#rail"
+          "texture": "#rail",
+          "rotation": 90
         },
         "west": {
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            11.5
           ],
-          "texture": "#rail"
+          "texture": "#rail",
+          "rotation": 90
         },
         "down": {
           "uv": [
             0,
             0,
-            16,
-            16
+            4.8,
+            11.5
           ],
           "texture": "#rail"
         }
@@ -212,8 +222,8 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            4.8
           ],
           "texture": "#rail"
         },
@@ -221,8 +231,8 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            4.8
           ],
           "texture": "#rail"
         },
@@ -230,17 +240,18 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            4.8,
+            11.5
           ],
-          "texture": "#rail"
+          "texture": "#rail",
+          "rotation": 90
         },
         "up": {
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            11.5
           ],
           "texture": "#rail"
         },
@@ -248,8 +259,8 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            11.5
           ],
           "texture": "#rail"
         }
@@ -272,8 +283,8 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            4.8
           ],
           "texture": "#rail"
         },
@@ -281,8 +292,8 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            4.8
           ],
           "texture": "#rail"
         },
@@ -290,17 +301,18 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            4.8,
+            11.5
           ],
-          "texture": "#rail"
+          "texture": "#rail",
+          "rotation": 90
         },
         "up": {
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            11.5
           ],
           "texture": "#rail"
         },
@@ -308,8 +320,8 @@
           "uv": [
             0,
             0,
-            16,
-            16
+            0.4,
+            11.5
           ],
           "texture": "#rail"
         }

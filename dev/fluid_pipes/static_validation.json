@@ -1,0 +1,4671 @@
+{
+  "checks": [
+    {
+      "pass": true,
+      "check": "Exactly 15 fluid JSON files changed; independently restored energy snapshot retained"
+    },
+    {
+      "pass": true,
+      "check": "Exactly 18 fluid PNG files added beyond baseline and documented external energy restoration"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe exported mesh manifest equals resources"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe original selectors/rotations/model IDs preserved"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe arm texture rotates with geometry"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe seven item contexts"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_0 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_0/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_0/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_0/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_0/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_0/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_0/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_1 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_1/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_1/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_1/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_1/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_2 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_2/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_2/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_2/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_2/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/south_arm_section_2/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "basic_body.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "basic_body.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_body.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_body.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_body.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "basic_body.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "basic_body.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "basic_body.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "basic_core.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "basic_core.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_core.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_core.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_core.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "basic_core.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "basic_core.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "basic_core.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "basic_panel.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "basic_panel.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_panel.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_panel.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_panel.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "basic_panel.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "basic_panel.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "basic_panel.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "basic_rail.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "basic_rail.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_rail.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_rail.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_rail.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "basic_rail.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "basic_rail.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "basic_rail.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "basic_end.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "basic_end.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_end.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_end.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_end.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "basic_end.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "basic_end.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "basic_end.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "basic_edge.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "basic_edge.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_edge.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_edge.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "basic_edge.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "basic_edge.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "basic_edge.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "basic_edge.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe arm quad budget"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 0: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 0: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 1: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 1: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 2: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 2: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 3: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 3: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 4: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 4: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 5: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 5: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 6: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 6: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 7: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 7: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 8: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 8: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 9: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 9: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 10: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 10: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 11: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 11: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 12: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 12: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 13: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 13: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 14: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 14: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 15: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 15: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 16: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 16: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 17: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 17: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 18: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 18: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 19: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 19: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 20: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 20: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 21: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 21: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 22: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 22: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 23: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 23: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 24: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 24: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 25: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 25: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 26: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 26: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 27: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 27: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 28: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 28: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 29: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 29: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 30: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 30: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 31: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 31: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 32: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 32: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 33: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 33: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 34: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 34: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 35: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 35: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 36: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 36: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 37: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 37: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 38: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 38: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 39: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 39: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 40: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 40: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 41: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 41: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 42: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 42: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 43: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 43: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 44: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 44: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 45: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 45: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 46: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 46: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 47: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 47: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 48: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 48: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 49: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 49: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 50: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 50: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 51: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 51: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 52: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 52: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 53: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 53: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 54: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 54: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 55: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 55: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 56: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 56: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 57: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 57: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 58: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 58: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 59: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 59: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 60: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 60: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 61: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 61: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 62: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 62: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 63: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe state 63: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe contiguous axial sections"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe editable Blender source collection"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/core actual master object count"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/junction_body applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm actual master object count"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_0 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_1 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe/arm_section_2 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe Blockbench visible faces match inventory"
+    },
+    {
+      "pass": true,
+      "check": "basic_fluid_pipe Blockbench embedded textures"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe exported mesh manifest equals resources"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe original selectors/rotations/model IDs preserved"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe arm texture rotates with geometry"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe seven item contexts"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_0 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_0/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_0/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_0/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_0/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_0/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_0/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_1 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_1/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_1/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_1/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_1/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_2 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_2/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_2/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_2/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_2/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_2/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_2/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_3 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_3/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_3/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_3/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_3/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_4 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_4/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_4/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_4/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_4/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/south_arm_section_4/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_body.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_body.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_body.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_body.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_body.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_body.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_body.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_body.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_core.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_core.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_core.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_core.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_core.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_core.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_core.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_core.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_panel.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_panel.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_panel.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_panel.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_panel.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_panel.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_panel.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_panel.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_rail.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_rail.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_rail.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_rail.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_rail.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_rail.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_rail.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_rail.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_end.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_end.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_end.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_end.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_end.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_end.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_end.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_end.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_edge.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_edge.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_edge.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_edge.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_edge.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_edge.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_edge.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_edge.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe arm quad budget"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 0: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 0: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 1: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 1: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 2: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 2: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 3: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 3: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 4: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 4: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 5: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 5: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 6: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 6: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 7: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 7: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 8: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 8: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 9: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 9: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 10: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 10: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 11: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 11: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 12: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 12: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 13: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 13: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 14: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 14: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 15: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 15: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 16: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 16: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 17: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 17: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 18: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 18: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 19: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 19: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 20: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 20: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 21: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 21: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 22: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 22: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 23: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 23: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 24: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 24: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 25: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 25: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 26: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 26: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 27: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 27: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 28: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 28: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 29: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 29: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 30: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 30: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 31: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 31: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 32: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 32: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 33: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 33: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 34: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 34: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 35: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 35: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 36: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 36: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 37: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 37: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 38: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 38: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 39: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 39: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 40: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 40: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 41: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 41: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 42: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 42: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 43: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 43: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 44: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 44: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 45: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 45: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 46: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 46: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 47: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 47: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 48: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 48: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 49: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 49: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 50: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 50: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 51: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 51: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 52: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 52: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 53: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 53: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 54: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 54: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 55: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 55: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 56: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 56: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 57: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 57: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 58: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 58: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 59: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 59: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 60: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 60: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 61: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 61: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 62: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 62: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 63: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe state 63: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe contiguous axial sections"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe editable Blender source collection"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/core actual master object count"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/junction_body applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm actual master object count"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_0 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_1 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_2 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_3 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe/arm_section_4 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe Blockbench visible faces match inventory"
+    },
+    {
+      "pass": true,
+      "check": "reinforced_fluid_pipe Blockbench embedded textures"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe exported mesh manifest equals resources"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe original selectors/rotations/model IDs preserved"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe arm texture rotates with geometry"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe seven item contexts"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_0 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_0/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_0/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_0/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_0/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_0/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_0/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_1 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_1/north valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_1/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_1/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_1/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_1/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_2 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_2/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_2/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_2/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_2/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_3 valid bounds"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_3/south valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_3/west valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_3/east valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_3/up valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/south_arm_section_3/down valid UV"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe texture resolves"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_body.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_body.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_body.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_body.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_body.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_body.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_body.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_body.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_core.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_core.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_core.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_core.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_core.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_core.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_core.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_core.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_panel.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_panel.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_panel.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_panel.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_panel.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_panel.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_panel.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_panel.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_rail.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_rail.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_rail.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_rail.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_rail.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_rail.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_rail.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_rail.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_end.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_end.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_end.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_end.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_end.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_end.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_end.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_end.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_edge.png PNG signature"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_edge.png IHDR CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_edge.png IDAT CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_edge.png IEND CRC"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_edge.png RGBA 16x16"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_edge.png unfiltered pixel layout"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_edge.png fully opaque"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_edge.png source texture equals runtime"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe arm quad budget"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 0: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 0: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 1: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 1: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 2: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 2: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 3: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 3: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 4: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 4: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 5: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 5: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 6: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 6: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 7: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 7: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 8: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 8: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 9: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 9: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 10: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 10: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 11: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 11: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 12: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 12: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 13: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 13: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 14: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 14: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 15: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 15: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 16: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 16: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 17: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 17: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 18: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 18: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 19: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 19: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 20: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 20: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 21: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 21: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 22: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 22: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 23: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 23: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 24: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 24: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 25: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 25: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 26: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 26: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 27: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 27: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 28: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 28: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 29: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 29: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 30: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 30: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 31: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 31: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 32: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 32: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 33: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 33: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 34: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 34: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 35: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 35: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 36: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 36: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 37: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 37: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 38: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 38: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 39: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 39: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 40: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 40: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 41: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 41: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 42: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 42: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 43: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 43: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 44: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 44: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 45: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 45: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 46: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 46: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 47: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 47: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 48: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 48: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 49: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 49: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 50: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 50: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 51: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 51: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 52: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 52: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 53: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 53: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 54: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 54: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 55: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 55: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 56: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 56: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 57: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 57: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 58: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 58: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 59: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 59: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 60: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 60: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 61: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 61: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 62: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 62: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 63: inside unchanged collider union"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe state 63: no overlapping cuboid volumes"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe contiguous axial sections"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe editable Blender source collection"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/core actual master object count"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/junction_body applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm actual master object count"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_0 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_1 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_2 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3 saved Blender mesh bounds equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3 saved mesh quad faces equal JSON"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe/arm_section_3 applied transforms"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe Blockbench visible faces match inventory"
+    },
+    {
+      "pass": true,
+      "check": "high_pressure_fluid_pipe Blockbench embedded textures"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/1 north: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/1 east: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/1 south: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/1 west: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/1 up: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/1 down: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/2 north: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/2 east: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/2 south: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/2 west: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/2 up: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/2 down: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/3 north: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/3 east: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/3 south: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/3 west: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/3 up: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 1/3 down: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/1 north: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/1 east: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/1 south: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/1 west: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/1 up: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/1 down: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/2 north: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/2 east: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/2 south: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/2 west: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/2 up: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/2 down: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/3 north: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/3 east: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/3 south: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/3 west: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/3 up: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 2/3 down: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/1 north: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/1 east: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/1 south: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/1 west: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/1 up: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/1 down: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/2 north: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/2 east: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/2 south: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/2 west: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/2 up: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/2 down: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/3 north: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/3 east: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/3 south: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/3 west: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/3 up: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "Tier 3/3 down: centered shared face, no axial gap"
+    },
+    {
+      "pass": true,
+      "check": "blockstates\\basic_fluid_pipe.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "blockstates\\high_pressure_fluid_pipe.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "blockstates\\reinforced_fluid_pipe.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\block\\basic_fluid_pipe_arm.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\block\\basic_fluid_pipe_core.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\block\\basic_fluid_pipe_inventory.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\block\\high_pressure_fluid_pipe_arm.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\block\\high_pressure_fluid_pipe_core.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\block\\high_pressure_fluid_pipe_inventory.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\block\\reinforced_fluid_pipe_arm.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\block\\reinforced_fluid_pipe_core.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\block\\reinforced_fluid_pipe_inventory.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\item\\basic_fluid_pipe.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\item\\high_pressure_fluid_pipe.json before pack unchanged"
+    },
+    {
+      "pass": true,
+      "check": "models\\item\\reinforced_fluid_pipe.json before pack unchanged"
+    }
+  ],
+  "external_changes_note": "Energy resources changed independently after initial fluid baseline (observed 2026-09-13 18:38). All 33 match approved commit a1ce5be: JSON structurally, PNG byte-for-byte. Fluid scripts never write these paths. Pin current byte hashes for subsequent scope checks.",
+  "changed_files": [
+    "src/main/resources/assets/domesurvival/blockstates/basic_fluid_pipe.json",
+    "src/main/resources/assets/domesurvival/blockstates/high_pressure_fluid_pipe.json",
+    "src/main/resources/assets/domesurvival/blockstates/reinforced_fluid_pipe.json",
+    "src/main/resources/assets/domesurvival/models/block/basic_fluid_pipe_arm.json",
+    "src/main/resources/assets/domesurvival/models/block/basic_fluid_pipe_core.json",
+    "src/main/resources/assets/domesurvival/models/block/basic_fluid_pipe_inventory.json",
+    "src/main/resources/assets/domesurvival/models/block/high_pressure_fluid_pipe_arm.json",
+    "src/main/resources/assets/domesurvival/models/block/high_pressure_fluid_pipe_core.json",
+    "src/main/resources/assets/domesurvival/models/block/high_pressure_fluid_pipe_inventory.json",
+    "src/main/resources/assets/domesurvival/models/block/reinforced_fluid_pipe_arm.json",
+    "src/main/resources/assets/domesurvival/models/block/reinforced_fluid_pipe_core.json",
+    "src/main/resources/assets/domesurvival/models/block/reinforced_fluid_pipe_inventory.json",
+    "src/main/resources/assets/domesurvival/models/item/basic_fluid_pipe.json",
+    "src/main/resources/assets/domesurvival/models/item/high_pressure_fluid_pipe.json",
+    "src/main/resources/assets/domesurvival/models/item/reinforced_fluid_pipe.json"
+  ],
+  "added_files": [
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_body.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_core.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_edge.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_end.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_panel.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/basic_rail.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_body.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_core.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_edge.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_end.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_panel.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/high_pressure_rail.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_body.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_core.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_edge.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_end.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_panel.png",
+    "src/main/resources/assets/domesurvival/textures/block/fluid_pipe/reinforced_rail.png"
+  ],
+  "tiers": [
+    {
+      "id": "basic_fluid_pipe",
+      "arm_quads": 15,
+      "straight_quads": 36,
+      "six_way_quads": 96,
+      "item_cuboids": 7
+    },
+    {
+      "id": "reinforced_fluid_pipe",
+      "arm_quads": 25,
+      "straight_quads": 56,
+      "six_way_quads": 156,
+      "item_cuboids": 11
+    },
+    {
+      "id": "high_pressure_fluid_pipe",
+      "arm_quads": 20,
+      "straight_quads": 46,
+      "six_way_quads": 126,
+      "item_cuboids": 9
+    }
+  ],
+  "status": "PASS",
+  "check_count": 1151
+}

@@ -1,76 +1,81 @@
 {
   "ambientocclusion": true,
   "textures": {
-    "0": "domesurvival:block/reinforced_fluid_pipe",
-    "particle": "domesurvival:block/reinforced_fluid_pipe"
+    "body": "domesurvival:block/fluid_pipe/reinforced_body",
+    "core": "domesurvival:block/fluid_pipe/reinforced_core",
+    "panel": "domesurvival:block/fluid_pipe/reinforced_panel",
+    "rail": "domesurvival:block/fluid_pipe/reinforced_rail",
+    "end": "domesurvival:block/fluid_pipe/reinforced_end",
+    "edge": "domesurvival:block/fluid_pipe/reinforced_edge",
+    "particle": "domesurvival:block/fluid_pipe/reinforced_body"
   },
   "elements": [
     {
-      "name": "smooth_pipe_body",
+      "name": "junction_body",
       "from": [
-        6,
-        6,
-        6
+        5.625,
+        5.625,
+        5.625
       ],
       "to": [
-        10,
-        10,
-        10
+        10.375,
+        10.375,
+        10.375
       ],
       "faces": {
         "north": {
+          "texture": "#core",
           "uv": [
             0,
             0,
-            16,
-            16
-          ],
-          "texture": "#0"
+            10,
+            10
+          ]
         },
         "south": {
+          "texture": "#core",
           "uv": [
             0,
             0,
-            16,
-            16
-          ],
-          "texture": "#0"
+            10,
+            10
+          ]
         },
         "east": {
+          "texture": "#core",
           "uv": [
             0,
             0,
-            16,
-            16
-          ],
-          "texture": "#0"
+            10,
+            10
+          ]
         },
         "west": {
+          "texture": "#core",
           "uv": [
             0,
             0,
-            16,
-            16
-          ],
-          "texture": "#0"
+            10,
+            10
+          ]
         },
         "up": {
+          "texture": "#core",
           "uv": [
             0,
             0,
-            16,
-            16
-          ],
-          "texture": "#0"
+            10,
+            10
+          ]
         },
         "down": {
+          "texture": "#core",
           "uv": [
             0,
             0,
-            16,
-            16
-          ],
-          "texture": "#0"
+            10,
+            10
+          ]
         }
       }
     }

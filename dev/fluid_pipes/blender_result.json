@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "blender_version": "5.2.1 LTS",
+  "masters": 3,
+  "mesh_bounds_export_verified": true,
+  "textures": 18,
+  "runtime": "Minecraft JSON multipart"
+}
