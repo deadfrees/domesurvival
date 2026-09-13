@@ -63,26 +63,38 @@ public final class OrganicProcessorScreen extends AbstractContainerScreen<Organi
 
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        graphics.drawString(font, Component.literal("Органический процессор"), 8, 9, 0xE6EDF3, false);
+        graphics.drawString(font, title, 8, 9, 0xE6EDF3, false);
         graphics.drawString(font, statusText(), 69, 86, 0xD7DEE7, false);
         graphics.drawString(font,
-                Component.literal(menu.waterStored() + "/" + menu.waterCapacity() + " mB"),
+                Component.translatable(
+                        "gui.domesurvival.organic_processor.water",
+                        menu.waterStored(), menu.waterCapacity()
+                ),
                 8, 105, 0x9EC7E8, false);
         graphics.drawString(font,
-                Component.literal(menu.energyStored() + "/" + menu.energyCapacity() + " FE"),
+                Component.translatable(
+                        "gui.domesurvival.organic_processor.energy",
+                        menu.energyStored(), menu.energyCapacity()
+                ),
                 8, 116, 0xE1BD7A, false);
         graphics.drawString(font, Component.translatable("container.inventory"), 8, 129, 0xD7DEE7, false);
     }
 
     private Component statusText() {
         return switch (menu.status()) {
-            case OrganicProcessorBlockEntity.PROCESSING -> Component.literal("Обработка");
-            case OrganicProcessorBlockEntity.NO_ENERGY -> Component.literal("Нет энергии");
-            case OrganicProcessorBlockEntity.NO_RECIPE -> Component.literal("Нет рецепта");
-            case OrganicProcessorBlockEntity.NOT_ENOUGH_INPUT -> Component.literal("Недостаточно ингредиентов");
-            case OrganicProcessorBlockEntity.NO_WATER -> Component.literal("Нет очищенной воды");
-            case OrganicProcessorBlockEntity.OUTPUT_FULL -> Component.literal("Выход заполнен");
-            default -> Component.literal("Готов");
+            case OrganicProcessorBlockEntity.PROCESSING ->
+                    Component.translatable("gui.domesurvival.organic_processor.status.processing");
+            case OrganicProcessorBlockEntity.NO_ENERGY ->
+                    Component.translatable("gui.domesurvival.organic_processor.status.no_energy");
+            case OrganicProcessorBlockEntity.NO_RECIPE ->
+                    Component.translatable("gui.domesurvival.organic_processor.status.no_recipe");
+            case OrganicProcessorBlockEntity.NOT_ENOUGH_INPUT ->
+                    Component.translatable("gui.domesurvival.organic_processor.status.not_enough_input");
+            case OrganicProcessorBlockEntity.NO_WATER ->
+                    Component.translatable("gui.domesurvival.organic_processor.status.no_water");
+            case OrganicProcessorBlockEntity.OUTPUT_FULL ->
+                    Component.translatable("gui.domesurvival.organic_processor.status.output_full");
+            default -> Component.translatable("gui.domesurvival.organic_processor.status.ready");
         };
     }
 }
