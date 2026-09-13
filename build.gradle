@@ -246,7 +246,9 @@ if (project.hasProperty('domeFullDev')) {
     // remapped FULL DEV cache. Mixin-heavy mods such as Alex's Caves then see
     // SRG shadow names against MojMap classes and fail before DomeSurvival loads.
     // RUN_DEV_FULL.bat deliberately hides run/mods before invoking runClient.
-    tasks.named('runClient').configure {
+    // ForgeGradle creates runClient after parts of this script have already been
+    // evaluated, so attach the guard lazily instead of calling tasks.named().
+    tasks.matching { it.name == 'runClient' }.configureEach {
         doFirst {
             def physicalRuntimeMods = fileTree('run/mods') {
                 include '*.jar'
