@@ -1,0 +1,48 @@
+{
+  "itemGroup.domesurvival.items": "Dome Survival",
+
+  "block.domesurvival.industrial_crusher": "Промышленная дробилка",
+  "block.domesurvival.organic_processor": "Органический процессор",
+
+  "item.domesurvival.crushed_iron_ore": "Дроблёная железная руда",
+  "item.domesurvival.crushed_copper_ore": "Дроблёная медная руда",
+  "item.domesurvival.crushed_gold_ore": "Дроблёная золотая руда",
+  "item.domesurvival.crushed_tin_ore": "Дроблёная оловянная руда",
+  "item.domesurvival.crushed_lead_ore": "Дроблёная свинцовая руда",
+  "item.domesurvival.crushed_silver_ore": "Дроблёная серебряная руда",
+  "item.domesurvival.crushed_nickel_ore": "Дроблёная никелевая руда",
+
+  "item.domesurvival.efficiency_module": "Модуль эффективности",
+  "item.domesurvival.overdrive_module": "Модуль форсирования",
+  "item.domesurvival.buffer_module": "Буферный модуль",
+  "item.domesurvival.automation_module": "Модуль автоматизации",
+  "item.domesurvival.emergency_protection_module": "Модуль аварийной защиты",
+  "item.domesurvival.communication_module": "Модуль связи",
+
+  "gui.domesurvival.industrial_crusher.energy": "Энергия: %s / %s FE",
+  "gui.domesurvival.industrial_crusher.status.ready": "Готов",
+  "gui.domesurvival.industrial_crusher.status.crushing": "Дробление...",
+  "gui.domesurvival.industrial_crusher.status.no_energy": "Нет энергии",
+  "gui.domesurvival.industrial_crusher.status.no_recipe": "Нет подходящего рецепта",
+  "gui.domesurvival.industrial_crusher.status.not_enough_input": "Недостаточно сырья",
+  "gui.domesurvival.industrial_crusher.status.output_full": "Выход заполнен",
+
+  "gui.domesurvival.organic_processor.water": "Очищенная вода: %s / %s mB",
+  "gui.domesurvival.organic_processor.energy": "Энергия: %s / %s FE",
+  "gui.domesurvival.organic_processor.status.ready": "Готов",
+  "gui.domesurvival.organic_processor.status.processing": "Обработка...",
+  "gui.domesurvival.organic_processor.status.no_energy": "Нет энергии",
+  "gui.domesurvival.organic_processor.status.no_recipe": "Нет подходящего рецепта",
+  "gui.domesurvival.organic_processor.status.not_enough_input": "Недостаточно ингредиентов",
+  "gui.domesurvival.organic_processor.status.no_water": "Нет очищенной воды",
+  "gui.domesurvival.organic_processor.status.output_full": "Выход заполнен",
+
+  "jei.domesurvival.industrial_crushing": "Промышленное дробление",
+  "jei.domesurvival.industrial_crushing.energy": "%s FE за цикл",
+  "jei.domesurvival.industrial_crushing.time": "Время: %s с",
+  "jei.domesurvival.industrial_crushing.byproduct_chance": "Шанс побочного продукта: %s",
+
+  "jei.domesurvival.organic_processing": "Органическая переработка",
+  "jei.domesurvival.organic_processing.energy": "%s FE за цикл",
+  "jei.domesurvival.organic_processing.time": "Время: %s с"
+}
