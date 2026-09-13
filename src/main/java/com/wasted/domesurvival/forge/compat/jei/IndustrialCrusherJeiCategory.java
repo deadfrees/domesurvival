@@ -78,7 +78,6 @@ public final class IndustrialCrusherJeiCategory implements IRecipeCategory<Indus
     @Override
     public void draw(IndustrialCrusherRecipe recipe, IRecipeSlotsView recipeSlotsView,
                      GuiGraphics graphics, double mouseX, double mouseY) {
-        // Same visual language as the machine screen: dark process rail with an orange fill.
         graphics.fill(32, 25, 82, 33, 0xFF151A1E);
         graphics.fill(34, 27, 80, 31, 0xFFB96A24);
 
@@ -87,7 +86,10 @@ public final class IndustrialCrusherJeiCategory implements IRecipeCategory<Indus
                 Component.translatable("jei.domesurvival.industrial_crushing.energy", recipe.getEnergy()),
                 32, 39, 0xFFD8DEE3, false);
         graphics.drawString(font,
-                Component.translatable("jei.domesurvival.industrial_crushing.time", formatSeconds(recipe.getProcessingTime())),
+                Component.translatable(
+                        "jei.domesurvival.industrial_crushing.time",
+                        formatSecondsValue(recipe.getProcessingTime())
+                ),
                 32, 50, 0xFFAEB9C2, false);
     }
 
@@ -97,10 +99,10 @@ public final class IndustrialCrusherJeiCategory implements IRecipeCategory<Indus
         return fraction == 0 ? whole + "%" : whole + "." + (fraction < 10 ? "0" : "") + fraction + "%";
     }
 
-    private static String formatSeconds(int ticks) {
+    private static String formatSecondsValue(int ticks) {
         int safeTicks = Math.max(0, ticks);
         int whole = safeTicks / 20;
         int tenths = (safeTicks % 20) / 2;
-        return whole + "." + tenths + " s";
+        return whole + "." + tenths;
     }
 }
