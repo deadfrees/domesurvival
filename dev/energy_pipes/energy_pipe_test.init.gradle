@@ -1,0 +1,20 @@
+// Isolated disposable world and test-only code; never packaged in the production JAR.
+gradle.projectsLoaded {
+    gradle.rootProject.afterEvaluate { p ->
+        def probe = p.sourceSets.create('energyPipeProbe') {
+            java.srcDir 'dev/energy_pipes/runtime_probe'
+            compileClasspath += p.sourceSets.main.output + p.sourceSets.main.compileClasspath
+            runtimeClasspath += p.sourceSets.main.runtimeClasspath
+        }
+        p.minecraft.runs.client.mods.domesurvival.source(probe)
+        p.minecraft.runs.client.property 'dome.energyPipeProbe', 'true'
+        if (p.hasProperty('energyPipeHandReview')) p.minecraft.runs.client.property 'dome.energyPipeHandReview', 'true'
+        p.tasks.matching { it.name == 'runClient' }.configureEach { dependsOn p.tasks.named('energyPipeProbeClasses') }
+    }
+}
+gradle.projectsEvaluated {
+    gradle.rootProject.minecraft.runs.client {
+        workingDirectory gradle.rootProject.file('run/energy-pipe-visual')
+        args '--username', 'EnergyPipeAudit', '--width', '1280', '--height', '800'
+    }
+}

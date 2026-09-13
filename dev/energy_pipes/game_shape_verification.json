@@ -7,14 +7,14 @@
       "tier": 1,
       "part": "core",
       "elements": 7,
-      "source_sha256": "1a6bc69ebd211880164499b27cca09b0993d8f368dc27246b39df758e1b25308",
+      "source_sha256": "a1eee527e934f6f79c9e7ae431c5982fd5e0fa8169c164b1eee3a545d8652563",
       "vertices_and_face_normals_match": true
     },
     {
       "tier": 1,
       "part": "arm",
       "elements": 5,
-      "source_sha256": "ca74e846f92130bec904dfbd86a2bb859cfa0681e6d841b20ab23df2078cc374",
+      "source_sha256": "447f7c053248f4cdbdcd3a00028eaed6ffa8269d649b2214f3f6431d04b6aa0b",
       "vertices_and_face_normals_match": true
     },
     {

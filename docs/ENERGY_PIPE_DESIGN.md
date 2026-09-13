@@ -2,6 +2,22 @@
 
 Актуальная правка пользователя: **«нужно чтобы они были формой как текущие в игре»**. Она заменяет прежнее направление с увеличением диаметра, массивными кольцами и усилителями. Дата обновления: 2026-09-13.
 
+## Текущее оформление Tier 1
+
+`basic_energy_pipe` получил игровые пиксельные материалы, UV и предметную модель. Основа палитры — существующие стальные детали сборки и `VISUAL_STYLE_GUIDE.md`: корпус `#596361`, графит `#303A3B`, углубления `#171E20`, светлая кромка `#8F9990`, янтарная маркировка энергии `#C5A252`. Износ ограничен отдельными пикселями. Одна янтарная полоса на накладках обозначает Tier I; она не показывает наличие или направление потока FE.
+
+Шесть непрозрачных PNG 16×16 разделены по назначению: body, core, panel, rail, end, edge. UV используют **2 texels на Minecraft unit** (32 на блок); узкие поверхности получают соответствующую часть текстуры без растягивания целого изображения. Продольные кромки следуют направлению отвода: у шести multipart arms `uvlock=false`, селекторы и углы поворота прежние. Emissive, PBR-карты, прозрачность и анимация не используются.
+
+Предмет теперь содержит core и два противоположных arm: 17 кубоидов, 88 quads. Это прямая секция существующей трубы. Заданы GUI, ground, fixed и обе руки first/third person. Число граней **мировой** модели не изменилось; только предмет раньше показывал один core (36 quads).
+
+Tier 2/3 сохраняют текущие игровые материалы и masters формы. По этапу 7 исходного ТЗ перенос нового оформления на них следует после подтверждения результата Tier 1.
+
+- [Текстурированный master Tier 1](../source_assets/blender/energy_pipes/energy_pipe_tier_1.blend).
+- [Сцена оформления](../source_assets/blender/energy_pipes/05_energy_pipe_tier1_styled.blend) и [рендер Blender](../source_assets/blender/energy_pipes/previews/05_energy_pipe_tier1_styled.png).
+- [Blender Python — материалы и экспорт](../source_assets/blender/scripts/style_energy_pipe_tier1.py).
+- [Blockbench — редактируемая прямая секция](../source_assets/blockbench/energy_pipes/energy_pipe_tier_1.bbmodel), с вложенными PNG, явными UV и группами частей. Проверен формат данных; проверка через UI Blockbench не проводилась.
+- [Проверки и игровые снимки Tier 1](ENERGY_PIPE_TIER1_VALIDATION.md).
+
 ## Форма
 
 Blender masters теперь строятся непосредственно из действующих `models/block/<id>_core.json` и `<id>_arm.json` в `src/main/resources/assets/domesurvival/`. Геометрия не реконструируется по памяти или картинке: скрипт импортирует координаты каждого элемента и список его граней.
@@ -39,7 +55,7 @@ Blender masters теперь строятся непосредственно и�
 & 'C:\Users\deadfrees\AppData\Local\Microsoft\WindowsApps\blender-launcher.exe' --background --factory-startup --python-exit-code 1 --python 'C:\domesurvival\source_assets\blender\scripts\create_energy_pipe_greyboxes.py'
 ```
 
-Скрипт записывает только исходники, preview и evidence энергетических труб. Результат проверяется в `dev/energy_pipes/greybox_results.json`; один exit code launcher не считается подтверждением выполнения Blender. В отчёте сохранены SHA-256 генератора и шести исходных игровых JSON.
+Команда выше воспроизводит исторический этап формы и перезаписывает masters серым материалом. Для текущего оформления после неё запускается `style_energy_pipe_tier1.py` тем же способом. Его результат проверяется в `dev/energy_pipes/tier1_style_result.json`; один exit code launcher не считается подтверждением выполнения Blender. Исторический отчёт `greybox_results.json` хранит хеши до текстурирования; актуальные координаты проверяет `verify_energy_pipe_game_shape.py`.
 
 ## Листы просмотра
 
@@ -48,7 +64,7 @@ Blender masters теперь строятся непосредственно и�
 - [Все соединения и узлы](../source_assets/blender/energy_pipes/previews/03_energy_pipe_connections_review.jpg), [полный PNG](../source_assets/blender/energy_pipes/previews/03_energy_pipe_connections.png).
 - [Линии по 10 блоков](../source_assets/blender/energy_pipes/previews/04_energy_pipe_long_lines.png).
 
-Это рендеры Blender **без игровых текстур**, для проверки формы. Ракурс секции не является снимком Minecraft inventory: текущий игровой item наследует только core, что отдельно отмечено в аудите. Материалы, пиксельные текстуры и новые display transforms в этой правке не реализованы.
+Листы 01–04 — исторические рендеры Blender **без игровых текстур**, для проверки формы. Новое оформление Tier 1 показано на листе 05 и игровых снимках в отчёте проверки. Tier 2/3 пока используют прежние предметные модели core.
 
 ## Runtime и бюджет
 
@@ -72,4 +88,4 @@ Blender masters теперь строятся непосредственно и�
 
 [Проверка сохранённых masters](../source_assets/blender/scripts/verify_energy_pipe_game_shape.py) открывает каждый `.blend` через `bpy` и независимо сопоставляет его с игровым JSON. [Отчёт](../dev/energy_pipes/game_shape_verification.json): PASS, три master-файла, 36 исходных элементов; координаты вершин и наборы направлений граней совпадают.
 
-Производственные игровые ресурсы на этом этапе не заменены. Игровые тесты, FE regression, FPS и build не заявляются как выполненные. Последующая работа с текстурами и Tier 1 должна сохранять утверждённую пользователем текущую форму; прежняя цель различать Tier новой геометрией больше не применяется.
+В текущем этапе изменены пять игровых JSON Tier 1 и добавлены шесть его PNG. Первая сверка после текстурирования подтвердила неизменность остальных 2 367 файлов `src/main`. Позже рабочее дерево изменилось за пределами труб, в том числе появились отдельные JEI-классы. Эти изменения не входят в оформление труб и не откатываются. Финальная проверка отдельно показывает PASS ассетов труб и `DRIFT_OUTSIDE_PIPE_SCOPE` всего рабочего дерева, со списком расхождений относительно начального снимка: [tier1_static_checks.json](../dev/energy_pipes/tier1_static_checks.json). Исходные пять JSON сохранены в `source_assets/baseline/energy_pipes/tier1` для точного сравнения в Minecraft. Данные runtime-проверок и ограничения замеров вынесены в отдельный [отчёт](ENERGY_PIPE_TIER1_VALIDATION.md).

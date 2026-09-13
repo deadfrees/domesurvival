@@ -1,0 +1,54 @@
+Creating fresh isolated world
+PASS Actual BlockItem placement
+PASS Actual player break
+PASS Isolated node
+PASS Vertical UP/DOWN
+PASS Corner
+PASS T junction
+PASS Cross junction
+PASS Six-direction junction
+PASS Mixed tiers connect
+PASS Pipe connects to actual energy buffer port
+Fixture ready: 100-pipe benchmark plus junction/FE fixtures
+PASS FE network tick 2 transfer=0 <= 256
+PASS FE conservation tick 2
+PASS FE network tick 3 transfer=256 <= 256
+PASS FE conservation tick 3
+PASS FE network tick 4 transfer=256 <= 256
+PASS FE conservation tick 4
+PASS FE network tick 5 transfer=256 <= 256
+PASS FE conservation tick 5
+PASS FE network tick 6 transfer=256 <= 256
+PASS FE conservation tick 6
+PASS FE network tick 7 transfer=256 <= 256
+PASS FE conservation tick 7
+PASS FE network tick 8 transfer=256 <= 256
+PASS FE conservation tick 8
+PASS FE network tick 9 transfer=256 <= 256
+PASS FE conservation tick 9
+PASS FE network tick 10 transfer=256 <= 256
+PASS FE conservation tick 10
+PASS FE network tick 11 transfer=256 <= 256
+PASS FE conservation tick 11
+PASS FE network tick 12 transfer=256 <= 256
+PASS FE conservation tick 12
+PASS FE network tick 13 transfer=256 <= 256
+PASS FE conservation tick 13
+PASS FE network tick 14 transfer=256 <= 256
+PASS FE conservation tick 14
+PASS FE network tick 15 transfer=256 <= 256
+PASS FE conservation tick 15
+PASS Real FE transfer reaches sink
+PASS Disabled side stops FE
+PASS Re-enabled side resumes FE
+PASS Broken line stops FE
+PASS Actual BlockItem reconnects line
+PASS Replaced pipe resumes FE
+PASS All 64 Tier 1 baked states have correct quads and valid sprites
+PASS Capture screen context 01_third_person_right.png
+Screenshot 01_third_person_right.png
+PASS Capture screen context 02_third_person_left.png
+Screenshot 02_third_person_left.png
+PASS Capture screen context 03_fixed_frame.png
+Screenshot 03_fixed_frame.png
+RESULT PASS failures=0

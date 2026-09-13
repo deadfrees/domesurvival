@@ -1,0 +1,78 @@
+Creating fresh isolated world
+PASS Actual BlockItem placement
+PASS Actual player break
+PASS Isolated node
+PASS Vertical UP/DOWN
+PASS Corner
+PASS T junction
+PASS Cross junction
+PASS Six-direction junction
+PASS Mixed tiers connect
+PASS Pipe connects to actual energy buffer port
+Fixture ready: 100-pipe benchmark plus junction/FE fixtures
+PASS FE network tick 2 transfer=0 <= 256
+PASS FE conservation tick 2
+PASS FE network tick 3 transfer=256 <= 256
+PASS FE conservation tick 3
+PASS FE network tick 4 transfer=256 <= 256
+PASS FE conservation tick 4
+PASS FE network tick 5 transfer=256 <= 256
+PASS FE conservation tick 5
+PASS FE network tick 6 transfer=256 <= 256
+PASS FE conservation tick 6
+PASS FE network tick 7 transfer=256 <= 256
+PASS FE conservation tick 7
+PASS FE network tick 8 transfer=256 <= 256
+PASS FE conservation tick 8
+PASS FE network tick 9 transfer=256 <= 256
+PASS FE conservation tick 9
+PASS FE network tick 10 transfer=256 <= 256
+PASS FE conservation tick 10
+PASS FE network tick 11 transfer=256 <= 256
+PASS FE conservation tick 11
+PASS FE network tick 12 transfer=256 <= 256
+PASS FE conservation tick 12
+PASS FE network tick 13 transfer=256 <= 256
+PASS FE conservation tick 13
+PASS FE network tick 14 transfer=256 <= 256
+PASS FE conservation tick 14
+PASS FE network tick 15 transfer=256 <= 256
+PASS FE conservation tick 15
+PASS Real FE transfer reaches sink
+PASS Disabled side stops FE
+PASS Re-enabled side resumes FE
+PASS Broken line stops FE
+PASS Actual BlockItem reconnects line
+PASS Replaced pipe resumes FE
+PASS All 64 Tier 1 baked states have correct quads and valid sprites
+PASS Capture screen context 01_tier1_close.png
+Screenshot 01_tier1_close.png
+PASS Capture screen context 02_junctions.png
+Screenshot 02_junctions.png
+PASS Capture screen context 03_machine_connection.png
+Screenshot 03_machine_connection.png
+PASS Capture screen context 04_first_person.png
+Screenshot 04_first_person.png
+PASS Capture screen context 05_inventory.png
+Screenshot 05_inventory.png
+PASS Capture screen context 06_third_person.png
+Screenshot 06_third_person.png
+PASS Capture screen context 07_ground_and_frame.png
+Screenshot 07_ground_and_frame.png
+PASS Comparison pack selected=true
+PASS Capture screen context 08_stress_before.png
+Screenshot 08_stress_before.png
+PASS Frame sample size before=6973
+FRAME_METRICS name,frames,mean_ms,median_ms,p95_ms,mean_fps: before,6973,1.4244,1.1259,1.4043,702.07
+PASS Comparison pack selected=false
+PASS Capture screen context 09_stress_after.png
+Screenshot 09_stress_after.png
+PASS All 64 Tier 1 baked states have correct quads and valid sprites
+PASS Frame sample size after=6861
+FRAME_METRICS name,frames,mean_ms,median_ms,p95_ms,mean_fps: after,6861,1.4474,1.1431,1.4463,690.89
+PASS Capture screen context 10_first_person_left.png
+Screenshot 10_first_person_left.png
+PASS Capture screen context 11_third_person_left.png
+Screenshot 11_third_person_left.png
+PASS FE regression stages completed
+RESULT PASS failures=0

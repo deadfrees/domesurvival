@@ -1,13 +1,9 @@
 {
   "ambientocclusion": true,
   "textures": {
-    "body": "domesurvival:block/energy_pipe/basic_body",
-    "core": "domesurvival:block/energy_pipe/basic_core",
-    "panel": "domesurvival:block/energy_pipe/basic_panel",
-    "rail": "domesurvival:block/energy_pipe/basic_rail",
-    "end": "domesurvival:block/energy_pipe/basic_end",
-    "edge": "domesurvival:block/energy_pipe/basic_edge",
-    "particle": "domesurvival:block/energy_pipe/basic_core"
+    "0": "domesurvival:block/basic_energy_pipe",
+    "rail": "domesurvival:block/basic_energy_pipe_detail",
+    "particle": "domesurvival:block/basic_energy_pipe"
   },
   "elements": [
     {
@@ -27,57 +23,55 @@
           "uv": [
             0,
             0,
-            6.0,
-            6.0
+            16,
+            16
           ],
-          "texture": "#end"
+          "texture": "#0"
         },
         "south": {
           "uv": [
             0,
             0,
-            6.0,
-            6.0
+            16,
+            16
           ],
-          "texture": "#end"
+          "texture": "#0"
         },
         "east": {
           "uv": [
             0,
             0,
-            6.0,
-            12.5
+            16,
+            16
           ],
-          "texture": "#body",
-          "rotation": 90
+          "texture": "#0"
         },
         "west": {
           "uv": [
             0,
             0,
-            6.0,
-            12.5
+            16,
+            16
           ],
-          "texture": "#body",
-          "rotation": 90
+          "texture": "#0"
         },
         "up": {
           "uv": [
             0,
             0,
-            6.0,
-            12.5
+            16,
+            16
           ],
-          "texture": "#body"
+          "texture": "#0"
         },
         "down": {
           "uv": [
             0,
             0,
-            6.0,
-            12.5
+            16,
+            16
           ],
-          "texture": "#body"
+          "texture": "#0"
         }
       }
     },
@@ -98,8 +92,8 @@
           "uv": [
             0,
             0,
-            4.8,
-            0.4
+            16,
+            16
           ],
           "texture": "#rail"
         },
@@ -107,8 +101,8 @@
           "uv": [
             0,
             0,
-            4.8,
-            0.4
+            16,
+            16
           ],
           "texture": "#rail"
         },
@@ -116,28 +110,26 @@
           "uv": [
             0,
             0,
-            0.4,
-            11.5
+            16,
+            16
           ],
-          "texture": "#rail",
-          "rotation": 90
+          "texture": "#rail"
         },
         "west": {
           "uv": [
             0,
             0,
-            0.4,
-            11.5
+            16,
+            16
           ],
-          "texture": "#rail",
-          "rotation": 90
+          "texture": "#rail"
         },
         "up": {
           "uv": [
             0,
             0,
-            4.8,
-            11.5
+            16,
+            16
           ],
           "texture": "#rail"
         }
@@ -160,8 +152,8 @@
           "uv": [
             0,
             0,
-            4.8,
-            0.4
+            16,
+            16
           ],
           "texture": "#rail"
         },
@@ -169,8 +161,8 @@
           "uv": [
             0,
             0,
-            4.8,
-            0.4
+            16,
+            16
           ],
           "texture": "#rail"
         },
@@ -178,28 +170,26 @@
           "uv": [
             0,
             0,
-            0.4,
-            11.5
+            16,
+            16
           ],
-          "texture": "#rail",
-          "rotation": 90
+          "texture": "#rail"
         },
         "west": {
           "uv": [
             0,
             0,
-            0.4,
-            11.5
+            16,
+            16
           ],
-          "texture": "#rail",
-          "rotation": 90
+          "texture": "#rail"
         },
         "down": {
           "uv": [
             0,
             0,
-            4.8,
-            11.5
+            16,
+            16
           ],
           "texture": "#rail"
         }
@@ -222,8 +212,8 @@
           "uv": [
             0,
             0,
-            0.4,
-            4.8
+            16,
+            16
           ],
           "texture": "#rail"
         },
@@ -231,8 +221,8 @@
           "uv": [
             0,
             0,
-            0.4,
-            4.8
+            16,
+            16
           ],
           "texture": "#rail"
         },
@@ -240,18 +230,17 @@
           "uv": [
             0,
             0,
-            4.8,
-            11.5
+            16,
+            16
           ],
-          "texture": "#rail",
-          "rotation": 90
+          "texture": "#rail"
         },
         "up": {
           "uv": [
             0,
             0,
-            0.4,
-            11.5
+            16,
+            16
           ],
           "texture": "#rail"
         },
@@ -259,8 +248,8 @@
           "uv": [
             0,
             0,
-            0.4,
-            11.5
+            16,
+            16
           ],
           "texture": "#rail"
         }
@@ -283,8 +272,8 @@
           "uv": [
             0,
             0,
-            0.4,
-            4.8
+            16,
+            16
           ],
           "texture": "#rail"
         },
@@ -292,8 +281,8 @@
           "uv": [
             0,
             0,
-            0.4,
-            4.8
+            16,
+            16
           ],
           "texture": "#rail"
         },
@@ -301,18 +290,17 @@
           "uv": [
             0,
             0,
-            4.8,
-            11.5
+            16,
+            16
           ],
-          "texture": "#rail",
-          "rotation": 90
+          "texture": "#rail"
         },
         "up": {
           "uv": [
             0,
             0,
-            0.4,
-            11.5
+            16,
+            16
           ],
           "texture": "#rail"
         },
@@ -320,8 +308,8 @@
           "uv": [
             0,
             0,
-            0.4,
-            11.5
+            16,
+            16
           ],
           "texture": "#rail"
         }

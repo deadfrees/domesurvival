@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "geometry_changed": false,
+  "texture_size": [
+    16,
+    16
+  ],
+  "textures": 6,
+  "texels_per_unit": 2,
+  "runtime_tiers_changed": [
+    1
+  ]
+}

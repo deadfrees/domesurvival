@@ -1,0 +1,19 @@
+{
+    "status":  "PASS",
+    "jar":  "build/libs/domesurvival-0.2.0.jar",
+    "sha256":  "70f8f68f8aeeb80ed376fde04b1dcb6c2f50c4aecb012442069f433b78a4975f",
+    "pipe_resources_match_source":  [
+                                        "assets/domesurvival/blockstates/basic_energy_pipe.json",
+                                        "assets/domesurvival/models/block/basic_energy_pipe_arm.json",
+                                        "assets/domesurvival/models/block/basic_energy_pipe_core.json",
+                                        "assets/domesurvival/models/block/basic_energy_pipe_inventory.json",
+                                        "assets/domesurvival/models/item/basic_energy_pipe.json",
+                                        "assets/domesurvival/textures/block/energy_pipe/basic_body.png",
+                                        "assets/domesurvival/textures/block/energy_pipe/basic_core.png",
+                                        "assets/domesurvival/textures/block/energy_pipe/basic_edge.png",
+                                        "assets/domesurvival/textures/block/energy_pipe/basic_end.png",
+                                        "assets/domesurvival/textures/block/energy_pipe/basic_panel.png",
+                                        "assets/domesurvival/textures/block/energy_pipe/basic_rail.png"
+                                    ],
+    "test_probe_packaged":  false
+}
