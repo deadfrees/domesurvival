@@ -8,6 +8,10 @@ import com.wasted.domesurvival.forge.machine.module.IModularMachine;
 import com.wasted.domesurvival.forge.machine.module.MachineModuleInventory;
 import com.wasted.domesurvival.forge.machine.module.MachineModuleResolver;
 import com.wasted.domesurvival.forge.machine.module.MachineModuleType;
+import com.wasted.domesurvival.forge.machine.side.PortVisual;
+import com.wasted.domesurvival.forge.machine.side.RelativeSide;
+import com.wasted.domesurvival.forge.machine.side.SideMode;
+import com.wasted.domesurvival.forge.machine.side.UnifiedSideConfig;
 import com.wasted.domesurvival.forge.recipe.ModRecipes;
 import com.wasted.domesurvival.forge.recipe.OrganicProcessorRecipe;
 import net.minecraft.core.BlockPos;
@@ -57,7 +61,8 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
     public static final int DATA_STATUS = 6;
     public static final int DATA_RECIPE_ENERGY = 7;
     public static final int DATA_WATER_REQUIRED = 8;
-    public static final int DATA_COUNT = 9;
+    public static final int DATA_SIDES_START = 9;
+    public static final int DATA_COUNT = DATA_SIDES_START + 6;
 
     public static final int READY = 0;
     public static final int PROCESSING = 1;
@@ -73,6 +78,8 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
     private static final String NBT_WATER = "PurifiedWater";
     private static final String NBT_PROGRESS = "Progress";
     private static final String NBT_ACTIVE_RECIPE = "ActiveRecipe";
+
+    private final UnifiedSideConfig sideConfig = new UnifiedSideConfig();
 
     private final ItemStackHandler inventory = new ItemStackHandler(3) {
         @Override
@@ -203,6 +210,9 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
             if (index == DATA_STATUS) return status(recipe);
             if (index == DATA_RECIPE_ENERGY) return recipe == null ? 0 : modifiedEnergyCost(recipe);
             if (index == DATA_WATER_REQUIRED) return recipe == null ? 0 : recipe.getWaterMb();
+            if (index >= DATA_SIDES_START && index < DATA_SIDES_START + 6) {
+                return sideConfig.getMode(Direction.values()[index - DATA_SIDES_START]).ordinal();
+            }
             return 0;
         }
 
@@ -212,6 +222,7 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
 
     public OrganicProcessorBlockEntity(BlockPos pos, BlockState state) {
         super(OrganicProcessorRegistry.ORGANIC_PROCESSOR_BLOCK_ENTITY.get(), pos, state);
+        applyDefaultSideConfiguration();
     }
 
     @Override
@@ -226,6 +237,38 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
                 MachineModuleType.OVERDRIVE,
                 MachineModuleType.BUFFER
         );
+    }
+
+    private void applyDefaultSideConfiguration() {
+        sideConfig.reset();
+        Direction facing = getMachineFacing();
+        sideConfig.setMode(RelativeSide.TOP.resolve(facing), SideMode.INPUT);
+        sideConfig.setMode(RelativeSide.LEFT.resolve(facing), SideMode.INPUT);
+        sideConfig.setMode(RelativeSide.BACK.resolve(facing), SideMode.INPUT);
+        sideConfig.setMode(RelativeSide.BOTTOM.resolve(facing), SideMode.OUTPUT);
+        sideConfig.setMode(RelativeSide.RIGHT.resolve(facing), SideMode.OUTPUT);
+        sideConfig.setMode(RelativeSide.FRONT.resolve(facing), SideMode.DISABLED);
+    }
+
+    public static boolean isConfigurableSide(RelativeSide side) {
+        return side != RelativeSide.FRONT;
+    }
+
+    public SideMode cycleSideMode(RelativeSide relativeSide) {
+        if (!isConfigurableSide(relativeSide)) return SideMode.DISABLED;
+        Direction worldSide = relativeSide.resolve(getMachineFacing());
+        SideMode mode = sideConfig.cycleMode(worldSide);
+        refreshCapabilities();
+        syncPortState(worldSide);
+        setChanged();
+        return mode;
+    }
+
+    public Direction getMachineFacing() {
+        BlockState state = getBlockState();
+        return state.hasProperty(OrganicProcessorBlock.FACING)
+                ? state.getValue(OrganicProcessorBlock.FACING)
+                : Direction.NORTH;
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, OrganicProcessorBlockEntity processor) {
@@ -438,6 +481,7 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
         tag.put(NBT_WATER, waterTag);
         tag.putInt(NBT_PROGRESS, progress);
         if (activeRecipe != null) tag.putString(NBT_ACTIVE_RECIPE, activeRecipe.toString());
+        sideConfig.save(tag);
     }
 
     @Override
@@ -451,20 +495,88 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
         progress = Math.max(0, tag.getInt(NBT_PROGRESS));
         activeRecipe = tag.contains(NBT_ACTIVE_RECIPE)
                 ? ResourceLocation.tryParse(tag.getString(NBT_ACTIVE_RECIPE)) : null;
+        if (!sideConfig.load(tag)) applyDefaultSideConfiguration();
+        sideConfig.setMode(getMachineFacing(), SideMode.DISABLED);
         invalidateRecipe();
+    }
+
+    private boolean isFrontWorldSide(Direction side) {
+        return side == getMachineFacing();
+    }
+
+    private void syncPortState(Direction direction) {
+        if (level == null || level.isClientSide) return;
+        BlockState state = level.getBlockState(worldPosition);
+        if (!(state.getBlock() instanceof OrganicProcessorBlock)) return;
+
+        PortVisual visual = isFrontWorldSide(direction)
+                ? PortVisual.OFF
+                : PortVisual.fromMode(sideConfig.getMode(direction));
+        var property = OrganicProcessorBlock.portProperty(direction);
+
+        if (state.getValue(property) != visual) {
+            level.setBlock(worldPosition, state.setValue(property, visual), 3);
+        }
+    }
+
+    private void syncAllPortStates() {
+        if (level == null || level.isClientSide) return;
+        BlockState state = level.getBlockState(worldPosition);
+        if (!(state.getBlock() instanceof OrganicProcessorBlock)) return;
+
+        BlockState updated = state;
+        for (Direction direction : Direction.values()) {
+            PortVisual visual = isFrontWorldSide(direction)
+                    ? PortVisual.OFF
+                    : PortVisual.fromMode(sideConfig.getMode(direction));
+            updated = updated.setValue(OrganicProcessorBlock.portProperty(direction), visual);
+        }
+
+        if (!updated.equals(state)) {
+            level.setBlock(worldPosition, updated, 3);
+        }
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        syncAllPortStates();
     }
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ENERGY) return energyCap.cast();
-        if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            return side == Direction.DOWN ? LazyOptional.empty() : fluidCap.cast();
+        if (cap == ForgeCapabilities.ENERGY) {
+            if (side == null || sideConfig.allowsInput(side)) return energyCap.cast();
+            return LazyOptional.empty();
         }
+
+        if (cap == ForgeCapabilities.FLUID_HANDLER) {
+            if (side == null || sideConfig.allowsInput(side)) return fluidCap.cast();
+            return LazyOptional.empty();
+        }
+
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
             if (side == null) return fullItemCap.cast();
-            return side == Direction.DOWN ? outputItemCap.cast() : inputItemCap.cast();
+            if (sideConfig.allowsInput(side)) return inputItemCap.cast();
+            if (sideConfig.allowsOutput(side)) return outputItemCap.cast();
+            return LazyOptional.empty();
         }
+
         return super.getCapability(cap, side);
+    }
+
+    private void refreshCapabilities() {
+        fullItemCap.invalidate();
+        inputItemCap.invalidate();
+        outputItemCap.invalidate();
+        energyCap.invalidate();
+        fluidCap.invalidate();
+
+        fullItemCap = LazyOptional.of(() -> fullItems);
+        inputItemCap = LazyOptional.of(() -> inputItems);
+        outputItemCap = LazyOptional.of(() -> outputItems);
+        energyCap = LazyOptional.of(() -> energyInput);
+        fluidCap = LazyOptional.of(() -> fluidInput);
     }
 
     @Override

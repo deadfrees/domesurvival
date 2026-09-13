@@ -662,5 +662,11 @@
     "gui.domesurvival.coal_generator.output_compact":  "Out. %s FE/t",
     "gui.domesurvival.coal_generator.output_short":  "Out.: %s FE/t",
   "item.domesurvival.steel_nugget": "Steel Nugget",
-  "block.domesurvival.steel_block": "Steel Block"
+  "block.domesurvival.steel_block": "Steel Block",
+    "block.domesurvival.organic_processor": "Biosynthesizer",
+    "jei.domesurvival.organic_processor": "Biosynthesizer",
+    "gui.domesurvival.organic_processor.water_tooltip": "Purified water: %s / %s mB",
+    "gui.domesurvival.organic_processor.energy_tooltip": "Energy: %s / %s FE",
+    "gui.domesurvival.upgrade_modules": "Upgrade Modules",
+    "gui.domesurvival.upgrade_modules.tooltip": "Open upgrade modules"
 }

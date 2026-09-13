@@ -10,6 +10,13 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
     private static final int WIDTH = 220;
     private static final int HEIGHT = 266;
 
+    private static final int TAB_X = 224;
+    private static final int TAB_Y = 8;
+    private static final int TAB_SIZE = 20;
+    private static final int MODULE_PANEL_X = 248;
+    private static final int MODULE_PANEL_WIDTH = 96;
+    private static final int MODULE_PANEL_HEIGHT = 112;
+
     public IndustrialCrusherScreen(IndustrialCrusherMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
         imageWidth = WIDTH;
@@ -19,10 +26,47 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
     }
 
     @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (button == 0 && inside(mouseX, mouseY, TAB_X, TAB_Y, TAB_SIZE, TAB_SIZE)) {
+            setModulePanelOpen(!menu.isModulePanelOpen());
+            return true;
+        }
+        return super.mouseClicked(mouseX, mouseY, button);
+    }
+
+    private void setModulePanelOpen(boolean open) {
+        if (menu.isModulePanelOpen() == open) return;
+        menu.setModulePanelOpen(open);
+        if (minecraft != null && minecraft.gameMode != null) {
+            minecraft.gameMode.handleInventoryButtonClick(
+                    menu.containerId,
+                    open
+                            ? IndustrialCrusherMenu.MODULE_PANEL_OPEN_BUTTON_ID
+                            : IndustrialCrusherMenu.MODULE_PANEL_CLOSE_BUTTON_ID
+            );
+        }
+    }
+
+    private boolean inside(double mouseX, double mouseY, int x, int y, int w, int h) {
+        double localX = mouseX - leftPos;
+        double localY = mouseY - topPos;
+        return localX >= x && localX < x + w && localY >= y && localY < y + h;
+    }
+
+    @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
         renderBackground(graphics);
         super.render(graphics, mouseX, mouseY, partialTick);
         renderTooltip(graphics, mouseX, mouseY);
+
+        if (inside(mouseX, mouseY, TAB_X, TAB_Y, TAB_SIZE, TAB_SIZE)) {
+            graphics.renderTooltip(
+                    font,
+                    Component.translatable("gui.domesurvival.upgrade_modules.tooltip"),
+                    mouseX,
+                    mouseY
+            );
+        }
     }
 
     @Override
@@ -33,7 +77,6 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
         DomeIndustrialGuiStyle.drawPanel(graphics, x, y, imageWidth, imageHeight);
         DomeIndustrialGuiStyle.drawFrame(graphics, x + 8, y + 27, 204, 118, DomeIndustrialGuiStyle.PANEL_ALT);
 
-        // FE buffer: same amber language as the coal generator, but the crusher only consumes energy.
         DomeIndustrialGuiStyle.drawVerticalMeter(
                 graphics, x + 15, y + 42, 16, 72,
                 menu.energyStored(), menu.energyCapacity(),
@@ -43,8 +86,6 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
         DomeIndustrialGuiStyle.drawSlot(graphics, x + 55, y + 63, false);
         DomeIndustrialGuiStyle.drawSlot(graphics, x + 166, y + 53, true);
         DomeIndustrialGuiStyle.drawSlot(graphics, x + 166, y + 83, true);
-        DomeIndustrialGuiStyle.drawSlot(graphics, x + 86, y + 118, false);
-        DomeIndustrialGuiStyle.drawSlot(graphics, x + 116, y + 118, false);
 
         DomeIndustrialGuiStyle.drawProgress(
                 graphics, x + 86, y + 65, 65, 14,
@@ -52,13 +93,11 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
                 DomeIndustrialGuiStyle.PROCESS, DomeIndustrialGuiStyle.PROCESS_LIGHT
         );
 
-        // Thin machine-flow guides make input/output direction readable without adding fake controls.
         graphics.fill(x + 76, y + 69, x + 84, y + 72, 0xFF65737A);
         graphics.fill(x + 151, y + 69, x + 160, y + 72, 0xFF65737A);
         graphics.fill(x + 157, y + 66, x + 162, y + 75, 0xFF65737A);
         graphics.fill(x + 160, y + 68, x + 164, y + 73, 0xFF9AB7C2);
 
-        // Player inventory uses the exact 22 px rhythm of CoalGeneratorMenu.
         graphics.fill(x + 8, y + 151, x + 212, y + 152, 0xFF14181B);
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
@@ -67,6 +106,32 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
         }
         for (int col = 0; col < 9; col++) {
             DomeIndustrialGuiStyle.drawInventoryCell(graphics, x + 14 + col * 22, y + 229);
+        }
+
+        drawModuleTab(graphics, x + TAB_X, y + TAB_Y, menu.isModulePanelOpen());
+
+        if (menu.isModulePanelOpen()) {
+            DomeIndustrialGuiStyle.drawPanel(
+                    graphics, x + MODULE_PANEL_X, y,
+                    MODULE_PANEL_WIDTH, MODULE_PANEL_HEIGHT
+            );
+            DomeIndustrialGuiStyle.drawFrame(
+                    graphics, x + MODULE_PANEL_X + 8, y + 27,
+                    MODULE_PANEL_WIDTH - 16, MODULE_PANEL_HEIGHT - 35,
+                    DomeIndustrialGuiStyle.PANEL_ALT
+            );
+            DomeIndustrialGuiStyle.drawSlot(
+                    graphics,
+                    x + IndustrialCrusherMenu.MODULE_SLOT_X,
+                    y + IndustrialCrusherMenu.MODULE_SLOT_0_Y,
+                    false
+            );
+            DomeIndustrialGuiStyle.drawSlot(
+                    graphics,
+                    x + IndustrialCrusherMenu.MODULE_SLOT_X,
+                    y + IndustrialCrusherMenu.MODULE_SLOT_1_Y,
+                    false
+            );
         }
     }
 
@@ -84,6 +149,27 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
         graphics.drawString(font, statusText(), 86, 88, statusColor(), false);
         graphics.drawString(font, Component.translatable("container.inventory"),
                 inventoryLabelX, inventoryLabelY, DomeIndustrialGuiStyle.TEXT_MUTED, false);
+
+        if (menu.isModulePanelOpen()) {
+            graphics.drawCenteredString(
+                    font,
+                    Component.translatable("gui.domesurvival.upgrade_modules"),
+                    MODULE_PANEL_X + MODULE_PANEL_WIDTH / 2,
+                    10,
+                    DomeIndustrialGuiStyle.TEXT
+            );
+        }
+    }
+
+    private void drawModuleTab(GuiGraphics graphics, int x, int y, boolean active) {
+        int fill = active ? 0xFF334038 : DomeIndustrialGuiStyle.PANEL_ALT;
+        DomeIndustrialGuiStyle.drawFrame(graphics, x, y, TAB_SIZE, TAB_SIZE, fill);
+
+        int metal = active ? DomeIndustrialGuiStyle.BIO_LIGHT : 0xFF687278;
+        graphics.fill(x + 6, y + 5, x + 14, y + 15, metal);
+        graphics.fill(x + 8, y + 3, x + 12, y + 17, metal);
+        graphics.fill(x + 4, y + 8, x + 16, y + 12, metal);
+        graphics.fill(x + 8, y + 7, x + 12, y + 13, 0xFF151A1D);
     }
 
     private int statusColor() {

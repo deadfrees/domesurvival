@@ -1,5 +1,6 @@
 package com.wasted.domesurvival.forge.machine.organic;
 
+import com.wasted.domesurvival.forge.machine.side.PortVisual;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
@@ -27,11 +29,38 @@ public final class OrganicProcessorBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
 
+    public static final EnumProperty<PortVisual> PORT_UP =
+            EnumProperty.create("port_up", PortVisual.class);
+    public static final EnumProperty<PortVisual> PORT_DOWN =
+            EnumProperty.create("port_down", PortVisual.class);
+    public static final EnumProperty<PortVisual> PORT_NORTH =
+            EnumProperty.create("port_north", PortVisual.class);
+    public static final EnumProperty<PortVisual> PORT_SOUTH =
+            EnumProperty.create("port_south", PortVisual.class);
+    public static final EnumProperty<PortVisual> PORT_WEST =
+            EnumProperty.create("port_west", PortVisual.class);
+    public static final EnumProperty<PortVisual> PORT_EAST =
+            EnumProperty.create("port_east", PortVisual.class);
+
     public OrganicProcessorBlock(Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any()
-                .setValue(FACING, Direction.NORTH)
-                .setValue(ACTIVE, false));
+        registerDefaultState(withDefaultPorts(
+                stateDefinition.any()
+                        .setValue(FACING, Direction.NORTH)
+                        .setValue(ACTIVE, false),
+                Direction.NORTH
+        ));
+    }
+
+    public static EnumProperty<PortVisual> portProperty(Direction direction) {
+        return switch (direction) {
+            case UP -> PORT_UP;
+            case DOWN -> PORT_DOWN;
+            case NORTH -> PORT_NORTH;
+            case SOUTH -> PORT_SOUTH;
+            case WEST -> PORT_WEST;
+            case EAST -> PORT_EAST;
+        };
     }
 
     @Override
@@ -42,14 +71,53 @@ public final class OrganicProcessorBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return defaultBlockState()
-                .setValue(FACING, context.getHorizontalDirection().getOpposite())
-                .setValue(ACTIVE, false);
+        Direction facing = context.getHorizontalDirection().getOpposite();
+        return withDefaultPorts(
+                defaultBlockState()
+                        .setValue(FACING, facing)
+                        .setValue(ACTIVE, false),
+                facing
+        );
+    }
+
+    private static BlockState withDefaultPorts(BlockState state, Direction facing) {
+        BlockState configured = state;
+        for (Direction direction : Direction.values()) {
+            configured = configured.setValue(portProperty(direction), PortVisual.OFF);
+        }
+
+        configured = configured.setValue(PORT_UP, PortVisual.INPUT);
+        configured = configured.setValue(
+                portProperty(facing.getCounterClockWise()),
+                PortVisual.INPUT
+        );
+        configured = configured.setValue(
+                portProperty(facing.getOpposite()),
+                PortVisual.INPUT
+        );
+        configured = configured.setValue(PORT_DOWN, PortVisual.OUTPUT);
+        configured = configured.setValue(
+                portProperty(facing.getClockWise()),
+                PortVisual.OUTPUT
+        );
+        configured = configured.setValue(portProperty(facing), PortVisual.OFF);
+        return configured;
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<net.minecraft.world.level.block.Block, BlockState> builder) {
-        builder.add(FACING, ACTIVE);
+    protected void createBlockStateDefinition(
+            StateDefinition.Builder<net.minecraft.world.level.block.Block, BlockState> builder
+    ) {
+        builder.add(
+                FACING,
+                ACTIVE,
+                PORT_UP,
+                PORT_DOWN,
+                PORT_NORTH,
+                PORT_SOUTH,
+                PORT_WEST,
+                PORT_EAST
+        );
     }
 
     @Override
@@ -72,8 +140,11 @@ public final class OrganicProcessorBlock extends BaseEntityBlock {
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
-                                                                   BlockEntityType<T> type) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
+            Level level,
+            BlockState state,
+            BlockEntityType<T> type
+    ) {
         if (level.isClientSide) {
             return null;
         }

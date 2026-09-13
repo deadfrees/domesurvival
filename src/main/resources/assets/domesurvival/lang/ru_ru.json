@@ -664,5 +664,11 @@
     "gui.domesurvival.coal_generator.output_short":  "Вых.: %s FE/t",
     "block.domesurvival.high_voltage_energy_pipe":  "Магистральная энерготруба III уровня",
   "item.domesurvival.steel_nugget": "\u0421\u0442\u0430\u043b\u044c\u043d\u043e\u0439 \u0441\u0430\u043c\u043e\u0440\u043e\u0434\u043e\u043a",
-  "block.domesurvival.steel_block": "\u0421\u0442\u0430\u043b\u044c\u043d\u043e\u0439 \u0431\u043b\u043e\u043a"
+  "block.domesurvival.steel_block": "\u0421\u0442\u0430\u043b\u044c\u043d\u043e\u0439 \u0431\u043b\u043e\u043a",
+    "block.domesurvival.organic_processor": "Биосинтезатор",
+    "jei.domesurvival.organic_processor": "Биосинтезатор",
+    "gui.domesurvival.organic_processor.water_tooltip": "Очищенная вода: %s / %s mB",
+    "gui.domesurvival.organic_processor.energy_tooltip": "Энергия: %s / %s FE",
+    "gui.domesurvival.upgrade_modules": "Модули улучшения",
+    "gui.domesurvival.upgrade_modules.tooltip": "Открыть модули улучшения"
 }

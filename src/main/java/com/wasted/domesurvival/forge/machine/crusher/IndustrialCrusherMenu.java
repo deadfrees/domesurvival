@@ -23,8 +23,15 @@ public final class IndustrialCrusherMenu extends AbstractContainerMenu {
     private static final int HOTBAR_START = PLAYER_END;
     private static final int HOTBAR_END = HOTBAR_START + 9;
 
+    public static final int MODULE_PANEL_OPEN_BUTTON_ID = 200;
+    public static final int MODULE_PANEL_CLOSE_BUTTON_ID = 201;
+    public static final int MODULE_SLOT_X = 288;
+    public static final int MODULE_SLOT_0_Y = 50;
+    public static final int MODULE_SLOT_1_Y = 80;
+
     private final ContainerLevelAccess access;
     private final ContainerData data;
+    private boolean modulePanelOpen;
 
     public IndustrialCrusherMenu(int id, Inventory playerInventory, FriendlyByteBuf extraData) {
         this(id, playerInventory, new ItemStackHandler(3), new ItemStackHandler(2),
@@ -32,7 +39,8 @@ public final class IndustrialCrusherMenu extends AbstractContainerMenu {
     }
 
     public IndustrialCrusherMenu(int id, Inventory playerInventory, IndustrialCrusherBlockEntity crusher) {
-        this(id, playerInventory, crusher.getInventory(), crusher.getModules(), crusher.getDataAccess(), crusher.getBlockPos());
+        this(id, playerInventory, crusher.getInventory(), crusher.getModules(),
+                crusher.getDataAccess(), crusher.getBlockPos());
     }
 
     private IndustrialCrusherMenu(int id, Inventory playerInventory, IItemHandler machine, IItemHandler modules,
@@ -43,12 +51,13 @@ public final class IndustrialCrusherMenu extends AbstractContainerMenu {
         checkContainerDataCount(data, IndustrialCrusherBlockEntity.DATA_COUNT);
         addDataSlots(data);
 
-        // 220x266 industrial layout; player grid deliberately mirrors CoalGeneratorMenu.
         addSlot(new SlotItemHandler(machine, 0, 55, 63));
         addSlot(outputSlot(machine, 1, 166, 53));
         addSlot(outputSlot(machine, 2, 166, 83));
-        addSlot(moduleSlot(modules, 0, 86, 118));
-        addSlot(moduleSlot(modules, 1, 116, 118));
+
+        // Upgrade modules live exclusively in the side drawer.
+        addSlot(moduleSlot(modules, 0, MODULE_SLOT_X, MODULE_SLOT_0_Y));
+        addSlot(moduleSlot(modules, 1, MODULE_SLOT_X, MODULE_SLOT_1_Y));
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
@@ -74,11 +83,16 @@ public final class IndustrialCrusherMenu extends AbstractContainerMenu {
         };
     }
 
-    private static SlotItemHandler moduleSlot(IItemHandler handler, int slot, int x, int y) {
+    private SlotItemHandler moduleSlot(IItemHandler handler, int slot, int x, int y) {
         return new SlotItemHandler(handler, slot, x, y) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return stack.getItem() instanceof MachineModuleItem && super.mayPlace(stack);
+            }
+
+            @Override
+            public boolean isActive() {
+                return modulePanelOpen;
             }
         };
     }
@@ -86,6 +100,27 @@ public final class IndustrialCrusherMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(access, player, IndustrialCrusherRegistry.INDUSTRIAL_CRUSHER.get());
+    }
+
+    @Override
+    public boolean clickMenuButton(Player player, int id) {
+        if (id == MODULE_PANEL_OPEN_BUTTON_ID) {
+            modulePanelOpen = true;
+            return true;
+        }
+        if (id == MODULE_PANEL_CLOSE_BUTTON_ID) {
+            modulePanelOpen = false;
+            return true;
+        }
+        return false;
+    }
+
+    public void setModulePanelOpen(boolean open) {
+        modulePanelOpen = open;
+    }
+
+    public boolean isModulePanelOpen() {
+        return modulePanelOpen;
     }
 
     @Override
@@ -107,7 +142,7 @@ public final class IndustrialCrusherMenu extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
         } else if (stack.getItem() instanceof MachineModuleItem) {
-            if (!moveItemStackTo(stack, 3, 5, false)) {
+            if (!modulePanelOpen || !moveItemStackTo(stack, 3, 5, false)) {
                 return ItemStack.EMPTY;
             }
         } else if (moveItemStackTo(stack, INPUT_SLOT, INPUT_SLOT + 1, false)) {
