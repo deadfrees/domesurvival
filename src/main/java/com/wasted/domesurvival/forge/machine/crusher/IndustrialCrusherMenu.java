@@ -43,24 +43,25 @@ public final class IndustrialCrusherMenu extends AbstractContainerMenu {
         checkContainerDataCount(data, IndustrialCrusherBlockEntity.DATA_COUNT);
         addDataSlots(data);
 
-        addSlot(new SlotItemHandler(machine, 0, 44, 61));
-        addSlot(outputSlot(machine, 1, 134, 52));
-        addSlot(outputSlot(machine, 2, 134, 78));
-        addSlot(moduleSlot(modules, 0, 83, 108));
-        addSlot(moduleSlot(modules, 1, 105, 108));
+        // 220x266 industrial layout; player grid deliberately mirrors CoalGeneratorMenu.
+        addSlot(new SlotItemHandler(machine, 0, 55, 63));
+        addSlot(outputSlot(machine, 1, 166, 53));
+        addSlot(outputSlot(machine, 2, 166, 83));
+        addSlot(moduleSlot(modules, 0, 86, 118));
+        addSlot(moduleSlot(modules, 1, 116, 118));
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
                 addSlot(new net.minecraft.world.inventory.Slot(
                         playerInventory,
                         col + row * 9 + 9,
-                        8 + col * 18,
-                        140 + row * 18
+                        14 + col * 22,
+                        161 + row * 22
                 ));
             }
         }
         for (int col = 0; col < 9; col++) {
-            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, col, 8 + col * 18, 198));
+            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, col, 14 + col * 22, 229));
         }
     }
 
