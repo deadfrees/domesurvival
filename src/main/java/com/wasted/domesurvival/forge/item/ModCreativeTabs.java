@@ -28,9 +28,9 @@ import java.util.Map;
 @Mod.EventBusSubscriber(modid = DomeSurvival.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class ModCreativeTabs {
     private static final ResourceLocation TAB_ID =
-            new ResourceLocation(DomeSurvival.MOD_ID, "items");
+            ResourceLocation.fromNamespaceAndPath(DomeSurvival.MOD_ID, "items");
     private static final ResourceLocation PREFERRED_ICON =
-            new ResourceLocation(DomeSurvival.MOD_ID, "reinforced_glass");
+            ResourceLocation.fromNamespaceAndPath(DomeSurvival.MOD_ID, "reinforced_glass");
 
     /** Stable thematic order: materials, life support, power, technology, biology, misc. */
     private static final List<String> DISPLAY_ORDER = List.of(
@@ -38,6 +38,25 @@ public final class ModCreativeTabs {
             "steel_ingot",
             "steel_nugget",
             "steel_block",
+            "raw_tin",
+            "crushed_tin_ore",
+            "tin_ingot",
+            "tin_nugget",
+            "raw_lead",
+            "crushed_lead_ore",
+            "lead_ingot",
+            "lead_nugget",
+            "raw_silver",
+            "crushed_silver_ore",
+            "silver_ingot",
+            "silver_nugget",
+            "raw_nickel",
+            "crushed_nickel_ore",
+            "nickel_ingot",
+            "nickel_nugget",
+            "crushed_iron_ore",
+            "crushed_copper_ore",
+            "crushed_gold_ore",
             "solarite_crystal",
             "solarite_block",
             "coal_coke",
@@ -81,8 +100,9 @@ public final class ModCreativeTabs {
             "basic_energy_pipe",
             "reinforced_energy_pipe",
             "high_voltage_energy_pipe",
+            "transformer",
 
-            // 4. Tanks, processing machines and technical logistics.
+            // 4. Tanks, processing machines, modules and technical logistics.
             "universal_tank",
             "basic_fluid_pipe",
             "reinforced_fluid_pipe",
@@ -90,6 +110,15 @@ public final class ModCreativeTabs {
             "copper_furnace",
             "coke_oven",
             "shaft_furnace",
+            "industrial_crusher",
+            "forming_press",
+            "filter_regeneration_station",
+            "efficiency_module",
+            "overdrive_module",
+            "buffer_module",
+            "automation_module",
+            "emergency_protection_module",
+            "communication_module",
             "copper_hopper",
             "steel_hopper",
             "desh_hopper",
@@ -99,7 +128,8 @@ public final class ModCreativeTabs {
             "filtering_item_pipe",
             "service_pass_through",
 
-            // 5. Fauna restoration.
+            // 5. Biological production and fauna restoration.
+            "organic_processor",
             "bioincubator",
             "bio_repair_kit",
             "biogel",
@@ -138,7 +168,7 @@ public final class ModCreativeTabs {
         event.register(Registries.CREATIVE_MODE_TAB, helper -> helper.register(
                 TAB_ID,
                 CreativeModeTab.builder()
-                        .title(Component.literal("Dome Survival"))
+                        .title(Component.translatable("itemGroup.domesurvival.items"))
                         .icon(ModCreativeTabs::createIcon)
                         .displayItems((parameters, output) ->
                                 ForgeRegistries.ITEMS.getValues().stream()
