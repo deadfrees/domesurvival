@@ -10,13 +10,25 @@
 
 Предмет теперь содержит core и два противоположных arm: 17 кубоидов, 88 quads. Это прямая секция существующей трубы. Заданы GUI, ground, fixed и обе руки first/third person. Число граней **мировой** модели не изменилось; только предмет раньше показывал один core (36 quads).
 
-Tier 2/3 сохраняют текущие игровые материалы и masters формы. По этапу 7 исходного ТЗ перенос нового оформления на них следует после подтверждения результата Tier 1.
+После подтверждения «продолжаем» оформление перенесено на Tier 2/3 с сохранением исходной формы. Tier 1 остаётся неизменным относительно принятого варианта.
 
 - [Текстурированный master Tier 1](../source_assets/blender/energy_pipes/energy_pipe_tier_1.blend).
 - [Сцена оформления](../source_assets/blender/energy_pipes/05_energy_pipe_tier1_styled.blend) и [рендер Blender](../source_assets/blender/energy_pipes/previews/05_energy_pipe_tier1_styled.png).
 - [Blender Python — материалы и экспорт](../source_assets/blender/scripts/style_energy_pipe_tier1.py).
 - [Blockbench — редактируемая прямая секция](../source_assets/blockbench/energy_pipes/energy_pipe_tier_1.bbmodel), с вложенными PNG, явными UV и группами частей. Проверен формат данных; проверка через UI Blockbench не проводилась.
 - [Проверки и игровые снимки Tier 1](ENERGY_PIPE_TIER1_VALIDATION.md).
+
+## Материалы Tier 2 и Tier 3
+
+Tier 2 использует прохладную стальную основу `#59656A`, более светлые рейки `#84918E` и янтарную метку **II**. Поперечные тёмные отметки на концах реек передают усиление только текстурой. Tier 3 использует графит `#343E42`, рейки `#526360`, метку **III** и ограниченные янтарные полосы `#D0AA58` у концов секций. Ни одна полоса не означает текущий поток, перегрузку или состояние питания.
+
+Файлы каждого старшего Tier — шесть PNG 16×16. Основные поверхности сохраняют 2 texels на unit; компактная маркировка II/III использует отдельный участок UV 8×8 на наружных панелях шириной 2.9 units (около 2.76 texels/unit). Это локальное увеличение плотности знака, чтобы три штриха не сливались. Геометрия, число граней, multipart rotations и правила соединения совпадают с исходными. Предметы используют те же семь контекстов отображения, что принятый Tier 1, включая видимую диагональную секцию в рамке.
+
+- [Линейка с материалами](../source_assets/blender/energy_pipes/previews/06_energy_pipe_styled_lineup.png), [сцена Blender](../source_assets/blender/energy_pipes/06_energy_pipe_styled_lineup.blend).
+- [Генератор Tier 2/3 через Blender Python API](../source_assets/blender/scripts/style_energy_pipe_tiers23.py). Он импортирует общие функции Tier 1 без выполнения его генерации.
+- [Tier 2 master](../source_assets/blender/energy_pipes/energy_pipe_tier_2.blend), [Tier 3 master](../source_assets/blender/energy_pipes/energy_pipe_tier_3.blend).
+- [Blockbench Tier 2](../source_assets/blockbench/energy_pipes/energy_pipe_tier_2.bbmodel), [Tier 3](../source_assets/blockbench/energy_pipes/energy_pipe_tier_3.bbmodel).
+- [Проверки старших Tier](ENERGY_PIPE_TIERS23_VALIDATION.md).
 
 ## Форма
 
@@ -64,7 +76,7 @@ Blender masters теперь строятся непосредственно и�
 - [Все соединения и узлы](../source_assets/blender/energy_pipes/previews/03_energy_pipe_connections_review.jpg), [полный PNG](../source_assets/blender/energy_pipes/previews/03_energy_pipe_connections.png).
 - [Линии по 10 блоков](../source_assets/blender/energy_pipes/previews/04_energy_pipe_long_lines.png).
 
-Листы 01–04 — исторические рендеры Blender **без игровых текстур**, для проверки формы. Новое оформление Tier 1 показано на листе 05 и игровых снимках в отчёте проверки. Tier 2/3 пока используют прежние предметные модели core.
+Листы 01–04 — исторические рендеры Blender **без игровых текстур**, для проверки формы. Оформление Tier 1 показано на листе 05, вся линейка — на листе 06. Все три предмета теперь показывают прямую секцию core + два arm.
 
 ## Runtime и бюджет
 

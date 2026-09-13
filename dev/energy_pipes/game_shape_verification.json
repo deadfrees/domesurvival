@@ -21,28 +21,28 @@
       "tier": 2,
       "part": "core",
       "elements": 7,
-      "source_sha256": "c26014eb9da2803bb896c5aeeff948937537d2a74d26e8bf7e9a479eb724c6d4",
+      "source_sha256": "4e99bf776c0eea309be10c9742279d477eb9791b04b3eec4a5f8c2efba64bf08",
       "vertices_and_face_normals_match": true
     },
     {
       "tier": 2,
       "part": "arm",
       "elements": 5,
-      "source_sha256": "8b2dde0d8c7518a406bb9571ad7a67a4647cf0ed77b0e866027b6750e20db76d",
+      "source_sha256": "b4c79b9b0abf8447d2b860d27ca94b3f769ad33daeffe9adee3f916c8bb83a82",
       "vertices_and_face_normals_match": true
     },
     {
       "tier": 3,
       "part": "core",
       "elements": 7,
-      "source_sha256": "b795d915aa43673cbb165d5752e8b95ecca2c082a684807df5147408191a1f88",
+      "source_sha256": "75621756bbc58097fc6397725fe24e60b75c72bd662dd321eb307497b49b7dd8",
       "vertices_and_face_normals_match": true
     },
     {
       "tier": 3,
       "part": "arm",
       "elements": 5,
-      "source_sha256": "185bbd8552d31120931a3dfdc321dfe31e896e6773200cee1b08548cafa7d817",
+      "source_sha256": "0e1f71cf8d207543c40e42dada923114f3958751fb0dc927e567373a9d831b18",
       "vertices_and_face_normals_match": true
     }
   ]

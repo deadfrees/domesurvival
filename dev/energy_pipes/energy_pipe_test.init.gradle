@@ -7,7 +7,7 @@ gradle.projectsLoaded {
             runtimeClasspath += p.sourceSets.main.runtimeClasspath
         }
         p.minecraft.runs.client.mods.domesurvival.source(probe)
-        p.minecraft.runs.client.property 'dome.energyPipeProbe', 'true'
+        p.minecraft.runs.client.property(p.hasProperty('energyPipeFamily') ? 'dome.energyPipeFamily' : 'dome.energyPipeProbe', 'true')
         if (p.hasProperty('energyPipeHandReview')) p.minecraft.runs.client.property 'dome.energyPipeHandReview', 'true'
         p.tasks.matching { it.name == 'runClient' }.configureEach { dependsOn p.tasks.named('energyPipeProbeClasses') }
     }

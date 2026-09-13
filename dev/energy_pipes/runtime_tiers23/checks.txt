@@ -1,0 +1,117 @@
+Creating fresh family review world
+PASS Tier 2 actual placement
+PASS Tier 2 actual break
+PASS Tier 3 actual placement
+PASS Tier 3 actual break
+PASS Tier 2 isolated
+PASS Tier 2 vertical
+PASS Tier 2 corner
+PASS Tier 2 T
+PASS Tier 2 cross
+PASS Tier 2 six-way
+PASS Tier 2 machine port connection
+PASS Tier 3 isolated
+PASS Tier 3 vertical
+PASS Tier 3 corner
+PASS Tier 3 T
+PASS Tier 3 cross
+PASS Tier 3 six-way
+PASS Tier 3 machine port connection
+PASS All 54 ordered tier/direction pairs connect
+Fixture ready: 100 Tier 2 + 100 Tier 3 pipes, nodes and real FE networks
+PASS Tier 2 exact FE/t=1024
+PASS Tier 2 FE conserved
+PASS Tier 3 exact FE/t=4096
+PASS Tier 3 FE conserved
+PASS Tier 2 exact FE/t=1024
+PASS Tier 2 FE conserved
+PASS Tier 3 exact FE/t=4096
+PASS Tier 3 FE conserved
+PASS Tier 2 exact FE/t=1024
+PASS Tier 2 FE conserved
+PASS Tier 3 exact FE/t=4096
+PASS Tier 3 FE conserved
+PASS Tier 2 exact FE/t=1024
+PASS Tier 2 FE conserved
+PASS Tier 3 exact FE/t=4096
+PASS Tier 3 FE conserved
+PASS Tier 2 exact FE/t=1024
+PASS Tier 2 FE conserved
+PASS Tier 3 exact FE/t=4096
+PASS Tier 3 FE conserved
+PASS Tier 2 exact FE/t=1024
+PASS Tier 2 FE conserved
+PASS Tier 3 exact FE/t=4096
+PASS Tier 3 FE conserved
+PASS Tier 2 exact FE/t=1024
+PASS Tier 2 FE conserved
+PASS Tier 3 exact FE/t=4096
+PASS Tier 3 FE conserved
+PASS Tier 2 exact FE/t=1024
+PASS Tier 2 FE conserved
+PASS Tier 3 exact FE/t=4096
+PASS Tier 3 FE conserved
+PASS Tier 2 exact FE/t=1024
+PASS Tier 2 FE conserved
+PASS Tier 3 exact FE/t=4096
+PASS Tier 3 FE conserved
+PASS Tier 2 exact FE/t=1024
+PASS Tier 2 FE conserved
+PASS Tier 3 exact FE/t=4096
+PASS Tier 3 FE conserved
+PASS Tier 2 disabled stops FE
+PASS Tier 3 disabled stops FE
+PASS Tier 2 enabled resumes FE
+PASS Tier 3 enabled resumes FE
+PASS Tier 2 break stops FE
+PASS Tier 3 break stops FE
+PASS Tier 2 real replacement resumes FE
+PASS Tier 3 real replacement resumes FE
+PASS Tier 2 mixed network respects basic bottleneck 256 FE/t
+PASS Tier 3 mixed network respects basic bottleneck 256 FE/t
+PASS Tier 2 full throughput restored
+PASS Tier 3 full throughput restored
+PASS All 192 baked states: correct quads and valid sprites
+PASS Capture context 01_long_lines.png
+Screenshot 01_long_lines.png
+PASS Capture context 02_tier2_junctions.png
+Screenshot 02_tier2_junctions.png
+PASS Capture context 03_tier3_junctions.png
+Screenshot 03_tier3_junctions.png
+PASS Capture context 04_machine_connection.png
+Screenshot 04_machine_connection.png
+PASS Capture context 05_family_lines.png
+Screenshot 05_family_lines.png
+PASS Capture context 06_ground_and_frames.png
+Screenshot 06_ground_and_frames.png
+PASS Capture context 07_inventory.png
+Screenshot 07_inventory.png
+PASS Capture context tier2_first_right.png
+Screenshot tier2_first_right.png
+PASS Capture context tier2_first_left.png
+Screenshot tier2_first_left.png
+PASS Capture context tier2_third_left.png
+Screenshot tier2_third_left.png
+PASS Capture context tier2_third_right.png
+Screenshot tier2_third_right.png
+PASS Capture context tier3_first_right.png
+Screenshot tier3_first_right.png
+PASS Capture context tier3_first_left.png
+Screenshot tier3_first_left.png
+PASS Capture context tier3_third_left.png
+Screenshot tier3_third_left.png
+PASS Capture context tier3_third_right.png
+Screenshot tier3_third_right.png
+PASS Comparison pack=true
+PASS Capture context 08_stress_before.png
+Screenshot 08_stress_before.png
+PASS Frame sample before=6610
+FRAME_METRICS name,frames,mean_ms,median_ms,p95_ms: before,6610,1.4954,1.1843,1.5528
+PASS Comparison pack=false
+PASS Capture context 09_stress_after.png
+Screenshot 09_stress_after.png
+PASS All 192 baked states: correct quads and valid sprites
+PASS Frame sample after=6346
+FRAME_METRICS name,frames,mean_ms,median_ms,p95_ms: after,6346,1.5564,1.2245,1.6253
+PASS FE regression finished
+RESULT PASS failures=0

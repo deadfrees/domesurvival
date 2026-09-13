@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "runtime_tiers_changed": [
+    2,
+    3
+  ],
+  "world_geometry_changed": false,
+  "texture_count": 12,
+  "texture_size": [
+    16,
+    16
+  ],
+  "body_texels_per_unit": 2,
+  "tier_badge_uv": [
+    0,
+    0,
+    8,
+    8
+  ]
+}

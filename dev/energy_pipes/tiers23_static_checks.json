@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "workspace_scope_status": "PASS",
+  "changed": [
+    "src/main/resources/assets/domesurvival/blockstates/high_voltage_energy_pipe.json",
+    "src/main/resources/assets/domesurvival/blockstates/reinforced_energy_pipe.json",
+    "src/main/resources/assets/domesurvival/models/block/high_voltage_energy_pipe_arm.json",
+    "src/main/resources/assets/domesurvival/models/block/high_voltage_energy_pipe_core.json",
+    "src/main/resources/assets/domesurvival/models/block/high_voltage_energy_pipe_inventory.json",
+    "src/main/resources/assets/domesurvival/models/block/reinforced_energy_pipe_arm.json",
+    "src/main/resources/assets/domesurvival/models/block/reinforced_energy_pipe_core.json",
+    "src/main/resources/assets/domesurvival/models/block/reinforced_energy_pipe_inventory.json",
+    "src/main/resources/assets/domesurvival/models/item/high_voltage_energy_pipe.json",
+    "src/main/resources/assets/domesurvival/models/item/reinforced_energy_pipe.json"
+  ],
+  "added": [
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/high_voltage_body.png",
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/high_voltage_core.png",
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/high_voltage_edge.png",
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/high_voltage_end.png",
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/high_voltage_panel.png",
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/high_voltage_rail.png",
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/reinforced_body.png",
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/reinforced_core.png",
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/reinforced_edge.png",
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/reinforced_end.png",
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/reinforced_panel.png",
+    "src/main/resources/assets/domesurvival/textures/block/energy_pipe/reinforced_rail.png"
+  ],
+  "outsideChanged": [],
+  "outsideAdded": [],
+  "tier1_unchanged": true,
+  "results": [
+    {
+      "tier": 1,
+      "id": "basic_energy_pipe",
+      "world_geometry_unchanged": true,
+      "item_quads": 88
+    },
+    {
+      "tier": 2,
+      "id": "reinforced_energy_pipe",
+      "world_geometry_unchanged": true,
+      "item_quads": 88
+    },
+    {
+      "tier": 3,
+      "id": "high_voltage_energy_pipe",
+      "world_geometry_unchanged": true,
+      "item_quads": 88
+    }
+  ],
+  "errors": []
+}
