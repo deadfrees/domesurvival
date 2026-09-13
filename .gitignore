@@ -71,3 +71,8 @@ dev/map_audit/output/
 /dev/lastworld/*_inspect/
 /dev/art_reference/
 /dependency_audit/
+
+# Local visual overhaul runtime artifacts
+dev/visual_overhaul/runtime/
+dev/visual_overhaul/runtime_final/
+dev/visual_overhaul/runtime_probe/
