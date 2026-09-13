@@ -92,6 +92,6 @@ public final class MachineModuleCatalog {
     }
 
     private static ResourceLocation id(String path) {
-        return new ResourceLocation(DomeSurvival.MOD_ID, path);
+        return ResourceLocation.fromNamespaceAndPath(DomeSurvival.MOD_ID, path);
     }
 }
