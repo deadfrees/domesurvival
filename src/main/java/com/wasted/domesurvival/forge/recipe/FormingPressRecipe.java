@@ -60,6 +60,11 @@ public final class FormingPressRecipe implements Recipe<SimpleContainer> {
         return !stack.isEmpty() && ingredient.test(stack);
     }
 
+    /** Safe read-only recipe input access for JEI and diagnostics. */
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
     private boolean matchesInput(SimpleContainer container) {
         ItemStack input = container.getItem(0);
         return input.getCount() >= inputCount && acceptsIngredient(input);
