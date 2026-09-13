@@ -16,6 +16,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
 public final class IndustrialCrusherMenu extends AbstractContainerMenu {
+    private static final int INPUT_SLOT = 0;
     private static final int MACHINE_SLOTS = 5;
     private static final int PLAYER_START = MACHINE_SLOTS;
     private static final int PLAYER_END = PLAYER_START + 27;
@@ -48,39 +49,92 @@ public final class IndustrialCrusherMenu extends AbstractContainerMenu {
         addSlot(moduleSlot(modules, 0, 83, 108));
         addSlot(moduleSlot(modules, 1, 105, 108));
 
-        for (int row=0; row<3; row++) for (int col=0; col<9; col++)
-            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, col+row*9+9, 8+col*18, 140+row*18));
-        for (int col=0; col<9; col++)
-            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, col, 8+col*18, 198));
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 9; col++) {
+                addSlot(new net.minecraft.world.inventory.Slot(
+                        playerInventory,
+                        col + row * 9 + 9,
+                        8 + col * 18,
+                        140 + row * 18
+                ));
+            }
+        }
+        for (int col = 0; col < 9; col++) {
+            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, col, 8 + col * 18, 198));
+        }
     }
 
-    private static SlotItemHandler outputSlot(IItemHandler handler,int slot,int x,int y){
-        return new SlotItemHandler(handler,slot,x,y){@Override public boolean mayPlace(@NotNull ItemStack stack){return false;}};
-    }
-    private static SlotItemHandler moduleSlot(IItemHandler handler,int slot,int x,int y){
-        return new SlotItemHandler(handler,slot,x,y){@Override public boolean mayPlace(@NotNull ItemStack stack){return stack.getItem() instanceof MachineModuleItem && super.mayPlace(stack);}};
+    private static SlotItemHandler outputSlot(IItemHandler handler, int slot, int x, int y) {
+        return new SlotItemHandler(handler, slot, x, y) {
+            @Override
+            public boolean mayPlace(@NotNull ItemStack stack) {
+                return false;
+            }
+        };
     }
 
-    @Override public boolean stillValid(Player player){return stillValid(access,player,IndustrialCrusherRegistry.INDUSTRIAL_CRUSHER.get());}
+    private static SlotItemHandler moduleSlot(IItemHandler handler, int slot, int x, int y) {
+        return new SlotItemHandler(handler, slot, x, y) {
+            @Override
+            public boolean mayPlace(@NotNull ItemStack stack) {
+                return stack.getItem() instanceof MachineModuleItem && super.mayPlace(stack);
+            }
+        };
+    }
 
     @Override
-    public @NotNull ItemStack quickMoveStack(Player player,int index){
-        if(index<0||index>=slots.size())return ItemStack.EMPTY;
-        var slot=slots.get(index); if(!slot.hasItem())return ItemStack.EMPTY;
-        ItemStack stack=slot.getItem(), copy=stack.copy();
-        if(index<MACHINE_SLOTS){if(!moveItemStackTo(stack,PLAYER_START,HOTBAR_END,true))return ItemStack.EMPTY;}
-        else if(stack.getItem() instanceof MachineModuleItem){if(!moveItemStackTo(stack,3,5,false))return ItemStack.EMPTY;}
-        else if(index>=PLAYER_START&&index<PLAYER_END){if(!moveItemStackTo(stack,HOTBAR_START,HOTBAR_END,false))return ItemStack.EMPTY;}
-        else if(index>=HOTBAR_START&&index<HOTBAR_END){if(!moveItemStackTo(stack,PLAYER_START,PLAYER_END,false))return ItemStack.EMPTY;}
-        else return ItemStack.EMPTY;
-        if(stack.isEmpty())slot.set(ItemStack.EMPTY);else slot.setChanged();
+    public boolean stillValid(Player player) {
+        return stillValid(access, player, IndustrialCrusherRegistry.INDUSTRIAL_CRUSHER.get());
+    }
+
+    @Override
+    public @NotNull ItemStack quickMoveStack(Player player, int index) {
+        if (index < 0 || index >= slots.size()) {
+            return ItemStack.EMPTY;
+        }
+
+        var slot = slots.get(index);
+        if (!slot.hasItem()) {
+            return ItemStack.EMPTY;
+        }
+
+        ItemStack stack = slot.getItem();
+        ItemStack copy = stack.copy();
+
+        if (index < MACHINE_SLOTS) {
+            if (!moveItemStackTo(stack, PLAYER_START, HOTBAR_END, true)) {
+                return ItemStack.EMPTY;
+            }
+        } else if (stack.getItem() instanceof MachineModuleItem) {
+            if (!moveItemStackTo(stack, 3, 5, false)) {
+                return ItemStack.EMPTY;
+            }
+        } else if (moveItemStackTo(stack, INPUT_SLOT, INPUT_SLOT + 1, false)) {
+            // Valid crusher input; the ItemStackHandler performs recipe validation.
+        } else if (index >= PLAYER_START && index < PLAYER_END) {
+            if (!moveItemStackTo(stack, HOTBAR_START, HOTBAR_END, false)) {
+                return ItemStack.EMPTY;
+            }
+        } else if (index >= HOTBAR_START && index < HOTBAR_END) {
+            if (!moveItemStackTo(stack, PLAYER_START, PLAYER_END, false)) {
+                return ItemStack.EMPTY;
+            }
+        } else {
+            return ItemStack.EMPTY;
+        }
+
+        if (stack.isEmpty()) {
+            slot.set(ItemStack.EMPTY);
+        } else {
+            slot.setChanged();
+        }
         return copy;
     }
 
-    public int energyStored(){return data.get(IndustrialCrusherBlockEntity.DATA_ENERGY);}
-    public int energyCapacity(){return data.get(IndustrialCrusherBlockEntity.DATA_CAPACITY);}
-    public int progress(){return data.get(IndustrialCrusherBlockEntity.DATA_PROGRESS);}
-    public int progressMax(){return data.get(IndustrialCrusherBlockEntity.DATA_MAX_PROGRESS);}
-    public int recipeEnergy(){return data.get(IndustrialCrusherBlockEntity.DATA_RECIPE_ENERGY);}
-    public int status(){return data.get(IndustrialCrusherBlockEntity.DATA_STATUS);}
+    public int energyStored() { return data.get(IndustrialCrusherBlockEntity.DATA_ENERGY); }
+    public int energyCapacity() { return data.get(IndustrialCrusherBlockEntity.DATA_CAPACITY); }
+    public int progress() { return data.get(IndustrialCrusherBlockEntity.DATA_PROGRESS); }
+    public int progressMax() { return data.get(IndustrialCrusherBlockEntity.DATA_MAX_PROGRESS); }
+    public int recipeEnergy() { return data.get(IndustrialCrusherBlockEntity.DATA_RECIPE_ENERGY); }
+    public int status() { return data.get(IndustrialCrusherBlockEntity.DATA_STATUS); }
 }
