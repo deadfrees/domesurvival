@@ -1,12 +1,12 @@
 {
   "ambientocclusion": true,
   "textures": {
-    "body": "domesurvival:block/fluid_pipe/high_pressure_body",
-    "core": "domesurvival:block/fluid_pipe/high_pressure_core",
-    "panel": "domesurvival:block/fluid_pipe/high_pressure_panel",
-    "rail": "domesurvival:block/fluid_pipe/high_pressure_rail",
-    "end": "domesurvival:block/fluid_pipe/high_pressure_end",
-    "edge": "domesurvival:block/fluid_pipe/high_pressure_edge",
+    "body": "domesurvival:block/pipe_materials_v2/high_pressure_fluid_pipe",
+    "core": "domesurvival:block/pipe_materials_v2/high_pressure_fluid_pipe",
+    "panel": "domesurvival:block/pipe_materials_v2/high_pressure_fluid_pipe",
+    "rail": "domesurvival:block/pipe_materials_v2/high_pressure_fluid_pipe",
+    "end": "domesurvival:block/pipe_materials_v2/high_pressure_fluid_pipe",
+    "edge": "domesurvival:block/pipe_materials_v2/high_pressure_fluid_pipe",
     "particle": "domesurvival:block/fluid_pipe/high_pressure_body"
   },
   "elements": [
@@ -26,57 +26,55 @@
         "north": {
           "texture": "#end",
           "uv": [
-            0,
-            0,
-            10.0,
-            10.0
+            5.625,
+            0.125,
+            8.125,
+            2.625
           ]
         },
         "south": {
           "texture": "#end",
           "uv": [
-            0,
-            0,
-            10.0,
-            10.0
+            5.625,
+            0.125,
+            8.125,
+            2.625
           ]
         },
         "east": {
           "texture": "#panel",
           "uv": [
-            0,
-            0,
-            10.0,
-            2.5
-          ],
-          "rotation": 90
+            8.375,
+            0.125,
+            9.0,
+            2.625
+          ]
         },
         "west": {
           "texture": "#panel",
           "uv": [
-            0,
-            0,
-            10.0,
-            2.5
-          ],
-          "rotation": 90
+            8.375,
+            0.125,
+            9.0,
+            2.625
+          ]
         },
         "up": {
           "texture": "#panel",
           "uv": [
-            0,
-            0,
-            10.0,
-            2.5
+            2.5,
+            2.875,
+            5.0,
+            3.5
           ]
         },
         "down": {
           "texture": "#panel",
           "uv": [
-            0,
-            0,
-            10.0,
-            2.5
+            2.5,
+            2.875,
+            5.0,
+            3.5
           ]
         }
       }
@@ -97,48 +95,46 @@
         "south": {
           "texture": "#end",
           "uv": [
-            0,
-            0,
-            9.5,
-            9.5
+            10.0,
+            0.125,
+            12.375,
+            2.5
           ]
         },
         "east": {
           "texture": "#rail",
           "uv": [
-            0,
-            0,
-            9.5,
-            1.5
-          ],
-          "rotation": 90
+            12.625,
+            0.125,
+            13.0,
+            2.5
+          ]
         },
         "west": {
           "texture": "#rail",
           "uv": [
-            0,
-            0,
-            9.5,
-            1.5
-          ],
-          "rotation": 90
+            12.625,
+            0.125,
+            13.0,
+            2.5
+          ]
         },
         "up": {
           "texture": "#rail",
           "uv": [
-            0,
-            0,
-            9.5,
-            1.5
+            8.0,
+            2.875,
+            10.375,
+            3.25
           ]
         },
         "down": {
           "texture": "#rail",
           "uv": [
-            0,
-            0,
-            9.5,
-            1.5
+            8.0,
+            2.875,
+            10.375,
+            3.25
           ]
         }
       }
@@ -159,39 +155,37 @@
         "east": {
           "texture": "#body",
           "uv": [
-            0,
-            0,
-            8.5,
-            5.0
-          ],
-          "rotation": 90
+            13.25,
+            0.125,
+            14.5,
+            2.25
+          ]
         },
         "west": {
           "texture": "#body",
           "uv": [
-            0,
-            0,
-            8.5,
-            5.0
-          ],
-          "rotation": 90
+            13.25,
+            0.125,
+            14.5,
+            2.25
+          ]
         },
         "up": {
           "texture": "#body",
           "uv": [
-            0,
-            0,
-            8.5,
-            5.0
+            0.125,
+            2.875,
+            2.25,
+            4.125
           ]
         },
         "down": {
           "texture": "#body",
           "uv": [
-            0,
-            0,
-            8.5,
-            5.0
+            0.125,
+            2.875,
+            2.25,
+            4.125
           ]
         }
       }
@@ -212,48 +206,46 @@
         "north": {
           "texture": "#edge",
           "uv": [
-            0,
-            0,
-            10.0,
-            10.0
+            2.875,
+            0.125,
+            5.375,
+            2.625
           ]
         },
         "east": {
           "texture": "#edge",
           "uv": [
-            0,
-            0,
-            10.0,
-            2.0
-          ],
-          "rotation": 90
+            9.25,
+            0.125,
+            9.75,
+            2.625
+          ]
         },
         "west": {
           "texture": "#edge",
           "uv": [
-            0,
-            0,
-            10.0,
-            2.0
-          ],
-          "rotation": 90
+            9.25,
+            0.125,
+            9.75,
+            2.625
+          ]
         },
         "up": {
           "texture": "#edge",
           "uv": [
-            0,
-            0,
-            10.0,
-            2.0
+            5.25,
+            2.875,
+            7.75,
+            3.375
           ]
         },
         "down": {
           "texture": "#edge",
           "uv": [
-            0,
-            0,
-            10.0,
-            2.0
+            5.25,
+            2.875,
+            7.75,
+            3.375
           ]
         }
       }

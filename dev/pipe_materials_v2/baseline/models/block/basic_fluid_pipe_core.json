@@ -1,0 +1,83 @@
+{
+  "ambientocclusion": true,
+  "textures": {
+    "body": "domesurvival:block/fluid_pipe/basic_body",
+    "core": "domesurvival:block/fluid_pipe/basic_core",
+    "panel": "domesurvival:block/fluid_pipe/basic_panel",
+    "rail": "domesurvival:block/fluid_pipe/basic_rail",
+    "end": "domesurvival:block/fluid_pipe/basic_end",
+    "edge": "domesurvival:block/fluid_pipe/basic_edge",
+    "particle": "domesurvival:block/fluid_pipe/basic_body"
+  },
+  "elements": [
+    {
+      "name": "junction_body",
+      "from": [
+        5.75,
+        5.75,
+        5.75
+      ],
+      "to": [
+        10.25,
+        10.25,
+        10.25
+      ],
+      "faces": {
+        "north": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        },
+        "south": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        },
+        "east": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        },
+        "west": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        },
+        "up": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        },
+        "down": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        }
+      }
+    }
+  ]
+}

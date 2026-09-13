@@ -1,0 +1,205 @@
+Creating fresh family review world
+PASS Tank side east=OUTPUT
+PASS Tank side west=INPUT
+PASS Tier 1 actual placement
+PASS Tier 1 actual break
+PASS Tank side east=OUTPUT
+PASS Tank side west=INPUT
+PASS Tier 2 actual placement
+PASS Tier 2 actual break
+PASS Tank side east=OUTPUT
+PASS Tank side west=INPUT
+PASS Tier 3 actual placement
+PASS Tier 3 actual break
+PASS Tier 1 isolated
+PASS Tier 1 vertical
+PASS Tier 1 corner
+PASS Tier 1 T
+PASS Tier 1 cross
+PASS Tier 1 six-way
+PASS Tier 1 machine port connection
+PASS Tier 2 isolated
+PASS Tier 2 vertical
+PASS Tier 2 corner
+PASS Tier 2 T
+PASS Tier 2 cross
+PASS Tier 2 six-way
+PASS Tier 2 machine port connection
+PASS Tier 3 isolated
+PASS Tier 3 vertical
+PASS Tier 3 corner
+PASS Tier 3 T
+PASS Tier 3 cross
+PASS Tier 3 six-way
+PASS Tier 3 machine port connection
+PASS All 54 ordered tier/direction pairs connect
+Fixture ready: 100 pipes per tier, nodes and real fluid networks
+PASS Tier 1 exact mB/t=128
+PASS Tier 1 fluid conserved before fixture refill
+PASS Tier 2 exact mB/t=512
+PASS Tier 2 fluid conserved before fixture refill
+PASS Tier 3 exact mB/t=2048
+PASS Tier 3 fluid conserved before fixture refill
+PASS Tier 1 exact mB/t=128
+PASS Tier 1 fluid conserved before fixture refill
+PASS Tier 2 exact mB/t=512
+PASS Tier 2 fluid conserved before fixture refill
+PASS Tier 3 exact mB/t=2048
+PASS Tier 3 fluid conserved before fixture refill
+PASS Tier 1 exact mB/t=128
+PASS Tier 1 fluid conserved before fixture refill
+PASS Tier 2 exact mB/t=512
+PASS Tier 2 fluid conserved before fixture refill
+PASS Tier 3 exact mB/t=2048
+PASS Tier 3 fluid conserved before fixture refill
+PASS Tier 1 exact mB/t=128
+PASS Tier 1 fluid conserved before fixture refill
+PASS Tier 2 exact mB/t=512
+PASS Tier 2 fluid conserved before fixture refill
+PASS Tier 3 exact mB/t=2048
+PASS Tier 3 fluid conserved before fixture refill
+PASS Tier 1 exact mB/t=128
+PASS Tier 1 fluid conserved before fixture refill
+PASS Tier 2 exact mB/t=512
+PASS Tier 2 fluid conserved before fixture refill
+PASS Tier 3 exact mB/t=2048
+PASS Tier 3 fluid conserved before fixture refill
+PASS Tier 1 exact mB/t=128
+PASS Tier 1 fluid conserved before fixture refill
+PASS Tier 2 exact mB/t=512
+PASS Tier 2 fluid conserved before fixture refill
+PASS Tier 3 exact mB/t=2048
+PASS Tier 3 fluid conserved before fixture refill
+PASS Tier 1 exact mB/t=128
+PASS Tier 1 fluid conserved before fixture refill
+PASS Tier 2 exact mB/t=512
+PASS Tier 2 fluid conserved before fixture refill
+PASS Tier 3 exact mB/t=2048
+PASS Tier 3 fluid conserved before fixture refill
+PASS Tier 1 exact mB/t=128
+PASS Tier 1 fluid conserved before fixture refill
+PASS Tier 2 exact mB/t=512
+PASS Tier 2 fluid conserved before fixture refill
+PASS Tier 3 exact mB/t=2048
+PASS Tier 3 fluid conserved before fixture refill
+PASS Tier 1 exact mB/t=128
+PASS Tier 1 fluid conserved before fixture refill
+PASS Tier 2 exact mB/t=512
+PASS Tier 2 fluid conserved before fixture refill
+PASS Tier 3 exact mB/t=2048
+PASS Tier 3 fluid conserved before fixture refill
+PASS Tier 1 exact mB/t=128
+PASS Tier 1 fluid conserved before fixture refill
+PASS Tier 2 exact mB/t=512
+PASS Tier 2 fluid conserved before fixture refill
+PASS Tier 3 exact mB/t=2048
+PASS Tier 3 fluid conserved before fixture refill
+PASS Tier 1 SideModes NBT round trip
+PASS Tier 2 SideModes NBT round trip
+PASS Tier 3 SideModes NBT round trip
+PASS Tier 1 disabled stops fluid
+PASS Tier 2 disabled stops fluid
+PASS Tier 3 disabled stops fluid
+PASS Tier 1 enabled resumes fluid
+PASS Tier 2 enabled resumes fluid
+PASS Tier 3 enabled resumes fluid
+PASS Tier 1 break stops fluid
+PASS Tier 2 break stops fluid
+PASS Tier 3 break stops fluid
+PASS Tier 1 real replacement resumes fluid
+PASS Tier 2 real replacement resumes fluid
+PASS Tier 3 real replacement resumes fluid
+PASS Tier 1 mixed network basic bottleneck 128 mB/t
+PASS Tier 2 mixed network basic bottleneck 128 mB/t
+PASS Tier 3 mixed network basic bottleneck 128 mB/t
+PASS Tier 1 full throughput restored
+PASS Tier 2 full throughput restored
+PASS Tier 3 full throughput restored
+PASS All 384 energy/fluid baked states: unchanged quads and valid atlas sprites
+PASS Tier 1 lava transfer at tier rate
+PASS Tier 2 lava transfer at tier rate
+PASS Tier 3 lava transfer at tier rate
+PASS Tier 1 incompatible fluids do not mix or disappear
+PASS Tier 2 incompatible fluids do not mix or disappear
+PASS Tier 3 incompatible fluids do not mix or disappear
+PASS Capture context 01_long_lines.png
+Screenshot 01_long_lines.png
+PASS Capture context 02_tier1_junctions.png
+Screenshot 02_tier1_junctions.png
+PASS Capture context 03_tier2_junctions.png
+Screenshot 03_tier2_junctions.png
+PASS Capture context 04_tier3_junctions.png
+Screenshot 04_tier3_junctions.png
+PASS Capture context 05_machine_connection.png
+Screenshot 05_machine_connection.png
+PASS Capture context 06_family_lines.png
+Screenshot 06_family_lines.png
+PASS Capture context 07_ground_and_frames.png
+Screenshot 07_ground_and_frames.png
+PASS Capture context 08_inventory.png
+Screenshot 08_inventory.png
+PASS Capture context tier1_first_right.png
+Screenshot tier1_first_right.png
+PASS Capture context tier1_first_left.png
+Screenshot tier1_first_left.png
+PASS Capture context tier1_third_left.png
+Screenshot tier1_third_left.png
+PASS Capture context tier1_third_right.png
+Screenshot tier1_third_right.png
+PASS Capture context tier2_first_right.png
+Screenshot tier2_first_right.png
+PASS Capture context tier2_first_left.png
+Screenshot tier2_first_left.png
+PASS Capture context tier2_third_left.png
+Screenshot tier2_third_left.png
+PASS Capture context tier2_third_right.png
+Screenshot tier2_third_right.png
+PASS Capture context tier3_first_right.png
+Screenshot tier3_first_right.png
+PASS Capture context tier3_first_left.png
+Screenshot tier3_first_left.png
+PASS Capture context tier3_third_left.png
+Screenshot tier3_third_left.png
+PASS Capture context tier3_third_right.png
+Screenshot tier3_third_right.png
+PASS Capture context 10_energy_family.png
+Screenshot 10_energy_family.png
+PASS Capture context 11_energy_junctions.png
+Screenshot 11_energy_junctions.png
+PASS Capture context energy_tier1_first_right.png
+Screenshot energy_tier1_first_right.png
+PASS Capture context energy_tier1_first_left.png
+Screenshot energy_tier1_first_left.png
+PASS Capture context energy_tier1_third_left.png
+Screenshot energy_tier1_third_left.png
+PASS Capture context energy_tier1_third_right.png
+Screenshot energy_tier1_third_right.png
+PASS Capture context energy_tier2_first_right.png
+Screenshot energy_tier2_first_right.png
+PASS Capture context energy_tier2_first_left.png
+Screenshot energy_tier2_first_left.png
+PASS Capture context energy_tier2_third_left.png
+Screenshot energy_tier2_third_left.png
+PASS Capture context energy_tier2_third_right.png
+Screenshot energy_tier2_third_right.png
+PASS Capture context energy_tier3_first_right.png
+Screenshot energy_tier3_first_right.png
+PASS Capture context energy_tier3_first_left.png
+Screenshot energy_tier3_first_left.png
+PASS Capture context energy_tier3_third_left.png
+Screenshot energy_tier3_third_left.png
+PASS Capture context energy_tier3_third_right.png
+Screenshot energy_tier3_third_right.png
+PASS Comparison pack=true
+PASS Capture context 08_stress_before.png
+Screenshot 08_stress_before.png
+PASS Frame sample before=4204
+FRAME_METRICS name,frames,mean_ms,median_ms,p95_ms: before,4204,2.3475,1.8502,3.3181
+PASS Comparison pack=false
+PASS Capture context 09_stress_after.png
+Screenshot 09_stress_after.png
+PASS All 384 energy/fluid baked states: unchanged quads and valid atlas sprites
+PASS Frame sample after=4212
+FRAME_METRICS name,frames,mean_ms,median_ms,p95_ms: after,4212,2.3399,1.8381,3.0403
+PASS Fluid regression finished
+RESULT PASS failures=0

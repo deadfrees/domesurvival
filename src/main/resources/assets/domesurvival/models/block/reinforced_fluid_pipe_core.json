@@ -1,12 +1,12 @@
 {
   "ambientocclusion": true,
   "textures": {
-    "body": "domesurvival:block/fluid_pipe/reinforced_body",
-    "core": "domesurvival:block/fluid_pipe/reinforced_core",
-    "panel": "domesurvival:block/fluid_pipe/reinforced_panel",
-    "rail": "domesurvival:block/fluid_pipe/reinforced_rail",
-    "end": "domesurvival:block/fluid_pipe/reinforced_end",
-    "edge": "domesurvival:block/fluid_pipe/reinforced_edge",
+    "body": "domesurvival:block/pipe_materials_v2/reinforced_fluid_pipe",
+    "core": "domesurvival:block/pipe_materials_v2/reinforced_fluid_pipe",
+    "panel": "domesurvival:block/pipe_materials_v2/reinforced_fluid_pipe",
+    "rail": "domesurvival:block/pipe_materials_v2/reinforced_fluid_pipe",
+    "end": "domesurvival:block/pipe_materials_v2/reinforced_fluid_pipe",
+    "edge": "domesurvival:block/pipe_materials_v2/reinforced_fluid_pipe",
     "particle": "domesurvival:block/fluid_pipe/reinforced_body"
   },
   "elements": [
@@ -26,55 +26,55 @@
         "north": {
           "texture": "#core",
           "uv": [
-            0,
-            0,
-            10,
-            10
+            7.25,
+            0.25,
+            12.0,
+            5.0
           ]
         },
         "south": {
           "texture": "#core",
           "uv": [
-            0,
-            0,
-            10,
-            10
+            7.25,
+            0.25,
+            12.0,
+            5.0
           ]
         },
         "east": {
           "texture": "#core",
           "uv": [
-            0,
-            0,
-            10,
-            10
+            7.25,
+            0.25,
+            12.0,
+            5.0
           ]
         },
         "west": {
           "texture": "#core",
           "uv": [
-            0,
-            0,
-            10,
-            10
+            7.25,
+            0.25,
+            12.0,
+            5.0
           ]
         },
         "up": {
           "texture": "#core",
           "uv": [
-            0,
-            0,
-            10,
-            10
+            7.25,
+            0.25,
+            12.0,
+            5.0
           ]
         },
         "down": {
           "texture": "#core",
           "uv": [
-            0,
-            0,
-            10,
-            10
+            7.25,
+            0.25,
+            12.0,
+            5.0
           ]
         }
       }

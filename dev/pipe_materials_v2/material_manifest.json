@@ -1,0 +1,554 @@
+{
+  "basic_energy_pipe": {
+    "atlas_size": 256,
+    "texels_per_model_unit": 16,
+    "islands": [
+      {
+        "role": "body",
+        "x": 4,
+        "y": 4,
+        "width": 48,
+        "height": 100
+      },
+      {
+        "role": "rail",
+        "x": 60,
+        "y": 4,
+        "width": 38,
+        "height": 92
+      },
+      {
+        "role": "rail",
+        "x": 106,
+        "y": 4,
+        "width": 3,
+        "height": 92
+      },
+      {
+        "role": "core",
+        "x": 117,
+        "y": 4,
+        "width": 56,
+        "height": 56
+      },
+      {
+        "role": "body",
+        "x": 4,
+        "y": 112,
+        "width": 100,
+        "height": 48
+      },
+      {
+        "role": "end",
+        "x": 112,
+        "y": 112,
+        "width": 48,
+        "height": 48
+      },
+      {
+        "role": "panel",
+        "x": 168,
+        "y": 112,
+        "width": 46,
+        "height": 46
+      },
+      {
+        "role": "edge",
+        "x": 222,
+        "y": 112,
+        "width": 4,
+        "height": 46
+      },
+      {
+        "role": "rail",
+        "x": 4,
+        "y": 168,
+        "width": 92,
+        "height": 38
+      },
+      {
+        "role": "rail",
+        "x": 104,
+        "y": 168,
+        "width": 3,
+        "height": 38
+      },
+      {
+        "role": "edge",
+        "x": 115,
+        "y": 168,
+        "width": 46,
+        "height": 4
+      },
+      {
+        "role": "rail",
+        "x": 4,
+        "y": 214,
+        "width": 92,
+        "height": 3
+      },
+      {
+        "role": "rail",
+        "x": 104,
+        "y": 214,
+        "width": 38,
+        "height": 3
+      }
+    ],
+    "core_quads": 36,
+    "arm_quads": 26
+  },
+  "reinforced_energy_pipe": {
+    "atlas_size": 256,
+    "texels_per_model_unit": 16,
+    "islands": [
+      {
+        "role": "body",
+        "x": 4,
+        "y": 4,
+        "width": 48,
+        "height": 100
+      },
+      {
+        "role": "rail",
+        "x": 60,
+        "y": 4,
+        "width": 38,
+        "height": 92
+      },
+      {
+        "role": "rail",
+        "x": 106,
+        "y": 4,
+        "width": 3,
+        "height": 92
+      },
+      {
+        "role": "core",
+        "x": 117,
+        "y": 4,
+        "width": 56,
+        "height": 56
+      },
+      {
+        "role": "body",
+        "x": 4,
+        "y": 112,
+        "width": 100,
+        "height": 48
+      },
+      {
+        "role": "end",
+        "x": 112,
+        "y": 112,
+        "width": 48,
+        "height": 48
+      },
+      {
+        "role": "panel",
+        "x": 168,
+        "y": 112,
+        "width": 46,
+        "height": 46
+      },
+      {
+        "role": "edge",
+        "x": 222,
+        "y": 112,
+        "width": 4,
+        "height": 46
+      },
+      {
+        "role": "rail",
+        "x": 4,
+        "y": 168,
+        "width": 92,
+        "height": 38
+      },
+      {
+        "role": "rail",
+        "x": 104,
+        "y": 168,
+        "width": 3,
+        "height": 38
+      },
+      {
+        "role": "edge",
+        "x": 115,
+        "y": 168,
+        "width": 46,
+        "height": 4
+      },
+      {
+        "role": "rail",
+        "x": 4,
+        "y": 214,
+        "width": 92,
+        "height": 3
+      },
+      {
+        "role": "rail",
+        "x": 104,
+        "y": 214,
+        "width": 38,
+        "height": 3
+      }
+    ],
+    "core_quads": 36,
+    "arm_quads": 26
+  },
+  "high_voltage_energy_pipe": {
+    "atlas_size": 256,
+    "texels_per_model_unit": 16,
+    "islands": [
+      {
+        "role": "body",
+        "x": 4,
+        "y": 4,
+        "width": 48,
+        "height": 100
+      },
+      {
+        "role": "rail",
+        "x": 60,
+        "y": 4,
+        "width": 38,
+        "height": 92
+      },
+      {
+        "role": "rail",
+        "x": 106,
+        "y": 4,
+        "width": 3,
+        "height": 92
+      },
+      {
+        "role": "core",
+        "x": 117,
+        "y": 4,
+        "width": 56,
+        "height": 56
+      },
+      {
+        "role": "body",
+        "x": 4,
+        "y": 112,
+        "width": 100,
+        "height": 48
+      },
+      {
+        "role": "end",
+        "x": 112,
+        "y": 112,
+        "width": 48,
+        "height": 48
+      },
+      {
+        "role": "panel",
+        "x": 168,
+        "y": 112,
+        "width": 46,
+        "height": 46
+      },
+      {
+        "role": "edge",
+        "x": 222,
+        "y": 112,
+        "width": 4,
+        "height": 46
+      },
+      {
+        "role": "rail",
+        "x": 4,
+        "y": 168,
+        "width": 92,
+        "height": 38
+      },
+      {
+        "role": "rail",
+        "x": 104,
+        "y": 168,
+        "width": 3,
+        "height": 38
+      },
+      {
+        "role": "edge",
+        "x": 115,
+        "y": 168,
+        "width": 46,
+        "height": 4
+      },
+      {
+        "role": "rail",
+        "x": 4,
+        "y": 214,
+        "width": 92,
+        "height": 3
+      },
+      {
+        "role": "rail",
+        "x": 104,
+        "y": 214,
+        "width": 38,
+        "height": 3
+      }
+    ],
+    "core_quads": 36,
+    "arm_quads": 26
+  },
+  "basic_fluid_pipe": {
+    "atlas_size": 256,
+    "texels_per_model_unit": 16,
+    "islands": [
+      {
+        "role": "core",
+        "x": 4,
+        "y": 4,
+        "width": 72,
+        "height": 72
+      },
+      {
+        "role": "end",
+        "x": 84,
+        "y": 4,
+        "width": 72,
+        "height": 72
+      },
+      {
+        "role": "rail",
+        "x": 164,
+        "y": 4,
+        "width": 12,
+        "height": 72
+      },
+      {
+        "role": "edge",
+        "x": 184,
+        "y": 4,
+        "width": 68,
+        "height": 68
+      },
+      {
+        "role": "body",
+        "x": 4,
+        "y": 84,
+        "width": 56,
+        "height": 68
+      },
+      {
+        "role": "edge",
+        "x": 68,
+        "y": 84,
+        "width": 12,
+        "height": 68
+      },
+      {
+        "role": "body",
+        "x": 88,
+        "y": 84,
+        "width": 68,
+        "height": 56
+      },
+      {
+        "role": "rail",
+        "x": 164,
+        "y": 84,
+        "width": 72,
+        "height": 12
+      },
+      {
+        "role": "edge",
+        "x": 4,
+        "y": 160,
+        "width": 68,
+        "height": 12
+      }
+    ],
+    "core_quads": 6,
+    "arm_quads": 15
+  },
+  "reinforced_fluid_pipe": {
+    "atlas_size": 256,
+    "texels_per_model_unit": 16,
+    "islands": [
+      {
+        "role": "end",
+        "x": 4,
+        "y": 4,
+        "width": 80,
+        "height": 80
+      },
+      {
+        "role": "rail",
+        "x": 92,
+        "y": 4,
+        "width": 16,
+        "height": 80
+      },
+      {
+        "role": "core",
+        "x": 116,
+        "y": 4,
+        "width": 76,
+        "height": 76
+      },
+      {
+        "role": "end",
+        "x": 4,
+        "y": 92,
+        "width": 76,
+        "height": 76
+      },
+      {
+        "role": "panel",
+        "x": 88,
+        "y": 92,
+        "width": 12,
+        "height": 76
+      },
+      {
+        "role": "edge",
+        "x": 108,
+        "y": 92,
+        "width": 72,
+        "height": 72
+      },
+      {
+        "role": "edge",
+        "x": 188,
+        "y": 92,
+        "width": 14,
+        "height": 72
+      },
+      {
+        "role": "body",
+        "x": 210,
+        "y": 92,
+        "width": 24,
+        "height": 64
+      },
+      {
+        "role": "body",
+        "x": 4,
+        "y": 176,
+        "width": 64,
+        "height": 24
+      },
+      {
+        "role": "rail",
+        "x": 76,
+        "y": 176,
+        "width": 80,
+        "height": 16
+      },
+      {
+        "role": "edge",
+        "x": 164,
+        "y": 176,
+        "width": 72,
+        "height": 14
+      },
+      {
+        "role": "panel",
+        "x": 4,
+        "y": 208,
+        "width": 76,
+        "height": 12
+      }
+    ],
+    "core_quads": 6,
+    "arm_quads": 25
+  },
+  "high_pressure_fluid_pipe": {
+    "atlas_size": 512,
+    "texels_per_model_unit": 16,
+    "islands": [
+      {
+        "role": "core",
+        "x": 4,
+        "y": 4,
+        "width": 80,
+        "height": 80
+      },
+      {
+        "role": "edge",
+        "x": 92,
+        "y": 4,
+        "width": 80,
+        "height": 80
+      },
+      {
+        "role": "end",
+        "x": 180,
+        "y": 4,
+        "width": 80,
+        "height": 80
+      },
+      {
+        "role": "panel",
+        "x": 268,
+        "y": 4,
+        "width": 20,
+        "height": 80
+      },
+      {
+        "role": "edge",
+        "x": 296,
+        "y": 4,
+        "width": 16,
+        "height": 80
+      },
+      {
+        "role": "end",
+        "x": 320,
+        "y": 4,
+        "width": 76,
+        "height": 76
+      },
+      {
+        "role": "rail",
+        "x": 404,
+        "y": 4,
+        "width": 12,
+        "height": 76
+      },
+      {
+        "role": "body",
+        "x": 424,
+        "y": 4,
+        "width": 40,
+        "height": 68
+      },
+      {
+        "role": "body",
+        "x": 4,
+        "y": 92,
+        "width": 68,
+        "height": 40
+      },
+      {
+        "role": "panel",
+        "x": 80,
+        "y": 92,
+        "width": 80,
+        "height": 20
+      },
+      {
+        "role": "edge",
+        "x": 168,
+        "y": 92,
+        "width": 80,
+        "height": 16
+      },
+      {
+        "role": "rail",
+        "x": 256,
+        "y": 92,
+        "width": 76,
+        "height": 12
+      }
+    ],
+    "core_quads": 6,
+    "arm_quads": 20
+  }
+}

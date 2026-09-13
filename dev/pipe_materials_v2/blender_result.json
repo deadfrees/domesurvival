@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "blender": "5.2.1 LTS",
+  "masters": 6,
+  "geometry_source": "unchanged baseline JSON frames",
+  "atlases": 6
+}

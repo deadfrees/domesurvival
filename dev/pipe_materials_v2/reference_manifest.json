@@ -1,0 +1,74 @@
+[
+  {
+    "jar": "Mekanism-1.20.1-10.4.16.80.jar",
+    "entry": "assets/mekanism/textures/block/models/multipart/basic_universal_cable.png",
+    "png_dimensions": [
+      32,
+      32
+    ],
+    "sha256": "75574ce3615213f284b261a3f039e4f298a3f9224a45340d6fc9ac5e7d2dc37b"
+  },
+  {
+    "jar": "Mekanism-1.20.1-10.4.16.80.jar",
+    "entry": "assets/mekanism/textures/block/models/multipart/basic_mechanical_pipe.png",
+    "png_dimensions": [
+      16,
+      16
+    ],
+    "sha256": "7c78f697c62ff1908920a0d35ef24140994126452f4c7142488e7b6eaaaee80d"
+  },
+  {
+    "jar": "EnderIO-1.20.1-6.2.18-beta-all.jar",
+    "entry": "assets/enderio/textures/block/conduit/energy_conduit.png",
+    "png_dimensions": [
+      64,
+      64
+    ],
+    "sha256": "99f4d32607ef58f53a62d41eb9613f878b95210d6391611f3e7f24bcb83f2e81"
+  },
+  {
+    "jar": "EnderIO-1.20.1-6.2.18-beta-all.jar",
+    "entry": "assets/enderio/textures/block/conduit/pressurized_fluid_conduit.png",
+    "png_dimensions": [
+      64,
+      64
+    ],
+    "sha256": "6f597ab324793e19413b7d038872e9f10f6ddb32a74bfd4f25f2013a255160b3"
+  },
+  {
+    "jar": "thermal_dynamics-1.20.1-11.0.1.23.jar",
+    "entry": "assets/thermal/textures/block/ducts/energy_duct.png",
+    "png_dimensions": [
+      32,
+      32
+    ],
+    "sha256": "7e3aa6a14a214486ee113e919d9a5951de9c9b22c34fd0329a3971577f6dc50d"
+  },
+  {
+    "jar": "thermal_dynamics-1.20.1-11.0.1.23.jar",
+    "entry": "assets/thermal/textures/block/ducts/fluid_duct.png",
+    "png_dimensions": [
+      16,
+      16
+    ],
+    "sha256": "9a9137e5b80d321edfdeb7e2b7b433293484aafb539548434b1af26dd8596dda"
+  },
+  {
+    "jar": "thermal_dynamics-1.20.1-11.0.1.23.jar",
+    "entry": "assets/thermal/textures/block/ducts/fluid_duct_connector.png",
+    "png_dimensions": [
+      32,
+      32
+    ],
+    "sha256": "1618c0b0ee24e636cd88af6f2d6fce15f84a23b0c7a299140dd0614fbf8033b6"
+  },
+  {
+    "jar": "ImmersiveEngineering-1.20.1-10.2.0-183.jar",
+    "entry": "assets/immersiveengineering/textures/block/metal_device/fluid_pipe.png",
+    "png_dimensions": [
+      32,
+      32
+    ],
+    "sha256": "1031f354c3b278e49f4fad58b58a9cde69f8479b8a331337402412be6b476336"
+  }
+]

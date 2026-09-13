@@ -1,12 +1,12 @@
 {
   "ambientocclusion": true,
   "textures": {
-    "body": "domesurvival:block/fluid_pipe/basic_body",
-    "core": "domesurvival:block/fluid_pipe/basic_core",
-    "panel": "domesurvival:block/fluid_pipe/basic_panel",
-    "rail": "domesurvival:block/fluid_pipe/basic_rail",
-    "end": "domesurvival:block/fluid_pipe/basic_end",
-    "edge": "domesurvival:block/fluid_pipe/basic_edge",
+    "body": "domesurvival:block/pipe_materials_v2/basic_fluid_pipe",
+    "core": "domesurvival:block/pipe_materials_v2/basic_fluid_pipe",
+    "panel": "domesurvival:block/pipe_materials_v2/basic_fluid_pipe",
+    "rail": "domesurvival:block/pipe_materials_v2/basic_fluid_pipe",
+    "end": "domesurvival:block/pipe_materials_v2/basic_fluid_pipe",
+    "edge": "domesurvival:block/pipe_materials_v2/basic_fluid_pipe",
     "particle": "domesurvival:block/fluid_pipe/basic_body"
   },
   "elements": [
@@ -26,57 +26,55 @@
         "north": {
           "texture": "#end",
           "uv": [
-            0,
-            0,
-            9.0,
-            9.0
+            5.25,
+            0.25,
+            9.75,
+            4.75
           ]
         },
         "south": {
           "texture": "#end",
           "uv": [
-            0,
-            0,
-            9.0,
-            9.0
+            5.25,
+            0.25,
+            9.75,
+            4.75
           ]
         },
         "east": {
           "texture": "#rail",
           "uv": [
-            0,
-            0,
-            9.0,
-            1.5
-          ],
-          "rotation": 90
+            10.25,
+            0.25,
+            11.0,
+            4.75
+          ]
         },
         "west": {
           "texture": "#rail",
           "uv": [
-            0,
-            0,
-            9.0,
-            1.5
-          ],
-          "rotation": 90
+            10.25,
+            0.25,
+            11.0,
+            4.75
+          ]
         },
         "up": {
           "texture": "#rail",
           "uv": [
-            0,
-            0,
-            9.0,
-            1.5
+            10.25,
+            5.25,
+            14.75,
+            6.0
           ]
         },
         "down": {
           "texture": "#rail",
           "uv": [
-            0,
-            0,
-            9.0,
-            1.5
+            10.25,
+            5.25,
+            14.75,
+            6.0
           ]
         }
       }
@@ -97,39 +95,37 @@
         "east": {
           "texture": "#body",
           "uv": [
-            0,
-            0,
-            7.0,
-            8.5
-          ],
-          "rotation": 90
+            5.5,
+            5.25,
+            9.75,
+            8.75
+          ]
         },
         "west": {
           "texture": "#body",
           "uv": [
-            0,
-            0,
-            7.0,
-            8.5
-          ],
-          "rotation": 90
+            5.5,
+            5.25,
+            9.75,
+            8.75
+          ]
         },
         "up": {
           "texture": "#body",
           "uv": [
-            0,
-            0,
-            7.0,
-            8.5
+            0.25,
+            5.25,
+            3.75,
+            9.5
           ]
         },
         "down": {
           "texture": "#body",
           "uv": [
-            0,
-            0,
-            7.0,
-            8.5
+            0.25,
+            5.25,
+            3.75,
+            9.5
           ]
         }
       }
@@ -150,48 +146,46 @@
         "north": {
           "texture": "#edge",
           "uv": [
-            0,
-            0,
-            8.5,
-            8.5
+            11.5,
+            0.25,
+            15.75,
+            4.5
           ]
         },
         "east": {
           "texture": "#edge",
           "uv": [
-            0,
-            0,
-            8.5,
-            1.5
-          ],
-          "rotation": 90
+            4.25,
+            5.25,
+            5.0,
+            9.5
+          ]
         },
         "west": {
           "texture": "#edge",
           "uv": [
-            0,
-            0,
-            8.5,
-            1.5
-          ],
-          "rotation": 90
+            4.25,
+            5.25,
+            5.0,
+            9.5
+          ]
         },
         "up": {
           "texture": "#edge",
           "uv": [
-            0,
-            0,
-            8.5,
-            1.5
+            0.25,
+            10.0,
+            4.5,
+            10.75
           ]
         },
         "down": {
           "texture": "#edge",
           "uv": [
-            0,
-            0,
-            8.5,
-            1.5
+            0.25,
+            10.0,
+            4.5,
+            10.75
           ]
         }
       }

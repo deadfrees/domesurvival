@@ -1,0 +1,127 @@
+{
+  "status": "PASS",
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "e332dbe6dcaeb61be355ad6e67a0ea97d963634fe68be20d4d30ad9ada265362",
+  "bytes": 179076656,
+  "resources": 24,
+  "static_checks": 2516,
+  "runtime_checks": 164,
+  "checks": [
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/basic_energy_pipe_arm.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/basic_energy_pipe_core.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/basic_energy_pipe_inventory.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/basic_fluid_pipe_arm.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/basic_fluid_pipe_core.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/basic_fluid_pipe_inventory.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_pressure_fluid_pipe_arm.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_pressure_fluid_pipe_core.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_pressure_fluid_pipe_inventory.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_voltage_energy_pipe_arm.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_voltage_energy_pipe_core.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_voltage_energy_pipe_inventory.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_energy_pipe_arm.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_energy_pipe_core.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_energy_pipe_inventory.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_fluid_pipe_arm.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_fluid_pipe_core.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_fluid_pipe_inventory.json matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/pipe_materials_v2/basic_energy_pipe.png matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/pipe_materials_v2/basic_fluid_pipe.png matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/pipe_materials_v2/high_pressure_fluid_pipe.png matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/pipe_materials_v2/high_voltage_energy_pipe.png matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/pipe_materials_v2/reinforced_energy_pipe.png matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/pipe_materials_v2/reinforced_fluid_pipe.png matches built JAR"
+    },
+    {
+      "pass": true,
+      "check": "Test-only material probe excluded"
+    },
+    {
+      "pass": true,
+      "check": "Prior fluid probe excluded"
+    },
+    {
+      "pass": true,
+      "check": "Production build succeeded"
+    },
+    {
+      "pass": true,
+      "check": "Final runtime review passed without failed checks"
+    },
+    {
+      "pass": true,
+      "check": "Frame, atlas and saved master validation passed"
+    }
+  ]
+}

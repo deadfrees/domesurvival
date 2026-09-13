@@ -1,0 +1,83 @@
+{
+  "ambientocclusion": true,
+  "textures": {
+    "body": "domesurvival:block/fluid_pipe/high_pressure_body",
+    "core": "domesurvival:block/fluid_pipe/high_pressure_core",
+    "panel": "domesurvival:block/fluid_pipe/high_pressure_panel",
+    "rail": "domesurvival:block/fluid_pipe/high_pressure_rail",
+    "end": "domesurvival:block/fluid_pipe/high_pressure_end",
+    "edge": "domesurvival:block/fluid_pipe/high_pressure_edge",
+    "particle": "domesurvival:block/fluid_pipe/high_pressure_body"
+  },
+  "elements": [
+    {
+      "name": "junction_body",
+      "from": [
+        5.5,
+        5.5,
+        5.5
+      ],
+      "to": [
+        10.5,
+        10.5,
+        10.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        },
+        "south": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        },
+        "east": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        },
+        "west": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        },
+        "up": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        },
+        "down": {
+          "texture": "#core",
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ]
+        }
+      }
+    }
+  ]
+}
