@@ -35,6 +35,7 @@ import org.jetbrains.annotations.Nullable;
 public final class CoalGeneratorBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
     public static final int ENERGY_CAPACITY = 50_000;
     public static final int GENERATION_PER_TICK = 64;
+    public static final int MAX_INPUT_PER_OPERATION = 128;
     public static final int MAX_OUTPUT_PER_TICK = 128;
 
     public static final int DATA_ENERGY = 0;
@@ -64,7 +65,7 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
     };
 
     private final MachineEnergyStorage energyStorage =
-            new MachineEnergyStorage(ENERGY_CAPACITY, 0, MAX_OUTPUT_PER_TICK);
+            new MachineEnergyStorage(ENERGY_CAPACITY, MAX_INPUT_PER_OPERATION, MAX_OUTPUT_PER_TICK);
 
     private final IItemHandler itemInputView = new IItemHandler() {
         @Override public int getSlots() { return 1; }
@@ -77,37 +78,26 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
         @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return inventory.isItemValid(slot, stack); }
     };
 
-    private final IItemHandler itemOutputView = new IItemHandler() {
-        @Override public int getSlots() { return 1; }
-        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
-        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) { return stack; }
-        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            ItemStack stack = inventory.getStackInSlot(slot);
-            if (stack.isEmpty() || isValidFuel(stack)) {
-                return ItemStack.EMPTY;
-            }
-            return inventory.extractItem(slot, amount, simulate);
+    private final IEnergyStorage energyInputView = new IEnergyStorage() {
+        @Override public int receiveEnergy(int maxReceive, boolean simulate) {
+            int received = energyStorage.receiveEnergy(maxReceive, simulate);
+            if (!simulate && received > 0) setChanged();
+            return received;
         }
-        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
-        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return false; }
-    };
-
-    private final IItemHandler itemCombinedView = new IItemHandler() {
-        @Override public int getSlots() { return 1; }
-        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
-        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            return itemInputView.insertItem(slot, stack, simulate);
-        }
-        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return itemOutputView.extractItem(slot, amount, simulate);
-        }
-        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
-        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return inventory.isItemValid(slot, stack); }
+        @Override public int extractEnergy(int maxExtract, boolean simulate) { return 0; }
+        @Override public int getEnergyStored() { return energyStorage.getEnergyStored(); }
+        @Override public int getMaxEnergyStored() { return energyStorage.getMaxEnergyStored(); }
+        @Override public boolean canExtract() { return false; }
+        @Override public boolean canReceive() { return true; }
     };
 
     private final IEnergyStorage energyOutputView = new IEnergyStorage() {
         @Override public int receiveEnergy(int maxReceive, boolean simulate) { return 0; }
-        @Override public int extractEnergy(int maxExtract, boolean simulate) { return energyStorage.extractEnergy(maxExtract, simulate); }
+        @Override public int extractEnergy(int maxExtract, boolean simulate) {
+            int extracted = energyStorage.extractEnergy(maxExtract, simulate);
+            if (!simulate && extracted > 0) setChanged();
+            return extracted;
+        }
         @Override public int getEnergyStored() { return energyStorage.getEnergyStored(); }
         @Override public int getMaxEnergyStored() { return energyStorage.getMaxEnergyStored(); }
         @Override public boolean canExtract() { return true; }
@@ -115,8 +105,7 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
     };
 
     private LazyOptional<IItemHandler> itemInputCapability = LazyOptional.of(() -> itemInputView);
-    private LazyOptional<IItemHandler> itemOutputCapability = LazyOptional.of(() -> itemOutputView);
-    private LazyOptional<IItemHandler> itemCombinedCapability = LazyOptional.of(() -> itemCombinedView);
+    private LazyOptional<IEnergyStorage> energyInputCapability = LazyOptional.of(() -> energyInputView);
     private LazyOptional<IEnergyStorage> energyOutputCapability = LazyOptional.of(() -> energyOutputView);
 
     private int burnTime;
@@ -344,13 +333,16 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == null) return itemCombinedCapability.cast();
+            if (side == null) return itemInputCapability.cast();
             if (isFrontWorldSide(side)) return LazyOptional.empty();
             if (sideConfig.allowsInput(side)) return itemInputCapability.cast();
-            if (sideConfig.allowsOutput(side)) return itemOutputCapability.cast();
+            // This generator has no item products: orange sockets expose energy only.
             return LazyOptional.empty();
         }
         if (cap == ForgeCapabilities.ENERGY) {
+            if (side != null && !isFrontWorldSide(side) && sideConfig.allowsInput(side)) {
+                return energyInputCapability.cast();
+            }
             if (side == null || (!isFrontWorldSide(side) && sideConfig.allowsOutput(side))) {
                 return energyOutputCapability.cast();
             }
@@ -361,10 +353,10 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
 
     private void refreshCapabilities() {
         itemInputCapability.invalidate();
-        itemOutputCapability.invalidate();
+        energyInputCapability.invalidate();
         energyOutputCapability.invalidate();
         itemInputCapability = LazyOptional.of(() -> itemInputView);
-        itemOutputCapability = LazyOptional.of(() -> itemOutputView);
+        energyInputCapability = LazyOptional.of(() -> energyInputView);
         energyOutputCapability = LazyOptional.of(() -> energyOutputView);
     }
 
@@ -372,8 +364,7 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
     public void invalidateCaps() {
         super.invalidateCaps();
         itemInputCapability.invalidate();
-        itemOutputCapability.invalidate();
-        itemCombinedCapability.invalidate();
+        energyInputCapability.invalidate();
         energyOutputCapability.invalidate();
     }
 
@@ -381,8 +372,7 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
     public void reviveCaps() {
         super.reviveCaps();
         itemInputCapability = LazyOptional.of(() -> itemInputView);
-        itemOutputCapability = LazyOptional.of(() -> itemOutputView);
-        itemCombinedCapability = LazyOptional.of(() -> itemCombinedView);
+        energyInputCapability = LazyOptional.of(() -> energyInputView);
         energyOutputCapability = LazyOptional.of(() -> energyOutputView);
     }
 
