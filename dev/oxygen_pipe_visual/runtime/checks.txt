@@ -1,0 +1,69 @@
+PASS Tier 0 still has no ticking block entity
+PASS Tier 1 still has no ticking block entity
+PASS Tier 2 still has no ticking block entity
+PASS Tier 0 age 5 throughput expected 30 actual 30
+PASS Tier 0 oxygen conserved at age 5
+PASS Tier 1 age 5 throughput expected 60 actual 60
+PASS Tier 1 oxygen conserved at age 5
+PASS Tier 2 age 5 throughput expected 120 actual 120
+PASS Tier 2 oxygen conserved at age 5
+PASS Tier 0 wrench disconnect survives NBT round trip
+PASS Tier 1 wrench disconnect survives NBT round trip
+PASS Tier 2 wrench disconnect survives NBT round trip
+PASS Tier 0 age 25 throughput expected 0 actual 0
+PASS Tier 0 oxygen conserved at age 25
+PASS Tier 1 age 25 throughput expected 0 actual 0
+PASS Tier 1 oxygen conserved at age 25
+PASS Tier 2 age 25 throughput expected 0 actual 0
+PASS Tier 2 oxygen conserved at age 25
+PASS Tier 0 age 35 throughput expected 30 actual 30
+PASS Tier 0 oxygen conserved at age 35
+PASS Tier 1 age 35 throughput expected 60 actual 60
+PASS Tier 1 oxygen conserved at age 35
+PASS Tier 2 age 35 throughput expected 120 actual 120
+PASS Tier 2 oxygen conserved at age 35
+PASS Tier 0 age 45 throughput expected 30 actual 30
+PASS Tier 0 oxygen conserved at age 45
+PASS Tier 1 age 45 throughput expected 30 actual 30
+PASS Tier 1 oxygen conserved at age 45
+PASS Tier 2 age 45 throughput expected 30 actual 30
+PASS Tier 2 oxygen conserved at age 45
+PASS Tier 0 age 55 throughput expected 30 actual 30
+PASS Tier 0 oxygen conserved at age 55
+PASS Tier 1 age 55 throughput expected 60 actual 60
+PASS Tier 1 oxygen conserved at age 55
+PASS Tier 2 age 55 throughput expected 120 actual 120
+PASS Tier 2 oxygen conserved at age 55
+PASS Tier 0 age 65 throughput expected 0 actual 0
+PASS Tier 0 oxygen conserved at age 65
+PASS Tier 1 age 65 throughput expected 0 actual 0
+PASS Tier 1 oxygen conserved at age 65
+PASS Tier 2 age 65 throughput expected 0 actual 0
+PASS Tier 2 oxygen conserved at age 65
+PASS Tier 0 age 75 throughput expected 30 actual 30
+PASS Tier 0 oxygen conserved at age 75
+PASS Tier 1 age 75 throughput expected 60 actual 60
+PASS Tier 1 oxygen conserved at age 75
+PASS Tier 2 age 75 throughput expected 120 actual 120
+PASS Tier 2 oxygen conserved at age 75
+PASS 192 connection combinations: correct glass and metal quads, valid sprites: 192
+PASS 192 connection combinations reach the correct block faces, including vertical: 192
+PASS 192 collision shapes match thin 2.5px collar envelope: 192
+PASS Inventory model tier 0
+PASS Inventory model tier 1
+PASS Inventory model tier 2
+PASS Real oxygen gas visibility expected true, active paths 3
+Screenshot 01_three_glass_tiers
+Screenshot tier0_glass
+Screenshot tier1_glass
+Screenshot tier2_glass
+Screenshot 02_vertical_junctions
+Screenshot 03_inventory
+Screenshot 04_in_hand
+PASS Real oxygen gas visibility expected true, active paths 3
+Screenshot 05_active_gas
+PASS Real oxygen gas visibility expected false, active paths 0
+Screenshot 06_stopped_gas
+PASS Real oxygen gas visibility expected true, active paths 3
+Screenshot 07_resumed_gas
+RESULT PASS failures=0

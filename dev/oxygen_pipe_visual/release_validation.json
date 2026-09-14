@@ -1,0 +1,138 @@
+{
+  "pass": true,
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "9daaf443ad65999db899f56033461ed697403f97170d48e6487090f45a10dc79",
+  "bytes": 179476715,
+  "static_checks": 1263,
+  "runtime_checks": 58,
+  "checks": [
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/blockstates/high_flow_oxygen_pipe.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/blockstates/oxygen_pipe.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/blockstates/reinforced_oxygen_pipe.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_flow_oxygen_pipe_connection.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_flow_oxygen_pipe_core.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/high_flow_oxygen_pipe_inventory.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/oxygen_pipe_connection.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/oxygen_pipe_core.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/oxygen_pipe_inventory.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_oxygen_pipe_connection.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_oxygen_pipe_core.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/reinforced_oxygen_pipe_inventory.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/high_flow_oxygen_pipe.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/high_flow_oxygen_pipe_glass.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/high_flow_oxygen_pipe_metal.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/high_flow_oxygen_pipe_particle.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/oxygen_gas_flow.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/oxygen_pipe.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/oxygen_pipe_glass.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/oxygen_pipe_metal.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/oxygen_pipe_particle.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/reinforced_oxygen_pipe.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/reinforced_oxygen_pipe_glass.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/reinforced_oxygen_pipe_metal.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/oxygen_glass/reinforced_oxygen_pipe_particle.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "No development probes in release"
+    },
+    {
+      "pass": true,
+      "check": "OxygenFlowNetwork present in release"
+    },
+    {
+      "pass": true,
+      "check": "OxygenGasFlowRenderer present in release"
+    },
+    {
+      "pass": true,
+      "check": "Production build successful"
+    },
+    {
+      "pass": true,
+      "check": "Final runtime review passed"
+    },
+    {
+      "pass": true,
+      "check": "Geometry, alpha masks, references and scope validated"
+    },
+    {
+      "pass": true,
+      "check": "85 production mod JARs restored"
+    }
+  ]
+}

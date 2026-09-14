@@ -1,8 +1,12 @@
 {
   "multipart": [
     {
+      "when": {
+        "north": "false"
+      },
       "apply": {
-        "model": "domesurvival:block/high_flow_oxygen_pipe_core"
+        "model": "domesurvival:block/high_flow_oxygen_pipe_core",
+        "uvlock": false
       }
     },
     {
@@ -11,7 +15,17 @@
       },
       "apply": {
         "model": "domesurvival:block/high_flow_oxygen_pipe_connection",
-        "uvlock": true
+        "uvlock": false
+      }
+    },
+    {
+      "when": {
+        "east": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/high_flow_oxygen_pipe_core",
+        "y": 90,
+        "uvlock": false
       }
     },
     {
@@ -21,7 +35,17 @@
       "apply": {
         "model": "domesurvival:block/high_flow_oxygen_pipe_connection",
         "y": 90,
-        "uvlock": true
+        "uvlock": false
+      }
+    },
+    {
+      "when": {
+        "south": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/high_flow_oxygen_pipe_core",
+        "y": 180,
+        "uvlock": false
       }
     },
     {
@@ -31,7 +55,17 @@
       "apply": {
         "model": "domesurvival:block/high_flow_oxygen_pipe_connection",
         "y": 180,
-        "uvlock": true
+        "uvlock": false
+      }
+    },
+    {
+      "when": {
+        "west": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/high_flow_oxygen_pipe_core",
+        "y": 270,
+        "uvlock": false
       }
     },
     {
@@ -41,7 +75,17 @@
       "apply": {
         "model": "domesurvival:block/high_flow_oxygen_pipe_connection",
         "y": 270,
-        "uvlock": true
+        "uvlock": false
+      }
+    },
+    {
+      "when": {
+        "up": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/high_flow_oxygen_pipe_core",
+        "x": 270,
+        "uvlock": false
       }
     },
     {
@@ -51,7 +95,17 @@
       "apply": {
         "model": "domesurvival:block/high_flow_oxygen_pipe_connection",
         "x": 270,
-        "uvlock": true
+        "uvlock": false
+      }
+    },
+    {
+      "when": {
+        "down": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/high_flow_oxygen_pipe_core",
+        "x": 90,
+        "uvlock": false
       }
     },
     {
@@ -61,7 +115,7 @@
       "apply": {
         "model": "domesurvival:block/high_flow_oxygen_pipe_connection",
         "x": 90,
-        "uvlock": true
+        "uvlock": false
       }
     }
   ]

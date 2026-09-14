@@ -1,58 +1,912 @@
 {
-  "credit": "Created for GOTEICRAFT",
-  "ambientocclusion": true,
-  "gui_light": "side",
+  "loader": "forge:composite",
+  "ambientocclusion": false,
   "textures": {
-    "particle": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_metal",
-    "metal": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_metal",
-    "seal": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_seal",
-    "oxygen": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_oxygen",
-    "panel": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_panel",
-    "bolts": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_bolts"
+    "glass": "domesurvival:block/oxygen_glass/high_flow_oxygen_pipe",
+    "metal": "domesurvival:block/oxygen_glass/high_flow_oxygen_pipe",
+    "particle": "domesurvival:block/oxygen_glass/high_flow_oxygen_pipe_particle"
   },
-  "elements": [
-    {
-      "from": [
-        5.0,
-        5.0,
-        0.0
-      ],
-      "to": [
-        11.0,
-        11.0,
-        5.0
-      ],
-      "faces": {
-        "east": {
-          "texture": "#metal"
+  "children": {
+    "metal": {
+      "render_type": "minecraft:cutout",
+      "ambientocclusion": false,
+      "textures": {
+        "metal": "domesurvival:block/oxygen_glass/high_flow_oxygen_pipe_metal"
+      },
+      "elements": [
+        {
+          "name": "collar0_left",
+          "from": [
+            6.75,
+            6.75,
+            0.0
+          ],
+          "to": [
+            7,
+            9.25,
+            0.3
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            }
+          }
         },
-        "west": {
-          "texture": "#metal"
+        {
+          "name": "collar0_right",
+          "from": [
+            9,
+            6.75,
+            0.0
+          ],
+          "to": [
+            9.25,
+            9.25,
+            0.3
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            }
+          }
         },
-        "up": {
-          "texture": "#metal"
+        {
+          "name": "collar0_bottom",
+          "from": [
+            7,
+            6.75,
+            0.0
+          ],
+          "to": [
+            9,
+            7,
+            0.3
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            }
+          }
         },
-        "down": {
-          "texture": "#metal"
+        {
+          "name": "collar0_top",
+          "from": [
+            7,
+            9,
+            0.0
+          ],
+          "to": [
+            9,
+            9.25,
+            0.3
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            }
+          }
+        },
+        {
+          "name": "collar1_left",
+          "from": [
+            6.75,
+            6.75,
+            0.48
+          ],
+          "to": [
+            7,
+            9.25,
+            0.78
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            }
+          }
+        },
+        {
+          "name": "collar1_right",
+          "from": [
+            9,
+            6.75,
+            0.48
+          ],
+          "to": [
+            9.25,
+            9.25,
+            0.78
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            }
+          }
+        },
+        {
+          "name": "collar1_bottom",
+          "from": [
+            7,
+            6.75,
+            0.48
+          ],
+          "to": [
+            9,
+            7,
+            0.78
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            }
+          }
+        },
+        {
+          "name": "collar1_top",
+          "from": [
+            7,
+            9,
+            0.48
+          ],
+          "to": [
+            9,
+            9.25,
+            0.78
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            }
+          }
+        },
+        {
+          "name": "collar2_left",
+          "from": [
+            6.75,
+            6.75,
+            0.96
+          ],
+          "to": [
+            7,
+            9.25,
+            1.26
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            }
+          }
+        },
+        {
+          "name": "collar2_right",
+          "from": [
+            9,
+            6.75,
+            0.96
+          ],
+          "to": [
+            9.25,
+            9.25,
+            1.26
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5625,
+                0.25,
+                3.8125,
+                2.75
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                0.25,
+                3.0625,
+                2.75
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                2.75,
+                7.75,
+                3.0,
+                8.0625
+              ]
+            }
+          }
+        },
+        {
+          "name": "collar2_bottom",
+          "from": [
+            7,
+            6.75,
+            0.96
+          ],
+          "to": [
+            9,
+            7,
+            1.26
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            }
+          }
+        },
+        {
+          "name": "collar2_top",
+          "from": [
+            7,
+            9,
+            0.96
+          ],
+          "to": [
+            9,
+            9.25,
+            1.26
+          ],
+          "faces": {
+            "north": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "south": {
+              "texture": "#metal",
+              "uv": [
+                3.5,
+                7.75,
+                5.5,
+                8.0
+              ]
+            },
+            "east": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "west": {
+              "texture": "#metal",
+              "uv": [
+                6.0,
+                7.75,
+                6.3125,
+                8.0
+              ]
+            },
+            "up": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            },
+            "down": {
+              "texture": "#metal",
+              "uv": [
+                0.25,
+                7.75,
+                2.25,
+                8.0625
+              ]
+            }
+          }
         }
-      }
+      ]
     },
-    {
-      "from": [
-        6.05,
-        11.0,
-        0.8
-      ],
-      "to": [
-        9.95,
-        11.12,
-        4.45
-      ],
-      "faces": {
-        "up": {
-          "texture": "#oxygen"
+    "glass": {
+      "render_type": "minecraft:translucent",
+      "ambientocclusion": false,
+      "textures": {
+        "glass": "domesurvival:block/oxygen_glass/high_flow_oxygen_pipe_glass"
+      },
+      "elements": [
+        {
+          "name": "glass_tube",
+          "from": [
+            7,
+            7,
+            0
+          ],
+          "to": [
+            9,
+            9,
+            7
+          ],
+          "faces": {
+            "east": {
+              "texture": "#glass",
+              "uv": [
+                4.3125,
+                0.25,
+                11.3125,
+                2.25
+              ]
+            },
+            "west": {
+              "texture": "#glass",
+              "uv": [
+                4.3125,
+                0.25,
+                11.3125,
+                2.25
+              ]
+            },
+            "up": {
+              "texture": "#glass",
+              "uv": [
+                0.25,
+                0.25,
+                2.25,
+                7.25
+              ]
+            },
+            "down": {
+              "texture": "#glass",
+              "uv": [
+                0.25,
+                0.25,
+                2.25,
+                7.25
+              ]
+            }
+          }
         }
-      }
+      ]
     }
+  },
+  "item_render_order": [
+    "metal",
+    "glass"
   ]
 }

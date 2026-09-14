@@ -1,0 +1,29 @@
+{
+  "oxygen_pipe": {
+    "bore_width": 2,
+    "collar_width": 2.5,
+    "rings": 1,
+    "atlas_size": 256,
+    "transfer_rate": 30,
+    "core_face_quads": 1,
+    "connection_quads": 28
+  },
+  "reinforced_oxygen_pipe": {
+    "bore_width": 2,
+    "collar_width": 2.5,
+    "rings": 2,
+    "atlas_size": 256,
+    "transfer_rate": 60,
+    "core_face_quads": 1,
+    "connection_quads": 52
+  },
+  "high_flow_oxygen_pipe": {
+    "bore_width": 2,
+    "collar_width": 2.5,
+    "rings": 3,
+    "atlas_size": 256,
+    "transfer_rate": 120,
+    "core_face_quads": 1,
+    "connection_quads": 76
+  }
+}

@@ -4,9 +4,9 @@ package com.wasted.domesurvival.forge.machine.oxygen;
  * Throughput and physical width for the three DomeSurvival oxygen pipe tiers.
  */
 public enum OxygenPipeTier {
-    BASIC(120, 5.25D, 10.75D),
-    REINFORCED(240, 4.50D, 11.50D),
-    HIGH_FLOW(480, 3.80D, 12.20D);
+    BASIC(30, 6.75D, 9.25D),
+    REINFORCED(60, 6.75D, 9.25D),
+    HIGH_FLOW(120, 6.75D, 9.25D);
 
     private final int transferRate;
     private final double min;

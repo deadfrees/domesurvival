@@ -1,64 +1,47 @@
 {
-  "credit": "Created for GOTEICRAFT",
-  "ambientocclusion": true,
-  "gui_light": "side",
+  "loader": "forge:composite",
+  "ambientocclusion": false,
   "textures": {
-    "particle": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_metal",
-    "metal": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_metal",
-    "seal": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_seal",
-    "oxygen": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_oxygen",
-    "panel": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_panel",
-    "bolts": "domesurvival:block/oxygen_pipe/high_flow_oxygen_pipe_bolts"
+    "glass": "domesurvival:block/oxygen_glass/high_flow_oxygen_pipe",
+    "metal": "domesurvival:block/oxygen_glass/high_flow_oxygen_pipe",
+    "particle": "domesurvival:block/oxygen_glass/high_flow_oxygen_pipe_particle"
   },
-  "elements": [
-    {
-      "from": [
-        5.0,
-        5.0,
-        5.0
-      ],
-      "to": [
-        11.0,
-        11.0,
-        11.0
-      ],
-      "faces": {
-        "north": {
-          "texture": "#panel"
-        },
-        "east": {
-          "texture": "#panel"
-        },
-        "south": {
-          "texture": "#panel"
-        },
-        "west": {
-          "texture": "#panel"
-        },
-        "up": {
-          "texture": "#panel"
-        },
-        "down": {
-          "texture": "#panel"
+  "children": {
+    "glass": {
+      "render_type": "minecraft:translucent",
+      "ambientocclusion": false,
+      "textures": {
+        "glass": "domesurvival:block/oxygen_glass/high_flow_oxygen_pipe_glass"
+      },
+      "elements": [
+        {
+          "name": "junction_face",
+          "from": [
+            7,
+            7,
+            7
+          ],
+          "to": [
+            9,
+            9,
+            9
+          ],
+          "faces": {
+            "north": {
+              "texture": "#glass",
+              "uv": [
+                11.8125,
+                0.25,
+                13.8125,
+                2.25
+              ]
+            }
+          }
         }
-      }
-    },
-    {
-      "from": [
-        6.05,
-        11.0,
-        6.05
-      ],
-      "to": [
-        9.95,
-        11.12,
-        9.95
-      ],
-      "faces": {
-        "up": {
-          "texture": "#oxygen"
-        }
-      }
+      ]
     }
+  },
+  "item_render_order": [
+    "glass"
   ]
 }

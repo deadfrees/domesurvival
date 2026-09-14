@@ -53,6 +53,8 @@ public final class OxygenPipeTransferService {
 
         Map<BlockPos, Integer> bestPipeLimit = new HashMap<>();
         Map<Endpoint, Integer> endpoints = new HashMap<>();
+        Map<BlockPos, BlockPos> towardsSink = new HashMap<>();
+        Map<Endpoint, BlockPos> visualEndpoints = new HashMap<>();
         ArrayDeque<PathNode> queue = new ArrayDeque<>();
 
         for (Direction direction : Direction.values()) {
@@ -89,6 +91,7 @@ public final class OxygenPipeTransferService {
                 }
                 int pathLimit = Math.min(throughLimit, pipe.getTransferRate());
                 bestPipeLimit.put(neighborPos, pathLimit);
+                towardsSink.put(neighborPos, sinkPos);
                 queue.addLast(new PathNode(neighborPos, pathLimit));
             } else if (level.getBlockEntity(neighborPos) != null) {
                 endpoints.merge(
@@ -141,9 +144,14 @@ public final class OxygenPipeTransferService {
                     if ((previous == null || nextLimit > previous)
                             && (previous != null || bestPipeLimit.size() < MAX_VISITED_PIPES)) {
                         bestPipeLimit.put(neighborPos, nextLimit);
+                        towardsSink.put(neighborPos, node.pos);
                         queue.addLast(new PathNode(neighborPos, nextLimit));
                     }
                 } else if (level.getBlockEntity(neighborPos) != null) {
+                    Endpoint visualEndpoint = new Endpoint(neighborPos, direction.getOpposite());
+                    if (throughLimit > endpoints.getOrDefault(visualEndpoint, -1)) {
+                        visualEndpoints.put(visualEndpoint, node.pos);
+                    }
                     endpoints.merge(
                             new Endpoint(neighborPos, direction.getOpposite()),
                             throughLimit,
@@ -191,6 +199,9 @@ public final class OxygenPipeTransferService {
             int inserted = sink.receiveOxygen(extracted, false);
             movedTotal += inserted;
             remaining -= inserted;
+            if (inserted > 0 && level instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+                OxygenFlowNetwork.send(serverLevel, endpoint.pos, sinkPos, visualEndpoints.get(endpoint), towardsSink);
+            }
         }
 
         return movedTotal;
