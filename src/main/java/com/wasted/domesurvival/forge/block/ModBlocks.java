@@ -77,6 +77,7 @@ public final class ModBlocks {
 
     public static final RegistryObject<Block> COAL_GENERATOR = BLOCKS.register("coal_generator",
             () -> new CoalGeneratorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .noOcclusion()
                     .strength(3.5F, 6.0F)
                     .lightLevel(state -> state.getValue(CoalGeneratorBlock.LIT) ? 8 : 0)));
 

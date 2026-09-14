@@ -1,0 +1,182 @@
+{
+  "pass": true,
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "7c3873f25d02da6683e12da9f79146c982fc6366d046eeed79679401c2230956",
+  "bytes": 179952683,
+  "static_checks": 8415,
+  "runtime_checks": 28,
+  "checks": [
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/blockstates/coal_generator.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_lit.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/item/coal_generator.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/badge.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/coal.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/coal_on.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/coal_on.png.mcmeta matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/dial.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/dial_on.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/flame.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/flame_back.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/flame_back_on.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/flame_back_on.png.mcmeta matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/flame_on.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/flame_on.png.mcmeta matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/particle.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/satin_atlas.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/socket_input.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/socket_output.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/status.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/textures/block/coal_generator_v2/status_on.png matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_input_port_down.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_input_port_east.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_input_port_north.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_input_port_south.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_input_port_up.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_input_port_west.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_inventory.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_output_port_down.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_output_port_east.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_output_port_north.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_output_port_south.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_output_port_up.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "src/main/resources/assets/domesurvival/models/block/coal_generator_output_port_west.json matches JAR"
+    },
+    {
+      "pass": true,
+      "check": "No development probes in release"
+    },
+    {
+      "pass": true,
+      "check": "CoalGeneratorBlock present in release"
+    },
+    {
+      "pass": true,
+      "check": "CoalGeneratorBlockEntity present in release"
+    },
+    {
+      "pass": true,
+      "check": "Production build successful"
+    },
+    {
+      "pass": true,
+      "check": "Final runtime review passed"
+    },
+    {
+      "pass": true,
+      "check": "Geometry, alpha masks, references and scope validated"
+    },
+    {
+      "pass": true,
+      "check": "Front animation changes visible pixels in the real client"
+    },
+    {
+      "pass": true,
+      "check": "85 production mod JARs restored"
+    }
+  ]
+}

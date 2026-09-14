@@ -1,0 +1,39 @@
+PASS Adjacent dirt face retained at recessed generator: down
+PASS Adjacent dirt face retained at recessed generator: up
+PASS Adjacent dirt face retained at recessed generator: north
+PASS Adjacent dirt face retained at recessed generator: south
+PASS Adjacent dirt face retained at recessed generator: west
+PASS Adjacent dirt face retained at recessed generator: east
+PASS Idle generator remains unlit
+PASS Fueled generator uses lit model
+PASS Coal delivered by item pipes starts generator
+PASS Item pipe meets top fuel socket
+PASS Energy pipe meets side output socket
+PASS Real energy reaches buffer through energy pipes
+PASS Front energy capability remains disabled 0
+PASS Top item input preserved 0
+PASS Front energy capability remains disabled 3
+PASS Top item input preserved 3
+PASS Front energy capability remains disabled 7
+PASS Top item input preserved 7
+PASS Output switches off
+PASS OFF removes active connector overlay
+PASS OFF switches to input
+PASS Input activates blue socket
+PASS Configured socket survives NBT round trip
+PASS All 5832 facing/lit/port states have correct quads and valid textures: 5832
+PASS 3D coals and crossed flame layers follow facing and lit state in all 5832 states: 5832
+PASS Recessed model no longer hides neighbouring block faces
+PASS Inventory model valid
+PASS Original full-block collision retained
+Screenshot 01_idle_and_working
+Screenshot 02_working_close
+Screenshot 02b_animated_front
+Screenshot 02c_firebox_depth
+Screenshot 03_connected_energy_and_items
+Screenshot 04_input_socket
+Screenshot 05_four_orientations
+Screenshot 05b_buried_no_missing_faces
+Screenshot 06_inventory
+Screenshot 07_in_hand
+RESULT PASS failures=0

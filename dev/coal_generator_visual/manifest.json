@@ -1,0 +1,17 @@
+{
+  "body_elements": 145,
+  "body_quads": 703,
+  "flame_quads": 20,
+  "firebox_depth": 4.5,
+  "coal_chunks": 10,
+  "port_elements": 7,
+  "port_quads": 27,
+  "atlas": 1024,
+  "pixels_per_model_unit": 16,
+  "bounds": [
+    0,
+    16
+  ],
+  "states": 5832,
+  "production_java_changes": 1
+}

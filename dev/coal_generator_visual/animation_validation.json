@@ -1,0 +1,15 @@
+{
+  "pass": true,
+  "changed_hot_pixels": 2895,
+  "screen_bounds": [
+    696,
+    380,
+    839,
+    514
+  ],
+  "captures": [
+    "02_working_close.png",
+    "02b_animated_front.png"
+  ],
+  "elapsed_game_ticks": 9
+}
