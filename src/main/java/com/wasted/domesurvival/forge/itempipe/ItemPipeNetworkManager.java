@@ -65,6 +65,7 @@ public final class ItemPipeNetworkManager {
         if (state.dirty) rebuild(level, state);
 
         long gameTime = level.getGameTime();
+        ItemPipeTransitData.get(level).tick(level, state.revision);
         for (Network network : state.networks) {
             network.tick(level, gameTime);
         }
@@ -72,6 +73,7 @@ public final class ItemPipeNetworkManager {
 
     private static void rebuild(ServerLevel level, LevelState state) {
         state.dirty = false;
+        state.revision++;
         state.networks.clear();
 
         LongOpenHashSet stale = new LongOpenHashSet();
@@ -159,7 +161,7 @@ public final class ItemPipeNetworkManager {
     }
 
     @org.jetbrains.annotations.Nullable
-    private static BlockPos resolvePipeNeighbor(ServerLevel level, BlockPos pos, Direction direction) {
+    static BlockPos resolvePipeNeighbor(ServerLevel level, BlockPos pos, Direction direction) {
         BlockPos next = pos.relative(direction);
         if (!level.hasChunkAt(next)) return null;
 
@@ -190,8 +192,9 @@ public final class ItemPipeNetworkManager {
     }
 
     @org.jetbrains.annotations.Nullable
-    private static IItemHandler handler(ServerLevel level, Endpoint endpoint) {
+    static IItemHandler handler(ServerLevel level, Endpoint endpoint) {
         BlockPos targetPos = endpoint.pipePos.relative(endpoint.direction);
+        if (!level.hasChunkAt(targetPos)) return null;
         BlockEntity blockEntity = level.getBlockEntity(targetPos);
         if (blockEntity == null) return null;
         IItemHandler sided = blockEntity
@@ -231,10 +234,13 @@ public final class ItemPipeNetworkManager {
             for (int step = 0; step < inputs.size() && remaining > 0; step++) {
                 int index = (sourceCursor + step) % inputs.size();
                 Endpoint source = inputs.get(index);
+                ItemPipeTransitData transit = ItemPipeTransitData.get(level);
+                if (!transit.canEnqueue(source)) continue;
                 IItemHandler sourceHandler = handler(level, source);
                 if (sourceHandler == null) continue;
 
                 for (int slot = 0; slot < sourceHandler.getSlots() && remaining > 0; slot++) {
+                    if (!transit.canEnqueue(source)) break;
                     ItemStack simulated = sourceHandler.extractItem(slot, remaining, true);
                     if (simulated.isEmpty()) continue;
 
@@ -250,24 +256,13 @@ public final class ItemPipeNetworkManager {
                     ItemStack extracted = sourceHandler.extractItem(slot, plan.accepted, false);
                     if (extracted.isEmpty()) continue;
 
-                    IItemHandler sinkHandler = handler(level, plan.route.endpoint);
-                    if (sinkHandler == null) {
+                    // The stack belongs to persistent transit until it reaches the sink.
+                    // Do not insert it now and animate a second, cosmetic copy afterwards.
+                    if (!transit.enqueue(level, source, plan.route.endpoint, plan.route.path, extracted)) {
                         returnRemainder(level, source, sourceHandler, extracted);
                         continue;
                     }
-
-                    ItemStack remainder = insertAcross(sinkHandler, extracted, false);
-                    int moved = extracted.getCount() - remainder.getCount();
-                    if (!remainder.isEmpty()) {
-                        returnRemainder(level, source, sourceHandler, remainder);
-                    }
-
-                    if (moved > 0) {
-                        remaining -= moved;
-                        ItemStack visualStack = extracted.copy();
-                        visualStack.setCount(moved);
-                        queueTravelVisual(level, source, plan.route, visualStack);
-                    }
+                    remaining -= extracted.getCount();
                 }
             }
             sourceCursor = inputs.isEmpty() ? 0 : (sourceCursor + 1) % inputs.size();
@@ -323,7 +318,7 @@ public final class ItemPipeNetworkManager {
         return List.copyOf(result);
     }
 
-    private static ItemStack insertAcross(IItemHandler target, ItemStack stack, boolean simulate) {
+    static ItemStack insertAcross(IItemHandler target, ItemStack stack, boolean simulate) {
         ItemStack remainder = stack.copy();
         for (int slot = 0; slot < target.getSlots() && !remainder.isEmpty(); slot++) {
             remainder = target.insertItem(slot, remainder, simulate);
@@ -331,9 +326,9 @@ public final class ItemPipeNetworkManager {
         return remainder;
     }
 
-    private static void returnRemainder(ServerLevel level, Endpoint source,
+    static void returnRemainder(ServerLevel level, Endpoint source,
                                         IItemHandler sourceHandler, ItemStack remainder) {
-        ItemStack left = insertAcross(sourceHandler, remainder, false);
+        ItemStack left = sourceHandler == null ? remainder.copy() : insertAcross(sourceHandler, remainder, false);
         if (!left.isEmpty()) {
             ItemEntity entity = new ItemEntity(
                     level,
@@ -347,23 +342,7 @@ public final class ItemPipeNetworkManager {
         }
     }
 
-    private static void queueTravelVisual(ServerLevel level, Endpoint source, RouteCandidate route, ItemStack stack) {
-        List<Vec3> points = new ArrayList<>(route.path.size() + 2);
-        points.add(facePoint(source.pipePos, source.direction));
-        for (BlockPos pipePos : route.path) {
-            Vec3 center = Vec3.atCenterOf(pipePos);
-            if (points.isEmpty() || points.get(points.size() - 1).distanceToSqr(center) > 1.0E-6D) {
-                points.add(center);
-            }
-        }
-        points.add(facePoint(route.endpoint.pipePos, route.endpoint.direction));
-
-        if (points.size() >= 2) {
-            ItemPipeVisualNetwork.send(level, points, stack);
-        }
-    }
-
-    private static Vec3 facePoint(BlockPos pipePos, Direction direction) {
+    static Vec3 facePoint(BlockPos pipePos, Direction direction) {
         Vec3 center = Vec3.atCenterOf(pipePos);
         return center.add(
                 direction.getStepX() * 0.46D,
@@ -376,10 +355,11 @@ public final class ItemPipeNetworkManager {
         private final LongOpenHashSet knownPipes = new LongOpenHashSet();
         private final List<Network> networks = new ArrayList<>();
         private boolean dirty = true;
+        private long revision;
     }
 
     private record Component(LongOpenHashSet pipes) { }
-    private record Endpoint(BlockPos pipePos, Direction direction) { }
+    record Endpoint(BlockPos pipePos, Direction direction) { }
     private record RouteKey(long sourcePipe, Item item) { }
     private record RouteCandidate(Endpoint endpoint, List<BlockPos> path) { }
     private record TransferPlan(RouteCandidate route, int accepted) { }

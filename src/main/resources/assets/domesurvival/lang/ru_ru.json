@@ -1,4 +1,5 @@
 {
+  "item.domesurvival.item_pipe.travel_speed": "Скорость движения: %s блок/с",
     "gui.domesurvival.coal_generator.module_capacity":  "50k → 87.5k FE",
     "gui.domesurvival.coal_generator.module_effect":  "Ёмкость буфера: +75%",
     "gui.domesurvival.coal_generator.module_generation":  "Генерация без изменений",

@@ -19,23 +19,27 @@ import java.util.*;
 /** Bounded client-only animation; these are never world item entities or inventory contents. */
 @Mod.EventBusSubscriber(modid = DomeSurvival.MOD_ID, value = Dist.CLIENT)
 public final class ItemPipeTravelVisuals {
-    private static final int MAX_VISUALS = 64;
-    private static final int TICKS_PER_SEGMENT = 8;
-    private static final ArrayDeque<Visual> VISUALS = new ArrayDeque<>();
+    private static final int MAX_VISUALS = 256;
+    private static final Map<UUID, Visual> VISUALS = new LinkedHashMap<>();
     private static final Map<BlockPos, List<Sample>> SAMPLES = new HashMap<>();
     private static long sampledTick = Long.MIN_VALUE;
     private static float sampledPartialTick;
     private static ClientLevel owner;
-    private record Visual(List<Vec3> points, ItemStack stack, long startTick) { }
+    private record Visual(ItemPipeVisualNetwork.Travel state, double[] distances) { }
     private record Sample(Vec3 point, ItemStack stack) { }
     private ItemPipeTravelVisuals() { }
 
     public static void accept(ItemPipeVisualNetwork.Travel message) {
         ClientLevel level = Minecraft.getInstance().level;
         if (level != owner) { VISUALS.clear(); SAMPLES.clear(); owner = level; }
-        if (level == null || !level.dimension().location().equals(message.dimension()) || message.stack().isEmpty()) return;
-        while (VISUALS.size() >= MAX_VISUALS) VISUALS.removeFirst();
-        VISUALS.addLast(new Visual(message.points(), message.stack().copy(), level.getGameTime()));
+        if (level == null || !level.dimension().location().equals(message.dimension())) return;
+        if (message.stack().isEmpty()) {
+            VISUALS.remove(message.id()); sampledTick = Long.MIN_VALUE; return;
+        }
+        if (!VISUALS.containsKey(message.id()) && VISUALS.size() >= MAX_VISUALS) VISUALS.remove(VISUALS.keySet().iterator().next());
+        double[] distances = new double[message.points().size()];
+        for (int i=1;i<distances.length;i++) distances[i]=distances[i-1]+message.points().get(i-1).distanceTo(message.points().get(i));
+        VISUALS.put(message.id(), new Visual(message, distances));
         sampledTick = Long.MIN_VALUE;
     }
 
@@ -43,7 +47,8 @@ public final class ItemPipeTravelVisuals {
         if (event.phase != TickEvent.Phase.END) return;
         ClientLevel level = Minecraft.getInstance().level;
         if (level != owner) { VISUALS.clear(); SAMPLES.clear(); owner = level; sampledTick = Long.MIN_VALUE; }
-        if (level != null) VISUALS.removeIf(v -> level.getGameTime() - v.startTick >= (v.points.size() - 1L) * TICKS_PER_SEGMENT);
+        // The server removes delivered/refunded stacks. A full receiver keeps the
+        // same packet stationary at the pipe outlet instead of disappearing on a timer.
     }
 
     public static void render(BlockPos pipe, float partialTick, PoseStack pose,
@@ -69,12 +74,17 @@ public final class ItemPipeTravelVisuals {
 
     private static void sample(long gameTime, float partialTick) {
         SAMPLES.clear(); sampledTick = gameTime; sampledPartialTick = partialTick;
-        for (Visual visual : VISUALS) {
-            double progress = (gameTime - visual.startTick + partialTick) / TICKS_PER_SEGMENT;
-            if (progress < 0 || progress >= visual.points.size() - 1) continue;
-            int segment = (int) progress;
-            Vec3 point = visual.points.get(segment).lerp(visual.points.get(segment + 1), progress - segment);
-            SAMPLES.computeIfAbsent(BlockPos.containing(point), ignored -> new ArrayList<>()).add(new Sample(point, visual.stack));
+        for (Visual visual : VISUALS.values()) {
+            var state = visual.state;
+            double elapsed = state.elapsed() + (state.moving() ? Math.max(0, gameTime-state.serverTime()+partialTick) : 0);
+            double progress = Math.max(0, Math.min(1, elapsed / state.duration()));
+            double distance = progress * visual.distances[visual.distances.length-1];
+            int index = Arrays.binarySearch(visual.distances, distance);
+            int segment = Math.max(0, Math.min(visual.distances.length-2, index >= 0 ? index : -index-2));
+            double length = visual.distances[segment+1]-visual.distances[segment];
+            double fraction = length <= 0 ? 0 : (distance-visual.distances[segment])/length;
+            Vec3 point = state.points().get(segment).lerp(state.points().get(segment+1), fraction);
+            SAMPLES.computeIfAbsent(BlockPos.containing(point), ignored -> new ArrayList<>()).add(new Sample(point, state.stack()));
         }
     }
 }

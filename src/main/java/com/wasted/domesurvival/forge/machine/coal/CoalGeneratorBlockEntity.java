@@ -353,25 +353,40 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        SideMode mode = side == null ? SideMode.DISABLED : capabilityMode(side);
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
             // Transport can fall back to an unsided query after a denied face. Exposing
             // fuel here would bypass orange/OFF modes and the permanently sealed front.
             if (side == null) return LazyOptional.empty();
             if (isFrontWorldSide(side)) return LazyOptional.empty();
-            if (sideConfig.allowsInput(side)) return itemInputCapability.cast();
+            if (mode == SideMode.INPUT) return itemInputCapability.cast();
             // This generator has no item products: orange sockets expose energy only.
             return LazyOptional.empty();
         }
         if (cap == ForgeCapabilities.ENERGY) {
-            if (side != null && !isFrontWorldSide(side) && sideConfig.allowsInput(side)) {
+            if (side != null && !isFrontWorldSide(side) && mode == SideMode.INPUT) {
                 return energyInputCapability.cast();
             }
-            if (side == null || (!isFrontWorldSide(side) && sideConfig.allowsOutput(side))) {
+            if (side == null || (!isFrontWorldSide(side) && mode == SideMode.OUTPUT)) {
                 return energyOutputCapability.cast();
             }
             return LazyOptional.empty();
         }
         return super.getCapability(cap, side);
+    }
+
+    private SideMode capabilityMode(Direction side) {
+        // Port blockstates are synchronized even without an open menu. Client BEs
+        // otherwise retain constructor defaults and hide collars on configured inputs.
+        if (level != null && level.isClientSide) {
+            PortVisual visual = getBlockState().getValue(CoalGeneratorBlock.portProperty(side));
+            return switch (visual) {
+                case INPUT -> SideMode.INPUT;
+                case OUTPUT -> SideMode.OUTPUT;
+                default -> SideMode.DISABLED;
+            };
+        }
+        return sideConfig.getMode(side);
     }
 
     private void refreshCapabilities() {

@@ -40,6 +40,9 @@ public final class ItemPipeBalance extends SimpleJsonResourceReloadListener {
     public static int cooldownTicks(ItemPipeTier tier) {
         return SETTINGS.getOrDefault(tier, defaults(tier)).cooldownTicks();
     }
+    public static double travelSpeed(ItemPipeTier tier) {
+        return SETTINGS.getOrDefault(tier, defaults(tier)).travelSpeed();
+    }
 
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> objects,
@@ -55,7 +58,14 @@ public final class ItemPipeBalance extends SimpleJsonResourceReloadListener {
             JsonObject obj = root.getAsJsonObject(tier.id());
             int items = getPositive(obj, "items_per_cycle", tier.defaultItemsPerCycle(), 1, 64);
             int cooldown = getPositive(obj, "cooldown_ticks", tier.defaultCooldownTicks(), 1, 40);
-            SETTINGS.put(tier, new Settings(items, cooldown));
+            double speed = tier.defaultTravelSpeed();
+            if (obj.has("travel_speed")) {
+                try {
+                    double value = obj.get("travel_speed").getAsDouble();
+                    if (Double.isFinite(value)) speed = Math.max(0.01, Math.min(0.25, value));
+                } catch (RuntimeException ignored) { }
+            }
+            SETTINGS.put(tier, new Settings(items, cooldown, speed));
         }
     }
 
@@ -76,8 +86,8 @@ public final class ItemPipeBalance extends SimpleJsonResourceReloadListener {
     }
 
     private static Settings defaults(ItemPipeTier tier) {
-        return new Settings(tier.defaultItemsPerCycle(), tier.defaultCooldownTicks());
+        return new Settings(tier.defaultItemsPerCycle(), tier.defaultCooldownTicks(), tier.defaultTravelSpeed());
     }
 
-    private record Settings(int itemsPerCycle, int cooldownTicks) { }
+    private record Settings(int itemsPerCycle, int cooldownTicks, double travelSpeed) { }
 }

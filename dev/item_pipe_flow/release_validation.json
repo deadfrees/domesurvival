@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "checks": 126,
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "bytes": 181653535,
+  "sha256": "e9f5995cea5fd925939b64f524540938c0d4c3ccc24836d1288946e572af77d3",
+  "restored_mod_jars": 85,
+  "test_classes_in_release": false,
+  "arrival_checks": [
+    "PASS Physical arrival tier 2 at tick 100",
+    "PASS Physical arrival tier 1 at tick 133",
+    "PASS Physical arrival tier 0 at tick 199"
+  ]
+}

@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Locale;
 
 public final class ItemPipeBlockItem extends BlockItem {
     private final ItemPipeTier tier;
@@ -36,6 +37,8 @@ public final class ItemPipeBlockItem extends BlockItem {
                 "item.domesurvival.item_pipe.transfer",
                 tier.itemsPerCycle(), tier.cooldownTicks()
         ).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("item.domesurvival.item_pipe.travel_speed",
+                String.format(Locale.ROOT, "%.1f", tier.travelSpeed() * 20)).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("item.domesurvival.item_pipe.connector_hint")
                 .withStyle(ChatFormatting.DARK_GRAY));
     }
