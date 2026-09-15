@@ -2,6 +2,8 @@ package com.wasted.domesurvival.forge.machine.coal;
 
 import com.wasted.domesurvival.forge.machine.side.RelativeSide;
 import com.wasted.domesurvival.forge.machine.side.SideMode;
+import com.wasted.domesurvival.forge.machine.module.MachineModuleItem;
+import com.wasted.domesurvival.forge.machine.module.MachineModuleType;
 import com.wasted.domesurvival.forge.block.ModBlocks;
 import com.wasted.domesurvival.forge.registry.ModMenuTypes;
 import net.minecraft.core.BlockPos;
@@ -29,6 +31,10 @@ public final class CoalGeneratorMenu extends AbstractContainerMenu {
     private static final int HOTBAR_START = 28;
     private static final int HOTBAR_END = 37;
     private static final int SIDE_BUTTON_BASE = 100;
+    public static final int MODULE_SLOT_INDEX = 37;
+    public static final int MODULE_OPEN_BUTTON = 200;
+    public static final int MODULE_CLOSE_BUTTON = 201;
+    private boolean modulePanelOpen;
 
     private final Level level;
     private final BlockPos blockPos;
@@ -65,6 +71,19 @@ public final class CoalGeneratorMenu extends AbstractContainerMenu {
         });
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
+        IItemHandler modules = generator == null ? new ItemStackHandler(1) : generator.getModules();
+        addSlot(new SlotItemHandler(modules, 0, 22, 57) {
+            @Override public boolean isActive() { return modulePanelOpen; }
+            @Override public int getMaxStackSize() { return 1; }
+            @Override public boolean mayPlace(@NotNull ItemStack stack) {
+                return modulePanelOpen && stack.getItem() instanceof MachineModuleItem item
+                        && item.module().type() == MachineModuleType.BUFFER && super.mayPlace(stack);
+            }
+            @Override public boolean mayPickup(Player player) {
+                // Removing a capacity upgrade must never silently destroy stored energy.
+                return modulePanelOpen && getEnergyStored() <= CoalGeneratorBlockEntity.ENERGY_CAPACITY && super.mayPickup(player);
+            }
+        });
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
@@ -87,13 +106,16 @@ public final class CoalGeneratorMenu extends AbstractContainerMenu {
     @Override
     public @NotNull ItemStack quickMoveStack(Player player, int index) {
         ItemStack result = ItemStack.EMPTY;
+        if (index < 0 || index >= slots.size()) return result;
         net.minecraft.world.inventory.Slot slot = slots.get(index);
-        if (slot == null || !slot.hasItem()) return result;
+        if (!slot.hasItem() || !slot.mayPickup(player)) return result;
 
         ItemStack stack = slot.getItem();
         result = stack.copy();
-        if (index == FUEL_SLOT_INDEX) {
+        if (index == FUEL_SLOT_INDEX || index == MODULE_SLOT_INDEX) {
             if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, HOTBAR_END, true)) return ItemStack.EMPTY;
+        } else if (stack.getItem() instanceof MachineModuleItem) {
+            if (!modulePanelOpen || !moveItemStackTo(stack, MODULE_SLOT_INDEX, MODULE_SLOT_INDEX + 1, false)) return ItemStack.EMPTY;
         } else if (CoalGeneratorBlockEntity.isValidFuel(stack)
                 && moveItemStackTo(stack, FUEL_SLOT_INDEX, FUEL_SLOT_INDEX + 1, false)) {
             // valid fuel moved into the generator
@@ -111,6 +133,10 @@ public final class CoalGeneratorMenu extends AbstractContainerMenu {
 
     @Override
     public boolean clickMenuButton(Player player, int id) {
+        if (id == MODULE_OPEN_BUTTON || id == MODULE_CLOSE_BUTTON) {
+            modulePanelOpen = id == MODULE_OPEN_BUTTON;
+            return true;
+        }
         int sideIndex = id - SIDE_BUTTON_BASE;
         if (sideIndex < 0 || sideIndex >= RelativeSide.values().length) return false;
         RelativeSide side = RelativeSide.values()[sideIndex];
@@ -120,6 +146,8 @@ public final class CoalGeneratorMenu extends AbstractContainerMenu {
     }
 
     public static int sideButtonId(RelativeSide side) { return SIDE_BUTTON_BASE + side.ordinal(); }
+    public void setModulePanelOpen(boolean open) { modulePanelOpen = open; }
+    public boolean isModulePanelOpen() { return modulePanelOpen; }
 
     public int getEnergyStored() { return data.get(CoalGeneratorBlockEntity.DATA_ENERGY); }
     public int getEnergyCapacity() { return data.get(CoalGeneratorBlockEntity.DATA_CAPACITY); }

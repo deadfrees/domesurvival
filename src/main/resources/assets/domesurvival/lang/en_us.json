@@ -1,4 +1,8 @@
 {
+    "gui.domesurvival.coal_generator.module_capacity":  "50k → 87.5k FE",
+    "gui.domesurvival.coal_generator.module_effect":  "Energy capacity: +75%",
+    "gui.domesurvival.coal_generator.module_generation":  "Generation unchanged",
+    "gui.domesurvival.coal_generator.module_slot_tooltip":  "Buffer module. Drain below 50,000 FE before removal.",
     "gui.domesurvival.coal_generator.routing_title":  "Ports · front view",
     "gui.domesurvival.coal_generator.input_short":  "Fuel + FE",
     "gui.domesurvival.coal_generator.output_only_short":  "FE only",
@@ -17,7 +21,7 @@
     "block.domesurvival.airlock_panel":  "Airlock Control Panel",
     "block.domesurvival.basic_energy_pipe":  "Tier I Energy Pipe",
     "block.domesurvival.basic_fluid_pipe":  "Basic Fluid Pipe",
-    "block.domesurvival.coal_generator":  "Flame Stabilizer",
+    "block.domesurvival.coal_generator":  "Coal Generator",
     "block.domesurvival.copper_furnace":  "Copper Furnace",
     "block.domesurvival.copper_hopper":  "Copper Hopper",
     "block.domesurvival.copper_item_pipe":  "Copper Item Transport Pipe",

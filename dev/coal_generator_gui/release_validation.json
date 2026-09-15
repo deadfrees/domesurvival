@@ -1,0 +1,133 @@
+{
+  "pass": true,
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "5f92415cd7d0a81cabe3eaa2f31b3788ef6234f43dd8433e46fe5ca12974c58f",
+  "bytes": 181642565,
+  "runtime_checks": 252,
+  "checks": [
+    {
+      "pass": true,
+      "check": "panel texture dimensions"
+    },
+    {
+      "pass": true,
+      "check": "panel filtering"
+    },
+    {
+      "pass": true,
+      "check": "configuration texture dimensions"
+    },
+    {
+      "pass": true,
+      "check": "configuration filtering"
+    },
+    {
+      "pass": true,
+      "check": "modules texture dimensions"
+    },
+    {
+      "pass": true,
+      "check": "modules filtering"
+    },
+    {
+      "pass": true,
+      "check": "widgets texture dimensions"
+    },
+    {
+      "pass": true,
+      "check": "widgets filtering"
+    },
+    {
+      "pass": true,
+      "check": "ru_ru labels"
+    },
+    {
+      "pass": true,
+      "check": "ru_ru restored name"
+    },
+    {
+      "pass": true,
+      "check": "en_us labels"
+    },
+    {
+      "pass": true,
+      "check": "en_us restored name"
+    },
+    {
+      "pass": true,
+      "check": "Buffer module uses 37 real 3D parts"
+    },
+    {
+      "pass": true,
+      "check": "Module has no zero-thickness elements"
+    },
+    {
+      "pass": true,
+      "check": "All module materials resolve to approved textures"
+    },
+    {
+      "pass": true,
+      "check": "Runtime integration tests"
+    },
+    {
+      "pass": true,
+      "check": "Production build and tests"
+    },
+    {
+      "pass": true,
+      "check": "85 development mods restored"
+    },
+    {
+      "pass": true,
+      "check": "configuration.png matches release"
+    },
+    {
+      "pass": true,
+      "check": "configuration.png.mcmeta matches release"
+    },
+    {
+      "pass": true,
+      "check": "modules.png matches release"
+    },
+    {
+      "pass": true,
+      "check": "modules.png.mcmeta matches release"
+    },
+    {
+      "pass": true,
+      "check": "panel.png matches release"
+    },
+    {
+      "pass": true,
+      "check": "panel.png.mcmeta matches release"
+    },
+    {
+      "pass": true,
+      "check": "widgets.png matches release"
+    },
+    {
+      "pass": true,
+      "check": "widgets.png.mcmeta matches release"
+    },
+    {
+      "pass": true,
+      "check": "ru_ru matches release"
+    },
+    {
+      "pass": true,
+      "check": "en_us matches release"
+    },
+    {
+      "pass": true,
+      "check": "No test probe packaged"
+    },
+    {
+      "pass": true,
+      "check": "3D module model matches release"
+    },
+    {
+      "pass": true,
+      "check": "Only generator, its GUI, buffer item model and localization changed"
+    }
+  ]
+}

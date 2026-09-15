@@ -20,6 +20,7 @@ import java.util.Locale;
 public final class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMenu> {
     private static final ResourceLocation PANEL = texture("panel");
     private static final ResourceLocation CONFIGURATION = texture("configuration");
+    private static final ResourceLocation MODULES = texture("modules");
     private static final ResourceLocation WIDGETS = texture("widgets");
     private static final String KEY = "gui.domesurvival.coal_generator.";
     private static final int TEXT = 0xFFCAD2D4;
@@ -27,6 +28,7 @@ public final class CoalGeneratorScreen extends AbstractContainerScreen<CoalGener
     private static final int BLUE = 0xFF83B8D2;
     private static final int AMBER = 0xFFE0BC7E;
     private static final Rect SETTINGS = new Rect(192, 6, 20, 20);
+    private static final Rect UPGRADES = new Rect(168, 6, 20, 20);
     private static final EnumMap<RelativeSide, Rect> SIDES = createSideRects();
     private boolean sidePanelOpen;
 
@@ -74,7 +76,13 @@ public final class CoalGeneratorScreen extends AbstractContainerScreen<CoalGener
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (button == 0 && inside(mouseX, mouseY, SETTINGS)) {
+            setModulesOpen(false);
             sidePanelOpen = !sidePanelOpen;
+            return true;
+        }
+        if (button == 0 && inside(mouseX, mouseY, UPGRADES)) {
+            sidePanelOpen = false;
+            setModulesOpen(!menu.isModulePanelOpen());
             return true;
         }
         if (button == 0 && sidePanelOpen) {
@@ -89,6 +97,14 @@ public final class CoalGeneratorScreen extends AbstractContainerScreen<CoalGener
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
+    private void setModulesOpen(boolean open) {
+        menu.setModulePanelOpen(open);
+        if (minecraft != null && minecraft.gameMode != null) {
+            minecraft.gameMode.handleInventoryButtonClick(menu.containerId,
+                    open ? CoalGeneratorMenu.MODULE_OPEN_BUTTON : CoalGeneratorMenu.MODULE_CLOSE_BUTTON);
+        }
+    }
+
     /** Artwork is baked at 4x GUI resolution. Vanilla alone renders stacks and counts. */
     private void widget(GuiGraphics graphics, int x, int y, int width, int height,
                         int u, int v, int sourceWidth, int sourceHeight) {
@@ -100,10 +116,16 @@ public final class CoalGeneratorScreen extends AbstractContainerScreen<CoalGener
     protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
         graphics.blit(PANEL, leftPos, topPos, 220, 266, 0, 0, 880, 1064, 880, 1064);
         widget(graphics, SETTINGS.x, SETTINGS.y, 20, 20, 0, 0, 20, 20);
+        widget(graphics, UPGRADES.x, UPGRADES.y, 20, 20, 88, 0, 20, 20);
+        if (inside(mouseX, mouseY, UPGRADES) || menu.isModulePanelOpen()) {
+            graphics.renderOutline(leftPos + UPGRADES.x, topPos + UPGRADES.y, 20, 20, AMBER);
+        }
         if (inside(mouseX, mouseY, SETTINGS) || sidePanelOpen) {
             graphics.renderOutline(leftPos + SETTINGS.x, topPos + SETTINGS.y, 20, 20, BLUE);
         }
-        if (sidePanelOpen) {
+        if (menu.isModulePanelOpen()) {
+            graphics.blit(MODULES, leftPos + 8, topPos + 25, 204, 100, 0, 0, 816, 400, 816, 400);
+        } else if (sidePanelOpen) {
             graphics.blit(CONFIGURATION, leftPos + 8, topPos + 25, 204, 100, 0, 0, 816, 400, 816, 400);
             for (var entry : SIDES.entrySet()) {
                 RelativeSide visual = entry.getKey();
@@ -129,8 +151,14 @@ public final class CoalGeneratorScreen extends AbstractContainerScreen<CoalGener
 
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        text(graphics, title, 13, 10, 170, 0xFF201E19);
-        if (sidePanelOpen) {
+        text(graphics, title, 13, 10, 146, 0xFF201E19);
+        if (menu.isModulePanelOpen()) {
+            text(graphics, Component.translatable("gui.domesurvival.upgrade_modules"), 15, 30, 187, TEXT);
+            text(graphics, Component.translatable("item.domesurvival.buffer_module"), 59, 51, 143, AMBER);
+            text(graphics, Component.translatable(KEY + "module_capacity"), 59, 67, 143, TEXT);
+            text(graphics, Component.translatable(KEY + "module_effect"), 14, 88, 192, MUTED);
+            text(graphics, Component.translatable(KEY + "module_generation"), 14, 102, 155, MUTED);
+        } else if (sidePanelOpen) {
             text(graphics, Component.translatable(KEY + "routing_title"), 15, 30, 187, TEXT);
             text(graphics, Component.translatable("gui.domesurvival.side_state.input"), 111, 47, 89, BLUE);
             text(graphics, Component.translatable(KEY + "input_short"), 111, 59, 89, TEXT);
@@ -155,7 +183,7 @@ public final class CoalGeneratorScreen extends AbstractContainerScreen<CoalGener
         }
         text(graphics, remainingFuel(), 14, 127, 194, MUTED);
         text(graphics, playerInventoryTitle, 14, 141, 194, TEXT);
-        graphics.drawCenteredString(font, "CG-01  /  50k FE", 110, 253, MUTED);
+        graphics.drawCenteredString(font, "CG-01  /  " + compact(menu.getEnergyCapacity()) + " FE", 110, 253, MUTED);
     }
 
     private boolean isGenerating() {
@@ -180,8 +208,14 @@ public final class CoalGeneratorScreen extends AbstractContainerScreen<CoalGener
         renderBackground(graphics);
         super.render(graphics, mouseX, mouseY, partialTick);
         renderTooltip(graphics, mouseX, mouseY);
-        if (inside(mouseX, mouseY, SETTINGS)) {
+        if (inside(mouseX, mouseY, UPGRADES)) {
+            graphics.renderTooltip(font, Component.translatable("gui.domesurvival.upgrade_modules.tooltip"), mouseX, mouseY);
+        } else if (inside(mouseX, mouseY, SETTINGS)) {
             graphics.renderTooltip(font, Component.translatable("gui.domesurvival.side_config"), mouseX, mouseY);
+        } else if (menu.isModulePanelOpen()) {
+            if (inside(mouseX, mouseY, new Rect(18, 53, 24, 24))) {
+                graphics.renderTooltip(font, Component.translatable(KEY + "module_slot_tooltip"), mouseX, mouseY);
+            }
         } else if (sidePanelOpen) {
             RelativeSide side = hoveredSide(mouseX, mouseY);
             if (side != null) {

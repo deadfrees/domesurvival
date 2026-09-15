@@ -134,6 +134,10 @@ public final class CoalGeneratorBlock extends BaseEntityBlock implements cofh.li
                 if (!fuel.isEmpty()) {
                     popResource(level, pos, fuel.copy());
                 }
+                for (int slot = 0; slot < generator.getModules().getSlots(); slot++) {
+                    ItemStack module = generator.getModules().getStackInSlot(slot);
+                    if (!module.isEmpty()) popResource(level, pos, module.copy());
+                }
             }
         }
         super.onRemove(oldState, level, pos, newState, movedByPiston);

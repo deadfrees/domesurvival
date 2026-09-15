@@ -1,6 +1,10 @@
 package com.wasted.domesurvival.forge.machine.coal;
 
 import com.wasted.domesurvival.forge.machine.energy.MachineEnergyStorage;
+import com.wasted.domesurvival.forge.machine.module.IModularMachine;
+import com.wasted.domesurvival.forge.machine.module.MachineModuleInventory;
+import com.wasted.domesurvival.forge.machine.module.MachineModuleResolver;
+import com.wasted.domesurvival.forge.machine.module.MachineModuleType;
 import com.wasted.domesurvival.forge.machine.side.PortVisual;
 import com.wasted.domesurvival.forge.machine.side.RelativeSide;
 import com.wasted.domesurvival.forge.machine.side.ResourceChannel;
@@ -31,8 +35,9 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import java.util.Set;
 
-public final class CoalGeneratorBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
+public final class CoalGeneratorBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider, IModularMachine {
     public static final int ENERGY_CAPACITY = 50_000;
     public static final int GENERATION_PER_TICK = 64;
     public static final int MAX_INPUT_PER_OPERATION = 128;
@@ -46,6 +51,7 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
     public static final int DATA_COUNT = DATA_SIDES_START + 6;
 
     private static final String NBT_INVENTORY = "Inventory";
+    private static final String NBT_MODULES = "Modules";
     private static final String NBT_ENERGY = "Energy";
     private static final String NBT_BURN_TIME = "BurnTime";
     private static final String NBT_MAX_BURN_TIME = "MaxBurnTime";
@@ -66,6 +72,17 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
 
     private final MachineEnergyStorage energyStorage =
             new MachineEnergyStorage(ENERGY_CAPACITY, MAX_INPUT_PER_OPERATION, MAX_OUTPUT_PER_TICK);
+    private final MachineModuleInventory modules =
+            new MachineModuleInventory(this, MachineModuleResolver.STANDARD, this::modulesChanged);
+
+    @Override public int moduleSlotCount() { return 1; }
+    @Override public Set<MachineModuleType> allowedModuleTypes() { return Set.of(MachineModuleType.BUFFER); }
+    public MachineModuleInventory getModules() { return modules; }
+
+    private void modulesChanged() {
+        energyStorage.setCapacityInternal(modules.modifiers().applyBufferCapacity(ENERGY_CAPACITY));
+        setChanged();
+    }
 
     private final IItemHandler itemInputView = new IItemHandler() {
         @Override public int getSlots() { return 1; }
@@ -298,6 +315,7 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.put(NBT_INVENTORY, inventory.serializeNBT());
+        tag.put(NBT_MODULES, modules.serializeNBT());
         tag.putInt(NBT_ENERGY, energyStorage.getEnergyStored());
         tag.putInt(NBT_BURN_TIME, burnTime);
         tag.putInt(NBT_MAX_BURN_TIME, maxBurnTime);
@@ -308,6 +326,9 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
     public void load(CompoundTag tag) {
         super.load(tag);
         inventory.deserializeNBT(tag.getCompound(NBT_INVENTORY));
+        // Old saves have no Modules tag; retain the fixed one-slot inventory in that case.
+        if (tag.contains(NBT_MODULES)) modules.deserializeNBT(tag.getCompound(NBT_MODULES));
+        energyStorage.setCapacityInternal(modules.modifiers().applyBufferCapacity(ENERGY_CAPACITY));
         energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
         burnTime = Math.max(0, tag.getInt(NBT_BURN_TIME));
         maxBurnTime = Math.max(0, tag.getInt(NBT_MAX_BURN_TIME));
@@ -333,7 +354,9 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == null) return itemInputCapability.cast();
+            // Transport can fall back to an unsided query after a denied face. Exposing
+            // fuel here would bypass orange/OFF modes and the permanently sealed front.
+            if (side == null) return LazyOptional.empty();
             if (isFrontWorldSide(side)) return LazyOptional.empty();
             if (sideConfig.allowsInput(side)) return itemInputCapability.cast();
             // This generator has no item products: orange sockets expose energy only.

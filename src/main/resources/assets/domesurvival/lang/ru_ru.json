@@ -1,4 +1,8 @@
 {
+    "gui.domesurvival.coal_generator.module_capacity":  "50k → 87.5k FE",
+    "gui.domesurvival.coal_generator.module_effect":  "Ёмкость буфера: +75%",
+    "gui.domesurvival.coal_generator.module_generation":  "Генерация без изменений",
+    "gui.domesurvival.coal_generator.module_slot_tooltip":  "Буферный модуль. Для снятия снизьте запас до 50 000 FE.",
     "gui.domesurvival.coal_generator.routing_title":  "Порты · вид спереди",
     "gui.domesurvival.coal_generator.input_short":  "Топливо + FE",
     "gui.domesurvival.coal_generator.output_only_short":  "Только FE",
@@ -19,7 +23,7 @@
     "block.domesurvival.airlock_panel":  "Панель управления шлюзом",
     "block.domesurvival.basic_energy_pipe":  "Энерготруба I уровня",
     "block.domesurvival.basic_fluid_pipe":  "Базовая жидкостная труба",
-    "block.domesurvival.coal_generator":  "Стабилизатор пламени",
+    "block.domesurvival.coal_generator":  "Угольный генератор",
     "block.domesurvival.copper_furnace":  "Медная печь",
     "block.domesurvival.copper_hopper":  "Медная воронка",
     "block.domesurvival.copper_item_pipe":  "Медная транспортная труба",
