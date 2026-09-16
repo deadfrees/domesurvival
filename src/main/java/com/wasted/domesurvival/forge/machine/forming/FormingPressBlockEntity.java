@@ -31,8 +31,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
+import java.util.Set;
+import com.wasted.domesurvival.forge.machine.module.*;
 
-public final class FormingPressBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
+public final class FormingPressBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider, IModularMachine {
     public static final int ENERGY_CAPACITY = 20_000;
     public static final int MAX_INPUT_PER_TICK = 128;
 
@@ -79,6 +81,20 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     private final MachineEnergyStorage energyStorage =
             new MachineEnergyStorage(ENERGY_CAPACITY, MAX_INPUT_PER_TICK, 0);
 
+    private final MachineModuleInventory modules = new MachineModuleInventory(this, MachineModuleResolver.STANDARD, this::modulesChanged);
+    @Override public int moduleSlotCount() { return 2; }
+    @Override public Set<MachineModuleType> allowedModuleTypes() {
+        return Set.of(MachineModuleType.BUFFER, MachineModuleType.EFFICIENCY, MachineModuleType.OVERDRIVE);
+    }
+    public MachineModuleInventory getModules() { return modules; }
+    public boolean canChangeModules() { return progress == 0; }
+    private void modulesChanged() {
+        energyStorage.setCapacityInternal(modules.modifiers().applyBufferCapacity(ENERGY_CAPACITY));
+        setChanged();
+    }
+    private int processingTicks(FormingPressRecipe recipe) { return modules.modifiers().applyProcessingTicks(recipe.getProcessingTime()); }
+    private int processingEnergy(FormingPressRecipe recipe) { return modules.modifiers().applyEnergyCost(recipe.getEnergy()); }
+
     private final IItemHandler itemInputView = new IItemHandler() {
         @Override public int getSlots() { return 2; }
         @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
@@ -103,21 +119,6 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return false; }
     };
 
-    private final IItemHandler itemCombinedView = new IItemHandler() {
-        @Override public int getSlots() { return 2; }
-        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
-        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            return itemInputView.insertItem(slot, stack, simulate);
-        }
-        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return itemOutputView.extractItem(slot, amount, simulate);
-        }
-        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
-        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return itemInputView.isItemValid(slot, stack);
-        }
-    };
-
     private final IEnergyStorage energyInputView = new IEnergyStorage() {
         @Override
         public int receiveEnergy(int maxReceive, boolean simulate) {
@@ -136,10 +137,22 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
 
     private LazyOptional<IItemHandler> itemInputCapability = LazyOptional.of(() -> itemInputView);
     private LazyOptional<IItemHandler> itemOutputCapability = LazyOptional.of(() -> itemOutputView);
-    private LazyOptional<IItemHandler> itemCombinedCapability = LazyOptional.of(() -> itemCombinedView);
     private LazyOptional<IEnergyStorage> energyInputCapability = LazyOptional.of(() -> energyInputView);
 
     private int progress;
+    private boolean beingDismantled;
+    private float animationTick, previousAnimationTick;
+    public void clientAnimationTick() {
+        previousAnimationTick = animationTick;
+        if (getBlockState().getValue(FormingPressBlock.ACTIVE)) animationTick = (animationTick + 1) % 40;
+    }
+    public float toolOffset(float partialTick) {
+        float next = animationTick < previousAnimationTick ? animationTick + 40 : animationTick;
+        double phase = previousAnimationTick + (next - previousAnimationTick) * partialTick;
+        return (float) (-(1 - Math.cos(phase * Math.PI / 20)) * 1.5 / 16);
+    }
+    public boolean isBeingDismantled() { return beingDismantled; }
+    public void setBeingDismantled(boolean value) { beingDismantled = value; }
     private boolean processingThisTick;
     private FormingOperation selectedOperation = FormingOperation.PRESS;
     @Nullable private ResourceLocation activeRecipeId;
@@ -157,8 +170,8 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
             if (index == DATA_ENERGY) return energyStorage.getEnergyStored();
             if (index == DATA_CAPACITY) return energyStorage.getMaxEnergyStored();
             if (index == DATA_PROGRESS) return progress;
-            if (index == DATA_MAX_PROGRESS) return recipe == null ? 0 : recipe.getProcessingTime();
-            if (index == DATA_RECIPE_ENERGY) return recipe == null ? 0 : recipe.getEnergy();
+            if (index == DATA_MAX_PROGRESS) return recipe == null ? 0 : processingTicks(recipe);
+            if (index == DATA_RECIPE_ENERGY) return recipe == null ? 0 : processingEnergy(recipe);
             if (index == DATA_STATUS) return getStatus(recipe);
             if (index == DATA_OPERATION) return selectedOperation.ordinal();
             if (index == DATA_REQUIRED_INPUT) return recipe == null ? 0 : recipe.getInputCount();
@@ -196,14 +209,8 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         return side == getMachineFacing();
     }
 
-    /**
-     * Forge Energy is receive-only and exposed on every physical face except the reserved front.
-     * Item routing remains controlled by the unified side configuration. Keeping FE discovery
-     * independent from item modes is important for EnderIO, Mekanism and Thermal cables, which
-     * probe sided capabilities before they decide whether a connection is valid.
-     */
     private boolean isEnergyInputSide(@Nullable Direction side) {
-        return side == null || !isFrontWorldSide(side);
+        return side != null && !isFrontWorldSide(side) && capabilityMode(side) == SideMode.INPUT;
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, FormingPressBlockEntity press) {
@@ -247,7 +254,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         energyStorage.removeEnergyInternal(requiredEnergy);
         progress++;
         processingThisTick = true;
-        if (progress >= recipe.getProcessingTime()) {
+        if (progress >= processingTicks(recipe)) {
             finishRecipe(recipe);
             progress = 0;
             activeRecipeId = null;
@@ -256,11 +263,11 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     }
 
     private int getEnergyForNextTick(FormingPressRecipe recipe) {
-        int totalTicks = Math.max(1, recipe.getProcessingTime());
+        int totalTicks = Math.max(1, processingTicks(recipe));
         int completedBefore = Math.min(progress, totalTicks);
         int completedAfter = Math.min(progress + 1, totalTicks);
-        int before = (int) ((long) recipe.getEnergy() * completedBefore / totalTicks);
-        int after = (int) ((long) recipe.getEnergy() * completedAfter / totalTicks);
+        int before = (int) ((long) processingEnergy(recipe) * completedBefore / totalTicks);
+        int after = (int) ((long) processingEnergy(recipe) * completedAfter / totalTicks);
         return Math.max(0, after - before);
     }
 
@@ -382,6 +389,13 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         return mode;
     }
 
+    public void rotateSideConfiguration(Direction previousFacing) {
+        java.util.EnumMap<RelativeSide, SideMode> modes = new java.util.EnumMap<>(RelativeSide.class);
+        for (RelativeSide side : RelativeSide.values()) modes.put(side, sideConfig.getMode(side.resolve(previousFacing)));
+        for (RelativeSide side : RelativeSide.values()) sideConfig.setMode(side.resolve(getMachineFacing()), modes.get(side));
+        refreshCapabilities();syncAllPortStates();setChanged();
+    }
+
     private void syncPortState(Direction direction) {
         if (level == null || level.isClientSide) return;
         BlockState state = level.getBlockState(worldPosition);
@@ -431,6 +445,7 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.put(NBT_INVENTORY, inventory.serializeNBT());
+        tag.put("Modules", modules.serializeNBT());
         tag.putInt(NBT_ENERGY, energyStorage.getEnergyStored());
         tag.putInt(NBT_PROGRESS, progress);
         tag.putString(NBT_OPERATION, selectedOperation.getSerializedName());
@@ -442,6 +457,8 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     public void load(CompoundTag tag) {
         super.load(tag);
         inventory.deserializeNBT(tag.getCompound(NBT_INVENTORY));
+        if (tag.contains("Modules")) modules.deserializeNBT(tag.getCompound("Modules"));
+        energyStorage.setCapacityInternal(modules.modifiers().applyBufferCapacity(ENERGY_CAPACITY));
         energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
         progress = Math.max(0, tag.getInt(NBT_PROGRESS));
         selectedOperation = FormingOperation.fromSerializedName(tag.getString(NBT_OPERATION));
@@ -456,10 +473,10 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == null) return itemCombinedCapability.cast();
+            if (side == null) return LazyOptional.empty();
             if (isFrontWorldSide(side)) return LazyOptional.empty();
-            if (sideConfig.allowsInput(side)) return itemInputCapability.cast();
-            if (sideConfig.allowsOutput(side)) return itemOutputCapability.cast();
+            if (capabilityMode(side) == SideMode.INPUT) return itemInputCapability.cast();
+            if (capabilityMode(side) == SideMode.OUTPUT) return itemOutputCapability.cast();
             return LazyOptional.empty();
         }
         if (cap == ForgeCapabilities.ENERGY) {
@@ -468,14 +485,23 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         return super.getCapability(cap, side);
     }
 
+    private SideMode capabilityMode(Direction side) {
+        if (level != null && level.isClientSide) {
+            return switch (getBlockState().getValue(FormingPressBlock.portProperty(side))) {
+                case INPUT -> SideMode.INPUT;
+                case OUTPUT -> SideMode.OUTPUT;
+                default -> SideMode.DISABLED;
+            };
+        }
+        return sideConfig.getMode(side);
+    }
+
     private void refreshCapabilities() {
         itemInputCapability.invalidate();
         itemOutputCapability.invalidate();
-        itemCombinedCapability.invalidate();
         energyInputCapability.invalidate();
         itemInputCapability = LazyOptional.of(() -> itemInputView);
         itemOutputCapability = LazyOptional.of(() -> itemOutputView);
-        itemCombinedCapability = LazyOptional.of(() -> itemCombinedView);
         energyInputCapability = LazyOptional.of(() -> energyInputView);
     }
 
@@ -484,7 +510,6 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         super.invalidateCaps();
         itemInputCapability.invalidate();
         itemOutputCapability.invalidate();
-        itemCombinedCapability.invalidate();
         energyInputCapability.invalidate();
     }
 
@@ -493,7 +518,6 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         super.reviveCaps();
         itemInputCapability = LazyOptional.of(() -> itemInputView);
         itemOutputCapability = LazyOptional.of(() -> itemOutputView);
-        itemCombinedCapability = LazyOptional.of(() -> itemCombinedView);
         energyInputCapability = LazyOptional.of(() -> energyInputView);
     }
 

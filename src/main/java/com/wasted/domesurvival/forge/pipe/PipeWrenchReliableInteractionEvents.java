@@ -35,6 +35,7 @@ public final class PipeWrenchReliableInteractionEvents {
 
         Level level = event.getLevel();
         BlockPos pos = event.getPos();
+        if (!player.mayBuild() || !level.mayInteract(player, pos)) return;
         Direction side = findTargetSide(level, pos, event.getHitVec());
         if (side == null) return;
 
@@ -57,6 +58,7 @@ public final class PipeWrenchReliableInteractionEvents {
 
         Level level = event.getLevel();
         BlockPos pos = event.getPos();
+        if (!player.mayBuild() || !level.mayInteract(player, pos)) return;
         Direction side = findLeftClickSide(level, pos, event.getFace());
         if (side == null) return;
 

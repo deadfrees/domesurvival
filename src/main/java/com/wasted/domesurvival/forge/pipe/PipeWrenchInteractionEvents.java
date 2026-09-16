@@ -27,6 +27,7 @@ public final class PipeWrenchInteractionEvents {
     public static void leftClick(PlayerInteractEvent.LeftClickBlock event) {
         Player player = event.getEntity();
         if (!player.isShiftKeyDown()) return;
+        if (!player.mayBuild() || !event.getLevel().mayInteract(player, event.getPos())) return;
 
         ItemStack stack = player.getMainHandItem();
         if (!MACHINE_WRENCH_ID.equals(ForgeRegistries.ITEMS.getKey(stack.getItem()))) return;

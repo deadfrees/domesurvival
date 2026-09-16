@@ -25,7 +25,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-public final class FormingPressBlock extends BaseEntityBlock {
+public final class FormingPressBlock extends BaseEntityBlock implements cofh.lib.api.block.IDismantleable {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
 
@@ -108,7 +108,8 @@ public final class FormingPressBlock extends BaseEntityBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
                                                                   BlockEntityType<T> blockEntityType) {
         if (level.isClientSide) {
-            return null;
+            return createTickerHelper(blockEntityType, FormingPressRegistry.FORMING_PRESS_BLOCK_ENTITY.get(),
+                    (world, pos, currentState, press) -> press.clientAnimationTick());
         }
         return createTickerHelper(
                 blockEntityType,
@@ -121,7 +122,11 @@ public final class FormingPressBlock extends BaseEntityBlock {
     public void onRemove(BlockState oldState, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (!oldState.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof FormingPressBlockEntity press) {
+            if (blockEntity instanceof FormingPressBlockEntity press && !press.isBeingDismantled()) {
+                for (int slot = 0; slot < press.getModules().getSlots(); slot++) {
+                    ItemStack module = press.getModules().getStackInSlot(slot);
+                    if (!module.isEmpty()) popResource(level, pos, module.copy());
+                }
                 for (int slot = 0; slot < press.getInventory().getSlots(); slot++) {
                     ItemStack stack = press.getInventory().getStackInSlot(slot);
                     if (!stack.isEmpty()) {
@@ -131,5 +136,20 @@ public final class FormingPressBlock extends BaseEntityBlock {
             }
         }
         super.onRemove(oldState, level, pos, newState, movedByPiston);
+    }
+
+    @Override public ItemStack getCloneItemStack(BlockState state, net.minecraft.world.phys.HitResult hit,
+            net.minecraft.world.level.BlockGetter level, BlockPos pos, Player player) {
+        ItemStack stack = super.getCloneItemStack(level, pos, state);
+        if (!stack.isEmpty() && level.getBlockEntity(pos) instanceof FormingPressBlockEntity press) press.saveToItem(stack);
+        return stack;
+    }
+
+    @Override public void dismantleBlock(Level level, BlockPos pos, BlockState state,
+            net.minecraft.world.phys.HitResult hit, Player player, boolean returnToPlayer) {
+        FormingPressBlockEntity press = level.getBlockEntity(pos) instanceof FormingPressBlockEntity p ? p : null;
+        if (press != null) press.setBeingDismantled(true);
+        try { cofh.lib.api.block.IDismantleable.super.dismantleBlock(level, pos, state, hit, player, returnToPlayer); }
+        finally { if (press != null) press.setBeingDismantled(false); }
     }
 }

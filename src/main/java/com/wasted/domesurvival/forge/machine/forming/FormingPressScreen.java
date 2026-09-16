@@ -1,6 +1,8 @@
 package com.wasted.domesurvival.forge.machine.forming;
 
 import com.wasted.domesurvival.forge.DomeSurvival;
+
+
 import com.wasted.domesurvival.forge.machine.side.RelativeSide;
 import com.wasted.domesurvival.forge.machine.side.SideMode;
 import net.minecraft.client.gui.GuiGraphics;
@@ -8,987 +10,212 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Forming Press UI built directly on the current CoalGeneratorScreen visual system.
- *
- * <p>This intentionally reuses the Coal Generator's exact main panel size, industrial
- * frame helpers, 22 px inventory cells, gear button, 96x122 side-routing panel,
- * cube-net connector geometry, RF port atlas and text clipping rules.</p>
- */
+/** Graphite instrument panel, retaining the menu's authoritative vanilla slots. */
 public final class FormingPressScreen extends AbstractContainerScreen<FormingPressMenu> {
-    private static final ResourceLocation PORT_TEXTURE =
-            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+    private static final ResourceLocation PANEL = texture("panel");
+    private static final ResourceLocation CONFIGURATION = texture("configuration");
+    private static final ResourceLocation MODULES = texture("modules");
+    private static final ResourceLocation WIDGETS = texture("widgets");
+    private static final String KEY = "gui.domesurvival.forming_press_v2.";
+    private static final int TEXT = 0xFFCAD2D4;
+    private static final int MUTED = 0xFF98A5AB;
+    private static final int BLUE = 0xFF83B8D2;
+    private static final int AMBER = 0xFFE0BC7E;
+    private static final Rect SETTINGS = new Rect(192, 6, 20, 20);
+    private static final Rect UPGRADES = new Rect(168, 6, 20, 20);
+    private static final EnumMap<RelativeSide, Rect> SIDES = createSideRects();
 
-    // Exact CoalGeneratorScreen composite geometry.
-    private static final int PANEL_WIDTH = 220;
-    private static final int PANEL_HEIGHT = 266;
-    private static final int MACHINE_PANEL_WIDTH = 220;
 
-    private static final int GEAR_X = 224;
-    private static final int GEAR_Y = 8;
-    private static final int GEAR_SIZE = 20;
-
-    private static final int SIDE_PANEL_X = 248;
-    private static final int SIDE_PANEL_WIDTH = 96;
-    private static final int SIDE_PANEL_HEIGHT = 122;
-
-    private static final int ENERGY_METER_X = 14;
-    private static final int ENERGY_METER_Y = 37;
-    private static final int ENERGY_METER_W = 18;
-    private static final int ENERGY_METER_H = 53;
-
-    private static final int ENERGY_VALUE_X = 42;
-    private static final int ENERGY_VALUE_Y = 38;
-    private static final int ENERGY_VALUE_W = 166;
-    private static final int ENERGY_VALUE_H = 15;
-
-    // Forming workflow fitted into the Coal Generator's machine section.
-    private static final int INPUT_SLOT_BG_X = 42;
-    private static final int OUTPUT_SLOT_BG_X = 178;
-    private static final int PROCESS_SLOT_BG_Y = 62;
-    private static final int PROCESS_SLOT_BG_SIZE = 24;
-
-    private static final int PROGRESS_X = 78;
-    private static final int PROGRESS_Y = 67;
-    private static final int PROGRESS_W = 90;
-    private static final int PROGRESS_H = 14;
-
-    private static final int OPERATION_X = 24;
-    private static final int OPERATION_Y = 108;
-    private static final int OPERATION_W = 30;
-    private static final int OPERATION_H = 26;
-    private static final int OPERATION_STEP = 36;
-    private static final EnumMap<FormingOperation, Rect> OPERATION_RECTS = createOperationRects();
-
-    // Exact Coal Generator inventory geometry.
-    private static final int INVENTORY_X = 11;
-    private static final int INVENTORY_Y = 158;
-    private static final int INVENTORY_SLOT_SIZE = 22;
-    private static final int INVENTORY_SLOT_STEP = 22;
-    private static final int HOTBAR_Y = 226;
-
-    // Exact Coal Generator side-routing panel geometry.
-    private static final Rect SIDE_MODEL_FRAME = new Rect(SIDE_PANEL_X + 8, 28, 80, 90);
-    private static final int SIDE_BUTTON_SIZE = 14;
-    private static final int SIDE_GRID_STEP = 22;
-    private static final EnumMap<RelativeSide, Rect> SIDE_RECTS = createSideRects();
-
-    // Exact Coal Generator 6x6 port atlas.
-    private static final int PORT_SIZE = 6;
-    private static final int PORT_TEX_WIDTH = 24;
-    private static final int PORT_TEX_HEIGHT = 6;
-    private static final int PORT_OFF_U = 0;
-    private static final int PORT_INPUT_U = 12;
-    private static final int PORT_OUTPUT_U = 18;
-
-    private final EnumMap<FormingOperation, ItemStack> operationIcons =
-            new EnumMap<>(FormingOperation.class);
-
-    private boolean sidePanelOpen;
-
-    public FormingPressScreen(FormingPressMenu menu, Inventory playerInventory, Component title) {
-        super(menu, playerInventory, title);
-        imageWidth = PANEL_WIDTH;
-        imageHeight = PANEL_HEIGHT;
-
-        operationIcons.put(FormingOperation.PRESS, stackPrefer("steel_plate", "copper_plate"));
-        operationIcons.put(FormingOperation.GEAR, stackPrefer("steel_gear", "copper_gear"));
-        operationIcons.put(FormingOperation.ROD, stackPrefer("steel_rod", "copper_rod"));
-        operationIcons.put(FormingOperation.WIRE, stackPrefer("steel_wire", "copper_wire"));
-        operationIcons.put(FormingOperation.TUBE, stackPrefer("steel_tube", "copper_tube"));
+    public FormingPressScreen(FormingPressMenu menu, Inventory inventory, Component title) {
+        super(menu, inventory, title);
+        imageWidth = 220;
+        imageHeight = 266;
     }
 
-    @Override
-    protected void init() {
-        super.init();
-
-        // Same centering rule as CoalGeneratorScreen: center only the 220 px machine
-        // panel; the 96 px connector panel opens to its right.
-        leftPos = (width - MACHINE_PANEL_WIDTH) / 2;
-        topPos = (height - imageHeight) / 2;
-    }
-
-    private static EnumMap<FormingOperation, Rect> createOperationRects() {
-        EnumMap<FormingOperation, Rect> result = new EnumMap<>(FormingOperation.class);
-        for (FormingOperation operation : FormingOperation.values()) {
-            result.put(
-                    operation,
-                    new Rect(
-                            OPERATION_X + operation.ordinal() * OPERATION_STEP,
-                            OPERATION_Y,
-                            OPERATION_W,
-                            OPERATION_H
-                    )
-            );
-        }
-        return result;
+    private static ResourceLocation texture(String name) {
+        return new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/forming_press_v2/" + name + ".png");
     }
 
     private static EnumMap<RelativeSide, Rect> createSideRects() {
-        EnumMap<RelativeSide, Rect> regions = new EnumMap<>(RelativeSide.class);
-
-        int centerX = SIDE_PANEL_X + (SIDE_PANEL_WIDTH - SIDE_BUTTON_SIZE) / 2;
-        int middleY = 66;
-
-        regions.put(
-                RelativeSide.TOP,
-                new Rect(centerX, middleY - SIDE_GRID_STEP, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE)
-        );
-        regions.put(
-                RelativeSide.LEFT,
-                new Rect(centerX - SIDE_GRID_STEP, middleY, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE)
-        );
-        regions.put(
-                RelativeSide.FRONT,
-                new Rect(centerX, middleY, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE)
-        );
-        regions.put(
-                RelativeSide.RIGHT,
-                new Rect(centerX + SIDE_GRID_STEP, middleY, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE)
-        );
-        regions.put(
-                RelativeSide.BOTTOM,
-                new Rect(centerX, middleY + SIDE_GRID_STEP, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE)
-        );
-        regions.put(
-                RelativeSide.BACK,
-                new Rect(centerX + SIDE_GRID_STEP, middleY + SIDE_GRID_STEP, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE)
-        );
-
-        return regions;
+        EnumMap<RelativeSide, Rect> result = new EnumMap<>(RelativeSide.class);
+        result.put(RelativeSide.TOP, new Rect(46, 47, 20, 20));
+        result.put(RelativeSide.LEFT, new Rect(22, 71, 20, 20));
+        result.put(RelativeSide.FRONT, new Rect(46, 71, 20, 20));
+        result.put(RelativeSide.RIGHT, new Rect(70, 71, 20, 20));
+        result.put(RelativeSide.BOTTOM, new Rect(46, 95, 20, 20));
+        result.put(RelativeSide.BACK, new Rect(70, 95, 20, 20));
+        return result;
     }
 
-    @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (button == 0) {
-            if (inside(mouseX, mouseY, GEAR_X, GEAR_Y, GEAR_SIZE, GEAR_SIZE)) {
-                sidePanelOpen = !sidePanelOpen;
-                return true;
-            }
-
-            if (sidePanelOpen) {
-                RelativeSide visualSide = getHoveredSide(mouseX, mouseY);
-                if (visualSide != null && minecraft != null && minecraft.gameMode != null) {
-                    RelativeSide machineSide = machineSideForVisualSide(visualSide);
-                    minecraft.gameMode.handleInventoryButtonClick(
-                            menu.containerId,
-                            FormingPressMenu.sideButtonId(machineSide)
-                    );
-                    return true;
-                }
-            }
-
-            FormingOperation operation = getHoveredOperation(mouseX, mouseY);
-            if (operation != null && minecraft != null && minecraft.gameMode != null) {
-                minecraft.gameMode.handleInventoryButtonClick(
-                        menu.containerId,
-                        FormingPressMenu.operationButtonId(operation)
-                );
-                return true;
-            }
-        }
-
-        return super.mouseClicked(mouseX, mouseY, button);
-    }
-
-    private boolean inside(double mouseX, double mouseY, int x, int y, int width, int height) {
-        double localX = mouseX - leftPos;
-        double localY = mouseY - topPos;
-        return localX >= x && localX < x + width
-                && localY >= y && localY < y + height;
-    }
-
-    /**
-     * Matches CoalGeneratorScreen's player-facing projection.
-     */
-    private static RelativeSide machineSideForVisualSide(RelativeSide visualSide) {
-        return switch (visualSide) {
+    // Front-facing diagram: viewer left corresponds to machine right.
+    private static RelativeSide machineSide(RelativeSide visual) {
+        return switch (visual) {
             case LEFT -> RelativeSide.RIGHT;
             case RIGHT -> RelativeSide.LEFT;
-            default -> visualSide;
+            default -> visual;
         };
+    }
+
+    private boolean inside(double mouseX, double mouseY, Rect rect) {
+        return rect.contains(mouseX - leftPos, mouseY - topPos);
+    }
+
+    private RelativeSide hoveredSide(double mouseX, double mouseY) {
+        for (var entry : SIDES.entrySet()) {
+            if (inside(mouseX, mouseY, entry.getValue())) return entry.getKey();
+        }
+        return null;
+    }
+
+    @Override public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (button == 0 && inside(mouseX,mouseY,SETTINGS)) { setTab(menu.isSidePanelOpen()?FormingPressMenu.MAIN_TAB:FormingPressMenu.SIDE_TAB); return true; }
+        if (button == 0 && inside(mouseX,mouseY,UPGRADES)) { setTab(menu.isModulePanelOpen()?FormingPressMenu.MAIN_TAB:FormingPressMenu.MODULE_TAB); return true; }
+        if (button == 0 && menu.isSidePanelOpen()) {
+            RelativeSide side=hoveredSide(mouseX,mouseY);
+            if(side!=null){if(FormingPressBlockEntity.isConfigurableSide(side))send(FormingPressMenu.sideButtonId(machineSide(side)));return true;}
+        }
+        if(button==0&&menu.isMainPanelOpen())for(FormingOperation operation:FormingOperation.values()) {
+            if(inside(mouseX,mouseY,new Rect(24+36*operation.ordinal(),108,30,26))){send(FormingPressMenu.operationButtonId(operation));return true;}
+        }
+        return super.mouseClicked(mouseX,mouseY,button);
+    }
+    private void send(int id){if(minecraft!=null&&minecraft.gameMode!=null)minecraft.gameMode.handleInventoryButtonClick(menu.containerId,id);}
+    private void setTab(int tab){menu.setTab(tab);send(tab);}
+
+    /** Artwork is baked at 4x GUI resolution. Vanilla alone renders stacks and counts. */
+    private void widget(GuiGraphics graphics, int x, int y, int width, int height,
+                        int u, int v, int sourceWidth, int sourceHeight) {
+        graphics.blit(WIDGETS, leftPos + x, topPos + y, width, height,
+                u * 4.0F, v * 4.0F, sourceWidth * 4, sourceHeight * 4, 512, 256);
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
-        renderTooltip(guiGraphics, mouseX, mouseY);
-
-        if (inside(mouseX, mouseY, GEAR_X, GEAR_Y, GEAR_SIZE, GEAR_SIZE)) {
-            guiGraphics.renderTooltip(
-                    font,
-                    Component.translatable("gui.domesurvival.side_config"),
-                    mouseX,
-                    mouseY
-            );
-            return;
+    protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
+        graphics.blit(PANEL, leftPos, topPos, 220, 266, 0, 0, 880, 1064, 880, 1064);
+        widget(graphics, SETTINGS.x, SETTINGS.y, 20, 20, 0, 0, 20, 20);
+        widget(graphics, UPGRADES.x, UPGRADES.y, 20, 20, 88, 0, 20, 20);
+        if (inside(mouseX, mouseY, UPGRADES) || menu.isModulePanelOpen()) {
+            graphics.renderOutline(leftPos + UPGRADES.x, topPos + UPGRADES.y, 20, 20, AMBER);
         }
-
-        FormingOperation hoveredOperation = getHoveredOperation(mouseX, mouseY);
-        if (hoveredOperation != null) {
-            guiGraphics.renderTooltip(
-                    font,
-                    operationName(hoveredOperation),
-                    mouseX,
-                    mouseY
-            );
-            return;
+        if (inside(mouseX, mouseY, SETTINGS) || menu.isSidePanelOpen()) {
+            graphics.renderOutline(leftPos + SETTINGS.x, topPos + SETTINGS.y, 20, 20, BLUE);
         }
-
-        if (sidePanelOpen) {
-            RelativeSide hoveredSide = getHoveredSide(mouseX, mouseY);
-            if (hoveredSide != null) {
-                List<Component> tooltip = new ArrayList<>();
-                tooltip.add(Component.translatable(sideTranslationKey(hoveredSide)));
-                tooltip.add(getSideModeTooltip(
-                        menu.getSideMode(machineSideForVisualSide(hoveredSide))
-                ));
-                guiGraphics.renderComponentTooltip(
-                        font,
-                        tooltip,
-                        mouseX,
-                        mouseY,
-                        ItemStack.EMPTY
-                );
-                return;
+        if (menu.isModulePanelOpen()) {
+            graphics.blit(MODULES, leftPos + 8, topPos + 25, 204, 111, 0, 0, 816, 444, 816, 444);
+        } else if (menu.isSidePanelOpen()) {
+            graphics.blit(CONFIGURATION, leftPos + 8, topPos + 25, 204, 111, 0, 0, 816, 444, 816, 444);
+            for (var entry : SIDES.entrySet()) {
+                RelativeSide visual = entry.getKey();
+                Rect rect = entry.getValue();
+                SideMode mode = menu.getSideMode(machineSide(visual));
+                int tile = mode == SideMode.INPUT ? 20 : mode.allowsOutput() ? 40 : 0;
+                widget(graphics, rect.x, rect.y, 20, 20, tile, 24, 20, 20);
+                if (visual != RelativeSide.FRONT && inside(mouseX, mouseY, rect)) {
+                    graphics.renderOutline(leftPos + rect.x, topPos + rect.y, 20, 20, TEXT);
+                }
             }
-        }
-
-        if (isHovering(
-                ENERGY_METER_X,
-                ENERGY_METER_Y,
-                ENERGY_METER_W,
-                ENERGY_METER_H,
-                mouseX,
-                mouseY
-        ) || isHovering(
-                ENERGY_VALUE_X,
-                ENERGY_VALUE_Y,
-                ENERGY_VALUE_W,
-                ENERGY_VALUE_H,
-                mouseX,
-                mouseY
-        )) {
-            guiGraphics.renderTooltip(
-                    font,
-                    Component.translatable(
-                            "gui.domesurvival.forming_press.energy_tooltip",
-                            menu.energyStored(),
-                            menu.energyCapacity()
-                    ),
-                    mouseX,
-                    mouseY
-            );
-            return;
-        }
-
-        if (isHovering(PROGRESS_X, PROGRESS_Y, PROGRESS_W, PROGRESS_H, mouseX, mouseY)
-                && menu.progressMax() > 0) {
-            List<Component> tooltip = new ArrayList<>();
-            tooltip.add(processChain(menu.operation()));
-            tooltip.add(Component.translatable(
-                    "gui.domesurvival.forming_press.recipe_tooltip",
-                    menu.requiredInputCount(),
-                    menu.recipeEnergy(),
-                    String.format(Locale.ROOT, "%.1f", menu.progressMax() / 20.0D)
-            ));
-            guiGraphics.renderComponentTooltip(font, tooltip, mouseX, mouseY, ItemStack.EMPTY);
-        }
-    }
-
-    @Override
-    protected void renderBg(
-            GuiGraphics guiGraphics,
-            float partialTick,
-            int mouseX,
-            int mouseY
-    ) {
-        int x = leftPos;
-        int y = topPos;
-
-        // Exact CoalGeneratorScreen panel helper and colors.
-        drawIndustrialPanel(guiGraphics, x, y, MACHINE_PANEL_WIDTH, PANEL_HEIGHT, 0xFF30363A);
-
-        // Exact Coal Generator energy section geometry and colors.
-        drawThinFrame(
-                guiGraphics,
-                x + ENERGY_METER_X,
-                y + ENERGY_METER_Y,
-                ENERGY_METER_W,
-                ENERGY_METER_H,
-                0xFF14191C
-        );
-        drawThinFrame(
-                guiGraphics,
-                x + ENERGY_VALUE_X,
-                y + ENERGY_VALUE_Y,
-                ENERGY_VALUE_W,
-                ENERGY_VALUE_H,
-                0xFF151A1D
-        );
-
-        int capacity = Math.max(1, menu.energyCapacity());
-        int energyInnerHeight = ENERGY_METER_H - 6;
-        int energyHeight = Math.min(
-                energyInnerHeight,
-                (int) ((long) menu.energyStored() * energyInnerHeight / capacity)
-        );
-
-        if (energyHeight > 0) {
-            int fillBottom = y + ENERGY_METER_Y + ENERGY_METER_H - 3;
-            int fillTop = fillBottom - energyHeight;
-
-            guiGraphics.fill(
-                    x + ENERGY_METER_X + 3,
-                    fillTop,
-                    x + ENERGY_METER_X + ENERGY_METER_W - 3,
-                    fillBottom,
-                    0xFF8D792A
-            );
-            guiGraphics.fill(
-                    x + ENERGY_METER_X + 4,
-                    fillTop,
-                    x + ENERGY_METER_X + 6,
-                    fillBottom,
-                    0xFFAA9438
-            );
-        }
-
-        // Machine input/output slots use exactly the Coal Generator's 24 px slot frame.
-        drawSlot(
-                guiGraphics,
-                x + INPUT_SLOT_BG_X,
-                y + PROCESS_SLOT_BG_Y,
-                PROCESS_SLOT_BG_SIZE
-        );
-        drawSlot(
-                guiGraphics,
-                x + OUTPUT_SLOT_BG_X,
-                y + PROCESS_SLOT_BG_Y,
-                PROCESS_SLOT_BG_SIZE
-        );
-
-        // Processing bar uses the Coal Generator thin-frame / brown fill language.
-        drawThinFrame(
-                guiGraphics,
-                x + PROGRESS_X,
-                y + PROGRESS_Y,
-                PROGRESS_W,
-                PROGRESS_H,
-                0xFF151A1D
-        );
-
-        int maxProgress = menu.progressMax();
-        int progressWidth = maxProgress <= 0
-                ? 0
-                : Math.min(
-                        PROGRESS_W - 6,
-                        menu.progress() * (PROGRESS_W - 6) / Math.max(1, maxProgress)
-                );
-
-        if (progressWidth > 0) {
-            guiGraphics.fill(
-                    x + PROGRESS_X + 3,
-                    y + PROGRESS_Y + 3,
-                    x + PROGRESS_X + 3 + progressWidth,
-                    y + PROGRESS_Y + PROGRESS_H - 3,
-                    0xFF744128
-            );
-            guiGraphics.fill(
-                    x + PROGRESS_X + 3,
-                    y + PROGRESS_Y + 4,
-                    x + PROGRESS_X + 3 + progressWidth,
-                    y + PROGRESS_Y + 6,
-                    0xFF925034
-            );
-        }
-
-        // Five forming operations use the same compact framed-button vocabulary as
-        // the Coal Generator gear button; real vanilla item icons stay crisp at 16x16.
-        for (FormingOperation operation : FormingOperation.values()) {
-            drawOperationButton(
-                    guiGraphics,
-                    OPERATION_RECTS.get(operation),
-                    operation,
-                    operation == menu.operation()
-            );
-        }
-
-        // Exact Coal Generator inventory divider and 22 px inventory grid.
-        guiGraphics.fill(
-                x + 10,
-                y + 153,
-                x + MACHINE_PANEL_WIDTH - 10,
-                y + 154,
-                0xFF171B1F
-        );
-        guiGraphics.fill(
-                x + 10,
-                y + 154,
-                x + MACHINE_PANEL_WIDTH - 10,
-                y + 155,
-                0xFF4B5359
-        );
-
-        for (int row = 0; row < 3; row++) {
-            for (int column = 0; column < 9; column++) {
-                drawSlot(
-                        guiGraphics,
-                        x + INVENTORY_X + column * INVENTORY_SLOT_STEP,
-                        y + INVENTORY_Y + row * INVENTORY_SLOT_STEP,
-                        INVENTORY_SLOT_SIZE
-                );
-            }
-        }
-
-        for (int column = 0; column < 9; column++) {
-            drawSlot(
-                    guiGraphics,
-                    x + INVENTORY_X + column * INVENTORY_SLOT_STEP,
-                    y + HOTBAR_Y,
-                    INVENTORY_SLOT_SIZE
-            );
-        }
-
-        // Exact Coal Generator gear button + expandable routing panel.
-        drawGearButton(guiGraphics, x + GEAR_X, y + GEAR_Y, sidePanelOpen);
-
-        if (sidePanelOpen) {
-            drawIndustrialPanel(
-                    guiGraphics,
-                    x + SIDE_PANEL_X,
-                    y,
-                    SIDE_PANEL_WIDTH,
-                    SIDE_PANEL_HEIGHT,
-                    0xFF252B2F
-            );
-            drawThinFrame(
-                    guiGraphics,
-                    leftPos + SIDE_MODEL_FRAME.x,
-                    topPos + SIDE_MODEL_FRAME.y,
-                    SIDE_MODEL_FRAME.width,
-                    SIDE_MODEL_FRAME.height,
-                    0xFF171C20
-            );
-            drawSideModel(guiGraphics, mouseX, mouseY);
-        }
-    }
-
-    private void drawOperationButton(
-            GuiGraphics guiGraphics,
-            Rect rect,
-            FormingOperation operation,
-            boolean active
-    ) {
-        int x = leftPos + rect.x;
-        int y = topPos + rect.y;
-        int background = active ? 0xFF394247 : 0xFF252B2F;
-
-        drawThinFrame(
-                guiGraphics,
-                x,
-                y,
-                rect.width,
-                rect.height,
-                background
-        );
-
-        ItemStack icon = operationIcons.get(operation);
-        if (icon != null && !icon.isEmpty()) {
-            int iconX = x + (rect.width - 16) / 2;
-            int iconY = y + (rect.height - 16) / 2;
-            guiGraphics.renderItem(icon, iconX, iconY);
-        }
-    }
-
-    private void drawGearButton(
-            GuiGraphics guiGraphics,
-            int x,
-            int y,
-            boolean active
-    ) {
-        int background = active ? 0xFF394247 : 0xFF252B2F;
-        drawThinFrame(guiGraphics, x, y, GEAR_SIZE, GEAR_SIZE, background);
-
-        int centerX = x + GEAR_SIZE / 2;
-        int centerY = y + GEAR_SIZE / 2;
-        int metal = active ? 0xFF869197 : 0xFF687278;
-
-        guiGraphics.fill(centerX - 5, centerY - 2, centerX + 5, centerY + 2, metal);
-        guiGraphics.fill(centerX - 2, centerY - 5, centerX + 2, centerY + 5, metal);
-        guiGraphics.fill(centerX - 4, centerY - 4, centerX + 4, centerY + 4, metal);
-        guiGraphics.fill(centerX - 2, centerY - 2, centerX + 2, centerY + 2, 0xFF151A1D);
-    }
-
-    private void drawSideModel(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        for (RelativeSide visualSide : RelativeSide.values()) {
-            Rect rect = SIDE_RECTS.get(visualSide);
-            boolean hovered = visualSide != RelativeSide.FRONT
-                    && rect.contains(mouseX, mouseY, leftPos, topPos);
-
-            RelativeSide machineSide = machineSideForVisualSide(visualSide);
-
-            drawMachineFace(
-                    guiGraphics,
-                    rect,
-                    visualSide,
-                    menu.getSideMode(machineSide),
-                    hovered
-            );
-        }
-    }
-
-    private void drawMachineFace(
-            GuiGraphics guiGraphics,
-            Rect rect,
-            RelativeSide side,
-            SideMode mode,
-            boolean hovered
-    ) {
-        int x = leftPos + rect.x;
-        int y = topPos + rect.y;
-
-        int outer = hovered ? 0xFF697278 : 0xFF0E1214;
-        int rim = hovered ? 0xFF50585E : 0xFF3D454A;
-        int face = side == RelativeSide.FRONT ? 0xFF20262A : 0xFF252B2F;
-
-        guiGraphics.fill(x, y, x + rect.width, y + rect.height, outer);
-        guiGraphics.fill(x + 1, y + 1, x + rect.width - 1, y + rect.height - 1, rim);
-        guiGraphics.fill(x + 2, y + 2, x + rect.width - 2, y + rect.height - 2, face);
-
-        if (side == RelativeSide.FRONT) {
-            guiGraphics.fill(
-                    x + 4,
-                    y + 5,
-                    x + rect.width - 4,
-                    y + rect.height - 4,
-                    0xFF121719
-            );
-            for (int i = 0; i < 3; i++) {
-                int ventX = x + 5 + i * 2;
-                guiGraphics.fill(
-                        ventX,
-                        y + 7,
-                        ventX + 1,
-                        y + rect.height - 6,
-                        0xFF424A4F
-                );
-            }
-            return;
-        }
-
-        int portU = switch (mode) {
-            case INPUT -> PORT_INPUT_U;
-            case OUTPUT, BOTH -> PORT_OUTPUT_U;
-            case DISABLED -> PORT_OFF_U;
-        };
-
-        blitPortSprite(
-                guiGraphics,
-                x + Math.max(1, (rect.width - PORT_SIZE) / 2),
-                y + Math.max(1, (rect.height - PORT_SIZE) / 2),
-                portU
-        );
-    }
-
-    private static void blitPortSprite(
-            GuiGraphics guiGraphics,
-            int x,
-            int y,
-            int u
-    ) {
-        guiGraphics.blit(
-                PORT_TEXTURE,
-                x,
-                y,
-                u,
-                0,
-                PORT_SIZE,
-                PORT_SIZE,
-                PORT_TEX_WIDTH,
-                PORT_TEX_HEIGHT
-        );
-    }
-
-    /**
-     * Exact CoalGeneratorScreen panel renderer.
-     */
-    private static void drawIndustrialPanel(
-            GuiGraphics guiGraphics,
-            int x,
-            int y,
-            int width,
-            int height,
-            int fillColor
-    ) {
-        guiGraphics.fill(x, y, x + width, y + height, 0xFF0C0F11);
-        guiGraphics.fill(
-                x + 1,
-                y + 1,
-                x + width - 1,
-                y + height - 1,
-                0xFF464E53
-        );
-        guiGraphics.fill(
-                x + 2,
-                y + 2,
-                x + width - 2,
-                y + height - 2,
-                fillColor
-        );
-        guiGraphics.fill(
-                x + 3,
-                y + 3,
-                x + width - 3,
-                y + 4,
-                0xFF50585D
-        );
-        guiGraphics.fill(
-                x + 3,
-                y + height - 4,
-                x + width - 3,
-                y + height - 3,
-                0xFF14181B
-        );
-    }
-
-    /**
-     * Exact CoalGeneratorScreen thin-frame renderer.
-     */
-    private static void drawThinFrame(
-            GuiGraphics guiGraphics,
-            int x,
-            int y,
-            int width,
-            int height,
-            int fillColor
-    ) {
-        guiGraphics.fill(x, y, x + width, y + height, 0xFF0B0E10);
-        guiGraphics.fill(
-                x + 1,
-                y + 1,
-                x + width - 1,
-                y + height - 1,
-                0xFF4C555A
-        );
-        guiGraphics.fill(
-                x + 2,
-                y + 2,
-                x + width - 2,
-                y + height - 2,
-                fillColor
-        );
-    }
-
-    /**
-     * Exact CoalGeneratorScreen slot renderer.
-     */
-    private static void drawSlot(
-            GuiGraphics guiGraphics,
-            int x,
-            int y,
-            int size
-    ) {
-        int contentSize = 16;
-        int inset = Math.max(2, (size - contentSize) / 2);
-
-        guiGraphics.fill(x, y, x + size, y + size, 0xFF0D1012);
-        guiGraphics.fill(
-                x + 1,
-                y + 1,
-                x + size - 1,
-                y + size - 1,
-                0xFF3E464B
-        );
-        guiGraphics.fill(
-                x + inset,
-                y + inset,
-                x + inset + contentSize,
-                y + inset + contentSize,
-                0xFF1B2125
-        );
-    }
-
-    @Override
-    protected void renderLabels(
-            GuiGraphics guiGraphics,
-            int mouseX,
-            int mouseY
-    ) {
-        // Same title position/clipping as CoalGeneratorScreen.
-        drawClampedText(
-                guiGraphics,
-                title,
-                10,
-                8,
-                MACHINE_PANEL_WIDTH - 20,
-                0xFFE0E4E6
-        );
-
-        drawClampedText(
-                guiGraphics,
-                Component.translatable("gui.domesurvival.forming_press.energy_section"),
-                14,
-                24,
-                MACHINE_PANEL_WIDTH - 28,
-                0xFFC5CBCD
-        );
-
-        drawCenteredClampedText(
-                guiGraphics,
-                Component.translatable(
-                        "gui.domesurvival.forming_press.energy_compact",
-                        compactRf(menu.energyStored()),
-                        compactRf(menu.energyCapacity())
-                ),
-                ENERGY_VALUE_X + 3,
-                ENERGY_VALUE_Y + 4,
-                ENERGY_VALUE_W - 6,
-                0xFFB9A246
-        );
-
-        // Single centered status row above the mode buttons.
-        drawCenteredClampedText(
-                guiGraphics,
-                statusText(),
-                14,
-                96,
-                194,
-                statusColor()
-        );
-
-        drawClampedText(
-                guiGraphics,
-                playerInventoryTitle,
-                14,
-                140,
-                194,
-                0xFFC5CBCD
-        );
-
-        if (sidePanelOpen) {
-            drawCenteredClampedText(
-                    guiGraphics,
-                    Component.translatable("gui.domesurvival.side_config"),
-                    SIDE_PANEL_X + 4,
-                    8,
-                    SIDE_PANEL_WIDTH - 8,
-                    0xFFE0E4E6
-            );
-        }
-    }
-
-    private Component statusText() {
-        Component operation = operationName(menu.operation());
-
-        if (menu.status() == FormingPressBlockEntity.STATUS_NOT_ENOUGH_INPUT) {
-            return Component.translatable(
-                    "gui.domesurvival.forming_press.status.not_enough_input_short",
-                    menu.inputCount(),
-                    menu.requiredInputCount()
-            );
-        }
-
-        if (menu.status() == FormingPressBlockEntity.STATUS_NO_RECIPE) {
-            @Nullable FormingOperation suggested = menu.suggestedOperation();
-            if (suggested != null && suggested != menu.operation()) {
-                return Component.translatable(
-                        "gui.domesurvival.forming_press.status.try_mode",
-                        operationName(suggested)
-                );
-            }
-        }
-
-        String statusKey = switch (menu.status()) {
-            case FormingPressBlockEntity.STATUS_FORMING -> "forming";
-            case FormingPressBlockEntity.STATUS_NO_ENERGY -> "no_energy";
-            case FormingPressBlockEntity.STATUS_NO_RECIPE -> "no_recipe";
-            case FormingPressBlockEntity.STATUS_OUTPUT_FULL -> "output_full";
-            default -> "ready";
-        };
-
-        return Component.literal(
-                operation.getString()
-                        + " · "
-                        + Component.translatable(
-                                "gui.domesurvival.forming_press.status." + statusKey
-                        ).getString()
-        );
-    }
-
-    private int statusColor() {
-        return switch (menu.status()) {
-            case FormingPressBlockEntity.STATUS_READY -> 0xFF83B58A;
-            case FormingPressBlockEntity.STATUS_FORMING -> 0xFFB9A246;
-            case FormingPressBlockEntity.STATUS_NOT_ENOUGH_INPUT -> 0xFFB8A75B;
-            default -> 0xFFC47D6A;
-        };
-    }
-
-    private Component processChain(FormingOperation operation) {
-        return Component.translatable(
-                "gui.domesurvival.forming_press.chain." + operation.getSerializedName()
-        );
-    }
-
-    private Component operationName(FormingOperation operation) {
-        return Component.literal(switch (operation) {
-            case PRESS -> "Прокатка";
-            case GEAR -> "Штамповка";
-            case ROD -> "Вытяжка";
-            case WIRE -> "Волочение";
-            case TUBE -> "Гибка";
-        });
-    }
-
-    private void drawClampedText(
-            GuiGraphics guiGraphics,
-            Component text,
-            int x,
-            int y,
-            int maxWidth,
-            int color
-    ) {
-        String value = text.getString();
-
-        guiGraphics.enableScissor(
-                leftPos + x,
-                topPos + y,
-                leftPos + x + maxWidth,
-                topPos + y + font.lineHeight + 1
-        );
-
-        if (font.width(value) <= maxWidth) {
-            guiGraphics.drawString(font, value, x, y, color, false);
         } else {
-            String dots = "...";
-            int usableWidth = Math.max(0, maxWidth - font.width(dots));
-            String clipped = font.plainSubstrByWidth(value, usableWidth);
-            guiGraphics.drawString(font, clipped + dots, x, y, color, false);
-        }
-
-        guiGraphics.disableScissor();
-    }
-
-    private void drawCenteredClampedText(
-            GuiGraphics guiGraphics,
-            Component text,
-            int x,
-            int y,
-            int maxWidth,
-            int color
-    ) {
-        String value = text.getString();
-
-        if (font.width(value) > maxWidth) {
-            String dots = "...";
-            int usableWidth = Math.max(0, maxWidth - font.width(dots));
-            value = font.plainSubstrByWidth(value, usableWidth) + dots;
-        }
-
-        int drawX = x + Math.max(0, (maxWidth - font.width(value)) / 2);
-
-        guiGraphics.enableScissor(
-                leftPos + x,
-                topPos + y,
-                leftPos + x + maxWidth,
-                topPos + y + font.lineHeight + 1
-        );
-        guiGraphics.drawString(font, value, drawX, y, color, false);
-        guiGraphics.disableScissor();
-    }
-
-    private static String compactRf(int value) {
-        if (value < 1_000) {
-            return Integer.toString(value);
-        }
-
-        if (value % 1_000 == 0) {
-            return (value / 1_000) + "k";
-        }
-
-        return String.format(Locale.ROOT, "%.1fk", value / 1_000.0D);
-    }
-
-    private FormingOperation getHoveredOperation(double mouseX, double mouseY) {
-        for (FormingOperation operation : FormingOperation.values()) {
-            Rect rect = OPERATION_RECTS.get(operation);
-            if (rect.contains(mouseX, mouseY, leftPos, topPos)) {
-                return operation;
+            int energyHeight = (int) Math.min(47, (long) menu.energyStored() * 47 / Math.max(1, menu.energyCapacity()));
+            if (energyHeight > 0) widget(graphics, 17, 87 - energyHeight, 12, energyHeight, 64, 47 - energyHeight, 12, energyHeight);
+            int width=menu.progressMax()<=0?0:Math.min(85,menu.progress()*85/menu.progressMax());
+            if(width>0){graphics.enableScissor(leftPos+82,topPos+70,leftPos+82+width,topPos+78);widget(graphics,82,70,85,8,0,48,64,8);graphics.disableScissor();}
+            String[] icons={"steel_plate","steel_gear","steel_rod","steel_wire","steel_tube"};
+            for(FormingOperation operation:FormingOperation.values()){
+                int x=24+36*operation.ordinal();
+                var item=net.minecraftforge.registries.ForgeRegistries.ITEMS.getValue(new ResourceLocation(DomeSurvival.MOD_ID,icons[operation.ordinal()]));
+                if(item!=null)graphics.renderItem(new ItemStack(item),leftPos+x+7,topPos+113);
+                if(operation==menu.operation())graphics.renderOutline(leftPos+x,topPos+108,30,26,AMBER);
             }
         }
-        return null;
     }
 
-    private RelativeSide getHoveredSide(double mouseX, double mouseY) {
-        for (RelativeSide side : RelativeSide.values()) {
-            if (side == RelativeSide.FRONT) {
-                continue;
+    @Override
+    protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
+        text(graphics, title, 13, 10, 146, 0xFF201E19);
+        if (menu.isModulePanelOpen()) {
+            text(graphics, Component.translatable("gui.domesurvival.upgrade_modules"), 15, 30, 187, TEXT);
+            text(graphics, Component.translatable(KEY+"modules_allowed"),59,51,143,AMBER);
+            text(graphics, Component.translatable(KEY+"modules_allowed2"),59,64,143,TEXT);
+            text(graphics, Component.translatable(KEY+"modules_idle"),59,83,143,MUTED);
+            text(graphics, Component.translatable(KEY+"modules_conflict"),59,97,143,MUTED);
+        } else if (menu.isSidePanelOpen()) {
+            text(graphics, Component.translatable(KEY + "routing_title"), 15, 30, 187, TEXT);
+            text(graphics, Component.translatable("gui.domesurvival.side_state.input"), 111, 47, 89, BLUE);
+            text(graphics, Component.translatable(KEY + "input_short"), 111, 59, 89, TEXT);
+            text(graphics, Component.translatable("gui.domesurvival.side_state.output"), 111, 73, 89, AMBER);
+            text(graphics, Component.translatable(KEY + "output_only_short"), 111, 85, 89, TEXT);
+            for (var entry : SIDES.entrySet()) {
+                Rect rect = entry.getValue();
+                String side = entry.getKey().name().toLowerCase(Locale.ROOT);
+                Component label = Component.translatable("gui.domesurvival.coal_generator.side_letter." + side);
+                graphics.drawCenteredString(font, label, rect.x + 10, rect.y + 5,
+                        entry.getKey() == RelativeSide.FRONT ? MUTED : TEXT);
             }
+        } else {
+            text(graphics, Component.translatable(KEY + "energy_section"), 14, 26, 75, MUTED);
+            Component energy = Component.translatable(KEY + "energy_compact_spaced", compact(menu.energyStored()), compact(menu.energyCapacity()));
+            graphics.drawCenteredString(font, energy, 125, 42, AMBER);
+            text(graphics,Component.translatable(KEY+"raw"),43,55,33,MUTED);
+            text(graphics,Component.translatable(KEY+"product"),172,55,35,MUTED);
+            String[] states={"ready","forming","no_energy","no_recipe","output_full","not_enough_input"};
+            text(graphics,Component.translatable("gui.domesurvival.forming_press.status."+states[Math.max(0,Math.min(5,menu.status()))],menu.inputCount(),menu.requiredInputCount()),42,91,166,TEXT);
+        }
+        text(graphics,Component.translatable(KEY+"cycle",menu.recipeEnergy(),menu.progressMax()/20.0),14,139,195,MUTED);
+        text(graphics,playerInventoryTitle,14,149,194,TEXT);
+        graphics.drawCenteredString(font,"MP-01 / "+compact(menu.energyCapacity())+" FE",110,253,MUTED);
+    }
 
-            Rect rect = SIDE_RECTS.get(side);
-            if (rect.contains(mouseX, mouseY, leftPos, topPos)) {
-                return side;
+    private void text(GuiGraphics graphics, Component component, int x, int y, int maxWidth, int color) {
+        String value = component.getString();
+        if (font.width(value) > maxWidth) value = font.plainSubstrByWidth(value, maxWidth - font.width("...")) + "...";
+        graphics.drawString(font, value, x, y, color, false);
+    }
+
+    @Override
+    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+        renderBackground(graphics);
+        super.render(graphics, mouseX, mouseY, partialTick);
+        renderTooltip(graphics, mouseX, mouseY);
+        if (inside(mouseX, mouseY, new Rect(9, 7, 154, 14))) {
+            graphics.renderTooltip(font, title, mouseX, mouseY);
+        } else if (inside(mouseX, mouseY, UPGRADES)) {
+            graphics.renderTooltip(font, Component.translatable("gui.domesurvival.upgrade_modules.tooltip"), mouseX, mouseY);
+        } else if (inside(mouseX, mouseY, SETTINGS)) {
+            graphics.renderTooltip(font, Component.translatable("gui.domesurvival.side_config"), mouseX, mouseY);
+        } else if (menu.isModulePanelOpen()) {
+            if (inside(mouseX, mouseY, new Rect(18, 53, 24, 54))) {
+                graphics.renderTooltip(font, Component.translatable(KEY + "module_slot_tooltip"), mouseX, mouseY);
             }
+        } else if (menu.isSidePanelOpen()) {
+            RelativeSide side = hoveredSide(mouseX, mouseY);
+            if (side != null) {
+                SideMode mode = menu.getSideMode(machineSide(side));
+                Component detail = side == RelativeSide.FRONT ? Component.translatable(KEY + "front_reserved")
+                        : Component.translatable(mode == SideMode.INPUT ? KEY + "input_tooltip"
+                        : mode.allowsOutput() ? KEY + "output_only_tooltip" : "gui.domesurvival.side_state.disabled");
+                graphics.renderComponentTooltip(font, List.of(Component.translatable("gui.domesurvival.side." + side.name().toLowerCase(Locale.ROOT)), detail), mouseX, mouseY, ItemStack.EMPTY);
+            }
+        } else if (menu.isMainPanelOpen()) {
+            for(FormingOperation operation:FormingOperation.values())if(inside(mouseX,mouseY,new Rect(24+36*operation.ordinal(),108,30,26)))
+                graphics.renderTooltip(font,Component.translatable("gui.domesurvival.forming_press.operation."+operation.getSerializedName()),mouseX,mouseY);
+            if (inside(mouseX,mouseY,new Rect(14,37,194,16)))
+
+            graphics.renderTooltip(font, Component.translatable(KEY + "energy_tooltip", menu.energyStored(), menu.energyCapacity()), mouseX, mouseY);
         }
-        return null;
     }
 
-    private static String sideTranslationKey(RelativeSide side) {
-        return "gui.domesurvival.side." + side.name().toLowerCase(Locale.ROOT);
-    }
-
-    private static Component getSideModeTooltip(SideMode mode) {
-        return switch (mode) {
-            case INPUT -> Component.translatable("gui.domesurvival.side_state.input");
-            case OUTPUT -> Component.translatable("gui.domesurvival.side_state.output");
-            case BOTH -> Component.translatable("gui.domesurvival.forming_press.side_state.both");
-            case DISABLED -> Component.translatable("gui.domesurvival.side_state.disabled");
-        };
-    }
-
-    private static ItemStack stackPrefer(String primary, String fallback) {
-        Item item = ForgeRegistries.ITEMS.getValue(
-                new ResourceLocation(DomeSurvival.MOD_ID, primary)
-        );
-        if (item != null) {
-            return new ItemStack(item);
-        }
-        return stack(fallback);
-    }
-
-    private static ItemStack stack(String path) {
-        Item item = ForgeRegistries.ITEMS.getValue(
-                new ResourceLocation(DomeSurvival.MOD_ID, path)
-        );
-        return item == null
-                ? new ItemStack(Items.BARRIER)
-                : new ItemStack(item);
+    private static String compact(int value) {
+        if (value < 1000) return Integer.toString(value);
+        return value % 1000 == 0 ? (value / 1000) + "k" : String.format(Locale.ROOT, "%.1fk", value / 1000.0);
     }
 
     private record Rect(int x, int y, int width, int height) {
-        private boolean contains(
-                double mouseX,
-                double mouseY,
-                int leftPos,
-                int topPos
-        ) {
-            double localX = mouseX - leftPos;
-            double localY = mouseY - topPos;
-            return localX >= x && localX < x + width
-                    && localY >= y && localY < y + height;
-        }
+        boolean contains(double px, double py) { return px >= x && px < x + width && py >= y && py < y + height; }
     }
 }

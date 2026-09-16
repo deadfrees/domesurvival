@@ -4,7 +4,7 @@ import net.minecraft.world.level.block.SoundType;
 import com.wasted.domesurvival.forge.transport.energy.EnergyPipeTier;
 import com.wasted.domesurvival.forge.transport.energy.EnergyPipeBlockItem;
 import com.wasted.domesurvival.forge.transport.energy.EnergyPipeBlock;
-import cofh.thermal.core.common.item.WrenchItem;
+import com.wasted.domesurvival.forge.item.EngineerWrenchItem;
 import com.wasted.domesurvival.forge.machine.energy.CreativeEnergyBufferBlock;
 import com.wasted.domesurvival.forge.machine.energy.AdamantiumEnergyBufferBlock;
 import com.wasted.domesurvival.forge.machine.energy.TitanEnergyBufferBlock;
@@ -217,7 +217,7 @@ public final class ModBlocks {
         ITEMS.register("energy_buffer", () -> new EnergyBufferBlockItem(ENERGY_BUFFER.get(), new Item.Properties()));
         ITEMS.register("energy_buffer_titan", () -> new EnergyBufferBlockItem(ENERGY_BUFFER_TITAN.get(), new Item.Properties()));
         ITEMS.register("energy_buffer_adamantium", () -> new EnergyBufferBlockItem(ENERGY_BUFFER_ADAMANTIUM.get(), new Item.Properties()));
-        ITEMS.register("machine_wrench", () -> new WrenchItem(new Item.Properties().stacksTo(1)));
+        ITEMS.register("machine_wrench", () -> new EngineerWrenchItem(new Item.Properties().stacksTo(1)));
         ITEMS.register("energy_buffer_creative", () -> new BlockItem(ENERGY_BUFFER_CREATIVE.get(), new Item.Properties()));
         ITEMS.register("basic_energy_pipe",
                 () -> new EnergyPipeBlockItem(BASIC_ENERGY_PIPE.get(), new Item.Properties(),

@@ -20,6 +20,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
+import com.wasted.domesurvival.forge.machine.module.*;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -37,6 +38,12 @@ public final class FormingPressMenu extends AbstractContainerMenu {
     private static final int OPERATION_BUTTON_BASE = 50;
     private static final int SIDE_BUTTON_BASE = 100;
 
+    public static final int MAIN_TAB = 201, MODULE_TAB = 200, SIDE_TAB = 202;
+    private int tab = MAIN_TAB;
+    public boolean isModulePanelOpen() { return tab == MODULE_TAB; }
+    public boolean isSidePanelOpen() { return tab == SIDE_TAB; }
+    public boolean isMainPanelOpen() { return tab == MAIN_TAB; }
+    public void setTab(int value) { tab = value; }
     private final Level level;
     private final BlockPos blockPos;
     private final ContainerLevelAccess access;
@@ -81,18 +88,34 @@ public final class FormingPressMenu extends AbstractContainerMenu {
         this.press = press;
 
         checkContainerDataCount(data, FormingPressBlockEntity.DATA_COUNT);
-        addDataSlots(data);
+        // Vanilla menu packets carry signed shorts. Split every value so upgraded
+        // capacities and recipe costs retain their full integer range on the client.
+        addDataSlots(new ContainerData() {
+            @Override public int get(int index) {
+                return (data.get(index / 2) >>> ((index % 2) * 16)) & 0xFFFF;
+            }
+            @Override public void set(int index, int value) {
+                int shift = (index % 2) * 16;
+                int preserved = data.get(index / 2) & ~(0xFFFF << shift);
+                data.set(index / 2, preserved | ((value & 0xFFFF) << shift));
+            }
+            @Override public int getCount() { return data.getCount() * 2; }
+        });
 
         // Visual frames are 24x24; vanilla 16x16 slots are centered with +4 px inset,
         // exactly like CoalGeneratorMenu's fuel slot.
         addSlot(new SlotItemHandler(machineInventory, 0, 46, 66) {
+            @Override public boolean isActive() { return isMainPanelOpen(); }
+            @Override public boolean mayPickup(Player player) { return isMainPanelOpen(); }
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
-                return FormingPressBlockEntity.isValidFormingInput(level, stack);
+                return isMainPanelOpen() && FormingPressBlockEntity.isValidFormingInput(level, stack);
             }
         });
 
         addSlot(new SlotItemHandler(machineInventory, 1, 182, 66) {
+            @Override public boolean isActive() { return isMainPanelOpen(); }
+            @Override public boolean mayPickup(Player player) { return isMainPanelOpen(); }
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return false;
@@ -101,6 +124,19 @@ public final class FormingPressMenu extends AbstractContainerMenu {
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
+        IItemHandler modules = press == null ? new ItemStackHandler(2) : press.getModules();
+        for (int i = 0; i < 2; i++) addSlot(new SlotItemHandler(modules, i, 22, 57 + i * 30) {
+            @Override public boolean isActive() { return isModulePanelOpen(); }
+            @Override public int getMaxStackSize() { return 1; }
+            @Override public boolean mayPlace(@NotNull ItemStack stack) {
+                return isModulePanelOpen() && progress() == 0 && stack.getItem() instanceof MachineModuleItem && super.mayPlace(stack);
+            }
+            @Override public boolean mayPickup(Player player) {
+                return isModulePanelOpen() && progress() == 0
+                    && (!(getItem().getItem() instanceof MachineModuleItem item)
+                        || item.module().type() != MachineModuleType.BUFFER || energyStored() <= FormingPressBlockEntity.ENERGY_CAPACITY);
+            }
+        });
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
@@ -139,18 +175,20 @@ public final class FormingPressMenu extends AbstractContainerMenu {
         }
 
         var slot = slots.get(index);
-        if (!slot.hasItem()) {
+        if (!slot.hasItem() || !slot.isActive() || !slot.mayPickup(player)) {
             return ItemStack.EMPTY;
         }
 
         ItemStack stack = slot.getItem();
         ItemStack result = stack.copy();
 
-        if (index == INPUT_SLOT_INDEX || index == OUTPUT_SLOT_INDEX) {
+        if (index == INPUT_SLOT_INDEX || index == OUTPUT_SLOT_INDEX || index >= HOTBAR_END) {
             if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, HOTBAR_END, true)) {
                 return ItemStack.EMPTY;
             }
-        } else if (FormingPressBlockEntity.isValidFormingInput(level, stack)
+        } else if (stack.getItem() instanceof MachineModuleItem) {
+            if (!isModulePanelOpen() || !moveItemStackTo(stack, 38, 40, false)) return ItemStack.EMPTY;
+        } else if (isMainPanelOpen() && FormingPressBlockEntity.isValidFormingInput(level, stack)
                 && moveItemStackTo(stack, INPUT_SLOT_INDEX, INPUT_SLOT_INDEX + 1, false)) {
             // valid forming input
         } else if (index >= PLAYER_INVENTORY_START && index < PLAYER_INVENTORY_END) {
@@ -176,8 +214,10 @@ public final class FormingPressMenu extends AbstractContainerMenu {
 
     @Override
     public boolean clickMenuButton(Player player, int id) {
+        if (id == MAIN_TAB || id == MODULE_TAB || id == SIDE_TAB) { tab = id; return true; }
         int operationIndex = id - OPERATION_BUTTON_BASE;
         if (operationIndex >= 0 && operationIndex < FormingOperation.values().length) {
+            if (!isMainPanelOpen()) return false;
             if (press != null) {
                 press.setSelectedOperation(FormingOperation.fromOrdinal(operationIndex));
             }

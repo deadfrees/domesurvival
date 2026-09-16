@@ -26,7 +26,7 @@ public final class FormingPressRegistry {
 
     public static final RegistryObject<Block> FORMING_PRESS = BLOCKS.register(
             "forming_press",
-            () -> new FormingPressBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+            () -> new FormingPressBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()
                     .strength(4.0F, 8.0F))
     );
 
