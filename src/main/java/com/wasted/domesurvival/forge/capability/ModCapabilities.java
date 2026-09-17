@@ -14,11 +14,15 @@ public final class ModCapabilities {
     public static final Capability<IOxygenStorage> OXYGEN =
             CapabilityManager.get(new CapabilityToken<>() {});
 
+    public static final Capability<IGasStorage> GAS =
+            CapabilityManager.get(new CapabilityToken<>() {});
+
     private ModCapabilities() {
     }
 
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.register(IOxygenStorage.class);
+        event.register(IGasStorage.class);
     }
 }

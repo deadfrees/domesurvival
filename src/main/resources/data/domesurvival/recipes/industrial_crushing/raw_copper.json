@@ -1,10 +1,22 @@
 {
   "type": "domesurvival:industrial_crushing",
-  "ingredient": { "tag": "forge:raw_materials/copper" },
-  "inputCount": 1,
-  "result": { "item": "domesurvival:crushed_copper_ore", "count": 1 },
-  "byproduct": { "item": "minecraft:gravel", "count": 1 },
-  "byproductChance": 750,
-  "processingTime": 140,
+  "ingredient": {
+    "tag": "forge:raw_materials/copper"
+  },
+  "input_count": 1,
+  "result": {
+    "item": "domesurvival:crushed_copper_ore",
+    "count": 1
+  },
+  "byproduct": {
+    "item": "minecraft:gravel",
+    "count": 1
+  },
+  "byproduct_chance": 750,
+  "gas_result": {
+    "gas": "domesurvival:mineral_gas",
+    "amount": 60
+  },
+  "processing_time": 140,
   "energy": 4200
 }

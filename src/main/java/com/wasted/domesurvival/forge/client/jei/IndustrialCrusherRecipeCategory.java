@@ -18,16 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * JEI view of the Industrial Crusher.
- *
- * The layout intentionally follows the Forming Press category's industrial
- * visual language while keeping crusher-specific process visualization and
- * optional byproduct output.
- */
+/** Single data-driven JEI category for the Industrial Crusher. */
 final class IndustrialCrusherRecipeCategory implements IRecipeCategory<IndustrialCrusherRecipe> {
     private static final int WIDTH = 180;
-    private static final int HEIGHT = 118;
+    private static final int HEIGHT = 142;
 
     private static final int INPUT_X = 17;
     private static final int PRIMARY_OUTPUT_X = 147;
@@ -40,40 +34,24 @@ final class IndustrialCrusherRecipeCategory implements IRecipeCategory<Industria
     private static final int PROGRESS_W = 80;
     private static final int PROGRESS_H = 14;
 
+    private static final int GAS_X = 17;
+    private static final int GAS_Y = 105;
+    private static final int GAS_W = 146;
+    private static final int GAS_H = 10;
+
     private final RecipeType<IndustrialCrusherRecipe> recipeType;
     private final IDrawable icon;
 
     IndustrialCrusherRecipeCategory(IGuiHelper guiHelper, RecipeType<IndustrialCrusherRecipe> recipeType) {
         this.recipeType = recipeType;
-        this.icon = guiHelper.createDrawableItemStack(
-                new ItemStack(IndustrialCrusherRegistry.INDUSTRIAL_CRUSHER_ITEM.get())
-        );
+        this.icon = guiHelper.createDrawableItemStack(new ItemStack(IndustrialCrusherRegistry.INDUSTRIAL_CRUSHER_ITEM.get()));
     }
 
-    @Override
-    public RecipeType<IndustrialCrusherRecipe> getRecipeType() {
-        return recipeType;
-    }
-
-    @Override
-    public Component getTitle() {
-        return Component.translatable(IndustrialCrusherRegistry.INDUSTRIAL_CRUSHER.get().getDescriptionId());
-    }
-
-    @Override
-    public int getWidth() {
-        return WIDTH;
-    }
-
-    @Override
-    public int getHeight() {
-        return HEIGHT;
-    }
-
-    @Override
-    public IDrawable getIcon() {
-        return icon;
-    }
+    @Override public RecipeType<IndustrialCrusherRecipe> getRecipeType() { return recipeType; }
+    @Override public Component getTitle() { return Component.translatable(IndustrialCrusherRegistry.INDUSTRIAL_CRUSHER.get().getDescriptionId()); }
+    @Override public int getWidth() { return WIDTH; }
+    @Override public int getHeight() { return HEIGHT; }
+    @Override public IDrawable getIcon() { return icon; }
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, IndustrialCrusherRecipe recipe, IFocusGroup focuses) {
@@ -81,9 +59,12 @@ final class IndustrialCrusherRecipeCategory implements IRecipeCategory<Industria
                 .setStandardSlotBackground()
                 .addItemStacks(withCount(recipe.getIngredient().getItems(), recipe.getInputCount()));
 
-        builder.addOutputSlot(PRIMARY_OUTPUT_X, PRIMARY_Y)
-                .setOutputSlotBackground()
-                .addItemStack(recipe.getResult());
+        ItemStack result = recipe.getResult();
+        if (!result.isEmpty()) {
+            builder.addOutputSlot(PRIMARY_OUTPUT_X, PRIMARY_Y)
+                    .setOutputSlotBackground()
+                    .addItemStack(result);
+        }
 
         ItemStack byproduct = recipe.getByproduct();
         if (!byproduct.isEmpty() && recipe.getByproductChancePerTenThousand() > 0) {
@@ -100,14 +81,11 @@ final class IndustrialCrusherRecipeCategory implements IRecipeCategory<Industria
         DomeJeiStyle.drawThinFrame(graphics, 5, 6, WIDTH - 10, 44, DomeJeiStyle.PANEL_ALT);
 
         DomeJeiStyle.drawSlot(graphics, INPUT_X, PRIMARY_Y, false, false);
-        DomeJeiStyle.drawSlot(graphics, PRIMARY_OUTPUT_X, PRIMARY_Y, true, false);
+        if (!recipe.getResult().isEmpty()) DomeJeiStyle.drawSlot(graphics, PRIMARY_OUTPUT_X, PRIMARY_Y, true, false);
 
         float progress = DomeJeiStyle.animationFraction(recipe.getProcessingTime());
-        DomeJeiStyle.drawProgress(
-                graphics, PROGRESS_X, PROGRESS_Y, PROGRESS_W, PROGRESS_H,
-                progress, DomeJeiStyle.PROCESS, DomeJeiStyle.PROCESS_LIGHT
-        );
-
+        DomeJeiStyle.drawProgress(graphics, PROGRESS_X, PROGRESS_Y, PROGRESS_W, PROGRESS_H,
+                progress, DomeJeiStyle.PROCESS, DomeJeiStyle.PROCESS_LIGHT);
         drawCrusherProcess(graphics, progress);
 
         ItemStack byproduct = recipe.getByproduct();
@@ -116,21 +94,32 @@ final class IndustrialCrusherRecipeCategory implements IRecipeCategory<Industria
             DomeJeiStyle.drawCenteredClamped(
                     graphics,
                     Component.literal(chanceText(recipe.getByproductChancePerTenThousand())),
-                    BYPRODUCT_X + 8,
-                    83,
-                    42,
-                    DomeJeiStyle.TEXT_MUTED
-            );
+                    BYPRODUCT_X + 8, 83, 42, DomeJeiStyle.TEXT_MUTED);
+        }
+
+        if (recipe.hasGasResult()) {
+            drawGasOutput(graphics, recipe);
         }
 
         Component statistics = Component.translatable(
                 "jei.domesurvival.statistics_powered",
                 seconds(recipe.getProcessingTime()),
-                energyPerTick(recipe.getEnergy(), recipe.getProcessingTime())
-        );
+                energyPerTick(recipe.getEnergy(), recipe.getProcessingTime()));
+        DomeJeiStyle.drawCenteredClamped(graphics, statistics, WIDTH / 2, 130, WIDTH - 16, DomeJeiStyle.TEXT_DIM);
+    }
+
+    private static void drawGasOutput(GuiGraphics graphics, IndustrialCrusherRecipe recipe) {
+        DomeJeiStyle.drawThinFrame(graphics, GAS_X, GAS_Y, GAS_W, GAS_H, 0xFF151B1E);
+        graphics.fill(GAS_X + 2, GAS_Y + 2, GAS_X + GAS_W - 2, GAS_Y + GAS_H - 2, 0xFF5E9CA8);
+
         DomeJeiStyle.drawCenteredClamped(
-                graphics, statistics, WIDTH / 2, 103, WIDTH - 16, DomeJeiStyle.TEXT_DIM
-        );
+                graphics,
+                Component.translatable("gas.domesurvival.mineral_gas"),
+                58, 93, 80, DomeJeiStyle.TEXT_MUTED);
+        DomeJeiStyle.drawCenteredClamped(
+                graphics,
+                Component.translatable("jei.domesurvival.gas_amount", recipe.getGasAmount()),
+                132, 93, 54, DomeJeiStyle.TEXT);
     }
 
     private static void drawCrusherProcess(GuiGraphics graphics, float progress) {
@@ -140,12 +129,9 @@ final class IndustrialCrusherRecipeCategory implements IRecipeCategory<Industria
         int height = 32;
 
         DomeJeiStyle.drawThinFrame(graphics, x, y, width, height, 0xFF171C20);
-
-        // Feed chute.
         graphics.fill(x + 5, y + 5, x + 18, y + 9, DomeJeiStyle.METAL);
         graphics.fill(x + 8, y + 9, x + 15, y + 14, 0xFF30383D);
 
-        // Two opposing crusher rollers. The highlight moves with JEI's process animation.
         int rollerY = y + 11;
         graphics.fill(x + 25, rollerY, x + 38, rollerY + 13, 0xFF232A2E);
         graphics.fill(x + 40, rollerY, x + 53, rollerY + 13, 0xFF232A2E);
@@ -156,7 +142,6 @@ final class IndustrialCrusherRecipeCategory implements IRecipeCategory<Industria
         graphics.fill(x + 28 + phase, rollerY + 3, x + 30 + phase, rollerY + 10, DomeJeiStyle.METAL_LIGHT);
         graphics.fill(x + 48 - phase, rollerY + 3, x + 50 - phase, rollerY + 10, DomeJeiStyle.METAL_LIGHT);
 
-        // Discharge tray.
         graphics.fill(x + 57, y + 20, x + 70, y + 24, DomeJeiStyle.METAL);
         graphics.fill(x + 61, y + 24, x + 68, y + 27, 0xFF30383D);
     }
@@ -168,9 +153,7 @@ final class IndustrialCrusherRecipeCategory implements IRecipeCategory<Industria
             stack.setCount(Math.max(1, count));
             stacks.add(stack);
         }
-        if (stacks.isEmpty()) {
-            stacks.add(new ItemStack(Items.BARRIER));
-        }
+        if (stacks.isEmpty()) stacks.add(new ItemStack(Items.BARRIER));
         return stacks;
     }
 
@@ -187,9 +170,7 @@ final class IndustrialCrusherRecipeCategory implements IRecipeCategory<Industria
 
     private static String chanceText(int chancePerTenThousand) {
         double percent = Math.max(0, Math.min(10_000, chancePerTenThousand)) / 100.0D;
-        if (Math.abs(percent - Math.rint(percent)) < 0.0001D) {
-            return String.format(Locale.ROOT, "%.0f%%", percent);
-        }
+        if (Math.abs(percent - Math.rint(percent)) < 0.0001D) return String.format(Locale.ROOT, "%.0f%%", percent);
         return String.format(Locale.ROOT, "%.1f%%", percent);
     }
 }

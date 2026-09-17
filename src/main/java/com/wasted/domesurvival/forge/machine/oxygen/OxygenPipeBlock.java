@@ -118,7 +118,8 @@ public final class OxygenPipeBlock extends Block {
 
         // Ask the neighbor on the face that points back toward this pipe. This makes
         // configurable machine faces visually disconnect when the oxygen capability is disabled.
-        return blockEntity.getCapability(ModCapabilities.OXYGEN, directionFromPipe.getOpposite()).isPresent();
+        return blockEntity.getCapability(ModCapabilities.OXYGEN, directionFromPipe.getOpposite()).isPresent()
+                || blockEntity.getCapability(ModCapabilities.GAS, directionFromPipe.getOpposite()).isPresent();
     }
 
     @Override

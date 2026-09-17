@@ -1,10 +1,18 @@
 {
   "type": "domesurvival:industrial_crushing",
-  "ingredient": { "tag": "forge:raw_materials/silver" },
-  "inputCount": 1,
-  "result": { "item": "domesurvival:crushed_silver_ore", "count": 1 },
-  "byproduct": { "item": "minecraft:gravel", "count": 1 },
-  "byproductChance": 600,
-  "processingTime": 180,
+  "ingredient": {
+    "tag": "forge:raw_materials/silver"
+  },
+  "input_count": 1,
+  "result": {
+    "item": "domesurvival:crushed_silver_ore",
+    "count": 1
+  },
+  "byproduct": {
+    "item": "minecraft:gravel",
+    "count": 1
+  },
+  "byproduct_chance": 600,
+  "processing_time": 180,
   "energy": 5600
 }

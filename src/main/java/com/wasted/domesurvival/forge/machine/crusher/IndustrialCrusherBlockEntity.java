@@ -1,5 +1,9 @@
 package com.wasted.domesurvival.forge.machine.crusher;
 
+import com.wasted.domesurvival.forge.capability.IGasStorage;
+import com.wasted.domesurvival.forge.capability.ModCapabilities;
+import com.wasted.domesurvival.forge.gas.GasStorage;
+import com.wasted.domesurvival.forge.gas.ModGases;
 import com.wasted.domesurvival.forge.machine.api.IProcessingMachine;
 import com.wasted.domesurvival.forge.machine.api.MachineOperatingState;
 import com.wasted.domesurvival.forge.machine.energy.MachineEnergyStorage;
@@ -38,6 +42,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         implements net.minecraft.world.MenuProvider, IModularMachine, IProcessingMachine {
     public static final int BASE_CAPACITY = 40_000;
     public static final int MAX_RECEIVE = 256;
+    public static final int GAS_CAPACITY = 4_000;
 
     public static final int DATA_ENERGY = 0;
     public static final int DATA_CAPACITY = 1;
@@ -45,7 +50,9 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
     public static final int DATA_MAX_PROGRESS = 3;
     public static final int DATA_RECIPE_ENERGY = 4;
     public static final int DATA_STATUS = 5;
-    public static final int DATA_COUNT = 6;
+    public static final int DATA_GAS = 6;
+    public static final int DATA_GAS_CAPACITY = 7;
+    public static final int DATA_COUNT = 8;
 
     public static final int READY = 0;
     public static final int CRUSHING = 1;
@@ -53,12 +60,16 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
     public static final int NO_RECIPE = 3;
     public static final int OUTPUT_FULL = 4;
     public static final int NOT_ENOUGH_INPUT = 5;
+    public static final int GAS_FULL = 6;
 
     private static final String NBT_INVENTORY = "Inventory";
     private static final String NBT_MODULES = "Modules";
     private static final String NBT_ENERGY = "Energy";
     private static final String NBT_PROGRESS = "Progress";
     private static final String NBT_ACTIVE_RECIPE = "ActiveRecipe";
+    private static final String NBT_CYCLE_TICKS = "CycleTicks";
+    private static final String NBT_CYCLE_ENERGY = "CycleEnergy";
+    private static final String NBT_GAS_TANK = "GasTank";
 
     private final ItemStackHandler inventory = new ItemStackHandler(3) {
         @Override
@@ -68,9 +79,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
 
         @Override
         protected void onContentsChanged(int slot) {
-            if (slot == 0) {
-                invalidateRecipe();
-            }
+            if (slot == 0) invalidateRecipe();
             setChanged();
         }
     };
@@ -80,6 +89,15 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
 
     private final MachineModuleInventory modules =
             new MachineModuleInventory(this, MachineModuleResolver.STANDARD, this::modulesChanged);
+
+    /** Crusher gas buffer is production-only externally: pipes may drain it but never fill it. */
+    private final GasStorage gasTank = new GasStorage(
+            GAS_CAPACITY,
+            0,
+            Integer.MAX_VALUE,
+            ModGases.MINERAL_GAS::equals,
+            this::setChanged
+    );
 
     private final IItemHandler items = new IItemHandler() {
         @Override public int getSlots() { return 3; }
@@ -100,9 +118,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         @Override
         public int receiveEnergy(int amount, boolean simulate) {
             int received = energy.receiveEnergy(amount, simulate);
-            if (!simulate && received > 0) {
-                setChanged();
-            }
+            if (!simulate && received > 0) setChanged();
             return received;
         }
         @Override public int extractEnergy(int amount, boolean simulate) { return 0; }
@@ -112,10 +128,25 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         @Override public boolean canReceive() { return true; }
     };
 
+    private final IGasStorage gasOutput = new IGasStorage() {
+        @Override public int receiveGas(ResourceLocation gas, int maxReceive, boolean simulate) { return 0; }
+        @Override public int extractGas(ResourceLocation gas, int maxExtract, boolean simulate) {
+            return gasTank.extractGas(gas, maxExtract, simulate);
+        }
+        @Override public @Nullable ResourceLocation getGasType() { return gasTank.getGasType(); }
+        @Override public int getGasStored() { return gasTank.getGasStored(); }
+        @Override public int getMaxGasStored() { return gasTank.getMaxGasStored(); }
+        @Override public boolean canReceiveGas(ResourceLocation gas) { return false; }
+        @Override public boolean canExtractGas(ResourceLocation gas) { return gasTank.canExtractGas(gas); }
+    };
+
     private LazyOptional<IItemHandler> itemCap = LazyOptional.of(() -> items);
     private LazyOptional<IEnergyStorage> energyCap = LazyOptional.of(() -> energyInput);
+    private LazyOptional<IGasStorage> gasCap = LazyOptional.of(() -> gasOutput);
 
     private int progress;
+    private int cycleTicks;
+    private int cycleEnergy;
     private boolean active;
     @Nullable private ResourceLocation activeRecipe;
 
@@ -130,9 +161,11 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
             if (index == DATA_ENERGY) return energy.getEnergyStored();
             if (index == DATA_CAPACITY) return energy.getMaxEnergyStored();
             if (index == DATA_PROGRESS) return progress;
-            if (index == DATA_MAX_PROGRESS) return recipe == null ? 0 : modifiedProcessingTicks(recipe);
-            if (index == DATA_RECIPE_ENERGY) return recipe == null ? 0 : modifiedEnergyCost(recipe);
+            if (index == DATA_MAX_PROGRESS) return recipe == null ? 0 : processingTicks(recipe);
+            if (index == DATA_RECIPE_ENERGY) return recipe == null ? 0 : processingEnergy(recipe);
             if (index == DATA_STATUS) return status(recipe);
+            if (index == DATA_GAS) return gasTank.getGasStored();
+            if (index == DATA_GAS_CAPACITY) return gasTank.getMaxGasStored();
             return 0;
         }
 
@@ -144,19 +177,11 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         super(IndustrialCrusherRegistry.INDUSTRIAL_CRUSHER_BLOCK_ENTITY.get(), pos, state);
     }
 
-    @Override
-    public int moduleSlotCount() {
-        return 2;
-    }
+    @Override public int moduleSlotCount() { return 2; }
 
     @Override
     public Set<MachineModuleType> allowedModuleTypes() {
-        // Every accepted module has an immediate effect on this machine.
-        return Set.of(
-                MachineModuleType.EFFICIENCY,
-                MachineModuleType.OVERDRIVE,
-                MachineModuleType.BUFFER
-        );
+        return Set.of(MachineModuleType.EFFICIENCY, MachineModuleType.OVERDRIVE, MachineModuleType.BUFFER);
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, IndustrialCrusherBlockEntity crusher) {
@@ -167,36 +192,33 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
             level.setBlock(pos, state.setValue(IndustrialCrusherBlock.ACTIVE, crusher.active), 3);
             changed = true;
         }
-        if (changed) {
-            crusher.setChanged();
-        }
+        if (changed) crusher.setChanged();
     }
 
     private boolean tickProcess() {
         IndustrialCrusherRecipe recipe = currentRecipe().orElse(null);
-        if (recipe == null) {
-            return resetProgressIfNeeded();
-        }
-
-        if (!hasRequiredInput(recipe)) {
-            return resetProgressIfNeeded();
-        }
+        if (recipe == null || !hasRequiredInput(recipe)) return resetProgressIfNeeded();
 
         if (activeRecipe == null || !activeRecipe.equals(recipe.getId())) {
             progress = 0;
+            cycleTicks = 0;
+            cycleEnergy = 0;
             activeRecipe = recipe.getId();
         }
 
-        // Reserve space for both possible outputs before spending energy. This is
-        // intentionally conservative: a full byproduct slot can never make an item vanish.
-        if (!canAccept(1, recipe.getResult()) || !canAccept(2, recipe.getByproduct())) {
-            return false;
-        }
+        ensureCycleSnapshot(recipe);
 
-        int ticks = modifiedProcessingTicks(recipe);
-        int totalEnergy = modifiedEnergyCost(recipe);
+        // No FE is consumed while either item output or the complete gas output is blocked.
+        if (!canAcceptItemOutputs(recipe) || !canAcceptGas(recipe)) return false;
+
+        int ticks = processingTicks(recipe);
+        int totalEnergy = processingEnergy(recipe);
         int requiredThisTick = energyStep(totalEnergy, ticks);
-        if (energy.getEnergyStored() < requiredThisTick) {
+        if (energy.getEnergyStored() < requiredThisTick) return false;
+
+        // Completion gets an explicit second validation immediately before the final FE debit.
+        if (progress + 1 >= ticks
+                && (!hasRequiredInput(recipe) || !canAcceptItemOutputs(recipe) || !canAcceptGas(recipe))) {
             return false;
         }
 
@@ -205,26 +227,45 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         active = true;
 
         if (progress >= ticks) {
-            finish(recipe);
+            commitRecipe(recipe);
             progress = 0;
+            cycleTicks = 0;
+            cycleEnergy = 0;
             activeRecipe = null;
         }
         return true;
     }
 
+    private void ensureCycleSnapshot(IndustrialCrusherRecipe recipe) {
+        if (progress == 0 || cycleTicks <= 0 || cycleEnergy <= 0) {
+            cycleTicks = Math.max(1, modules.modifiers().applyProcessingTicks(recipe.getProcessingTime()));
+            cycleEnergy = Math.max(1, modules.modifiers().applyEnergyCost(recipe.getEnergy()));
+        }
+    }
+
+    private boolean hasCycle(IndustrialCrusherRecipe recipe) {
+        return activeRecipe != null && activeRecipe.equals(recipe.getId()) && cycleTicks > 0 && cycleEnergy > 0;
+    }
+
+    private int processingTicks(IndustrialCrusherRecipe recipe) {
+        return hasCycle(recipe)
+                ? cycleTicks
+                : Math.max(1, modules.modifiers().applyProcessingTicks(recipe.getProcessingTime()));
+    }
+
+    private int processingEnergy(IndustrialCrusherRecipe recipe) {
+        return hasCycle(recipe)
+                ? cycleEnergy
+                : Math.max(1, modules.modifiers().applyEnergyCost(recipe.getEnergy()));
+    }
+
     private boolean resetProgressIfNeeded() {
-        boolean changed = progress != 0 || activeRecipe != null;
+        boolean changed = progress != 0 || activeRecipe != null || cycleTicks != 0 || cycleEnergy != 0;
         progress = 0;
+        cycleTicks = 0;
+        cycleEnergy = 0;
         activeRecipe = null;
         return changed;
-    }
-
-    private int modifiedProcessingTicks(IndustrialCrusherRecipe recipe) {
-        return Math.max(1, modules.modifiers().applyProcessingTicks(recipe.getProcessingTime()));
-    }
-
-    private int modifiedEnergyCost(IndustrialCrusherRecipe recipe) {
-        return Math.max(1, modules.modifiers().applyEnergyCost(recipe.getEnergy()));
     }
 
     private int energyStep(int totalEnergy, int totalTicks) {
@@ -236,76 +277,67 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         return Math.max(0, after - before);
     }
 
-    private void finish(IndustrialCrusherRecipe recipe) {
+    /** Called only after simulation has proven every output fits in the same server tick. */
+    private void commitRecipe(IndustrialCrusherRecipe recipe) {
         ItemStack input = inventory.getStackInSlot(0);
-        if (!hasRequiredInput(recipe)) {
-            return;
-        }
+        boolean createByproduct = level != null
+                && !recipe.getByproduct().isEmpty()
+                && level.random.nextInt(10_000) < recipe.getByproductChancePerTenThousand();
 
         input.shrink(recipe.getInputCount());
         inventory.setStackInSlot(0, input);
         merge(1, recipe.getResult());
+        if (createByproduct) merge(2, recipe.getByproduct());
 
-        if (level != null
-                && !recipe.getByproduct().isEmpty()
-                && level.random.nextInt(10_000) < recipe.getByproductChancePerTenThousand()) {
-            merge(2, recipe.getByproduct());
+        if (recipe.hasGasResult()) {
+            gasTank.addInternal(recipe.getGasResult(), recipe.getGasAmount(), false);
         }
     }
 
     private void merge(int slot, ItemStack addition) {
-        if (addition.isEmpty()) {
-            return;
-        }
-
+        if (addition.isEmpty()) return;
         ItemStack current = inventory.getStackInSlot(slot);
         if (current.isEmpty()) {
             inventory.setStackInSlot(slot, addition.copy());
             return;
         }
-
         current.grow(addition.getCount());
         inventory.setStackInSlot(slot, current);
     }
 
-    private boolean canAccept(int slot, ItemStack addition) {
-        if (addition.isEmpty()) {
-            return true;
-        }
+    private boolean canAcceptItemOutputs(IndustrialCrusherRecipe recipe) {
+        // Reserve the byproduct slot even for a probabilistic output. This deliberately
+        // prefers blocking over ever rolling an item that has nowhere to go.
+        return canAccept(1, recipe.getResult()) && canAccept(2, recipe.getByproduct());
+    }
 
+    private boolean canAcceptGas(IndustrialCrusherRecipe recipe) {
+        if (!recipe.hasGasResult()) return true;
+        ResourceLocation gas = recipe.getGasResult();
+        return gas != null && gasTank.addInternal(gas, recipe.getGasAmount(), true) == recipe.getGasAmount();
+    }
+
+    private boolean canAccept(int slot, ItemStack addition) {
+        if (addition.isEmpty()) return true;
         int slotLimit = Math.min(inventory.getSlotLimit(slot), addition.getMaxStackSize());
         ItemStack current = inventory.getStackInSlot(slot);
-        if (current.isEmpty()) {
-            return addition.getCount() <= slotLimit;
-        }
-        if (!ItemStack.isSameItemSameTags(current, addition)) {
-            return false;
-        }
-
+        if (current.isEmpty()) return addition.getCount() <= slotLimit;
+        if (!ItemStack.isSameItemSameTags(current, addition)) return false;
         int combinedLimit = Math.min(inventory.getSlotLimit(slot), current.getMaxStackSize());
         return current.getCount() + addition.getCount() <= combinedLimit;
     }
 
     private boolean hasRequiredInput(IndustrialCrusherRecipe recipe) {
         ItemStack input = inventory.getStackInSlot(0);
-        return recipe != null
-                && recipe.acceptsIngredient(input)
-                && input.getCount() >= recipe.getInputCount();
+        return recipe != null && recipe.acceptsIngredient(input) && input.getCount() >= recipe.getInputCount();
     }
 
     private Optional<IndustrialCrusherRecipe> currentRecipe() {
-        if (level == null) {
-            return Optional.empty();
-        }
-
+        if (level == null) return Optional.empty();
         ItemStack input = inventory.getStackInSlot(0);
-        if (input.isEmpty()) {
-            return Optional.empty();
-        }
+        if (input.isEmpty()) return Optional.empty();
 
-        if (recipeCacheValid && ItemStack.isSameItemSameTags(cachedInput, input)) {
-            return cachedRecipe;
-        }
+        if (recipeCacheValid && ItemStack.isSameItemSameTags(cachedInput, input)) return cachedRecipe;
 
         cachedRecipe = level.getRecipeManager()
                 .getAllRecipesFor(ModRecipes.INDUSTRIAL_CRUSHER_TYPE.get())
@@ -333,28 +365,21 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
     }
 
     private int status(@Nullable IndustrialCrusherRecipe recipe) {
-        if (recipe == null) {
-            return inventory.getStackInSlot(0).isEmpty() ? READY : NO_RECIPE;
-        }
-        if (!hasRequiredInput(recipe)) {
-            return NOT_ENOUGH_INPUT;
-        }
-        if (!canAccept(1, recipe.getResult()) || !canAccept(2, recipe.getByproduct())) {
-            return OUTPUT_FULL;
-        }
+        if (recipe == null) return inventory.getStackInSlot(0).isEmpty() ? READY : NO_RECIPE;
+        if (!hasRequiredInput(recipe)) return NOT_ENOUGH_INPUT;
+        if (!canAcceptItemOutputs(recipe)) return OUTPUT_FULL;
+        if (!canAcceptGas(recipe)) return GAS_FULL;
 
-        int ticks = modifiedProcessingTicks(recipe);
-        int totalEnergy = modifiedEnergyCost(recipe);
-        if (energy.getEnergyStored() < energyStep(totalEnergy, ticks)) {
-            return NO_ENERGY;
-        }
+        int ticks = processingTicks(recipe);
+        int totalEnergy = processingEnergy(recipe);
+        if (energy.getEnergyStored() < energyStep(totalEnergy, ticks)) return NO_ENERGY;
         return progress > 0 ? CRUSHING : READY;
     }
 
     private void modulesChanged() {
+        // Buffer capacity changes immediately. Speed/energy modifiers are snapshotted
+        // per cycle, so swapping a module cannot reset progress or double-charge FE.
         energy.setCapacityInternal(modules.modifiers().applyBufferCapacity(BASE_CAPACITY));
-        progress = 0;
-        activeRecipe = null;
         setChanged();
     }
 
@@ -365,24 +390,18 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
             case CRUSHING -> MachineOperatingState.WORKING;
             case NO_ENERGY -> MachineOperatingState.NO_ENERGY;
             case NO_RECIPE, NOT_ENOUGH_INPUT -> MachineOperatingState.NO_RECIPE;
-            case OUTPUT_FULL -> MachineOperatingState.OUTPUT_BLOCKED;
+            case OUTPUT_FULL, GAS_FULL -> MachineOperatingState.OUTPUT_BLOCKED;
             default -> MachineOperatingState.IDLE;
         };
     }
 
-    @Override
-    public int progressTicks() {
-        return progress;
-    }
-
-    @Override
-    public int requiredTicks() {
-        return currentRecipe().map(this::modifiedProcessingTicks).orElse(0);
-    }
+    @Override public int progressTicks() { return progress; }
+    @Override public int requiredTicks() { return currentRecipe().map(this::processingTicks).orElse(0); }
 
     public ItemStackHandler getInventory() { return inventory; }
     public MachineModuleInventory getModules() { return modules; }
     public ContainerData getDataAccess() { return data; }
+    public IGasStorage getGasStorage() { return gasOutput; }
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
@@ -391,9 +410,10 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         tag.put(NBT_MODULES, modules.serializeNBT());
         tag.putInt(NBT_ENERGY, energy.getEnergyStored());
         tag.putInt(NBT_PROGRESS, progress);
-        if (activeRecipe != null) {
-            tag.putString(NBT_ACTIVE_RECIPE, activeRecipe.toString());
-        }
+        tag.putInt(NBT_CYCLE_TICKS, cycleTicks);
+        tag.putInt(NBT_CYCLE_ENERGY, cycleEnergy);
+        tag.put(NBT_GAS_TANK, gasTank.serializeNBT());
+        if (activeRecipe != null) tag.putString(NBT_ACTIVE_RECIPE, activeRecipe.toString());
     }
 
     @Override
@@ -404,6 +424,9 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         energy.setCapacityInternal(modules.modifiers().applyBufferCapacity(BASE_CAPACITY));
         energy.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
         progress = Math.max(0, tag.getInt(NBT_PROGRESS));
+        cycleTicks = Math.max(0, tag.getInt(NBT_CYCLE_TICKS));
+        cycleEnergy = Math.max(0, tag.getInt(NBT_CYCLE_ENERGY));
+        gasTank.deserializeNBT(tag.getCompound(NBT_GAS_TANK));
         activeRecipe = tag.contains(NBT_ACTIVE_RECIPE)
                 ? ResourceLocation.tryParse(tag.getString(NBT_ACTIVE_RECIPE))
                 : null;
@@ -412,12 +435,9 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            return itemCap.cast();
-        }
-        if (cap == ForgeCapabilities.ENERGY) {
-            return energyCap.cast();
-        }
+        if (cap == ForgeCapabilities.ITEM_HANDLER) return itemCap.cast();
+        if (cap == ForgeCapabilities.ENERGY) return energyCap.cast();
+        if (cap == ModCapabilities.GAS) return gasCap.cast();
         return super.getCapability(cap, side);
     }
 
@@ -426,6 +446,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         super.invalidateCaps();
         itemCap.invalidate();
         energyCap.invalidate();
+        gasCap.invalidate();
     }
 
     @Override
@@ -433,6 +454,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         super.reviveCaps();
         itemCap = LazyOptional.of(() -> items);
         energyCap = LazyOptional.of(() -> energyInput);
+        gasCap = LazyOptional.of(() -> gasOutput);
     }
 
     @Override

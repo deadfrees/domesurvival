@@ -729,5 +729,18 @@
   "gui.domesurvival.forming_press_v2.product": "Output",
   "gui.domesurvival.forming_press_v2.cycle": "%s FE / cycle · %s s",
   "item.domesurvival.machine_wrench.controls": "Right-click: configure / rotate. Shift+right-click: dismantle.",
-  "item.domesurvival.machine_wrench.portable": "Dismantled machines retain contents and configuration."
+  "item.domesurvival.machine_wrench.portable": "Dismantled machines retain contents and configuration.",
+  "block.domesurvival.industrial_crusher": "Industrial Crusher",
+  "gas.domesurvival.mineral_gas": "Mineral Gas",
+  "gui.domesurvival.industrial_crusher.energy": "Energy: %s / %s FE",
+  "gui.domesurvival.industrial_crusher.gas_amount": "%s / %s mB",
+  "gui.domesurvival.industrial_crusher.gas_tooltip": "Mineral Gas: %s / %s mB",
+  "gui.domesurvival.industrial_crusher.status.ready": "Ready",
+  "gui.domesurvival.industrial_crusher.status.crushing": "Crushing",
+  "gui.domesurvival.industrial_crusher.status.no_energy": "Not enough energy",
+  "gui.domesurvival.industrial_crusher.status.no_recipe": "No matching recipe",
+  "gui.domesurvival.industrial_crusher.status.output_full": "Item output blocked",
+  "gui.domesurvival.industrial_crusher.status.not_enough_input": "Not enough input",
+  "gui.domesurvival.industrial_crusher.status.gas_full": "Mineral Gas tank full",
+  "jei.domesurvival.gas_amount": "%s mB"
 }

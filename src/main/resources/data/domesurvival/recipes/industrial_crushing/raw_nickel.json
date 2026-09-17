@@ -1,10 +1,18 @@
 {
   "type": "domesurvival:industrial_crushing",
-  "ingredient": { "tag": "forge:raw_materials/nickel" },
-  "inputCount": 1,
-  "result": { "item": "domesurvival:crushed_nickel_ore", "count": 1 },
-  "byproduct": { "item": "minecraft:gravel", "count": 1 },
-  "byproductChance": 750,
-  "processingTime": 190,
+  "ingredient": {
+    "tag": "forge:raw_materials/nickel"
+  },
+  "input_count": 1,
+  "result": {
+    "item": "domesurvival:crushed_nickel_ore",
+    "count": 1
+  },
+  "byproduct": {
+    "item": "minecraft:gravel",
+    "count": 1
+  },
+  "byproduct_chance": 750,
+  "processing_time": 190,
   "energy": 6000
 }

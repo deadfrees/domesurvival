@@ -17,6 +17,11 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
     private static final int MODULE_PANEL_WIDTH = 96;
     private static final int MODULE_PANEL_HEIGHT = 112;
 
+    private static final int GAS_X = 42;
+    private static final int GAS_Y = 122;
+    private static final int GAS_W = 163;
+    private static final int GAS_H = 10;
+
     public IndustrialCrusherScreen(IndustrialCrusherMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
         imageWidth = WIDTH;
@@ -66,6 +71,16 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
                     mouseX,
                     mouseY
             );
+        } else if (inside(mouseX, mouseY, GAS_X, GAS_Y - 12, GAS_W, GAS_H + 14)) {
+            graphics.renderTooltip(
+                    font,
+                    Component.translatable(
+                            "gui.domesurvival.industrial_crusher.gas_tooltip",
+                            menu.gasStored(), menu.gasCapacity()
+                    ),
+                    mouseX,
+                    mouseY
+            );
         }
     }
 
@@ -92,6 +107,16 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
                 menu.progress(), menu.progressMax(),
                 DomeIndustrialGuiStyle.PROCESS, DomeIndustrialGuiStyle.PROCESS_LIGHT
         );
+
+        // Mineral-gas buffer. The gas is a typed process resource, not Forge fluid.
+        DomeIndustrialGuiStyle.drawFrame(graphics, x + GAS_X, y + GAS_Y, GAS_W, GAS_H, 0xFF11171A);
+        int gasInner = GAS_W - 4;
+        int gasFill = menu.gasCapacity() <= 0 ? 0
+                : (int) Math.min(gasInner, (long) menu.gasStored() * gasInner / menu.gasCapacity());
+        if (gasFill > 0) {
+            graphics.fill(x + GAS_X + 2, y + GAS_Y + 2,
+                    x + GAS_X + 2 + gasFill, y + GAS_Y + GAS_H - 2, 0xFF5E9CA8);
+        }
 
         graphics.fill(x + 76, y + 69, x + 84, y + 72, 0xFF65737A);
         graphics.fill(x + 151, y + 69, x + 160, y + 72, 0xFF65737A);
@@ -147,6 +172,13 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
                 40, 42, DomeIndustrialGuiStyle.TEXT_MUTED, false
         );
         graphics.drawString(font, statusText(), 86, 88, statusColor(), false);
+        graphics.drawString(font, Component.translatable("gas.domesurvival.mineral_gas"),
+                GAS_X, GAS_Y - 11, DomeIndustrialGuiStyle.TEXT_MUTED, false);
+        Component gasAmount = Component.translatable(
+                "gui.domesurvival.industrial_crusher.gas_amount",
+                menu.gasStored(), menu.gasCapacity());
+        graphics.drawString(font, gasAmount, GAS_X + GAS_W - font.width(gasAmount),
+                GAS_Y - 11, DomeIndustrialGuiStyle.TEXT, false);
         graphics.drawString(font, Component.translatable("container.inventory"),
                 inventoryLabelX, inventoryLabelY, DomeIndustrialGuiStyle.TEXT_MUTED, false);
 
@@ -177,7 +209,8 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
             case IndustrialCrusherBlockEntity.CRUSHING -> DomeIndustrialGuiStyle.PROCESS_LIGHT;
             case IndustrialCrusherBlockEntity.NO_ENERGY,
                     IndustrialCrusherBlockEntity.NOT_ENOUGH_INPUT -> DomeIndustrialGuiStyle.WARNING;
-            case IndustrialCrusherBlockEntity.OUTPUT_FULL -> DomeIndustrialGuiStyle.ERROR;
+            case IndustrialCrusherBlockEntity.OUTPUT_FULL,
+                    IndustrialCrusherBlockEntity.GAS_FULL -> DomeIndustrialGuiStyle.ERROR;
             case IndustrialCrusherBlockEntity.NO_RECIPE -> DomeIndustrialGuiStyle.TEXT_DIM;
             default -> DomeIndustrialGuiStyle.READY;
         };
@@ -195,6 +228,8 @@ public final class IndustrialCrusherScreen extends AbstractContainerScreen<Indus
                     Component.translatable("gui.domesurvival.industrial_crusher.status.output_full");
             case IndustrialCrusherBlockEntity.NOT_ENOUGH_INPUT ->
                     Component.translatable("gui.domesurvival.industrial_crusher.status.not_enough_input");
+            case IndustrialCrusherBlockEntity.GAS_FULL ->
+                    Component.translatable("gui.domesurvival.industrial_crusher.status.gas_full");
             default -> Component.translatable("gui.domesurvival.industrial_crusher.status.ready");
         };
     }

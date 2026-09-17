@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.recipe;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -28,10 +29,13 @@ public final class IndustrialCrusherRecipe implements Recipe<SimpleContainer> {
     private final int inputCount;
     private final int processingTime;
     private final int energy;
+    @Nullable private final ResourceLocation gasResult;
+    private final int gasAmount;
 
     public IndustrialCrusherRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result,
                                     ItemStack byproduct, int byproductChancePerTenThousand,
-                                    int inputCount, int processingTime, int energy) {
+                                    int inputCount, int processingTime, int energy,
+                                    @Nullable ResourceLocation gasResult, int gasAmount) {
         this.id = id;
         this.ingredient = ingredient;
         this.result = result.copy();
@@ -40,6 +44,8 @@ public final class IndustrialCrusherRecipe implements Recipe<SimpleContainer> {
         this.inputCount = Math.max(1, inputCount);
         this.processingTime = Math.max(1, processingTime);
         this.energy = Math.max(1, energy);
+        this.gasResult = gasAmount > 0 ? gasResult : null;
+        this.gasAmount = gasResult == null ? 0 : Math.max(0, gasAmount);
     }
 
     @Override
@@ -71,21 +77,51 @@ public final class IndustrialCrusherRecipe implements Recipe<SimpleContainer> {
     public int getInputCount() { return inputCount; }
     public int getProcessingTime() { return processingTime; }
     public int getEnergy() { return energy; }
+    public boolean hasGasResult() { return gasResult != null && gasAmount > 0; }
+    public @Nullable ResourceLocation getGasResult() { return gasResult; }
+    public int getGasAmount() { return gasAmount; }
 
     public static final class Serializer implements RecipeSerializer<IndustrialCrusherRecipe> {
         @Override
         public @NotNull IndustrialCrusherRecipe fromJson(@NotNull ResourceLocation recipeId, @NotNull JsonObject json) {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient"));
-            ItemStack result = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "result"), true);
+            ItemStack result = json.has("result")
+                    ? CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "result"), true)
+                    : ItemStack.EMPTY;
             ItemStack byproduct = json.has("byproduct")
                     ? CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "byproduct"), true)
                     : ItemStack.EMPTY;
-            int chance = GsonHelper.getAsInt(json, "byproductChance", byproduct.isEmpty() ? 0 : 1_000);
-            int inputCount = GsonHelper.getAsInt(json, "inputCount", 1);
-            int processingTime = GsonHelper.getAsInt(json, "processingTime", DEFAULT_PROCESSING_TIME);
+
+            int chance = intField(json, "byproduct_chance", "byproductChance", byproduct.isEmpty() ? 0 : 1_000);
+            int inputCount = intField(json, "input_count", "inputCount", 1);
+            int processingTime = intField(json, "processing_time", "processingTime", DEFAULT_PROCESSING_TIME);
             int energy = GsonHelper.getAsInt(json, "energy", DEFAULT_ENERGY);
+
+            ResourceLocation gasResult = null;
+            int gasAmount = 0;
+            if (json.has("gas_result")) {
+                JsonObject gas = GsonHelper.getAsJsonObject(json, "gas_result");
+                gasResult = ResourceLocation.tryParse(GsonHelper.getAsString(gas, "gas"));
+                gasAmount = GsonHelper.getAsInt(gas, "amount", 0);
+                if (gasResult == null) {
+                    throw new JsonParseException("Invalid industrial crusher gas id in " + recipeId);
+                }
+                if (gasAmount <= 0) {
+                    throw new JsonParseException("Industrial crusher gas_result amount must be positive in " + recipeId);
+                }
+            }
+
+            if (result.isEmpty() && byproduct.isEmpty() && gasAmount <= 0) {
+                throw new JsonParseException("Industrial crusher recipe has no output: " + recipeId);
+            }
+
             return new IndustrialCrusherRecipe(recipeId, ingredient, result, byproduct, chance,
-                    inputCount, processingTime, energy);
+                    inputCount, processingTime, energy, gasResult, gasAmount);
+        }
+
+        private static int intField(JsonObject json, String canonical, String legacy, int fallback) {
+            if (json.has(canonical)) return GsonHelper.getAsInt(json, canonical);
+            return GsonHelper.getAsInt(json, legacy, fallback);
         }
 
         @Override
@@ -98,8 +134,14 @@ public final class IndustrialCrusherRecipe implements Recipe<SimpleContainer> {
             int inputCount = buffer.readVarInt();
             int processingTime = buffer.readVarInt();
             int energy = buffer.readVarInt();
+            ResourceLocation gasResult = null;
+            int gasAmount = 0;
+            if (buffer.readBoolean()) {
+                gasResult = buffer.readResourceLocation();
+                gasAmount = buffer.readVarInt();
+            }
             return new IndustrialCrusherRecipe(recipeId, ingredient, result, byproduct, chance,
-                    inputCount, processingTime, energy);
+                    inputCount, processingTime, energy, gasResult, gasAmount);
         }
 
         @Override
@@ -111,6 +153,11 @@ public final class IndustrialCrusherRecipe implements Recipe<SimpleContainer> {
             buffer.writeVarInt(recipe.inputCount);
             buffer.writeVarInt(recipe.processingTime);
             buffer.writeVarInt(recipe.energy);
+            buffer.writeBoolean(recipe.hasGasResult());
+            if (recipe.hasGasResult()) {
+                buffer.writeResourceLocation(recipe.gasResult);
+                buffer.writeVarInt(recipe.gasAmount);
+            }
         }
     }
 }

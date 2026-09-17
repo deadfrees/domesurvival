@@ -173,4 +173,6 @@ public final class IndustrialCrusherMenu extends AbstractContainerMenu {
     public int progressMax() { return data.get(IndustrialCrusherBlockEntity.DATA_MAX_PROGRESS); }
     public int recipeEnergy() { return data.get(IndustrialCrusherBlockEntity.DATA_RECIPE_ENERGY); }
     public int status() { return data.get(IndustrialCrusherBlockEntity.DATA_STATUS); }
+    public int gasStored() { return data.get(IndustrialCrusherBlockEntity.DATA_GAS); }
+    public int gasCapacity() { return data.get(IndustrialCrusherBlockEntity.DATA_GAS_CAPACITY); }
 }
