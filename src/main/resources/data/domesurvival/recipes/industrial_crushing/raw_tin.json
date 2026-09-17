@@ -14,5 +14,9 @@
   },
   "byproduct_chance": 600,
   "processing_time": 150,
-  "energy": 4200
+  "energy": 4200,
+  "gas_result": {
+    "gas": "domesurvival:mineral_gas",
+    "amount": 50
+  }
 }

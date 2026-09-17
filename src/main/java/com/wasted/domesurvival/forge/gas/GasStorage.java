@@ -61,6 +61,18 @@ public final class GasStorage implements IGasStorage {
         return extracted;
     }
 
+    /** Internal machine consumption bypasses the external extract-rate policy. */
+    public int removeInternal(ResourceLocation gas, int requested, boolean simulate) {
+        if (gas == null || requested <= 0 || amount <= 0 || !gas.equals(gasType)) return 0;
+        int removed = Math.min(requested, amount);
+        if (!simulate) {
+            amount -= removed;
+            if (amount == 0) gasType = null;
+            onChanged.run();
+        }
+        return removed;
+    }
+
     /** Internal machine production bypasses the external receive-rate policy. */
     public int addInternal(ResourceLocation gas, int requested, boolean simulate) {
         if (gas == null || requested <= 0 || !validator.test(gas)) return 0;

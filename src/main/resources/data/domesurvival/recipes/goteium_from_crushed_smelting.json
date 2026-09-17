@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "domesurvival:crushed_goteium_ore"
+  },
+  "result": "domesurvival:goteium_ingot",
+  "experience": 1.2,
+  "cookingtime": 200
+}

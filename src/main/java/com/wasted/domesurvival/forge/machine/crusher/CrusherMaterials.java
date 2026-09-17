@@ -19,6 +19,9 @@ public final class CrusherMaterials {
     public static final RegistryObject<Item> CRUSHED_LEAD_ORE = register("crushed_lead_ore");
     public static final RegistryObject<Item> CRUSHED_SILVER_ORE = register("crushed_silver_ore");
     public static final RegistryObject<Item> CRUSHED_NICKEL_ORE = register("crushed_nickel_ore");
+    public static final RegistryObject<Item> CRUSHED_GOTEIUM_ORE = register("crushed_goteium_ore");
+    public static final RegistryObject<Item> CRUSHED_VOLTARIUM_ORE = register("crushed_voltarium_ore");
+    public static final RegistryObject<Item> CRUSHED_SOLARITE = register("crushed_solarite");
 
     private static RegistryObject<Item> register(String id) {
         return ITEMS.register(id, () -> new Item(new Item.Properties().stacksTo(64)));

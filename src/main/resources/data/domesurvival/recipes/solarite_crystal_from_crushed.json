@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CC",
+    "CC"
+  ],
+  "key": {
+    "C": {
+      "item": "domesurvival:crushed_solarite"
+    }
+  },
+  "result": {
+    "item": "domesurvival:solarite_crystal"
+  }
+}

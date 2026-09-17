@@ -1,22 +1,22 @@
 {
   "type": "domesurvival:industrial_crushing",
   "ingredient": {
-    "tag": "forge:raw_materials/lead"
+    "item": "domesurvival:raw_voltarium"
   },
   "input_count": 1,
   "result": {
-    "item": "domesurvival:crushed_lead_ore",
+    "item": "domesurvival:crushed_voltarium_ore",
     "count": 1
   },
   "byproduct": {
     "item": "minecraft:gravel",
     "count": 1
   },
-  "byproduct_chance": 750,
-  "processing_time": 170,
-  "energy": 4800,
+  "byproduct_chance": 500,
   "gas_result": {
     "gas": "domesurvival:mineral_gas",
-    "amount": 70
-  }
+    "amount": 150
+  },
+  "processing_time": 240,
+  "energy": 9000
 }

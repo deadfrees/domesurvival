@@ -19,6 +19,7 @@ import com.wasted.domesurvival.forge.material.TechComponents;
 import com.wasted.domesurvival.forge.material.TechMaterials;
 import com.wasted.domesurvival.forge.machine.crusher.CrusherMaterials;
 import com.wasted.domesurvival.forge.machine.crusher.IndustrialCrusherRegistry;
+import com.wasted.domesurvival.forge.machine.gasturbine.GasTurbineGeneratorRegistry;
 import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationRegistry;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
 import com.wasted.domesurvival.forge.machine.module.MachineModuleItems;
@@ -58,6 +59,7 @@ public final class DomeSurvival {
         OxygenComplexRegistry.register(modBus);
         FormingPressRegistry.register(modBus);
         IndustrialCrusherRegistry.register(modBus);
+        GasTurbineGeneratorRegistry.register(modBus);
         CrusherMaterials.register(modBus);
         OrganicProcessorRegistry.register(modBus);
         MachineModuleItems.register(modBus);

@@ -20,7 +20,9 @@ import com.wasted.domesurvival.forge.client.screen.OxygenElectrolyzerScreen;
 import com.wasted.domesurvival.forge.client.screen.OxygenFillerScreen;
 import com.wasted.domesurvival.forge.machine.bio.BioincubatorScreen;
 import com.wasted.domesurvival.forge.machine.crusher.IndustrialCrusherRegistry;
+import com.wasted.domesurvival.forge.machine.gasturbine.GasTurbineGeneratorRegistry;
 import com.wasted.domesurvival.forge.machine.crusher.IndustrialCrusherScreen;
+import com.wasted.domesurvival.forge.machine.gasturbine.GasTurbineGeneratorScreen;
 import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationRegistry;
 import com.wasted.domesurvival.forge.machine.filter.FilterRegenerationScreen;
 import com.wasted.domesurvival.forge.machine.forming.FormingPressRegistry;
@@ -78,6 +80,7 @@ public final class ClientModEvents {
             MenuScreens.register(ModMenuTypes.SAND_SIEVE.get(), SandSieveScreen::new);
             MenuScreens.register(FormingPressRegistry.FORMING_PRESS_MENU.get(), FormingPressScreen::new);
             MenuScreens.register(IndustrialCrusherRegistry.INDUSTRIAL_CRUSHER_MENU.get(), IndustrialCrusherScreen::new);
+            MenuScreens.register(GasTurbineGeneratorRegistry.GAS_TURBINE_GENERATOR_MENU.get(), GasTurbineGeneratorScreen::new);
             MenuScreens.register(OrganicProcessorRegistry.ORGANIC_PROCESSOR_MENU.get(), OrganicProcessorScreen::new);
             MenuScreens.register(FilterRegenerationRegistry.FILTER_REGENERATION_MENU.get(), FilterRegenerationScreen::new);
             CuriosRendererRegistry.register(

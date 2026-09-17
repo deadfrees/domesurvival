@@ -1,0 +1,17 @@
+{
+  "type": "domesurvival:industrial_crushing",
+  "ingredient": {
+    "item": "domesurvival:solarite_shard"
+  },
+  "input_count": 1,
+  "result": {
+    "item": "domesurvival:crushed_solarite",
+    "count": 1
+  },
+  "gas_result": {
+    "gas": "domesurvival:mineral_gas",
+    "amount": 170
+  },
+  "processing_time": 200,
+  "energy": 7200
+}
