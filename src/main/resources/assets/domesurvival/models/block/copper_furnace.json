@@ -1,1652 +1,2513 @@
 {
-  "credit": "Created for GOTEICRAFT",
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
   "ambientocclusion": true,
-  "gui_light": "side",
   "textures": {
-    "particle": "domesurvival:block/copper_furnace/copper_furnace_body",
-    "body": "domesurvival:block/copper_furnace/copper_furnace_body",
-    "top": "domesurvival:block/copper_furnace/copper_furnace_top",
-    "bottom": "domesurvival:block/copper_furnace/copper_furnace_bottom",
-    "back": "domesurvival:block/copper_furnace/copper_furnace_back",
-    "rim": "domesurvival:block/copper_furnace/copper_furnace_rim",
-    "iron": "domesurvival:block/copper_furnace/copper_furnace_iron",
-    "door": "domesurvival:block/copper_furnace/copper_furnace_door",
-    "fire_off": "domesurvival:block/copper_furnace/copper_furnace_fire_off",
-    "fire": "domesurvival:block/copper_furnace/copper_furnace_fire",
-    "gauge": "domesurvival:block/copper_furnace/copper_furnace_gauge",
-    "vent": "domesurvival:block/copper_furnace/copper_furnace_vent",
-    "soot": "domesurvival:block/copper_furnace/copper_furnace_soot"
+    "body": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "panel": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "frame": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "trim": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "steel": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "black": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "rubber": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "brass": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "bolt": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "cap": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "input": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "output": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "refractory": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "socket_output": "domesurvival:block/copper_furnace_v2/socket_output",
+    "socket_input": "domesurvival:block/copper_furnace_v2/socket_input",
+    "status": "domesurvival:block/copper_furnace_v2/status",
+    "badge": "domesurvival:block/copper_furnace_v2/badge",
+    "flame": "domesurvival:block/copper_furnace_v2/flame",
+    "flame_back": "domesurvival:block/copper_furnace_v2/flame_back",
+    "dial": "domesurvival:block/copper_furnace_v2/dial",
+    "coal": "domesurvival:block/copper_furnace_v2/coal",
+    "particle": "domesurvival:block/copper_furnace_v2/particle"
   },
   "elements": [
     {
+      "name": "000_Copper rear shell",
       "from": [
-        1,
-        1,
-        1
+        0.2,
+        0.2,
+        4.6
       ],
       "to": [
-        15,
-        15,
-        15
+        15.8,
+        15.8,
+        15.8
       ],
       "faces": {
         "north": {
+          "texture": "#panel",
           "uv": [
-            1,
-            1,
-            15,
-            15
-          ],
-          "texture": "#body"
-        },
-        "east": {
-          "uv": [
-            1,
-            1,
-            15,
-            15
-          ],
-          "texture": "#body"
+            0.1875,
+            0.046875,
+            4.09375,
+            3.953125
+          ]
         },
         "south": {
+          "texture": "#panel",
           "uv": [
-            1,
-            1,
-            15,
-            15
-          ],
-          "texture": "#back"
+            0.1875,
+            0.046875,
+            4.09375,
+            3.953125
+          ]
+        },
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            4.1875,
+            0.046875,
+            6.984375,
+            3.953125
+          ]
         },
         "west": {
+          "texture": "#panel",
           "uv": [
-            1,
-            1,
-            15,
-            15
-          ],
-          "texture": "#body"
+            4.1875,
+            0.046875,
+            6.984375,
+            3.953125
+          ]
         },
         "up": {
+          "texture": "#panel",
           "uv": [
-            1,
-            1,
-            15,
-            15
-          ],
-          "texture": "#top"
+            9.203125,
+            0.046875,
+            13.109375,
+            2.84375
+          ]
         },
         "down": {
+          "texture": "#panel",
           "uv": [
-            1,
-            1,
-            15,
-            15
-          ],
-          "texture": "#bottom"
+            9.203125,
+            0.046875,
+            13.109375,
+            2.84375
+          ]
         }
       }
     },
     {
+      "name": "001_Left copper wall",
       "from": [
-        0.5,
-        0.25,
-        0.5
+        0.2,
+        0.2,
+        0.2
       ],
       "to": [
-        15.5,
-        2.0,
-        15.5
+        3,
+        15.8,
+        4.6
       ],
       "faces": {
         "north": {
+          "texture": "#panel",
           "uv": [
-            0.5,
-            14.0,
-            15.5,
-            15.75
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            0.5,
-            14.0,
-            15.5,
-            15.75
-          ],
-          "texture": "#iron"
+            8.265625,
+            0.046875,
+            8.96875,
+            3.953125
+          ]
         },
         "south": {
+          "texture": "#panel",
           "uv": [
-            0.5,
-            14.0,
-            15.5,
-            15.75
-          ],
-          "texture": "#iron"
+            8.265625,
+            0.046875,
+            8.96875,
+            3.953125
+          ]
+        },
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            7.078125,
+            0.046875,
+            8.171875,
+            3.953125
+          ]
         },
         "west": {
+          "texture": "#panel",
           "uv": [
-            0.5,
-            14.0,
-            15.5,
-            15.75
-          ],
-          "texture": "#iron"
+            7.078125,
+            0.046875,
+            8.171875,
+            3.953125
+          ]
         },
         "up": {
+          "texture": "#panel",
           "uv": [
-            0.5,
-            0.5,
-            15.5,
-            15.5
-          ],
-          "texture": "#iron"
+            9.234375,
+            4.140625,
+            9.9375,
+            5.234375
+          ]
         },
         "down": {
+          "texture": "#panel",
           "uv": [
-            0.5,
-            0.5,
-            15.5,
-            15.5
-          ],
-          "texture": "#iron"
+            9.234375,
+            4.140625,
+            9.9375,
+            5.234375
+          ]
         }
       }
     },
     {
+      "name": "002_Right copper wall",
       "from": [
-        0.5,
-        14.0,
-        0.5
+        13,
+        0.2,
+        0.2
       ],
       "to": [
-        15.5,
-        15.75,
-        15.5
+        15.8,
+        15.8,
+        4.6
       ],
       "faces": {
         "north": {
+          "texture": "#panel",
           "uv": [
-            0.5,
-            0.25,
-            15.5,
-            2.0
-          ],
-          "texture": "#rim"
-        },
-        "east": {
-          "uv": [
-            0.5,
-            0.25,
-            15.5,
-            2.0
-          ],
-          "texture": "#rim"
+            8.265625,
+            0.046875,
+            8.96875,
+            3.953125
+          ]
         },
         "south": {
+          "texture": "#panel",
           "uv": [
-            0.5,
-            0.25,
-            15.5,
-            2.0
-          ],
-          "texture": "#rim"
+            8.265625,
+            0.046875,
+            8.96875,
+            3.953125
+          ]
+        },
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            7.078125,
+            0.046875,
+            8.171875,
+            3.953125
+          ]
         },
         "west": {
+          "texture": "#panel",
           "uv": [
-            0.5,
-            0.25,
-            15.5,
-            2.0
-          ],
-          "texture": "#rim"
+            7.078125,
+            0.046875,
+            8.171875,
+            3.953125
+          ]
         },
         "up": {
+          "texture": "#panel",
           "uv": [
-            0.5,
-            0.5,
-            15.5,
-            15.5
-          ],
-          "texture": "#top"
+            9.234375,
+            4.140625,
+            9.9375,
+            5.234375
+          ]
         },
         "down": {
+          "texture": "#panel",
           "uv": [
-            0.5,
-            0.5,
-            15.5,
-            15.5
-          ],
-          "texture": "#rim"
+            9.234375,
+            4.140625,
+            9.9375,
+            5.234375
+          ]
         }
       }
     },
     {
+      "name": "003_Copper hearth apron",
       "from": [
-        0.45,
-        1.8,
-        0.45
+        3,
+        0.2,
+        0.2
       ],
       "to": [
-        1.65,
-        14.2,
-        1.65
+        13,
+        2,
+        4.6
       ],
       "faces": {
         "north": {
+          "texture": "#body",
           "uv": [
-            0.45,
-            1.8,
-            1.65,
-            14.2
-          ],
-          "texture": "#rim"
-        },
-        "east": {
-          "uv": [
-            0.45,
-            1.8,
-            1.65,
-            14.2
-          ],
-          "texture": "#rim"
+            8.375,
+            5.53125,
+            10.875,
+            5.984375
+          ]
         },
         "south": {
+          "texture": "#body",
           "uv": [
-            0.45,
-            1.8,
-            1.65,
-            14.2
-          ],
-          "texture": "#rim"
+            8.375,
+            5.53125,
+            10.875,
+            5.984375
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            10.96875,
+            5.53125,
+            12.0625,
+            5.984375
+          ]
         },
         "west": {
+          "texture": "#body",
           "uv": [
-            0.45,
-            1.8,
-            1.65,
-            14.2
-          ],
-          "texture": "#rim"
+            10.96875,
+            5.53125,
+            12.0625,
+            5.984375
+          ]
         },
         "up": {
+          "texture": "#body",
           "uv": [
-            0.45,
-            0.45,
-            1.65,
-            1.65
-          ],
-          "texture": "#rim"
+            4.046875,
+            4.140625,
+            6.546875,
+            5.234375
+          ]
         },
         "down": {
+          "texture": "#body",
           "uv": [
-            0.45,
-            0.45,
-            1.65,
-            1.65
-          ],
-          "texture": "#rim"
+            4.046875,
+            4.140625,
+            6.546875,
+            5.234375
+          ]
         }
       }
     },
     {
+      "name": "004_Copper chamber divider",
       "from": [
-        14.35,
-        1.8,
-        0.45
+        3,
+        7.2,
+        0.2
       ],
       "to": [
-        15.55,
-        14.2,
-        1.65
+        13,
+        9.5,
+        4.6
       ],
       "faces": {
         "north": {
+          "texture": "#panel",
           "uv": [
-            14.35,
-            1.8,
-            15.55,
-            14.2
-          ],
-          "texture": "#rim"
-        },
-        "east": {
-          "uv": [
-            0.45,
-            1.8,
-            1.65,
-            14.2
-          ],
-          "texture": "#rim"
+            4.59375,
+            5.53125,
+            7.09375,
+            6.109375
+          ]
         },
         "south": {
+          "texture": "#panel",
           "uv": [
-            14.35,
-            1.8,
-            15.55,
-            14.2
-          ],
-          "texture": "#rim"
+            4.59375,
+            5.53125,
+            7.09375,
+            6.109375
+          ]
+        },
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            7.1875,
+            5.53125,
+            8.28125,
+            6.109375
+          ]
         },
         "west": {
+          "texture": "#panel",
           "uv": [
-            0.45,
-            1.8,
-            1.65,
-            14.2
-          ],
-          "texture": "#rim"
+            7.1875,
+            5.53125,
+            8.28125,
+            6.109375
+          ]
         },
         "up": {
+          "texture": "#panel",
           "uv": [
-            14.35,
-            0.45,
-            15.55,
-            1.65
-          ],
-          "texture": "#rim"
+            6.640625,
+            4.140625,
+            9.140625,
+            5.234375
+          ]
         },
         "down": {
+          "texture": "#panel",
           "uv": [
-            14.35,
-            0.45,
-            15.55,
-            1.65
-          ],
-          "texture": "#rim"
+            6.640625,
+            4.140625,
+            9.140625,
+            5.234375
+          ]
         }
       }
     },
     {
+      "name": "005_Copper upper lintel",
       "from": [
-        0.45,
-        1.8,
-        14.35
+        3,
+        12,
+        0.2
       ],
       "to": [
-        1.65,
-        14.2,
-        15.55
+        13,
+        15.8,
+        4.6
       ],
       "faces": {
         "north": {
+          "texture": "#panel",
           "uv": [
-            0.45,
-            1.8,
-            1.65,
-            14.2
-          ],
-          "texture": "#rim"
-        },
-        "east": {
-          "uv": [
-            14.35,
-            1.8,
-            15.55,
-            14.2
-          ],
-          "texture": "#rim"
+            12.671875,
+            4.140625,
+            15.171875,
+            5.09375
+          ]
         },
         "south": {
+          "texture": "#panel",
           "uv": [
-            0.45,
-            1.8,
-            1.65,
-            14.2
-          ],
-          "texture": "#rim"
+            12.671875,
+            4.140625,
+            15.171875,
+            5.09375
+          ]
+        },
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            0.046875,
+            5.53125,
+            1.140625,
+            6.484375
+          ]
         },
         "west": {
+          "texture": "#panel",
           "uv": [
-            14.35,
-            1.8,
-            15.55,
-            14.2
-          ],
-          "texture": "#rim"
+            0.046875,
+            5.53125,
+            1.140625,
+            6.484375
+          ]
         },
         "up": {
+          "texture": "#panel",
           "uv": [
-            0.45,
-            14.35,
-            1.65,
-            15.55
-          ],
-          "texture": "#rim"
+            6.640625,
+            4.140625,
+            9.140625,
+            5.234375
+          ]
         },
         "down": {
+          "texture": "#panel",
           "uv": [
-            0.45,
-            14.35,
-            1.65,
-            15.55
-          ],
-          "texture": "#rim"
+            6.640625,
+            4.140625,
+            9.140625,
+            5.234375
+          ]
         }
       }
     },
     {
+      "name": "006_Folded copper corner",
       "from": [
-        14.35,
-        1.8,
-        14.35
+        0,
+        0,
+        0
       ],
       "to": [
-        15.55,
-        14.2,
-        15.55
+        0.2,
+        16,
+        0.2
       ],
       "faces": {
         "north": {
+          "texture": "#body",
           "uv": [
-            14.35,
-            1.8,
-            15.55,
-            14.2
-          ],
-          "texture": "#rim"
-        },
-        "east": {
-          "uv": [
-            14.35,
-            1.8,
-            15.55,
-            14.2
-          ],
-          "texture": "#rim"
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
         },
         "south": {
+          "texture": "#body",
           "uv": [
-            14.35,
-            1.8,
-            15.55,
-            14.2
-          ],
-          "texture": "#rim"
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
         },
         "west": {
+          "texture": "#body",
           "uv": [
-            14.35,
-            1.8,
-            15.55,
-            14.2
-          ],
-          "texture": "#rim"
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
         },
         "up": {
+          "texture": "#body",
           "uv": [
-            14.35,
-            14.35,
-            15.55,
-            15.55
-          ],
-          "texture": "#rim"
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
         },
         "down": {
+          "texture": "#body",
           "uv": [
-            14.35,
-            14.35,
-            15.55,
-            15.55
-          ],
-          "texture": "#rim"
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
         }
       }
     },
     {
+      "name": "007_Folded copper corner",
       "from": [
-        0.35,
-        4.2,
-        0.35
+        0,
+        0,
+        15.8
       ],
       "to": [
-        15.65,
-        5.15,
-        1.25
+        0.2,
+        16,
+        16.0
       ],
       "faces": {
         "north": {
+          "texture": "#body",
           "uv": [
-            0.35,
-            10.85,
-            15.65,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            0.35,
-            10.85,
-            1.25,
-            11.8
-          ],
-          "texture": "#iron"
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
         },
         "south": {
+          "texture": "#body",
           "uv": [
-            0.35,
-            10.85,
-            15.65,
-            11.8
-          ],
-          "texture": "#iron"
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
         },
         "west": {
+          "texture": "#body",
           "uv": [
-            0.35,
-            10.85,
-            1.25,
-            11.8
-          ],
-          "texture": "#iron"
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
         },
         "up": {
+          "texture": "#body",
           "uv": [
-            0.35,
-            0.35,
-            15.65,
-            1.25
-          ],
-          "texture": "#iron"
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
         },
         "down": {
+          "texture": "#body",
           "uv": [
-            0.35,
-            0.35,
-            15.65,
-            1.25
-          ],
-          "texture": "#iron"
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
         }
       }
     },
     {
+      "name": "008_Folded copper corner",
       "from": [
-        0.35,
-        4.2,
-        14.75
+        15.8,
+        0,
+        0
       ],
       "to": [
-        15.65,
-        5.15,
-        15.65
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            0.35,
-            10.85,
-            15.65,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            14.75,
-            10.85,
-            15.65,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "south": {
-          "uv": [
-            0.35,
-            10.85,
-            15.65,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "west": {
-          "uv": [
-            14.75,
-            10.85,
-            15.65,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "up": {
-          "uv": [
-            0.35,
-            14.75,
-            15.65,
-            15.65
-          ],
-          "texture": "#iron"
-        },
-        "down": {
-          "uv": [
-            0.35,
-            14.75,
-            15.65,
-            15.65
-          ],
-          "texture": "#iron"
-        }
-      }
-    },
-    {
-      "from": [
-        0.35,
-        4.2,
-        1.25
-      ],
-      "to": [
-        1.25,
-        5.15,
-        14.75
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            0.35,
-            10.85,
-            1.25,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            1.25,
-            10.85,
-            14.75,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "south": {
-          "uv": [
-            0.35,
-            10.85,
-            1.25,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "west": {
-          "uv": [
-            1.25,
-            10.85,
-            14.75,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "up": {
-          "uv": [
-            0.35,
-            1.25,
-            1.25,
-            14.75
-          ],
-          "texture": "#iron"
-        },
-        "down": {
-          "uv": [
-            0.35,
-            1.25,
-            1.25,
-            14.75
-          ],
-          "texture": "#iron"
-        }
-      }
-    },
-    {
-      "from": [
-        14.75,
-        4.2,
-        1.25
-      ],
-      "to": [
-        15.65,
-        5.15,
-        14.75
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            14.75,
-            10.85,
-            15.65,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            1.25,
-            10.85,
-            14.75,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "south": {
-          "uv": [
-            14.75,
-            10.85,
-            15.65,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "west": {
-          "uv": [
-            1.25,
-            10.85,
-            14.75,
-            11.8
-          ],
-          "texture": "#iron"
-        },
-        "up": {
-          "uv": [
-            14.75,
-            1.25,
-            15.65,
-            14.75
-          ],
-          "texture": "#iron"
-        },
-        "down": {
-          "uv": [
-            14.75,
-            1.25,
-            15.65,
-            14.75
-          ],
-          "texture": "#iron"
-        }
-      }
-    },
-    {
-      "from": [
-        2.15,
-        3.0,
-        0.15
-      ],
-      "to": [
-        13.85,
-        12.35,
-        1.1
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            2.15,
-            3.65,
-            13.85,
-            13.0
-          ],
-          "texture": "#door"
-        },
-        "east": {
-          "uv": [
-            0.15,
-            3.65,
-            1.1,
-            13.0
-          ],
-          "texture": "#door"
-        },
-        "south": {
-          "uv": [
-            2.15,
-            3.65,
-            13.85,
-            13.0
-          ],
-          "texture": "#door"
-        },
-        "west": {
-          "uv": [
-            0.15,
-            3.65,
-            1.1,
-            13.0
-          ],
-          "texture": "#door"
-        },
-        "up": {
-          "uv": [
-            2.15,
-            0.15,
-            13.85,
-            1.1
-          ],
-          "texture": "#door"
-        },
-        "down": {
-          "uv": [
-            2.15,
-            0.15,
-            13.85,
-            1.1
-          ],
-          "texture": "#door"
-        }
-      }
-    },
-    {
-      "from": [
-        3.15,
-        4.15,
-        -0.32
-      ],
-      "to": [
-        12.85,
-        10.9,
-        -0.08
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            3.15,
-            5.1,
-            12.85,
-            11.85
-          ],
-          "texture": "#fire_off"
-        },
-        "east": {
-          "uv": [
-            -0.32,
-            5.1,
-            -0.08,
-            11.85
-          ],
-          "texture": "#fire_off"
-        },
-        "south": {
-          "uv": [
-            3.15,
-            5.1,
-            12.85,
-            11.85
-          ],
-          "texture": "#fire_off"
-        },
-        "west": {
-          "uv": [
-            -0.32,
-            5.1,
-            -0.08,
-            11.85
-          ],
-          "texture": "#fire_off"
-        },
-        "up": {
-          "uv": [
-            3.15,
-            -0.32,
-            12.85,
-            -0.08
-          ],
-          "texture": "#fire_off"
-        },
-        "down": {
-          "uv": [
-            3.15,
-            -0.32,
-            12.85,
-            -0.08
-          ],
-          "texture": "#fire_off"
-        }
-      }
-    },
-    {
-      "from": [
-        1.6,
-        4.0,
-        0.0
-      ],
-      "to": [
-        2.55,
-        5.6,
-        1.45
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            1.6,
-            10.4,
-            2.55,
-            12.0
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            0.0,
-            10.4,
-            1.45,
-            12.0
-          ],
-          "texture": "#iron"
-        },
-        "south": {
-          "uv": [
-            1.6,
-            10.4,
-            2.55,
-            12.0
-          ],
-          "texture": "#iron"
-        },
-        "west": {
-          "uv": [
-            0.0,
-            10.4,
-            1.45,
-            12.0
-          ],
-          "texture": "#iron"
-        },
-        "up": {
-          "uv": [
-            1.6,
-            0.0,
-            2.55,
-            1.45
-          ],
-          "texture": "#iron"
-        },
-        "down": {
-          "uv": [
-            1.6,
-            0.0,
-            2.55,
-            1.45
-          ],
-          "texture": "#iron"
-        }
-      }
-    },
-    {
-      "from": [
-        1.6,
-        9.8,
-        0.0
-      ],
-      "to": [
-        2.55,
-        11.4,
-        1.45
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            1.6,
-            4.6,
-            2.55,
-            6.2
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            0.0,
-            4.6,
-            1.45,
-            6.2
-          ],
-          "texture": "#iron"
-        },
-        "south": {
-          "uv": [
-            1.6,
-            4.6,
-            2.55,
-            6.2
-          ],
-          "texture": "#iron"
-        },
-        "west": {
-          "uv": [
-            0.0,
-            4.6,
-            1.45,
-            6.2
-          ],
-          "texture": "#iron"
-        },
-        "up": {
-          "uv": [
-            1.6,
-            0.0,
-            2.55,
-            1.45
-          ],
-          "texture": "#iron"
-        },
-        "down": {
-          "uv": [
-            1.6,
-            0.0,
-            2.55,
-            1.45
-          ],
-          "texture": "#iron"
-        }
-      }
-    },
-    {
-      "from": [
-        12.65,
-        7.0,
-        -0.05
-      ],
-      "to": [
-        14.2,
-        8.75,
-        1.45
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            12.65,
-            7.25,
-            14.2,
-            9.0
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            -0.05,
-            7.25,
-            1.45,
-            9.0
-          ],
-          "texture": "#iron"
-        },
-        "south": {
-          "uv": [
-            12.65,
-            7.25,
-            14.2,
-            9.0
-          ],
-          "texture": "#iron"
-        },
-        "west": {
-          "uv": [
-            -0.05,
-            7.25,
-            1.45,
-            9.0
-          ],
-          "texture": "#iron"
-        },
-        "up": {
-          "uv": [
-            12.65,
-            -0.05,
-            14.2,
-            1.45
-          ],
-          "texture": "#iron"
-        },
-        "down": {
-          "uv": [
-            12.65,
-            -0.05,
-            14.2,
-            1.45
-          ],
-          "texture": "#iron"
-        }
-      }
-    },
-    {
-      "from": [
-        4.25,
-        11.45,
-        -0.45
-      ],
-      "to": [
-        11.75,
-        12.15,
-        0.25
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            4.25,
-            3.85,
-            11.75,
-            4.55
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            -0.45,
-            3.85,
-            0.25,
-            4.55
-          ],
-          "texture": "#iron"
-        },
-        "south": {
-          "uv": [
-            4.25,
-            3.85,
-            11.75,
-            4.55
-          ],
-          "texture": "#iron"
-        },
-        "west": {
-          "uv": [
-            -0.45,
-            3.85,
-            0.25,
-            4.55
-          ],
-          "texture": "#iron"
-        },
-        "up": {
-          "uv": [
-            4.25,
-            -0.45,
-            11.75,
-            0.25
-          ],
-          "texture": "#iron"
-        },
-        "down": {
-          "uv": [
-            4.25,
-            -0.45,
-            11.75,
-            0.25
-          ],
-          "texture": "#iron"
-        }
-      }
-    },
-    {
-      "from": [
-        4.0,
-        10.85,
-        -0.25
-      ],
-      "to": [
-        4.8,
-        12.55,
-        0.45
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            4.0,
-            3.45,
-            4.8,
-            5.15
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            -0.25,
-            3.45,
-            0.45,
-            5.15
-          ],
-          "texture": "#iron"
-        },
-        "south": {
-          "uv": [
-            4.0,
-            3.45,
-            4.8,
-            5.15
-          ],
-          "texture": "#iron"
-        },
-        "west": {
-          "uv": [
-            -0.25,
-            3.45,
-            0.45,
-            5.15
-          ],
-          "texture": "#iron"
-        },
-        "up": {
-          "uv": [
-            4.0,
-            -0.25,
-            4.8,
-            0.45
-          ],
-          "texture": "#iron"
-        },
-        "down": {
-          "uv": [
-            4.0,
-            -0.25,
-            4.8,
-            0.45
-          ],
-          "texture": "#iron"
-        }
-      }
-    },
-    {
-      "from": [
-        11.2,
-        10.85,
-        -0.25
-      ],
-      "to": [
-        12.0,
-        12.55,
-        0.45
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            11.2,
-            3.45,
-            12.0,
-            5.15
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            -0.25,
-            3.45,
-            0.45,
-            5.15
-          ],
-          "texture": "#iron"
-        },
-        "south": {
-          "uv": [
-            11.2,
-            3.45,
-            12.0,
-            5.15
-          ],
-          "texture": "#iron"
-        },
-        "west": {
-          "uv": [
-            -0.25,
-            3.45,
-            0.45,
-            5.15
-          ],
-          "texture": "#iron"
-        },
-        "up": {
-          "uv": [
-            11.2,
-            -0.25,
-            12.0,
-            0.45
-          ],
-          "texture": "#iron"
-        },
-        "down": {
-          "uv": [
-            11.2,
-            -0.25,
-            12.0,
-            0.45
-          ],
-          "texture": "#iron"
-        }
-      }
-    },
-    {
-      "from": [
-        6.1,
-        12.65,
-        0.0
-      ],
-      "to": [
-        9.9,
-        14.0,
-        0.65
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            6.1,
-            2.0,
-            9.9,
-            3.35
-          ],
-          "texture": "#gauge"
-        },
-        "east": {
-          "uv": [
-            0.0,
-            2.0,
-            0.65,
-            3.35
-          ],
-          "texture": "#gauge"
-        },
-        "south": {
-          "uv": [
-            6.1,
-            2.0,
-            9.9,
-            3.35
-          ],
-          "texture": "#gauge"
-        },
-        "west": {
-          "uv": [
-            0.0,
-            2.0,
-            0.65,
-            3.35
-          ],
-          "texture": "#gauge"
-        },
-        "up": {
-          "uv": [
-            6.1,
-            0.0,
-            9.9,
-            0.65
-          ],
-          "texture": "#gauge"
-        },
-        "down": {
-          "uv": [
-            6.1,
-            0.0,
-            9.9,
-            0.65
-          ],
-          "texture": "#gauge"
-        }
-      }
-    },
-    {
-      "from": [
-        0.25,
-        6.1,
-        4.2
-      ],
-      "to": [
-        1.05,
-        11.9,
-        11.8
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            0.25,
-            4.1,
-            1.05,
-            9.9
-          ],
-          "texture": "#vent"
-        },
-        "east": {
-          "uv": [
-            4.2,
-            4.1,
-            11.8,
-            9.9
-          ],
-          "texture": "#vent"
-        },
-        "south": {
-          "uv": [
-            0.25,
-            4.1,
-            1.05,
-            9.9
-          ],
-          "texture": "#vent"
-        },
-        "west": {
-          "uv": [
-            4.2,
-            4.1,
-            11.8,
-            9.9
-          ],
-          "texture": "#vent"
-        },
-        "up": {
-          "uv": [
-            0.25,
-            4.2,
-            1.05,
-            11.8
-          ],
-          "texture": "#vent"
-        },
-        "down": {
-          "uv": [
-            0.25,
-            4.2,
-            1.05,
-            11.8
-          ],
-          "texture": "#vent"
-        }
-      }
-    },
-    {
-      "from": [
-        14.95,
-        6.1,
-        4.2
-      ],
-      "to": [
-        15.75,
-        11.9,
-        11.8
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            14.95,
-            4.1,
-            15.75,
-            9.9
-          ],
-          "texture": "#vent"
-        },
-        "east": {
-          "uv": [
-            4.2,
-            4.1,
-            11.8,
-            9.9
-          ],
-          "texture": "#vent"
-        },
-        "south": {
-          "uv": [
-            14.95,
-            4.1,
-            15.75,
-            9.9
-          ],
-          "texture": "#vent"
-        },
-        "west": {
-          "uv": [
-            4.2,
-            4.1,
-            11.8,
-            9.9
-          ],
-          "texture": "#vent"
-        },
-        "up": {
-          "uv": [
-            14.95,
-            4.2,
-            15.75,
-            11.8
-          ],
-          "texture": "#vent"
-        },
-        "down": {
-          "uv": [
-            14.95,
-            4.2,
-            15.75,
-            11.8
-          ],
-          "texture": "#vent"
-        }
-      }
-    },
-    {
-      "from": [
-        5.5,
-        15.4,
-        5.5
-      ],
-      "to": [
-        10.5,
-        15.94,
-        10.5
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            5.5,
-            0.0,
-            10.5,
-            0.66
-          ],
-          "texture": "#iron"
-        },
-        "east": {
-          "uv": [
-            5.5,
-            0.0,
-            10.5,
-            0.66
-          ],
-          "texture": "#iron"
-        },
-        "south": {
-          "uv": [
-            5.5,
-            0.0,
-            10.5,
-            0.66
-          ],
-          "texture": "#iron"
-        },
-        "west": {
-          "uv": [
-            5.5,
-            0.0,
-            10.5,
-            0.66
-          ],
-          "texture": "#iron"
-        },
-        "up": {
-          "uv": [
-            5.5,
-            5.5,
-            10.5,
-            10.5
-          ],
-          "texture": "#iron"
-        },
-        "down": {
-          "uv": [
-            5.5,
-            5.5,
-            10.5,
-            10.5
-          ],
-          "texture": "#iron"
-        }
-      }
-    },
-    {
-      "from": [
-        6.35,
-        15.95,
-        6.35
-      ],
-      "to": [
-        9.65,
         16.0,
-        9.65
+        16,
+        0.2
       ],
       "faces": {
         "north": {
+          "texture": "#body",
           "uv": [
-            6.35,
-            0.0,
-            9.65,
-            0.05
-          ],
-          "texture": "#soot"
-        },
-        "east": {
-          "uv": [
-            6.35,
-            0.0,
-            9.65,
-            0.05
-          ],
-          "texture": "#soot"
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
         },
         "south": {
+          "texture": "#body",
           "uv": [
-            6.35,
-            0.0,
-            9.65,
-            0.05
-          ],
-          "texture": "#soot"
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
         },
         "west": {
+          "texture": "#body",
           "uv": [
-            6.35,
-            0.0,
-            9.65,
-            0.05
-          ],
-          "texture": "#soot"
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
         },
         "up": {
+          "texture": "#body",
           "uv": [
-            6.35,
-            6.35,
-            9.65,
-            9.65
-          ],
-          "texture": "#soot"
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
         },
         "down": {
+          "texture": "#body",
           "uv": [
-            6.35,
-            6.35,
-            9.65,
-            9.65
-          ],
-          "texture": "#soot"
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "009_Folded copper corner",
+      "from": [
+        15.8,
+        0,
+        15.8
+      ],
+      "to": [
+        16.0,
+        16,
+        16.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            0.046875,
+            0.046875,
+            0.09375,
+            4.046875
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "010_Folded copper rim",
+      "from": [
+        0.2,
+        0,
+        0
+      ],
+      "to": [
+        15.8,
+        0.2,
+        0.2
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "011_Folded copper rim",
+      "from": [
+        0.2,
+        0,
+        15.8
+      ],
+      "to": [
+        15.8,
+        0.2,
+        16.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "012_Folded copper side rim",
+      "from": [
+        0,
+        0,
+        0.2
+      ],
+      "to": [
+        0.2,
+        0.2,
+        15.8
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            9.0625,
+            0.046875,
+            9.109375,
+            3.953125
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            9.0625,
+            0.046875,
+            9.109375,
+            3.953125
+          ]
+        }
+      }
+    },
+    {
+      "name": "013_Folded copper side rim",
+      "from": [
+        15.8,
+        0,
+        0.2
+      ],
+      "to": [
+        16.0,
+        0.2,
+        15.8
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            9.0625,
+            0.046875,
+            9.109375,
+            3.953125
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            9.0625,
+            0.046875,
+            9.109375,
+            3.953125
+          ]
+        }
+      }
+    },
+    {
+      "name": "014_Folded copper rim",
+      "from": [
+        0.2,
+        15.8,
+        0
+      ],
+      "to": [
+        15.8,
+        16.0,
+        0.2
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "015_Folded copper rim",
+      "from": [
+        0.2,
+        15.8,
+        15.8
+      ],
+      "to": [
+        15.8,
+        16.0,
+        16.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "016_Folded copper side rim",
+      "from": [
+        0,
+        15.8,
+        0.2
+      ],
+      "to": [
+        0.2,
+        16.0,
+        15.8
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            9.0625,
+            0.046875,
+            9.109375,
+            3.953125
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            9.0625,
+            0.046875,
+            9.109375,
+            3.953125
+          ]
+        }
+      }
+    },
+    {
+      "name": "017_Folded copper side rim",
+      "from": [
+        15.8,
+        15.8,
+        0.2
+      ],
+      "to": [
+        16.0,
+        16.0,
+        15.8
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            10.53125,
+            6.578125,
+            10.578125,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            2.390625,
+            6.578125,
+            6.296875,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            9.0625,
+            0.046875,
+            9.109375,
+            3.953125
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            9.0625,
+            0.046875,
+            9.109375,
+            3.953125
+          ]
+        }
+      }
+    },
+    {
+      "name": "018_Stone hearth rear",
+      "from": [
+        3,
+        2,
+        4.4
+      ],
+      "to": [
+        13,
+        7.2,
+        4.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#refractory",
+          "uv": [
+            0.046875,
+            4.140625,
+            2.546875,
+            5.4375
+          ]
+        },
+        "south": {
+          "texture": "#refractory",
+          "uv": [
+            0.046875,
+            4.140625,
+            2.546875,
+            5.4375
+          ]
+        },
+        "east": {
+          "texture": "#refractory",
+          "uv": [
+            3.921875,
+            4.140625,
+            3.953125,
+            5.4375
+          ]
+        },
+        "west": {
+          "texture": "#refractory",
+          "uv": [
+            3.921875,
+            4.140625,
+            3.953125,
+            5.4375
+          ]
+        },
+        "up": {
+          "texture": "#refractory",
+          "uv": [
+            10.671875,
+            6.578125,
+            13.171875,
+            6.609375
+          ]
+        },
+        "down": {
+          "texture": "#refractory",
+          "uv": [
+            10.671875,
+            6.578125,
+            13.171875,
+            6.609375
+          ]
+        }
+      }
+    },
+    {
+      "name": "019_Stone hearth left",
+      "from": [
+        3,
+        2,
+        0.2
+      ],
+      "to": [
+        3.2,
+        7.2,
+        4.4
+      ],
+      "faces": {
+        "north": {
+          "texture": "#refractory",
+          "uv": [
+            3.78125,
+            4.140625,
+            3.828125,
+            5.4375
+          ]
+        },
+        "south": {
+          "texture": "#refractory",
+          "uv": [
+            3.78125,
+            4.140625,
+            3.828125,
+            5.4375
+          ]
+        },
+        "east": {
+          "texture": "#refractory",
+          "uv": [
+            2.640625,
+            4.140625,
+            3.6875,
+            5.4375
+          ]
+        },
+        "west": {
+          "texture": "#refractory",
+          "uv": [
+            2.640625,
+            4.140625,
+            3.6875,
+            5.4375
+          ]
+        },
+        "up": {
+          "texture": "#refractory",
+          "uv": [
+            12.53125,
+            4.140625,
+            12.578125,
+            5.1875
+          ]
+        },
+        "down": {
+          "texture": "#refractory",
+          "uv": [
+            12.53125,
+            4.140625,
+            12.578125,
+            5.1875
+          ]
+        }
+      }
+    },
+    {
+      "name": "020_Stone hearth right",
+      "from": [
+        12.8,
+        2,
+        0.2
+      ],
+      "to": [
+        13,
+        7.2,
+        4.4
+      ],
+      "faces": {
+        "north": {
+          "texture": "#refractory",
+          "uv": [
+            3.78125,
+            4.140625,
+            3.828125,
+            5.4375
+          ]
+        },
+        "south": {
+          "texture": "#refractory",
+          "uv": [
+            3.78125,
+            4.140625,
+            3.828125,
+            5.4375
+          ]
+        },
+        "east": {
+          "texture": "#refractory",
+          "uv": [
+            2.640625,
+            4.140625,
+            3.6875,
+            5.4375
+          ]
+        },
+        "west": {
+          "texture": "#refractory",
+          "uv": [
+            2.640625,
+            4.140625,
+            3.6875,
+            5.4375
+          ]
+        },
+        "up": {
+          "texture": "#refractory",
+          "uv": [
+            12.53125,
+            4.140625,
+            12.578125,
+            5.1875
+          ]
+        },
+        "down": {
+          "texture": "#refractory",
+          "uv": [
+            12.53125,
+            4.140625,
+            12.578125,
+            5.1875
+          ]
+        }
+      }
+    },
+    {
+      "name": "021_Stone hearth floor",
+      "from": [
+        3.2,
+        2,
+        0.2
+      ],
+      "to": [
+        12.8,
+        2.2,
+        4.4
+      ],
+      "faces": {
+        "north": {
+          "texture": "#refractory",
+          "uv": [
+            6.390625,
+            6.578125,
+            8.796875,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#refractory",
+          "uv": [
+            6.390625,
+            6.578125,
+            8.796875,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#refractory",
+          "uv": [
+            8.890625,
+            6.578125,
+            9.9375,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#refractory",
+          "uv": [
+            8.890625,
+            6.578125,
+            9.9375,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#refractory",
+          "uv": [
+            10.03125,
+            4.140625,
+            12.4375,
+            5.1875
+          ]
+        },
+        "down": {
+          "texture": "#refractory",
+          "uv": [
+            10.03125,
+            4.140625,
+            12.4375,
+            5.1875
+          ]
+        }
+      }
+    },
+    {
+      "name": "022_Stone hearth roof",
+      "from": [
+        3.2,
+        7.0,
+        0.2
+      ],
+      "to": [
+        12.8,
+        7.2,
+        4.4
+      ],
+      "faces": {
+        "north": {
+          "texture": "#refractory",
+          "uv": [
+            6.390625,
+            6.578125,
+            8.796875,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#refractory",
+          "uv": [
+            6.390625,
+            6.578125,
+            8.796875,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#refractory",
+          "uv": [
+            8.890625,
+            6.578125,
+            9.9375,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#refractory",
+          "uv": [
+            8.890625,
+            6.578125,
+            9.9375,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#refractory",
+          "uv": [
+            10.03125,
+            4.140625,
+            12.4375,
+            5.1875
+          ]
+        },
+        "down": {
+          "texture": "#refractory",
+          "uv": [
+            10.03125,
+            4.140625,
+            12.4375,
+            5.1875
+          ]
+        }
+      }
+    },
+    {
+      "name": "023_Stone hearth rear",
+      "from": [
+        3,
+        9.5,
+        1.8
+      ],
+      "to": [
+        13,
+        12,
+        1.9000000000000001
+      ],
+      "faces": {
+        "north": {
+          "texture": "#refractory",
+          "uv": [
+            1.234375,
+            5.53125,
+            3.734375,
+            6.15625
+          ]
+        },
+        "south": {
+          "texture": "#refractory",
+          "uv": [
+            1.234375,
+            5.53125,
+            3.734375,
+            6.15625
+          ]
+        },
+        "east": {
+          "texture": "#refractory",
+          "uv": [
+            4.46875,
+            5.53125,
+            4.5,
+            6.15625
+          ]
+        },
+        "west": {
+          "texture": "#refractory",
+          "uv": [
+            4.46875,
+            5.53125,
+            4.5,
+            6.15625
+          ]
+        },
+        "up": {
+          "texture": "#refractory",
+          "uv": [
+            10.671875,
+            6.578125,
+            13.171875,
+            6.609375
+          ]
+        },
+        "down": {
+          "texture": "#refractory",
+          "uv": [
+            10.671875,
+            6.578125,
+            13.171875,
+            6.609375
+          ]
+        }
+      }
+    },
+    {
+      "name": "024_Stone hearth left",
+      "from": [
+        3,
+        9.5,
+        0.2
+      ],
+      "to": [
+        3.2,
+        12,
+        1.8
+      ],
+      "faces": {
+        "north": {
+          "texture": "#refractory",
+          "uv": [
+            4.328125,
+            5.53125,
+            4.375,
+            6.15625
+          ]
+        },
+        "south": {
+          "texture": "#refractory",
+          "uv": [
+            4.328125,
+            5.53125,
+            4.375,
+            6.15625
+          ]
+        },
+        "east": {
+          "texture": "#refractory",
+          "uv": [
+            3.828125,
+            5.53125,
+            4.234375,
+            6.15625
+          ]
+        },
+        "west": {
+          "texture": "#refractory",
+          "uv": [
+            3.828125,
+            5.53125,
+            4.234375,
+            6.15625
+          ]
+        },
+        "up": {
+          "texture": "#refractory",
+          "uv": [
+            14.65625,
+            5.53125,
+            14.703125,
+            5.9375
+          ]
+        },
+        "down": {
+          "texture": "#refractory",
+          "uv": [
+            14.65625,
+            5.53125,
+            14.703125,
+            5.9375
+          ]
+        }
+      }
+    },
+    {
+      "name": "025_Stone hearth right",
+      "from": [
+        12.8,
+        9.5,
+        0.2
+      ],
+      "to": [
+        13,
+        12,
+        1.8
+      ],
+      "faces": {
+        "north": {
+          "texture": "#refractory",
+          "uv": [
+            4.328125,
+            5.53125,
+            4.375,
+            6.15625
+          ]
+        },
+        "south": {
+          "texture": "#refractory",
+          "uv": [
+            4.328125,
+            5.53125,
+            4.375,
+            6.15625
+          ]
+        },
+        "east": {
+          "texture": "#refractory",
+          "uv": [
+            3.828125,
+            5.53125,
+            4.234375,
+            6.15625
+          ]
+        },
+        "west": {
+          "texture": "#refractory",
+          "uv": [
+            3.828125,
+            5.53125,
+            4.234375,
+            6.15625
+          ]
+        },
+        "up": {
+          "texture": "#refractory",
+          "uv": [
+            14.65625,
+            5.53125,
+            14.703125,
+            5.9375
+          ]
+        },
+        "down": {
+          "texture": "#refractory",
+          "uv": [
+            14.65625,
+            5.53125,
+            14.703125,
+            5.9375
+          ]
+        }
+      }
+    },
+    {
+      "name": "026_Stone hearth floor",
+      "from": [
+        3.2,
+        9.5,
+        0.2
+      ],
+      "to": [
+        12.8,
+        9.7,
+        1.8
+      ],
+      "faces": {
+        "north": {
+          "texture": "#refractory",
+          "uv": [
+            6.390625,
+            6.578125,
+            8.796875,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#refractory",
+          "uv": [
+            6.390625,
+            6.578125,
+            8.796875,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#refractory",
+          "uv": [
+            10.03125,
+            6.578125,
+            10.4375,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#refractory",
+          "uv": [
+            10.03125,
+            6.578125,
+            10.4375,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#refractory",
+          "uv": [
+            12.15625,
+            5.53125,
+            14.5625,
+            5.9375
+          ]
+        },
+        "down": {
+          "texture": "#refractory",
+          "uv": [
+            12.15625,
+            5.53125,
+            14.5625,
+            5.9375
+          ]
+        }
+      }
+    },
+    {
+      "name": "027_Stone hearth roof",
+      "from": [
+        3.2,
+        11.8,
+        0.2
+      ],
+      "to": [
+        12.8,
+        12,
+        1.8
+      ],
+      "faces": {
+        "north": {
+          "texture": "#refractory",
+          "uv": [
+            6.390625,
+            6.578125,
+            8.796875,
+            6.625
+          ]
+        },
+        "south": {
+          "texture": "#refractory",
+          "uv": [
+            6.390625,
+            6.578125,
+            8.796875,
+            6.625
+          ]
+        },
+        "east": {
+          "texture": "#refractory",
+          "uv": [
+            10.03125,
+            6.578125,
+            10.4375,
+            6.625
+          ]
+        },
+        "west": {
+          "texture": "#refractory",
+          "uv": [
+            10.03125,
+            6.578125,
+            10.4375,
+            6.625
+          ]
+        },
+        "up": {
+          "texture": "#refractory",
+          "uv": [
+            12.15625,
+            5.53125,
+            14.5625,
+            5.9375
+          ]
+        },
+        "down": {
+          "texture": "#refractory",
+          "uv": [
+            12.15625,
+            5.53125,
+            14.5625,
+            5.9375
+          ]
+        }
+      }
+    },
+    {
+      "name": "028_Coal bed",
+      "from": [
+        3.5,
+        2.22,
+        0.7
+      ],
+      "to": [
+        5.15,
+        2.9,
+        2.0999999999999996
+      ],
+      "faces": {
+        "north": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "name": "029_Coal bed",
+      "from": [
+        5.8,
+        2.22,
+        0.7
+      ],
+      "to": [
+        7.449999999999999,
+        3.08,
+        2.0999999999999996
+      ],
+      "faces": {
+        "north": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "name": "030_Coal bed",
+      "from": [
+        8.1,
+        2.22,
+        0.7
+      ],
+      "to": [
+        9.75,
+        2.9,
+        2.0999999999999996
+      ],
+      "faces": {
+        "north": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "name": "031_Coal bed",
+      "from": [
+        10.399999999999999,
+        2.22,
+        0.7
+      ],
+      "to": [
+        12.049999999999999,
+        3.08,
+        2.0999999999999996
+      ],
+      "faces": {
+        "north": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "name": "032_Coal bed",
+      "from": [
+        3.5,
+        2.22,
+        2.5
+      ],
+      "to": [
+        5.15,
+        2.9,
+        3.9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "name": "033_Coal bed",
+      "from": [
+        5.8,
+        2.22,
+        2.5
+      ],
+      "to": [
+        7.449999999999999,
+        3.08,
+        3.9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "name": "034_Coal bed",
+      "from": [
+        8.1,
+        2.22,
+        2.5
+      ],
+      "to": [
+        9.75,
+        2.9,
+        3.9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "name": "035_Coal bed",
+      "from": [
+        10.399999999999999,
+        2.22,
+        2.5
+      ],
+      "to": [
+        12.049999999999999,
+        3.08,
+        3.9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#coal",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
         }
       }
     }

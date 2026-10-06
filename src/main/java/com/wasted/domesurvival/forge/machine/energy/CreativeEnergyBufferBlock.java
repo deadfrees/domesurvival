@@ -130,6 +130,21 @@ public final class CreativeEnergyBufferBlock extends BaseEntityBlock implements 
         return 15;
     }
 
+    @Override
+    public void onRemove(BlockState oldState, Level level, BlockPos pos,
+                         BlockState newState, boolean movedByPiston) {
+        if (!oldState.is(newState.getBlock()) && !level.isClientSide) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof CreativeEnergyBufferBlockEntity buffer) {
+                net.minecraft.world.item.ItemStack chargeStack =
+                        buffer.getChargeInventory().getStackInSlot(0);
+                if (!chargeStack.isEmpty()) {
+                    popResource(level, pos, chargeStack.copy());
+                }
+            }
+        }
+        super.onRemove(oldState, level, pos, newState, movedByPiston);
+    }
     /**
      * CoFH/Thermal dismantle clone.
      * Thermal's own WrenchItem performs the actual dismantle; this method only
@@ -147,6 +162,10 @@ public final class CreativeEnergyBufferBlock extends BaseEntityBlock implements 
         net.minecraft.world.level.block.entity.BlockEntity blockEntity = level.getBlockEntity(pos);
         if (!stack.isEmpty() && blockEntity != null) {
             blockEntity.saveToItem(stack);
+            net.minecraft.nbt.CompoundTag blockEntityTag = stack.getTagElement("BlockEntityTag");
+            if (blockEntityTag != null) {
+                blockEntityTag.remove("ChargeSlot");
+            }
         }
         return stack;
     }

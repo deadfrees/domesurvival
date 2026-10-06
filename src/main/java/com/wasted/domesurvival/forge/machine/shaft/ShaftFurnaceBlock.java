@@ -59,6 +59,8 @@ public final class ShaftFurnaceBlock extends BaseEntityBlock {
         super.setPlacedBy(level, pos, state, placer, stack);
         if (!level.isClientSide) {
             clearStructure(level, pos, state);
+            level.sendBlockUpdated(pos, state, level.getBlockState(pos), 3);
+            level.updateNeighborsAt(pos, this);
         }
     }
 
@@ -99,7 +101,9 @@ public final class ShaftFurnaceBlock extends BaseEntityBlock {
             for (int x = -RADIUS; x <= RADIUS; x++) {
                 if (x == 0 && y == 0) continue;
                 BlockPos partPos = partPosition(controller, facing, x, y);
-                if (level.getBlockState(partPos).is(ModBlocks.SHAFT_FURNACE_PART.get())) {
+                BlockState partState = level.getBlockState(partPos);
+                if (partState.is(ModBlocks.SHAFT_FURNACE_PART.get())
+                        && ShaftFurnacePartBlock.controllerPosition(partPos, partState).equals(controller)) {
                     level.removeBlock(partPos, false);
                 }
             }
@@ -124,6 +128,10 @@ public final class ShaftFurnaceBlock extends BaseEntityBlock {
         if (!oldState.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof ShaftFurnaceBlockEntity furnace) {
+                for (int slot = 0; slot < furnace.getModules().getSlots(); slot++) {
+                    ItemStack stack = furnace.getModules().getStackInSlot(slot);
+                    if (!stack.isEmpty()) popResource(level, pos, stack.copy());
+                }
                 for (int slot = 0; slot < furnace.getInventory().getSlots(); slot++) {
                     ItemStack stack = furnace.getInventory().getStackInSlot(slot);
                     if (!stack.isEmpty()) popResource(level, pos, stack.copy());
@@ -132,5 +140,12 @@ public final class ShaftFurnaceBlock extends BaseEntityBlock {
             clearStructure(level, pos, oldState);
         }
         super.onRemove(oldState, level, pos, newState, movedByPiston);
+    }
+
+    @Override public ItemStack getCloneItemStack(BlockState state, net.minecraft.world.phys.HitResult hit,
+            BlockGetter level, BlockPos pos, Player player) {
+        ItemStack stack = super.getCloneItemStack(level, pos, state);
+        if (!stack.isEmpty() && level.getBlockEntity(pos) instanceof ShaftFurnaceBlockEntity furnace) furnace.saveToItem(stack);
+        return stack;
     }
 }

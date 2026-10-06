@@ -1,0 +1,13 @@
+{
+  "type": "domesurvival:industrial_crushing",
+  "ingredient": {
+    "item": "domesurvival:voltarium_ingot"
+  },
+  "input_count": 1,
+  "fluid_result": {
+    "fluid": "domesurvival:neoflux",
+    "amount": 300
+  },
+  "processing_time": 360,
+  "energy": 28800
+}

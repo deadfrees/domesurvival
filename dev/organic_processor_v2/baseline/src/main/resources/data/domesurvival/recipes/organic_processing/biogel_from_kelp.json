@@ -1,0 +1,11 @@
+{
+  "type": "domesurvival:organic_processing",
+  "primary": { "item": "minecraft:kelp" },
+  "additive": { "item": "minecraft:sugar" },
+  "primaryCount": 4,
+  "additiveCount": 1,
+  "water": 500,
+  "result": { "item": "domesurvival:biogel", "count": 1 },
+  "processingTime": 200,
+  "energy": 6000
+}

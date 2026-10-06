@@ -213,7 +213,7 @@ public final class CoalGeneratorBlockEntity extends BlockEntity implements net.m
         return getFuelBurnTime(stack) > 0;
     }
 
-    private static int getFuelBurnTime(ItemStack stack) {
+    public static int getFuelBurnTime(ItemStack stack) {
         if (stack.isEmpty()) {
             return 0;
         }

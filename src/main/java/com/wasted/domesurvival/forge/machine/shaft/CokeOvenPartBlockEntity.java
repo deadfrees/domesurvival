@@ -25,9 +25,8 @@ public final class CokeOvenPartBlockEntity extends BlockEntity {
                 && level != null) {
             BlockEntity controller = level.getBlockEntity(CokeOvenPartBlock.controllerPosition(worldPosition, state));
             if (controller instanceof CokeOvenBlockEntity oven) {
-                return (CokeOvenPartBlock.isInputPort(state)
-                        ? oven.getInputPortCapability()
-                        : oven.getOutputPortCapability()).cast();
+                // Legacy proxy blocks must not bypass the configured controller face.
+                return oven.getCapability(cap, side);
             }
         }
         return super.getCapability(cap, side);

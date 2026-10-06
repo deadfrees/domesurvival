@@ -146,7 +146,7 @@ public final class OrganicProcessorBlock extends BaseEntityBlock {
             BlockEntityType<T> type
     ) {
         if (level.isClientSide) {
-            return null;
+            return createTickerHelper(type,OrganicProcessorRegistry.ORGANIC_PROCESSOR_BLOCK_ENTITY.get(),OrganicProcessorBlockEntity::clientTick);
         }
         return createTickerHelper(
                 type,
@@ -176,5 +176,13 @@ public final class OrganicProcessorBlock extends BaseEntityBlock {
             }
         }
         super.onRemove(oldState, level, pos, newState, movedByPiston);
+    }
+
+    @Override public ItemStack getCloneItemStack(BlockState state,net.minecraft.world.phys.HitResult target,
+            net.minecraft.world.level.BlockGetter level,BlockPos pos,Player player) {
+        ItemStack stack=super.getCloneItemStack(level,pos,state);
+        BlockEntity entity=level.getBlockEntity(pos);
+        if(!stack.isEmpty()&&entity!=null)entity.saveToItem(stack);
+        return stack;
     }
 }

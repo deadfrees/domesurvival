@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "domesurvival:item/engineering_gears/steel_gear"
+    "layer0": "domesurvival:item/press_products/steel_gear"
   }
 }

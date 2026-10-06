@@ -1,3 +1,29 @@
 {
-  "parent": "domesurvival:block/energy_buffer_titan_4"
+  "parent": "domesurvival:block/titan_buffer_v2/level_0",
+  "overrides": [
+    {
+      "predicate": {
+        "domesurvival:buffer_charge": 0.25
+      },
+      "model": "domesurvival:block/titan_buffer_v2/level_1"
+    },
+    {
+      "predicate": {
+        "domesurvival:buffer_charge": 0.5
+      },
+      "model": "domesurvival:block/titan_buffer_v2/level_2"
+    },
+    {
+      "predicate": {
+        "domesurvival:buffer_charge": 0.75
+      },
+      "model": "domesurvival:block/titan_buffer_v2/level_3"
+    },
+    {
+      "predicate": {
+        "domesurvival:buffer_charge": 1.0
+      },
+      "model": "domesurvival:block/titan_buffer_v2/level_4"
+    }
+  ]
 }

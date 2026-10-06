@@ -1,0 +1,28 @@
+Starting test-only automated world.
+PASS FE port down
+PASS Item port down
+PASS FE port up
+PASS Item port up
+PASS FE port north
+PASS Item port north
+PASS FE port south
+PASS Item port south
+PASS FE port west
+PASS Item port west
+PASS FE port east
+PASS Item port east
+PASS Collision remains one full block
+Fixture ready: fresh superflat test world, four horizontal orientations.
+Screenshot 01_new_front.png
+Screenshot 02_old_front.png
+Screenshot 03_new_in_hand.png
+Screenshot 04_new_inventory.png
+FAIL Active state synchronized during regeneration
+Screenshot 05_new_working.png
+PASS Actual block interaction opens FilterRegenerationScreen
+Screenshot 06_new_gui.png
+FAIL Real cycle restores filter in original slot
+FAIL Original regeneration cycle NBT increments
+FAIL Original cycle consumes media
+Screenshot 07_four_orientations.png
+COMPLETE: screenshots are real Minecraft framebuffer captures; see checks for assertions.

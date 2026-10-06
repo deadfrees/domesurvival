@@ -29,7 +29,7 @@ public final class FilterRegenerationRegistry {
     public static final RegistryObject<Block> FILTER_REGENERATION_STATION = BLOCKS.register(
             "filter_regeneration_station",
             () -> new FilterRegenerationBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .strength(4.0F, 8.0F))
+                    .strength(4.0F, 8.0F).noOcclusion())
     );
 
     public static final RegistryObject<Item> FILTER_REGENERATION_STATION_ITEM = ITEMS.register(
@@ -37,7 +37,7 @@ public final class FilterRegenerationRegistry {
             () -> new BlockItem(FILTER_REGENERATION_STATION.get(), new Item.Properties()) {
                 @Override
                 public Component getName(ItemStack stack) {
-                    return Component.literal("Регенератор фильтров");
+                    return Component.translatable("block.domesurvival.filter_regeneration_station");
                 }
             }
     );

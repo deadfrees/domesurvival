@@ -1,0 +1,18 @@
+gradle.projectsLoaded {
+    gradle.rootProject.afterEvaluate { p ->
+        def probe = p.sourceSets.create('shaftFurnaceProbe') {
+            java.srcDir 'dev/shaft_furnace_v2/runtime_probe'
+            compileClasspath += p.sourceSets.main.output + p.sourceSets.main.compileClasspath
+            runtimeClasspath += p.sourceSets.main.runtimeClasspath
+        }
+        p.minecraft.runs.client.mods.domesurvival.source(probe)
+        p.minecraft.runs.client.property 'dome.shaftFurnaceReview', 'true'
+        p.tasks.matching { it.name == 'runClient' }.configureEach { dependsOn p.tasks.named('shaftFurnaceProbeClasses') }
+    }
+}
+gradle.projectsEvaluated {
+    gradle.rootProject.minecraft.runs.client {
+        workingDirectory gradle.rootProject.file('run/shaft-furnace-review')
+        args '--username', 'ShaftFurnaceReview', '--width', '1440', '--height', '900'
+    }
+}

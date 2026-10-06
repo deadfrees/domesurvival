@@ -1,0 +1,6 @@
+{
+  "result": "PASS",
+  "socket_configurations_without_coplanar_overlap": 40,
+  "flat_module_items": 6,
+  "press_enclosure_uses_generator_panel_uv": true
+}

@@ -1,6 +1,12 @@
 /* Dome Survival - Joseph Cooper GUI v7.5.1 PROGRESSION BALANCE */
 var API = Java.type("noppes.npcs.api.NpcAPI").Instance();
 var Bridge = Java.type("com.wasted.domesurvival.forge.progression.JosephCooperBridge");
+/* DOMESURVIVAL_STAGE7_METRO_LINK_V1_1
+   Project 07 is the story trigger for the central Dome metro.
+   DomeMetroSavedData remains the source of truth. */
+var DomeMetroService = Java.type("com.wasted.domesurvival.forge.metro.dome.DomeMetroService");
+var DomeMetroSavedData = Java.type("com.wasted.domesurvival.forge.metro.dome.DomeMetroSavedData");
+var ServerLifecycleHooks = Java.type("net.minecraftforge.server.ServerLifecycleHooks");
 var V75ForgeRegistries = Java.type("net.minecraftforge.registries.ForgeRegistries");
 var V75Registries = Java.type("net.minecraft.core.registries.Registries");
 var V75TagKey = Java.type("net.minecraft.tags.TagKey");
@@ -377,6 +383,8 @@ function interact(e) {
             try { e.player.message("§e[КУПОЛ] " + workshopRepair); } catch (ignoredRepairMessage) {}
         }
     }
+    /* Old-save self-heal for Project 07 -> Dome metro. */
+    ensureDomeMetroUnlocked(e.player);
     openMain(e.player);
 }
 
@@ -437,7 +445,7 @@ function customGuiButton(e) {
     if (!stage4Complete(e.player)) { completeSimpleStage(e.player, S4, S4_COMPLETE, R4_KEY, R4, "§a[КУПОЛ] Этап 04 «Вода и агроконтур» завершён!", "§e[КУПОЛ] Доступен этап 05: «Кислородный контур»."); return; }
     if (!stage5Complete(e.player)) { completeSimpleStage(e.player, S5, S5_COMPLETE, R5_KEY, R5, "§a[КУПОЛ] Этап 05 «Кислородный контур» завершён!", "§e[КУПОЛ] Доступен этап 06: «Первая внешняя экспедиция»."); return; }
     if (!stage6Complete(e.player)) { completeSimpleStage(e.player, S6, S6_COMPLETE, R6_KEY, R6, "§a[КУПОЛ] Этап 06 «Первая внешняя экспедиция» завершён!", "§e[КУПОЛ] Доступен этап 07: «Логистика купола»."); return; }
-    if (!stage7Complete(e.player)) { completeSimpleStage(e.player, S7, S7_COMPLETE, R7_KEY, R7, "§a[КУПОЛ] Этап 07 «Логистика купола» завершён!", "§e[КУПОЛ] Доступен этап 08: «Аварийный резерв базы»."); return; }
+    if (!stage7Complete(e.player)) { completeSimpleStage(e.player, S7, S7_COMPLETE, R7_KEY, R7, "§a[КУПОЛ] Этап 07 «Логистика купола» завершён!", "§e[КУПОЛ] Доступен этап 08: «Аварийный резерв базы»."); ensureDomeMetroUnlocked(e.player); return; }
     if (!stage8Complete(e.player)) { completeSimpleStage(e.player, S8, S8_COMPLETE, R8_KEY, R8, "§a[КУПОЛ] Этап 08 «Аварийный резерв базы» завершён!", "§e[КУПОЛ] Открыта программа «Исход»: этап 09 «Дальняя связь»."); return; }
     if (!stage9Complete(e.player)) { completeSimpleStage(e.player, S9, S9_COMPLETE, R9_KEY, R9, "§a[КУПОЛ] Этап 09 «Дальняя связь» завершён!", "§e[КУПОЛ] Доступен этап 10: «Ракетные материалы»."); return; }
     if (!stage10Complete(e.player)) { completeSimpleStage(e.player, S10, S10_COMPLETE, R10_KEY, R10, "§a[КУПОЛ] Этап 10 «Ракетные материалы» завершён!", "§e[КУПОЛ] Доступен этап 11: «Ракетный модуль»."); return; }
@@ -520,6 +528,33 @@ function grantStageReward(player, rewardKey, rewards) {
     return "";
 }
 
+function ensureDomeMetroUnlocked(player) {
+    try {
+        if (!stage7Complete(player)) return "";
+
+        var server = ServerLifecycleHooks.getCurrentServer();
+        if (server == null) return "";
+
+        var data = DomeMetroSavedData.get(server);
+        if (data != null && data.isBuilt()) return "";
+
+        var ok = !!DomeMetroService.unlock(server, null);
+        data = DomeMetroSavedData.get(server);
+
+        if (data != null && data.isBuilt()) {
+            try {
+                player.message("\u00a7b[\u041a\u0423\u041f\u041e\u041b] \u0414\u0436\u043e\u0437\u0435\u0444 \u043e\u0442\u043a\u0440\u044b\u043b \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0446\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u043e\u0439 \u0441\u0442\u0430\u043d\u0446\u0438\u0438 \u043c\u0435\u0442\u0440\u043e.");
+            } catch (ignoredMessage) {}
+            return "\u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u043e\u0435 \u043c\u0435\u0442\u0440\u043e \u041a\u0443\u043f\u043e\u043b\u0430 \u0440\u0430\u0437\u0431\u043b\u043e\u043a\u0438\u0440\u043e\u0432\u0430\u043d\u043e.";
+        }
+
+        return ok
+            ? "\u041c\u0435\u0442\u0440\u043e \u041a\u0443\u043f\u043e\u043b\u0430 \u0440\u0430\u0437\u0431\u043b\u043e\u043a\u0438\u0440\u043e\u0432\u0430\u043d\u043e."
+            : "";
+    } catch (ignoredMetroUnlock) {
+        return "";
+    }
+}
 function completeSimpleStage(player, defs, completeKey, rewardKey, rewards, message1, message2) {
     var before = setState(player, defs, completeKey).complete;
     var notice = contributeSet(player, defs, completeKey);

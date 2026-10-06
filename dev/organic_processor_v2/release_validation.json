@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "runtime_assertions": 518,
+  "packaged_resources": 42,
+  "unchanged_recipes": 3,
+  "body_cuboids": 118,
+  "moving_cuboids": 7,
+  "rotor_clearance_angles": 360,
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "dfe21d41624797abac6fe804c2f91c1b445fc7e2f2de46a7b81087cfc23dff40",
+  "bytes": 204848357
+}

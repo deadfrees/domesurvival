@@ -57,6 +57,8 @@ public final class CokeOvenBlock extends BaseEntityBlock {
         super.setPlacedBy(level, pos, state, placer, stack);
         if (!level.isClientSide) {
             clearLegacyParts(level, pos);
+            level.sendBlockUpdated(pos, state, level.getBlockState(pos), 3);
+            level.updateNeighborsAt(pos, this);
         }
     }
 
@@ -120,6 +122,10 @@ public final class CokeOvenBlock extends BaseEntityBlock {
         if (!oldState.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof CokeOvenBlockEntity oven) {
+                for (int slot = 0; slot < oven.getModules().getSlots(); slot++) {
+                    ItemStack stack = oven.getModules().getStackInSlot(slot);
+                    if (!stack.isEmpty()) popResource(level, pos, stack.copy());
+                }
                 for (int slot = 0; slot < oven.getInventory().getSlots(); slot++) {
                     ItemStack stack = oven.getInventory().getStackInSlot(slot);
                     if (!stack.isEmpty()) popResource(level, pos, stack.copy());
@@ -128,5 +134,12 @@ public final class CokeOvenBlock extends BaseEntityBlock {
             clearLegacyParts(level, pos);
         }
         super.onRemove(oldState, level, pos, newState, movedByPiston);
+    }
+
+    @Override public ItemStack getCloneItemStack(BlockState state, net.minecraft.world.phys.HitResult hit,
+            BlockGetter level, BlockPos pos, Player player) {
+        ItemStack stack = super.getCloneItemStack(level, pos, state);
+        if (!stack.isEmpty() && level.getBlockEntity(pos) instanceof CokeOvenBlockEntity oven) oven.saveToItem(stack);
+        return stack;
     }
 }

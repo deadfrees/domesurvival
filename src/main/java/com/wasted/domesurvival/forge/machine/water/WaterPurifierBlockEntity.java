@@ -1,6 +1,8 @@
 package com.wasted.domesurvival.forge.machine.water;
 
 import com.wasted.domesurvival.forge.fluid.ModFluids;
+import com.wasted.domesurvival.forge.machine.module.*;
+import java.util.*;
 import com.wasted.domesurvival.forge.item.ModItems;
 import com.wasted.domesurvival.forge.item.WaterFilterItem;
 import com.wasted.domesurvival.forge.machine.energy.MachineEnergyStorage;
@@ -36,7 +38,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public final class WaterPurifierBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider {
+public final class WaterPurifierBlockEntity extends BlockEntity implements net.minecraft.world.MenuProvider, IModularMachine {
     public static final int ENERGY_CAPACITY = 20_000;
     public static final int MAX_ENERGY_INPUT_PER_TICK = 64;
     /** Fallback values used only while no cartridge is installed. */
@@ -61,7 +63,7 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
     public static final int DATA_PROGRESS_MAX = 7;
     public static final int DATA_STATUS = 8;
     public static final int DATA_SIDES_START = 9;
-    public static final int DATA_COUNT = DATA_SIDES_START + 6;
+    public static final int DATA_COUNT = DATA_SIDES_START + 8;
 
     public static final int STATUS_IDLE = 0;
     public static final int STATUS_RUNNING = 1;
@@ -90,6 +92,7 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
         @Override protected void onContentsChanged(int slot) {
             if (slot == SLOT_FILTER) {
                 WaterPurifierBlockEntity.this.progress = 0;
+                cycleTicks = cycleEnergy = 0;
             }
             setChanged();
         }
@@ -104,82 +107,20 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
         @Override protected void onContentsChanged() { setChanged(); }
     };
 
-    private final IEnergyStorage energyInputView = new IEnergyStorage() {
-        @Override public int receiveEnergy(int maxReceive, boolean simulate) { int accepted = energyStorage.receiveEnergy(maxReceive, simulate); if (!simulate && accepted > 0) setChanged(); return accepted; }
-        @Override public int extractEnergy(int maxExtract, boolean simulate) { return 0; }
-        @Override public int getEnergyStored() { return energyStorage.getEnergyStored(); }
-        @Override public int getMaxEnergyStored() { return energyStorage.getMaxEnergyStored(); }
-        @Override public boolean canExtract() { return false; }
-        @Override public boolean canReceive() { return true; }
-    };
-
-    private final IFluidHandler rawFluidInputView = new IFluidHandler() {
-        @Override public int getTanks() { return 1; }
-        @Override public @NotNull FluidStack getFluidInTank(int tank) { return rawWaterTank.getFluidInTank(0); }
-        @Override public int getTankCapacity(int tank) { return RAW_TANK_CAPACITY; }
-        @Override public boolean isFluidValid(int tank, @NotNull FluidStack stack) { return rawWaterTank.isFluidValid(0, stack); }
-        @Override public int fill(FluidStack resource, FluidAction action) { return rawWaterTank.fill(resource, action); }
-        @Override public @NotNull FluidStack drain(FluidStack resource, FluidAction action) { return FluidStack.EMPTY; }
-        @Override public @NotNull FluidStack drain(int maxDrain, FluidAction action) { return FluidStack.EMPTY; }
-    };
-
-    private final IFluidHandler purifiedFluidOutputView = new IFluidHandler() {
-        @Override public int getTanks() { return 1; }
-        @Override public @NotNull FluidStack getFluidInTank(int tank) { return purifiedWaterTank.getFluidInTank(0); }
-        @Override public int getTankCapacity(int tank) { return PURIFIED_TANK_CAPACITY; }
-        @Override public boolean isFluidValid(int tank, @NotNull FluidStack stack) { return false; }
-        @Override public int fill(FluidStack resource, FluidAction action) { return 0; }
-        @Override public @NotNull FluidStack drain(FluidStack resource, FluidAction action) { return purifiedWaterTank.drain(resource, action); }
-        @Override public @NotNull FluidStack drain(int maxDrain, FluidAction action) { return purifiedWaterTank.drain(maxDrain, action); }
-    };
-
-    private final IFluidHandler combinedFluidView = new IFluidHandler() {
-        @Override public int getTanks() { return 2; }
-        @Override public @NotNull FluidStack getFluidInTank(int tank) { return tank == 0 ? rawWaterTank.getFluidInTank(0) : purifiedWaterTank.getFluidInTank(0); }
-        @Override public int getTankCapacity(int tank) { return tank == 0 ? RAW_TANK_CAPACITY : PURIFIED_TANK_CAPACITY; }
-        @Override public boolean isFluidValid(int tank, @NotNull FluidStack stack) { return tank == 0 && rawWaterTank.isFluidValid(0, stack); }
-        @Override public int fill(FluidStack resource, FluidAction action) { return rawWaterTank.fill(resource, action); }
-        @Override public @NotNull FluidStack drain(FluidStack resource, FluidAction action) { return purifiedWaterTank.drain(resource, action); }
-        @Override public @NotNull FluidStack drain(int maxDrain, FluidAction action) { return purifiedWaterTank.drain(maxDrain, action); }
-    };
-
-    private final IItemHandler itemInputView = new IItemHandler() {
-        @Override public int getSlots() { return inventory.getSlots(); }
-        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
-        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) { return inventory.insertItem(slot, stack, simulate); }
-        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) { return ItemStack.EMPTY; }
-        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
-        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return inventory.isItemValid(slot, stack); }
-    };
-
-    private final IItemHandler itemOutputView = new IItemHandler() {
-        @Override public int getSlots() { return inventory.getSlots(); }
-        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
-        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) { return stack; }
-        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            if (slot != SLOT_WATER_BUCKET || !inventory.getStackInSlot(slot).is(Items.BUCKET)) return ItemStack.EMPTY;
-            return inventory.extractItem(slot, amount, simulate);
-        }
-        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
-        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return false; }
-    };
-
-    private final IItemHandler combinedItemView = new IItemHandler() {
-        @Override public int getSlots() { return inventory.getSlots(); }
-        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
-        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) { return itemInputView.insertItem(slot, stack, simulate); }
-        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) { return itemOutputView.extractItem(slot, amount, simulate); }
-        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
-        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return inventory.isItemValid(slot, stack); }
-    };
-
-    private LazyOptional<IEnergyStorage> energyInputCapability = LazyOptional.of(() -> energyInputView);
-    private LazyOptional<IFluidHandler> rawFluidInputCapability = LazyOptional.of(() -> rawFluidInputView);
-    private LazyOptional<IFluidHandler> purifiedFluidOutputCapability = LazyOptional.of(() -> purifiedFluidOutputView);
-    private LazyOptional<IFluidHandler> combinedFluidCapability = LazyOptional.of(() -> combinedFluidView);
-    private LazyOptional<IItemHandler> itemInputCapability = LazyOptional.of(() -> itemInputView);
-    private LazyOptional<IItemHandler> itemOutputCapability = LazyOptional.of(() -> itemOutputView);
-    private LazyOptional<IItemHandler> combinedItemCapability = LazyOptional.of(() -> combinedItemView);
+    private final EnumMap<Direction, Port> ports = new EnumMap<>(Direction.class);
+    private Direction lastFacing;
+    private final MachineModuleInventory modules = new MachineModuleInventory(this, MachineModuleResolver.STANDARD, this::modulesChanged);
+    private int cycleTicks, cycleEnergy;
+    @Override public int moduleSlotCount() { return 2; }
+    @Override public Set<MachineModuleType> allowedModuleTypes() { return Set.of(MachineModuleType.BUFFER, MachineModuleType.EFFICIENCY, MachineModuleType.OVERDRIVE); }
+    public MachineModuleInventory getModules() { return modules; }
+    private void modulesChanged() { energyStorage.setCapacityInternal(modules.modifiers().applyBufferCapacity(ENERGY_CAPACITY)); setChanged(); }
+    private float animationTick, previousAnimationTick;
+    public void clientAnimationTick() { previousAnimationTick = animationTick; if (getBlockState().getValue(WaterPurifierBlock.LIT)) animationTick = (animationTick + 1) % 80; }
+    public float pumpAngle(float partial) { float next = animationTick < previousAnimationTick ? animationTick + 80 : animationTick; return (previousAnimationTick + (next - previousAnimationTick) * partial) * 4.5F; }
+    public int rawAmount() { return rawWaterTank.getFluidAmount(); }
+    public int purifiedAmount() { return purifiedWaterTank.getFluidAmount(); }
+    private int nextEnergyCost() { int ticks = currentProcessTicks(), total = currentCycleEnergy(); return (int)((long)total * (progress + 1) / ticks - (long)total * progress / ticks); }
 
     private int progress;
     private int status = STATUS_IDLE;
@@ -196,7 +137,9 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
             if (index == DATA_PROGRESS) return progress;
             if (index == DATA_PROGRESS_MAX) return currentProcessTicks();
             if (index == DATA_STATUS) return status;
-            if (index >= DATA_SIDES_START && index < DATA_SIDES_START + 6) return sideConfig.getMode(Direction.values()[index - DATA_SIDES_START]).ordinal();
+            if (index == 15) return currentCycleEnergy();
+            if (index == 16) return hasUsableFilter() ? inventory.getStackInSlot(SLOT_FILTER).getMaxDamage() - inventory.getStackInSlot(SLOT_FILTER).getDamageValue() : 0;
+            if (index >= DATA_SIDES_START && index < DATA_SIDES_START + 6) return sideMode(Direction.values()[index - DATA_SIDES_START]).ordinal();
             return 0;
         }
         @Override public void set(int index, int value) { }
@@ -205,30 +148,33 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
 
     public WaterPurifierBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.WATER_PURIFIER.get(), pos, state);
-        applyDefaultSideConfiguration();
+        applyDefaultSideConfiguration(); lastFacing = getMachineFacing();
     }
 
     private void applyDefaultSideConfiguration() {
         sideConfig.reset();
         Direction facing = getMachineFacing();
-        for (RelativeSide relative : RelativeSide.values()) {
-            if (relative == RelativeSide.FRONT) {
-                sideConfig.setMode(relative.resolve(facing), SideMode.DISABLED);
-            } else {
-                sideConfig.setMode(relative.resolve(facing), SideMode.BOTH);
-            }
-        }
+        sideConfig.setMode(Direction.UP, SideMode.INPUT);
+        sideConfig.setMode(facing.getCounterClockWise(), SideMode.INPUT);
+        sideConfig.setMode(Direction.DOWN, SideMode.OUTPUT);
+        sideConfig.setMode(facing.getClockWise(), SideMode.OUTPUT);
+        sideConfig.setMode(facing.getOpposite(), SideMode.OUTPUT);
     }
 
     public static boolean isConfigurableSide(RelativeSide side) { return side != RelativeSide.FRONT; }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, WaterPurifierBlockEntity purifier) {
+        if (purifier.lastFacing != purifier.getMachineFacing()) purifier.rotateSideConfiguration(purifier.lastFacing);
         purifier.syncAllPortStates();
         boolean changed = purifier.consumeWaterBucketIfPossible();
         int newStatus = purifier.calculateStatus();
 
         if (newStatus == STATUS_RUNNING) {
-            int energyPerTick = purifier.currentEnergyPerTick();
+            if (purifier.cycleTicks == 0) {
+                purifier.cycleTicks = purifier.currentProcessTicks();
+                purifier.cycleEnergy = purifier.modules.modifiers().applyEnergyCost(purifier.baseCycleEnergy());
+            }
+            int energyPerTick = purifier.nextEnergyCost();
             int processTicks = purifier.currentProcessTicks();
             int removed = purifier.energyStorage.removeEnergyInternal(energyPerTick);
             if (removed == energyPerTick) {
@@ -236,34 +182,32 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
                 changed = true;
                 if (purifier.progress >= processTicks) {
                     purifier.finishCycle();
-                    purifier.progress = 0;
+                    purifier.progress = 0; purifier.cycleTicks = purifier.cycleEnergy = 0;
                 }
             }
-        } else if (purifier.progress != 0 && newStatus != STATUS_NO_ENERGY) {
-            purifier.progress = 0;
-            changed = true;
         }
 
         changed |= purifier.pushPurifiedWaterToNeighbors();
 
         purifier.status = purifier.calculateStatus();
-        boolean shouldBeLit = purifier.status == STATUS_RUNNING;
+        boolean shouldBeLit = newStatus == STATUS_RUNNING;
         purifier.ambientSoundTick = MachineAmbientSoundService.tick(
                 level, pos, shouldBeLit, purifier.ambientSoundTick,
                 MachineAmbientSoundService.MachineType.WATER_PURIFIER
         );
-        if (state.getValue(WaterPurifierBlock.LIT) != shouldBeLit) {
-            level.setBlock(pos, state.setValue(WaterPurifierBlock.LIT, shouldBeLit), 3);
+        BlockState current = purifier.getBlockState();
+        if (current.getValue(WaterPurifierBlock.LIT) != shouldBeLit) {
+            level.setBlock(pos, current.setValue(WaterPurifierBlock.LIT, shouldBeLit), 3);
             changed = true;
         }
-        if (changed) purifier.setChanged();
+        if (changed) { purifier.setChanged(); if (level.getGameTime() % 10 == 0) level.sendBlockUpdated(pos, purifier.getBlockState(), purifier.getBlockState(), 2); }
     }
 
     private boolean pushPurifiedWaterToNeighbors() {
         if (level == null || level.isClientSide || purifiedWaterTank.isEmpty()) return false;
         boolean changed = false;
         for (Direction direction : Direction.values()) {
-            if (isFrontWorldSide(direction)) continue;
+            if (sideMode(direction) != SideMode.OUTPUT) continue;
             BlockEntity neighbor = level.getBlockEntity(worldPosition.relative(direction));
             if (neighbor == null) continue;
             LazyOptional<IFluidHandler> opt = neighbor.getCapability(ForgeCapabilities.FLUID_HANDLER, direction.getOpposite());
@@ -290,7 +234,7 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
         if (!hasUsableFilter()) return STATUS_NO_FILTER;
         if (rawWaterTank.getFluidAmount() < RAW_WATER_PER_CYCLE) return STATUS_NO_WATER;
         if (purifiedWaterTank.getCapacity() - purifiedWaterTank.getFluidAmount() < PURIFIED_WATER_PER_CYCLE) return STATUS_OUTPUT_FULL;
-        if (energyStorage.getEnergyStored() < currentEnergyPerTick()) return STATUS_NO_ENERGY;
+        if (energyStorage.getEnergyStored() < nextEnergyCost()) return STATUS_NO_ENERGY;
         return STATUS_RUNNING;
     }
 
@@ -317,13 +261,11 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
 
     private int currentProcessTicks() {
         WaterFilterItem filter = currentFilterItem();
-        return filter != null ? filter.processTicks() : PROCESS_TICKS;
+        return cycleTicks > 0 ? cycleTicks : modules.modifiers().applyProcessingTicks(filter != null ? filter.processTicks() : PROCESS_TICKS);
     }
 
-    private int currentEnergyPerTick() {
-        WaterFilterItem filter = currentFilterItem();
-        return filter != null ? filter.energyPerTick() : ENERGY_PER_TICK;
-    }
+    private int baseCycleEnergy() { WaterFilterItem filter = currentFilterItem(); return filter == null ? PROCESS_TICKS * ENERGY_PER_TICK : filter.processTicks() * filter.energyPerTick(); }
+    private int currentCycleEnergy() { return cycleTicks > 0 ? cycleEnergy : modules.modifiers().applyEnergyCost(baseCycleEnergy()); }
 
     private void finishCycle() {
         rawWaterTank.drain(RAW_WATER_PER_CYCLE, IFluidHandler.FluidAction.EXECUTE);
@@ -351,9 +293,17 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
         if (!isConfigurableSide(relativeSide)) return SideMode.DISABLED;
         Direction worldSide = relativeSide.resolve(getMachineFacing());
         SideMode mode = sideConfig.cycleMode(worldSide);
-        refreshCapabilities(); syncPortState(worldSide); setChanged(); return mode;
+        routingChanged(); return mode;
     }
 
+    public SideMode sideMode(@Nullable Direction side) { return side == null || side == getMachineFacing() ? SideMode.DISABLED : sideConfig.getMode(side); }
+    public void rotateSideConfiguration(Direction previous) {
+        EnumMap<RelativeSide, SideMode> old = new EnumMap<>(RelativeSide.class);
+        for (RelativeSide side : RelativeSide.values()) old.put(side, sideConfig.getMode(side.resolve(previous)));
+        for (RelativeSide side : RelativeSide.values()) sideConfig.setMode(side.resolve(getMachineFacing()), old.get(side));
+        sideConfig.setMode(getMachineFacing(), SideMode.DISABLED); lastFacing = getMachineFacing(); routingChanged();
+    }
+    private void routingChanged() { refreshCapabilities(); syncAllPortStates(); setChanged(); if (level != null) { level.sendBlockUpdated(worldPosition,getBlockState(),getBlockState(),3); level.updateNeighborsAt(worldPosition,getBlockState().getBlock()); } }
     private boolean isFrontWorldSide(Direction side) { return side == getMachineFacing(); }
 
     private void syncPortState(Direction direction) {
@@ -388,60 +338,79 @@ public final class WaterPurifierBlockEntity extends BlockEntity implements net.m
         tag.put(NBT_PURIFIED_TANK, purifiedWaterTank.writeToNBT(new CompoundTag()));
         tag.putInt(NBT_PROGRESS, progress);
         sideConfig.save(tag);
+        tag.put("Modules", modules.serializeNBT()); tag.putInt("CycleTicks", cycleTicks); tag.putInt("CycleEnergy", cycleEnergy); tag.putString("PortFacing", getMachineFacing().getName());
     }
 
     @Override public void load(CompoundTag tag) {
         super.load(tag);
         inventory.deserializeNBT(tag.getCompound(NBT_INVENTORY));
-        energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
+        if (tag.contains("Modules")) modules.deserializeNBT(tag.getCompound("Modules")); else for (int i=0;i<2;i++) modules.setStackInSlot(i,ItemStack.EMPTY);
+        modulesChanged(); energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
         rawWaterTank.readFromNBT(tag.getCompound(NBT_RAW_TANK));
         purifiedWaterTank.readFromNBT(tag.getCompound(NBT_PURIFIED_TANK));
+        cycleTicks = Math.max(0, tag.getInt("CycleTicks")); cycleEnergy = Math.max(0, tag.getInt("CycleEnergy"));
+        // A legacy unfinished cycle retains its original cartridge timing/cost.
+        if (cycleTicks == 0 && tag.getInt(NBT_PROGRESS) > 0 && currentFilterItem() != null) { cycleTicks = currentFilterItem().processTicks(); cycleEnergy = baseCycleEnergy(); }
         progress = Math.max(0, Math.min(currentProcessTicks() - 1, tag.getInt(NBT_PROGRESS)));
         if (!sideConfig.load(tag)) applyDefaultSideConfiguration();
-        sideConfig.setMode(getMachineFacing(), SideMode.DISABLED);
+        // Older purifier defaults exposed every resource despite five OUTPUT modes.
+        // Migrate only that exact legacy default; preserve custom side choices.
+        if (!tag.contains("PortFacing") && Arrays.stream(Direction.values()).filter(d->d!=getMachineFacing()).allMatch(d->sideConfig.getMode(d)==SideMode.OUTPUT)) applyDefaultSideConfiguration();
+        Direction savedFacing = Direction.byName(tag.getString("PortFacing"));
+        if (savedFacing != null && savedFacing.getAxis().isHorizontal() && savedFacing != getMachineFacing()) {
+            EnumMap<RelativeSide,SideMode> old=new EnumMap<>(RelativeSide.class);
+            for (RelativeSide side:RelativeSide.values()) old.put(side,sideConfig.getMode(side.resolve(savedFacing)));
+            for (RelativeSide side:RelativeSide.values()) sideConfig.setMode(side.resolve(getMachineFacing()),old.get(side));
+        }
+        for (Direction side:Direction.values()) if (sideConfig.getMode(side)==SideMode.BOTH) sideConfig.setMode(side,side==Direction.UP||side==getMachineFacing().getCounterClockWise()?SideMode.INPUT:SideMode.OUTPUT);
+        sideConfig.setMode(getMachineFacing(), SideMode.DISABLED); lastFacing=getMachineFacing(); refreshCapabilities();
         status = calculateStatus();
     }
 
+    @Override public CompoundTag getUpdateTag() { return saveWithoutMetadata(); }
+    @Override public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket() { return net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket.create(this); }
     @Override public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ENERGY) {
-            // Machine cables may connect to every non-front face. The unified side
-            // panel remains a visual/routing preference, but never hides FE capability.
-            if (side == null || !isFrontWorldSide(side)) return energyInputCapability.cast();
-            return LazyOptional.empty();
+        if (cap==ForgeCapabilities.ENERGY || cap==ForgeCapabilities.FLUID_HANDLER || cap==ForgeCapabilities.ITEM_HANDLER) {
+            if (isRemoved() || sideMode(side)==SideMode.DISABLED) return LazyOptional.empty();
+            Port port=ports.computeIfAbsent(side,Port::new);
+            if (cap==ForgeCapabilities.ENERGY) return sideMode(side)==SideMode.INPUT?port.energy.cast():LazyOptional.empty();
+            return cap==ForgeCapabilities.FLUID_HANDLER?port.fluid.cast():port.items.cast();
         }
-        if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            // Expose one deterministic duplex fluid view on every non-front face:
-            // fill -> raw water tank, drain -> purified water tank. This avoids
-            // pipe mods failing to connect because a saved side mode was OUTPUT.
-            if (side == null || !isFrontWorldSide(side)) return combinedFluidCapability.cast();
-            return LazyOptional.empty();
-        }
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == null) return combinedItemCapability.cast();
-            if (isFrontWorldSide(side)) return LazyOptional.empty();
-            boolean input = sideConfig.allowsInput(side);
-            boolean output = sideConfig.allowsOutput(side);
-            if (input && output) return combinedItemCapability.cast();
-            if (input) return itemInputCapability.cast();
-            if (output) return itemOutputCapability.cast();
-            return LazyOptional.empty();
-        }
-        return super.getCapability(cap, side);
+        return super.getCapability(cap,side);
     }
-
-    private void refreshCapabilities() {
-        energyInputCapability.invalidate(); rawFluidInputCapability.invalidate(); purifiedFluidOutputCapability.invalidate(); combinedFluidCapability.invalidate(); itemInputCapability.invalidate(); itemOutputCapability.invalidate(); combinedItemCapability.invalidate();
-        energyInputCapability = LazyOptional.of(() -> energyInputView);
-        rawFluidInputCapability = LazyOptional.of(() -> rawFluidInputView);
-        purifiedFluidOutputCapability = LazyOptional.of(() -> purifiedFluidOutputView);
-        combinedFluidCapability = LazyOptional.of(() -> combinedFluidView);
-        itemInputCapability = LazyOptional.of(() -> itemInputView);
-        itemOutputCapability = LazyOptional.of(() -> itemOutputView);
-        combinedItemCapability = LazyOptional.of(() -> combinedItemView);
+    private void refreshCapabilities() { ports.values().forEach(p->{p.energy.invalidate();p.fluid.invalidate();p.items.invalidate();});ports.clear(); }
+    @Override public void invalidateCaps() { super.invalidateCaps();refreshCapabilities(); }
+    @Override public void reviveCaps() { super.reviveCaps();refreshCapabilities(); }
+    private final class Port implements IEnergyStorage, IFluidHandler, IItemHandler {
+        final Direction side; Port(Direction side) { this.side=side; }
+        final LazyOptional<IEnergyStorage> energy=LazyOptional.of(()->this);
+        final LazyOptional<IFluidHandler> fluid=LazyOptional.of(()->this);
+        final LazyOptional<IItemHandler> items=LazyOptional.of(()->this);
+        boolean input() { return !isRemoved()&&sideMode(side)==SideMode.INPUT; }
+        boolean output() { return !isRemoved()&&sideMode(side)==SideMode.OUTPUT; }
+        public int receiveEnergy(int amount,boolean simulate) { int accepted=input()?energyStorage.receiveEnergy(amount,simulate):0; if(accepted>0&&!simulate)setChanged();return accepted; }
+        public int extractEnergy(int amount,boolean simulate) { return 0; }
+        public int getEnergyStored() { return energyStorage.getEnergyStored(); }
+        public int getMaxEnergyStored() { return energyStorage.getMaxEnergyStored(); }
+        public boolean canReceive() { return input(); } public boolean canExtract() { return false; }
+        public int getTanks() { return 1; }
+        public FluidStack getFluidInTank(int tank) { return (input()?rawWaterTank.getFluid():output()?purifiedWaterTank.getFluid():FluidStack.EMPTY).copy(); }
+        public int getTankCapacity(int tank) { return input()?RAW_TANK_CAPACITY:PURIFIED_TANK_CAPACITY; }
+        public boolean isFluidValid(int tank,FluidStack stack) { return input()&&rawWaterTank.isFluidValid(0,stack); }
+        public int fill(FluidStack stack,FluidAction action) { return input()?rawWaterTank.fill(stack,action):0; }
+        public FluidStack drain(FluidStack stack,FluidAction action) { return output()?purifiedWaterTank.drain(stack,action):FluidStack.EMPTY; }
+        public FluidStack drain(int amount,FluidAction action) { return output()?purifiedWaterTank.drain(amount,action):FluidStack.EMPTY; }
+        public int getSlots() { return 2; }
+        public ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot).copy(); }
+        public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
+        public boolean isItemValid(int slot,ItemStack stack) { return input()&&inventory.isItemValid(slot,stack); }
+        public ItemStack insertItem(int slot,ItemStack stack,boolean simulate) { return isItemValid(slot,stack)?inventory.insertItem(slot,stack,simulate):stack; }
+        public ItemStack extractItem(int slot,int amount,boolean simulate) {
+            ItemStack stack=inventory.getStackInSlot(slot);
+            boolean used=slot==SLOT_WATER_BUCKET&&stack.is(Items.BUCKET)||slot==SLOT_FILTER&&stack.getItem() instanceof WaterFilterItem&&stack.getDamageValue()>=stack.getMaxDamage();
+            return output()&&used?inventory.extractItem(slot,amount,simulate):ItemStack.EMPTY;
+        }
     }
-
-    @Override public void invalidateCaps() { super.invalidateCaps(); energyInputCapability.invalidate(); rawFluidInputCapability.invalidate(); purifiedFluidOutputCapability.invalidate(); combinedFluidCapability.invalidate(); itemInputCapability.invalidate(); itemOutputCapability.invalidate(); combinedItemCapability.invalidate(); }
-    @Override public void reviveCaps() { super.reviveCaps(); refreshCapabilities(); }
     @Override public Component getDisplayName() { return Component.translatable("block.domesurvival.water_purifier"); }
     @Nullable @Override public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) { return new WaterPurifierMenu(containerId, playerInventory, this); }
 }

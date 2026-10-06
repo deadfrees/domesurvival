@@ -1,0 +1,9 @@
+{
+  "result": "PASS",
+  "species": 26,
+  "variants": 52,
+  "legacy_aliases": 4,
+  "runtime_assertions": 430,
+  "packaged_models": 59,
+  "sha256": "6989f6784f74c5af031415a4118edccbf3252599490cdd3802dab626d80efa78"
+}

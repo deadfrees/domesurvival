@@ -172,7 +172,7 @@ public final class CoalGeneratorScreen extends AbstractContainerScreen<CoalGener
                         entry.getKey() == RelativeSide.FRONT ? MUTED : TEXT);
             }
         } else {
-            text(graphics, Component.translatable(KEY + "energy_section"), 14, 26, 75, MUTED);
+            text(graphics, Component.translatable(KEY + "energy_section"), 14, 28, 75, MUTED);
             Component energy = Component.translatable(KEY + "energy_compact_spaced", compact(menu.getEnergyStored()), compact(menu.getEnergyCapacity()));
             graphics.drawCenteredString(font, energy, 125, 42, AMBER);
             text(graphics, Component.translatable(KEY + "generation", isGenerating() ? CoalGeneratorBlockEntity.GENERATION_PER_TICK : 0), 42, 58, 166, TEXT);
@@ -183,7 +183,6 @@ public final class CoalGeneratorScreen extends AbstractContainerScreen<CoalGener
         }
         text(graphics, remainingFuel(), 14, 127, 194, MUTED);
         text(graphics, playerInventoryTitle, 14, 141, 194, TEXT);
-        graphics.drawCenteredString(font, "CG-01  /  " + compact(menu.getEnergyCapacity()) + " FE", 110, 253, MUTED);
     }
 
     private boolean isGenerating() {
@@ -213,8 +212,8 @@ public final class CoalGeneratorScreen extends AbstractContainerScreen<CoalGener
         } else if (inside(mouseX, mouseY, SETTINGS)) {
             graphics.renderTooltip(font, Component.translatable("gui.domesurvival.side_config"), mouseX, mouseY);
         } else if (menu.isModulePanelOpen()) {
-            if (inside(mouseX, mouseY, new Rect(18, 53, 24, 24))) {
-                graphics.renderTooltip(font, Component.translatable(KEY + "module_slot_tooltip"), mouseX, mouseY);
+            if ((hoveredSlot == null || !hoveredSlot.hasItem()) && inside(mouseX, mouseY, new Rect(14, 45, 190, 70))) {
+                graphics.renderTooltip(font, font.split(Component.translatable(KEY + "module_slot_tooltip"), 220), mouseX, mouseY);
             }
         } else if (sidePanelOpen) {
             RelativeSide side = hoveredSide(mouseX, mouseY);

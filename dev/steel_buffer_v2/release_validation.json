@@ -1,0 +1,8 @@
+{
+  "result": "PASS",
+  "runtime_assertions": 434,
+  "charge_states": 5,
+  "packaged_resources": 11,
+  "preserved_resources": 55,
+  "sha256": "13e4e3afedf7d5bbdaeec4b2bc242177af0d785cce26b12d5ef8692b5c02a54e"
+}

@@ -15,9 +15,33 @@ public final class SurfaceSuitEquipment {
     }
 
     public static boolean hasFullSuit(ServerPlayer player) {
+        return hasLegacySurfaceSuit(player) || hasProtectedNeosteelSuit(player);
+    }
+
+    private static boolean hasLegacySurfaceSuit(ServerPlayer player) {
         return player.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.SURFACE_SUIT_HELMET.get())
                 && player.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.SURFACE_SUIT_CHESTPLATE.get())
                 && player.getItemBySlot(EquipmentSlot.LEGS).is(ModItems.SURFACE_SUIT_LEGGINGS.get())
                 && player.getItemBySlot(EquipmentSlot.FEET).is(ModItems.SURFACE_SUIT_BOOTS.get());
+    }
+
+    /**
+     * Neosteel does not inherit surface-suit protection by itself. The exact existing
+     * surface-hazard immunity is unlocked only when every worn Neosteel piece has its
+     * own Surface Protection Module installed. FE level is intentionally irrelevant:
+     * the module is a dedicated environmental shell, not an energy shield.
+     */
+    private static boolean hasProtectedNeosteelSuit(ServerPlayer player) {
+        return isProtectedNeosteel(player.getItemBySlot(EquipmentSlot.HEAD), net.minecraft.world.item.ArmorItem.Type.HELMET)
+                && isProtectedNeosteel(player.getItemBySlot(EquipmentSlot.CHEST), net.minecraft.world.item.ArmorItem.Type.CHESTPLATE)
+                && isProtectedNeosteel(player.getItemBySlot(EquipmentSlot.LEGS), net.minecraft.world.item.ArmorItem.Type.LEGGINGS)
+                && isProtectedNeosteel(player.getItemBySlot(EquipmentSlot.FEET), net.minecraft.world.item.ArmorItem.Type.BOOTS);
+    }
+
+    private static boolean isProtectedNeosteel(net.minecraft.world.item.ItemStack stack,
+                                                net.minecraft.world.item.ArmorItem.Type expectedType) {
+        return stack.getItem() instanceof com.wasted.domesurvival.forge.item.NeosteelArmorItem armor
+                && armor.armorType() == expectedType
+                && com.wasted.domesurvival.forge.item.NeosteelArmorItem.hasSurfaceProtectionModule(stack);
     }
 }

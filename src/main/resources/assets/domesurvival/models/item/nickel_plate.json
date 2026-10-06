@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "domesurvival:item/nickel_plate"
+    "layer0": "domesurvival:item/press_products/nickel_plate"
   }
 }

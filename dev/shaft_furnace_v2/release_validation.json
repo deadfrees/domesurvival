@@ -1,0 +1,22 @@
+{
+  "result": "PASS",
+  "runtime_assertions": 301,
+  "unchanged_model_assets": 99,
+  "packaged_resources_checked": 120,
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "60ca283aa3d76ec1b0f782af1f6787ea557f6d2c5418c5995f83d0d9cb13e9d2",
+  "bytes": 192524046,
+  "screenshots": [
+    "01_existing_model.png",
+    "02_main_gui.png",
+    "03_main_scale3.png",
+    "04_sides.png",
+    "05_modules_empty.png",
+    "06_modules_installed.png",
+    "07_module_scale3.png",
+    "08_jei.png",
+    "09_jei_progress.png",
+    "10_coke_main.png",
+    "11_coke_main_scale3.png"
+  ]
+}

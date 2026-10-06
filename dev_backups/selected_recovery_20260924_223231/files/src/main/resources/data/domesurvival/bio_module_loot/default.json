@@ -1,0 +1,288 @@
+{
+  "species": [
+    { "entity": "minecraft:cow",       "rarity": "common",   "loot_group": "farm",            "weight": 18, "feed": "domesurvival:nutrient_mix", "feed_count": 3, "water_mb": 1600, "energy_per_tick": 60, "process_ticks": 1400 },
+    { "entity": "minecraft:pig",       "rarity": "common",   "loot_group": "farm",            "weight": 18, "feed": "domesurvival:nutrient_mix", "feed_count": 3, "water_mb": 1400, "energy_per_tick": 55, "process_ticks": 1300 },
+    { "entity": "minecraft:sheep",     "rarity": "common",   "loot_group": "farm",            "weight": 18, "feed": "domesurvival:nutrient_mix", "feed_count": 3, "water_mb": 1200, "energy_per_tick": 50, "process_ticks": 1200 },
+    { "entity": "minecraft:chicken",   "rarity": "common",   "loot_group": "farm",            "weight": 18, "feed": "domesurvival:nutrient_mix", "feed_count": 2, "water_mb":  800, "energy_per_tick": 40, "process_ticks": 1000 },
+    { "entity": "minecraft:rabbit",    "rarity": "common",   "loot_group": "farm",            "weight": 16, "feed": "domesurvival:nutrient_mix", "feed_count": 2, "water_mb":  900, "energy_per_tick": 45, "process_ticks": 1100 },
+
+    { "entity": "minecraft:horse",     "rarity": "uncommon", "loot_group": "farm",            "weight": 9, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 2200, "energy_per_tick": 75, "process_ticks": 1900 },
+    { "entity": "minecraft:donkey",    "rarity": "uncommon", "loot_group": "farm",            "weight": 9, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 2100, "energy_per_tick": 72, "process_ticks": 1850 },
+    { "entity": "minecraft:llama",     "rarity": "uncommon", "loot_group": "farm",            "weight": 9, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1900, "energy_per_tick": 68, "process_ticks": 1750 },
+    { "entity": "minecraft:goat",      "rarity": "uncommon", "loot_group": "farm",            "weight": 9, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1500, "energy_per_tick": 62, "process_ticks": 1500 },
+    { "entity": "minecraft:camel",     "rarity": "rare",     "loot_group": "farm",            "weight": 4, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 2600, "energy_per_tick": 88, "process_ticks": 2300 },
+
+    { "entity": "minecraft:wolf",      "rarity": "uncommon", "loot_group": "lab",             "weight": 9, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1300, "energy_per_tick": 60, "process_ticks": 1450 },
+    { "entity": "minecraft:cat",       "rarity": "uncommon", "loot_group": "lab",             "weight": 9, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1200, "energy_per_tick": 58, "process_ticks": 1400 },
+    { "entity": "minecraft:ocelot",    "rarity": "uncommon", "loot_group": "lab",             "weight": 8, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1300, "energy_per_tick": 62, "process_ticks": 1500 },
+    { "entity": "minecraft:fox",       "rarity": "uncommon", "loot_group": "lab",             "weight": 8, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1200, "energy_per_tick": 60, "process_ticks": 1500 },
+    { "entity": "minecraft:bee",       "rarity": "uncommon", "loot_group": "lab",             "weight": 8, "feed": "domesurvival:nutrient_mix", "feed_count": 4, "water_mb": 1000, "energy_per_tick": 62, "process_ticks": 1550 },
+
+    { "entity": "minecraft:panda",     "rarity": "rare",     "loot_group": "genetic_archive", "weight": 4, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 2200, "energy_per_tick": 90, "process_ticks": 2400 },
+    { "entity": "minecraft:turtle",    "rarity": "rare",     "loot_group": "genetic_archive", "weight": 4, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 2400, "energy_per_tick": 92, "process_ticks": 2500 },
+    { "entity": "minecraft:axolotl",   "rarity": "rare",     "loot_group": "genetic_archive", "weight": 4, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 3000, "energy_per_tick": 96, "process_ticks": 2600 },
+    { "entity": "minecraft:frog",      "rarity": "rare",     "loot_group": "genetic_archive", "weight": 4, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 2000, "energy_per_tick": 86, "process_ticks": 2200 },
+    { "entity": "minecraft:mooshroom", "rarity": "rare",     "loot_group": "genetic_archive", "weight": 3, "feed": "domesurvival:nutrient_mix", "feed_count": 6, "water_mb": 2100, "energy_per_tick": 88, "process_ticks": 2300 },
+    { "entity": "minecraft:sniffer",   "rarity": "special",  "loot_group": "genetic_archive", "weight": 1, "feed": "domesurvival:nutrient_mix", "feed_count": 8, "water_mb": 3600, "energy_per_tick":120, "process_ticks": 3200 },
+
+    { "entity": "minecraft:strider",   "rarity": "special",  "loot_group": "nether",          "weight": 3, "feed": "domesurvival:nutrient_mix", "feed_count": 8, "water_mb": 1800, "energy_per_tick":110, "process_ticks": 2900 },
+    { "entity": "minecraft:hoglin",    "rarity": "special",  "loot_group": "nether",          "weight": 2, "feed": "domesurvival:nutrient_mix", "feed_count": 8, "water_mb": 2200, "energy_per_tick":118, "process_ticks": 3100 }
+  ],
+
+  "profiles": [
+    {
+      "namespace": "domesurvival",
+      "path_prefix": "chests/lastworld/",
+      "path_contains": ["medical_research"],
+      "groups": ["lab", "genetic_archive"],
+      "chance": 0.14,
+      "damaged_chance": 0.64,
+      "priority": 995
+    },
+    {
+      "namespace": "domesurvival",
+      "path_prefix": "chests/lastworld/",
+      "path_contains": ["rare"],
+      "groups": ["lab", "genetic_archive"],
+      "chance": 0.10,
+      "damaged_chance": 0.70,
+      "priority": 994
+    },
+    {
+      "namespace": "domesurvival",
+      "path_prefix": "chests/lastworld/",
+      "path_contains": ["logistics"],
+      "groups": ["farm"],
+      "chance": 0.065,
+      "damaged_chance": 0.46,
+      "priority": 993
+    },
+    {
+      "namespace": "domesurvival",
+      "path_prefix": "chests/lastworld/",
+      "path_contains": ["mining", "industrial"],
+      "groups": ["farm", "lab"],
+      "chance": 0.045,
+      "damaged_chance": 0.68,
+      "priority": 992
+    },
+    {
+      "namespace": "domesurvival",
+      "path_prefix": "chests/lastworld/",
+      "path_contains": ["city_salvage"],
+      "groups": ["farm", "lab"],
+      "chance": 0.035,
+      "damaged_chance": 0.60,
+      "priority": 991
+    },
+    {
+      "namespace": "betterdeserttemples",
+      "path_prefix": "chests/",
+      "path_contains": ["lab", "library", "pharaoh_hidden", "tomb_pharaoh"],
+      "groups": ["lab", "genetic_archive"],
+      "chance": 0.12,
+      "damaged_chance": 0.64,
+      "priority": 940
+    },
+    {
+      "namespace": "betterdeserttemples",
+      "path_prefix": "chests/",
+      "path_contains": ["food_storage", "storage", "wardrobe"],
+      "groups": ["farm"],
+      "chance": 0.075,
+      "damaged_chance": 0.48,
+      "priority": 930
+    },
+    {
+      "namespace": "lcmt",
+      "path_prefix": "chests/",
+      "path_contains": ["center_advanced_components"],
+      "groups": ["lab", "genetic_archive"],
+      "chance": 0.10,
+      "damaged_chance": 0.68,
+      "priority": 920
+    },
+    {
+      "namespace": "lcmt",
+      "path_prefix": "chests/",
+      "path_contains": ["shopping_food_basic"],
+      "groups": ["farm"],
+      "chance": 0.08,
+      "damaged_chance": 0.50,
+      "priority": 910
+    },
+    {
+      "namespace": "betterdungeons",
+      "path_prefix": "",
+      "path_contains": ["zombie_dungeon/chests/special", "skeleton_dungeon/chests/middle"],
+      "groups": ["lab", "genetic_archive"],
+      "chance": 0.09,
+      "damaged_chance": 0.70,
+      "priority": 905
+    },
+    {
+      "namespace": "dungeoncrawl",
+      "path_prefix": "chests/",
+      "path_contains": ["stage_4", "stage_5", "secret_room", "treasure", "library"],
+      "groups": ["lab", "genetic_archive"],
+      "chance": 0.07,
+      "damaged_chance": 0.68,
+      "priority": 895
+    },
+    {
+      "namespace": "betterarcheology",
+      "path_prefix": "archeology/chest_",
+      "path_contains": ["catacombs", "light_temple", "loot_prototype"],
+      "groups": ["lab", "genetic_archive"],
+      "chance": 0.095,
+      "damaged_chance": 0.64,
+      "priority": 890
+    },
+    {
+      "namespace": "dungeons_arise",
+      "path_prefix": "chests/",
+      "path_contains": ["plague_asylum", "infested_temple", "aviary", "keep_kayra_library", "shiraz_palace_library"],
+      "groups": ["farm", "lab", "genetic_archive"],
+      "chance": 0.14,
+      "damaged_chance": 0.68,
+      "priority": 900
+    },
+    {
+      "namespace": "dungeons_arise",
+      "path_prefix": "chests/",
+      "path_contains": ["foundry", "mechanical_nest", "mining_system", "scorched_mines"],
+      "groups": ["farm", "lab"],
+      "chance": 0.065,
+      "damaged_chance": 0.72,
+      "priority": 850
+    },
+    {
+      "namespace": "betterstrongholds",
+      "path_prefix": "chests/",
+      "groups": ["lab", "genetic_archive"],
+      "chance": 0.13,
+      "damaged_chance": 0.60,
+      "priority": 880
+    },
+    {
+      "namespace": "betterdungeons",
+      "path_prefix": "",
+      "groups": ["farm", "lab"],
+      "chance": 0.05,
+      "damaged_chance": 0.68,
+      "priority": 825
+    },
+    {
+      "namespace": "lcmt",
+      "path_prefix": "chests/",
+      "groups": ["farm", "lab"],
+      "chance": 0.045,
+      "damaged_chance": 0.66,
+      "priority": 860
+    },
+    {
+      "namespace": "betterdeserttemples",
+      "path_prefix": "chests/",
+      "groups": ["farm", "lab"],
+      "chance": 0.04,
+      "damaged_chance": 0.62,
+      "priority": 875
+    },
+    {
+      "namespace": "dungeoncrawl",
+      "path_prefix": "chests/",
+      "groups": ["farm", "lab"],
+      "chance": 0.04,
+      "damaged_chance": 0.70,
+      "priority": 810
+    },
+    {
+      "namespace": "betterarcheology",
+      "path_prefix": "archeology/chest_",
+      "groups": ["farm", "lab"],
+      "chance": 0.055,
+      "damaged_chance": 0.64,
+      "priority": 840
+    },
+    {
+      "namespace": "graveyard",
+      "path_prefix": "chests/",
+      "groups": ["lab", "genetic_archive"],
+      "chance": 0.055,
+      "damaged_chance": 0.72,
+      "priority": 790
+    },
+    {
+      "namespace": "alexscaves",
+      "path_prefix": "chests/",
+      "groups": ["lab", "genetic_archive"],
+      "chance": 0.055,
+      "damaged_chance": 0.68,
+      "priority": 805
+    },
+    {
+      "namespace": "lostcities",
+      "path_prefix": "chests/",
+      "groups": ["farm", "lab"],
+      "chance": 0.03,
+      "damaged_chance": 0.66,
+      "priority": 800
+    },
+    {
+      "namespace": "domesurvival",
+      "path_prefix": "chests/",
+      "path_contains": ["bio_module_cache"],
+      "groups": ["farm", "lab", "genetic_archive", "nether"],
+      "chance": 0.40,
+      "damaged_chance": 0.70,
+      "priority": 1000
+    },
+    {
+      "path_prefix": "chests/",
+      "path_contains": ["bastion", "nether_bridge"],
+      "groups": ["nether"],
+      "chance": 0.12,
+      "damaged_chance": 0.72,
+      "priority": 500
+    },
+    {
+      "path_prefix": "chests/",
+      "path_contains": ["ancient_city", "end_city", "stronghold", "woodland_mansion"],
+      "groups": ["genetic_archive", "lab"],
+      "chance": 0.09,
+      "damaged_chance": 0.64,
+      "priority": 400
+    },
+    {
+      "path_prefix": "chests/",
+      "path_contains": ["shipwreck", "buried_treasure", "underwater_ruin"],
+      "groups": ["genetic_archive", "farm"],
+      "chance": 0.075,
+      "damaged_chance": 0.58,
+      "priority": 300
+    },
+    {
+      "path_prefix": "chests/",
+      "path_contains": ["village"],
+      "groups": ["farm"],
+      "chance": 0.06,
+      "damaged_chance": 0.42,
+      "priority": 250
+    },
+    {
+      "path_prefix": "chests/",
+      "path_contains": ["mineshaft", "simple_dungeon", "pillager_outpost", "desert_pyramid", "jungle_temple", "igloo"],
+      "groups": ["farm", "lab"],
+      "chance": 0.065,
+      "damaged_chance": 0.56,
+      "priority": 200
+    },
+    {
+      "path_prefix": "chests/",
+      "groups": ["farm", "lab"],
+      "chance": 0.015,
+      "damaged_chance": 0.55,
+      "priority": -100
+    }
+  ]
+}

@@ -139,6 +139,23 @@ def material_pixel(x,y,w,h,role):
     light*=.63+.37*min(1,edge/2)
     if 1<edge<2.6:light+=.16*(1-v)
     c=tuple(max(0,min(1,a*light+grain(x,y))) for a in base)
+    if role in ('body','panel','frame','trim','steel'):
+        # Broad, stepped metal tones stay visible at block distance; fine grain
+        # alone disappears under Minecraft mipmaps. Keep the graphite family.
+        px,py=x//4,y//4
+        fleck=((px*37+py*61+px*py*13)%23)/22-.5
+        band=(0,.028,.012,-.014,-.006)[min(4,int(v*5))]
+        cloud=.014*math.sin(px*.29+py*.17)+.009*math.cos(py*.43-px*.13)
+        variation=band+cloud+fleck*.012
+        wear=.028 if 2<edge<5 and (px*11+py*7)%17<5 else 0
+        c=tuple(max(0,min(1,a+variation+wear)) for a in c)
+        # Inset pressed edge on large enclosure sheets, with short wear marks.
+        if role=='panel' and min(w,h)>96:
+            rim=min(x,y,w-1-x,h-1-y)
+            if 9<=rim<11:c=tuple(a*.68 for a in c)
+            elif 11<=rim<13:c=tuple(min(1,a+.024) for a in c)
+            if 15<rim<26 and py%19==3 and px%31<3:
+                c=tuple(min(1,a+.036) for a in c)
     if role=='rubber' and y%5<1:c=tuple(a*.8 for a in c)
     if role=='cap':
         if abs(u-.5)<.025 and .30<v<.70:c=rgb('24343A')

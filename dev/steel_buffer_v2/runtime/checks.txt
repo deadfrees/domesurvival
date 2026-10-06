@@ -1,0 +1,440 @@
+PASS Recessed case preserves neighboring faces
+PASS Capacity enchant 0
+PASS World indicator 0/0
+PASS Comparator 0/0
+PASS World indicator 0/1
+PASS Comparator 0/1
+PASS World indicator 0/2
+PASS Comparator 0/2
+PASS World indicator 0/3
+PASS Comparator 0/3
+PASS World indicator 0/4
+PASS Comparator 0/4
+PASS Full enchanted NBT 0
+PASS All OFF persists 0/TOP
+PASS All OFF persists 0/BOTTOM
+PASS All OFF persists 0/FRONT
+PASS All OFF persists 0/BACK
+PASS All OFF persists 0/LEFT
+PASS All OFF persists 0/RIGHT
+PASS Capacity enchant 1
+PASS World indicator 1/0
+PASS Comparator 1/0
+PASS World indicator 1/1
+PASS Comparator 1/1
+PASS World indicator 1/2
+PASS Comparator 1/2
+PASS World indicator 1/3
+PASS Comparator 1/3
+PASS World indicator 1/4
+PASS Comparator 1/4
+PASS Full enchanted NBT 1
+PASS All OFF persists 1/TOP
+PASS All OFF persists 1/BOTTOM
+PASS All OFF persists 1/FRONT
+PASS All OFF persists 1/BACK
+PASS All OFF persists 1/LEFT
+PASS All OFF persists 1/RIGHT
+PASS Capacity enchant 2
+PASS World indicator 2/0
+PASS Comparator 2/0
+PASS World indicator 2/1
+PASS Comparator 2/1
+PASS World indicator 2/2
+PASS Comparator 2/2
+PASS World indicator 2/3
+PASS Comparator 2/3
+PASS World indicator 2/4
+PASS Comparator 2/4
+PASS Full enchanted NBT 2
+PASS All OFF persists 2/TOP
+PASS All OFF persists 2/BOTTOM
+PASS All OFF persists 2/FRONT
+PASS All OFF persists 2/BACK
+PASS All OFF persists 2/LEFT
+PASS All OFF persists 2/RIGHT
+PASS Capacity enchant 3
+PASS World indicator 3/0
+PASS Comparator 3/0
+PASS World indicator 3/1
+PASS Comparator 3/1
+PASS World indicator 3/2
+PASS Comparator 3/2
+PASS World indicator 3/3
+PASS Comparator 3/3
+PASS World indicator 3/4
+PASS Comparator 3/4
+PASS Full enchanted NBT 3
+PASS All OFF persists 3/TOP
+PASS All OFF persists 3/BOTTOM
+PASS All OFF persists 3/FRONT
+PASS All OFF persists 3/BACK
+PASS All OFF persists 3/LEFT
+PASS All OFF persists 3/RIGHT
+PASS Capacity enchant 4
+PASS World indicator 4/0
+PASS Comparator 4/0
+PASS World indicator 4/1
+PASS Comparator 4/1
+PASS World indicator 4/2
+PASS Comparator 4/2
+PASS World indicator 4/3
+PASS Comparator 4/3
+PASS World indicator 4/4
+PASS Comparator 4/4
+PASS Full enchanted NBT 4
+PASS All OFF persists 4/TOP
+PASS All OFF persists 4/BOTTOM
+PASS All OFF persists 4/FRONT
+PASS All OFF persists 4/BACK
+PASS All OFF persists 4/LEFT
+PASS All OFF persists 4/RIGHT
+PASS Forced capacity reduction does not delete FE
+PASS Legacy side and energy migration
+PASS Port availability north/TOP/DISABLED
+PASS Port visual north/TOP/DISABLED
+PASS Port availability north/TOP/INPUT
+PASS Port visual north/TOP/INPUT
+PASS Simulation and direction north/TOP/INPUT
+PASS Negative transfer rejected north/TOP/INPUT
+PASS Real transfer direction north/TOP/INPUT
+PASS Retained handler follows OFF north/TOP/INPUT
+PASS Port availability north/TOP/OUTPUT
+PASS Port visual north/TOP/OUTPUT
+PASS Simulation and direction north/TOP/OUTPUT
+PASS Negative transfer rejected north/TOP/OUTPUT
+PASS Real transfer direction north/TOP/OUTPUT
+PASS Retained handler follows OFF north/TOP/OUTPUT
+PASS Port availability north/BOTTOM/DISABLED
+PASS Port visual north/BOTTOM/DISABLED
+PASS Port availability north/BOTTOM/INPUT
+PASS Port visual north/BOTTOM/INPUT
+PASS Simulation and direction north/BOTTOM/INPUT
+PASS Negative transfer rejected north/BOTTOM/INPUT
+PASS Real transfer direction north/BOTTOM/INPUT
+PASS Retained handler follows OFF north/BOTTOM/INPUT
+PASS Port availability north/BOTTOM/OUTPUT
+PASS Port visual north/BOTTOM/OUTPUT
+PASS Simulation and direction north/BOTTOM/OUTPUT
+PASS Negative transfer rejected north/BOTTOM/OUTPUT
+PASS Real transfer direction north/BOTTOM/OUTPUT
+PASS Retained handler follows OFF north/BOTTOM/OUTPUT
+PASS Port availability north/FRONT/DISABLED
+PASS Port visual north/FRONT/DISABLED
+PASS Port availability north/FRONT/INPUT
+PASS Port visual north/FRONT/INPUT
+PASS Port availability north/FRONT/OUTPUT
+PASS Port visual north/FRONT/OUTPUT
+PASS Port availability north/BACK/DISABLED
+PASS Port visual north/BACK/DISABLED
+PASS Port availability north/BACK/INPUT
+PASS Port visual north/BACK/INPUT
+PASS Simulation and direction north/BACK/INPUT
+PASS Negative transfer rejected north/BACK/INPUT
+PASS Real transfer direction north/BACK/INPUT
+PASS Retained handler follows OFF north/BACK/INPUT
+PASS Port availability north/BACK/OUTPUT
+PASS Port visual north/BACK/OUTPUT
+PASS Simulation and direction north/BACK/OUTPUT
+PASS Negative transfer rejected north/BACK/OUTPUT
+PASS Real transfer direction north/BACK/OUTPUT
+PASS Retained handler follows OFF north/BACK/OUTPUT
+PASS Port availability north/LEFT/DISABLED
+PASS Port visual north/LEFT/DISABLED
+PASS Port availability north/LEFT/INPUT
+PASS Port visual north/LEFT/INPUT
+PASS Simulation and direction north/LEFT/INPUT
+PASS Negative transfer rejected north/LEFT/INPUT
+PASS Real transfer direction north/LEFT/INPUT
+PASS Retained handler follows OFF north/LEFT/INPUT
+PASS Port availability north/LEFT/OUTPUT
+PASS Port visual north/LEFT/OUTPUT
+PASS Simulation and direction north/LEFT/OUTPUT
+PASS Negative transfer rejected north/LEFT/OUTPUT
+PASS Real transfer direction north/LEFT/OUTPUT
+PASS Retained handler follows OFF north/LEFT/OUTPUT
+PASS Port availability north/RIGHT/DISABLED
+PASS Port visual north/RIGHT/DISABLED
+PASS Port availability north/RIGHT/INPUT
+PASS Port visual north/RIGHT/INPUT
+PASS Simulation and direction north/RIGHT/INPUT
+PASS Negative transfer rejected north/RIGHT/INPUT
+PASS Real transfer direction north/RIGHT/INPUT
+PASS Retained handler follows OFF north/RIGHT/INPUT
+PASS Port availability north/RIGHT/OUTPUT
+PASS Port visual north/RIGHT/OUTPUT
+PASS Simulation and direction north/RIGHT/OUTPUT
+PASS Negative transfer rejected north/RIGHT/OUTPUT
+PASS Real transfer direction north/RIGHT/OUTPUT
+PASS Retained handler follows OFF north/RIGHT/OUTPUT
+PASS Unsided bypass denied north
+PASS Port availability east/TOP/DISABLED
+PASS Port visual east/TOP/DISABLED
+PASS Port availability east/TOP/INPUT
+PASS Port visual east/TOP/INPUT
+PASS Simulation and direction east/TOP/INPUT
+PASS Negative transfer rejected east/TOP/INPUT
+PASS Real transfer direction east/TOP/INPUT
+PASS Retained handler follows OFF east/TOP/INPUT
+PASS Port availability east/TOP/OUTPUT
+PASS Port visual east/TOP/OUTPUT
+PASS Simulation and direction east/TOP/OUTPUT
+PASS Negative transfer rejected east/TOP/OUTPUT
+PASS Real transfer direction east/TOP/OUTPUT
+PASS Retained handler follows OFF east/TOP/OUTPUT
+PASS Port availability east/BOTTOM/DISABLED
+PASS Port visual east/BOTTOM/DISABLED
+PASS Port availability east/BOTTOM/INPUT
+PASS Port visual east/BOTTOM/INPUT
+PASS Simulation and direction east/BOTTOM/INPUT
+PASS Negative transfer rejected east/BOTTOM/INPUT
+PASS Real transfer direction east/BOTTOM/INPUT
+PASS Retained handler follows OFF east/BOTTOM/INPUT
+PASS Port availability east/BOTTOM/OUTPUT
+PASS Port visual east/BOTTOM/OUTPUT
+PASS Simulation and direction east/BOTTOM/OUTPUT
+PASS Negative transfer rejected east/BOTTOM/OUTPUT
+PASS Real transfer direction east/BOTTOM/OUTPUT
+PASS Retained handler follows OFF east/BOTTOM/OUTPUT
+PASS Port availability east/FRONT/DISABLED
+PASS Port visual east/FRONT/DISABLED
+PASS Port availability east/FRONT/INPUT
+PASS Port visual east/FRONT/INPUT
+PASS Port availability east/FRONT/OUTPUT
+PASS Port visual east/FRONT/OUTPUT
+PASS Port availability east/BACK/DISABLED
+PASS Port visual east/BACK/DISABLED
+PASS Port availability east/BACK/INPUT
+PASS Port visual east/BACK/INPUT
+PASS Simulation and direction east/BACK/INPUT
+PASS Negative transfer rejected east/BACK/INPUT
+PASS Real transfer direction east/BACK/INPUT
+PASS Retained handler follows OFF east/BACK/INPUT
+PASS Port availability east/BACK/OUTPUT
+PASS Port visual east/BACK/OUTPUT
+PASS Simulation and direction east/BACK/OUTPUT
+PASS Negative transfer rejected east/BACK/OUTPUT
+PASS Real transfer direction east/BACK/OUTPUT
+PASS Retained handler follows OFF east/BACK/OUTPUT
+PASS Port availability east/LEFT/DISABLED
+PASS Port visual east/LEFT/DISABLED
+PASS Port availability east/LEFT/INPUT
+PASS Port visual east/LEFT/INPUT
+PASS Simulation and direction east/LEFT/INPUT
+PASS Negative transfer rejected east/LEFT/INPUT
+PASS Real transfer direction east/LEFT/INPUT
+PASS Retained handler follows OFF east/LEFT/INPUT
+PASS Port availability east/LEFT/OUTPUT
+PASS Port visual east/LEFT/OUTPUT
+PASS Simulation and direction east/LEFT/OUTPUT
+PASS Negative transfer rejected east/LEFT/OUTPUT
+PASS Real transfer direction east/LEFT/OUTPUT
+PASS Retained handler follows OFF east/LEFT/OUTPUT
+PASS Port availability east/RIGHT/DISABLED
+PASS Port visual east/RIGHT/DISABLED
+PASS Port availability east/RIGHT/INPUT
+PASS Port visual east/RIGHT/INPUT
+PASS Simulation and direction east/RIGHT/INPUT
+PASS Negative transfer rejected east/RIGHT/INPUT
+PASS Real transfer direction east/RIGHT/INPUT
+PASS Retained handler follows OFF east/RIGHT/INPUT
+PASS Port availability east/RIGHT/OUTPUT
+PASS Port visual east/RIGHT/OUTPUT
+PASS Simulation and direction east/RIGHT/OUTPUT
+PASS Negative transfer rejected east/RIGHT/OUTPUT
+PASS Real transfer direction east/RIGHT/OUTPUT
+PASS Retained handler follows OFF east/RIGHT/OUTPUT
+PASS Unsided bypass denied east
+PASS Port availability south/TOP/DISABLED
+PASS Port visual south/TOP/DISABLED
+PASS Port availability south/TOP/INPUT
+PASS Port visual south/TOP/INPUT
+PASS Simulation and direction south/TOP/INPUT
+PASS Negative transfer rejected south/TOP/INPUT
+PASS Real transfer direction south/TOP/INPUT
+PASS Retained handler follows OFF south/TOP/INPUT
+PASS Port availability south/TOP/OUTPUT
+PASS Port visual south/TOP/OUTPUT
+PASS Simulation and direction south/TOP/OUTPUT
+PASS Negative transfer rejected south/TOP/OUTPUT
+PASS Real transfer direction south/TOP/OUTPUT
+PASS Retained handler follows OFF south/TOP/OUTPUT
+PASS Port availability south/BOTTOM/DISABLED
+PASS Port visual south/BOTTOM/DISABLED
+PASS Port availability south/BOTTOM/INPUT
+PASS Port visual south/BOTTOM/INPUT
+PASS Simulation and direction south/BOTTOM/INPUT
+PASS Negative transfer rejected south/BOTTOM/INPUT
+PASS Real transfer direction south/BOTTOM/INPUT
+PASS Retained handler follows OFF south/BOTTOM/INPUT
+PASS Port availability south/BOTTOM/OUTPUT
+PASS Port visual south/BOTTOM/OUTPUT
+PASS Simulation and direction south/BOTTOM/OUTPUT
+PASS Negative transfer rejected south/BOTTOM/OUTPUT
+PASS Real transfer direction south/BOTTOM/OUTPUT
+PASS Retained handler follows OFF south/BOTTOM/OUTPUT
+PASS Port availability south/FRONT/DISABLED
+PASS Port visual south/FRONT/DISABLED
+PASS Port availability south/FRONT/INPUT
+PASS Port visual south/FRONT/INPUT
+PASS Port availability south/FRONT/OUTPUT
+PASS Port visual south/FRONT/OUTPUT
+PASS Port availability south/BACK/DISABLED
+PASS Port visual south/BACK/DISABLED
+PASS Port availability south/BACK/INPUT
+PASS Port visual south/BACK/INPUT
+PASS Simulation and direction south/BACK/INPUT
+PASS Negative transfer rejected south/BACK/INPUT
+PASS Real transfer direction south/BACK/INPUT
+PASS Retained handler follows OFF south/BACK/INPUT
+PASS Port availability south/BACK/OUTPUT
+PASS Port visual south/BACK/OUTPUT
+PASS Simulation and direction south/BACK/OUTPUT
+PASS Negative transfer rejected south/BACK/OUTPUT
+PASS Real transfer direction south/BACK/OUTPUT
+PASS Retained handler follows OFF south/BACK/OUTPUT
+PASS Port availability south/LEFT/DISABLED
+PASS Port visual south/LEFT/DISABLED
+PASS Port availability south/LEFT/INPUT
+PASS Port visual south/LEFT/INPUT
+PASS Simulation and direction south/LEFT/INPUT
+PASS Negative transfer rejected south/LEFT/INPUT
+PASS Real transfer direction south/LEFT/INPUT
+PASS Retained handler follows OFF south/LEFT/INPUT
+PASS Port availability south/LEFT/OUTPUT
+PASS Port visual south/LEFT/OUTPUT
+PASS Simulation and direction south/LEFT/OUTPUT
+PASS Negative transfer rejected south/LEFT/OUTPUT
+PASS Real transfer direction south/LEFT/OUTPUT
+PASS Retained handler follows OFF south/LEFT/OUTPUT
+PASS Port availability south/RIGHT/DISABLED
+PASS Port visual south/RIGHT/DISABLED
+PASS Port availability south/RIGHT/INPUT
+PASS Port visual south/RIGHT/INPUT
+PASS Simulation and direction south/RIGHT/INPUT
+PASS Negative transfer rejected south/RIGHT/INPUT
+PASS Real transfer direction south/RIGHT/INPUT
+PASS Retained handler follows OFF south/RIGHT/INPUT
+PASS Port availability south/RIGHT/OUTPUT
+PASS Port visual south/RIGHT/OUTPUT
+PASS Simulation and direction south/RIGHT/OUTPUT
+PASS Negative transfer rejected south/RIGHT/OUTPUT
+PASS Real transfer direction south/RIGHT/OUTPUT
+PASS Retained handler follows OFF south/RIGHT/OUTPUT
+PASS Unsided bypass denied south
+PASS Port availability west/TOP/DISABLED
+PASS Port visual west/TOP/DISABLED
+PASS Port availability west/TOP/INPUT
+PASS Port visual west/TOP/INPUT
+PASS Simulation and direction west/TOP/INPUT
+PASS Negative transfer rejected west/TOP/INPUT
+PASS Real transfer direction west/TOP/INPUT
+PASS Retained handler follows OFF west/TOP/INPUT
+PASS Port availability west/TOP/OUTPUT
+PASS Port visual west/TOP/OUTPUT
+PASS Simulation and direction west/TOP/OUTPUT
+PASS Negative transfer rejected west/TOP/OUTPUT
+PASS Real transfer direction west/TOP/OUTPUT
+PASS Retained handler follows OFF west/TOP/OUTPUT
+PASS Port availability west/BOTTOM/DISABLED
+PASS Port visual west/BOTTOM/DISABLED
+PASS Port availability west/BOTTOM/INPUT
+PASS Port visual west/BOTTOM/INPUT
+PASS Simulation and direction west/BOTTOM/INPUT
+PASS Negative transfer rejected west/BOTTOM/INPUT
+PASS Real transfer direction west/BOTTOM/INPUT
+PASS Retained handler follows OFF west/BOTTOM/INPUT
+PASS Port availability west/BOTTOM/OUTPUT
+PASS Port visual west/BOTTOM/OUTPUT
+PASS Simulation and direction west/BOTTOM/OUTPUT
+PASS Negative transfer rejected west/BOTTOM/OUTPUT
+PASS Real transfer direction west/BOTTOM/OUTPUT
+PASS Retained handler follows OFF west/BOTTOM/OUTPUT
+PASS Port availability west/FRONT/DISABLED
+PASS Port visual west/FRONT/DISABLED
+PASS Port availability west/FRONT/INPUT
+PASS Port visual west/FRONT/INPUT
+PASS Port availability west/FRONT/OUTPUT
+PASS Port visual west/FRONT/OUTPUT
+PASS Port availability west/BACK/DISABLED
+PASS Port visual west/BACK/DISABLED
+PASS Port availability west/BACK/INPUT
+PASS Port visual west/BACK/INPUT
+PASS Simulation and direction west/BACK/INPUT
+PASS Negative transfer rejected west/BACK/INPUT
+PASS Real transfer direction west/BACK/INPUT
+PASS Retained handler follows OFF west/BACK/INPUT
+PASS Port availability west/BACK/OUTPUT
+PASS Port visual west/BACK/OUTPUT
+PASS Simulation and direction west/BACK/OUTPUT
+PASS Negative transfer rejected west/BACK/OUTPUT
+PASS Real transfer direction west/BACK/OUTPUT
+PASS Retained handler follows OFF west/BACK/OUTPUT
+PASS Port availability west/LEFT/DISABLED
+PASS Port visual west/LEFT/DISABLED
+PASS Port availability west/LEFT/INPUT
+PASS Port visual west/LEFT/INPUT
+PASS Simulation and direction west/LEFT/INPUT
+PASS Negative transfer rejected west/LEFT/INPUT
+PASS Real transfer direction west/LEFT/INPUT
+PASS Retained handler follows OFF west/LEFT/INPUT
+PASS Port availability west/LEFT/OUTPUT
+PASS Port visual west/LEFT/OUTPUT
+PASS Simulation and direction west/LEFT/OUTPUT
+PASS Negative transfer rejected west/LEFT/OUTPUT
+PASS Real transfer direction west/LEFT/OUTPUT
+PASS Retained handler follows OFF west/LEFT/OUTPUT
+PASS Port availability west/RIGHT/DISABLED
+PASS Port visual west/RIGHT/DISABLED
+PASS Port availability west/RIGHT/INPUT
+PASS Port visual west/RIGHT/INPUT
+PASS Simulation and direction west/RIGHT/INPUT
+PASS Negative transfer rejected west/RIGHT/INPUT
+PASS Real transfer direction west/RIGHT/INPUT
+PASS Retained handler follows OFF west/RIGHT/INPUT
+PASS Port availability west/RIGHT/OUTPUT
+PASS Port visual west/RIGHT/OUTPUT
+PASS Simulation and direction west/RIGHT/OUTPUT
+PASS Negative transfer rejected west/RIGHT/OUTPUT
+PASS Real transfer direction west/RIGHT/OUTPUT
+PASS Retained handler follows OFF west/RIGHT/OUTPUT
+PASS Unsided bypass denied west
+PASS Input allowance shared across calls and faces
+PASS Simulation does not consume next-tick allowance
+PASS Output allowance shared across calls and faces
+PASS Removed block closes retained handler
+PASS Automatic neighbor transfer conserves FE
+PASS External output reserves shared allowance
+PASS Item charge and push share remaining output
+PASS Item charging priority preserves 256 FE total
+PASS Survival block and cell drops wooden_pickaxe
+PASS Survival block and cell drops golden_pickaxe
+PASS Survival block and cell drops stone_pickaxe
+PASS Normal mining preserves enchant stone_pickaxe
+PASS Survival block and cell drops iron_pickaxe
+PASS Normal mining preserves enchant iron_pickaxe
+PASS Survival block and cell drops diamond_pickaxe
+PASS Normal mining preserves enchant diamond_pickaxe
+PASS Survival block and cell drops netherite_pickaxe
+PASS Normal mining preserves enchant netherite_pickaxe
+PASS Wrench rotates relative configuration
+PASS Wrench drops buffer and excluded cell exactly once
+PASS Portable charge and enchant preserved without duplicate slot
+PASS Placement restores charged enchanted buffer
+PASS Placement remaps preserved sides
+Screenshot 01_model
+PASS Networked GUI opens
+PASS 32-bit energy and capacity synchronized
+Screenshot 02_main
+Screenshot 03_scale3
+Screenshot 04_sides
+PASS Charge slot hidden on side page
+PASS Side change synchronized
+PASS Actual charging throughput displayed
+Screenshot 05_charging
+PASS Charged item model level 0
+PASS Charged item model level 1
+PASS Charged item model level 2
+PASS Charged item model level 3
+PASS Charged item model level 4
+RESULT PASS failures=0

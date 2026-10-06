@@ -1,4 +1,6 @@
 {
   "parent": "minecraft:item/generated",
-  "textures": { "layer0": "minecraft:item/raw_gold" }
+  "textures": {
+    "layer0": "domesurvival:item/materials_v2/crushed_gold_ore"
+  }
 }

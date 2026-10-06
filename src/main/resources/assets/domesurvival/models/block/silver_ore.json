@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "domesurvival:block/silver_ore"
+    "all": "domesurvival:block/materials_v2/silver_ore"
   }
 }

@@ -24,6 +24,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -50,7 +51,10 @@ public final class CreativeEnergyBufferBlockEntity extends BlockEntity implement
     public static final int DATA_SIDES_START = 6;
     public static final int DATA_COUNT = DATA_SIDES_START + 6;
 
+    private static final String NBT_CHARGE_SLOT = "ChargeSlot";
+
     private final UnifiedSideConfig sideConfig = new UnifiedSideConfig();
+    private final ItemStackHandler chargeInventory;
 
     private long transferStatsTick = Long.MIN_VALUE;
     private int receivedThisTick;
@@ -138,6 +142,7 @@ public final class CreativeEnergyBufferBlockEntity extends BlockEntity implement
 
     public CreativeEnergyBufferBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ENERGY_BUFFER_CREATIVE.get(), pos, state);
+        chargeInventory = EnergyItemCharging.createInventory(this::setChanged);
         applyDefaultSideConfiguration();
     }
 
@@ -162,9 +167,16 @@ public final class CreativeEnergyBufferBlockEntity extends BlockEntity implement
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, CreativeEnergyBufferBlockEntity buffer) {
         buffer.rollTransferStats();
+        int charged = buffer.chargeInsertedItem();
+        if (charged > 0) buffer.setChanged();
         buffer.pushEnergyToNeighbors(level, pos);
     }
 
+    private int chargeInsertedItem() {
+        int charged = EnergyItemCharging.chargeCreative(chargeInventory, Integer.MAX_VALUE);
+        if (charged > 0) recordOutput(charged);
+        return charged;
+    }
     private void pushEnergyToNeighbors(Level level, BlockPos pos) {
         for (Direction direction : Direction.values()) {
             if (isFrontWorldSide(direction) || !sideConfig.allowsOutput(direction)) continue;
@@ -317,15 +329,20 @@ public final class CreativeEnergyBufferBlockEntity extends BlockEntity implement
         return DISPLAY_CAPACITY;
     }
 
+    public ItemStackHandler getChargeInventory() {
+        return chargeInventory;
+    }
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         sideConfig.save(tag);
+        tag.put(NBT_CHARGE_SLOT, chargeInventory.serializeNBT());
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
+        if (tag.contains(NBT_CHARGE_SLOT)) chargeInventory.deserializeNBT(tag.getCompound(NBT_CHARGE_SLOT));
         if (!sideConfig.load(tag)) {
             applyDefaultSideConfiguration();
         }

@@ -1,0 +1,41 @@
+PASS No energy capability added
+PASS Bottom port extracts results
+PASS Water port down
+PASS Fixed item input up
+PASS Water port up
+PASS Fixed item input north
+PASS Water port north
+PASS Fixed item input south
+PASS Water port south
+PASS Fixed item input west
+PASS Water port west
+PASS Fixed item input east
+PASS Water port east
+PASS No visible port state added
+PASS Item pipe connects to hidden input
+PASS Water pipe connects without visible socket
+PASS Texture resolves: stone_bricks
+PASS Texture resolves: spruce_planks
+PASS Texture resolves: stripped_spruce_log
+PASS Texture resolves: copper_block
+PASS Uploaded sieve sound resolves
+Screenshot 01_idle_front
+PASS Existing manual cycle starts
+PASS Existing animation becomes active
+PASS Activation plays uploaded sound once without vanilla click
+PASS Sand particles visible during processing
+PASS Sand particles stay below the fixed mesh
+Screenshot 02_active_start
+Screenshot 03_active_motion
+PASS Existing animation stops after cycle
+PASS Existing dry cycle consumes one sand
+Screenshot 04_rear
+Screenshot 05_held_item
+PASS New sieve GUI opens with existing menu
+PASS Water and process synchronized
+Screenshot 06_gui_scale2
+Screenshot 07_gui_scale3
+PASS Wet cycle retains existing water cost
+Screenshot 08_gui_finished
+PASS Sand particles clear after processing stops
+RESULT PASS failures=0

@@ -13,7 +13,11 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,11 +35,13 @@ public final class IndustrialCrusherRecipe implements Recipe<SimpleContainer> {
     private final int energy;
     @Nullable private final ResourceLocation gasResult;
     private final int gasAmount;
+    private final FluidStack fluidResult;
 
     public IndustrialCrusherRecipe(ResourceLocation id, Ingredient ingredient, ItemStack result,
                                     ItemStack byproduct, int byproductChancePerTenThousand,
                                     int inputCount, int processingTime, int energy,
-                                    @Nullable ResourceLocation gasResult, int gasAmount) {
+                                    @Nullable ResourceLocation gasResult, int gasAmount,
+                                    FluidStack fluidResult) {
         this.id = id;
         this.ingredient = ingredient;
         this.result = result.copy();
@@ -46,6 +52,11 @@ public final class IndustrialCrusherRecipe implements Recipe<SimpleContainer> {
         this.energy = Math.max(1, energy);
         this.gasResult = gasAmount > 0 ? gasResult : null;
         this.gasAmount = gasResult == null ? 0 : Math.max(0, gasAmount);
+        this.fluidResult = fluidResult == null ? FluidStack.EMPTY : fluidResult.copy();
+
+        if (hasGasResult() && hasFluidResult()) {
+            throw new IllegalArgumentException("Industrial crusher recipe cannot output gas and fluid at the same time: " + id);
+        }
     }
 
     @Override
@@ -80,6 +91,8 @@ public final class IndustrialCrusherRecipe implements Recipe<SimpleContainer> {
     public boolean hasGasResult() { return gasResult != null && gasAmount > 0; }
     public @Nullable ResourceLocation getGasResult() { return gasResult; }
     public int getGasAmount() { return gasAmount; }
+    public boolean hasFluidResult() { return !fluidResult.isEmpty() && fluidResult.getAmount() > 0; }
+    public FluidStack getFluidResult() { return fluidResult.copy(); }
 
     public static final class Serializer implements RecipeSerializer<IndustrialCrusherRecipe> {
         @Override
@@ -111,12 +124,34 @@ public final class IndustrialCrusherRecipe implements Recipe<SimpleContainer> {
                 }
             }
 
-            if (result.isEmpty() && byproduct.isEmpty() && gasAmount <= 0) {
+            FluidStack fluidResult = FluidStack.EMPTY;
+            if (json.has("fluid_result")) {
+                JsonObject fluidJson = GsonHelper.getAsJsonObject(json, "fluid_result");
+                ResourceLocation fluidId = ResourceLocation.tryParse(GsonHelper.getAsString(fluidJson, "fluid"));
+                int fluidAmount = GsonHelper.getAsInt(fluidJson, "amount", 0);
+                if (fluidId == null) {
+                    throw new JsonParseException("Invalid industrial crusher fluid id in " + recipeId);
+                }
+                if (fluidAmount <= 0) {
+                    throw new JsonParseException("Industrial crusher fluid_result amount must be positive in " + recipeId);
+                }
+
+                Fluid fluid = ForgeRegistries.FLUIDS.getValue(fluidId);
+                if (fluid == null || fluid == Fluids.EMPTY) {
+                    throw new JsonParseException("Unknown industrial crusher fluid '" + fluidId + "' in " + recipeId);
+                }
+                fluidResult = new FluidStack(fluid, fluidAmount);
+            }
+
+            if (gasAmount > 0 && !fluidResult.isEmpty()) {
+                throw new JsonParseException("Industrial crusher recipe cannot define both gas_result and fluid_result: " + recipeId);
+            }
+            if (result.isEmpty() && byproduct.isEmpty() && gasAmount <= 0 && fluidResult.isEmpty()) {
                 throw new JsonParseException("Industrial crusher recipe has no output: " + recipeId);
             }
 
             return new IndustrialCrusherRecipe(recipeId, ingredient, result, byproduct, chance,
-                    inputCount, processingTime, energy, gasResult, gasAmount);
+                    inputCount, processingTime, energy, gasResult, gasAmount, fluidResult);
         }
 
         private static int intField(JsonObject json, String canonical, String legacy, int fallback) {
@@ -134,14 +169,27 @@ public final class IndustrialCrusherRecipe implements Recipe<SimpleContainer> {
             int inputCount = buffer.readVarInt();
             int processingTime = buffer.readVarInt();
             int energy = buffer.readVarInt();
+
             ResourceLocation gasResult = null;
             int gasAmount = 0;
             if (buffer.readBoolean()) {
                 gasResult = buffer.readResourceLocation();
                 gasAmount = buffer.readVarInt();
             }
+
+            FluidStack fluidResult = FluidStack.EMPTY;
+            if (buffer.readBoolean()) {
+                ResourceLocation fluidId = buffer.readResourceLocation();
+                int fluidAmount = buffer.readVarInt();
+                Fluid fluid = ForgeRegistries.FLUIDS.getValue(fluidId);
+                if (fluid == null || fluid == Fluids.EMPTY) {
+                    throw new IllegalStateException("Unknown industrial crusher fluid '" + fluidId + "' from network recipe " + recipeId);
+                }
+                fluidResult = new FluidStack(fluid, fluidAmount);
+            }
+
             return new IndustrialCrusherRecipe(recipeId, ingredient, result, byproduct, chance,
-                    inputCount, processingTime, energy, gasResult, gasAmount);
+                    inputCount, processingTime, energy, gasResult, gasAmount, fluidResult);
         }
 
         @Override
@@ -153,10 +201,21 @@ public final class IndustrialCrusherRecipe implements Recipe<SimpleContainer> {
             buffer.writeVarInt(recipe.inputCount);
             buffer.writeVarInt(recipe.processingTime);
             buffer.writeVarInt(recipe.energy);
+
             buffer.writeBoolean(recipe.hasGasResult());
             if (recipe.hasGasResult()) {
                 buffer.writeResourceLocation(recipe.gasResult);
                 buffer.writeVarInt(recipe.gasAmount);
+            }
+
+            buffer.writeBoolean(recipe.hasFluidResult());
+            if (recipe.hasFluidResult()) {
+                ResourceLocation fluidId = ForgeRegistries.FLUIDS.getKey(recipe.fluidResult.getFluid());
+                if (fluidId == null) {
+                    throw new IllegalStateException("Industrial crusher fluid result is not registered: " + recipe.id);
+                }
+                buffer.writeResourceLocation(fluidId);
+                buffer.writeVarInt(recipe.fluidResult.getAmount());
             }
         }
     }

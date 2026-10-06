@@ -13,6 +13,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,13 @@ final class IndustrialCrusherRecipeCategory implements IRecipeCategory<Industria
                     .setOutputSlotBackground()
                     .addItemStack(byproduct);
         }
+
+        if (recipe.hasFluidResult()) {
+            FluidStack fluid = recipe.getFluidResult();
+            builder.addOutputSlot(GAS_X + 2, GAS_Y + 2)
+                    .setFluidRenderer(1_000L, false, GAS_W - 4, GAS_H - 4)
+                    .addFluidStack(fluid.getFluid(), fluid.getAmount());
+        }
     }
 
     @Override
@@ -99,6 +107,8 @@ final class IndustrialCrusherRecipeCategory implements IRecipeCategory<Industria
 
         if (recipe.hasGasResult()) {
             drawGasOutput(graphics, recipe);
+        } else if (recipe.hasFluidResult()) {
+            drawFluidOutput(graphics, recipe);
         }
 
         Component statistics = Component.translatable(
@@ -119,6 +129,20 @@ final class IndustrialCrusherRecipeCategory implements IRecipeCategory<Industria
         DomeJeiStyle.drawCenteredClamped(
                 graphics,
                 Component.translatable("jei.domesurvival.gas_amount", recipe.getGasAmount()),
+                132, 93, 54, DomeJeiStyle.TEXT);
+    }
+
+    private static void drawFluidOutput(GuiGraphics graphics, IndustrialCrusherRecipe recipe) {
+        FluidStack fluid = recipe.getFluidResult();
+        DomeJeiStyle.drawThinFrame(graphics, GAS_X, GAS_Y, GAS_W, GAS_H, 0xFF151B1E);
+
+        DomeJeiStyle.drawCenteredClamped(
+                graphics,
+                Component.translatable("fluid.domesurvival.neoflux"),
+                58, 93, 80, DomeJeiStyle.TEXT_MUTED);
+        DomeJeiStyle.drawCenteredClamped(
+                graphics,
+                Component.translatable("jei.domesurvival.fluid_amount", fluid.getAmount()),
                 132, 93, 54, DomeJeiStyle.TEXT);
     }
 

@@ -16,6 +16,7 @@ public final class ModSounds {
     public static final RegistryObject<SoundEvent> ACID_RAIN_AMBIENCE = register("acid_rain_ambience");
     public static final RegistryObject<SoundEvent> SANDSTORM_WIND = register("sandstorm_wind");
     public static final RegistryObject<SoundEvent> SAND_SIEVE_PROCESS = register("sand_sieve_process");
+    public static final RegistryObject<SoundEvent> LANOS_TRUNK_OPEN = register("lanos_trunk_open");
 
     public static final RegistryObject<SoundEvent> MUSIC_MAIN_MENU = register("music_main_menu");
     public static final RegistryObject<SoundEvent> MUSIC_01 = register("music_01");

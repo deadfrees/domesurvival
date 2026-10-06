@@ -1,3 +1,1 @@
-{
-  "parent": "domesurvival:block/filter_regeneration_station"
-}
+{"parent":"domesurvival:block/filter_regeneration_station_inventory"}

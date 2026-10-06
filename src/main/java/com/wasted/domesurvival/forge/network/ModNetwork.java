@@ -17,7 +17,7 @@ public final class ModNetwork {
      * Do not return this to protocol 2:
      * current main already contains SurfaceWeatherSyncPacket.
      */
-    private static final String PROTOCOL_VERSION = "7";
+    private static final String PROTOCOL_VERSION = "8";
 
     public static final SimpleChannel CHANNEL =
             NetworkRegistry.newSimpleChannel(
@@ -49,6 +49,23 @@ public final class ModNetwork {
                 OxygenSyncPacket::encode,
                 OxygenSyncPacket::decode,
                 OxygenSyncPacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+        );
+        CHANNEL.registerMessage(
+                nextMessageId++,
+                MetroTravelRequestPacket.class,
+                MetroTravelRequestPacket::encode,
+                MetroTravelRequestPacket::decode,
+                MetroTravelRequestPacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_SERVER)
+        );
+
+        CHANNEL.registerMessage(
+                nextMessageId++,
+                MetroTravelVisualPacket.class,
+                MetroTravelVisualPacket::encode,
+                MetroTravelVisualPacket::decode,
+                MetroTravelVisualPacket::handle,
                 Optional.of(NetworkDirection.PLAY_TO_CLIENT)
         );
 

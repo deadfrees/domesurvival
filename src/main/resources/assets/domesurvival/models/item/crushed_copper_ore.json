@@ -1,4 +1,6 @@
 {
   "parent": "minecraft:item/generated",
-  "textures": { "layer0": "minecraft:item/raw_copper" }
+  "textures": {
+    "layer0": "domesurvival:item/materials_v2/crushed_copper_ore"
+  }
 }

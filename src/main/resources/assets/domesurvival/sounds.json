@@ -34,16 +34,16 @@
                                               "stream":  true
                                           }
                                       ]
-                      },
+                       },
     "sand_sieve_process":  {
-                                "subtitle":  "subtitles.domesurvival.sand_sieve_process",
-                                "sounds":  [
-                                               {
-                                                   "name":  "domesurvival:machines/sand_sieve_process",
-                                                   "stream":  false
-                                               }
-                                           ]
-                            },
+                               "subtitle":  "subtitles.domesurvival.sand_sieve_process",
+                               "sounds":  [
+                                              {
+                                                  "name":  "domesurvival:machines/sand_sieve_process",
+                                                  "stream":  false
+                                              }
+                                          ]
+                           },
     "machine.coal_generator.loop":  {
                                         "sounds":  [
                                                        {
@@ -61,13 +61,14 @@
                                                    ]
                                     },
     "machine.filter_regenerator.loop":  {
-                                           "sounds":  [
-                                                          {
-                                                              "name":  "domesurvival:machines/water_purifier_loop",
-                                                              "stream":  true
-                                                          }
-                                                      ]
-                                       },    "machine.electrolyzer.loop":  {
+                                            "sounds":  [
+                                                           {
+                                                               "name":  "domesurvival:machines/water_purifier_loop",
+                                                               "stream":  true
+                                                           }
+                                                       ]
+                                        },
+    "machine.electrolyzer.loop":  {
                                       "sounds":  [
                                                      {
                                                          "name":  "domesurvival:machines/electrolyzer_loop",
@@ -275,5 +276,14 @@
                                         "stream":  true
                                     }
                                 ]
-                 }
+                 },
+    "lanos_trunk_open":  {
+                             "subtitle":  "subtitles.domesurvival.lanos_trunk_open",
+                             "sounds":  [
+                                            {
+                                                "name":  "domesurvival:lanos/trunk_open",
+                                                "stream":  false
+                                            }
+                                        ]
+                         }
 }

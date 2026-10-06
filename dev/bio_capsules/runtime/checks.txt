@@ -1,0 +1,434 @@
+PASS Stable predicate cow/0
+PASS Distinct baked model cow/0
+PASS All textures resolved cow/0
+PASS Rendering preserves NBT cow/0
+PASS Stable predicate pig/0
+PASS Distinct baked model pig/0
+PASS All textures resolved pig/0
+PASS Rendering preserves NBT pig/0
+PASS Stable predicate sheep/0
+PASS Distinct baked model sheep/0
+PASS All textures resolved sheep/0
+PASS Rendering preserves NBT sheep/0
+PASS Stable predicate chicken/0
+PASS Distinct baked model chicken/0
+PASS All textures resolved chicken/0
+PASS Rendering preserves NBT chicken/0
+PASS Stable predicate rabbit/0
+PASS Distinct baked model rabbit/0
+PASS All textures resolved rabbit/0
+PASS Rendering preserves NBT rabbit/0
+PASS Stable predicate horse/0
+PASS Distinct baked model horse/0
+PASS All textures resolved horse/0
+PASS Rendering preserves NBT horse/0
+PASS Stable predicate donkey/0
+PASS Distinct baked model donkey/0
+PASS All textures resolved donkey/0
+PASS Rendering preserves NBT donkey/0
+PASS Stable predicate llama/0
+PASS Distinct baked model llama/0
+PASS All textures resolved llama/0
+PASS Rendering preserves NBT llama/0
+PASS Stable predicate goat/0
+PASS Distinct baked model goat/0
+PASS All textures resolved goat/0
+PASS Rendering preserves NBT goat/0
+PASS Stable predicate camel/0
+PASS Distinct baked model camel/0
+PASS All textures resolved camel/0
+PASS Rendering preserves NBT camel/0
+PASS Stable predicate wolf/0
+PASS Distinct baked model wolf/0
+PASS All textures resolved wolf/0
+PASS Rendering preserves NBT wolf/0
+PASS Stable predicate cat/0
+PASS Distinct baked model cat/0
+PASS All textures resolved cat/0
+PASS Rendering preserves NBT cat/0
+PASS Stable predicate ocelot/0
+PASS Distinct baked model ocelot/0
+PASS All textures resolved ocelot/0
+PASS Rendering preserves NBT ocelot/0
+PASS Stable predicate fox/0
+PASS Distinct baked model fox/0
+PASS All textures resolved fox/0
+PASS Rendering preserves NBT fox/0
+PASS Stable predicate bee/0
+PASS Distinct baked model bee/0
+PASS All textures resolved bee/0
+PASS Rendering preserves NBT bee/0
+PASS Stable predicate panda/0
+PASS Distinct baked model panda/0
+PASS All textures resolved panda/0
+PASS Rendering preserves NBT panda/0
+PASS Stable predicate turtle/0
+PASS Distinct baked model turtle/0
+PASS All textures resolved turtle/0
+PASS Rendering preserves NBT turtle/0
+PASS Stable predicate axolotl/0
+PASS Distinct baked model axolotl/0
+PASS All textures resolved axolotl/0
+PASS Rendering preserves NBT axolotl/0
+PASS Stable predicate frog/0
+PASS Distinct baked model frog/0
+PASS All textures resolved frog/0
+PASS Rendering preserves NBT frog/0
+PASS Stable predicate mooshroom/0
+PASS Distinct baked model mooshroom/0
+PASS All textures resolved mooshroom/0
+PASS Rendering preserves NBT mooshroom/0
+PASS Stable predicate sniffer/0
+PASS Distinct baked model sniffer/0
+PASS All textures resolved sniffer/0
+PASS Rendering preserves NBT sniffer/0
+PASS Stable predicate strider/0
+PASS Distinct baked model strider/0
+PASS All textures resolved strider/0
+PASS Rendering preserves NBT strider/0
+PASS Stable predicate hoglin/0
+PASS Distinct baked model hoglin/0
+PASS All textures resolved hoglin/0
+PASS Rendering preserves NBT hoglin/0
+PASS Stable predicate mule/0
+PASS Distinct baked model mule/0
+PASS All textures resolved mule/0
+PASS Rendering preserves NBT mule/0
+PASS Stable predicate parrot/0
+PASS Distinct baked model parrot/0
+PASS All textures resolved parrot/0
+PASS Rendering preserves NBT parrot/0
+PASS Stable predicate polar_bear/0
+PASS Distinct baked model polar_bear/0
+PASS All textures resolved polar_bear/0
+PASS Rendering preserves NBT polar_bear/0
+PASS Stable predicate cow/1
+PASS Distinct baked model cow/1
+PASS All textures resolved cow/1
+PASS Rendering preserves NBT cow/1
+PASS Stable predicate pig/1
+PASS Distinct baked model pig/1
+PASS All textures resolved pig/1
+PASS Rendering preserves NBT pig/1
+PASS Stable predicate sheep/1
+PASS Distinct baked model sheep/1
+PASS All textures resolved sheep/1
+PASS Rendering preserves NBT sheep/1
+PASS Stable predicate chicken/1
+PASS Distinct baked model chicken/1
+PASS All textures resolved chicken/1
+PASS Rendering preserves NBT chicken/1
+PASS Stable predicate rabbit/1
+PASS Distinct baked model rabbit/1
+PASS All textures resolved rabbit/1
+PASS Rendering preserves NBT rabbit/1
+PASS Stable predicate horse/1
+PASS Distinct baked model horse/1
+PASS All textures resolved horse/1
+PASS Rendering preserves NBT horse/1
+PASS Stable predicate donkey/1
+PASS Distinct baked model donkey/1
+PASS All textures resolved donkey/1
+PASS Rendering preserves NBT donkey/1
+PASS Stable predicate llama/1
+PASS Distinct baked model llama/1
+PASS All textures resolved llama/1
+PASS Rendering preserves NBT llama/1
+PASS Stable predicate goat/1
+PASS Distinct baked model goat/1
+PASS All textures resolved goat/1
+PASS Rendering preserves NBT goat/1
+PASS Stable predicate camel/1
+PASS Distinct baked model camel/1
+PASS All textures resolved camel/1
+PASS Rendering preserves NBT camel/1
+PASS Stable predicate wolf/1
+PASS Distinct baked model wolf/1
+PASS All textures resolved wolf/1
+PASS Rendering preserves NBT wolf/1
+PASS Stable predicate cat/1
+PASS Distinct baked model cat/1
+PASS All textures resolved cat/1
+PASS Rendering preserves NBT cat/1
+PASS Stable predicate ocelot/1
+PASS Distinct baked model ocelot/1
+PASS All textures resolved ocelot/1
+PASS Rendering preserves NBT ocelot/1
+PASS Stable predicate fox/1
+PASS Distinct baked model fox/1
+PASS All textures resolved fox/1
+PASS Rendering preserves NBT fox/1
+PASS Stable predicate bee/1
+PASS Distinct baked model bee/1
+PASS All textures resolved bee/1
+PASS Rendering preserves NBT bee/1
+PASS Stable predicate panda/1
+PASS Distinct baked model panda/1
+PASS All textures resolved panda/1
+PASS Rendering preserves NBT panda/1
+PASS Stable predicate turtle/1
+PASS Distinct baked model turtle/1
+PASS All textures resolved turtle/1
+PASS Rendering preserves NBT turtle/1
+PASS Stable predicate axolotl/1
+PASS Distinct baked model axolotl/1
+PASS All textures resolved axolotl/1
+PASS Rendering preserves NBT axolotl/1
+PASS Stable predicate frog/1
+PASS Distinct baked model frog/1
+PASS All textures resolved frog/1
+PASS Rendering preserves NBT frog/1
+PASS Stable predicate mooshroom/1
+PASS Distinct baked model mooshroom/1
+PASS All textures resolved mooshroom/1
+PASS Rendering preserves NBT mooshroom/1
+PASS Stable predicate sniffer/1
+PASS Distinct baked model sniffer/1
+PASS All textures resolved sniffer/1
+PASS Rendering preserves NBT sniffer/1
+PASS Stable predicate strider/1
+PASS Distinct baked model strider/1
+PASS All textures resolved strider/1
+PASS Rendering preserves NBT strider/1
+PASS Stable predicate hoglin/1
+PASS Distinct baked model hoglin/1
+PASS All textures resolved hoglin/1
+PASS Rendering preserves NBT hoglin/1
+PASS Stable predicate mule/1
+PASS Distinct baked model mule/1
+PASS All textures resolved mule/1
+PASS Rendering preserves NBT mule/1
+PASS Stable predicate parrot/1
+PASS Distinct baked model parrot/1
+PASS All textures resolved parrot/1
+PASS Rendering preserves NBT parrot/1
+PASS Stable predicate polar_bear/1
+PASS Distinct baked model polar_bear/1
+PASS All textures resolved polar_bear/1
+PASS Rendering preserves NBT polar_bear/1
+PASS Unknown and malformed IDs use neutral fallback
+PASS Legacy capsule model cow_cryocapsule
+PASS Legacy capsule model sheep_cryocapsule
+PASS Legacy capsule model chicken_cryocapsule
+PASS Legacy capsule model damaged_pig_cryocapsule
+PASS Repair switches appearance on same stack
+PASS All 52 variants distinct
+Screenshot 01_capsules
+Screenshot 02_inventory_size
+Screenshot 03_display_contexts
+PASS Stable predicate cow/0
+PASS Distinct baked model cow/0
+PASS All textures resolved cow/0
+PASS Rendering preserves NBT cow/0
+PASS Stable predicate pig/0
+PASS Distinct baked model pig/0
+PASS All textures resolved pig/0
+PASS Rendering preserves NBT pig/0
+PASS Stable predicate sheep/0
+PASS Distinct baked model sheep/0
+PASS All textures resolved sheep/0
+PASS Rendering preserves NBT sheep/0
+PASS Stable predicate chicken/0
+PASS Distinct baked model chicken/0
+PASS All textures resolved chicken/0
+PASS Rendering preserves NBT chicken/0
+PASS Stable predicate rabbit/0
+PASS Distinct baked model rabbit/0
+PASS All textures resolved rabbit/0
+PASS Rendering preserves NBT rabbit/0
+PASS Stable predicate horse/0
+PASS Distinct baked model horse/0
+PASS All textures resolved horse/0
+PASS Rendering preserves NBT horse/0
+PASS Stable predicate donkey/0
+PASS Distinct baked model donkey/0
+PASS All textures resolved donkey/0
+PASS Rendering preserves NBT donkey/0
+PASS Stable predicate llama/0
+PASS Distinct baked model llama/0
+PASS All textures resolved llama/0
+PASS Rendering preserves NBT llama/0
+PASS Stable predicate goat/0
+PASS Distinct baked model goat/0
+PASS All textures resolved goat/0
+PASS Rendering preserves NBT goat/0
+PASS Stable predicate camel/0
+PASS Distinct baked model camel/0
+PASS All textures resolved camel/0
+PASS Rendering preserves NBT camel/0
+PASS Stable predicate wolf/0
+PASS Distinct baked model wolf/0
+PASS All textures resolved wolf/0
+PASS Rendering preserves NBT wolf/0
+PASS Stable predicate cat/0
+PASS Distinct baked model cat/0
+PASS All textures resolved cat/0
+PASS Rendering preserves NBT cat/0
+PASS Stable predicate ocelot/0
+PASS Distinct baked model ocelot/0
+PASS All textures resolved ocelot/0
+PASS Rendering preserves NBT ocelot/0
+PASS Stable predicate fox/0
+PASS Distinct baked model fox/0
+PASS All textures resolved fox/0
+PASS Rendering preserves NBT fox/0
+PASS Stable predicate bee/0
+PASS Distinct baked model bee/0
+PASS All textures resolved bee/0
+PASS Rendering preserves NBT bee/0
+PASS Stable predicate panda/0
+PASS Distinct baked model panda/0
+PASS All textures resolved panda/0
+PASS Rendering preserves NBT panda/0
+PASS Stable predicate turtle/0
+PASS Distinct baked model turtle/0
+PASS All textures resolved turtle/0
+PASS Rendering preserves NBT turtle/0
+PASS Stable predicate axolotl/0
+PASS Distinct baked model axolotl/0
+PASS All textures resolved axolotl/0
+PASS Rendering preserves NBT axolotl/0
+PASS Stable predicate frog/0
+PASS Distinct baked model frog/0
+PASS All textures resolved frog/0
+PASS Rendering preserves NBT frog/0
+PASS Stable predicate mooshroom/0
+PASS Distinct baked model mooshroom/0
+PASS All textures resolved mooshroom/0
+PASS Rendering preserves NBT mooshroom/0
+PASS Stable predicate sniffer/0
+PASS Distinct baked model sniffer/0
+PASS All textures resolved sniffer/0
+PASS Rendering preserves NBT sniffer/0
+PASS Stable predicate strider/0
+PASS Distinct baked model strider/0
+PASS All textures resolved strider/0
+PASS Rendering preserves NBT strider/0
+PASS Stable predicate hoglin/0
+PASS Distinct baked model hoglin/0
+PASS All textures resolved hoglin/0
+PASS Rendering preserves NBT hoglin/0
+PASS Stable predicate mule/0
+PASS Distinct baked model mule/0
+PASS All textures resolved mule/0
+PASS Rendering preserves NBT mule/0
+PASS Stable predicate parrot/0
+PASS Distinct baked model parrot/0
+PASS All textures resolved parrot/0
+PASS Rendering preserves NBT parrot/0
+PASS Stable predicate polar_bear/0
+PASS Distinct baked model polar_bear/0
+PASS All textures resolved polar_bear/0
+PASS Rendering preserves NBT polar_bear/0
+PASS Stable predicate cow/1
+PASS Distinct baked model cow/1
+PASS All textures resolved cow/1
+PASS Rendering preserves NBT cow/1
+PASS Stable predicate pig/1
+PASS Distinct baked model pig/1
+PASS All textures resolved pig/1
+PASS Rendering preserves NBT pig/1
+PASS Stable predicate sheep/1
+PASS Distinct baked model sheep/1
+PASS All textures resolved sheep/1
+PASS Rendering preserves NBT sheep/1
+PASS Stable predicate chicken/1
+PASS Distinct baked model chicken/1
+PASS All textures resolved chicken/1
+PASS Rendering preserves NBT chicken/1
+PASS Stable predicate rabbit/1
+PASS Distinct baked model rabbit/1
+PASS All textures resolved rabbit/1
+PASS Rendering preserves NBT rabbit/1
+PASS Stable predicate horse/1
+PASS Distinct baked model horse/1
+PASS All textures resolved horse/1
+PASS Rendering preserves NBT horse/1
+PASS Stable predicate donkey/1
+PASS Distinct baked model donkey/1
+PASS All textures resolved donkey/1
+PASS Rendering preserves NBT donkey/1
+PASS Stable predicate llama/1
+PASS Distinct baked model llama/1
+PASS All textures resolved llama/1
+PASS Rendering preserves NBT llama/1
+PASS Stable predicate goat/1
+PASS Distinct baked model goat/1
+PASS All textures resolved goat/1
+PASS Rendering preserves NBT goat/1
+PASS Stable predicate camel/1
+PASS Distinct baked model camel/1
+PASS All textures resolved camel/1
+PASS Rendering preserves NBT camel/1
+PASS Stable predicate wolf/1
+PASS Distinct baked model wolf/1
+PASS All textures resolved wolf/1
+PASS Rendering preserves NBT wolf/1
+PASS Stable predicate cat/1
+PASS Distinct baked model cat/1
+PASS All textures resolved cat/1
+PASS Rendering preserves NBT cat/1
+PASS Stable predicate ocelot/1
+PASS Distinct baked model ocelot/1
+PASS All textures resolved ocelot/1
+PASS Rendering preserves NBT ocelot/1
+PASS Stable predicate fox/1
+PASS Distinct baked model fox/1
+PASS All textures resolved fox/1
+PASS Rendering preserves NBT fox/1
+PASS Stable predicate bee/1
+PASS Distinct baked model bee/1
+PASS All textures resolved bee/1
+PASS Rendering preserves NBT bee/1
+PASS Stable predicate panda/1
+PASS Distinct baked model panda/1
+PASS All textures resolved panda/1
+PASS Rendering preserves NBT panda/1
+PASS Stable predicate turtle/1
+PASS Distinct baked model turtle/1
+PASS All textures resolved turtle/1
+PASS Rendering preserves NBT turtle/1
+PASS Stable predicate axolotl/1
+PASS Distinct baked model axolotl/1
+PASS All textures resolved axolotl/1
+PASS Rendering preserves NBT axolotl/1
+PASS Stable predicate frog/1
+PASS Distinct baked model frog/1
+PASS All textures resolved frog/1
+PASS Rendering preserves NBT frog/1
+PASS Stable predicate mooshroom/1
+PASS Distinct baked model mooshroom/1
+PASS All textures resolved mooshroom/1
+PASS Rendering preserves NBT mooshroom/1
+PASS Stable predicate sniffer/1
+PASS Distinct baked model sniffer/1
+PASS All textures resolved sniffer/1
+PASS Rendering preserves NBT sniffer/1
+PASS Stable predicate strider/1
+PASS Distinct baked model strider/1
+PASS All textures resolved strider/1
+PASS Rendering preserves NBT strider/1
+PASS Stable predicate hoglin/1
+PASS Distinct baked model hoglin/1
+PASS All textures resolved hoglin/1
+PASS Rendering preserves NBT hoglin/1
+PASS Stable predicate mule/1
+PASS Distinct baked model mule/1
+PASS All textures resolved mule/1
+PASS Rendering preserves NBT mule/1
+PASS Stable predicate parrot/1
+PASS Distinct baked model parrot/1
+PASS All textures resolved parrot/1
+PASS Rendering preserves NBT parrot/1
+PASS Stable predicate polar_bear/1
+PASS Distinct baked model polar_bear/1
+PASS All textures resolved polar_bear/1
+PASS Rendering preserves NBT polar_bear/1
+PASS Unknown and malformed IDs use neutral fallback
+PASS Legacy capsule model cow_cryocapsule
+PASS Legacy capsule model sheep_cryocapsule
+PASS Legacy capsule model chicken_cryocapsule
+PASS Legacy capsule model damaged_pig_cryocapsule
+PASS Repair switches appearance on same stack
+PASS All 52 variants distinct
+RESULT PASS failures=0

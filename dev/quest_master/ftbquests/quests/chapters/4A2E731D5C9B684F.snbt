@@ -1169,6 +1169,163 @@
         item: "minecraft:redstone_block"
       }
     ]
+  },
+  {
+    id: "71A2B3C4D5E60001"
+    title: "Автономная генерация"
+    icon: "domesurvival:solar_panel_mk1"
+    tags: ["ds_visual_technology"]
+    x: 3.2d
+    y: 30.0d
+    hide_dependency_lines: false
+    shape: "hexagon"
+    size: 1.18d
+    min_width: 360
+    dependencies: ["1B3704A32A92C101", "5E55C97FB0648C1A"]
+    hide_until_deps_complete: false
+    optional: true
+    description: [
+      "Угольная сеть надёжна, но постоянно расходует топливо. Соларит позволяет собрать первый дневной источник энергии.",
+      "",
+      "Солнечный генератор работает только под открытым небом и отдаёт FE через нижнюю сторону. Подключите его к уже знакомому энергобуферу.",
+      "",
+      "§6◆ Что сделать",
+      "§fСоберите солнечный генератор I и 4 базовые энерготрубы.",
+      "",
+      "§b◆ Зачем",
+      "§7Это первая автономная сеть без постоянного сжигания угля."
+    ]
+    tasks: [
+      { id: "71A2B3C4D5E61001" type: "item" item: "domesurvival:solar_panel_mk1" count: 1L },
+      { id: "71A2B3C4D5E61011" type: "item" item: "domesurvival:basic_energy_pipe" count: 4L }
+    ]
+    rewards: [
+      {
+        id: "71A2B3C4D5E62001"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 71A2B3C4D5E60001 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "71A2B3C4D5E63001"
+        type: "item"
+        item: "minecraft:glowstone_dust"
+        count: 4
+        team_reward: true
+        auto: "enabled"
+        exclude_from_claim_all: true
+      }
+    ]
+  },
+  {
+    id: "71A2B3C4D5E60002"
+    title: "Солнечная сеть II"
+    icon: "domesurvival:solar_panel_mk2"
+    tags: ["ds_visual_technology"]
+    x: 3.2d
+    y: 33.0d
+    hide_dependency_lines: false
+    shape: "hexagon"
+    size: 1.18d
+    min_width: 360
+    dependencies: ["71A2B3C4D5E60001"]
+    hide_until_deps_complete: true
+    optional: true
+    description: [
+      "Вторая ступень должна не просто существовать в инвентаре, а иметь линию, способную передать её повышенную мощность.",
+      "",
+      "§6◆ Что сделать",
+      "§fУлучшите генератор до II ступени и изготовьте 4 усиленные энерготрубы.",
+      "",
+      "§b◆ Зачем",
+      "§7Получится стабильный дневной контур для нескольких машин."
+    ]
+    tasks: [
+      { id: "71A2B3C4D5E61002" type: "item" item: "domesurvival:solar_panel_mk2" count: 1L },
+      { id: "71A2B3C4D5E61012" type: "item" item: "domesurvival:reinforced_energy_pipe" count: 4L }
+    ]
+    rewards: [
+      {
+        id: "71A2B3C4D5E62002"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 71A2B3C4D5E60002 normal -"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "71A2B3C4D5E63002"
+        type: "xp"
+        xp: 10
+        team_reward: true
+        auto: "enabled"
+        exclude_from_claim_all: true
+      }
+    ]
+  },
+  {
+    id: "71A2B3C4D5E60003"
+    title: "Промышленная солнечная сеть"
+    icon: "domesurvival:solar_panel_mk3"
+    tags: ["ds_visual_milestone"]
+    x: 3.2d
+    y: 36.0d
+    hide_dependency_lines: false
+    shape: "diamond"
+    size: 1.28d
+    min_width: 360
+    dependencies: ["71A2B3C4D5E60002"]
+    hide_until_deps_complete: true
+    optional: true
+    description: [
+      "Вольтариум и соларит открывают максимальную солнечную ступень Купола.",
+      "",
+      "§6◆ Что сделать",
+      "§fСоберите солнечный генератор III и высоковольтную линию из 4 труб.",
+      "",
+      "§b◆ Зачем",
+      "§7Эта сеть рассчитана на поздние промышленные машины; энергия по-прежнему выходит только снизу генератора."
+    ]
+    tasks: [
+      { id: "71A2B3C4D5E61003" type: "item" item: "domesurvival:solar_panel_mk3" count: 1L },
+      { id: "71A2B3C4D5E61013" type: "item" item: "domesurvival:high_voltage_energy_pipe" count: 4L }
+    ]
+    rewards: [
+      {
+        id: "71A2B3C4D5E62003"
+        type: "command"
+        team_reward: true
+        title: " "
+        icon: "minecraft:gray_stained_glass_pane"
+        command: "/domequest complete 71A2B3C4D5E60003 milestone SOLAR_NETWORK_ONLINE"
+        elevate_perms: true
+        silent: true
+        auto: "invisible"
+        exclude_from_claim_all: true
+        ignore_reward_blocking: true
+      },
+      {
+        id: "71A2B3C4D5E63003"
+        type: "item"
+        item: "domesurvival:solarite_crystal"
+        count: 1
+        team_reward: true
+        auto: "enabled"
+        exclude_from_claim_all: true
+      }
+    ]
   }
   ]
   quest_links: []

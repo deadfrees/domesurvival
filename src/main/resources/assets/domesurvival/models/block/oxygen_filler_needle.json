@@ -1,0 +1,87 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "panel": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "body": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "frame": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "trim": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "steel": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "black": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "brass": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "bolt": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "input": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "particle": "domesurvival:block/coal_generator_v2/satin_atlas"
+  },
+  "elements": [
+    {
+      "name": "Gauge needle",
+      "from": [
+        7.9400000013411045,
+        11.180000066757202,
+        2.4800000190734863
+      ],
+      "to": [
+        8.070000000298023,
+        12.25,
+        2.5500001907348633
+      ],
+      "faces": {
+        "north": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "south": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "east": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "west": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "up": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "down": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        }
+      }
+    }
+  ]
+}

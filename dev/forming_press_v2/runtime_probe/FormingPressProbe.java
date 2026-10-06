@@ -66,7 +66,7 @@ public final class FormingPressProbe {
                 for(int i=0;i<duration-1;i++)FormingPressBlockEntity.serverTick(level,TEST,p.getBlockState(),p);
                 check(p.getInventory().getStackInSlot(1).isEmpty(),operation+" no early output module "+variant);
                 var menu=new FormingPressMenu(77,level.players().get(0).getInventory(),p);menu.setTab(FormingPressMenu.MODULE_TAB);
-                if(variant>0)check(!menu.getSlot(38).mayPickup(level.players().get(0)),"Module locked during cycle "+operation+"/"+variant);
+                if(variant>0)check(menu.getSlot(38).mayPickup(level.players().get(0)),"Module can be changed during cycle "+operation+"/"+variant);
                 FormingPressBlockEntity.serverTick(level,TEST,p.getBlockState(),p);
                 check(ItemStack.matches(p.getInventory().getStackInSlot(1),recipe.getResult()),operation+" exact product module "+variant);
                 check(before-p.getDataAccess().get(0)==expectedCost,operation+" exact recipe energy module "+variant);
@@ -98,6 +98,28 @@ public final class FormingPressProbe {
             check(!p.getCapability(ForgeCapabilities.ITEM_HANDLER,null).isPresent()&&!p.getCapability(ForgeCapabilities.ENERGY,null).isPresent(),"No unsided bypass "+facing);
         }
     }
+    static void liveModules(ServerLevel level, ServerPlayer player) {
+        var recipe=level.getRecipeManager().getAllRecipesFor(ModRecipes.FORMING_TYPE.get()).stream()
+                .filter(r->r.getOperation()==FormingOperation.PRESS&&r.getIngredient().getItems().length>0).findFirst().orElseThrow();
+        var p=place(level,TEST);p.getInventory().setStackInSlot(0,input(recipe).copyWithCount(recipe.getInputCount()*2));energy(p,20000);
+        int ticks=recipe.getProcessingTime(),cost=recipe.getEnergy();
+        for(int i=0;i<ticks/2;i++)FormingPressBlockEntity.serverTick(level,TEST,p.getBlockState(),p);
+        var menu=new FormingPressMenu(91,player.getInventory(),p);menu.setTab(FormingPressMenu.MODULE_TAB);
+        player.getInventory().setItem(9,new ItemStack(MachineModuleItems.OVERDRIVE.get()));
+        check(!menu.quickMoveStack(player,2).isEmpty()&&p.getModules().getStackInSlot(0).is(MachineModuleItems.OVERDRIVE.get()),"Shift-click installs module during processing");
+        check(p.getDataAccess().get(FormingPressBlockEntity.DATA_MAX_PROGRESS)==ticks&&p.getDataAccess().get(FormingPressBlockEntity.DATA_RECIPE_ENERGY)==cost,"Hot install retains current recipe cost and duration");
+        var save=p.saveWithoutMetadata();p.load(save);
+        check(p.getDataAccess().get(FormingPressBlockEntity.DATA_MAX_PROGRESS)==ticks,"Cycle snapshot survives reload after module swap");
+        for(int i=ticks/2;i<ticks;i++)FormingPressBlockEntity.serverTick(level,TEST,p.getBlockState(),p);
+        check(20000-p.getDataAccess().get(0)==cost&&ItemStack.matches(p.getInventory().getStackInSlot(1),recipe.getResult()),"Hot installation finishes old cycle exactly once at old cost");
+        int faster=p.getModules().modifiers().applyProcessingTicks(ticks),extra=p.getModules().modifiers().applyEnergyCost(cost);
+        int before=p.getDataAccess().get(0);p.getInventory().setStackInSlot(1,ItemStack.EMPTY);
+        FormingPressBlockEntity.serverTick(level,TEST,p.getBlockState(),p);
+        check(p.getDataAccess().get(FormingPressBlockEntity.DATA_MAX_PROGRESS)==faster,"New cycle picks up installed speed modifier");
+        check(menu.getSlot(38).mayPickup(player),"Working module can be removed");p.getModules().extractItem(0,1,false);
+        for(int i=1;i<faster;i++)FormingPressBlockEntity.serverTick(level,TEST,p.getBlockState(),p);
+        check(before-p.getDataAccess().get(0)==extra&&ItemStack.matches(p.getInventory().getStackInSlot(1),recipe.getResult()),"Hot removal retains in-flight energy cost and output");
+    }
     static void survival(ServerLevel level,ServerPlayer player){
         player.setGameMode(GameType.SURVIVAL);player.getInventory().clearContent();
         for(Item tool:new Item[]{Items.IRON_PICKAXE,Items.WOODEN_PICKAXE}){
@@ -115,9 +137,14 @@ public final class FormingPressProbe {
         check(p.getMachineFacing()==Direction.EAST,"Native wrench rotates machine through real item-use path");
         check(!p.getCapability(ForgeCapabilities.ITEM_HANDLER,Direction.EAST).isPresent(),"Rotated front remains blocked");
         player.setShiftKeyDown(true);player.gameMode.useItemOn(player,level,player.getMainHandItem(),InteractionHand.MAIN_HAND,hit);
-        ItemStack portable=ItemStack.EMPTY;int count=0;for(ItemStack stack:player.getInventory().items)if(stack.is(FormingPressRegistry.FORMING_PRESS_ITEM.get())){portable=stack;count+=stack.getCount();}
-        check(level.isEmptyBlock(TEST)&&count==1&&drops(level,TEST).isEmpty(),"Shift wrench returns exactly one machine, no loose duplicate contents");
+        var machineDrops=drops(level,TEST);var entity=machineDrops.stream().filter(e->e.getItem().is(FormingPressRegistry.FORMING_PRESS_ITEM.get())).findFirst().orElseThrow();
+        ItemStack portable=entity.getItem().copy();
+        check(level.isEmptyBlock(TEST)&&machineDrops.size()==1&&count(machineDrops,FormingPressRegistry.FORMING_PRESS_ITEM.get())==1&&player.getInventory().countItem(FormingPressRegistry.FORMING_PRESS_ITEM.get())==0,"Shift wrench drops exactly one machine in world without inventory insertion");
         check(portable.hasTag()&&portable.getTag().getCompound("BlockEntityTag").getInt("Energy")==31000,"Wrench preserves expanded charge");
+        entity.playerTouch(player);
+        check(entity.isAlive()&&player.getInventory().countItem(FormingPressRegistry.FORMING_PRESS_ITEM.get())==0,"Machine drop observes normal pickup delay");
+        entity.setNoPickUpDelay();entity.playerTouch(player);
+        check(!entity.isAlive()&&player.getInventory().countItem(FormingPressRegistry.FORMING_PRESS_ITEM.get())==1,"Dropped machine can be collected through normal pickup");
         player.setShiftKeyDown(false);player.setItemInHand(InteractionHand.MAIN_HAND,portable.copy());
         var placeHit=new BlockHitResult(Vec3.atCenterOf(TEST.below()).add(0,.5,0),Direction.UP,TEST.below(),false);
         player.gameMode.useItemOn(player,level,player.getMainHandItem(),InteractionHand.MAIN_HAND,placeHit);
@@ -147,6 +174,46 @@ public final class FormingPressProbe {
         @SubscribeEvent public void cancel(net.minecraftforge.event.level.BlockEvent.BreakEvent event) {
             if (event.getPos().equals(TEST)) event.setCanceled(true);
         }
+    }
+    static void bufferDrops(ServerLevel level,ServerPlayer player) {
+        Item wrench=ForgeRegistries.ITEMS.getValue(new ResourceLocation("domesurvival","machine_wrench"));
+        Item cellItem=ForgeRegistries.ITEMS.getValue(new ResourceLocation("domesurvival","neosteel_energy_cell"));
+        for(String id:new String[]{"energy_buffer","energy_buffer_titan","energy_buffer_adamantium","energy_buffer_creative"}) {
+            Block block=ForgeRegistries.BLOCKS.getValue(new ResourceLocation("domesurvival",id));
+            for(boolean full:new boolean[]{false,true}){
+                level.setBlockAndUpdate(TEST,Blocks.AIR.defaultBlockState());clearDrops(level,TEST);
+                level.setBlockAndUpdate(TEST,block.defaultBlockState());var be=level.getBlockEntity(TEST);
+                var saved=be.saveWithoutMetadata();var charge=new net.minecraftforge.items.ItemStackHandler(1);
+                var cell=new ItemStack(cellItem);cell.getCapability(ForgeCapabilities.ENERGY).orElseThrow(()->new IllegalStateException("Missing FE cell")).receiveEnergy(1234,false);
+                cell.getOrCreateTag().putString("DropMarker",id);charge.setStackInSlot(0,cell);
+                saved.put("ChargeSlot",charge.serializeNBT());saved.putInt("Energy",12000);be.load(saved);
+                var expected=be.saveWithoutMetadata();
+                player.setGameMode(GameType.SURVIVAL);player.getInventory().clearContent();
+                if(full)for(int i=0;i<player.getInventory().items.size();i++)player.getInventory().items.set(i,new ItemStack(Items.COBBLESTONE,64));
+                player.setItemInHand(InteractionHand.MAIN_HAND,new ItemStack(wrench));player.setShiftKeyDown(true);
+                var hit=new BlockHitResult(Vec3.atCenterOf(TEST),Direction.NORTH,TEST,false);
+                var protection=new CancelBreak();net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(protection);
+                try{player.gameMode.useItemOn(player,level,player.getMainHandItem(),InteractionHand.MAIN_HAND,hit);}
+                finally{net.minecraftforge.common.MinecraftForge.EVENT_BUS.unregister(protection);}
+                check(level.getBlockEntity(TEST)==be&&be.saveWithoutMetadata().getCompound("ChargeSlot").equals(expected.getCompound("ChargeSlot"))&&drops(level,TEST).isEmpty(),"Protected buffer retains charging item "+id+"/"+full);
+                player.gameMode.useItemOn(player,level,player.getMainHandItem(),InteractionHand.MAIN_HAND,hit);
+                var loose=drops(level,TEST);
+                check(level.isEmptyBlock(TEST)&&loose.size()==2&&count(loose,block.asItem())==1&&count(loose,cellItem)==1,"Buffer and charge item drop exactly once "+id+"/"+full);
+                check(player.getInventory().countItem(block.asItem())==0&&player.getInventory().countItem(cellItem)==0,"Buffer dismantle never inserts into inventory "+id+"/"+full);
+                var recovered=loose.stream().filter(e->e.getItem().is(cellItem)).findFirst().orElseThrow().getItem();
+                check(ItemStack.matches(recovered,cell),"Charge item retains FE and custom NBT "+id+"/"+full);
+                var portable=loose.stream().filter(e->e.getItem().is(block.asItem())).findFirst().orElseThrow().getItem().copy();
+                var tag=portable.getTagElement("BlockEntityTag");
+                check(tag!=null&&!tag.contains("ChargeSlot")&&tag.getInt("Energy")==expected.getInt("Energy"),"Portable buffer retains own charge without duplicate slot "+id+"/"+full);
+                clearDrops(level,TEST);player.setShiftKeyDown(false);player.setItemInHand(InteractionHand.MAIN_HAND,portable);
+                var placeHit=new BlockHitResult(Vec3.atCenterOf(TEST.below()).add(0,.5,0),Direction.UP,TEST.below(),false);
+                player.gameMode.useItemOn(player,level,player.getMainHandItem(),InteractionHand.MAIN_HAND,placeHit);
+                var restored=level.getBlockEntity(TEST);var restoredSlot=new net.minecraftforge.items.ItemStackHandler(1);
+                if(restored!=null)restoredSlot.deserializeNBT(restored.saveWithoutMetadata().getCompound("ChargeSlot"));
+                check(restored!=null&&restoredSlot.getStackInSlot(0).isEmpty(),"Reinstalled buffer has no duplicate charging item "+id+"/"+full);
+            }
+        }
+        level.setBlockAndUpdate(TEST,Blocks.AIR.defaultBlockState());clearDrops(level,TEST);player.getInventory().clearContent();player.setShiftKeyDown(false);player.setGameMode(GameType.CREATIVE);
     }
     static void wrenchSafety(ServerLevel level, ServerPlayer player) {
         var wrench=(EngineerWrenchItem)ForgeRegistries.ITEMS.getValue(new ResourceLocation("domesurvival","machine_wrench"));
@@ -184,8 +251,13 @@ public final class FormingPressProbe {
             level.setDayTime(6000);level.getGameRules().getRule(GameRules.RULE_DAYLIGHT).set(false,server);level.getGameRules().getRule(GameRules.RULE_DOMOBSPAWNING).set(false,server);
             for(int x=-4;x<16;x++)for(int z=-4;z<16;z++)level.setBlockAndUpdate(new BlockPos(x,99,z),Blocks.SMOOTH_STONE.defaultBlockState());
             player.teleportTo(level,.5,101,-4,0,16);player.setGameMode(GameType.CREATIVE);player.getAbilities().flying=true;player.onUpdateAbilities();
-            processChecks(level);ports(level);survival(level,player);wrenchSafety(level,player);
-            var p=place(level,DISPLAY);modules(p,new ItemStack(MachineModuleItems.BUFFER.get()),ItemStack.EMPTY);place(level,DISPLAY.offset(3,0,0));mode(p,RelativeSide.LEFT,SideMode.INPUT);mode(p,RelativeSide.RIGHT,SideMode.OUTPUT);
+            processChecks(level);liveModules(level,player);ports(level);survival(level,player);wrenchSafety(level,player);bufferDrops(level,player);
+            var p=place(level,DISPLAY);modules(p,new ItemStack(MachineModuleItems.BUFFER.get()),new ItemStack(MachineModuleItems.OVERDRIVE.get()));
+            level.setBlockAndUpdate(DISPLAY.offset(3,0,0),com.wasted.domesurvival.forge.block.ModBlocks.COAL_GENERATOR.get().defaultBlockState());
+            player.teleportTo(level,1.5,102,-4,0,25);
+            Item[] samples={MachineModuleItems.BUFFER.get(),MachineModuleItems.EFFICIENCY.get(),MachineModuleItems.OVERDRIVE.get(),MachineModuleItems.AUTOMATION.get(),MachineModuleItems.EMERGENCY_PROTECTION.get(),MachineModuleItems.COMMUNICATION.get()};
+            for(int i=0;i<samples.length;i++)player.getInventory().setItem(9+i,new ItemStack(samples[i]));
+            mode(p,RelativeSide.LEFT,SideMode.INPUT);mode(p,RelativeSide.RIGHT,SideMode.OUTPUT);
             level.setBlockAndUpdate(DISPLAY.west(),ItemPipeRegistry.STEEL_PIPE.get().defaultBlockState());level.setBlockAndUpdate(DISPLAY.east(),ItemPipeRegistry.STEEL_PIPE.get().defaultBlockState());
             var recipe=level.getRecipeManager().getAllRecipesFor(ModRecipes.FORMING_TYPE.get()).stream().filter(r->r.getOperation()==FormingOperation.PRESS).findFirst().orElseThrow();p.getInventory().setStackInSlot(0,input(recipe).copyWithCount(64));energy(p,35000);
             ready=true;
@@ -196,15 +268,33 @@ public final class FormingPressProbe {
     static void shot(String name){try(NativeImage image=Screenshot.takeScreenshot(Minecraft.getInstance().getMainRenderTarget())){Files.createDirectories(OUT);image.writeToFile(OUT.resolve(name+".png"));log("Screenshot "+name);}catch(Exception ex){check(false,"Screenshot "+ex);}}
     static FormingPressScreen screen(){return (FormingPressScreen)Minecraft.getInstance().screen;}
     static void tab(int id){var mc=Minecraft.getInstance();screen().getMenu().setTab(id);mc.gameMode.handleInventoryButtonClick(screen().getMenu().containerId,id);}
+    static int hoverX=-1,hoverY=-1;
+    static void hover(int x,int y){hoverX=x;hoverY=y;}
+    @SubscribeEvent public static void renderMouse(TickEvent.RenderTickEvent e){
+        if(!ENABLED||e.phase!=TickEvent.Phase.START||hoverX<0)return;
+        var mc=Minecraft.getInstance();if(!(mc.screen instanceof net.minecraft.client.gui.screens.inventory.AbstractContainerScreen))return;
+        double scale=mc.getWindow().getGuiScale();
+        try{
+            var x=net.minecraftforge.fml.util.ObfuscationReflectionHelper.findField(MouseHandler.class,"f_91507_");
+            var y=net.minecraftforge.fml.util.ObfuscationReflectionHelper.findField(MouseHandler.class,"f_91508_");
+            x.setDouble(mc.mouseHandler,((mc.getWindow().getGuiScaledWidth()-220)/2.0+hoverX)*scale);
+            y.setDouble(mc.mouseHandler,((mc.getWindow().getGuiScaledHeight()-266)/2.0+hoverY)*scale);
+        }catch(ReflectiveOperationException ex){throw new RuntimeException(ex);}
+    }
     static void plan(){var mc=Minecraft.getInstance();mc.setScreen(null);mc.options.hideGui=true;mc.getTutorial().setStep(net.minecraft.client.tutorial.TutorialSteps.NONE);
         check(ItemPipeBlock.hasObjectConnector(mc.level,DISPLAY.west(),Direction.EAST),"Client blue input collar visible");
         check(ItemPipeBlock.hasObjectConnector(mc.level,DISPLAY.east(),Direction.WEST),"Client orange output collar visible");
         add(20,()->shot("01_machine_working"));add(8,()->shot("02_machine_motion"));
         add(10,()->{mc.options.hideGui=false;mc.getSingleplayerServer().execute(()->{var p=mc.getSingleplayerServer().getPlayerList().getPlayers().get(0);NetworkHooks.openScreen(p,press(p.serverLevel(),DISPLAY),DISPLAY);});});
-        add(25,()->{check(mc.screen instanceof FormingPressScreen,"Real networked press GUI opened");check(screen().getMenu().slots.size()==40,"40 slots including two appended module slots");check(screen().getMenu().energyCapacity()==35000&&screen().getMenu().energyStored()>32767,"Networked expanded buffer retains values above signed short range");shot("03_main_gui");tab(FormingPressMenu.SIDE_TAB);});
+        add(25,()->{check(mc.screen instanceof FormingPressScreen,"Real networked press GUI opened");check(screen().getMenu().slots.size()==40,"40 slots including two appended module slots");check(screen().getMenu().energyCapacity()==35000&&screen().getMenu().energyStored()>32000,"Networked expanded buffer retains values above signed short range");hover(21,65);});
+        add(10,()->{shot("03_main_gui");tab(FormingPressMenu.SIDE_TAB);hover(0,0);});
         add(20,()->{check(!screen().getMenu().getSlot(0).isActive(),"Machine slots hidden and disabled under settings");shot("04_side_gui");tab(FormingPressMenu.MODULE_TAB);});
-        add(20,()->{check(screen().getMenu().getSlot(38).isActive()&&!screen().getMenu().getSlot(0).isActive(),"Only module sockets active on module tab");shot("05_modules_gui");mc.options.guiScale().set(3);mc.resizeDisplay();});
-        add(20,()->{shot("06_scale3");log("RESULT "+(failures==0?"PASS":"FAIL")+" failures="+failures);mc.stop();});
+        add(20,()->{check(screen().getMenu().getSlot(38).isActive()&&!screen().getMenu().getSlot(0).isActive(),"Only module sockets active on module tab");hover(30,65);});
+        add(10,()->{shot("05_modules_gui");hover(100,88);});
+        add(10,()->{shot("07_module_help");mc.options.guiScale().set(3);mc.resizeDisplay();hover(0,0);});
+        add(20,()->{shot("06_scale3");mc.player.closeContainer();mc.getSingleplayerServer().execute(()->{var sp=mc.getSingleplayerServer().getPlayerList().getPlayers().get(0);var gen=(com.wasted.domesurvival.forge.machine.coal.CoalGeneratorBlockEntity)sp.serverLevel().getBlockEntity(DISPLAY.offset(3,0,0));NetworkHooks.openScreen(sp,gen,gen.getBlockPos());});});
+        add(20,()->{var menu=(com.wasted.domesurvival.forge.machine.coal.CoalGeneratorMenu)mc.player.containerMenu;menu.setModulePanelOpen(true);mc.gameMode.handleInventoryButtonClick(menu.containerId,200);hover(100,90);});
+        add(15,()->{shot("08_generator_help");log("RESULT "+(failures==0?"PASS":"FAIL")+" failures="+failures);mc.stop();});
     }
     @SubscribeEvent public static void client(TickEvent.ClientTickEvent e){
         if(!ENABLED||e.phase!=TickEvent.Phase.END)return;var mc=Minecraft.getInstance();

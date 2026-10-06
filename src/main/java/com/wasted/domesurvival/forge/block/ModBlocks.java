@@ -46,6 +46,7 @@ public final class ModBlocks {
     public static final RegistryObject<Block> COPPER_FURNACE = BLOCKS.register("copper_furnace",
             () -> new CopperFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)
                     .strength(3.0F, 6.0F)
+                    .lightLevel(state -> state.getValue(CopperFurnaceBlock.LIT) ? 13 : 0)
                     .noOcclusion()));
 
     public static final RegistryObject<Block> SHAFT_FURNACE = BLOCKS.register("shaft_furnace",
@@ -61,6 +62,7 @@ public final class ModBlocks {
 
     public static final RegistryObject<Block> COKE_OVEN = BLOCKS.register("coke_oven",
             () -> new CokeOvenBlock(BlockBehaviour.Properties.copy(Blocks.BRICKS)
+                    .requiresCorrectToolForDrops()
                     .strength(3.5F, 8.0F)
                     .noOcclusion()
                     .lightLevel(state -> state.getValue(CokeOvenBlock.LIT) ? 8 : 0)));
@@ -83,22 +85,22 @@ public final class ModBlocks {
 
     public static final RegistryObject<Block> WATER_PURIFIER = BLOCKS.register("water_purifier",
             () -> new WaterPurifierBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .strength(3.5F, 6.0F)
+                    .strength(3.5F, 6.0F).noOcclusion()
                     .lightLevel(state -> state.getValue(WaterPurifierBlock.LIT) ? 5 : 0)));
 
     public static final RegistryObject<Block> OXYGEN_ELECTROLYZER = BLOCKS.register("oxygen_electrolyzer",
             () -> new OxygenElectrolyzerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .strength(3.5F, 6.0F)
+                    .strength(3.5F, 6.0F).noOcclusion()
                     .lightLevel(state -> state.getValue(OxygenElectrolyzerBlock.LIT) ? 6 : 0)));
 
     public static final RegistryObject<Block> OXYGEN_FILLER = BLOCKS.register("oxygen_filler",
             () -> new OxygenFillerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .strength(3.5F, 6.0F)
+                    .strength(3.5F, 6.0F).noOcclusion()
                     .lightLevel(state -> state.getValue(OxygenFillerBlock.LIT) ? 4 : 0)));
 
     public static final RegistryObject<Block> BIOINCUBATOR = BLOCKS.register("bioincubator",
             () -> new BioincubatorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .strength(4.0F, 8.0F)
+                    .strength(4.0F, 8.0F).noOcclusion()
                     .lightLevel(state -> state.getValue(BioincubatorBlock.LIT) ? 5 : 0)));
     public static final RegistryObject<Block> SAND_SIEVE = BLOCKS.register("sand_sieve",
             () -> new SandSieveBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_TILES)
@@ -121,15 +123,15 @@ public final class ModBlocks {
 
     public static final RegistryObject<Block> ENERGY_BUFFER = BLOCKS.register("energy_buffer",
             () -> new EnergyBufferBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .strength(4.0F, 8.0F)));
+                    .strength(4.0F, 8.0F).noOcclusion()));
 
     public static final RegistryObject<Block> ENERGY_BUFFER_TITAN = BLOCKS.register("energy_buffer_titan",
             () -> new TitanEnergyBufferBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .strength(4.5F, 10.0F)));
+                    .strength(4.5F, 10.0F).noOcclusion()));
 
     public static final RegistryObject<Block> ENERGY_BUFFER_ADAMANTIUM = BLOCKS.register("energy_buffer_adamantium",
             () -> new AdamantiumEnergyBufferBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
-                    .strength(5.0F, 12.0F)));
+                    .strength(5.0F, 12.0F).noOcclusion()));
 
     public static final RegistryObject<Block> ENERGY_BUFFER_CREATIVE = BLOCKS.register("energy_buffer_creative",
             () -> new CreativeEnergyBufferBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
@@ -195,6 +197,12 @@ public final class ModBlocks {
 
     public static final RegistryObject<Block> LANOS_ABANDONED = BLOCKS.register("lanos_abandoned",
             () -> new DecorativeLanosBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                    .strength(2.0F, 6.0F)
+                    .noOcclusion()));
+
+    // Internal linked cells: deliberately has no BlockItem and never appears in creative/JEI.
+    public static final RegistryObject<Block> LANOS_HITBOX_PART = BLOCKS.register("lanos_hitbox_part",
+            () -> new LanosHitboxPartBlock(BlockBehaviour.Properties.copy(Blocks.BARRIER)
                     .strength(2.0F, 6.0F)
                     .noOcclusion()));
 

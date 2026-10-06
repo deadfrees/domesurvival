@@ -1,0 +1,71 @@
+restored: dev/GENERATE_BIO_FACE_ATLAS_V13.ps1
+restored: src/main/resources/assets/domesurvival/textures/gui/bio/bio_faces_atlas.png
+restored: src/main/resources/assets/domesurvival/textures/gui/bio/mule.png
+restored: src/main/resources/assets/domesurvival/textures/gui/bio/parrot.png
+restored: src/main/resources/assets/domesurvival/textures/gui/bio/polar_bear.png
+restored: src/main/java/com/wasted/domesurvival/forge/machine/solar/SolarPanelBlock.java
+restored: src/main/java/com/wasted/domesurvival/forge/machine/solar/SolarPanelBlockEntity.java
+restored: src/main/java/com/wasted/domesurvival/forge/machine/solar/SolarPanelMenu.java
+restored: src/main/java/com/wasted/domesurvival/forge/machine/solar/SolarPanelRegistry.java
+restored: src/main/java/com/wasted/domesurvival/forge/machine/solar/SolarPanelState.java
+restored: src/main/java/com/wasted/domesurvival/forge/machine/solar/SolarPanelTier.java
+restored: src/main/java/com/wasted/domesurvival/forge/machine/solar/client/SolarPanelClientEvents.java
+restored: src/main/java/com/wasted/domesurvival/forge/machine/solar/client/SolarPanelScreen.java
+restored: dev/GENERATE_SOLAR_ITEM_VARIANTS_V13.ps1
+restored: src/main/resources/assets/domesurvival/blockstates/solar_panel_mk1.json
+restored: src/main/resources/assets/domesurvival/blockstates/solar_panel_mk2.json
+restored: src/main/resources/assets/domesurvival/blockstates/solar_panel_mk3.json
+restored: src/main/resources/assets/domesurvival/models/block/solar_panel_mk1.json
+restored: src/main/resources/assets/domesurvival/models/block/solar_panel_mk1.mtl
+restored: src/main/resources/assets/domesurvival/models/block/solar_panel_mk1.obj
+restored: src/main/resources/assets/domesurvival/models/block/solar_panel_mk2.json
+restored: src/main/resources/assets/domesurvival/models/block/solar_panel_mk2.mtl
+restored: src/main/resources/assets/domesurvival/models/block/solar_panel_mk2.obj
+restored: src/main/resources/assets/domesurvival/models/block/solar_panel_mk3.json
+restored: src/main/resources/assets/domesurvival/models/block/solar_panel_mk3.mtl
+restored: src/main/resources/assets/domesurvival/models/block/solar_panel_mk3.obj
+restored: src/main/resources/assets/domesurvival/models/item/solar_panel_mk1.json
+restored: src/main/resources/assets/domesurvival/models/item/solar_panel_mk2.json
+restored: src/main/resources/assets/domesurvival/models/item/solar_panel_mk3.json
+restored: src/main/resources/assets/domesurvival/textures/block/solar_connector_body.png
+restored: src/main/resources/assets/domesurvival/textures/block/solar_connector_contact.png
+restored: src/main/resources/assets/domesurvival/textures/block/solar_connector_mount.png
+restored: src/main/resources/assets/domesurvival/textures/block/solar_panel_mk1.png
+restored: src/main/resources/assets/domesurvival/textures/block/solar_panel_mk2.png
+restored: src/main/resources/assets/domesurvival/textures/block/solar_panel_mk3.png
+restored: src/main/resources/assets/domesurvival/textures/item/solar_generator_mk1.png
+restored: src/main/resources/assets/domesurvival/textures/item/solar_generator_mk2.png
+restored: src/main/resources/assets/domesurvival/textures/item/solar_generator_mk3.png
+restored: src/main/resources/data/domesurvival/loot_tables/blocks/solar_panel_mk1.json
+restored: src/main/resources/data/domesurvival/loot_tables/blocks/solar_panel_mk2.json
+restored: src/main/resources/data/domesurvival/loot_tables/blocks/solar_panel_mk3.json
+restored: src/main/resources/data/domesurvival/recipes/solar_panel_mk1.json
+restored: src/main/resources/data/domesurvival/recipes/solar_panel_mk2.json
+restored: src/main/resources/data/domesurvival/recipes/solar_panel_mk3.json
+restored: src/main/java/com/wasted/domesurvival/forge/block/LanosHitboxPartBlock.java
+restored: src/main/java/com/wasted/domesurvival/forge/lanos/LanosLegacyRepairEvents.java
+restored: src/main/java/com/wasted/domesurvival/forge/lanos/LanosTrunkBlockEntity.java
+restored: src/main/java/com/wasted/domesurvival/forge/lanos/LanosTrunkMenu.java
+restored: src/main/java/com/wasted/domesurvival/forge/lanos/LanosTrunkScreen.java
+restored: src/main/resources/assets/domesurvival/blockstates/lanos_hitbox_part.json
+restored: src/main/resources/assets/domesurvival/models/block/lanos_hitbox_part.json
+restored: src/main/resources/assets/domesurvival/sounds/lanos/trunk_open.ogg
+restored: src/main/resources/data/domesurvival/loot_tables/chests/lanos_trunk.json
+semantic: BioincubatorScreen animal atlas + mule/parrot/polar bear; current screen otherwise preserved
+semantic: Bioincubator strict INPUT/OUTPUT capabilities; current progression/gameplay preserved
+semantic: ModBlocks LANOS_HITBOX_PART only
+semantic: Lanos trunk block entity registration
+semantic: Lanos trunk menu registration
+semantic: Lanos trunk client screen registration
+semantic: Lanos trunk sound registry
+semantic: sounds.json lanos_trunk_open
+semantic: DecorativeLanos upgraded to interactive trunk + linked footprint; current local file preserved
+semantic: generated-structure Lanos placement + trunk loot; current storage logic preserved
+bio-species-added: minecraft:mule, minecraft:parrot, minecraft:polar_bear
+patched: creative tab icon + solar entries + BioModule variants
+patched: solar QuestSpec 21-23; newer ordinals shifted +3
+patched: SOLAR_NETWORK_ONLINE flag
+patched: chapter 6 expected quest count 20 -> 23
+patched: solar FTB quest branch 71A2B3C4D5E60001, 71A2B3C4D5E60002, 71A2B3C4D5E60003
+lang-keys-added(15): src/main/resources/assets/domesurvival/lang/ru_ru.json
+lang-keys-added(15): src/main/resources/assets/domesurvival/lang/en_us.json

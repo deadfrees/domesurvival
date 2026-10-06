@@ -8,6 +8,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -26,7 +27,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-/** Electrolyzer in the same industrial machine shell as the generator and purifier. */
+/** Industrial electrolyzer sharing the coal generator machine shell and side routing. */
 public final class OxygenElectrolyzerBlock extends BaseEntityBlock implements cofh.lib.api.block.IDismantleable {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -41,7 +42,9 @@ public final class OxygenElectrolyzerBlock extends BaseEntityBlock implements co
     public OxygenElectrolyzerBlock(Properties properties) {
         super(properties);
         registerDefaultState(withDefaultPorts(
-                stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false), Direction.NORTH));
+                stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false),
+                Direction.NORTH
+        ));
     }
 
     public static EnumProperty<PortVisual> portProperty(Direction direction) {
@@ -55,7 +58,10 @@ public final class OxygenElectrolyzerBlock extends BaseEntityBlock implements co
         };
     }
 
-    @Override public RenderShape getRenderShape(BlockState state) { return RenderShape.MODEL; }
+    @Override
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
+    }
 
     @Nullable
     @Override
@@ -66,7 +72,10 @@ public final class OxygenElectrolyzerBlock extends BaseEntityBlock implements co
 
     private static BlockState withDefaultPorts(BlockState state, Direction facing) {
         BlockState configured = state;
-        for (Direction direction : Direction.values()) configured = configured.setValue(portProperty(direction), PortVisual.OFF);
+        for (Direction direction : Direction.values()) {
+            configured = configured.setValue(portProperty(direction), PortVisual.OFF);
+        }
+
         configured = configured.setValue(PORT_UP, PortVisual.INPUT);
         configured = configured.setValue(portProperty(facing.getCounterClockWise()), PortVisual.INPUT);
         configured = configured.setValue(PORT_DOWN, PortVisual.OUTPUT);
@@ -86,29 +95,47 @@ public final class OxygenElectrolyzerBlock extends BaseEntityBlock implements co
                                  InteractionHand hand, BlockHitResult hit) {
         if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof OxygenElectrolyzerBlockEntity machine) {
-                NetworkHooks.openScreen(serverPlayer, machine, pos);
+            if (blockEntity instanceof OxygenElectrolyzerBlockEntity purifier) {
+                NetworkHooks.openScreen(serverPlayer, purifier, pos);
             }
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     @Nullable
-    @Override public BlockEntity newBlockEntity(BlockPos pos, BlockState state) { return new OxygenElectrolyzerBlockEntity(pos, state); }
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new OxygenElectrolyzerBlockEntity(pos, state);
+    }
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        if (level.isClientSide) return null;
-        return createTickerHelper(blockEntityType, ModBlockEntities.OXYGEN_ELECTROLYZER.get(), OxygenElectrolyzerBlockEntity::serverTick);
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
+                                                                  BlockEntityType<T> blockEntityType) {
+        if (level.isClientSide) return createTickerHelper(blockEntityType, ModBlockEntities.OXYGEN_ELECTROLYZER.get(), (l,p,s,be)->be.clientAnimationTick());
+        return createTickerHelper(
+                blockEntityType,
+                ModBlockEntities.OXYGEN_ELECTROLYZER.get(),
+                OxygenElectrolyzerBlockEntity::serverTick
+        );
     }
 
-    /**
-     * CoFH/Thermal dismantle clone.
-     * Thermal's own WrenchItem performs the actual dismantle; this method only
-     * tells the standard clone-stack path how to preserve this machine's
-     * BlockEntity data in the returned BlockItem.
-     */
+    @Override
+    public void onRemove(BlockState oldState, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+        if (!oldState.is(newState.getBlock())) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof OxygenElectrolyzerBlockEntity purifier) {
+                for (int slot = 0; slot < purifier.getModules().getSlots(); slot++) {
+                    ItemStack stack = purifier.getModules().getStackInSlot(slot);
+                    if (!stack.isEmpty()) popResource(level, pos, stack.copy());
+                }
+
+            }
+        }
+        super.onRemove(oldState, level, pos, newState, movedByPiston);
+    }
+
+    /** Native engineer-wrench pickup preserves water, oxygen, energy and upgrades. */
     @Override
     public net.minecraft.world.item.ItemStack getCloneItemStack(
             net.minecraft.world.level.block.state.BlockState state,

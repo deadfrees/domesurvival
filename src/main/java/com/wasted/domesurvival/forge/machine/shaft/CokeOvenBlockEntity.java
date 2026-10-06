@@ -1,7 +1,9 @@
 package com.wasted.domesurvival.forge.machine.shaft;
 
 import com.wasted.domesurvival.forge.item.ModItems;
-import com.wasted.domesurvival.forge.machine.side.CapabilityViews;
+import com.wasted.domesurvival.forge.machine.side.*;
+import com.wasted.domesurvival.forge.machine.module.*;
+import java.util.*;
 import com.wasted.domesurvival.forge.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,11 +26,10 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.RangedWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
+public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvider, IModularMachine {
     public static final int SLOT_COAL = 0;
     public static final int SLOT_FUEL = 1;
     public static final int SLOT_COKE = 2;
@@ -38,7 +39,11 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     public static final int DATA_PROGRESS_MAX = 1;
     public static final int DATA_BURN_TIME = 2;
     public static final int DATA_BURN_TIME_MAX = 3;
-    public static final int DATA_COUNT = 4;
+    public static final int DATA_COUNT = 12;
+    private final UnifiedSideConfig sides = new UnifiedSideConfig();
+    private final MachineModuleInventory modules = new MachineModuleInventory(this, MachineModuleResolver.STANDARD, this::setChanged);
+    private final EnumMap<Direction, LazyOptional<IItemHandler>> ports = new EnumMap<>(Direction.class);
+    private Direction lastFacing;
 
     private final ItemStackHandler inventory = new ItemStackHandler(3) {
         @Override
@@ -53,11 +58,6 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         @Override protected void onContentsChanged(int slot) { setChanged(); }
     };
 
-    private LazyOptional<IItemHandler> inputCapability = LazyOptional.of(() ->
-            CapabilityViews.inputItems(new RangedWrapper(inventory, SLOT_COAL, SLOT_FUEL + 1)));
-    private LazyOptional<IItemHandler> outputCapability = LazyOptional.of(() ->
-            CapabilityViews.outputItems(new RangedWrapper(inventory, SLOT_COKE, SLOT_COKE + 1)));
-
     private int progress;
     private int burnTime;
     private int burnTimeMax;
@@ -71,7 +71,9 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
                 case DATA_PROGRESS_MAX -> PROCESS_TIME;
                 case DATA_BURN_TIME -> burnTime;
                 case DATA_BURN_TIME_MAX -> burnTimeMax;
-                default -> 0;
+                case 10 -> hasEfficiency() ? 1 : 0;
+                case 11 -> status();
+                default -> index >= 4 && index < 10 ? sideMode(Direction.values()[index - 4]).ordinal() : 0;
             };
         }
         @Override public void set(int index, int value) { }
@@ -80,9 +82,60 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
 
     public CokeOvenBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.COKE_OVEN.get(), pos, state);
+        defaults();
+        lastFacing = facing();
+    }
+
+    @Override public int moduleSlotCount() { return 1; }
+    @Override public Set<MachineModuleType> allowedModuleTypes() { return Set.of(MachineModuleType.EFFICIENCY); }
+    public MachineModuleInventory getModules() { return modules; }
+    public boolean hasEfficiency() {
+        return modules != null && modules.isConfigurationValid()
+                && modules.getStackInSlot(0).getItem() instanceof MachineModuleItem m
+                && m.module().type() == MachineModuleType.EFFICIENCY;
+    }
+    public int fuelDuration(ItemStack stack) {
+        return (int)Math.min(Integer.MAX_VALUE, (long)getFuelBurnTime(stack) * (hasEfficiency() ? 115 : 100) / 100);
+    }
+    public Direction facing() { return getBlockState().getValue(CokeOvenBlock.FACING); }
+    public SideMode sideMode(@Nullable Direction side) {
+        return side == null || side == facing() ? SideMode.DISABLED : sides.getMode(side);
+    }
+    private void defaults() {
+        sides.reset();
+        // Preserve the old routes when opening an existing world.
+        sides.setMode(facing().getClockWise(), SideMode.INPUT);
+        sides.setMode(facing().getCounterClockWise(), SideMode.OUTPUT);
+        sides.setMode(facing().getOpposite(), SideMode.OUTPUT);
+        sides.setMode(Direction.DOWN, SideMode.OUTPUT);
+    }
+    public void cycleSideMode(RelativeSide side) {
+        if (side == RelativeSide.FRONT) return;
+        sides.cycleMode(side.resolve(facing()));
+        routingChanged();
+    }
+    public void rotateSideConfiguration(Direction previous) {
+        EnumMap<RelativeSide, SideMode> old = new EnumMap<>(RelativeSide.class);
+        for (RelativeSide side : RelativeSide.values()) old.put(side, sides.getMode(side.resolve(previous)));
+        for (RelativeSide side : RelativeSide.values()) sides.setMode(side.resolve(facing()), old.get(side));
+        sides.setMode(facing(), SideMode.DISABLED); lastFacing = facing(); routingChanged();
+    }
+    private void refreshPorts() { ports.values().forEach(LazyOptional::invalidate); ports.clear(); }
+    private void routingChanged() {
+        refreshPorts(); setChanged();
+        if (level != null) {
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+            level.updateNeighborsAt(worldPosition, getBlockState().getBlock());
+        }
+    }
+    private int status() {
+        if (!isValidCoal(inventory.getStackInSlot(SLOT_COAL))) return 0;
+        if (!canProcess()) return 3;
+        return burnTime > 0 ? 1 : 2;
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, CokeOvenBlockEntity oven) {
+        if (oven.lastFacing != oven.facing()) oven.rotateSideConfiguration(oven.lastFacing);
         if (oven.portRepairCooldown-- <= 0) {
             // Old builds occupied the neighbouring pipe cells with invisible
             // proxy blocks. Remove them so automation can touch the controller
@@ -99,7 +152,7 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         if (oven.canProcess()) {
             if (oven.burnTime <= 0) {
                 ItemStack fuel = oven.inventory.getStackInSlot(SLOT_FUEL);
-                int duration = getFuelBurnTime(fuel);
+                int duration = oven.fuelDuration(fuel);
                 if (duration > 0) {
                     oven.consumeOneFuel();
                     oven.burnTime = duration;
@@ -114,11 +167,8 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
                     oven.finishProcess();
                     oven.progress = 0;
                 }
-            } else if (oven.progress != 0) {
-                oven.progress = 0;
-                changed = true;
             }
-        } else if (oven.progress != 0) {
+        } else if (!isValidCoal(oven.inventory.getStackInSlot(SLOT_COAL)) && oven.progress != 0) {
             oven.progress = 0;
             changed = true;
         }
@@ -136,17 +186,13 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     }
 
     private boolean exportFinishedCoke(Level level, BlockPos controller, BlockState state) {
-        Direction facing = state.getValue(CokeOvenBlock.FACING);
-        Direction left = facing.getCounterClockWise();
-        if (FurnaceOutputTransfer.push(level, inventory, SLOT_COKE,
-                controller.relative(left), left.getOpposite())) return true;
-
-        Direction rear = facing.getOpposite();
-        if (FurnaceOutputTransfer.push(level, inventory, SLOT_COKE,
-                controller.relative(rear), facing)) return true;
-
-        return FurnaceOutputTransfer.push(level, inventory, SLOT_COKE,
-                controller.below(), Direction.UP);
+        for (Direction side : Direction.values()) {
+            if (sideMode(side) != SideMode.OUTPUT) continue;
+            if (FurnaceOutputTransfer.push(level, inventory, SLOT_COKE, controller.relative(side), side.getOpposite())) return true;
+            if (!isValidFuel(inventory.getStackInSlot(SLOT_FUEL))
+                    && FurnaceOutputTransfer.push(level, inventory, SLOT_FUEL, controller.relative(side), side.getOpposite())) return true;
+        }
+        return false;
     }
 
     public static boolean isValidCoal(ItemStack stack) { return stack.is(Items.COAL); }
@@ -168,7 +214,7 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         inventory.extractItem(SLOT_COAL, 1, false);
         ItemStack output = inventory.getStackInSlot(SLOT_COKE);
         if (output.isEmpty()) inventory.setStackInSlot(SLOT_COKE, new ItemStack(ModItems.COAL_COKE.get()));
-        else output.grow(1);
+        else inventory.setStackInSlot(SLOT_COKE, output.copyWithCount(output.getCount() + 1));
     }
 
     private void consumeOneFuel() {
@@ -181,8 +227,6 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
 
     public ItemStackHandler getInventory() { return inventory; }
     public ContainerData getDataAccess() { return dataAccess; }
-    LazyOptional<IItemHandler> getInputPortCapability() { return inputCapability; }
-    LazyOptional<IItemHandler> getOutputPortCapability() { return outputCapability; }
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
@@ -191,30 +235,39 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         tag.putInt("Progress", progress);
         tag.putInt("BurnTime", burnTime);
         tag.putInt("BurnTimeMax", burnTimeMax);
+        tag.put("Modules", modules.serializeNBT()); sides.save(tag);
+        tag.putString("PortFacing", facing().getName());
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
         inventory.deserializeNBT(tag.getCompound("Inventory"));
-        progress = Math.max(0, tag.getInt("Progress"));
+        progress = Math.max(0, Math.min(PROCESS_TIME - 1, tag.getInt("Progress")));
         burnTime = Math.max(0, tag.getInt("BurnTime"));
         burnTimeMax = Math.max(0, tag.getInt("BurnTimeMax"));
+        if (tag.contains("Modules")) modules.deserializeNBT(tag.getCompound("Modules"));
+        else modules.setStackInSlot(0, ItemStack.EMPTY);
+        if (!sides.load(tag)) defaults();
+        Direction savedFacing = Direction.byName(tag.getString("PortFacing"));
+        if (savedFacing != null && savedFacing.getAxis().isHorizontal() && savedFacing != facing()) {
+            EnumMap<RelativeSide, SideMode> old = new EnumMap<>(RelativeSide.class);
+            for (RelativeSide side : RelativeSide.values()) old.put(side, sides.getMode(side.resolve(savedFacing)));
+            for (RelativeSide side : RelativeSide.values()) sides.setMode(side.resolve(facing()), old.get(side));
+        }
+        sides.setMode(facing(), SideMode.DISABLED); lastFacing = facing(); refreshPorts();
+    }
+
+    @Override public CompoundTag getUpdateTag() { return saveWithoutMetadata(); }
+    @Override public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER && side != null) {
-            Direction facing = getBlockState().getValue(CokeOvenBlock.FACING);
-            // The right connector is the dedicated feed port.
-            if (side == facing.getClockWise()) {
-                return inputCapability.cast();
-            }
-            // Finished coke can be pulled from the left, rear and bottom connectors.
-            if (side == facing.getCounterClockWise() || side == facing.getOpposite() || side == Direction.DOWN) {
-                return outputCapability.cast();
-            }
-            return LazyOptional.empty();
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if (isRemoved() || sideMode(side) == SideMode.DISABLED) return LazyOptional.empty();
+            return ports.computeIfAbsent(side, d -> LazyOptional.of(() -> new Port(d))).cast();
         }
         return super.getCapability(cap, side);
     }
@@ -222,17 +275,33 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        inputCapability.invalidate();
-        outputCapability.invalidate();
+        refreshPorts();
     }
 
     @Override
     public void reviveCaps() {
         super.reviveCaps();
-        inputCapability = LazyOptional.of(() ->
-                CapabilityViews.inputItems(new RangedWrapper(inventory, SLOT_COAL, SLOT_FUEL + 1)));
-        outputCapability = LazyOptional.of(() ->
-                CapabilityViews.outputItems(new RangedWrapper(inventory, SLOT_COKE, SLOT_COKE + 1)));
+        refreshPorts();
+    }
+
+    /** Recheck mode on every operation, including previously cached handlers. */
+    private final class Port implements IItemHandler {
+        private final Direction side;
+        Port(Direction side) { this.side = side; }
+        public int getSlots() { return 3; }
+        public ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot).copy(); }
+        public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return !isRemoved() && sideMode(side) == SideMode.INPUT && inventory.isItemValid(slot, stack);
+        }
+        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+            return isItemValid(slot, stack) ? inventory.insertItem(slot, stack, simulate) : stack;
+        }
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            boolean allowed = slot == SLOT_COKE || slot == SLOT_FUEL && !isValidFuel(inventory.getStackInSlot(slot));
+            return !isRemoved() && sideMode(side) == SideMode.OUTPUT && allowed
+                    ? inventory.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+        }
     }
 
     @Override public Component getDisplayName() { return Component.translatable("block.domesurvival.coke_oven"); }

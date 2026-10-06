@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "domesurvival:item/solar_generator_mk2"
+  }
+}

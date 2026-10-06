@@ -1,0 +1,37 @@
+{
+  "species": [
+    "cow",
+    "pig",
+    "sheep",
+    "chicken",
+    "rabbit",
+    "horse",
+    "donkey",
+    "llama",
+    "goat",
+    "camel",
+    "wolf",
+    "cat",
+    "ocelot",
+    "fox",
+    "bee",
+    "panda",
+    "turtle",
+    "axolotl",
+    "frog",
+    "mooshroom",
+    "sniffer",
+    "strider",
+    "hoglin",
+    "mule",
+    "parrot",
+    "polar_bear"
+  ],
+  "variants": 52,
+  "legacy": {
+    "cow_cryocapsule": "cow",
+    "sheep_cryocapsule": "sheep",
+    "chicken_cryocapsule": "chicken",
+    "damaged_pig_cryocapsule": "pig_damaged"
+  }
+}

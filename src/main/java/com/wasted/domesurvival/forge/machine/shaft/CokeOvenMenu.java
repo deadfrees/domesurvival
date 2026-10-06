@@ -1,106 +1,92 @@
 package com.wasted.domesurvival.forge.machine.shaft;
 
 import com.wasted.domesurvival.forge.block.ModBlocks;
+import com.wasted.domesurvival.forge.machine.module.*;
+import com.wasted.domesurvival.forge.machine.side.*;
 import com.wasted.domesurvival.forge.registry.ModMenuTypes;
+import net.minecraft.core.*;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraftforge.items.*;
 
 public final class CokeOvenMenu extends AbstractContainerMenu {
-    private static final int MACHINE_SLOTS = 3;
-    private static final int PLAYER_START = 3;
-    private static final int PLAYER_END = 30;
-    private static final int HOTBAR_START = 30;
-    private static final int HOTBAR_END = 39;
-    private final ContainerLevelAccess access;
+    public static final int MAIN_TAB=201, MODULE_TAB=200, SIDE_TAB=202;
+    private int tab=MAIN_TAB;
+    private final Level level;
+    private final BlockPos pos;
+    private final CokeOvenBlockEntity furnace;
     private final ContainerData data;
-
-    public CokeOvenMenu(int id, Inventory playerInventory, FriendlyByteBuf extraData) {
-        this(id, playerInventory, new ItemStackHandler(MACHINE_SLOTS),
-                new SimpleContainerData(CokeOvenBlockEntity.DATA_COUNT),
-                ContainerLevelAccess.create(playerInventory.player.level(), extraData.readBlockPos()));
-    }
-
-    public CokeOvenMenu(int id, Inventory playerInventory, CokeOvenBlockEntity oven) {
-        this(id, playerInventory, oven.getInventory(), oven.getDataAccess(),
-                ContainerLevelAccess.create(playerInventory.player.level(), oven.getBlockPos()));
-    }
-
-    private CokeOvenMenu(int id, Inventory playerInventory, IItemHandler inventory,
-                         ContainerData data, ContainerLevelAccess access) {
-        super(ModMenuTypes.COKE_OVEN.get(), id);
-        this.access = access;
-        this.data = data;
-        checkContainerDataCount(data, CokeOvenBlockEntity.DATA_COUNT);
-        addDataSlots(data);
-
-        addSlot(new SlotItemHandler(inventory, CokeOvenBlockEntity.SLOT_COAL, 26, 54) {
-            @Override public boolean mayPlace(@NotNull ItemStack stack) { return CokeOvenBlockEntity.isValidCoal(stack); }
+    public CokeOvenMenu(int id,Inventory inv,FriendlyByteBuf extra){this(id,inv,null,new ItemStackHandler(3),new SimpleContainerData(CokeOvenBlockEntity.DATA_COUNT),extra.readBlockPos());}
+    public CokeOvenMenu(int id,Inventory inv,CokeOvenBlockEntity furnace){this(id,inv,furnace,furnace.getInventory(),furnace.getDataAccess(),furnace.getBlockPos());}
+    private CokeOvenMenu(int id,Inventory inv,CokeOvenBlockEntity furnace,IItemHandler container,ContainerData data,BlockPos pos){
+        super(ModMenuTypes.COKE_OVEN.get(),id);this.furnace=furnace;this.data=data;this.pos=pos;level=inv.player.level();
+        addDataSlots(new ContainerData(){
+            public int get(int i){return (data.get(i/2)>>>((i%2)*16))&65535;}
+            public void set(int i,int v){int shift=i%2*16;data.set(i/2,(data.get(i/2)&~(65535<<shift))|((v&65535)<<shift));}
+            public int getCount(){return data.getCount()*2;}
         });
-        addSlot(new SlotItemHandler(inventory, CokeOvenBlockEntity.SLOT_FUEL, 62, 54) {
-            @Override public boolean mayPlace(@NotNull ItemStack stack) { return CokeOvenBlockEntity.isValidFuel(stack); }
+        addSlot(new SlotItemHandler(container,0,46,55){
+            public boolean isActive(){return isMainPanelOpen();}public boolean mayPickup(Player p){return isActive();}
+            public boolean mayPlace(ItemStack s){return isActive()&&CokeOvenBlockEntity.isValidCoal(s);}
         });
-        addSlot(new SlotItemHandler(inventory, CokeOvenBlockEntity.SLOT_COKE, 178, 54) {
-            @Override public boolean mayPlace(@NotNull ItemStack stack) { return false; }
+        addSlot(new SlotItemHandler(container,1,46,105){
+            public boolean isActive(){return isMainPanelOpen();}public boolean mayPickup(Player p){return isActive();}
+            public boolean mayPlace(ItemStack s){return isActive()&&CokeOvenBlockEntity.isValidFuel(s);}
         });
-
-        for (int row = 0; row < 3; row++) for (int column = 0; column < 9; column++)
-            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, column + row * 9 + 9,
-                    14 + column * 22, 161 + row * 22));
-        for (int column = 0; column < 9; column++)
-            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, column, 14 + column * 22, 229));
+        addSlot(new SlotItemHandler(container,2,182,79){
+            public boolean isActive(){return isMainPanelOpen();}public boolean mayPickup(Player p){return isActive();}
+            public boolean mayPlace(ItemStack s){return false;}
+        });
+        for(int row=0;row<3;row++)for(int col=0;col<9;col++)addSlot(new Slot(inv,col+row*9+9,14+col*22,161+row*22));
+        for(int col=0;col<9;col++)addSlot(new Slot(inv,col,14+col*22,229));
+        addSlot(new SlotItemHandler(furnace==null?new ItemStackHandler(1):furnace.getModules(),0,22,67){
+            public boolean isActive(){return isModulePanelOpen();}public boolean mayPickup(Player p){return isActive();}
+            public int getMaxStackSize(){return 1;}
+            public boolean mayPlace(ItemStack s){return isActive()&&s.getItem() instanceof MachineModuleItem m&&m.module().type()==MachineModuleType.EFFICIENCY&&super.mayPlace(s);}
+        });
     }
-
-    @Override public boolean stillValid(Player player) { return stillValid(access, player, ModBlocks.COKE_OVEN.get()); }
-
-    @Override
-    public @NotNull ItemStack quickMoveStack(Player player, int index) {
-        ItemStack result = ItemStack.EMPTY;
-        net.minecraft.world.inventory.Slot slot = slots.get(index);
-        if (slot == null || !slot.hasItem()) return result;
-        ItemStack stack = slot.getItem();
-        result = stack.copy();
-
-        if (index < MACHINE_SLOTS) {
-            if (!moveItemStackTo(stack, PLAYER_START, HOTBAR_END, true)) return ItemStack.EMPTY;
-        } else if (CokeOvenBlockEntity.isValidCoal(stack)
-                && moveItemStackTo(stack, CokeOvenBlockEntity.SLOT_COAL, CokeOvenBlockEntity.SLOT_COAL + 1, false)) {
-            // coal input
-        } else if (CokeOvenBlockEntity.isValidFuel(stack)
-                && moveItemStackTo(stack, CokeOvenBlockEntity.SLOT_FUEL, CokeOvenBlockEntity.SLOT_FUEL + 1, false)) {
-            // heat fuel
-        } else if (index >= PLAYER_START && index < PLAYER_END) {
-            if (!moveItemStackTo(stack, HOTBAR_START, HOTBAR_END, false)) return ItemStack.EMPTY;
-        } else if (index >= HOTBAR_START && index < HOTBAR_END) {
-            if (!moveItemStackTo(stack, PLAYER_START, PLAYER_END, false)) return ItemStack.EMPTY;
-        } else return ItemStack.EMPTY;
-
-        if (stack.isEmpty()) slot.set(ItemStack.EMPTY); else slot.setChanged();
-        return result;
+    public boolean isMainPanelOpen(){return tab==MAIN_TAB;}
+    public boolean isModulePanelOpen(){return tab==MODULE_TAB;}
+    public boolean isSidePanelOpen(){return tab==SIDE_TAB;}
+    public void setTab(int tab){this.tab=tab;}
+    public BlockPos getBlockPos(){return pos;}
+    public int burnRemaining(){return data.get(2);}public int burnTotal(){return data.get(3);}
+    public int progress(){return data.get(0);}public int progressMax(){return data.get(1);}
+    public boolean efficiency(){return data.get(10)!=0;}public int status(){return data.get(11);}
+    public SideMode getSideMode(RelativeSide side){
+        if(side==RelativeSide.FRONT)return SideMode.DISABLED;
+        var state=level.getBlockState(pos);
+        Direction facing=state.hasProperty(AbstractFurnaceBlock.FACING)?state.getValue(AbstractFurnaceBlock.FACING):Direction.NORTH;
+        int value=data.get(4+side.resolve(facing).ordinal());
+        return value>=0&&value<SideMode.values().length?SideMode.values()[value]:SideMode.DISABLED;
     }
-
-    public int getProgressPixels() {
-        int max = data.get(CokeOvenBlockEntity.DATA_PROGRESS_MAX);
-        return max <= 0 ? 0 : data.get(CokeOvenBlockEntity.DATA_PROGRESS) * 24 / max;
+    @Override public boolean stillValid(Player player){return stillValid(ContainerLevelAccess.create(level,pos),player,ModBlocks.COKE_OVEN.get());}
+    @Override public boolean clickMenuButton(Player player,int id){
+        if(!stillValid(player))return false;
+        if(id==MAIN_TAB||id==MODULE_TAB||id==SIDE_TAB){setTab(id);return true;}
+        int side=id-100;
+        if(!isSidePanelOpen()||side<0||side>=RelativeSide.values().length||RelativeSide.values()[side]==RelativeSide.FRONT)return false;
+        if(furnace!=null)furnace.cycleSideMode(RelativeSide.values()[side]);return true;
     }
-
-    public int getBurnPixels() {
-        int max = data.get(CokeOvenBlockEntity.DATA_BURN_TIME_MAX);
-        return max <= 0 ? 0 : data.get(CokeOvenBlockEntity.DATA_BURN_TIME) * 13 / max;
+    @Override public ItemStack quickMoveStack(Player player,int index){
+        if(index<0||index>=slots.size())return ItemStack.EMPTY;
+        Slot slot=slots.get(index);if(!slot.isActive()||!slot.hasItem()||!slot.mayPickup(player))return ItemStack.EMPTY;
+        ItemStack stack=slot.getItem(),copy=stack.copy();
+        if(index<3||index==39){if(!moveItemStackTo(stack,3,39,true))return ItemStack.EMPTY;}
+        else if(stack.getItem() instanceof MachineModuleItem){if(!isModulePanelOpen()||!moveItemStackTo(stack,39,40,false))return ItemStack.EMPTY;}
+        else if(isMainPanelOpen()&&CokeOvenBlockEntity.isValidCoal(stack)){if(!moveItemStackTo(stack,0,1,false))return ItemStack.EMPTY;}
+        else if(isMainPanelOpen()&&CokeOvenBlockEntity.isValidFuel(stack)){if(!moveItemStackTo(stack,1,2,false))return ItemStack.EMPTY;}
+        else if(index<30){if(!moveItemStackTo(stack,30,39,false))return ItemStack.EMPTY;}
+        else if(!moveItemStackTo(stack,3,30,false))return ItemStack.EMPTY;
+        if(stack.getCount()==copy.getCount())return ItemStack.EMPTY;
+        if(index==2)slot.onQuickCraft(stack,copy);
+        if(stack.isEmpty())slot.set(ItemStack.EMPTY);else slot.setChanged();
+        slot.onTake(player,stack);return copy;
     }
-
-    public int getProgress() { return data.get(CokeOvenBlockEntity.DATA_PROGRESS); }
-    public int getProgressMax() { return data.get(CokeOvenBlockEntity.DATA_PROGRESS_MAX); }
-    public int getBurnTime() { return data.get(CokeOvenBlockEntity.DATA_BURN_TIME); }
-    public int getBurnTimeMax() { return data.get(CokeOvenBlockEntity.DATA_BURN_TIME_MAX); }
-    public boolean isWorking() { return getBurnTime() > 0 && getProgress() > 0; }
 }

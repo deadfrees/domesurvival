@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "N N",
+    " C "
+  ],
+  "key": {
+    "N": { "item": "domesurvival:neosteel_ingot" },
+    "C": { "item": "domesurvival:neosteel_energy_cell" }
+  },
+  "result": { "item": "domesurvival:neosteel_helmet", "count": 1 }
+}

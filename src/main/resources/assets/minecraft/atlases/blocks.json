@@ -1,0 +1,12 @@
+{
+  "sources": [
+    { "type": "minecraft:single", "resource": "domesurvival:gui/bio/bio_faces_atlas" },
+    { "type": "minecraft:single", "resource": "domesurvival:gui/bio/cow" },
+    { "type": "minecraft:single", "resource": "domesurvival:gui/bio/pig" },
+    { "type": "minecraft:single", "resource": "domesurvival:gui/bio/sheep" },
+    { "type": "minecraft:single", "resource": "domesurvival:gui/bio/chicken" },
+    { "type": "minecraft:single", "resource": "domesurvival:gui/bio/mule" },
+    { "type": "minecraft:single", "resource": "domesurvival:gui/bio/parrot" },
+    { "type": "minecraft:single", "resource": "domesurvival:gui/bio/polar_bear" }
+  ]
+}

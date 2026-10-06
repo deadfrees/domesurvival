@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "domesurvival:abandoned_metro",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1463279051,
+    "spacing": 18,
+    "separation": 8
+  }
+}

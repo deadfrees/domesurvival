@@ -1,0 +1,1315 @@
+{
+  "parent": "minecraft:block/block",
+  "gui_light": "front",
+  "ambientocclusion": false,
+  "textures": {
+    "body": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "frame": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "trim": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "steel": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "black": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "brass": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "input": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "accent": "minecraft:block/red_concrete",
+    "dark": "minecraft:block/black_concrete",
+    "white": "minecraft:block/white_concrete",
+    "red": "minecraft:block/red_concrete",
+    "blue": "minecraft:block/blue_concrete",
+    "status": "minecraft:block/orange_concrete",
+    "particle": "domesurvival:block/coal_generator_v2/particle",
+    "portrait": "domesurvival:gui/bio/bio_faces_atlas"
+  },
+  "display": {
+    "gui": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        2,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        1
+      ],
+      "scale": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        1
+      ],
+      "scale": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        -90,
+        25
+      ],
+      "translation": [
+        1.13,
+        3.2,
+        1.13
+      ],
+      "scale": [
+        0.68,
+        0.68,
+        0.68
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        90,
+        -25
+      ],
+      "translation": [
+        1.13,
+        3.2,
+        1.13
+      ],
+      "scale": [
+        0.68,
+        0.68,
+        0.68
+      ]
+    }
+  },
+  "elements": [
+    {
+      "name": "Graphite cartridge",
+      "from": [
+        3,
+        1,
+        7
+      ],
+      "to": [
+        13,
+        13,
+        9
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Dark portrait well",
+      "from": [
+        3.5,
+        3.5,
+        6.85
+      ],
+      "to": [
+        12.5,
+        12.5,
+        7
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "south": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "east": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "west": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "up": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "down": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "Lower steel collar",
+      "from": [
+        4,
+        0,
+        6.65
+      ],
+      "to": [
+        12,
+        2,
+        9.2
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "south": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "east": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "west": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "up": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "down": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "Upper steel collar",
+      "from": [
+        4,
+        12,
+        6.65
+      ],
+      "to": [
+        12,
+        14,
+        9.2
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "south": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "east": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "west": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "up": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "down": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "Species band",
+      "from": [
+        4,
+        12,
+        6.55
+      ],
+      "to": [
+        12,
+        12.65,
+        6.65
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#accent",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "south": {
+          "texture": "#accent",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "east": {
+          "texture": "#accent",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "west": {
+          "texture": "#accent",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "up": {
+          "texture": "#accent",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "down": {
+          "texture": "#accent",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        }
+      }
+    },
+    {
+      "name": "Left rail",
+      "from": [
+        3,
+        2,
+        6.65
+      ],
+      "to": [
+        4,
+        12,
+        7
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Broken rail lower",
+      "from": [
+        12,
+        2,
+        6.65
+      ],
+      "to": [
+        13,
+        7,
+        7
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Broken rail upper",
+      "from": [
+        12,
+        9,
+        6.65
+      ],
+      "to": [
+        13,
+        12,
+        7
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Contact",
+      "from": [
+        5,
+        1,
+        6.5
+      ],
+      "to": [
+        7,
+        1.5,
+        6.65
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "south": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "east": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "west": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "up": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "down": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Contact",
+      "from": [
+        9,
+        1,
+        6.5
+      ],
+      "to": [
+        11,
+        1.5,
+        6.65
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "south": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "east": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "west": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "up": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "down": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Condition indicator",
+      "from": [
+        6,
+        2.5,
+        6.65
+      ],
+      "to": [
+        10,
+        3.25,
+        6.8
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#status",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#status",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#status",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#status",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#status",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#status",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "name": "Species portrait",
+      "from": [
+        4,
+        4,
+        6.6
+      ],
+      "to": [
+        12,
+        12,
+        6.6
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#portrait",
+          "uv": [
+            0.0,
+            12,
+            3.2,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "name": "Reverse species portrait",
+      "from": [
+        4,
+        4,
+        9.01
+      ],
+      "to": [
+        12,
+        12,
+        9.01
+      ],
+      "shade": false,
+      "faces": {
+        "south": {
+          "texture": "#portrait",
+          "uv": [
+            0.0,
+            12,
+            3.2,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "name": "Species contour",
+      "from": [
+        4,
+        14,
+        6.65
+      ],
+      "to": [
+        5,
+        15.5,
+        8.5
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "south": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "east": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "west": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "up": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "down": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        }
+      }
+    },
+    {
+      "name": "Species contour",
+      "from": [
+        11,
+        14,
+        6.65
+      ],
+      "to": [
+        12,
+        15.5,
+        8.5
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "south": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "east": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "west": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "up": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "down": {
+          "texture": "#white",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        }
+      }
+    },
+    {
+      "name": "Collar scratch",
+      "from": [
+        10,
+        1,
+        6.45
+      ],
+      "to": [
+        10.5,
+        1.5,
+        6.5
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "south": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "east": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "west": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "up": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "down": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "Collar scratch",
+      "from": [
+        10.5,
+        0.5,
+        6.45
+      ],
+      "to": [
+        11.0,
+        1.0,
+        6.5
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "south": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "east": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "west": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "up": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "down": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "Collar scratch",
+      "from": [
+        11,
+        0,
+        6.45
+      ],
+      "to": [
+        11.5,
+        0.5,
+        6.5
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "south": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "east": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "west": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "up": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "down": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        }
+      }
+    }
+  ]
+}

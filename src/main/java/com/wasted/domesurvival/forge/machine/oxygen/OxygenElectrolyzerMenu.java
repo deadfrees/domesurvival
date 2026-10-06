@@ -1,125 +1,80 @@
 package com.wasted.domesurvival.forge.machine.oxygen;
 
 import com.wasted.domesurvival.forge.block.ModBlocks;
-import com.wasted.domesurvival.forge.machine.side.RelativeSide;
-import com.wasted.domesurvival.forge.machine.side.SideMode;
+import com.wasted.domesurvival.forge.machine.module.*;
+import com.wasted.domesurvival.forge.machine.side.*;
 import com.wasted.domesurvival.forge.registry.ModMenuTypes;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.core.*;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraftforge.items.*;
 
 public final class OxygenElectrolyzerMenu extends AbstractContainerMenu {
-    private static final int PLAYER_INVENTORY_START = 0;
-    private static final int PLAYER_INVENTORY_END = 27;
-    private static final int HOTBAR_START = 27;
-    private static final int HOTBAR_END = 36;
-    private static final int SIDE_BUTTON_BASE = 100;
-
+    public static final int MAIN_TAB=201, MODULE_TAB=200, SIDE_TAB=202;
+    private int tab=MAIN_TAB;
     private final Level level;
-    private final BlockPos blockPos;
-    private final ContainerLevelAccess access;
+    private final BlockPos pos;
+    private final OxygenElectrolyzerBlockEntity furnace;
     private final ContainerData data;
-    @Nullable private final OxygenElectrolyzerBlockEntity electrolyzer;
-
-    public OxygenElectrolyzerMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
-        this(containerId, playerInventory, null,
-                new SimpleContainerData(OxygenElectrolyzerBlockEntity.DATA_COUNT), extraData.readBlockPos());
+    public OxygenElectrolyzerMenu(int id,Inventory inv,FriendlyByteBuf extra){this(id,inv,null,new ItemStackHandler(2),new SimpleContainerData(OxygenElectrolyzerBlockEntity.DATA_COUNT),extra.readBlockPos());}
+    public OxygenElectrolyzerMenu(int id,Inventory inv,OxygenElectrolyzerBlockEntity furnace){this(id,inv,furnace,new ItemStackHandler(0),furnace.getDataAccess(),furnace.getBlockPos());}
+    private OxygenElectrolyzerMenu(int id,Inventory inv,OxygenElectrolyzerBlockEntity furnace,IItemHandler container,ContainerData data,BlockPos pos){
+        super(ModMenuTypes.OXYGEN_ELECTROLYZER.get(),id);this.furnace=furnace;this.data=data;this.pos=pos;level=inv.player.level();
+        addDataSlots(new ContainerData(){
+            public int get(int i){return (data.get(i/2)>>>((i%2)*16))&65535;}
+            public void set(int i,int v){int shift=i%2*16;data.set(i/2,(data.get(i/2)&~(65535<<shift))|((v&65535)<<shift));}
+            public int getCount(){return data.getCount()*2;}
+        });
+        for(int row=0;row<3;row++)for(int col=0;col<9;col++)addSlot(new Slot(inv,col+row*9+9,14+col*22,161+row*22));
+        for(int col=0;col<9;col++)addSlot(new Slot(inv,col,14+col*22,229));
+        for(int i=0;i<2;i++)addSlot(new SlotItemHandler(furnace==null?new ItemStackHandler(2):furnace.getModules(),i,22,67+i*30){
+            public boolean isActive(){return isModulePanelOpen();}
+            public boolean mayPickup(Player p){return isActive()&&(!(getItem().getItem() instanceof MachineModuleItem m)||m.module().type()!=MachineModuleType.BUFFER||energyStored()<=OxygenElectrolyzerBlockEntity.ENERGY_CAPACITY);}
+            public int getMaxStackSize(){return 1;}
+            public boolean mayPlace(ItemStack s){return isActive()&&s.getItem() instanceof MachineModuleItem&&super.mayPlace(s);}
+        });
     }
-
-    public OxygenElectrolyzerMenu(int containerId, Inventory playerInventory, OxygenElectrolyzerBlockEntity electrolyzer) {
-        this(containerId, playerInventory, electrolyzer, electrolyzer.getDataAccess(), electrolyzer.getBlockPos());
+    public boolean isMainPanelOpen(){return tab==MAIN_TAB;}
+    public boolean isModulePanelOpen(){return tab==MODULE_TAB;}
+    public boolean isSidePanelOpen(){return tab==SIDE_TAB;}
+    public void setTab(int tab){this.tab=tab;}
+    public BlockPos getBlockPos(){return pos;}
+    public int energyStored(){return data.get(0);} public int energyCapacity(){return data.get(1);}
+    public int water(){return data.get(2);}public int waterCapacity(){return data.get(3);}
+    public int oxygen(){return data.get(4);}public int oxygenCapacity(){return data.get(5);}
+    public int progress(){return data.get(6);}public int progressMax(){return data.get(7);}
+    public int status(){return data.get(8);}public int cycleEnergy(){return data.get(15);}
+    public SideMode getSideMode(RelativeSide side){
+        if(side==RelativeSide.FRONT)return SideMode.DISABLED;
+        var state=level.getBlockState(pos);
+        Direction facing=state.hasProperty(AbstractFurnaceBlock.FACING)?state.getValue(AbstractFurnaceBlock.FACING):Direction.NORTH;
+        int value=data.get(9+side.resolve(facing).ordinal());
+        return value>=0&&value<SideMode.values().length?SideMode.values()[value]:SideMode.DISABLED;
     }
-
-    private OxygenElectrolyzerMenu(int containerId, Inventory playerInventory,
-                                   @Nullable OxygenElectrolyzerBlockEntity electrolyzer,
-                                   ContainerData data, BlockPos blockPos) {
-        super(ModMenuTypes.OXYGEN_ELECTROLYZER.get(), containerId);
-        this.level = playerInventory.player.level();
-        this.blockPos = blockPos;
-        this.access = ContainerLevelAccess.create(level, blockPos);
-        this.data = data;
-        this.electrolyzer = electrolyzer;
-        checkContainerDataCount(data, OxygenElectrolyzerBlockEntity.DATA_COUNT);
-        addDataSlots(data);
-        addPlayerInventory(playerInventory);
-        addPlayerHotbar(playerInventory);
+    @Override public boolean stillValid(Player player){return stillValid(ContainerLevelAccess.create(level,pos),player,ModBlocks.OXYGEN_ELECTROLYZER.get());}
+    @Override public boolean clickMenuButton(Player player,int id){
+        if(!stillValid(player))return false;
+        if(id==MAIN_TAB||id==MODULE_TAB||id==SIDE_TAB){setTab(id);return true;}
+        int side=id-100;
+        if(!isSidePanelOpen()||side<0||side>=RelativeSide.values().length||RelativeSide.values()[side]==RelativeSide.FRONT)return false;
+        if(furnace!=null)furnace.cycleSideMode(RelativeSide.values()[side]);return true;
     }
-
-    private void addPlayerInventory(Inventory inv) {
-        for (int row = 0; row < 3; row++) {
-            for (int column = 0; column < 9; column++) {
-                addSlot(new net.minecraft.world.inventory.Slot(inv, column + row * 9 + 9,
-                        14 + column * 22, 161 + row * 22));
-            }
-        }
-    }
-
-    private void addPlayerHotbar(Inventory inv) {
-        for (int column = 0; column < 9; column++) {
-            addSlot(new net.minecraft.world.inventory.Slot(inv, column, 14 + column * 22, 229));
-        }
-    }
-
-    @Override public boolean stillValid(Player player) { return stillValid(access, player, ModBlocks.OXYGEN_ELECTROLYZER.get()); }
-
-    @Override
-    public @NotNull ItemStack quickMoveStack(Player player, int index) {
-        ItemStack result = ItemStack.EMPTY;
-        net.minecraft.world.inventory.Slot slot = slots.get(index);
-        if (slot == null || !slot.hasItem()) return result;
-        ItemStack stack = slot.getItem();
-        result = stack.copy();
-        if (index >= PLAYER_INVENTORY_START && index < PLAYER_INVENTORY_END) {
-            if (!moveItemStackTo(stack, HOTBAR_START, HOTBAR_END, false)) return ItemStack.EMPTY;
-        } else if (index >= HOTBAR_START && index < HOTBAR_END) {
-            if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END, false)) return ItemStack.EMPTY;
-        }
-        if (stack.isEmpty()) slot.set(ItemStack.EMPTY); else slot.setChanged();
-        return result;
-    }
-
-    @Override
-    public boolean clickMenuButton(Player player, int id) {
-        int sideIndex = id - SIDE_BUTTON_BASE;
-        if (sideIndex < 0 || sideIndex >= RelativeSide.values().length) return false;
-        RelativeSide side = RelativeSide.values()[sideIndex];
-        if (!OxygenElectrolyzerBlockEntity.isConfigurableSide(side)) return false;
-        if (electrolyzer != null) electrolyzer.cycleSideMode(side);
-        return true;
-    }
-
-    public static int sideButtonId(RelativeSide side) { return SIDE_BUTTON_BASE + side.ordinal(); }
-    public int getEnergyStored() { return data.get(OxygenElectrolyzerBlockEntity.DATA_ENERGY); }
-    public int getEnergyCapacity() { return data.get(OxygenElectrolyzerBlockEntity.DATA_ENERGY_CAPACITY); }
-    public int getWater() { return data.get(OxygenElectrolyzerBlockEntity.DATA_WATER); }
-    public int getWaterCapacity() { return data.get(OxygenElectrolyzerBlockEntity.DATA_WATER_CAPACITY); }
-    public int getOxygen() { return data.get(OxygenElectrolyzerBlockEntity.DATA_OXYGEN); }
-    public int getOxygenCapacity() { return data.get(OxygenElectrolyzerBlockEntity.DATA_OXYGEN_CAPACITY); }
-    public int getProgress() { return data.get(OxygenElectrolyzerBlockEntity.DATA_PROGRESS); }
-    public int getProgressMax() { return data.get(OxygenElectrolyzerBlockEntity.DATA_PROGRESS_MAX); }
-    public int getStatus() { return data.get(OxygenElectrolyzerBlockEntity.DATA_STATUS); }
-
-    public SideMode getSideMode(RelativeSide side) {
-        if (!OxygenElectrolyzerBlockEntity.isConfigurableSide(side)) return SideMode.DISABLED;
-        Direction worldDirection = side.resolve(getFacing());
-        int ordinal = data.get(OxygenElectrolyzerBlockEntity.DATA_SIDES_START + worldDirection.ordinal());
-        SideMode[] modes = SideMode.values();
-        return ordinal >= 0 && ordinal < modes.length ? modes[ordinal] : SideMode.DISABLED;
-    }
-
-    public Direction getFacing() {
-        BlockState state = level.getBlockState(blockPos);
-        return state.hasProperty(OxygenElectrolyzerBlock.FACING) ? state.getValue(OxygenElectrolyzerBlock.FACING) : Direction.NORTH;
+    @Override public ItemStack quickMoveStack(Player player,int index){
+        if(index<0||index>=slots.size())return ItemStack.EMPTY;
+        Slot slot=slots.get(index);if(!slot.isActive()||!slot.hasItem()||!slot.mayPickup(player))return ItemStack.EMPTY;
+        ItemStack stack=slot.getItem(),copy=stack.copy();
+        if(index>=36){if(!moveItemStackTo(stack,0,36,true))return ItemStack.EMPTY;}
+        else if(stack.getItem() instanceof MachineModuleItem){if(!isModulePanelOpen()||!moveItemStackTo(stack,36,38,false))return ItemStack.EMPTY;}
+        else if(index<27){if(!moveItemStackTo(stack,27,36,false))return ItemStack.EMPTY;}
+        else if(!moveItemStackTo(stack,0,27,false))return ItemStack.EMPTY;
+        if(stack.getCount()==copy.getCount())return ItemStack.EMPTY;
+        if(stack.isEmpty())slot.set(ItemStack.EMPTY);else slot.setChanged();
+        slot.onTake(player,stack);return copy;
     }
 }

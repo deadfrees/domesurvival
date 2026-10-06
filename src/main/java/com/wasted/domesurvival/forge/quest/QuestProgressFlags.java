@@ -32,6 +32,7 @@ public final class QuestProgressFlags {
             "POWER_STAGE_1",
             "DOME_POWER_ONLINE",
             "POWER_INFRASTRUCTURE_ESTABLISHED",
+            "SOLAR_NETWORK_ONLINE",
             "WATER_PURIFICATION_TECH_KNOWN",
             "OXYGEN_ELECTROLYSIS_TECH_KNOWN",
             "OXYGEN_DISTRIBUTION_TECH_KNOWN",

@@ -1,4 +1,6 @@
 {
   "parent": "minecraft:item/generated",
-  "textures": { "layer0": "domesurvival:item/metallurgy/steel_ingot" }
+  "textures": {
+    "layer0": "domesurvival:item/materials_v2/steel_ingot"
+  }
 }

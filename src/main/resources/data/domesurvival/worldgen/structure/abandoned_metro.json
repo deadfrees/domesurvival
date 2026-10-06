@@ -1,0 +1,7 @@
+{
+  "type": "domesurvival:abandoned_metro",
+  "biomes": "#minecraft:is_overworld",
+  "step": "surface_structures",
+  "terrain_adaptation": "none",
+  "spawn_overrides": {}
+}

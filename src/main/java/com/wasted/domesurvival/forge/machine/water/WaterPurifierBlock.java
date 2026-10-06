@@ -112,7 +112,7 @@ public final class WaterPurifierBlock extends BaseEntityBlock implements cofh.li
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
                                                                   BlockEntityType<T> blockEntityType) {
-        if (level.isClientSide) return null;
+        if (level.isClientSide) return createTickerHelper(blockEntityType, ModBlockEntities.WATER_PURIFIER.get(), (l,p,s,be)->be.clientAnimationTick());
         return createTickerHelper(
                 blockEntityType,
                 ModBlockEntities.WATER_PURIFIER.get(),
@@ -125,6 +125,10 @@ public final class WaterPurifierBlock extends BaseEntityBlock implements cofh.li
         if (!oldState.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof WaterPurifierBlockEntity purifier) {
+                for (int slot = 0; slot < purifier.getModules().getSlots(); slot++) {
+                    ItemStack stack = purifier.getModules().getStackInSlot(slot);
+                    if (!stack.isEmpty()) popResource(level, pos, stack.copy());
+                }
                 for (int slot = 0; slot < purifier.getInventory().getSlots(); slot++) {
                     ItemStack stack = purifier.getInventory().getStackInSlot(slot);
                     if (!stack.isEmpty()) popResource(level, pos, stack.copy());
@@ -134,12 +138,7 @@ public final class WaterPurifierBlock extends BaseEntityBlock implements cofh.li
         super.onRemove(oldState, level, pos, newState, movedByPiston);
     }
 
-    /**
-     * CoFH/Thermal dismantle clone.
-     * Thermal's own WrenchItem performs the actual dismantle; this method only
-     * tells the standard clone-stack path how to preserve this machine's
-     * BlockEntity data in the returned BlockItem.
-     */
+    /** Native engineer-wrench pickup preserves both tanks, inventory and upgrades. */
     @Override
     public net.minecraft.world.item.ItemStack getCloneItemStack(
             net.minecraft.world.level.block.state.BlockState state,

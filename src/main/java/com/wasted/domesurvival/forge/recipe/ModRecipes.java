@@ -47,6 +47,20 @@ public final class ModRecipes {
     public static final RegistryObject<RecipeSerializer<OrganicProcessorRecipe>> ORGANIC_PROCESSOR_SERIALIZER =
             RECIPE_SERIALIZERS.register("organic_processing", OrganicProcessorRecipe.Serializer::new);
 
+    public static final RegistryObject<RecipeType<AlloyEnricherRecipe>> ALLOY_ENRICHER_TYPE =
+            RECIPE_TYPES.register("alloy_enriching", () -> new RecipeType<>() {
+                @Override
+                public String toString() {
+                    return DomeSurvival.MOD_ID + ":alloy_enriching";
+                }
+            });
+
+    public static final RegistryObject<RecipeSerializer<AlloyEnricherRecipe>> ALLOY_ENRICHER_SERIALIZER =
+            RECIPE_SERIALIZERS.register("alloy_enriching", AlloyEnricherRecipe.Serializer::new);
+    public static final RegistryObject<RecipeSerializer<NeosteelSurfaceModuleRecipe>> NEOSTEEL_SURFACE_MODULE_SERIALIZER =
+            RECIPE_SERIALIZERS.register("neosteel_surface_module",
+                    () -> new net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer<>(
+                            NeosteelSurfaceModuleRecipe::new));
     public static void register(IEventBus eventBus) {
         RECIPE_TYPES.register(eventBus);
         RECIPE_SERIALIZERS.register(eventBus);

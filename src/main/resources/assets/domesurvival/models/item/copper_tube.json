@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "domesurvival:item/copper_tube"
+    "layer0": "domesurvival:item/press_products/copper_tube"
   }
 }

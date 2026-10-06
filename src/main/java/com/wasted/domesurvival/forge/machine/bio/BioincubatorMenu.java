@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.machine.bio;
 
 import com.wasted.domesurvival.forge.block.ModBlocks;
+import com.wasted.domesurvival.forge.machine.module.*;
 import com.wasted.domesurvival.forge.bio.BioLootData;
 import com.wasted.domesurvival.forge.bio.BioModuleClientState;
 import com.wasted.domesurvival.forge.bio.BioModuleData;
@@ -29,14 +30,23 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public final class BioincubatorMenu extends AbstractContainerMenu {
-    private static final int MACHINE_SLOT_END = 7;
-    private static final int PLAYER_START = 7;
-    private static final int PLAYER_END = 34;
-    private static final int HOTBAR_START = 34;
-    private static final int HOTBAR_END = 43;
+    private static final int MACHINE_SLOT_END = 9;
+    private static final int PLAYER_START = 9;
+    private static final int PLAYER_END = 36;
+    private static final int HOTBAR_START = 36;
+    private static final int HOTBAR_END = 45;
     private static final int MODE_BUTTON = 50;
     private static final int SIDE_BUTTON_BASE = 100;
 
+    private int tab=201;
+    public void setTab(int id){tab=id;}
+    public boolean isMainPanelOpen(){return tab==201;}
+    public boolean isSidePanelOpen(){return tab==202;}
+    public boolean isModulePanelOpen(){return tab==200;}
+    public int energyStored(){return getEnergy();}public int energyCapacity(){return getEnergyCapacity();}
+    public int waterStored(){return getWater();}public int waterCapacity(){return getWaterCapacity();}
+    public int progress(){return getProgress();}public int progressMax(){return getProgressMax();}public int status(){return getStatus();}
+    public int recipeEnergy(){return data.get(BioincubatorBlockEntity.DATA_CYCLE_ENERGY);}
     private final Level level;
     private final BlockPos blockPos;
     private final ContainerLevelAccess access;
@@ -84,61 +94,72 @@ public final class BioincubatorMenu extends AbstractContainerMenu {
         this.incubator = incubator;
 
         checkContainerDataCount(data, BioincubatorBlockEntity.DATA_COUNT);
-        addDataSlots(data);
+        addDataSlots(new ContainerData(){
+            public int get(int i){return (data.get(i/2)>>>((i%2)*16))&65535;}
+            public void set(int i,int value){int shift=i%2*16;data.set(i/2,(data.get(i/2)&~(65535<<shift))|((value&65535)<<shift));}
+            public int getCount(){return data.getCount()*2;}
+        });
 
-        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_CAPSULE, 107, 131,
+        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_CAPSULE, 70, 98,
                 BioincubatorBlockEntity.MODE_INCUBATION) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
-                return isValidCapsuleForMode(stack, BioincubatorBlockEntity.MODE_INCUBATION);
+                return isActive() && isValidCapsuleForMode(stack, BioincubatorBlockEntity.MODE_INCUBATION);
             }
         });
 
-        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_FEED, 175, 131,
+        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_FEED, 98, 98,
                 BioincubatorBlockEntity.MODE_INCUBATION) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
-                return isKnownFeed(stack);
+                return isActive() && isKnownFeed(stack);
             }
         });
 
-        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_CAPSULE, 73, 131,
+        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_CAPSULE, 70, 98,
                 BioincubatorBlockEntity.MODE_REPAIR) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
-                return isValidCapsuleForMode(stack, BioincubatorBlockEntity.MODE_REPAIR);
+                return isActive() && isValidCapsuleForMode(stack, BioincubatorBlockEntity.MODE_REPAIR);
             }
         });
-        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_FEED, 107, 131,
+        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_FEED, 98, 98,
                 BioincubatorBlockEntity.MODE_REPAIR) {
             @Override public boolean mayPlace(@NotNull ItemStack stack) {
-                return stack.is(ModItems.BIO_REPAIR_KIT.get());
+                return isActive() && stack.is(ModItems.BIO_REPAIR_KIT.get());
             }
         });
-        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_BIOGEL, 141, 131,
+        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_BIOGEL, 126, 98,
                 BioincubatorBlockEntity.MODE_REPAIR) {
             @Override public boolean mayPlace(@NotNull ItemStack stack) {
-                return stack.is(ModItems.BIOGEL.get());
+                return isActive() && stack.is(ModItems.BIOGEL.get());
             }
         });
-        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_NUTRIENT, 175, 131,
+        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_NUTRIENT, 154, 98,
                 BioincubatorBlockEntity.MODE_REPAIR) {
             @Override public boolean mayPlace(@NotNull ItemStack stack) {
-                return stack.is(ModItems.NUTRIENT_MIX.get());
+                return isActive() && stack.is(ModItems.NUTRIENT_MIX.get());
             }
         });
-        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_OUTPUT, 209, 131,
+        addSlot(new ModeSlot(machineInventory, BioincubatorBlockEntity.SLOT_OUTPUT, 186, 98,
                 BioincubatorBlockEntity.MODE_REPAIR) {
             @Override public boolean mayPlace(@NotNull ItemStack stack) { return false; }
         });
 
+        IItemHandler moduleInventory=incubator==null?new ItemStackHandler(2):incubator.getModules();
+        for(int moduleSlot=0;moduleSlot<2;moduleSlot++)addSlot(new SlotItemHandler(moduleInventory,moduleSlot,22,67+30*moduleSlot){
+            public boolean isActive(){return isModulePanelOpen();}
+            public boolean mayPlace(ItemStack stack){return isActive()&&stack.getItem() instanceof MachineModuleItem&&super.mayPlace(stack);}
+            public int getMaxStackSize(){return 1;}
+            public boolean mayPickup(Player player){return isActive()&&(!(getItem().getItem() instanceof MachineModuleItem m)||m.module().type()!=MachineModuleType.BUFFER||getEnergy()<=BioincubatorBlockEntity.ENERGY_CAPACITY);}
+        });
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 9; column++) {
                 addSlot(new net.minecraft.world.inventory.Slot(
                         playerInventory,
                         column + row * 9 + 9,
-                        54 + column * 22,
-                        216 + row * 22
+                        14 + column * 22,
+                        161 + row * 22
                 ));
             }
         }
@@ -147,8 +168,8 @@ public final class BioincubatorMenu extends AbstractContainerMenu {
             addSlot(new net.minecraft.world.inventory.Slot(
                     playerInventory,
                     column,
-                    54 + column * 22,
-                    284
+                    14 + column * 22,
+                    229
             ));
         }
     }
@@ -160,10 +181,11 @@ public final class BioincubatorMenu extends AbstractContainerMenu {
 
     @Override
     public @NotNull ItemStack quickMoveStack(Player player, int index) {
+        if(index<0||index>=slots.size())return ItemStack.EMPTY;
         ItemStack result = ItemStack.EMPTY;
         net.minecraft.world.inventory.Slot slot = slots.get(index);
 
-        if (slot == null || !slot.hasItem()) {
+        if (slot == null || !slot.isActive() || !slot.mayPickup(player) || !slot.hasItem()) {
             return result;
         }
 
@@ -174,21 +196,23 @@ public final class BioincubatorMenu extends AbstractContainerMenu {
             if (!moveItemStackTo(stack, PLAYER_START, HOTBAR_END, true)) {
                 return ItemStack.EMPTY;
             }
-        } else if (isValidCapsuleForMode(stack, getMode())) {
+        } else if(stack.getItem() instanceof MachineModuleItem){
+            if(!isModulePanelOpen()||!moveItemStackTo(stack,7,9,false))return ItemStack.EMPTY;
+        } else if (isMainPanelOpen() && isValidCapsuleForMode(stack, getMode())) {
             int target = getMode() == BioincubatorBlockEntity.MODE_REPAIR ? 2 : 0;
             if (!moveItemStackTo(stack, target, target + 1, false)) {
                 return ItemStack.EMPTY;
             }
-        } else if (getMode() == BioincubatorBlockEntity.MODE_REPAIR
+        } else if (isMainPanelOpen() && getMode() == BioincubatorBlockEntity.MODE_REPAIR
                 && stack.is(ModItems.BIO_REPAIR_KIT.get())) {
             if (!moveItemStackTo(stack, 3, 4, false)) return ItemStack.EMPTY;
-        } else if (getMode() == BioincubatorBlockEntity.MODE_REPAIR
+        } else if (isMainPanelOpen() && getMode() == BioincubatorBlockEntity.MODE_REPAIR
                 && stack.is(ModItems.BIOGEL.get())) {
             if (!moveItemStackTo(stack, 4, 5, false)) return ItemStack.EMPTY;
-        } else if (getMode() == BioincubatorBlockEntity.MODE_REPAIR
+        } else if (isMainPanelOpen() && getMode() == BioincubatorBlockEntity.MODE_REPAIR
                 && stack.is(ModItems.NUTRIENT_MIX.get())) {
             if (!moveItemStackTo(stack, 5, 6, false)) return ItemStack.EMPTY;
-        } else if (getMode() == BioincubatorBlockEntity.MODE_INCUBATION && isKnownFeed(stack)) {
+        } else if (isMainPanelOpen() && getMode() == BioincubatorBlockEntity.MODE_INCUBATION && isKnownFeed(stack)) {
             if (!moveItemStackTo(stack, 1, 2, false)) {
                 return ItemStack.EMPTY;
             }
@@ -222,23 +246,25 @@ public final class BioincubatorMenu extends AbstractContainerMenu {
 
     private boolean isValidCapsuleForMode(ItemStack stack, int requestedMode) {
         BioModuleData.Sample sample = BioModuleData.sample(stack);
-        return BioModuleData.isIdentificationUnlocked(level)
-                && sample != null
-                && sample.damaged() == (requestedMode == BioincubatorBlockEntity.MODE_REPAIR)
-                && (level.isClientSide
-                ? BioModuleClientState.isAllowed(sample.entityId())
-                : BioLootData.isAllowed(sample.entityId()));
+        // Never reject a real capsule at the GUI boundary. Wrong mode, locked
+        // database and unsupported species are reported by machine status.
+        return sample != null;
     }
 
     @Override
     public boolean clickMenuButton(Player player, int id) {
-        if (id == MODE_BUTTON) {
+        if(!stillValid(player))return false;
+        if(id==200||id==201||id==202){setTab(id);return true;}
+        if(isMainPanelOpen()&&(id==52||id==53)){
+            if(incubator!=null&&getMode()!=id-52)incubator.toggleMode();return true;
+        }
+        if (isMainPanelOpen() && id == MODE_BUTTON) {
             if (incubator != null) incubator.toggleMode();
             return true;
         }
         int sideIndex = id - SIDE_BUTTON_BASE;
 
-        if (sideIndex < 0 || sideIndex >= RelativeSide.values().length) {
+        if (!isSidePanelOpen() || sideIndex < 0 || sideIndex >= RelativeSide.values().length) {
             return false;
         }
 
@@ -328,7 +354,7 @@ public final class BioincubatorMenu extends AbstractContainerMenu {
 
         @Override
         public boolean isActive() {
-            return getMode() == requiredMode;
+            return isMainPanelOpen() && getMode() == requiredMode;
         }
 
         @Override

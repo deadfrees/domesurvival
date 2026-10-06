@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "domesurvival:block/nickel_block"
+    "all": "domesurvival:block/materials_v2/nickel_block"
   }
 }

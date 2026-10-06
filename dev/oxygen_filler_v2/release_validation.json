@@ -1,0 +1,30 @@
+{
+  "result": "PASS",
+  "runtime_assertions": 436,
+  "visual_checks": {
+    "result": "PASS",
+    "socket_configurations_without_coplanar_overlap": 40,
+    "flat_module_items": 6,
+    "electrolyzer_enclosure_uses_generator_panel_uv": true
+  },
+  "packaged_resources_checked": 53,
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "076dd13decbc92675cd0871de1825c027fe302d792f7b14d21e16cfe0327e7e6",
+  "bytes": 199651774,
+  "screenshots": [
+    "01_existing_model.png",
+    "02_main_gui.png",
+    "03_energy_tooltip.png",
+    "03_main_scale3.png",
+    "04_sides.png",
+    "05_modules_empty.png",
+    "06_modules_installed.png",
+    "07_module_help.png",
+    "07_module_scale3.png",
+    "08_jei.png",
+    "09_jei_progress.png",
+    "10_ventilation_gui.png",
+    "11_ventilation_vapour.png",
+    "12_vapour_motion.png"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "domesurvival:block/goteium_block"
+    "all": "domesurvival:block/materials_v2/goteium_block"
   }
 }

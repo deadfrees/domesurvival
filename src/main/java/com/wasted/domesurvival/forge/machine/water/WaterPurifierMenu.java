@@ -1,157 +1,90 @@
 package com.wasted.domesurvival.forge.machine.water;
 
 import com.wasted.domesurvival.forge.block.ModBlocks;
-import com.wasted.domesurvival.forge.item.ModItems;
-import com.wasted.domesurvival.forge.item.WaterFilterItem;
-import com.wasted.domesurvival.forge.machine.side.RelativeSide;
-import com.wasted.domesurvival.forge.machine.side.SideMode;
+import com.wasted.domesurvival.forge.machine.module.*;
+import com.wasted.domesurvival.forge.machine.side.*;
 import com.wasted.domesurvival.forge.registry.ModMenuTypes;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.core.*;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraftforge.items.*;
 
 public final class WaterPurifierMenu extends AbstractContainerMenu {
-    private static final int WATER_SLOT_INDEX = 0;
-    private static final int FILTER_SLOT_INDEX = 1;
-    private static final int PLAYER_INVENTORY_START = 2;
-    private static final int PLAYER_INVENTORY_END = 29;
-    private static final int HOTBAR_START = 29;
-    private static final int HOTBAR_END = 38;
-    private static final int SIDE_BUTTON_BASE = 100;
-
+    public static final int MAIN_TAB=201, MODULE_TAB=200, SIDE_TAB=202;
+    private int tab=MAIN_TAB;
     private final Level level;
-    private final BlockPos blockPos;
-    private final ContainerLevelAccess access;
+    private final BlockPos pos;
+    private final WaterPurifierBlockEntity furnace;
     private final ContainerData data;
-    @Nullable private final WaterPurifierBlockEntity purifier;
-
-    public WaterPurifierMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
-        this(containerId, playerInventory, null, new ItemStackHandler(2),
-                new SimpleContainerData(WaterPurifierBlockEntity.DATA_COUNT), extraData.readBlockPos());
-    }
-
-    public WaterPurifierMenu(int containerId, Inventory playerInventory, WaterPurifierBlockEntity purifier) {
-        this(containerId, playerInventory, purifier, purifier.getInventory(), purifier.getDataAccess(), purifier.getBlockPos());
-    }
-
-    private WaterPurifierMenu(int containerId, Inventory playerInventory,
-                              @Nullable WaterPurifierBlockEntity purifier,
-                              IItemHandler machineInventory, ContainerData data, BlockPos blockPos) {
-        super(ModMenuTypes.WATER_PURIFIER.get(), containerId);
-        this.level = playerInventory.player.level();
-        this.blockPos = blockPos;
-        this.access = ContainerLevelAccess.create(level, blockPos);
-        this.data = data;
-        this.purifier = purifier;
-        checkContainerDataCount(data, WaterPurifierBlockEntity.DATA_COUNT);
-        addDataSlots(data);
-
-        addSlot(new SlotItemHandler(machineInventory, WaterPurifierBlockEntity.SLOT_WATER_BUCKET, 150, 140) {
-            @Override public boolean mayPlace(@NotNull ItemStack stack) { return stack.is(Items.WATER_BUCKET); }
+    public WaterPurifierMenu(int id,Inventory inv,FriendlyByteBuf extra){this(id,inv,null,new ItemStackHandler(2),new SimpleContainerData(WaterPurifierBlockEntity.DATA_COUNT),extra.readBlockPos());}
+    public WaterPurifierMenu(int id,Inventory inv,WaterPurifierBlockEntity furnace){this(id,inv,furnace,furnace.getInventory(),furnace.getDataAccess(),furnace.getBlockPos());}
+    private WaterPurifierMenu(int id,Inventory inv,WaterPurifierBlockEntity furnace,IItemHandler container,ContainerData data,BlockPos pos){
+        super(ModMenuTypes.WATER_PURIFIER.get(),id);this.furnace=furnace;this.data=data;this.pos=pos;level=inv.player.level();
+        addDataSlots(new ContainerData(){
+            public int get(int i){return (data.get(i/2)>>>((i%2)*16))&65535;}
+            public void set(int i,int v){int shift=i%2*16;data.set(i/2,(data.get(i/2)&~(65535<<shift))|((v&65535)<<shift));}
+            public int getCount(){return data.getCount()*2;}
         });
-        addSlot(new SlotItemHandler(machineInventory, WaterPurifierBlockEntity.SLOT_FILTER, 182, 140) {
-            @Override public boolean mayPlace(@NotNull ItemStack stack) { return stack.getItem() instanceof WaterFilterItem; }
+        addSlot(new SlotItemHandler(container,0,46,111){
+            public boolean isActive(){return isMainPanelOpen();}public boolean mayPickup(Player p){return isActive();}
+            public boolean mayPlace(ItemStack s){return isActive()&&s.is(net.minecraft.world.item.Items.WATER_BUCKET);}
         });
-
-        addPlayerInventory(playerInventory);
-        addPlayerHotbar(playerInventory);
+        addSlot(new SlotItemHandler(container,1,182,111){
+            public boolean isActive(){return isMainPanelOpen();}public boolean mayPickup(Player p){return isActive();}
+            public boolean mayPlace(ItemStack s){return isActive()&&s.getItem() instanceof com.wasted.domesurvival.forge.item.WaterFilterItem;}
+        });
+        for(int row=0;row<3;row++)for(int col=0;col<9;col++)addSlot(new Slot(inv,col+row*9+9,14+col*22,161+row*22));
+        for(int col=0;col<9;col++)addSlot(new Slot(inv,col,14+col*22,229));
+        for(int i=0;i<2;i++)addSlot(new SlotItemHandler(furnace==null?new ItemStackHandler(2):furnace.getModules(),i,22,67+i*30){
+            public boolean isActive(){return isModulePanelOpen();}
+            public boolean mayPickup(Player p){return isActive()&&(!(getItem().getItem() instanceof MachineModuleItem m)||m.module().type()!=MachineModuleType.BUFFER||energyStored()<=WaterPurifierBlockEntity.ENERGY_CAPACITY);}
+            public int getMaxStackSize(){return 1;}
+            public boolean mayPlace(ItemStack s){return isActive()&&s.getItem() instanceof MachineModuleItem&&super.mayPlace(s);}
+        });
     }
-
-    private void addPlayerInventory(Inventory playerInventory) {
-        for (int row = 0; row < 3; row++) {
-            for (int column = 0; column < 9; column++) {
-                addSlot(new net.minecraft.world.inventory.Slot(
-                        playerInventory, column + row * 9 + 9, 14 + column * 22, 182 + row * 22));
-            }
-        }
+    public boolean isMainPanelOpen(){return tab==MAIN_TAB;}
+    public boolean isModulePanelOpen(){return tab==MODULE_TAB;}
+    public boolean isSidePanelOpen(){return tab==SIDE_TAB;}
+    public void setTab(int tab){this.tab=tab;}
+    public BlockPos getBlockPos(){return pos;}
+    public int energyStored(){return data.get(0);} public int energyCapacity(){return data.get(1);}
+    public int rawWater(){return data.get(2);}public int rawCapacity(){return data.get(3);}
+    public int purifiedWater(){return data.get(4);}public int purifiedCapacity(){return data.get(5);}
+    public int progress(){return data.get(6);}public int progressMax(){return data.get(7);}
+    public int status(){return data.get(8);}public int cycleEnergy(){return data.get(15);}public int filterRemaining(){return data.get(16);}
+    public SideMode getSideMode(RelativeSide side){
+        if(side==RelativeSide.FRONT)return SideMode.DISABLED;
+        var state=level.getBlockState(pos);
+        Direction facing=state.hasProperty(AbstractFurnaceBlock.FACING)?state.getValue(AbstractFurnaceBlock.FACING):Direction.NORTH;
+        int value=data.get(9+side.resolve(facing).ordinal());
+        return value>=0&&value<SideMode.values().length?SideMode.values()[value]:SideMode.DISABLED;
     }
-
-    private void addPlayerHotbar(Inventory playerInventory) {
-        for (int column = 0; column < 9; column++) {
-            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, column, 14 + column * 22, 250));
-        }
+    @Override public boolean stillValid(Player player){return stillValid(ContainerLevelAccess.create(level,pos),player,ModBlocks.WATER_PURIFIER.get());}
+    @Override public boolean clickMenuButton(Player player,int id){
+        if(!stillValid(player))return false;
+        if(id==MAIN_TAB||id==MODULE_TAB||id==SIDE_TAB){setTab(id);return true;}
+        int side=id-100;
+        if(!isSidePanelOpen()||side<0||side>=RelativeSide.values().length||RelativeSide.values()[side]==RelativeSide.FRONT)return false;
+        if(furnace!=null)furnace.cycleSideMode(RelativeSide.values()[side]);return true;
     }
-
-    @Override
-    public boolean stillValid(Player player) {
-        return stillValid(access, player, ModBlocks.WATER_PURIFIER.get());
-    }
-
-    @Override
-    public @NotNull ItemStack quickMoveStack(Player player, int index) {
-        ItemStack result = ItemStack.EMPTY;
-        net.minecraft.world.inventory.Slot slot = slots.get(index);
-        if (slot == null || !slot.hasItem()) return result;
-
-        ItemStack stack = slot.getItem();
-        result = stack.copy();
-        if (index == WATER_SLOT_INDEX || index == FILTER_SLOT_INDEX) {
-            if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, HOTBAR_END, true)) return ItemStack.EMPTY;
-        } else if (stack.is(Items.WATER_BUCKET)
-                && moveItemStackTo(stack, WATER_SLOT_INDEX, WATER_SLOT_INDEX + 1, false)) {
-            // moved to water input
-        } else if (stack.getItem() instanceof WaterFilterItem
-                && moveItemStackTo(stack, FILTER_SLOT_INDEX, FILTER_SLOT_INDEX + 1, false)) {
-            // moved to filter input
-        } else if (index >= PLAYER_INVENTORY_START && index < PLAYER_INVENTORY_END) {
-            if (!moveItemStackTo(stack, HOTBAR_START, HOTBAR_END, false)) return ItemStack.EMPTY;
-        } else if (index >= HOTBAR_START && index < HOTBAR_END) {
-            if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END, false)) return ItemStack.EMPTY;
-        } else {
-            return ItemStack.EMPTY;
-        }
-
-        if (stack.isEmpty()) slot.set(ItemStack.EMPTY); else slot.setChanged();
-        return result;
-    }
-
-    @Override
-    public boolean clickMenuButton(Player player, int id) {
-        int sideIndex = id - SIDE_BUTTON_BASE;
-        if (sideIndex < 0 || sideIndex >= RelativeSide.values().length) return false;
-        RelativeSide side = RelativeSide.values()[sideIndex];
-        if (!WaterPurifierBlockEntity.isConfigurableSide(side)) return false;
-        if (purifier != null) purifier.cycleSideMode(side);
-        return true;
-    }
-
-    public static int sideButtonId(RelativeSide side) { return SIDE_BUTTON_BASE + side.ordinal(); }
-
-    public int getEnergyStored() { return data.get(WaterPurifierBlockEntity.DATA_ENERGY); }
-    public int getEnergyCapacity() { return data.get(WaterPurifierBlockEntity.DATA_CAPACITY); }
-    public int getRawWater() { return data.get(WaterPurifierBlockEntity.DATA_RAW_WATER); }
-    public int getRawCapacity() { return data.get(WaterPurifierBlockEntity.DATA_RAW_CAPACITY); }
-    public int getPurifiedWater() { return data.get(WaterPurifierBlockEntity.DATA_PURIFIED_WATER); }
-    public int getPurifiedCapacity() { return data.get(WaterPurifierBlockEntity.DATA_PURIFIED_CAPACITY); }
-    public int getProgress() { return data.get(WaterPurifierBlockEntity.DATA_PROGRESS); }
-    public int getProgressMax() { return data.get(WaterPurifierBlockEntity.DATA_PROGRESS_MAX); }
-    public int getStatus() { return data.get(WaterPurifierBlockEntity.DATA_STATUS); }
-
-    public SideMode getSideMode(RelativeSide side) {
-        if (!WaterPurifierBlockEntity.isConfigurableSide(side)) return SideMode.DISABLED;
-        Direction worldDirection = side.resolve(getFacing());
-        int ordinal = data.get(WaterPurifierBlockEntity.DATA_SIDES_START + worldDirection.ordinal());
-        SideMode[] modes = SideMode.values();
-        return ordinal >= 0 && ordinal < modes.length ? modes[ordinal] : SideMode.DISABLED;
-    }
-
-    public Direction getFacing() {
-        BlockState state = level.getBlockState(blockPos);
-        return state.hasProperty(WaterPurifierBlock.FACING) ? state.getValue(WaterPurifierBlock.FACING) : Direction.NORTH;
+    @Override public ItemStack quickMoveStack(Player player,int index){
+        if(index<0||index>=slots.size())return ItemStack.EMPTY;
+        Slot slot=slots.get(index);if(!slot.isActive()||!slot.hasItem()||!slot.mayPickup(player))return ItemStack.EMPTY;
+        ItemStack stack=slot.getItem(),copy=stack.copy();
+        if(index<2||index>=38){if(!moveItemStackTo(stack,2,38,true))return ItemStack.EMPTY;}
+        else if(stack.getItem() instanceof MachineModuleItem){if(!isModulePanelOpen()||!moveItemStackTo(stack,38,40,false))return ItemStack.EMPTY;}
+        else if(isMainPanelOpen()&&stack.is(net.minecraft.world.item.Items.WATER_BUCKET)){if(!moveItemStackTo(stack,0,1,false))return ItemStack.EMPTY;}
+        else if(isMainPanelOpen()&&stack.getItem() instanceof com.wasted.domesurvival.forge.item.WaterFilterItem){if(!moveItemStackTo(stack,1,2,false))return ItemStack.EMPTY;}
+        else if(index<29){if(!moveItemStackTo(stack,29,38,false))return ItemStack.EMPTY;}
+        else if(!moveItemStackTo(stack,2,29,false))return ItemStack.EMPTY;
+        if(stack.getCount()==copy.getCount())return ItemStack.EMPTY;
+        if(stack.isEmpty())slot.set(ItemStack.EMPTY);else slot.setChanged();
+        slot.onTake(player,stack);return copy;
     }
 }

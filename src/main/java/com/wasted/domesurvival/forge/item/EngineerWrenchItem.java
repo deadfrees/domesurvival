@@ -25,9 +25,12 @@ import java.util.*;
 
 /** Native engineer tool. Thermal/CoFH are optional compatibility targets only. */
 public final class EngineerWrenchItem extends Item {
-    private static final Set<String> PORTABLE = Set.of("forming_press", "coal_generator", "copper_furnace",
-            "water_purifier", "oxygen_electrolyzer", "oxygen_filler", "bioincubator", "energy_buffer",
+    private static final Set<String> PORTABLE = Set.of("forming_press", "coal_generator", "copper_furnace", "coke_oven", "shaft_furnace",
+            "water_purifier", "oxygen_electrolyzer", "oxygen_filler", "filter_regeneration_station", "organic_processor", "bioincubator", "energy_buffer",
             "energy_buffer_titan", "energy_buffer_adamantium", "energy_buffer_creative", "universal_tank");
+    // These clone paths omit contents which their own onRemove must release/account for.
+    private static final Set<String> KEEP_ENTITY_ON_REMOVAL = Set.of("universal_tank", "energy_buffer",
+            "energy_buffer_titan", "energy_buffer_adamantium", "energy_buffer_creative");
     public EngineerWrenchItem(Properties properties) { super(properties); }
     @Override public boolean hasCraftingRemainingItem(ItemStack stack) { return true; }
     @Override public ItemStack getCraftingRemainingItem(ItemStack stack) { return stack.copyWithCount(1); }
@@ -49,15 +52,15 @@ public final class EngineerWrenchItem extends Item {
                 if (!level.getBlockState(pos).equals(state)) return InteractionResult.FAIL;
                 ItemStack portable=block.getCloneItemStack(state,hit,level,pos,player);
                 if(portable.isEmpty())return InteractionResult.FAIL;
-                // Reservoir removal must retain its BE for shared-content bookkeeping.
-                // Simple machines instead transfer ownership to the stack before onRemove.
+                // Buffers drop the excluded ChargeSlot separately; the reservoir updates
+                // shared contents. Other machines transfer their whole inventory to NBT.
                 var entity = level.getBlockEntity(pos);
-                if(!id.getPath().equals("universal_tank"))level.removeBlockEntity(pos);
+                if(!KEEP_ENTITY_ON_REMOVAL.contains(id.getPath()))level.removeBlockEntity(pos);
                 if(!level.setBlock(pos,Blocks.AIR.defaultBlockState(),11)) {
                     if(entity!=null){entity.clearRemoved();level.setBlockEntity(entity);}
                     return InteractionResult.FAIL;
                 }
-                if(!player.addItem(portable))Block.popResource(level,pos,portable);
+                Block.popResource(level,pos,portable);
                 return InteractionResult.CONSUME;
             }
             return optionalDismantle(block,level,pos,state,hit,player);
@@ -77,6 +80,30 @@ public final class EngineerWrenchItem extends Item {
             level.updateNeighborsAt(pos,block);
             if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.forming.FormingPressBlockEntity press)
                 press.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.copper.CopperFurnaceBlockEntity furnace)
+                furnace.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.shaft.CokeOvenBlockEntity oven)
+                oven.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.shaft.ShaftFurnaceBlockEntity shaft)
+                shaft.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.water.WaterPurifierBlockEntity purifier)
+                purifier.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.oxygen.OxygenElectrolyzerBlockEntity electrolyzer)
+                electrolyzer.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.oxygen.OxygenFillerBlockEntity filler)
+                filler.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.filter.FilterRegenerationBlockEntity regenerator)
+                regenerator.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.bio.BioincubatorBlockEntity incubator)
+                incubator.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.energy.EnergyBufferBlockEntity buffer)
+                buffer.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.energy.TitanEnergyBufferBlockEntity buffer)
+                buffer.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.energy.AdamantiumEnergyBufferBlockEntity buffer)
+                buffer.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            if(level.getBlockEntity(pos) instanceof com.wasted.domesurvival.forge.machine.organic.OrganicProcessorBlockEntity processor)
+                processor.rotateSideConfiguration(state.getValue(BlockStateProperties.HORIZONTAL_FACING));
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
@@ -126,7 +153,7 @@ public final class EngineerWrenchItem extends Item {
             if(!(boolean)api.getMethod("canDismantle",Level.class,BlockPos.class,BlockState.class,Player.class).invoke(block,level,pos,state,player))return InteractionResult.PASS;
             if(!level.isClientSide){
                 if(player instanceof ServerPlayer sp&&ForgeHooks.onBlockBreakEvent(level,sp.gameMode.getGameModeForPlayer(),sp,pos)==-1)return InteractionResult.FAIL;
-                api.getMethod("dismantleBlock",Level.class,BlockPos.class,BlockState.class,HitResult.class,Player.class,boolean.class).invoke(block,level,pos,state,hit,player,true);
+                api.getMethod("dismantleBlock",Level.class,BlockPos.class,BlockState.class,HitResult.class,Player.class,boolean.class).invoke(block,level,pos,state,hit,player,false);
             }
             return InteractionResult.sidedSuccess(level.isClientSide);
         }catch(ReflectiveOperationException ex){com.mojang.logging.LogUtils.getLogger().warn("Optional wrench dismantle failed",ex);return InteractionResult.FAIL;}

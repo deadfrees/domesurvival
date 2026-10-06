@@ -10,13 +10,13 @@ import net.minecraft.core.particles.SimpleParticleType;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * A restrained oxygen-vent pulse: a translucent membrane that grows from the top of the machine
- * and dissolves as it rises. It is intentionally client-local to avoid particle network traffic.
+ * A light plume of oxygen vapour, emitted locally from the filler's diffuser.
  */
 public final class VentilationBubbleParticle extends TextureSheetParticle {
-    private static final float START_SIZE = 0.16F;
-    private static final float END_SIZE = 0.82F;
-    private static final float MAX_ALPHA = 0.34F;
+    private static final float START_SIZE = 0.07F;
+    private static final float END_SIZE = 0.38F;
+    private static final float MAX_ALPHA = 0.24F;
+    private float previousAlpha;
 
     private final SpriteSet sprites;
 
@@ -31,18 +31,19 @@ public final class VentilationBubbleParticle extends TextureSheetParticle {
         this.zd = zd;
         this.gravity = 0.0F;
         this.friction = 0.985F;
-        this.hasPhysics = false;
-        this.lifetime = 28;
+        this.hasPhysics = true;
+        this.lifetime = 42 + random.nextInt(18);
         this.quadSize = START_SIZE;
         this.alpha = 0.0F;
-        this.rCol = 0.70F;
-        this.gCol = 0.90F;
-        this.bCol = 0.98F;
-        this.pickSprite(sprites);
+        this.rCol = 0.78F;
+        this.gCol = 0.80F;
+        this.bCol = 0.81F;
+        this.setSpriteFromAge(sprites);
     }
 
     @Override
     public void tick() {
+        previousAlpha = alpha;
         super.tick();
         if (!isAlive()) return;
 
@@ -55,10 +56,19 @@ public final class VentilationBubbleParticle extends TextureSheetParticle {
         this.alpha = MAX_ALPHA * fadeIn * fadeOut;
 
         // Very small drift prevents the pulse from looking like a static GUI decal in-world.
-        this.xd *= 0.96D;
-        this.zd *= 0.96D;
-        this.yd = Math.min(0.022D, this.yd + 0.00035D);
+        this.xd *= 0.99D;
+        this.zd *= 0.99D;
+        this.yd = Math.min(0.024D, this.yd + 0.00015D);
         this.setSpriteFromAge(sprites);
+    }
+
+    @Override public float getQuadSize(float partialTick) {
+        float t=Math.min(1,(age+partialTick)/(float)lifetime);
+        return START_SIZE+(END_SIZE-START_SIZE)*(1-(1-t)*(1-t));
+    }
+    @Override public void render(com.mojang.blaze3d.vertex.VertexConsumer buffer,net.minecraft.client.Camera camera,float partialTick) {
+        float current=alpha;alpha=previousAlpha+(current-previousAlpha)*partialTick;
+        super.render(buffer,camera,partialTick);alpha=current;
     }
 
     @Override

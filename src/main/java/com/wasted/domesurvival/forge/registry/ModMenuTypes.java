@@ -12,7 +12,9 @@ import com.wasted.domesurvival.forge.machine.water.WaterPurifierMenu;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenElectrolyzerMenu;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenFillerMenu;
 import com.wasted.domesurvival.forge.machine.bio.BioincubatorMenu;
+import com.wasted.domesurvival.forge.lanos.LanosTrunkMenu;
 import com.wasted.domesurvival.forge.machine.sieve.SandSieveMenu;
+import com.wasted.domesurvival.forge.metro.network.MetroNetworkMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -24,6 +26,8 @@ public final class ModMenuTypes {
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, DomeSurvival.MOD_ID);
 public static final RegistryObject<MenuType<CoalGeneratorMenu>> COAL_GENERATOR =
             MENU_TYPES.register("coal_generator", () -> IForgeMenuType.create(CoalGeneratorMenu::new));
+    public static final RegistryObject<MenuType<com.wasted.domesurvival.forge.machine.copper.CopperFurnaceMenu>> COPPER_FURNACE =
+            MENU_TYPES.register("copper_furnace", () -> IForgeMenuType.create(com.wasted.domesurvival.forge.machine.copper.CopperFurnaceMenu::new));
 
     public static final RegistryObject<MenuType<ShaftFurnaceMenu>> SHAFT_FURNACE =
             MENU_TYPES.register("shaft_furnace", () -> IForgeMenuType.create(ShaftFurnaceMenu::new));
@@ -55,6 +59,12 @@ public static final RegistryObject<MenuType<CoalGeneratorMenu>> COAL_GENERATOR =
 
     public static final RegistryObject<MenuType<CreativeEnergyBufferMenu>> ENERGY_BUFFER_CREATIVE =
             MENU_TYPES.register("energy_buffer_creative", () -> IForgeMenuType.create(CreativeEnergyBufferMenu::new));
+
+    public static final RegistryObject<MenuType<MetroNetworkMenu>> METRO_NETWORK =
+            MENU_TYPES.register("metro_network", () -> IForgeMenuType.create(MetroNetworkMenu::new));
+
+    public static final RegistryObject<MenuType<LanosTrunkMenu>> LANOS_TRUNK =
+            MENU_TYPES.register("lanos_trunk", () -> IForgeMenuType.create(LanosTrunkMenu::new));
 
     private ModMenuTypes() {
     }

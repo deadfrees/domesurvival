@@ -1,0 +1,5 @@
+{
+  "multipart": [
+    { "apply": { "model": "domesurvival:block/lanos_hitbox_part" } }
+  ]
+}

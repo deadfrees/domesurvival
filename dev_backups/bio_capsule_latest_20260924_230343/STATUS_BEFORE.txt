@@ -1,0 +1,348 @@
+ M CUSTOMNPCS_STAGE4/joseph_cooper_gui.js
+ M build.gradle
+ M dev/forming_press_v2/release_validation.json
+ M dev/forming_press_v2/runtime_probe/FormingPressProbe.java
+ M dev/forming_press_v2/verify_release.py
+ M dev/quest_master/ftbquests/quests/chapters/4A2E731D5C9B684F.snbt
+ M docs/ENGINEER_WRENCH_NATIVE.md
+ M docs/FORMING_PRESS_REFINEMENT.md
+ M docs/MACHINE_REFINEMENT_ROADMAP.md
+ M source_assets/blender/forming_press/forming_press.blend
+ M source_assets/blender/forming_press/forming_press.png
+ M source_assets/blender/forming_press_gui/forming_press_gui.blend
+ M source_assets/blender/scripts/create_forming_press_gui.py
+ M source_assets/blender/scripts/create_forming_press_v2.py
+ M src/main/java/com/wasted/domesurvival/forge/DomeSurvival.java
+ M src/main/java/com/wasted/domesurvival/forge/block/CopperFurnaceBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/block/DecorativeLanosBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/block/ModBlocks.java
+ M src/main/java/com/wasted/domesurvival/forge/client/ClientModEvents.java
+ M src/main/java/com/wasted/domesurvival/forge/client/itempipe/ItemConnectorScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/client/jei/DomeSurvivalJeiPlugin.java
+ M src/main/java/com/wasted/domesurvival/forge/client/jei/FormingPressRecipeCategory.java
+ M src/main/java/com/wasted/domesurvival/forge/client/jei/IndustrialCrusherRecipeCategory.java
+ M src/main/java/com/wasted/domesurvival/forge/client/render/FormingPressRenderer.java
+ M src/main/java/com/wasted/domesurvival/forge/client/screen/AdamantiumEnergyBufferScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/client/screen/CoalGeneratorScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/client/screen/CokeOvenScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/client/screen/CreativeEnergyBufferScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/client/screen/EnergyBufferScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/client/screen/TitanEnergyBufferScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/environment/SurfaceHazardEnvironment.java
+ M src/main/java/com/wasted/domesurvival/forge/environment/SurfaceSuitEquipment.java
+ M src/main/java/com/wasted/domesurvival/forge/fluid/ModFluids.java
+ M src/main/java/com/wasted/domesurvival/forge/item/EngineerWrenchItem.java
+ M src/main/java/com/wasted/domesurvival/forge/item/ModCreativeTabs.java
+ M src/main/java/com/wasted/domesurvival/forge/item/ModItems.java
+ M src/main/java/com/wasted/domesurvival/forge/loot/GeneratedStructureStorageService.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/bio/BioincubatorBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/bio/BioincubatorScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/coal/CoalGeneratorBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/copper/CopperFurnaceBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/crusher/IndustrialCrusherBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/crusher/IndustrialCrusherMenu.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/crusher/IndustrialCrusherScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/AdamantiumEnergyBufferBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/AdamantiumEnergyBufferBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/AdamantiumEnergyBufferMenu.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/CreativeEnergyBufferBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/CreativeEnergyBufferBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/CreativeEnergyBufferMenu.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/EnergyBufferBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/EnergyBufferBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/EnergyBufferMenu.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/TitanEnergyBufferBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/TitanEnergyBufferBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/energy/TitanEnergyBufferMenu.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/forming/FormingPressBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/forming/FormingPressMenu.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/forming/FormingPressScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/module/MachineModuleItem.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/CokeOvenBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/CokeOvenBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/CokeOvenMenu.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/CokeOvenPartBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/material/TechMaterials.java
+ M src/main/java/com/wasted/domesurvival/forge/network/ModNetwork.java
+ M src/main/java/com/wasted/domesurvival/forge/oxygen/OxygenEnvironment.java
+ M src/main/java/com/wasted/domesurvival/forge/quest/QuestCampaignRegistry.java
+ M src/main/java/com/wasted/domesurvival/forge/quest/QuestGlobalRegistry.java
+ M src/main/java/com/wasted/domesurvival/forge/quest/QuestProgressFlags.java
+ M src/main/java/com/wasted/domesurvival/forge/recipe/IndustrialCrusherRecipe.java
+ M src/main/java/com/wasted/domesurvival/forge/recipe/ModRecipes.java
+ M src/main/java/com/wasted/domesurvival/forge/registry/ModBlockEntities.java
+ M src/main/java/com/wasted/domesurvival/forge/registry/ModMenuTypes.java
+ M src/main/java/com/wasted/domesurvival/forge/sound/ModSounds.java
+ M src/main/resources/assets/domesurvival/blockstates/copper_furnace.json
+ M src/main/resources/assets/domesurvival/lang/en_us.json
+ M src/main/resources/assets/domesurvival/lang/ru_ru.json
+ M src/main/resources/assets/domesurvival/models/block/copper_furnace.json
+ M src/main/resources/assets/domesurvival/models/block/copper_furnace_on.json
+ M src/main/resources/assets/domesurvival/models/block/deepslate_goteium_ore.json
+ M src/main/resources/assets/domesurvival/models/block/deepslate_lead_ore.json
+ M src/main/resources/assets/domesurvival/models/block/deepslate_nickel_ore.json
+ M src/main/resources/assets/domesurvival/models/block/deepslate_silver_ore.json
+ M src/main/resources/assets/domesurvival/models/block/deepslate_tin_ore.json
+ M src/main/resources/assets/domesurvival/models/block/deepslate_voltarium_ore.json
+ M src/main/resources/assets/domesurvival/models/block/forming_press.json
+ M src/main/resources/assets/domesurvival/models/block/forming_press_active.json
+ M src/main/resources/assets/domesurvival/models/block/forming_press_inventory.json
+ M src/main/resources/assets/domesurvival/models/block/forming_press_tool.json
+ M src/main/resources/assets/domesurvival/models/block/goteium_block.json
+ M src/main/resources/assets/domesurvival/models/block/goteium_ore.json
+ M src/main/resources/assets/domesurvival/models/block/lead_block.json
+ M src/main/resources/assets/domesurvival/models/block/lead_ore.json
+ M src/main/resources/assets/domesurvival/models/block/nickel_block.json
+ M src/main/resources/assets/domesurvival/models/block/nickel_ore.json
+ M src/main/resources/assets/domesurvival/models/block/silver_block.json
+ M src/main/resources/assets/domesurvival/models/block/silver_ore.json
+ M src/main/resources/assets/domesurvival/models/block/steel_block.json
+ M src/main/resources/assets/domesurvival/models/block/tin_block.json
+ M src/main/resources/assets/domesurvival/models/block/tin_ore.json
+ M src/main/resources/assets/domesurvival/models/block/voltarium_block.json
+ M src/main/resources/assets/domesurvival/models/block/voltarium_ore.json
+ M src/main/resources/assets/domesurvival/models/item/automation_module.json
+ M src/main/resources/assets/domesurvival/models/item/buffer_module.json
+ M src/main/resources/assets/domesurvival/models/item/communication_module.json
+ M src/main/resources/assets/domesurvival/models/item/copper_furnace.json
+ M src/main/resources/assets/domesurvival/models/item/copper_plate.json
+ M src/main/resources/assets/domesurvival/models/item/copper_rod.json
+ M src/main/resources/assets/domesurvival/models/item/copper_tube.json
+ M src/main/resources/assets/domesurvival/models/item/copper_wire.json
+ M src/main/resources/assets/domesurvival/models/item/crushed_copper_ore.json
+ M src/main/resources/assets/domesurvival/models/item/crushed_gold_ore.json
+ M src/main/resources/assets/domesurvival/models/item/crushed_goteium_ore.json
+ M src/main/resources/assets/domesurvival/models/item/crushed_iron_ore.json
+ M src/main/resources/assets/domesurvival/models/item/crushed_lead_ore.json
+ M src/main/resources/assets/domesurvival/models/item/crushed_nickel_ore.json
+ M src/main/resources/assets/domesurvival/models/item/crushed_silver_ore.json
+ M src/main/resources/assets/domesurvival/models/item/crushed_tin_ore.json
+ M src/main/resources/assets/domesurvival/models/item/crushed_voltarium_ore.json
+ M src/main/resources/assets/domesurvival/models/item/efficiency_module.json
+ M src/main/resources/assets/domesurvival/models/item/emergency_protection_module.json
+ M src/main/resources/assets/domesurvival/models/item/goteium_gear.json
+ M src/main/resources/assets/domesurvival/models/item/goteium_ingot.json
+ M src/main/resources/assets/domesurvival/models/item/goteium_nugget.json
+ M src/main/resources/assets/domesurvival/models/item/goteium_plate.json
+ M src/main/resources/assets/domesurvival/models/item/lead_gear.json
+ M src/main/resources/assets/domesurvival/models/item/lead_ingot.json
+ M src/main/resources/assets/domesurvival/models/item/lead_nugget.json
+ M src/main/resources/assets/domesurvival/models/item/nickel_gear.json
+ M src/main/resources/assets/domesurvival/models/item/nickel_ingot.json
+ M src/main/resources/assets/domesurvival/models/item/nickel_nugget.json
+ M src/main/resources/assets/domesurvival/models/item/nickel_plate.json
+ M src/main/resources/assets/domesurvival/models/item/nickel_tube.json
+ M src/main/resources/assets/domesurvival/models/item/overdrive_module.json
+ M src/main/resources/assets/domesurvival/models/item/raw_goteium.json
+ M src/main/resources/assets/domesurvival/models/item/raw_lead.json
+ M src/main/resources/assets/domesurvival/models/item/raw_nickel.json
+ M src/main/resources/assets/domesurvival/models/item/raw_silver.json
+ M src/main/resources/assets/domesurvival/models/item/raw_tin.json
+ M src/main/resources/assets/domesurvival/models/item/raw_voltarium.json
+ M src/main/resources/assets/domesurvival/models/item/silver_ingot.json
+ M src/main/resources/assets/domesurvival/models/item/silver_nugget.json
+ M src/main/resources/assets/domesurvival/models/item/silver_rod.json
+ M src/main/resources/assets/domesurvival/models/item/silver_wire.json
+ M src/main/resources/assets/domesurvival/models/item/steel_gear.json
+ M src/main/resources/assets/domesurvival/models/item/steel_ingot.json
+ M src/main/resources/assets/domesurvival/models/item/steel_nugget.json
+ M src/main/resources/assets/domesurvival/models/item/steel_plate.json
+ M src/main/resources/assets/domesurvival/models/item/steel_rod.json
+ M src/main/resources/assets/domesurvival/models/item/steel_tube.json
+ M src/main/resources/assets/domesurvival/models/item/steel_wire.json
+ M src/main/resources/assets/domesurvival/models/item/tin_gear.json
+ M src/main/resources/assets/domesurvival/models/item/tin_ingot.json
+ M src/main/resources/assets/domesurvival/models/item/tin_nugget.json
+ M src/main/resources/assets/domesurvival/models/item/tin_plate.json
+ M src/main/resources/assets/domesurvival/models/item/tin_tube.json
+ M src/main/resources/assets/domesurvival/models/item/voltarium_gear.json
+ M src/main/resources/assets/domesurvival/models/item/voltarium_ingot.json
+ M src/main/resources/assets/domesurvival/models/item/voltarium_nugget.json
+ M src/main/resources/assets/domesurvival/models/item/voltarium_plate.json
+ M src/main/resources/assets/domesurvival/models/item/voltarium_rod.json
+ M src/main/resources/assets/domesurvival/models/item/voltarium_wire.json
+ M src/main/resources/assets/domesurvival/sounds.json
+ M src/main/resources/assets/domesurvival/textures/gui/forming_press_v2/configuration.png
+ M src/main/resources/assets/domesurvival/textures/gui/forming_press_v2/modules.png
+ M src/main/resources/assets/domesurvival/textures/gui/forming_press_v2/panel.png
+ M src/main/resources/assets/domesurvival_forming/lang/en_us.json
+ M src/main/resources/assets/domesurvival_forming/lang/ru_ru.json
+ M src/main/resources/data/domesurvival/bio_module_loot/default.json
+ M src/main/resources/data/minecraft/tags/blocks/mineable/pickaxe.json
+ M src/main/resources/data/minecraft/tags/blocks/needs_diamond_tool.json
+ M src/main/resources/data/minecraft/tags/blocks/needs_stone_tool.json
+?? .gradle_dev/
+?? dev/GENERATE_BIO_FACE_ATLAS_V13.ps1
+?? dev/GENERATE_SOLAR_ITEM_VARIANTS_V13.ps1
+?? dev/RUN_DEV_FULL_NPCS.bat
+?? dev/coke_oven_v2/
+?? dev/copper_furnace_v2/
+?? dev/copper_furnace_visual/
+?? dev/energy_pipes/
+?? dev/forming_press_v2/baseline_press_products/
+?? dev/forming_press_v2/preview_products.ps1
+?? dev/forming_press_v2/update_module_text.py
+?? dev/forming_press_v2/verify_visual_assets.py
+?? dev/forming_press_v2/visual_validation.json
+?? dev/materials_visual/
+?? dev/tools/CustomNpcsDevBridge.java
+?? dev/visual_overhaul/
+?? dev_backups/
+?? docs/COKE_OVEN_REFINEMENT.md
+?? docs/COPPER_FURNACE_REFINEMENT.md
+?? docs/MATERIALS_AND_CONNECTOR_REFINEMENT.md
+?? source_assets/blender/coke_oven_gui/
+?? source_assets/blender/copper_furnace/
+?? source_assets/blender/copper_furnace_gui/
+?? source_assets/blender/item_connector_gui/
+?? source_assets/blender/material_family/
+?? source_assets/blender/module_items/
+?? source_assets/blender/press_products/
+?? source_assets/blender/scripts/bake_neosteel_ingot_from_crystal.py
+?? source_assets/blender/scripts/bake_neosteel_ingot_shape.py
+?? source_assets/blender/scripts/bake_neosteel_reference.py
+?? source_assets/blender/scripts/bake_press_reference_products.py
+?? source_assets/blender/scripts/bake_reference_gears.py
+?? source_assets/blender/scripts/create_coke_oven_gui.py
+?? source_assets/blender/scripts/create_copper_furnace_gui.py
+?? source_assets/blender/scripts/create_copper_furnace_v2.py
+?? source_assets/blender/scripts/create_item_connector_gui.py
+?? source_assets/blender/scripts/create_material_family.py
+?? source_assets/blender/scripts/create_module_items.py
+?? source_assets/blender/scripts/create_press_products.py
+?? source_assets/blender/scripts/create_steel_from_voltarium.py
+?? source_assets/blender/scripts/detail_neosteel_ingot.py
+?? source_assets/blender/scripts/detail_steel_ingot.py
+?? src/main/java/com/wasted/domesurvival/forge/block/LanosHitboxPartBlock.java
+?? src/main/java/com/wasted/domesurvival/forge/client/jei/AlloyEnricherJeiPlugin.java
+?? src/main/java/com/wasted/domesurvival/forge/client/jei/AlloyEnricherRecipeCategory.java
+?? src/main/java/com/wasted/domesurvival/forge/client/jei/CoalGeneratorJeiCategory.java
+?? src/main/java/com/wasted/domesurvival/forge/client/jei/CokeOvenJeiCategory.java
+?? src/main/java/com/wasted/domesurvival/forge/client/jei/CopperFurnaceJeiCategory.java
+?? src/main/java/com/wasted/domesurvival/forge/client/jei/RefinedFuelMachinesJeiPlugin.java
+?? src/main/java/com/wasted/domesurvival/forge/client/jei/RefinedMachineJeiArt.java
+?? src/main/java/com/wasted/domesurvival/forge/client/metro/
+?? src/main/java/com/wasted/domesurvival/forge/item/EnergyCellItem.java
+?? src/main/java/com/wasted/domesurvival/forge/item/NeosteelArmorEvents.java
+?? src/main/java/com/wasted/domesurvival/forge/item/NeosteelArmorItem.java
+?? src/main/java/com/wasted/domesurvival/forge/item/NeosteelArmorMaterial.java
+?? src/main/java/com/wasted/domesurvival/forge/item/StackEnergyProvider.java
+?? src/main/java/com/wasted/domesurvival/forge/item/SurfaceProtectionModuleItem.java
+?? src/main/java/com/wasted/domesurvival/forge/lanos/
+?? src/main/java/com/wasted/domesurvival/forge/machine/alloy/
+?? src/main/java/com/wasted/domesurvival/forge/machine/copper/CopperFurnaceMenu.java
+?? src/main/java/com/wasted/domesurvival/forge/machine/copper/CopperFurnaceScreen.java
+?? src/main/java/com/wasted/domesurvival/forge/machine/energy/EnergyItemCharging.java
+?? src/main/java/com/wasted/domesurvival/forge/machine/solar/
+?? src/main/java/com/wasted/domesurvival/forge/metro/
+?? src/main/java/com/wasted/domesurvival/forge/network/MetroTravelRequestPacket.java
+?? src/main/java/com/wasted/domesurvival/forge/network/MetroTravelVisualPacket.java
+?? src/main/java/com/wasted/domesurvival/forge/recipe/AlloyEnricherRecipe.java
+?? src/main/java/com/wasted/domesurvival/forge/recipe/NeosteelSurfaceModuleRecipe.java
+?? src/main/resources/assets/domesurvival/blockstates/alloy_enricher.json
+?? src/main/resources/assets/domesurvival/blockstates/lanos_hitbox_part.json
+?? src/main/resources/assets/domesurvival/blockstates/metro_restoration_console.json
+?? src/main/resources/assets/domesurvival/blockstates/metro_train_console.json
+?? src/main/resources/assets/domesurvival/blockstates/neosteel_block.json
+?? src/main/resources/assets/domesurvival/blockstates/solar_panel_mk1.json
+?? src/main/resources/assets/domesurvival/blockstates/solar_panel_mk2.json
+?? src/main/resources/assets/domesurvival/blockstates/solar_panel_mk3.json
+?? src/main/resources/assets/domesurvival/models/block/alloy_enricher.json
+?? src/main/resources/assets/domesurvival/models/block/alloy_enricher_active.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_input_port_down.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_input_port_east.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_input_port_north.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_input_port_south.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_input_port_up.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_input_port_west.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_inventory.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_output_port_down.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_output_port_east.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_output_port_north.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_output_port_south.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_output_port_up.json
+?? src/main/resources/assets/domesurvival/models/block/copper_furnace_output_port_west.json
+?? src/main/resources/assets/domesurvival/models/block/lanos_hitbox_part.json
+?? src/main/resources/assets/domesurvival/models/block/metro_restoration_console.json
+?? src/main/resources/assets/domesurvival/models/block/metro_train_console.json
+?? src/main/resources/assets/domesurvival/models/block/neosteel_block.json
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk1.json
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk1.mtl
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk1.obj
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk2.json
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk2.mtl
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk2.obj
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk3.json
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk3.mtl
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk3.obj
+?? src/main/resources/assets/domesurvival/models/item/alloy_enricher.json
+?? src/main/resources/assets/domesurvival/models/item/neosteel_block.json
+?? src/main/resources/assets/domesurvival/models/item/neosteel_boots.json
+?? src/main/resources/assets/domesurvival/models/item/neosteel_chestplate.json
+?? src/main/resources/assets/domesurvival/models/item/neosteel_energy_cell.json
+?? src/main/resources/assets/domesurvival/models/item/neosteel_helmet.json
+?? src/main/resources/assets/domesurvival/models/item/neosteel_ingot.json
+?? src/main/resources/assets/domesurvival/models/item/neosteel_leggings.json
+?? src/main/resources/assets/domesurvival/models/item/solar_panel_mk1.json
+?? src/main/resources/assets/domesurvival/models/item/solar_panel_mk2.json
+?? src/main/resources/assets/domesurvival/models/item/solar_panel_mk3.json
+?? src/main/resources/assets/domesurvival/models/item/surface_protection_module.json
+?? src/main/resources/assets/domesurvival/sounds/lanos/
+?? src/main/resources/assets/domesurvival/textures/block/alloy_enricher_front.png
+?? src/main/resources/assets/domesurvival/textures/block/alloy_enricher_front_active.png
+?? src/main/resources/assets/domesurvival/textures/block/alloy_enricher_front_active.png.mcmeta
+?? src/main/resources/assets/domesurvival/textures/block/copper_furnace_v2/
+?? src/main/resources/assets/domesurvival/textures/block/materials_v2/
+?? src/main/resources/assets/domesurvival/textures/block/neosteel_block.png
+?? src/main/resources/assets/domesurvival/textures/block/solar_connector_body.png
+?? src/main/resources/assets/domesurvival/textures/block/solar_connector_contact.png
+?? src/main/resources/assets/domesurvival/textures/block/solar_connector_mount.png
+?? src/main/resources/assets/domesurvival/textures/block/solar_panel_mk1.png
+?? src/main/resources/assets/domesurvival/textures/block/solar_panel_mk2.png
+?? src/main/resources/assets/domesurvival/textures/block/solar_panel_mk3.png
+?? src/main/resources/assets/domesurvival/textures/gui/bio/bio_faces_atlas.png
+?? src/main/resources/assets/domesurvival/textures/gui/bio/mule.png
+?? src/main/resources/assets/domesurvival/textures/gui/bio/parrot.png
+?? src/main/resources/assets/domesurvival/textures/gui/bio/polar_bear.png
+?? src/main/resources/assets/domesurvival/textures/gui/coke_oven_v2/
+?? src/main/resources/assets/domesurvival/textures/gui/copper_furnace_v2/
+?? src/main/resources/assets/domesurvival/textures/gui/item_connector_v2/
+?? src/main/resources/assets/domesurvival/textures/item/materials_v2/
+?? src/main/resources/assets/domesurvival/textures/item/modules_v2/
+?? src/main/resources/assets/domesurvival/textures/item/neosteel_boots.png
+?? src/main/resources/assets/domesurvival/textures/item/neosteel_chestplate.png
+?? src/main/resources/assets/domesurvival/textures/item/neosteel_energy_cell.png
+?? src/main/resources/assets/domesurvival/textures/item/neosteel_helmet.png
+?? src/main/resources/assets/domesurvival/textures/item/neosteel_ingot.png
+?? src/main/resources/assets/domesurvival/textures/item/neosteel_leggings.png
+?? src/main/resources/assets/domesurvival/textures/item/press_products/
+?? src/main/resources/assets/domesurvival/textures/item/solar_generator_mk1.png
+?? src/main/resources/assets/domesurvival/textures/item/solar_generator_mk2.png
+?? src/main/resources/assets/domesurvival/textures/item/solar_generator_mk3.png
+?? src/main/resources/assets/domesurvival/textures/item/surface_protection_module.png
+?? src/main/resources/data/domesurvival/functions/
+?? src/main/resources/data/domesurvival/loot_tables/blocks/alloy_enricher.json
+?? src/main/resources/data/domesurvival/loot_tables/blocks/neosteel_block.json
+?? src/main/resources/data/domesurvival/loot_tables/blocks/solar_panel_mk1.json
+?? src/main/resources/data/domesurvival/loot_tables/blocks/solar_panel_mk2.json
+?? src/main/resources/data/domesurvival/loot_tables/blocks/solar_panel_mk3.json
+?? src/main/resources/data/domesurvival/loot_tables/chests/lanos_trunk.json
+?? src/main/resources/data/domesurvival/recipes/alloy_enriching/
+?? src/main/resources/data/domesurvival/recipes/industrial_crushing/neoflux_from_voltarium.json
+?? src/main/resources/data/domesurvival/recipes/neosteel_block_from_ingots.json
+?? src/main/resources/data/domesurvival/recipes/neosteel_boots.json
+?? src/main/resources/data/domesurvival/recipes/neosteel_chestplate.json
+?? src/main/resources/data/domesurvival/recipes/neosteel_energy_cell.json
+?? src/main/resources/data/domesurvival/recipes/neosteel_helmet.json
+?? src/main/resources/data/domesurvival/recipes/neosteel_ingots_from_block.json
+?? src/main/resources/data/domesurvival/recipes/neosteel_leggings.json
+?? src/main/resources/data/domesurvival/recipes/neosteel_surface_module_install.json
+?? src/main/resources/data/domesurvival/recipes/solar_panel_mk1.json
+?? src/main/resources/data/domesurvival/recipes/solar_panel_mk2.json
+?? src/main/resources/data/domesurvival/recipes/solar_panel_mk3.json
+?? src/main/resources/data/domesurvival/recipes/surface_protection_module.json
+?? src/main/resources/data/domesurvival/worldgen/structure/
+?? src/main/resources/data/domesurvival/worldgen/structure_set/
+?? src/main/resources/data/forge/tags/blocks/storage_blocks/neosteel.json
+?? src/main/resources/data/forge/tags/items/ingots/neosteel.json
+?? src/main/resources/data/forge/tags/items/storage_blocks/neosteel.json

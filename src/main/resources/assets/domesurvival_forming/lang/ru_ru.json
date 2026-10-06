@@ -1,5 +1,5 @@
 {
-  "block.domesurvival.forming_press": "Универсальный металлообрабатывающий станок",
+  "block.domesurvival.forming_press": "Металлообрабатывающий станок",
   "gui.domesurvival.forming_press.energy_value": "Энергия: %s / %s FE",
   "gui.domesurvival.forming_press.input": "Вход",
   "gui.domesurvival.forming_press.output": "Выход",

@@ -150,7 +150,7 @@ public final class BioincubatorBlock extends BaseEntityBlock implements cofh.lib
             BlockEntityType<T> type
     ) {
         if (level.isClientSide) {
-            return null;
+            return createTickerHelper(type, ModBlockEntities.BIOINCUBATOR.get(), BioincubatorBlockEntity::clientTick);
         }
         return createTickerHelper(
                 type,
@@ -170,6 +170,10 @@ public final class BioincubatorBlock extends BaseEntityBlock implements cofh.lib
         if (!oldState.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof BioincubatorBlockEntity incubator) {
+                for (int slot = 0; slot < incubator.getModules().getSlots(); slot++) {
+                    ItemStack module = incubator.getModules().getStackInSlot(slot);
+                    if (!module.isEmpty()) popResource(level, pos, module.copy());
+                }
                 for (int slot = 0; slot < incubator.getInventory().getSlots(); slot++) {
                     ItemStack stack = incubator.getInventory().getStackInSlot(slot);
                     if (!stack.isEmpty()) {

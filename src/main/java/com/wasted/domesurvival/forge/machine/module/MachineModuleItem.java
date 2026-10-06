@@ -32,6 +32,8 @@ public final class MachineModuleItem extends Item {
     public void appendHoverText(ItemStack stack, @Nullable Level level,
                                 List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
+        tooltip.add(Component.translatable("tooltip.domesurvival.module.install").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.domesurvival.module.install_action").withStyle(ChatFormatting.GRAY));
 
         String baseKey = "tooltip.domesurvival.module." + module.id().getPath();
         tooltip.add(Component.translatable(baseKey + ".title")

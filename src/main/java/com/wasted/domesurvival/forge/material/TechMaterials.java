@@ -77,6 +77,8 @@ public final class TechMaterials {
     public static final RegistryObject<Block> SOLARITE_BLOCK = storageBlock("solarite_block");
     public static final RegistryObject<Item> SOLARITE_SHARD = item("solarite_shard");
     public static final RegistryObject<Item> SOLARITE_CRYSTAL = item("solarite_crystal");
+    public static final RegistryObject<Item> NEOSTEEL_INGOT = item("neosteel_ingot");
+    public static final RegistryObject<Block> NEOSTEEL_BLOCK = storageBlock("neosteel_block");
 
     /** First Forming Press products migrated from GOTEICRAFT. */
     public static final RegistryObject<Item> COPPER_PLATE = item("copper_plate");
@@ -104,6 +106,7 @@ public final class TechMaterials {
         blockItem("solarite_ore", SOLARITE_ORE);
         blockItem("deepslate_solarite_ore", DEEPSLATE_SOLARITE_ORE);
         blockItem("solarite_block", SOLARITE_BLOCK);
+        blockItem("neosteel_block", NEOSTEEL_BLOCK);
     }
 
     private static RegistryObject<Block> ore(String id) {

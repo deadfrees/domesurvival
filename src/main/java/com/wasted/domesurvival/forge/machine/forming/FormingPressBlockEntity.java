@@ -87,13 +87,15 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         return Set.of(MachineModuleType.BUFFER, MachineModuleType.EFFICIENCY, MachineModuleType.OVERDRIVE);
     }
     public MachineModuleInventory getModules() { return modules; }
-    public boolean canChangeModules() { return progress == 0; }
+    public boolean canChangeModules() { return true; }
     private void modulesChanged() {
         energyStorage.setCapacityInternal(modules.modifiers().applyBufferCapacity(ENERGY_CAPACITY));
         setChanged();
     }
-    private int processingTicks(FormingPressRecipe recipe) { return modules.modifiers().applyProcessingTicks(recipe.getProcessingTime()); }
-    private int processingEnergy(FormingPressRecipe recipe) { return modules.modifiers().applyEnergyCost(recipe.getEnergy()); }
+    private int cycleTicks, cycleEnergy;
+    private boolean hasCycle(FormingPressRecipe recipe) { return recipe.getId().equals(activeRecipeId) && cycleTicks > 0; }
+    private int processingTicks(FormingPressRecipe recipe) { return hasCycle(recipe) ? cycleTicks : modules.modifiers().applyProcessingTicks(recipe.getProcessingTime()); }
+    private int processingEnergy(FormingPressRecipe recipe) { return hasCycle(recipe) ? cycleEnergy : modules.modifiers().applyEnergyCost(recipe.getEnergy()); }
 
     private final IItemHandler itemInputView = new IItemHandler() {
         @Override public int getSlots() { return 2; }
@@ -245,6 +247,13 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         if (activeRecipeId == null || !activeRecipeId.equals(recipe.getId())) {
             progress = 0;
             activeRecipeId = recipe.getId();
+            cycleTicks = 0;
+        }
+        // Keep the current recipe's cost and duration stable when modules are swapped.
+        // Also initialize legacy saves that predate cycle snapshots.
+        if (progress == 0 || cycleTicks <= 0) {
+            cycleTicks = modules.modifiers().applyProcessingTicks(recipe.getProcessingTime());
+            cycleEnergy = modules.modifiers().applyEnergyCost(recipe.getEnergy());
         }
         if (!canAcceptResult(recipe)) return false;
 
@@ -448,6 +457,8 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         tag.put("Modules", modules.serializeNBT());
         tag.putInt(NBT_ENERGY, energyStorage.getEnergyStored());
         tag.putInt(NBT_PROGRESS, progress);
+        tag.putInt("CycleTicks", cycleTicks);
+        tag.putInt("CycleEnergy", cycleEnergy);
         tag.putString(NBT_OPERATION, selectedOperation.getSerializedName());
         if (activeRecipeId != null) tag.putString(NBT_RECIPE, activeRecipeId.toString());
         sideConfig.save(tag);
@@ -461,6 +472,8 @@ public final class FormingPressBlockEntity extends BlockEntity implements net.mi
         energyStorage.setCapacityInternal(modules.modifiers().applyBufferCapacity(ENERGY_CAPACITY));
         energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
         progress = Math.max(0, tag.getInt(NBT_PROGRESS));
+        cycleTicks = Math.max(0, tag.getInt("CycleTicks"));
+        cycleEnergy = Math.max(0, tag.getInt("CycleEnergy"));
         selectedOperation = FormingOperation.fromSerializedName(tag.getString(NBT_OPERATION));
         activeRecipeId = tag.contains(NBT_RECIPE)
                 ? ResourceLocation.tryParse(tag.getString(NBT_RECIPE))

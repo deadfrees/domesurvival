@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "domesurvival:item/goteium_plate"
+    "layer0": "domesurvival:item/press_products/goteium_plate"
   }
 }

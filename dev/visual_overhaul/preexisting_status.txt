@@ -1,0 +1,189 @@
+﻿ M build.gradle
+ M dev/ENERGY_BALANCE_PHASE2.txt
+ M dev/PREPARE_FULL_DEOBF_CACHE.ps1
+ M dev/SYNC_FULL_MODPACK.ps1
+ M dev/VALIDATE_FULL_DEOBF_CACHE.ps1
+ M dev/quest_master/ftbquests/quests/chapters/11FF60B844BBED5B.snbt
+ M dev/quest_master/ftbquests/quests/chapters/2D984F68E1AC5B77.snbt
+ M dev/quest_master/ftbquests/quests/chapters/38F6E366B367B563.snbt
+ M dev/quest_master/ftbquests/quests/chapters/4A2E731D5C9B684F.snbt
+ M dev/quest_master/ftbquests/quests/chapters/5017105A9984A511.snbt
+ M dev/quest_master/ftbquests/quests/chapters/5E38036299F32A70.snbt
+ M dev/quest_master/ftbquests/quests/chapters/643138B0A36D1017.snbt
+ M dev/quest_master/ftbquests/quests/chapters/76CBABB04B110F16.snbt
+ M dev/quest_master/technology/INSTALL_PHASE10_0_TECHNOLOGY_PROGRESSION.ps1
+ M dev/quest_master/technology/VERIFY_PHASE10_0_TECHNOLOGY_PROGRESSION.ps1
+ D main/resources/assets/domesurvival/blockstates/bronze_block.json
+ D main/resources/assets/domesurvival/models/block/bronze_block.json
+ D main/resources/assets/domesurvival/models/item/bronze_block.json
+ D main/resources/assets/domesurvival/models/item/bronze_ingot.json
+ D main/resources/assets/domesurvival/models/item/bronze_mixture.json
+ D main/resources/assets/domesurvival/models/item/bronze_nugget.json
+ D main/resources/assets/domesurvival/models/item/bronze_plate.json
+ D main/resources/assets/domesurvival/textures/block/bronze_block.png
+ D main/resources/assets/domesurvival/textures/item/bronze_ingot.png
+ D main/resources/assets/domesurvival/textures/item/bronze_mixture.png
+ D main/resources/assets/domesurvival/textures/item/bronze_nugget.png
+ D main/resources/assets/domesurvival/textures/item/bronze_plate.png
+ M src/main/java/com/wasted/domesurvival/core/dome/DomeSpec.java
+ M src/main/java/com/wasted/domesurvival/core/dome/DomeStructurePlanner.java
+ M src/main/java/com/wasted/domesurvival/forge/block/DecorativeLanosBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/block/ModBlocks.java
+ M src/main/java/com/wasted/domesurvival/forge/client/ClientModEvents.java
+ M src/main/java/com/wasted/domesurvival/forge/client/DomeSurvivalScreenTuner.java
+ M src/main/java/com/wasted/domesurvival/forge/client/jei/DomeMachineRecipe.java
+ M src/main/java/com/wasted/domesurvival/forge/client/jei/DomeMachineRecipeCategory.java
+ M src/main/java/com/wasted/domesurvival/forge/client/jei/DomeSurvivalJeiPlugin.java
+ M src/main/java/com/wasted/domesurvival/forge/dome/DomeGenerationService.java
+ M src/main/java/com/wasted/domesurvival/forge/dome/LastWorldStartService.java
+ M src/main/java/com/wasted/domesurvival/forge/dome/StarterDomeProtection.java
+ M src/main/java/com/wasted/domesurvival/forge/item/ModCreativeTabs.java
+ M src/main/java/com/wasted/domesurvival/forge/loot/GeneratedStructureStorageService.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/bio/BioincubatorBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/bio/BioincubatorMenu.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/bio/BioincubatorScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/filter/FilterRegenerationBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/forming/FormingPressBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/oxygen/OxygenElectrolyzerBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/oxygen/OxygenFillerBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/CokeOvenBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/CokeOvenBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/CokeOvenPartBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/CokeOvenPartBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/ShaftFurnaceBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/ShaftFurnaceBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/ShaftFurnacePartBlock.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/shaft/ShaftFurnacePartBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/sieve/SandSieveBlockEntity.java
+ D src/main/java/com/wasted/domesurvival/forge/machine/transformer/TransformerBlock.java
+ D src/main/java/com/wasted/domesurvival/forge/machine/transformer/TransformerBlockEntity.java
+ D src/main/java/com/wasted/domesurvival/forge/machine/transformer/TransformerMenu.java
+ D src/main/java/com/wasted/domesurvival/forge/machine/transformer/TransformerMode.java
+ D src/main/java/com/wasted/domesurvival/forge/machine/transformer/TransformerRegistry.java
+ D src/main/java/com/wasted/domesurvival/forge/machine/transformer/TransformerScreen.java
+ M src/main/java/com/wasted/domesurvival/forge/machine/water/WaterPurifierBlockEntity.java
+ M src/main/java/com/wasted/domesurvival/forge/quest/QuestCampaignRegistry.java
+ M src/main/java/com/wasted/domesurvival/forge/quest/QuestGlobalRegistry.java
+ M src/main/java/com/wasted/domesurvival/forge/quest/QuestProgressFlags.java
+ M src/main/java/com/wasted/domesurvival/forge/recipe/FormingPressRecipe.java
+ M src/main/java/com/wasted/domesurvival/forge/registry/ModBlockEntities.java
+ M src/main/java/com/wasted/domesurvival/forge/registry/ModMenuTypes.java
+ M src/main/java/com/wasted/domesurvival/forge/sound/ModSounds.java
+ M src/main/java/com/wasted/domesurvival/forge/technology/TechnologyEvents.java
+ D src/main/resources/assets/domesurvival/blockstates/bronze_block.json
+ M src/main/resources/assets/domesurvival/blockstates/coke_oven_part.json
+ D src/main/resources/assets/domesurvival/blockstates/transformer.json
+ M src/main/resources/assets/domesurvival/lang/en_us.json
+ M src/main/resources/assets/domesurvival/lang/ru_ru.json
+ D src/main/resources/assets/domesurvival/models/block/bronze_block.json
+ D src/main/resources/assets/domesurvival/models/block/transformer.json
+ D src/main/resources/assets/domesurvival/models/block/transformer_port_input_east.json
+ D src/main/resources/assets/domesurvival/models/block/transformer_port_input_north.json
+ D src/main/resources/assets/domesurvival/models/block/transformer_port_input_south.json
+ D src/main/resources/assets/domesurvival/models/block/transformer_port_input_west.json
+ D src/main/resources/assets/domesurvival/models/block/transformer_port_output_east.json
+ D src/main/resources/assets/domesurvival/models/block/transformer_port_output_north.json
+ D src/main/resources/assets/domesurvival/models/block/transformer_port_output_south.json
+ D src/main/resources/assets/domesurvival/models/block/transformer_port_output_west.json
+ D src/main/resources/assets/domesurvival/models/item/bronze_block.json
+ D src/main/resources/assets/domesurvival/models/item/bronze_ingot.json
+ D src/main/resources/assets/domesurvival/models/item/bronze_mixture.json
+ D src/main/resources/assets/domesurvival/models/item/bronze_nugget.json
+ D src/main/resources/assets/domesurvival/models/item/bronze_plate.json
+ D src/main/resources/assets/domesurvival/models/item/tin_rod.json
+ D src/main/resources/assets/domesurvival/models/item/tin_wire.json
+ D src/main/resources/assets/domesurvival/models/item/transformer.json
+ M src/main/resources/assets/domesurvival/sounds.json
+ D src/main/resources/assets/domesurvival/textures/block/bronze_block.png
+ D src/main/resources/assets/domesurvival/textures/block/transformer_back.png
+ D src/main/resources/assets/domesurvival/textures/block/transformer_front.png
+ D src/main/resources/assets/domesurvival/textures/block/transformer_port_input.png
+ D src/main/resources/assets/domesurvival/textures/block/transformer_port_output.png
+ D src/main/resources/assets/domesurvival/textures/block/transformer_side.png
+ D src/main/resources/assets/domesurvival/textures/block/transformer_top.png
+ D src/main/resources/assets/domesurvival/textures/item/bronze_ingot.png
+ D src/main/resources/assets/domesurvival/textures/item/bronze_mixture.png
+ D src/main/resources/assets/domesurvival/textures/item/bronze_nugget.png
+ D src/main/resources/assets/domesurvival/textures/item/bronze_plate.png
+ D src/main/resources/assets/domesurvival/textures/item/tin_rod.png
+ D src/main/resources/assets/domesurvival/textures/item/tin_wire.png
+ M src/main/resources/data/domesurvival/bio_module_loot/default.json
+ D src/main/resources/data/domesurvival/loot_tables/blocks/transformer.json
+ M src/main/resources/data/domesurvival/recipes/airlock_control_panel.json
+ M src/main/resources/data/domesurvival/recipes/bioincubator.json
+ M src/main/resources/data/domesurvival/recipes/coal_generator.json
+ M src/main/resources/data/domesurvival/recipes/energy_buffer.json
+ M src/main/resources/data/domesurvival/recipes/energy_buffer_titan.json
+ M src/main/resources/data/domesurvival/recipes/filter_regeneration_media.json
+ M src/main/resources/data/domesurvival/recipes/filter_regeneration_station.json
+ M src/main/resources/data/domesurvival/recipes/forming_press.json
+ M src/main/resources/data/domesurvival/recipes/high_pressure_fluid_pipe.json
+ M src/main/resources/data/domesurvival/recipes/improved_water_filter.json
+ M src/main/resources/data/domesurvival/recipes/industrial_water_filter.json
+ M src/main/resources/data/domesurvival/recipes/large_oxygen_tank.json
+ M src/main/resources/data/domesurvival/recipes/machine_stabilizer.json
+ M src/main/resources/data/domesurvival/recipes/medium_oxygen_tank.json
+ M src/main/resources/data/domesurvival/recipes/oxygen_complex_air_intake.json
+ M src/main/resources/data/domesurvival/recipes/oxygen_complex_compression.json
+ M src/main/resources/data/domesurvival/recipes/oxygen_complex_filtration.json
+ M src/main/resources/data/domesurvival/recipes/oxygen_complex_output.json
+ M src/main/resources/data/domesurvival/recipes/sand_sieve.json
+ M src/main/resources/data/domesurvival/recipes/service_pass_through.json
+ M src/main/resources/data/domesurvival/recipes/universal_tank.json
+ M src/main/resources/data/domesurvival/worldgen/placed_feature/silver_ore.json
+ M src/main/resources/data/domesurvival/worldgen/placed_feature/solarite_ore.json
+ M src/main/resources/data/domesurvival/worldgen/placed_feature/voltarium_ore.json
+ M src/main/resources/data/minecraft/tags/blocks/mineable/pickaxe.json
+ M src/main/resources/data/minecraft/tags/blocks/needs_diamond_tool.json
+ M src/main/resources/data/minecraft/tags/blocks/needs_iron_tool.json
+ M src/main/resources/data/minecraft/tags/blocks/needs_stone_tool.json
+ M src/test/java/com/wasted/domesurvival/core/dome/DomeGeometrySelfTest.java
+?? dev/GENERATE_BIO_FACE_ATLAS_V13.ps1
+?? dev/GENERATE_SOLAR_ITEM_VARIANTS_V13.ps1
+?? dev/quest_master/LAYOUT_QUEST_GRAPHS_V12.ps1
+?? dev/quest_master/QUEST_AUDIT_V11.md
+?? dev/quest_master/VERIFY_QUEST_CAMPAIGN_V11.ps1
+?? dev/visual_overhaul/
+?? src/main/java/com/wasted/domesurvival/forge/block/LanosHitboxPartBlock.java
+?? src/main/java/com/wasted/domesurvival/forge/lanos/
+?? src/main/java/com/wasted/domesurvival/forge/machine/shaft/FurnaceOutputTransfer.java
+?? src/main/java/com/wasted/domesurvival/forge/machine/side/CapabilityViews.java
+?? src/main/java/com/wasted/domesurvival/forge/machine/solar/
+?? src/main/resources/assets/domesurvival/blockstates/lanos_hitbox_part.json
+?? src/main/resources/assets/domesurvival/blockstates/solar_panel_mk1.json
+?? src/main/resources/assets/domesurvival/blockstates/solar_panel_mk2.json
+?? src/main/resources/assets/domesurvival/blockstates/solar_panel_mk3.json
+?? src/main/resources/assets/domesurvival/models/block/lanos_hitbox_part.json
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk1.json
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk1.mtl
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk1.obj
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk2.json
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk2.mtl
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk2.obj
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk3.json
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk3.mtl
+?? src/main/resources/assets/domesurvival/models/block/solar_panel_mk3.obj
+?? src/main/resources/assets/domesurvival/models/item/solar_panel_mk1.json
+?? src/main/resources/assets/domesurvival/models/item/solar_panel_mk2.json
+?? src/main/resources/assets/domesurvival/models/item/solar_panel_mk3.json
+?? src/main/resources/assets/domesurvival/sounds/lanos/
+?? src/main/resources/assets/domesurvival/textures/block/solar_connector_body.png
+?? src/main/resources/assets/domesurvival/textures/block/solar_connector_contact.png
+?? src/main/resources/assets/domesurvival/textures/block/solar_connector_mount.png
+?? src/main/resources/assets/domesurvival/textures/block/solar_panel_mk1.png
+?? src/main/resources/assets/domesurvival/textures/block/solar_panel_mk2.png
+?? src/main/resources/assets/domesurvival/textures/block/solar_panel_mk3.png
+?? src/main/resources/assets/domesurvival/textures/gui/bio/bio_faces_atlas.png
+?? src/main/resources/assets/domesurvival/textures/gui/bio/mule.png
+?? src/main/resources/assets/domesurvival/textures/gui/bio/parrot.png
+?? src/main/resources/assets/domesurvival/textures/gui/bio/polar_bear.png
+?? src/main/resources/assets/domesurvival/textures/item/solar_generator_mk1.png
+?? src/main/resources/assets/domesurvival/textures/item/solar_generator_mk2.png
+?? src/main/resources/assets/domesurvival/textures/item/solar_generator_mk3.png
+?? src/main/resources/data/domesurvival/loot_tables/blocks/solar_panel_mk1.json
+?? src/main/resources/data/domesurvival/loot_tables/blocks/solar_panel_mk2.json
+?? src/main/resources/data/domesurvival/loot_tables/blocks/solar_panel_mk3.json
+?? src/main/resources/data/domesurvival/loot_tables/chests/lanos_trunk.json
+?? src/main/resources/data/domesurvival/recipes/solar_panel_mk1.json
+?? src/main/resources/data/domesurvival/recipes/solar_panel_mk2.json
+?? src/main/resources/data/domesurvival/recipes/solar_panel_mk3.json

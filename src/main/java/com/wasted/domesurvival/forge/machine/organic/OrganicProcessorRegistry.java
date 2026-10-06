@@ -26,7 +26,7 @@ public final class OrganicProcessorRegistry {
 
     public static final RegistryObject<Block> ORGANIC_PROCESSOR = BLOCKS.register(
             "organic_processor",
-            () -> new OrganicProcessorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(4.0F, 8.0F))
+            () -> new OrganicProcessorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(4.0F, 8.0F).noOcclusion())
     );
 
     public static final RegistryObject<Item> ORGANIC_PROCESSOR_ITEM = ITEMS.register(

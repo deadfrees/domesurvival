@@ -1,4 +1,6 @@
 {
   "parent": "minecraft:item/generated",
-  "textures": { "layer0": "domesurvival:item/copper_plate" }
+  "textures": {
+    "layer0": "domesurvival:item/press_products/copper_plate"
+  }
 }

@@ -1,4 +1,5 @@
 .gradle/
+.gradle_dev/
 build/
 run/
 run-data/

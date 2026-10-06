@@ -1,0 +1,25 @@
+{
+  "result": "PASS",
+  "runtime_assertions": 323,
+  "connector_configurations": 40,
+  "native_16px_products": 24,
+  "resources_checked": 121,
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "81eff17881d85cd91afe721e36aef186329a7644fe06da0562d8a37b0f001c7f",
+  "bytes": 186825156,
+  "screenshots": [
+    "01_furnace_working.png",
+    "02_fire_animation.png",
+    "03_main_gui.png",
+    "03b_main_scale3.png",
+    "04_side_gui.png",
+    "05_module_gui.png",
+    "06_scale3.png",
+    "07_jei_press_a.png",
+    "08_jei_press_b.png",
+    "09_jei_copper.png",
+    "10_jei_coal.png",
+    "11_press_product_icons.png",
+    "12_furnace_night.png"
+  ]
+}

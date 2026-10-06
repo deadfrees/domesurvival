@@ -24,6 +24,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -46,10 +47,12 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
     public static final int DATA_COUNT = DATA_SIDES_START + 6;
 
     private static final String NBT_ENERGY = "Energy";
+    private static final String NBT_CHARGE_SLOT = "ChargeSlot";
 
     private final UnifiedSideConfig sideConfig = new UnifiedSideConfig();
     private final MachineEnergyStorage energyStorage =
             new MachineEnergyStorage(ENERGY_CAPACITY, MAX_RECEIVE_PER_TICK, MAX_OUTPUT_PER_TICK);
+    private final ItemStackHandler chargeInventory;
     private int capacityEnchantLevel;
 
     // Live FE transfer telemetry. These values are intentionally transient: they
@@ -60,63 +63,34 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
     private int lastReceivedPerTick;
     private int lastSentPerTick;
 
-    private final IEnergyStorage energyInputView = new IEnergyStorage() {
-        @Override
-        public int receiveEnergy(int maxReceive, boolean simulate) {
-            int accepted = energyStorage.receiveEnergy(maxReceive, simulate);
-            if (!simulate && accepted > 0) {
-                recordInput(accepted);
-                onEnergyChanged();
-            }
+    private final java.util.EnumMap<Direction, LazyOptional<IEnergyStorage>> ports = new java.util.EnumMap<>(Direction.class);
+    private Direction lastFacing;
+
+    private int remainingInput() { rollTransferStats(); return Math.max(0, MAX_RECEIVE_PER_TICK - receivedThisTick); }
+    private int remainingOutput() { rollTransferStats(); return Math.max(0, MAX_OUTPUT_PER_TICK - sentThisTick); }
+    public SideMode sideMode(@Nullable Direction side) {
+        return side == null || side == getMachineFacing() ? SideMode.DISABLED : sideConfig.getMode(side);
+    }
+    private final class SideEnergy implements IEnergyStorage {
+        private final Direction side;
+        private SideEnergy(Direction side) { this.side = side; }
+        public boolean canReceive() { return !isRemoved() && sideMode(side) == SideMode.INPUT; }
+        public boolean canExtract() { return !isRemoved() && sideMode(side) == SideMode.OUTPUT; }
+        public int getEnergyStored() { return energyStorage.getEnergyStored(); }
+        public int getMaxEnergyStored() { return energyStorage.getMaxEnergyStored(); }
+        public int receiveEnergy(int amount, boolean simulate) {
+            if (!canReceive() || amount <= 0) return 0;
+            int accepted = energyStorage.receiveEnergy(Math.min(amount, remainingInput()), simulate);
+            if (!simulate && accepted > 0) { recordInput(accepted); onEnergyChanged(); }
             return accepted;
         }
-
-        @Override public int extractEnergy(int maxExtract, boolean simulate) { return 0; }
-        @Override public int getEnergyStored() { return energyStorage.getEnergyStored(); }
-        @Override public int getMaxEnergyStored() { return energyStorage.getMaxEnergyStored(); }
-        @Override public boolean canExtract() { return false; }
-        @Override public boolean canReceive() { return true; }
-    };
-
-    private final IEnergyStorage energyOutputView = new IEnergyStorage() {
-        @Override public int receiveEnergy(int maxReceive, boolean simulate) { return 0; }
-
-        @Override
-        public int extractEnergy(int maxExtract, boolean simulate) {
-            int extracted = energyStorage.extractEnergy(maxExtract, simulate);
-            if (!simulate && extracted > 0) {
-                recordOutput(extracted);
-                onEnergyChanged();
-            }
+        public int extractEnergy(int amount, boolean simulate) {
+            if (!canExtract() || amount <= 0) return 0;
+            int extracted = energyStorage.extractEnergy(Math.min(amount, remainingOutput()), simulate);
+            if (!simulate && extracted > 0) { recordOutput(extracted); onEnergyChanged(); }
             return extracted;
         }
-
-        @Override public int getEnergyStored() { return energyStorage.getEnergyStored(); }
-        @Override public int getMaxEnergyStored() { return energyStorage.getMaxEnergyStored(); }
-        @Override public boolean canExtract() { return true; }
-        @Override public boolean canReceive() { return false; }
-    };
-
-    private final IEnergyStorage energyCombinedView = new IEnergyStorage() {
-        @Override
-        public int receiveEnergy(int maxReceive, boolean simulate) {
-            return energyInputView.receiveEnergy(maxReceive, simulate);
-        }
-
-        @Override
-        public int extractEnergy(int maxExtract, boolean simulate) {
-            return energyOutputView.extractEnergy(maxExtract, simulate);
-        }
-
-        @Override public int getEnergyStored() { return energyStorage.getEnergyStored(); }
-        @Override public int getMaxEnergyStored() { return energyStorage.getMaxEnergyStored(); }
-        @Override public boolean canExtract() { return true; }
-        @Override public boolean canReceive() { return true; }
-    };
-
-    private LazyOptional<IEnergyStorage> energyInputCapability = LazyOptional.of(() -> energyInputView);
-    private LazyOptional<IEnergyStorage> energyOutputCapability = LazyOptional.of(() -> energyOutputView);
-    private LazyOptional<IEnergyStorage> energyCombinedCapability = LazyOptional.of(() -> energyCombinedView);
+    }
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -142,7 +116,9 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
 
     public AdamantiumEnergyBufferBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ENERGY_BUFFER_ADAMANTIUM.get(), pos, state);
+        chargeInventory = EnergyItemCharging.createInventory(this::setChanged);
         applyDefaultSideConfiguration();
+        lastFacing = getMachineFacing();
     }
 
     private void applyDefaultSideConfiguration() {
@@ -165,8 +141,12 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, AdamantiumEnergyBufferBlockEntity buffer) {
+        if (buffer.lastFacing != buffer.getMachineFacing()) buffer.rotateSideConfiguration(buffer.lastFacing);
         buffer.rollTransferStats();
-        boolean changed = buffer.pushEnergyToNeighbors(level, pos) > 0;
+        buffer.energyStorage.setCapacityInternal(Math.max(buffer.getEnergyStored(), EnergyBufferCapacity.apply(ENERGY_CAPACITY, buffer.capacityEnchantLevel)));
+        int charged = buffer.chargeInsertedItem(buffer.remainingOutput());
+        int pushed = buffer.pushEnergyToNeighbors(level, pos, buffer.remainingOutput());
+        boolean changed = charged > 0 || pushed > 0;
         buffer.syncEnergyLevel();
         if (changed) {
             buffer.setChanged();
@@ -174,12 +154,17 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
         }
     }
 
-    private int pushEnergyToNeighbors(Level level, BlockPos pos) {
+    private int chargeInsertedItem(int budget) {
+        int charged = EnergyItemCharging.chargeFromBuffer(chargeInventory, energyStorage, budget);
+        if (charged > 0) recordOutput(charged);
+        return charged;
+    }
+    private int pushEnergyToNeighbors(Level level, BlockPos pos, int outputBudget) {
         int totalTransferred = 0;
         for (Direction direction : Direction.values()) {
             if (isFrontWorldSide(direction) || !sideConfig.allowsOutput(direction)) continue;
 
-            int remainingOutput = MAX_OUTPUT_PER_TICK - totalTransferred;
+            int remainingOutput = Math.max(0, outputBudget) - totalTransferred;
             if (remainingOutput <= 0 || energyStorage.getEnergyStored() <= 0) break;
 
             BlockEntity neighbor = level.getBlockEntity(pos.relative(direction));
@@ -191,11 +176,11 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
             int available = energyStorage.extractEnergy(remainingOutput, true);
             if (available <= 0) break;
 
-            int acceptedSimulation = target.receiveEnergy(available, true);
+            int acceptedSimulation = Math.max(0, Math.min(available, target.receiveEnergy(available, true)));
             if (acceptedSimulation <= 0) continue;
 
             int extracted = energyStorage.extractEnergy(acceptedSimulation, false);
-            int acceptedActual = target.receiveEnergy(extracted, false);
+            int acceptedActual = Math.max(0, Math.min(extracted, target.receiveEnergy(extracted, false)));
             if (acceptedActual < extracted) {
                 energyStorage.addEnergyInternal(extracted - acceptedActual);
             }
@@ -213,8 +198,8 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
             return;
         }
         if (gameTime != transferStatsTick) {
-            lastReceivedPerTick = receivedThisTick;
-            lastSentPerTick = sentThisTick;
+            lastReceivedPerTick = gameTime == transferStatsTick + 1 ? receivedThisTick : 0;
+            lastSentPerTick = gameTime == transferStatsTick + 1 ? sentThisTick : 0;
             receivedThisTick = 0;
             sentThisTick = 0;
             transferStatsTick = gameTime;
@@ -257,7 +242,7 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
     private int computeEnergyLevel() {
         int capacity = Math.max(1, energyStorage.getMaxEnergyStored());
         return Math.max(0, Math.min(4,
-                (int) Math.round((energyStorage.getEnergyStored() * 4.0D) / capacity)));
+                (int) ((long) energyStorage.getEnergyStored() * 4 / capacity)));
     }
 
     private void syncEnergyLevel() {
@@ -369,7 +354,9 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
         }
 
         capacityEnchantLevel = clamped;
-        energyStorage.setCapacityInternal(targetCapacity);
+        energyStorage.setCapacityInternal(Math.max(targetCapacity, getEnergyStored()));
+        syncEnergyLevel();
+        notifyComparator();
         setChanged();
 
         if (this.level != null && !this.level.isClientSide) {
@@ -391,12 +378,17 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
         return energyStorage.getMaxEnergyStored();
     }
 
+    public ItemStackHandler getChargeInventory() {
+        return chargeInventory;
+    }
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putInt(NBT_ENERGY, energyStorage.getEnergyStored());
+        tag.put(NBT_CHARGE_SLOT, chargeInventory.serializeNBT());
         EnergyBufferCapacity.writeLevel(tag, capacityEnchantLevel);
         sideConfig.save(tag);
+        tag.putString("PortFacing", getMachineFacing().getName());
     }
 
     @Override
@@ -404,14 +396,37 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
         super.load(tag);
         capacityEnchantLevel = EnergyBufferCapacity.readLevel(tag);
         energyStorage.setCapacityInternal(
-                EnergyBufferCapacity.apply(ENERGY_CAPACITY, capacityEnchantLevel)
+                Math.max(tag.getInt(NBT_ENERGY), EnergyBufferCapacity.apply(ENERGY_CAPACITY, capacityEnchantLevel))
         );
         energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
+        if (tag.contains(NBT_CHARGE_SLOT)) chargeInventory.deserializeNBT(tag.getCompound(NBT_CHARGE_SLOT));
 
         if (!sideConfig.load(tag)) {
             migrateLegacySideConfiguration(tag);
         }
-        sideConfig.setMode(getMachineFacing(), SideMode.DISABLED);
+        Direction previous = Direction.byName(tag.getString("PortFacing"));
+        remapSides(previous);
+        refreshCapabilities();
+    }
+
+    private void remapSides(@Nullable Direction previous) {
+        Direction facing = getMachineFacing();
+        if (previous != null && previous.getAxis().isHorizontal() && previous != facing) {
+            var modes = new java.util.EnumMap<RelativeSide, SideMode>(RelativeSide.class);
+            for (var side : RelativeSide.values()) modes.put(side, sideConfig.getMode(side.resolve(previous)));
+            for (var side : RelativeSide.values()) sideConfig.setMode(side.resolve(facing), modes.get(side));
+        }
+        sideConfig.setMode(facing, SideMode.DISABLED);
+        lastFacing = facing;
+    }
+
+    public void rotateSideConfiguration(@Nullable Direction previous) {
+        remapSides(previous);
+        refreshCapabilities();
+        syncAllPortStates();
+        syncClientState();
+        notifyNeighborConnections();
+        setChanged();
     }
 
     private void migrateLegacySideConfiguration(CompoundTag tag) {
@@ -453,42 +468,15 @@ public final class AdamantiumEnergyBufferBlockEntity extends BlockEntity impleme
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ENERGY) {
-            if (side == null) return energyCombinedCapability.cast();
-            if (isFrontWorldSide(side)) return LazyOptional.empty();
-
-            boolean input = sideConfig.allowsInput(side);
-            boolean output = sideConfig.allowsOutput(side);
-
-            if (input && output) return energyCombinedCapability.cast();
-            if (input) return energyInputCapability.cast();
-            if (output) return energyOutputCapability.cast();
-            return LazyOptional.empty();
+            if (isRemoved() || sideMode(side) == SideMode.DISABLED) return LazyOptional.empty();
+            return ports.computeIfAbsent(side, d -> LazyOptional.of(() -> new SideEnergy(d))).cast();
         }
         return super.getCapability(cap, side);
     }
 
-    private void refreshCapabilities() {
-        energyInputCapability.invalidate();
-        energyOutputCapability.invalidate();
-        energyCombinedCapability.invalidate();
-        energyInputCapability = LazyOptional.of(() -> energyInputView);
-        energyOutputCapability = LazyOptional.of(() -> energyOutputView);
-        energyCombinedCapability = LazyOptional.of(() -> energyCombinedView);
-    }
-
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        energyInputCapability.invalidate();
-        energyOutputCapability.invalidate();
-        energyCombinedCapability.invalidate();
-    }
-
-    @Override
-    public void reviveCaps() {
-        super.reviveCaps();
-        refreshCapabilities();
-    }
+    private void refreshCapabilities() { ports.values().forEach(LazyOptional::invalidate); ports.clear(); }
+    @Override public void invalidateCaps() { super.invalidateCaps(); refreshCapabilities(); }
+    @Override public void reviveCaps() { super.reviveCaps(); refreshCapabilities(); }
 
     private void notifyComparator() {
         if (level != null && !level.isClientSide) {

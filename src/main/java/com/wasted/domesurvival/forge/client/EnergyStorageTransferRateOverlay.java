@@ -2,6 +2,10 @@ package com.wasted.domesurvival.forge.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.wasted.domesurvival.forge.DomeSurvival;
+import com.wasted.domesurvival.forge.client.screen.EnergyBufferScreen;
+import com.wasted.domesurvival.forge.client.screen.TitanEnergyBufferScreen;
+import com.wasted.domesurvival.forge.client.screen.AdamantiumEnergyBufferScreen;
+import com.wasted.domesurvival.forge.client.screen.CreativeEnergyBufferScreen;
 import com.wasted.domesurvival.forge.machine.energy.EnergyTransferRateMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -38,6 +42,9 @@ public final class EnergyStorageTransferRateOverlay {
     @SubscribeEvent
     public static void onScreenRender(ScreenEvent.Render.Post event) {
         if (!(event.getScreen() instanceof AbstractContainerScreen<?> screen)) return;
+        // The refined storage screens own their instruments and its internal side page.
+        if (screen instanceof EnergyBufferScreen || screen instanceof TitanEnergyBufferScreen
+                || screen instanceof AdamantiumEnergyBufferScreen || screen instanceof CreativeEnergyBufferScreen) return;
         if (!(screen.getMenu() instanceof EnergyTransferRateMenu menu)) return;
 
         Minecraft minecraft = Minecraft.getInstance();
@@ -48,8 +55,8 @@ public final class EnergyStorageTransferRateOverlay {
         int centerX = guiLeft + 88;
 
         Component topLine = Component.literal(
-                "Приём: " + formatRate(menu.getInputPerTick()) + " / " + formatLimit(menu.getMaxInputPerTick()) + " FE/t   " +
-                "Выдача: " + formatRate(menu.getOutputPerTick()) + " / " + formatLimit(menu.getMaxOutputPerTick()) + " FE/t"
+                "РџСЂРёС‘Рј: " + formatRate(menu.getInputPerTick()) + " / " + formatLimit(menu.getMaxInputPerTick()) + " FE/t   " +
+                "Р’С‹РґР°С‡Р°: " + formatRate(menu.getOutputPerTick()) + " / " + formatLimit(menu.getMaxOutputPerTick()) + " FE/t"
         );
         drawCenteredLine(graphics, font, topLine, centerX, guiTop + TOP_LINE_Y);
 
@@ -87,9 +94,9 @@ public final class EnergyStorageTransferRateOverlay {
         if (energy == null || capacity == null) return null;
 
         if (capacity == Integer.MAX_VALUE || energy == Integer.MAX_VALUE) {
-            return Component.literal("Энергия: ∞ / ∞ FE");
+            return Component.literal("Р­РЅРµСЂРіРёСЏ: в€ћ / в€ћ FE");
         }
-        return Component.literal("Энергия: " + grouped(energy) + " / " + grouped(capacity) + " FE");
+        return Component.literal("Р­РЅРµСЂРіРёСЏ: " + grouped(energy) + " / " + grouped(capacity) + " FE");
     }
 
     private static Integer callInt(Object target, String methodName) {
@@ -107,7 +114,7 @@ public final class EnergyStorageTransferRateOverlay {
     }
 
     private static String formatLimit(int value) {
-        return value == Integer.MAX_VALUE ? "∞" : grouped(Math.max(0, value));
+        return value == Integer.MAX_VALUE ? "в€ћ" : grouped(Math.max(0, value));
     }
 
     private static String grouped(int value) {

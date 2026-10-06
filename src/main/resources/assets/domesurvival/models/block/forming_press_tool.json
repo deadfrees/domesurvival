@@ -2,6 +2,7 @@
   "parent": "minecraft:block/block",
   "render_type": "minecraft:cutout",
   "textures": {
+    "panel": "domesurvival:block/coal_generator_v2/satin_atlas",
     "body": "domesurvival:block/coal_generator_v2/satin_atlas",
     "frame": "domesurvival:block/coal_generator_v2/satin_atlas",
     "trim": "domesurvival:block/coal_generator_v2/satin_atlas",

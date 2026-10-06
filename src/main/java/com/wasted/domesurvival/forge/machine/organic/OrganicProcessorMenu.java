@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.machine.organic;
 
 import com.wasted.domesurvival.forge.machine.module.MachineModuleItem;
+import com.wasted.domesurvival.forge.machine.module.MachineModuleType;
 import com.wasted.domesurvival.forge.machine.side.RelativeSide;
 import com.wasted.domesurvival.forge.machine.side.SideMode;
 import net.minecraft.core.BlockPos;
@@ -31,16 +32,19 @@ public final class OrganicProcessorMenu extends AbstractContainerMenu {
     private static final int SIDE_BUTTON_BASE = 100;
     public static final int MODULE_PANEL_OPEN_BUTTON_ID = 200;
     public static final int MODULE_PANEL_CLOSE_BUTTON_ID = 201;
-    public static final int MODULE_SLOT_X = 288;
-    public static final int MODULE_SLOT_0_Y = 50;
-    public static final int MODULE_SLOT_1_Y = 80;
+    public static final int MODULE_SLOT_X = 22;
+    public static final int MODULE_SLOT_0_Y = 67;
+    public static final int MODULE_SLOT_1_Y = 97;
 
     private final Level level;
     private final BlockPos blockPos;
     private final ContainerLevelAccess access;
     private final ContainerData data;
     @Nullable private final OrganicProcessorBlockEntity processor;
-    private boolean modulePanelOpen;
+    private int tab = 201;
+    public void setTab(int value){tab=value;}
+    public boolean isMainPanelOpen(){return tab==201;}
+    public boolean isSidePanelOpen(){return tab==202;}
 
     public OrganicProcessorMenu(int id, Inventory playerInventory, FriendlyByteBuf extraData) {
         this(id, playerInventory, null, new ItemStackHandler(3), new ItemStackHandler(2),
@@ -64,13 +68,17 @@ public final class OrganicProcessorMenu extends AbstractContainerMenu {
         this.processor = processor;
 
         checkContainerDataCount(data, OrganicProcessorBlockEntity.DATA_COUNT);
-        addDataSlots(data);
+        addDataSlots(new ContainerData(){
+            public int get(int i){return (data.get(i/2)>>>((i%2)*16))&65535;}
+            public void set(int i,int value){int shift=i%2*16;data.set(i/2,(data.get(i/2)&~(65535<<shift))|((value&65535)<<shift));}
+            public int getCount(){return data.getCount()*2;}
+        });
 
-        addSlot(new SlotItemHandler(machine, OrganicProcessorBlockEntity.SLOT_PRIMARY, 55, 58));
-        addSlot(new SlotItemHandler(machine, OrganicProcessorBlockEntity.SLOT_ADDITIVE, 55, 88));
-        addSlot(outputSlot(machine, OrganicProcessorBlockEntity.SLOT_OUTPUT, 166, 73));
+        addSlot(inputSlot(machine, OrganicProcessorBlockEntity.SLOT_PRIMARY, 70, 49));
+        addSlot(inputSlot(machine, OrganicProcessorBlockEntity.SLOT_ADDITIVE, 70, 81));
+        addSlot(outputSlot(machine, OrganicProcessorBlockEntity.SLOT_OUTPUT, 182, 81));
 
-        // Upgrade slots are only active while their dedicated side drawer is open.
+        // Upgrade slots are active only on the internal modules tab.
         addSlot(moduleSlot(modules, 0, MODULE_SLOT_X, MODULE_SLOT_0_Y));
         addSlot(moduleSlot(modules, 1, MODULE_SLOT_X, MODULE_SLOT_1_Y));
 
@@ -89,8 +97,17 @@ public final class OrganicProcessorMenu extends AbstractContainerMenu {
         }
     }
 
-    private static SlotItemHandler outputSlot(IItemHandler handler, int slot, int x, int y) {
+    private SlotItemHandler inputSlot(IItemHandler handler,int slot,int x,int y){
+        return new SlotItemHandler(handler,slot,x,y){
+            public boolean isActive(){return isMainPanelOpen();}
+            public boolean mayPickup(Player p){return isActive();}
+            public boolean mayPlace(ItemStack s){return isActive()&&super.mayPlace(s);}
+        };
+    }
+    private SlotItemHandler outputSlot(IItemHandler handler, int slot, int x, int y) {
         return new SlotItemHandler(handler, slot, x, y) {
+            public boolean isActive(){return isMainPanelOpen();}
+            public boolean mayPickup(Player p){return isActive();}
             @Override public boolean mayPlace(@NotNull ItemStack stack) { return false; }
         };
     }
@@ -99,13 +116,15 @@ public final class OrganicProcessorMenu extends AbstractContainerMenu {
         return new SlotItemHandler(handler, slot, x, y) {
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
-                return stack.getItem() instanceof MachineModuleItem && super.mayPlace(stack);
+                return isActive() && stack.getItem() instanceof MachineModuleItem && super.mayPlace(stack);
             }
 
             @Override
             public boolean isActive() {
-                return modulePanelOpen;
+                return isModulePanelOpen();
             }
+            @Override public int getMaxStackSize(){return 1;}
+            @Override public boolean mayPickup(Player player){return isActive()&&(!(getItem().getItem() instanceof MachineModuleItem module)||module.module().type()!=MachineModuleType.BUFFER||energyStored()<=OrganicProcessorBlockEntity.BASE_ENERGY_CAPACITY);}
         };
     }
 
@@ -116,17 +135,14 @@ public final class OrganicProcessorMenu extends AbstractContainerMenu {
 
     @Override
     public boolean clickMenuButton(Player player, int id) {
-        if (id == MODULE_PANEL_OPEN_BUTTON_ID) {
-            modulePanelOpen = true;
-            return true;
-        }
-        if (id == MODULE_PANEL_CLOSE_BUTTON_ID) {
-            modulePanelOpen = false;
+        if(!stillValid(player))return false;
+        if (id == 200 || id == 201 || id == 202) {
+            setTab(id);
             return true;
         }
 
         int sideIndex = id - SIDE_BUTTON_BASE;
-        if (sideIndex < 0 || sideIndex >= RelativeSide.values().length) return false;
+        if (!isSidePanelOpen() || sideIndex < 0 || sideIndex >= RelativeSide.values().length) return false;
 
         RelativeSide side = RelativeSide.values()[sideIndex];
         if (!OrganicProcessorBlockEntity.isConfigurableSide(side)) return false;
@@ -140,18 +156,18 @@ public final class OrganicProcessorMenu extends AbstractContainerMenu {
     }
 
     public void setModulePanelOpen(boolean open) {
-        modulePanelOpen = open;
+        setTab(open?200:201);
     }
 
     public boolean isModulePanelOpen() {
-        return modulePanelOpen;
+        return tab==200;
     }
 
     @Override
     public @NotNull ItemStack quickMoveStack(Player player, int index) {
         if (index < 0 || index >= slots.size()) return ItemStack.EMPTY;
         var slot = slots.get(index);
-        if (!slot.hasItem()) return ItemStack.EMPTY;
+        if (!slot.isActive() || !slot.hasItem() || !slot.mayPickup(player)) return ItemStack.EMPTY;
 
         ItemStack stack = slot.getItem();
         ItemStack copy = stack.copy();
@@ -159,8 +175,8 @@ public final class OrganicProcessorMenu extends AbstractContainerMenu {
         if (index < MACHINE_SLOTS) {
             if (!moveItemStackTo(stack, PLAYER_START, HOTBAR_END, true)) return ItemStack.EMPTY;
         } else if (stack.getItem() instanceof MachineModuleItem) {
-            if (!modulePanelOpen || !moveItemStackTo(stack, 3, 5, false)) return ItemStack.EMPTY;
-        } else if (moveItemStackTo(stack, 0, 2, false)) {
+            if (!isModulePanelOpen() || !moveItemStackTo(stack, 3, 5, false)) return ItemStack.EMPTY;
+        } else if (isMainPanelOpen() && moveItemStackTo(stack, 0, 2, false)) {
             // Inserted into one of the two recipe inputs.
         } else if (index >= PLAYER_START && index < PLAYER_END) {
             if (!moveItemStackTo(stack, HOTBAR_START, HOTBAR_END, false)) return ItemStack.EMPTY;

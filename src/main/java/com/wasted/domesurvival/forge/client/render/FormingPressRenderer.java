@@ -36,8 +36,12 @@ public final class FormingPressRenderer implements BlockEntityRenderer<FormingPr
         event.registerBlockEntityRenderer(FormingPressRegistry.FORMING_PRESS_BLOCK_ENTITY.get(),FormingPressRenderer::new);
     }
     @Override public void render(FormingPressBlockEntity press,float partialTick,PoseStack pose,MultiBufferSource buffers,int light,int overlay) {
-        pose.pushPose();pose.translate(.5,press.toolOffset(partialTick),.5);
-        float angle=switch(press.getMachineFacing()){case EAST->-90;case SOUTH->180;case WEST->90;default->0;};
+        renderTool(press.toolOffset(partialTick),press.getMachineFacing(),pose,buffers,light,overlay);
+    }
+    /** Same exported moving assembly for world rendering and the live JEI recipe preview. */
+    public void renderTool(float offset,net.minecraft.core.Direction facing,PoseStack pose,MultiBufferSource buffers,int light,int overlay) {
+        pose.pushPose();pose.translate(.5,offset,.5);
+        float angle=switch(facing){case EAST->-90;case SOUTH->180;case WEST->90;default->0;};
         pose.mulPose(Axis.YP.rotationDegrees(angle));pose.translate(-.5,0,-.5);
         var consumer=buffers.getBuffer(RenderType.entityCutoutNoCull(ATLAS));
         for(Cube cube:cubes)box(consumer,pose.last(),cube,light,overlay);

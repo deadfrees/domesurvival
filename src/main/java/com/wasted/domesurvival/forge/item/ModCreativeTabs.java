@@ -1,6 +1,7 @@
 package com.wasted.domesurvival.forge.item;
 
 import com.wasted.domesurvival.forge.DomeSurvival;
+import com.wasted.domesurvival.forge.bio.BioLootData;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -30,7 +31,7 @@ public final class ModCreativeTabs {
     private static final ResourceLocation TAB_ID =
             ResourceLocation.fromNamespaceAndPath(DomeSurvival.MOD_ID, "items");
     private static final ResourceLocation PREFERRED_ICON =
-            ResourceLocation.fromNamespaceAndPath(DomeSurvival.MOD_ID, "reinforced_glass");
+            ResourceLocation.fromNamespaceAndPath(DomeSurvival.MOD_ID, "solarite_crystal");
 
     /** Stable thematic order: materials, life support, power, technology, biology, misc. */
     private static final List<String> DISPLAY_ORDER = List.of(
@@ -93,6 +94,9 @@ public final class ModCreativeTabs {
 
             // 3. Power generation, storage and transport.
             "coal_generator",
+            "solar_panel_mk1",
+            "solar_panel_mk2",
+            "solar_panel_mk3",
             "energy_buffer",
             "energy_buffer_titan",
             "energy_buffer_adamantium",
@@ -175,7 +179,14 @@ public final class ModCreativeTabs {
                                         .filter(ModCreativeTabs::isDomeSurvivalItem)
                                         .sorted(Comparator.comparingInt(ModCreativeTabs::displayRank)
                                                 .thenComparing(ModCreativeTabs::registryPath))
-                                        .forEach(output::accept))
+                                        .forEach(item -> {
+                                            output.accept(item);
+                                            if ("damaged_pig_cryocapsule".equals(registryPath(item))) {
+                                                BioLootData.allSpecies().forEach(species ->
+                                                        output.accept(BioModuleItem.create(species.entityId(), false))
+                                                );
+                                            }
+                                        }))
                         .build()
         ));
     }

@@ -1,0 +1,11 @@
+{
+  "type": "domesurvival:organic_processing",
+  "primary": { "item": "minecraft:wheat" },
+  "additive": { "item": "minecraft:bone_meal" },
+  "primaryCount": 2,
+  "additiveCount": 1,
+  "water": 250,
+  "result": { "item": "domesurvival:nutrient_mix", "count": 1 },
+  "processingTime": 140,
+  "energy": 3600
+}

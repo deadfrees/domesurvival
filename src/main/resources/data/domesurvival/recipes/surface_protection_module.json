@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "NFN",
+    "LPL",
+    "NSN"
+  ],
+  "key": {
+    "N": { "item": "domesurvival:neosteel_ingot" },
+    "F": { "item": "domesurvival:filter_regeneration_media" },
+    "L": { "tag": "forge:ingots/lead" },
+    "P": { "item": "domesurvival:pulse_matrix" },
+    "S": { "item": "domesurvival:solarite_crystal" }
+  },
+  "result": {
+    "item": "domesurvival:surface_protection_module",
+    "count": 1
+  }
+}

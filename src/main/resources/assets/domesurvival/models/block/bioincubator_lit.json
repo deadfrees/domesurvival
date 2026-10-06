@@ -1,2357 +1,7146 @@
 {
-  "ambientocclusion": true,
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
   "textures": {
-    "particle": "domesurvival:block/bio/bioincubator_first_casing",
-    "casing": "domesurvival:block/bio/bioincubator_first_casing",
-    "frame": "domesurvival:block/bio/bioincubator_first_frame",
-    "inset": "domesurvival:block/bio/bioincubator_first_inset",
-    "top": "domesurvival:block/bio/bioincubator_first_top",
-    "cyan": "domesurvival:block/bio/bioincubator_first_cyan",
-    "base": "domesurvival:block/bio/bioincubator_first_base",
-    "pad": "domesurvival:block/bio/bioincubator_first_connector_pad",
-    "dna": "domesurvival:block/bio/bioincubator_first_dna"
+    "panel": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "body": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "frame": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "trim": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "steel": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "black": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "brass": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "bolt": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "input": "domesurvival:block/coal_generator_v2/satin_atlas",
+    "particle": "domesurvival:block/coal_generator_v2/satin_atlas"
   },
   "elements": [
     {
+      "name": "Rear pressure equipment",
+      "from": [
+        0.6500000953674316,
+        0.6999998092651367,
+        8.5
+      ],
+      "to": [
+        15.349999904632568,
+        15.300000190734863,
+        15.400000095367432
+      ],
+      "faces": {
+        "north": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "south": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "west": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "up": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "down": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Left enclosure",
+      "from": [
+        0.6500000953674316,
+        0.6999998092651367,
+        0.5999999046325684
+      ],
+      "to": [
+        2.6500000953674316,
+        15.300000190734863,
+        8.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "south": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "west": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "up": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "down": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Right enclosure",
+      "from": [
+        13.349999904632568,
+        0.6999998092651367,
+        0.5999999046325684
+      ],
+      "to": [
+        15.349999904632568,
+        15.300000190734863,
+        8.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "south": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "west": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "up": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "down": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Roof enclosure",
+      "from": [
+        2.6500000953674316,
+        13.199999809265137,
+        0.5999999046325684
+      ],
+      "to": [
+        13.349999904632568,
+        15.300000190734863,
+        8.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "south": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "west": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "up": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "down": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Pump base enclosure",
+      "from": [
+        2.6500000953674316,
+        0.6999998092651367,
+        0.5999999046325684
+      ],
+      "to": [
+        13.349999904632568,
+        2.5999999046325684,
+        8.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "south": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "west": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "up": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        },
+        "down": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Chamber backing",
+      "from": [
+        2.6500000953674316,
+        2.5999999046325684,
+        8.300000011920929
+      ],
+      "to": [
+        13.349999904632568,
+        13.199999809265137,
+        8.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "south": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "east": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "west": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "up": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "down": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "Corner frame",
+      "from": [
+        0.0,
+        0.3000001907348633,
+        0.0
+      ],
+      "to": [
+        0.8000001907348633,
+        15.699999809265137,
+        0.8000001907348633
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Corner frame",
+      "from": [
+        0.0,
+        0.3000001907348633,
+        15.199999809265137
+      ],
+      "to": [
+        0.8000001907348633,
+        15.699999809265137,
+        16.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Corner frame",
+      "from": [
+        15.199999809265137,
+        0.3000001907348633,
+        0.0
+      ],
+      "to": [
+        16.0,
+        15.699999809265137,
+        0.8000001907348633
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Corner frame",
+      "from": [
+        15.199999809265137,
+        0.3000001907348633,
+        15.199999809265137
+      ],
+      "to": [
+        16.0,
+        15.699999809265137,
+        16.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cross rail",
+      "from": [
+        0.8000001907348633,
+        0.3000001907348633,
+        0.0
+      ],
+      "to": [
+        15.199999809265137,
+        0.8000001907348633,
+        0.8000001907348633
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cross rail",
+      "from": [
+        0.8000001907348633,
+        0.3000001907348633,
+        15.199999809265137
+      ],
+      "to": [
+        15.199999809265137,
+        0.8000001907348633,
+        16.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Side rail",
+      "from": [
+        0.0,
+        0.3000001907348633,
+        0.8000001907348633
+      ],
+      "to": [
+        0.8000001907348633,
+        0.8000001907348633,
+        15.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Side rail",
+      "from": [
+        15.199999809265137,
+        0.3000001907348633,
+        0.8000001907348633
+      ],
+      "to": [
+        16.0,
+        0.8000001907348633,
+        15.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cross rail",
+      "from": [
+        0.8000001907348633,
+        15.199999809265137,
+        0.0
+      ],
+      "to": [
+        15.199999809265137,
+        15.699999809265137,
+        0.8000001907348633
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cross rail",
+      "from": [
+        0.8000001907348633,
+        15.199999809265137,
+        15.199999809265137
+      ],
+      "to": [
+        15.199999809265137,
+        15.699999809265137,
+        16.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Side rail",
+      "from": [
+        0.0,
+        15.199999809265137,
+        0.8000001907348633
+      ],
+      "to": [
+        0.8000001907348633,
+        15.699999809265137,
+        15.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Side rail",
+      "from": [
+        15.199999809265137,
+        15.199999809265137,
+        0.8000001907348633
+      ],
+      "to": [
+        16.0,
+        15.699999809265137,
+        15.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Mounting foot",
       "from": [
         1.0,
-        1.0,
-        1.0
+        0.0,
+        0.5
+      ],
+      "to": [
+        3.1999998092651367,
+        0.5500001907348633,
+        15.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "south": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "east": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "west": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "up": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "down": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "Mounting foot",
+      "from": [
+        12.800000190734863,
+        0.0,
+        0.5
       ],
       "to": [
         15.0,
-        15.0,
-        15.0
+        0.5500001907348633,
+        15.5
       ],
       "faces": {
         "north": {
-          "texture": "#casing"
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
         },
         "south": {
-          "texture": "#casing"
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
         },
         "east": {
-          "texture": "#casing"
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
         },
         "west": {
-          "texture": "#casing"
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
         },
         "up": {
-          "texture": "#casing"
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
         },
         "down": {
-          "texture": "#casing"
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
         }
       }
     },
     {
-      "from": [
-        0.0,
-        0.85,
-        0.0
-      ],
-      "to": [
-        0.45,
-        16.0,
-        0.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        15.55,
-        0.85,
-        0.0
-      ],
-      "to": [
-        16.0,
-        16.0,
-        0.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.0,
-        0.85,
-        15.55
-      ],
-      "to": [
-        0.45,
-        16.0,
-        16.0
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        15.55,
-        0.85,
-        15.55
-      ],
-      "to": [
-        16.0,
-        16.0,
-        16.0
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.45,
-        15.55,
-        0.0
-      ],
-      "to": [
-        15.55,
-        16.0,
-        0.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.45,
-        15.55,
-        15.55
-      ],
-      "to": [
-        15.55,
-        16.0,
-        16.0
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.0,
-        15.55,
-        0.45
-      ],
-      "to": [
-        0.45,
-        16.0,
-        15.55
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        15.55,
-        15.55,
-        0.45
-      ],
-      "to": [
-        16.0,
-        16.0,
-        15.55
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "to": [
-        16.0,
-        0.85,
-        16.0
-      ],
-      "faces": {
-        "north": {
-          "texture": "#base"
-        },
-        "south": {
-          "texture": "#base"
-        },
-        "east": {
-          "texture": "#base"
-        },
-        "west": {
-          "texture": "#base"
-        },
-        "up": {
-          "texture": "#base"
-        },
-        "down": {
-          "texture": "#base"
-        }
-      }
-    },
-    {
-      "from": [
-        0.02,
-        0.7,
-        0.1
-      ],
-      "to": [
-        1.22,
-        15.3,
-        1.3
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.02,
-        0.7,
-        14.78
-      ],
-      "to": [
-        1.22,
-        15.3,
-        15.98
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        14.78,
-        0.7,
-        0.1
-      ],
-      "to": [
-        15.98,
-        15.3,
-        1.3
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        14.78,
-        0.7,
-        14.78
-      ],
-      "to": [
-        15.98,
-        15.3,
-        15.98
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.75,
-        14.93,
-        0.75
-      ],
-      "to": [
-        15.25,
-        15.43,
-        15.25
-      ],
-      "faces": {
-        "north": {
-          "texture": "#top"
-        },
-        "south": {
-          "texture": "#top"
-        },
-        "east": {
-          "texture": "#top"
-        },
-        "west": {
-          "texture": "#top"
-        },
-        "up": {
-          "texture": "#top"
-        },
-        "down": {
-          "texture": "#top"
-        }
-      }
-    },
-    {
-      "from": [
-        1.1,
-        15.33,
-        1.1
-      ],
-      "to": [
-        14.9,
-        15.78,
-        1.9500000000000002
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        1.1,
-        15.33,
-        14.13
-      ],
-      "to": [
-        14.9,
-        15.78,
-        14.98
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        1.1,
-        15.33,
-        1.9500000000000002
-      ],
-      "to": [
-        1.9500000000000002,
-        15.78,
-        14.05
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        14.05,
-        15.33,
-        1.9500000000000002
-      ],
-      "to": [
-        14.9,
-        15.78,
-        14.05
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
+      "name": "Chamber back",
       "from": [
         3.0,
-        15.43,
+        3.0,
+        8.100000001490116
+      ],
+      "to": [
+        13.0,
+        13.199999809265137,
+        8.300000011920929
+      ],
+      "faces": {
+        "north": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "south": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "east": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "west": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "up": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "down": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "Incubation pedestal",
+      "from": [
+        4.0,
+        2.9000000953674316,
+        2.0
+      ],
+      "to": [
+        12.0,
+        3.5999999046325684,
+        7.5999999940395355
+      ],
+      "faces": {
+        "north": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "south": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "east": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "west": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "up": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        },
+        "down": {
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "Pedestal lining",
+      "from": [
+        4.400000095367432,
+        3.5999999046325684,
+        2.4000000953674316
+      ],
+      "to": [
+        11.599999904632568,
+        3.8499999046325684,
+        7.199999988079071
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Pedestal band",
+      "from": [
+        4.0,
+        3.0999999046325684,
+        1.8499999046325684
+      ],
+      "to": [
+        12.0,
+        3.3499999046325684,
+        2.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "south": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "east": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "west": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "up": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        },
+        "down": {
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Upper chamber holder",
+      "from": [
+        5.0,
+        12.199999809265137,
         3.0
       ],
       "to": [
-        13.0,
-        15.86,
-        3.75
+        11.0,
+        12.900000095367432,
+        7.0
       ],
       "faces": {
         "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        3.0,
-        15.43,
-        12.25
-      ],
-      "to": [
-        13.0,
-        15.86,
-        13.0
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        3.0,
-        15.43,
-        3.75
-      ],
-      "to": [
-        3.75,
-        15.86,
-        12.25
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        12.25,
-        15.43,
-        3.75
-      ],
-      "to": [
-        13.0,
-        15.86,
-        12.25
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        4.9,
-        15.5,
-        4.9
-      ],
-      "to": [
-        11.1,
-        15.92,
-        5.550000000000001
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        4.9,
-        15.5,
-        10.45
-      ],
-      "to": [
-        11.1,
-        15.92,
-        11.1
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        4.9,
-        15.5,
-        5.550000000000001
-      ],
-      "to": [
-        5.550000000000001,
-        15.92,
-        10.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        10.45,
-        15.5,
-        5.550000000000001
-      ],
-      "to": [
-        11.1,
-        15.92,
-        10.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.75,
-        0.95,
-        0.02
-      ],
-      "to": [
-        2.0,
-        14.2,
-        0.84
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        14.0,
-        0.95,
-        0.02
-      ],
-      "to": [
-        15.25,
-        14.2,
-        0.84
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        2.0,
-        13.0,
-        0.02
-      ],
-      "to": [
-        14.0,
-        14.2,
-        0.84
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        2.0,
-        0.95,
-        0.02
-      ],
-      "to": [
-        14.0,
-        2.15,
-        0.84
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        2.2,
-        2.35,
-        0.2
-      ],
-      "to": [
-        3.25,
-        12.8,
-        0.76
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        12.75,
-        2.35,
-        0.2
-      ],
-      "to": [
-        13.8,
-        12.8,
-        0.76
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        3.25,
-        11.75,
-        0.2
-      ],
-      "to": [
-        12.75,
-        12.8,
-        0.76
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        3.25,
-        2.35,
-        0.2
-      ],
-      "to": [
-        12.75,
-        3.4,
-        0.76
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        3.45,
-        3.55,
-        0.62
-      ],
-      "to": [
-        12.55,
-        11.55,
-        0.92
-      ],
-      "faces": {
-        "north": {
-          "texture": "#inset",
+          "texture": "#steel",
           "uv": [
-            0,
-            0,
-            16,
-            16
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
           ]
         },
         "south": {
-          "texture": "#inset"
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
         },
         "east": {
-          "texture": "#inset"
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
         },
         "west": {
-          "texture": "#inset"
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
         },
         "up": {
-          "texture": "#inset"
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
         },
         "down": {
-          "texture": "#inset"
+          "texture": "#steel",
+          "uv": [
+            1.765625,
+            7.421875,
+            1.875,
+            9.0
+          ]
         }
       }
     },
     {
+      "name": "Holder band",
       "from": [
-        4.1,
-        4.15,
-        0.4
+        5.400000095367432,
+        12.349999904632568,
+        2.8499999046325684
       ],
       "to": [
-        11.9,
-        10.95,
-        0.52
+        10.599999904632568,
+        12.599999904632568,
+        3.0
       ],
       "faces": {
         "north": {
-          "texture": "#dna",
+          "texture": "#brass",
           "uv": [
-            0,
-            0,
-            16,
-            16
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
           ]
         },
         "south": {
-          "texture": "#inset"
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
         },
         "east": {
-          "texture": "#inset"
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
         },
         "west": {
-          "texture": "#inset"
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
         },
         "up": {
-          "texture": "#inset"
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
         },
         "down": {
-          "texture": "#inset"
+          "texture": "#brass",
+          "uv": [
+            9.453125,
+            9.140625,
+            10.796875,
+            9.609375
+          ]
         }
       }
     },
     {
+      "name": "Window edge",
       "from": [
-        5.05,
-        12.12,
-        0.1
+        2.8000001907348633,
+        3.0,
+        1.3499999046325684
       ],
       "to": [
-        10.95,
-        12.62,
-        0.44
+        3.1500000953674316,
+        13.099999904632568,
+        1.75
       ],
       "faces": {
         "north": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "south": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "east": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "west": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "up": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "down": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         }
       }
     },
     {
+      "name": "Window edge",
       "from": [
-        5.05,
-        2.55,
-        0.1
+        12.849999904632568,
+        3.0,
+        1.3499999046325684
       ],
       "to": [
-        10.95,
-        3.05,
-        0.44
+        13.199999809265137,
+        13.099999904632568,
+        1.75
       ],
       "faces": {
         "north": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "south": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "east": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "west": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "up": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "down": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         }
       }
     },
     {
+      "name": "Window crown",
       "from": [
-        2.78,
-        5.05,
-        0.1
+        2.8000001907348633,
+        12.800000190734863,
+        1.3499999046325684
       ],
       "to": [
-        3.28,
-        10.95,
-        0.44
+        13.199999809265137,
+        13.150000095367432,
+        1.75
       ],
       "faces": {
         "north": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "south": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "east": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "west": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "up": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         },
         "down": {
-          "texture": "#cyan"
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
         }
       }
     },
     {
+      "name": "Low entry threshold",
       "from": [
-        12.72,
-        5.05,
-        0.1
-      ],
-      "to": [
-        13.22,
-        10.95,
-        0.44
-      ],
-      "faces": {
-        "north": {
-          "texture": "#cyan"
-        },
-        "south": {
-          "texture": "#cyan"
-        },
-        "east": {
-          "texture": "#cyan"
-        },
-        "west": {
-          "texture": "#cyan"
-        },
-        "up": {
-          "texture": "#cyan"
-        },
-        "down": {
-          "texture": "#cyan"
-        }
-      }
-    },
-    {
-      "from": [
-        0.04,
-        2.1,
-        2.1
-      ],
-      "to": [
-        0.84,
-        13.9,
-        3.15
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.04,
-        2.1,
-        12.85
-      ],
-      "to": [
-        0.84,
-        13.9,
-        13.9
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.04,
-        12.85,
-        3.15
-      ],
-      "to": [
-        0.84,
-        13.9,
-        12.85
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.04,
-        2.1,
-        3.15
-      ],
-      "to": [
-        0.84,
-        3.15,
-        12.85
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.22,
-        4.0,
-        3.55
-      ],
-      "to": [
-        0.54,
-        4.38,
-        12.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.22,
-        6.1,
-        3.55
-      ],
-      "to": [
-        0.54,
-        6.4799999999999995,
-        12.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.22,
-        10.0,
-        3.55
-      ],
-      "to": [
-        0.54,
-        10.38,
-        12.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        0.22,
-        12.1,
-        3.55
-      ],
-      "to": [
-        0.54,
-        12.48,
-        12.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        15.16,
-        2.1,
-        2.1
-      ],
-      "to": [
-        15.96,
-        13.9,
-        3.15
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        15.16,
-        2.1,
-        12.85
-      ],
-      "to": [
-        15.96,
-        13.9,
-        13.9
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        15.16,
-        12.85,
-        3.15
-      ],
-      "to": [
-        15.96,
-        13.9,
-        12.85
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        15.16,
-        2.1,
-        3.15
-      ],
-      "to": [
-        15.96,
-        3.15,
-        12.85
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        15.46,
-        4.0,
-        3.55
-      ],
-      "to": [
-        15.78,
-        4.38,
-        12.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        15.46,
-        6.1,
-        3.55
-      ],
-      "to": [
-        15.78,
-        6.4799999999999995,
-        12.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        15.46,
-        10.0,
-        3.55
-      ],
-      "to": [
-        15.78,
-        10.38,
-        12.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        15.46,
-        12.1,
-        3.55
-      ],
-      "to": [
-        15.78,
-        12.48,
-        12.45
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        2.1,
-        2.1,
-        15.16
-      ],
-      "to": [
-        3.15,
-        13.9,
-        15.96
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        12.85,
-        2.1,
-        15.16
-      ],
-      "to": [
-        13.9,
-        13.9,
-        15.96
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        3.15,
-        12.85,
-        15.16
-      ],
-      "to": [
-        12.85,
-        13.9,
-        15.96
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        3.15,
-        2.1,
-        15.16
-      ],
-      "to": [
-        12.85,
-        3.15,
-        15.96
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        1.27,
-        3.4,
-        1.35
-      ],
-      "to": [
-        1.62,
-        3.78,
-        14.65
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        14.38,
-        3.4,
-        1.35
-      ],
-      "to": [
-        14.73,
-        3.78,
-        14.65
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        1.27,
-        6.7,
-        1.35
-      ],
-      "to": [
-        1.62,
-        7.08,
-        14.65
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        14.38,
-        6.7,
-        1.35
-      ],
-      "to": [
-        14.73,
-        7.08,
-        14.65
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        1.27,
-        10.0,
-        1.35
-      ],
-      "to": [
-        1.62,
-        10.38,
-        14.65
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        14.38,
-        10.0,
-        1.35
-      ],
-      "to": [
-        14.73,
-        10.38,
-        14.65
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        1.27,
-        13.3,
-        1.35
-      ],
-      "to": [
-        1.62,
-        13.680000000000001,
-        14.65
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    },
-    {
-      "from": [
-        14.38,
-        13.3,
-        1.35
-      ],
-      "to": [
-        14.73,
-        13.680000000000001,
-        14.65
-      ],
-      "faces": {
-        "north": {
-          "texture": "#frame"
-        },
-        "south": {
-          "texture": "#frame"
-        },
-        "east": {
-          "texture": "#frame"
-        },
-        "west": {
-          "texture": "#frame"
-        },
-        "up": {
-          "texture": "#frame"
-        },
-        "down": {
-          "texture": "#frame"
-        }
-      }
-    }
-  ],
-  "display": {
-    "thirdperson_righthand": {
-      "rotation": [
-        75,
-        45,
-        0
-      ],
-      "translation": [
-        0,
+        3.1999998092651367,
         2.5,
-        0
+        1.25
       ],
-      "scale": [
-        0.375,
-        0.375,
-        0.375
-      ]
+      "to": [
+        12.800000190734863,
+        2.9000000953674316,
+        2.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
     },
-    "thirdperson_lefthand": {
-      "rotation": [
-        75,
-        45,
-        0
+    {
+      "name": "Sample reader",
+      "from": [
+        6.399999976158142,
+        2.9000000953674316,
+        1.0500001907348633
       ],
-      "translation": [
-        0,
-        2.5,
-        0
+      "to": [
+        9.600000023841858,
+        3.1999998092651367,
+        1.8499999046325684
       ],
-      "scale": [
-        0.375,
-        0.375,
-        0.375
-      ]
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
     },
-    "firstperson_righthand": {
-      "rotation": [
-        0,
-        45,
-        0
+    {
+      "name": "Front screw",
+      "from": [
+        1.4499998092651367,
+        1.5,
+        0.15000009536743164
       ],
-      "translation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.4,
-        0.4,
-        0.4
-      ]
-    },
-    "firstperson_lefthand": {
-      "rotation": [
-        0,
-        225,
-        0
-      ],
-      "translation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.4,
-        0.4,
-        0.4
-      ]
-    },
-    "gui": {
-      "rotation": [
-        30,
-        225,
-        0
-      ],
-      "translation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.625,
-        0.625,
-        0.625
-      ]
-    },
-    "ground": {
-      "rotation": [
-        0,
-        0,
-        0
-      ],
-      "translation": [
-        0,
-        3,
-        0
-      ],
-      "scale": [
-        0.25,
-        0.25,
-        0.25
-      ]
-    },
-    "fixed": {
-      "rotation": [
-        0,
-        180,
-        0
-      ],
-      "translation": [
-        0,
-        0,
-        0
-      ],
-      "scale": [
-        0.5,
-        0.5,
+      "to": [
+        1.8499999046325684,
+        1.9000000953674316,
         0.5
-      ]
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Front screw",
+      "from": [
+        1.4499998092651367,
+        14.0,
+        0.15000009536743164
+      ],
+      "to": [
+        1.8499999046325684,
+        14.400000095367432,
+        0.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Front screw",
+      "from": [
+        14.099999904632568,
+        1.5,
+        0.15000009536743164
+      ],
+      "to": [
+        14.5,
+        1.9000000953674316,
+        0.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Front screw",
+      "from": [
+        14.099999904632568,
+        14.0,
+        0.15000009536743164
+      ],
+      "to": [
+        14.5,
+        14.400000095367432,
+        0.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Matched 048_east_service_skin",
+      "from": [
+        15.40999984741211,
+        1.5,
+        1.1999998092651367
+      ],
+      "to": [
+        15.699999809265137,
+        14.949999809265137,
+        14.800000190734863
+      ],
+      "faces": {
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            0.046875,
+            3.96875,
+            3.453125,
+            7.328125
+          ]
+        },
+        "south": {
+          "texture": "#panel",
+          "uv": [
+            3.546875,
+            3.96875,
+            3.625,
+            7.328125
+          ]
+        },
+        "north": {
+          "texture": "#panel",
+          "uv": [
+            3.546875,
+            3.96875,
+            3.625,
+            7.328125
+          ]
+        },
+        "up": {
+          "texture": "#panel",
+          "uv": [
+            14.234375,
+            0.046875,
+            14.3125,
+            3.453125
+          ]
+        },
+        "down": {
+          "texture": "#panel",
+          "uv": [
+            14.234375,
+            0.046875,
+            14.3125,
+            3.453125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Matched 056_south_service_skin",
+      "from": [
+        1.1999998092651367,
+        1.5,
+        15.40999984741211
+      ],
+      "to": [
+        14.800000190734863,
+        14.949999809265137,
+        15.699999809265137
+      ],
+      "faces": {
+        "south": {
+          "texture": "#panel",
+          "uv": [
+            0.046875,
+            3.96875,
+            3.453125,
+            7.328125
+          ]
+        },
+        "west": {
+          "texture": "#panel",
+          "uv": [
+            3.546875,
+            3.96875,
+            3.625,
+            7.328125
+          ]
+        },
+        "east": {
+          "texture": "#panel",
+          "uv": [
+            3.546875,
+            3.96875,
+            3.625,
+            7.328125
+          ]
+        },
+        "up": {
+          "texture": "#panel",
+          "uv": [
+            0.046875,
+            10.703125,
+            3.453125,
+            10.78125
+          ]
+        },
+        "down": {
+          "texture": "#panel",
+          "uv": [
+            0.046875,
+            10.703125,
+            3.453125,
+            10.78125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Matched 064_west_service_skin",
+      "from": [
+        0.3000001907348633,
+        1.5,
+        1.1999998092651367
+      ],
+      "to": [
+        0.5900001525878906,
+        14.949999809265137,
+        14.800000190734863
+      ],
+      "faces": {
+        "west": {
+          "texture": "#panel",
+          "uv": [
+            0.046875,
+            3.96875,
+            3.453125,
+            7.328125
+          ]
+        },
+        "north": {
+          "texture": "#panel",
+          "uv": [
+            3.546875,
+            3.96875,
+            3.625,
+            7.328125
+          ]
+        },
+        "south": {
+          "texture": "#panel",
+          "uv": [
+            3.546875,
+            3.96875,
+            3.625,
+            7.328125
+          ]
+        },
+        "up": {
+          "texture": "#panel",
+          "uv": [
+            14.234375,
+            0.046875,
+            14.3125,
+            3.453125
+          ]
+        },
+        "down": {
+          "texture": "#panel",
+          "uv": [
+            14.234375,
+            0.046875,
+            14.3125,
+            3.453125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Matched 072_up_roof_skin",
+      "from": [
+        1.1999998092651367,
+        15.40999984741211,
+        1.1999998092651367
+      ],
+      "to": [
+        14.800000190734863,
+        15.699999809265137,
+        14.800000190734863
+      ],
+      "faces": {
+        "up": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Matched 093_down_roof_skin",
+      "from": [
+        1.1999998092651367,
+        0.3000001907348633,
+        1.1999998092651367
+      ],
+      "to": [
+        14.800000190734863,
+        0.5900001525878906,
+        14.800000190734863
+      ],
+      "faces": {
+        "down": {
+          "texture": "#panel",
+          "uv": [
+            10.734375,
+            0.046875,
+            14.140625,
+            3.453125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Side service pad",
+      "from": [
+        0.25,
+        4.599999904632568,
+        4.599999904632568
+      ],
+      "to": [
+        0.5,
+        11.400000095367432,
+        11.400000095367432
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cooling fin",
+      "from": [
+        0.25,
+        12.300000190734863,
+        3.8000001907348633
+      ],
+      "to": [
+        0.5,
+        12.550000190734863,
+        12.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cooling fin",
+      "from": [
+        0.25,
+        13.0,
+        3.8000001907348633
+      ],
+      "to": [
+        0.5,
+        13.25,
+        12.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cooling fin",
+      "from": [
+        0.25,
+        13.699999809265137,
+        3.8000001907348633
+      ],
+      "to": [
+        0.5,
+        13.949999809265137,
+        12.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Side service pad",
+      "from": [
+        15.5,
+        4.599999904632568,
+        4.599999904632568
+      ],
+      "to": [
+        15.75,
+        11.400000095367432,
+        11.400000095367432
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cooling fin",
+      "from": [
+        15.5,
+        12.300000190734863,
+        3.8000001907348633
+      ],
+      "to": [
+        15.75,
+        12.550000190734863,
+        12.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cooling fin",
+      "from": [
+        15.5,
+        13.0,
+        3.8000001907348633
+      ],
+      "to": [
+        15.75,
+        13.25,
+        12.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cooling fin",
+      "from": [
+        15.5,
+        13.699999809265137,
+        3.8000001907348633
+      ],
+      "to": [
+        15.75,
+        13.949999809265137,
+        12.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rear service pad",
+      "from": [
+        4.599999904632568,
+        4.599999904632568,
+        15.550000190734863
+      ],
+      "to": [
+        11.400000095367432,
+        11.400000095367432,
+        15.800000190734863
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vertical service pad",
+      "from": [
+        4.599999904632568,
+        0.19999980926513672,
+        4.599999904632568
+      ],
+      "to": [
+        11.400000095367432,
+        0.4499998092651367,
+        11.400000095367432
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vertical service pad",
+      "from": [
+        4.599999904632568,
+        15.550000190734863,
+        4.599999904632568
+      ],
+      "to": [
+        11.400000095367432,
+        15.800000190734863,
+        11.400000095367432
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "left lower hatch gasket",
+      "from": [
+        0.2199997901916504,
+        1.6999998092651367,
+        2.0
+      ],
+      "to": [
+        0.3000001907348633,
+        4.099999904632568,
+        14.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "south": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "east": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "west": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "up": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "down": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "right lower hatch gasket",
+      "from": [
+        15.699999809265137,
+        1.6999998092651367,
+        2.0
+      ],
+      "to": [
+        15.78000020980835,
+        4.099999904632568,
+        14.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "south": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "east": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "west": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "up": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "down": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear lower hatch gasket",
+      "from": [
+        2.0,
+        1.6999998092651367,
+        15.699999809265137
+      ],
+      "to": [
+        14.0,
+        4.099999904632568,
+        15.78000020980835
+      ],
+      "faces": {
+        "north": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "south": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "east": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "west": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "up": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "down": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "left lower service hatch",
+      "from": [
+        0.15999984741210938,
+        1.9000000953674316,
+        2.1999998092651367
+      ],
+      "to": [
+        0.3000001907348633,
+        3.9000000953674316,
+        13.800000190734863
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        }
+      }
+    },
+    {
+      "name": "right lower service hatch",
+      "from": [
+        15.699999809265137,
+        1.9000000953674316,
+        2.1999998092651367
+      ],
+      "to": [
+        15.84000015258789,
+        3.9000000953674316,
+        13.800000190734863
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear lower service hatch",
+      "from": [
+        2.1999998092651367,
+        1.9000000953674316,
+        15.699999809265137
+      ],
+      "to": [
+        13.800000190734863,
+        3.9000000953674316,
+        15.84000015258789
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            1.0,
+            0.046875,
+            4.703125,
+            3.703125
+          ]
+        }
+      }
+    },
+    {
+      "name": "left hatch handle",
+      "from": [
+        0.05000019073486328,
+        2.5999999046325684,
+        6.5
+      ],
+      "to": [
+        0.3000001907348633,
+        2.9499998092651367,
+        9.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "right hatch handle",
+      "from": [
+        15.699999809265137,
+        2.5999999046325684,
+        6.5
+      ],
+      "to": [
+        15.949999809265137,
+        2.9499998092651367,
+        9.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear hatch handle",
+      "from": [
+        6.5,
+        2.5999999046325684,
+        15.699999809265137
+      ],
+      "to": [
+        9.5,
+        2.9499998092651367,
+        15.949999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "left hatch captive bolt",
+      "from": [
+        0.059999942779541016,
+        2.1999998092651367,
+        2.5
+      ],
+      "to": [
+        0.3000001907348633,
+        2.5,
+        2.8000001907348633
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "right hatch captive bolt",
+      "from": [
+        15.699999809265137,
+        2.1999998092651367,
+        2.5
+      ],
+      "to": [
+        15.940000057220459,
+        2.5,
+        2.8000001907348633
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear hatch captive bolt",
+      "from": [
+        2.5,
+        2.1999998092651367,
+        15.699999809265137
+      ],
+      "to": [
+        2.8000001907348633,
+        2.5,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "left hatch captive bolt",
+      "from": [
+        0.059999942779541016,
+        3.3000001907348633,
+        2.5
+      ],
+      "to": [
+        0.3000001907348633,
+        3.5999999046325684,
+        2.8000001907348633
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "right hatch captive bolt",
+      "from": [
+        15.699999809265137,
+        3.3000001907348633,
+        2.5
+      ],
+      "to": [
+        15.940000057220459,
+        3.5999999046325684,
+        2.8000001907348633
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear hatch captive bolt",
+      "from": [
+        2.5,
+        3.3000001907348633,
+        15.699999809265137
+      ],
+      "to": [
+        2.8000001907348633,
+        3.5999999046325684,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "left hatch captive bolt",
+      "from": [
+        0.059999942779541016,
+        2.1999998092651367,
+        13.099999904632568
+      ],
+      "to": [
+        0.3000001907348633,
+        2.5,
+        13.400000095367432
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "right hatch captive bolt",
+      "from": [
+        15.699999809265137,
+        2.1999998092651367,
+        13.099999904632568
+      ],
+      "to": [
+        15.940000057220459,
+        2.5,
+        13.400000095367432
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear hatch captive bolt",
+      "from": [
+        13.099999904632568,
+        2.1999998092651367,
+        15.699999809265137
+      ],
+      "to": [
+        13.400000095367432,
+        2.5,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "left hatch captive bolt",
+      "from": [
+        0.059999942779541016,
+        3.3000001907348633,
+        13.099999904632568
+      ],
+      "to": [
+        0.3000001907348633,
+        3.5999999046325684,
+        13.400000095367432
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "right hatch captive bolt",
+      "from": [
+        15.699999809265137,
+        3.3000001907348633,
+        13.099999904632568
+      ],
+      "to": [
+        15.940000057220459,
+        3.5999999046325684,
+        13.400000095367432
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear hatch captive bolt",
+      "from": [
+        13.099999904632568,
+        3.3000001907348633,
+        15.699999809265137
+      ],
+      "to": [
+        13.400000095367432,
+        3.5999999046325684,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "left reinforcing rib",
+      "from": [
+        0.11999988555908203,
+        5.0,
+        2.0999999046325684
+      ],
+      "to": [
+        0.3000001907348633,
+        11.0,
+        2.75
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "right reinforcing rib",
+      "from": [
+        15.699999809265137,
+        5.0,
+        2.0999999046325684
+      ],
+      "to": [
+        15.880000114440918,
+        11.0,
+        2.75
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear reinforcing rib",
+      "from": [
+        2.0999999046325684,
+        5.0,
+        15.699999809265137
+      ],
+      "to": [
+        2.75,
+        11.0,
+        15.880000114440918
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "left rib highlight",
+      "from": [
+        0.07999992370605469,
+        5.200000047683716,
+        2.25
+      ],
+      "to": [
+        0.3000001907348633,
+        10.799999952316284,
+        2.4000000953674316
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "right rib highlight",
+      "from": [
+        15.699999809265137,
+        5.200000047683716,
+        2.25
+      ],
+      "to": [
+        15.920000076293945,
+        10.799999952316284,
+        2.4000000953674316
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear rib highlight",
+      "from": [
+        2.25,
+        5.200000047683716,
+        15.699999809265137
+      ],
+      "to": [
+        2.4000000953674316,
+        10.799999952316284,
+        15.920000076293945
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "left reinforcing rib",
+      "from": [
+        0.11999988555908203,
+        5.0,
+        12.900000095367432
+      ],
+      "to": [
+        0.3000001907348633,
+        11.0,
+        13.550000190734863
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "right reinforcing rib",
+      "from": [
+        15.699999809265137,
+        5.0,
+        12.900000095367432
+      ],
+      "to": [
+        15.880000114440918,
+        11.0,
+        13.550000190734863
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear reinforcing rib",
+      "from": [
+        12.900000095367432,
+        5.0,
+        15.699999809265137
+      ],
+      "to": [
+        13.550000190734863,
+        11.0,
+        15.880000114440918
+      ],
+      "faces": {
+        "north": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "south": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "east": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "west": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "up": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        },
+        "down": {
+          "texture": "#frame",
+          "uv": [
+            0.6875,
+            0.046875,
+            0.90625,
+            3.875
+          ]
+        }
+      }
+    },
+    {
+      "name": "left rib highlight",
+      "from": [
+        0.07999992370605469,
+        5.200000047683716,
+        13.050000190734863
+      ],
+      "to": [
+        0.3000001907348633,
+        10.799999952316284,
+        13.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "right rib highlight",
+      "from": [
+        15.699999809265137,
+        5.200000047683716,
+        13.050000190734863
+      ],
+      "to": [
+        15.920000076293945,
+        10.799999952316284,
+        13.199999809265137
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear rib highlight",
+      "from": [
+        13.050000190734863,
+        5.200000047683716,
+        15.699999809265137
+      ],
+      "to": [
+        13.199999809265137,
+        10.799999952316284,
+        15.920000076293945
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "left upper panel fastener",
+      "from": [
+        0.07999992370605469,
+        12.0,
+        1.5999999046325684
+      ],
+      "to": [
+        0.3000001907348633,
+        12.349999904632568,
+        1.9499998092651367
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "right upper panel fastener",
+      "from": [
+        15.699999809265137,
+        12.0,
+        1.5999999046325684
+      ],
+      "to": [
+        15.920000076293945,
+        12.349999904632568,
+        1.9499998092651367
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear upper panel fastener",
+      "from": [
+        1.5999999046325684,
+        12.0,
+        15.699999809265137
+      ],
+      "to": [
+        1.9499998092651367,
+        12.349999904632568,
+        15.920000076293945
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "left upper panel fastener",
+      "from": [
+        0.07999992370605469,
+        14.300000190734863,
+        1.5999999046325684
+      ],
+      "to": [
+        0.3000001907348633,
+        14.650000095367432,
+        1.9499998092651367
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "right upper panel fastener",
+      "from": [
+        15.699999809265137,
+        14.300000190734863,
+        1.5999999046325684
+      ],
+      "to": [
+        15.920000076293945,
+        14.650000095367432,
+        1.9499998092651367
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear upper panel fastener",
+      "from": [
+        1.5999999046325684,
+        14.300000190734863,
+        15.699999809265137
+      ],
+      "to": [
+        1.9499998092651367,
+        14.650000095367432,
+        15.920000076293945
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "left upper panel fastener",
+      "from": [
+        0.07999992370605469,
+        12.0,
+        14.0
+      ],
+      "to": [
+        0.3000001907348633,
+        12.349999904632568,
+        14.349999904632568
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "right upper panel fastener",
+      "from": [
+        15.699999809265137,
+        12.0,
+        14.0
+      ],
+      "to": [
+        15.920000076293945,
+        12.349999904632568,
+        14.349999904632568
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear upper panel fastener",
+      "from": [
+        14.0,
+        12.0,
+        15.699999809265137
+      ],
+      "to": [
+        14.349999904632568,
+        12.349999904632568,
+        15.920000076293945
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "left upper panel fastener",
+      "from": [
+        0.07999992370605469,
+        14.300000190734863,
+        14.0
+      ],
+      "to": [
+        0.3000001907348633,
+        14.650000095367432,
+        14.349999904632568
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "right upper panel fastener",
+      "from": [
+        15.699999809265137,
+        14.300000190734863,
+        14.0
+      ],
+      "to": [
+        15.920000076293945,
+        14.650000095367432,
+        14.349999904632568
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "rear upper panel fastener",
+      "from": [
+        14.0,
+        14.300000190734863,
+        15.699999809265137
+      ],
+      "to": [
+        14.349999904632568,
+        14.650000095367432,
+        15.920000076293945
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "south": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "east": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "west": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "up": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        },
+        "down": {
+          "texture": "#bolt",
+          "uv": [
+            7.859375,
+            10.46875,
+            7.96875,
+            10.578125
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rear cooler gasket",
+      "from": [
+        3.6999998092651367,
+        12.0,
+        15.710000038146973
+      ],
+      "to": [
+        12.300000190734863,
+        14.5,
+        15.800000190734863
+      ],
+      "faces": {
+        "north": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "south": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "east": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "west": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "up": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        },
+        "down": {
+          "texture": "#black",
+          "uv": [
+            11.828125,
+            3.96875,
+            13.484375,
+            5.625
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rear exchanger rib",
+      "from": [
+        4.0,
+        12.199999809265137,
+        15.800000190734863
+      ],
+      "to": [
+        4.299999952316284,
+        14.300000190734863,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rear exchanger rib",
+      "from": [
+        5.099999904632568,
+        12.199999809265137,
+        15.800000190734863
+      ],
+      "to": [
+        5.400000095367432,
+        14.300000190734863,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rear exchanger rib",
+      "from": [
+        6.200000047683716,
+        12.199999809265137,
+        15.800000190734863
+      ],
+      "to": [
+        6.5,
+        14.300000190734863,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rear exchanger rib",
+      "from": [
+        7.300000011920929,
+        12.199999809265137,
+        15.800000190734863
+      ],
+      "to": [
+        7.5999999940395355,
+        14.300000190734863,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rear exchanger rib",
+      "from": [
+        8.400000005960464,
+        12.199999809265137,
+        15.800000190734863
+      ],
+      "to": [
+        8.699999988079071,
+        14.300000190734863,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rear exchanger rib",
+      "from": [
+        9.5,
+        12.199999809265137,
+        15.800000190734863
+      ],
+      "to": [
+        9.799999952316284,
+        14.300000190734863,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rear exchanger rib",
+      "from": [
+        10.599999904632568,
+        12.199999809265137,
+        15.800000190734863
+      ],
+      "to": [
+        10.900000095367432,
+        14.300000190734863,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rear exchanger rib",
+      "from": [
+        11.700000047683716,
+        12.199999809265137,
+        15.800000190734863
+      ],
+      "to": [
+        12.0,
+        14.300000190734863,
+        15.940000057220459
+      ],
+      "faces": {
+        "north": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "south": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "east": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "west": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "up": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        },
+        "down": {
+          "texture": "#trim",
+          "uv": [
+            0.046875,
+            10.109375,
+            2.296875,
+            10.375
+          ]
+        }
+      }
     }
-  }
+  ]
 }

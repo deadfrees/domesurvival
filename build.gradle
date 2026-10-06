@@ -80,7 +80,7 @@ sourceSets.main.resources {
 // optional developer/admin integration but is annotated as an automatic Forge
 // subscriber and therefore would be eagerly loaded before the game starts.
 // Exclude only that subscriber in FULL DEV; normal/production builds keep it.
-if (project.hasProperty('domeFullDev')) {
+if (project.hasProperty('domeFullDev') && !project.hasProperty('domeNpcDev')) {
     sourceSets.main.java.exclude 'com/wasted/domesurvival/forge/integration/customnpcs/JosephScriptCommand.java'
 
     // Guard against a stale class left by an earlier non-FULL-DEV compile.
@@ -253,7 +253,7 @@ if (project.hasProperty('domeFullDev')) {
             def physicalRuntimeMods = fileTree('run/mods') {
                 include '*.jar'
             }.files
-            if (!physicalRuntimeMods.isEmpty()) {
+            if (!project.hasProperty('domeNpcDev') && !physicalRuntimeMods.isEmpty()) {
                 throw new GradleException(
                         'Unsafe FULL DEV launch: run/mods still contains production JARs. ' +
                         'Use dev\\RUN_DEV_FULL.bat so the production modpack is hidden and the ' +
@@ -278,3 +278,24 @@ dependencies {
     compileOnly fg.deobf('mezz.jei:jei-1.20.1-forge-api:15.21.0.148')
 }
 // DOME JEI COMPILE API V1 END
+// DOME NPC DEV PHYSICAL JAR GUARD V1.1
+if (project.hasProperty('domeFullDev') && project.hasProperty('domeNpcDev')) {
+    tasks.matching { it.name == 'runClient' }.configureEach {
+        doFirst {
+            def physicalRuntimeMods = fileTree('run/mods') {
+                include '*.jar'
+            }.files
+            def customNpcMods = physicalRuntimeMods.findAll {
+                def n = it.name.toLowerCase(Locale.ROOT)
+                n.contains('customnpcs') || (n.contains('custom') && n.contains('npcs'))
+            }
+            if (physicalRuntimeMods.size() != 1 || customNpcMods.size() != 1) {
+                throw new GradleException(
+                        'Unsafe NPC DEV launch: run/mods must contain exactly one physical CustomNPCs JAR. ' +
+                        'Use dev\\RUN_DEV_FULL_NPCS.bat.'
+                )
+            }
+        }
+    }
+}
+// DOME NPC DEV PHYSICAL JAR GUARD V1.1 END

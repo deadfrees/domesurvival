@@ -1,0 +1,17 @@
+{
+  "type": "domesurvival:alloy_enriching",
+  "ingredient": {
+    "tag": "forge:ingots/steel"
+  },
+  "input_count": 1,
+  "fluid_input": {
+    "fluid": "domesurvival:neoflux",
+    "amount": 250
+  },
+  "result": {
+    "item": "domesurvival:neosteel_ingot",
+    "count": 1
+  },
+  "processing_time": 220,
+  "energy": 25000
+}

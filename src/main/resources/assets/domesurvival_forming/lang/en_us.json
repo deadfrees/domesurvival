@@ -1,5 +1,5 @@
 {
-  "block.domesurvival.forming_press": "Universal Metalworking Machine",
+  "block.domesurvival.forming_press": "Metalworking Machine",
   "gui.domesurvival.forming_press.energy_value": "Energy: %s / %s FE",
   "gui.domesurvival.forming_press.input": "Input",
   "gui.domesurvival.forming_press.output": "Output",

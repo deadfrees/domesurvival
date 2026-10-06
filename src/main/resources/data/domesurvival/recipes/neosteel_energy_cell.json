@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "NGN",
+    "VPV",
+    "RSR"
+  ],
+  "key": {
+    "N": { "item": "domesurvival:neosteel_ingot" },
+    "G": { "item": "domesurvival:goteium_ingot" },
+    "V": { "item": "domesurvival:voltarium_ingot" },
+    "P": { "item": "domesurvival:pulse_matrix" },
+    "R": { "item": "minecraft:redstone_block" },
+    "S": { "item": "domesurvival:solarite_crystal" }
+  },
+  "result": {
+    "item": "domesurvival:neosteel_energy_cell",
+    "count": 1
+  }
+}

@@ -9,6 +9,11 @@
       }
     },
     {
+      "apply": {
+        "model": "domesurvival:block/energy_buffer_creative_frame"
+      }
+    },
+    {
       "when": {
         "facing": "east"
       },
@@ -40,7 +45,7 @@
         "port_up": "input"
       },
       "apply": {
-        "model": "domesurvival:block/machine_input_port_up"
+        "model": "domesurvival:block/coal_generator_input_port_up"
       }
     },
     {
@@ -48,7 +53,7 @@
         "port_up": "output"
       },
       "apply": {
-        "model": "domesurvival:block/machine_output_port_up"
+        "model": "domesurvival:block/coal_generator_output_port_up"
       }
     },
     {
@@ -56,7 +61,7 @@
         "port_down": "input"
       },
       "apply": {
-        "model": "domesurvival:block/machine_input_port_down"
+        "model": "domesurvival:block/coal_generator_input_port_down"
       }
     },
     {
@@ -64,7 +69,7 @@
         "port_down": "output"
       },
       "apply": {
-        "model": "domesurvival:block/machine_output_port_down"
+        "model": "domesurvival:block/coal_generator_output_port_down"
       }
     },
     {
@@ -72,7 +77,7 @@
         "port_north": "input"
       },
       "apply": {
-        "model": "domesurvival:block/machine_input_port_north"
+        "model": "domesurvival:block/coal_generator_input_port_north"
       }
     },
     {
@@ -80,7 +85,7 @@
         "port_north": "output"
       },
       "apply": {
-        "model": "domesurvival:block/machine_output_port_north"
+        "model": "domesurvival:block/coal_generator_output_port_north"
       }
     },
     {
@@ -88,7 +93,7 @@
         "port_south": "input"
       },
       "apply": {
-        "model": "domesurvival:block/machine_input_port_south"
+        "model": "domesurvival:block/coal_generator_input_port_south"
       }
     },
     {
@@ -96,7 +101,7 @@
         "port_south": "output"
       },
       "apply": {
-        "model": "domesurvival:block/machine_output_port_south"
+        "model": "domesurvival:block/coal_generator_output_port_south"
       }
     },
     {
@@ -104,7 +109,7 @@
         "port_west": "input"
       },
       "apply": {
-        "model": "domesurvival:block/machine_input_port_west"
+        "model": "domesurvival:block/coal_generator_input_port_west"
       }
     },
     {
@@ -112,7 +117,7 @@
         "port_west": "output"
       },
       "apply": {
-        "model": "domesurvival:block/machine_output_port_west"
+        "model": "domesurvival:block/coal_generator_output_port_west"
       }
     },
     {
@@ -120,7 +125,7 @@
         "port_east": "input"
       },
       "apply": {
-        "model": "domesurvival:block/machine_input_port_east"
+        "model": "domesurvival:block/coal_generator_input_port_east"
       }
     },
     {
@@ -128,7 +133,7 @@
         "port_east": "output"
       },
       "apply": {
-        "model": "domesurvival:block/machine_output_port_east"
+        "model": "domesurvival:block/coal_generator_output_port_east"
       }
     }
   ]

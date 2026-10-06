@@ -1,6 +1,317 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "domesurvival:item/genetics/damaged_pig_cryocapsule"
-  }
+  "parent": "domesurvival:item/bio_capsules/unknown",
+  "overrides": [
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.015625
+      },
+      "model": "domesurvival:item/bio_capsules/cow"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.03125
+      },
+      "model": "domesurvival:item/bio_capsules/pig"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.046875
+      },
+      "model": "domesurvival:item/bio_capsules/sheep"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.0625
+      },
+      "model": "domesurvival:item/bio_capsules/chicken"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.078125
+      },
+      "model": "domesurvival:item/bio_capsules/rabbit"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.09375
+      },
+      "model": "domesurvival:item/bio_capsules/horse"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.109375
+      },
+      "model": "domesurvival:item/bio_capsules/donkey"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.125
+      },
+      "model": "domesurvival:item/bio_capsules/llama"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.140625
+      },
+      "model": "domesurvival:item/bio_capsules/goat"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.15625
+      },
+      "model": "domesurvival:item/bio_capsules/camel"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.171875
+      },
+      "model": "domesurvival:item/bio_capsules/wolf"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.1875
+      },
+      "model": "domesurvival:item/bio_capsules/cat"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.203125
+      },
+      "model": "domesurvival:item/bio_capsules/ocelot"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.21875
+      },
+      "model": "domesurvival:item/bio_capsules/fox"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.234375
+      },
+      "model": "domesurvival:item/bio_capsules/bee"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.25
+      },
+      "model": "domesurvival:item/bio_capsules/panda"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.265625
+      },
+      "model": "domesurvival:item/bio_capsules/turtle"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.28125
+      },
+      "model": "domesurvival:item/bio_capsules/axolotl"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.296875
+      },
+      "model": "domesurvival:item/bio_capsules/frog"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.3125
+      },
+      "model": "domesurvival:item/bio_capsules/mooshroom"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.328125
+      },
+      "model": "domesurvival:item/bio_capsules/sniffer"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.34375
+      },
+      "model": "domesurvival:item/bio_capsules/strider"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.359375
+      },
+      "model": "domesurvival:item/bio_capsules/hoglin"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.375
+      },
+      "model": "domesurvival:item/bio_capsules/mule"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.390625
+      },
+      "model": "domesurvival:item/bio_capsules/parrot"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.40625
+      },
+      "model": "domesurvival:item/bio_capsules/polar_bear"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.421875
+      },
+      "model": "domesurvival:item/bio_capsules/cow_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.4375
+      },
+      "model": "domesurvival:item/bio_capsules/pig_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.453125
+      },
+      "model": "domesurvival:item/bio_capsules/sheep_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.46875
+      },
+      "model": "domesurvival:item/bio_capsules/chicken_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.484375
+      },
+      "model": "domesurvival:item/bio_capsules/rabbit_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.5
+      },
+      "model": "domesurvival:item/bio_capsules/horse_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.515625
+      },
+      "model": "domesurvival:item/bio_capsules/donkey_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.53125
+      },
+      "model": "domesurvival:item/bio_capsules/llama_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.546875
+      },
+      "model": "domesurvival:item/bio_capsules/goat_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.5625
+      },
+      "model": "domesurvival:item/bio_capsules/camel_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.578125
+      },
+      "model": "domesurvival:item/bio_capsules/wolf_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.59375
+      },
+      "model": "domesurvival:item/bio_capsules/cat_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.609375
+      },
+      "model": "domesurvival:item/bio_capsules/ocelot_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.625
+      },
+      "model": "domesurvival:item/bio_capsules/fox_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.640625
+      },
+      "model": "domesurvival:item/bio_capsules/bee_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.65625
+      },
+      "model": "domesurvival:item/bio_capsules/panda_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.671875
+      },
+      "model": "domesurvival:item/bio_capsules/turtle_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.6875
+      },
+      "model": "domesurvival:item/bio_capsules/axolotl_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.703125
+      },
+      "model": "domesurvival:item/bio_capsules/frog_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.71875
+      },
+      "model": "domesurvival:item/bio_capsules/mooshroom_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.734375
+      },
+      "model": "domesurvival:item/bio_capsules/sniffer_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.75
+      },
+      "model": "domesurvival:item/bio_capsules/strider_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.765625
+      },
+      "model": "domesurvival:item/bio_capsules/hoglin_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.78125
+      },
+      "model": "domesurvival:item/bio_capsules/mule_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.796875
+      },
+      "model": "domesurvival:item/bio_capsules/parrot_damaged"
+    },
+    {
+      "predicate": {
+        "domesurvival:bio_variant": 0.8125
+      },
+      "model": "domesurvival:item/bio_capsules/polar_bear_damaged"
+    }
+  ]
 }

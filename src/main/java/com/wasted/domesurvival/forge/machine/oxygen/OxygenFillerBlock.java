@@ -74,7 +74,7 @@ public final class OxygenFillerBlock extends BaseEntityBlock implements cofh.lib
         BlockState configured = state;
         for (Direction direction : Direction.values()) {
             configured = configured.setValue(portProperty(direction),
-                    direction == facing ? PortVisual.OFF : PortVisual.INPUT);
+                    direction == facing ? PortVisual.OFF : direction == Direction.DOWN || direction == facing.getClockWise() ? PortVisual.OUTPUT : PortVisual.INPUT);
         }
         return configured;
     }
@@ -128,10 +128,8 @@ public final class OxygenFillerBlock extends BaseEntityBlock implements cofh.lib
             }
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof OxygenFillerBlockEntity filler) {
-                ItemStack tank = filler.getInventory().getStackInSlot(OxygenFillerBlockEntity.SLOT_TANK);
-                if (!tank.isEmpty()) {
-                    popResource(level, pos, tank.copy());
-                }
+                for(int i=0;i<filler.getInventory().getSlots();i++)popResource(level,pos,filler.getInventory().getStackInSlot(i).copy());
+                for(int i=0;i<filler.getModules().getSlots();i++)popResource(level,pos,filler.getModules().getStackInSlot(i).copy());
             }
         }
         super.onRemove(oldState, level, pos, newState, movedByPiston);

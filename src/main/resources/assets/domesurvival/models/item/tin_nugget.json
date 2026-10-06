@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "domesurvival:item/tin_nugget"
+    "layer0": "domesurvival:item/materials_v2/tin_nugget"
   }
 }

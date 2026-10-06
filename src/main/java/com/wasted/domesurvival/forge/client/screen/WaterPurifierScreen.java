@@ -1,455 +1,128 @@
 package com.wasted.domesurvival.forge.client.screen;
-
-import com.wasted.domesurvival.forge.DomeSurvival;
-import com.wasted.domesurvival.forge.machine.side.RelativeSide;
-import com.wasted.domesurvival.forge.machine.side.SideMode;
-import com.wasted.domesurvival.forge.machine.water.WaterPurifierBlockEntity;
 import com.wasted.domesurvival.forge.machine.water.WaterPurifierMenu;
+
+import com.wasted.domesurvival.forge.machine.module.*;
+import com.wasted.domesurvival.forge.machine.side.*;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Locale;
-
-/**
- * Water purifier UI aligned with the coal generator style.
- * This revision reduces label collisions, tones down the orange palette,
- * and keeps the whole machine family visually consistent.
- */
 public final class WaterPurifierScreen extends AbstractContainerScreen<WaterPurifierMenu> {
-    private static final ResourceLocation PORT_TEXTURE =
-            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
-
-    private static final int PANEL_WIDTH = 220;
-    private static final int PANEL_HEIGHT = 284;
-    private static final int MACHINE_PANEL_WIDTH = 220;
-    private static final int GEAR_X = 224;
-    private static final int GEAR_Y = 8;
-    private static final int GEAR_SIZE = 20;
-    private static final int SIDE_PANEL_X = 248;
-    private static final int SIDE_PANEL_WIDTH = 96;
-    private static final int SIDE_PANEL_HEIGHT = 122;
-
-    private static final int ENERGY_METER_X = 14;
-    private static final int ENERGY_METER_Y = 37;
-    private static final int ENERGY_METER_W = 18;
-    private static final int ENERGY_METER_H = 53;
-    private static final int ENERGY_VALUE_X = 42;
-    private static final int ENERGY_VALUE_Y = 38;
-    private static final int ENERGY_VALUE_W = 166;
-    private static final int ENERGY_VALUE_H = 15;
-
-    private static final int RAW_BAR_X = 14;
-    private static final int RAW_BAR_Y = 108;
-    private static final int RAW_BAR_W = 60;
-    private static final int RAW_BAR_H = 14;
-    private static final int PROGRESS_BAR_X = 80;
-    private static final int PROGRESS_BAR_Y = 108;
-    private static final int PROGRESS_BAR_W = 60;
-    private static final int PROGRESS_BAR_H = 14;
-    private static final int PURE_BAR_X = 146;
-    private static final int PURE_BAR_Y = 108;
-    private static final int PURE_BAR_W = 60;
-    private static final int PURE_BAR_H = 14;
-
-    private static final int WATER_SLOT_BG_X = 146;
-    private static final int FILTER_SLOT_BG_X = 178;
-    private static final int MACHINE_SLOT_BG_Y = 136;
-    private static final int MACHINE_SLOT_BG_SIZE = 24;
-
-    private static final int INVENTORY_X = 11;
-    private static final int INVENTORY_Y = 179;
-    private static final int INVENTORY_SLOT_SIZE = 22;
-    private static final int INVENTORY_SLOT_STEP = 22;
-    private static final int HOTBAR_Y = 247;
-
-    private static final Rect SIDE_MODEL_FRAME = new Rect(SIDE_PANEL_X + 8, 28, 80, 90);
-    private static final int SIDE_BUTTON_SIZE = 14;
-    private static final int SIDE_GRID_STEP = 22;
-    private static final EnumMap<RelativeSide, Rect> SIDE_RECTS = createSideRects();
-
-    private static final int PORT_SIZE = 6;
-    private static final int PORT_TEX_WIDTH = 24;
-    private static final int PORT_TEX_HEIGHT = 6;
-    private static final int PORT_OFF_U = 0;
-    private static final int PORT_INPUT_U = 12;
-    private static final int PORT_OUTPUT_U = 18;
-
-    // Close to the coal generator palette, less saturated than the first purifier draft.
-    private static final int ENERGY_DARK = 0xFF6F5F28;
-    private static final int ENERGY_MAIN = 0xFF8D792A;
-    private static final int ENERGY_BRIGHT = 0xFFAA9438;
-    private static final int RAW_WATER = 0xFF2B678A;
-    private static final int RAW_WATER_BRIGHT = 0xFF4B9BC4;
-    private static final int PURE_WATER = 0xFF2B8E97;
-    private static final int PURE_WATER_BRIGHT = 0xFF72D4DB;
-
-    private boolean sidePanelOpen;
-
-    public WaterPurifierScreen(WaterPurifierMenu menu, Inventory playerInventory, Component title) {
-        super(menu, playerInventory, title);
-        imageWidth = PANEL_WIDTH;
-        imageHeight = PANEL_HEIGHT;
+    private static final String KEY="gui.domesurvival.purifier_v2.";
+    private static final int TEXT=0xFFCAD2D4,MUTED=0xFF98A5AB,COPPER=0xFFE2AC82,BLUE=0xFF83B8D2;
+    private static final ResourceLocation PANEL=tex("panel"),CONFIG=tex("configuration"),MODULES=tex("modules");
+    private static final ResourceLocation WIDGETS=new ResourceLocation("domesurvival","textures/gui/coal_generator_v2/widgets.png");
+    private static final EnumMap<RelativeSide,Rect> SIDES=new EnumMap<>(RelativeSide.class);
+    static {
+        SIDES.put(RelativeSide.TOP,new Rect(46,51,20,20));SIDES.put(RelativeSide.LEFT,new Rect(22,75,20,20));
+        SIDES.put(RelativeSide.FRONT,new Rect(46,75,20,20));SIDES.put(RelativeSide.RIGHT,new Rect(70,75,20,20));
+        SIDES.put(RelativeSide.BOTTOM,new Rect(46,99,20,20));SIDES.put(RelativeSide.BACK,new Rect(70,99,20,20));
     }
-
-    @Override
-    protected void init() {
-        super.init();
-        leftPos = (width - MACHINE_PANEL_WIDTH) / 2;
-        topPos = (height - imageHeight) / 2;
+    public WaterPurifierScreen(WaterPurifierMenu menu,Inventory inv,Component title){super(menu,inv,title);imageWidth=220;imageHeight=266;}
+    private static ResourceLocation tex(String n){return new ResourceLocation("domesurvival","textures/gui/water_purifier_v2/"+n+".png");}
+    private static RelativeSide actual(RelativeSide s){return s==RelativeSide.LEFT?RelativeSide.RIGHT:s==RelativeSide.RIGHT?RelativeSide.LEFT:s;}
+    private boolean inside(double x,double y,Rect r){return r.contains(x-leftPos,y-topPos);}
+    private void send(int id){if(minecraft!=null&&minecraft.gameMode!=null)minecraft.gameMode.handleInventoryButtonClick(menu.containerId,id);}
+    private void tab(int id){menu.setTab(id);send(id);}
+    @Override public boolean mouseClicked(double x,double y,int button){
+        if(button==0&&inside(x,y,new Rect(192,6,20,20))){tab(menu.isSidePanelOpen()?201:202);return true;}
+        if(button==0&&inside(x,y,new Rect(168,6,20,20))){tab(menu.isModulePanelOpen()?201:200);return true;}
+        if(button==0&&menu.isSidePanelOpen())for(var e:SIDES.entrySet())if(inside(x,y,e.getValue())){
+            if(e.getKey()!=RelativeSide.FRONT)send(100+actual(e.getKey()).ordinal());return true;
+        }
+        return super.mouseClicked(x,y,button);
     }
-
-    private static EnumMap<RelativeSide, Rect> createSideRects() {
-        EnumMap<RelativeSide, Rect> regions = new EnumMap<>(RelativeSide.class);
-        int centerX = SIDE_PANEL_X + (SIDE_PANEL_WIDTH - SIDE_BUTTON_SIZE) / 2;
-        int middleY = 66;
-        regions.put(RelativeSide.TOP, new Rect(centerX, middleY - SIDE_GRID_STEP, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        regions.put(RelativeSide.LEFT, new Rect(centerX - SIDE_GRID_STEP, middleY, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        regions.put(RelativeSide.FRONT, new Rect(centerX, middleY, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        regions.put(RelativeSide.RIGHT, new Rect(centerX + SIDE_GRID_STEP, middleY, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        regions.put(RelativeSide.BOTTOM, new Rect(centerX, middleY + SIDE_GRID_STEP, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        regions.put(RelativeSide.BACK, new Rect(centerX + SIDE_GRID_STEP, middleY + SIDE_GRID_STEP, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        return regions;
+    private void widget(GuiGraphics g,int x,int y,int w,int h,int u,int v,int sw,int sh){
+        g.blit(WIDGETS,leftPos+x,topPos+y,w,h,u*4F,v*4F,sw*4,sh*4,512,256);
     }
-
-    @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (button == 0) {
-            if (inside(mouseX, mouseY, GEAR_X, GEAR_Y, GEAR_SIZE, GEAR_SIZE)) {
-                sidePanelOpen = !sidePanelOpen;
-                return true;
+    @Override protected void renderBg(GuiGraphics g,float partial,int mx,int my){
+        g.blit(PANEL,leftPos,topPos,220,266,0,0,880,1064,880,1064);
+        widget(g,192,6,20,20,0,0,20,20);widget(g,168,6,20,20,88,0,20,20);
+        if(menu.isModulePanelOpen())g.blit(MODULES,leftPos+8,topPos+29,204,111,0,0,816,444,816,444);
+        else if(menu.isSidePanelOpen()){
+            g.blit(CONFIG,leftPos+8,topPos+29,204,111,0,0,816,444,816,444);
+            for(var e:SIDES.entrySet()){
+                Rect r=e.getValue();SideMode m=menu.getSideMode(actual(e.getKey()));
+                widget(g,r.x,r.y,20,20,m==SideMode.INPUT?20:m==SideMode.OUTPUT?40:0,24,20,20);
             }
-            if (sidePanelOpen) {
-                RelativeSide side = getHoveredSide(mouseX, mouseY);
-                if (side != null && minecraft != null && minecraft.gameMode != null) {
-                    minecraft.gameMode.handleInventoryButtonClick(
-                            menu.containerId,
-                            WaterPurifierMenu.sideButtonId(machineSideForVisualSide(side))
-                    );
-                    return true;
-                }
+        }else{
+            com.wasted.domesurvival.forge.client.gui.MachineGaugeRenderer.segmented(
+                    g,leftPos+17,topPos+46,10,80,menu.energyStored(),menu.energyCapacity());
+            fluid(g,45,46,22,50,menu.rawWater(),menu.rawCapacity(),net.minecraft.world.level.material.Fluids.WATER);
+            fluid(g,181,46,22,50,menu.purifiedWater(),menu.purifiedCapacity(),com.wasted.domesurvival.forge.fluid.ModFluids.PURIFIED_WATER.get());
+            com.wasted.domesurvival.forge.client.render.WaterPurifierPreview.draw(g,leftPos+123,topPos+70,25,menu.status()==1,menu.rawWater(),menu.purifiedWater());
+            int width=(int)Math.min(85,(long)menu.progress()*85/Math.max(1,menu.progressMax()));
+            if(width>0){g.enableScissor(leftPos+82,topPos+111,leftPos+82+width,topPos+119);widget(g,82,111,85,8,0,48,64,8);g.disableScissor();}
+
+        }
+        if(menu.isModulePanelOpen()||inside(mx,my,new Rect(168,6,20,20)))g.renderOutline(leftPos+168,topPos+6,20,20,COPPER);
+        if(menu.isSidePanelOpen()||inside(mx,my,new Rect(192,6,20,20)))g.renderOutline(leftPos+192,topPos+6,20,20,BLUE);
+    }
+    private void text(GuiGraphics g,Component value,int x,int y,int width,int color){
+        String s=value.getString();if(font.width(s)>width)s=font.plainSubstrByWidth(s,width-font.width("..."))+"...";
+        g.drawString(font,s,x,y,color,false);
+    }
+    private Component t(String key,Object...args){return Component.translatable(KEY+key,args);}
+    @Override protected void renderLabels(GuiGraphics g,int mx,int my){
+        text(g,title,13,10,146,0xFFF1D7B9);
+        if(menu.isModulePanelOpen()){
+            text(g,Component.translatable("gui.domesurvival.upgrade_modules"),15,34,190,TEXT);
+            text(g,t("module_title"),59,54,145,COPPER);text(g,t("module_next"),59,72,145,TEXT);
+            text(g,t("module_conflict"),59,89,145,MUTED);
+        }else if(menu.isSidePanelOpen()){
+            text(g,Component.translatable("gui.domesurvival.side_config"),15,33,190,TEXT);
+            text(g,t("input"),111,52,90,BLUE);text(g,t("input_short"),111,66,90,TEXT);
+            text(g,t("output"),111,87,90,COPPER);text(g,t("output_short"),111,101,90,TEXT);
+            for(var e:SIDES.entrySet()){Rect r=e.getValue();g.drawCenteredString(font,Component.translatable("gui.domesurvival.coal_generator.side_letter."+e.getKey().name().toLowerCase(Locale.ROOT)),r.x+10,r.y+5,e.getKey()==RelativeSide.FRONT?MUTED:TEXT);}
+        }else{
+            text(g,t("conversion"),44,33,162,TEXT);
+
+        }
+        text(g,playerInventoryTitle,14,146,62,TEXT);
+    }
+    private void help(GuiGraphics g,Component text,int x,int y){g.renderTooltip(font,font.split(text,220),x,y);}
+    @Override protected void renderTooltip(GuiGraphics g,int x,int y){
+        // Describe the hovered module, without control instructions.
+        if(hoveredSlot!=null&&hoveredSlot.hasItem()&&getMenu().getCarried().isEmpty()&&hoveredSlot.getItem().getItem() instanceof MachineModuleItem module){
+            String key=switch(module.module().type()){
+                case BUFFER -> "buffer_help";
+                case EFFICIENCY -> "efficiency_help";
+                case OVERDRIVE -> "overdrive_help";
+                default -> "unsupported_module";
+            };
+            help(g,t(key),x,y);return;
+        }
+        super.renderTooltip(g,x,y);
+    }
+    @Override public void render(GuiGraphics g,int x,int y,float partial){
+        renderBackground(g);super.render(g,x,y,partial);renderTooltip(g,x,y);
+        if(hoveredSlot!=null&&hoveredSlot.hasItem())return;
+        if(inside(x,y,new Rect(192,6,20,20)))help(g,Component.translatable("gui.domesurvival.side_config"),x,y);
+        else if(inside(x,y,new Rect(168,6,20,20)))help(g,Component.translatable("gui.domesurvival.upgrade_modules"),x,y);
+        else if(menu.isModulePanelOpen()&&inside(x,y,new Rect(18,49,185,73)))help(g,t("module_help"),x,y);
+        else if(menu.isSidePanelOpen()){
+            for(var e:SIDES.entrySet())if(inside(x,y,e.getValue())){
+                var m=menu.getSideMode(actual(e.getKey()));
+                help(g,t(e.getKey()==RelativeSide.FRONT?"front":m==SideMode.INPUT?"input_help":m==SideMode.OUTPUT?"output_help":"off"),x,y);
             }
-        }
-        return super.mouseClicked(mouseX, mouseY, button);
+        }else if(inside(x,y,new Rect(14,43,16,86)))help(g,t("energy",menu.energyStored(),menu.energyCapacity()),x,y);
+        else if(inside(x,y,new Rect(42,43,28,56)))help(g,t("raw",menu.rawWater(),menu.rawCapacity()),x,y);
+        else if(inside(x,y,new Rect(178,43,28,56)))help(g,t("purified",menu.purifiedWater(),menu.purifiedCapacity()),x,y);
+        else if(inside(x,y,new Rect(79,108,91,14)))help(g,t("process",menu.progress(),menu.progressMax(),menu.cycleEnergy()),x,y);
+        else if(inside(x,y,new Rect(42,107,24,24)))help(g,t("bucket_help"),x,y);
+        else if(inside(x,y,new Rect(178,107,24,24)))help(g,t("filter_help"),x,y);
+
     }
-
-    private boolean inside(double mouseX, double mouseY, int x, int y, int w, int h) {
-        double localX = mouseX - leftPos;
-        double localY = mouseY - topPos;
-        return localX >= x && localX < x + w && localY >= y && localY < y + h;
+    private void fluid(GuiGraphics g,int x,int y,int w,int h,int amount,int capacity,net.minecraft.world.level.material.Fluid fluid){
+        int filled=(int)((long)h*amount/Math.max(1,capacity));if(filled<=0)return;
+        var ext=net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions.of(fluid);
+        var sprite=minecraft.getTextureAtlas(net.minecraft.world.inventory.InventoryMenu.BLOCK_ATLAS).apply(ext.getStillTexture());
+        int tint=ext.getTintColor();g.setColor(((tint>>16)&255)/255F,((tint>>8)&255)/255F,(tint&255)/255F,1);
+        g.blit(leftPos+x,topPos+y+h-filled,0,w,filled,sprite);g.setColor(1,1,1,1);
     }
-
-    private static RelativeSide machineSideForVisualSide(RelativeSide visualSide) {
-        return switch (visualSide) {
-            case LEFT -> RelativeSide.RIGHT;
-            case RIGHT -> RelativeSide.LEFT;
-            default -> visualSide;
-        };
-    }
-
-    @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
-        renderTooltip(guiGraphics, mouseX, mouseY);
-
-        if (inside(mouseX, mouseY, GEAR_X, GEAR_Y, GEAR_SIZE, GEAR_SIZE)) {
-            guiGraphics.renderTooltip(font, Component.translatable("gui.domesurvival.side_config"), mouseX, mouseY);
-            return;
-        }
-
-        if (sidePanelOpen) {
-            RelativeSide hoveredSide = getHoveredSide(mouseX, mouseY);
-            if (hoveredSide != null) {
-                List<Component> tooltip = new ArrayList<>();
-                tooltip.add(Component.translatable(sideTranslationKey(hoveredSide)));
-                tooltip.add(getSideModeTooltip(menu.getSideMode(machineSideForVisualSide(hoveredSide))));
-                guiGraphics.renderComponentTooltip(font, tooltip, mouseX, mouseY, ItemStack.EMPTY);
-                return;
-            }
-        }
-
-        if (isHovering(ENERGY_METER_X, ENERGY_METER_Y, ENERGY_METER_W, ENERGY_METER_H, mouseX, mouseY)
-                || isHovering(ENERGY_VALUE_X, ENERGY_VALUE_Y, ENERGY_VALUE_W, ENERGY_VALUE_H, mouseX, mouseY)) {
-            guiGraphics.renderTooltip(font, Component.translatable(
-                    "gui.domesurvival.water_purifier.energy_tooltip",
-                    menu.getEnergyStored(), menu.getEnergyCapacity()), mouseX, mouseY);
-        } else if (isHovering(RAW_BAR_X, RAW_BAR_Y, RAW_BAR_W, RAW_BAR_H, mouseX, mouseY)) {
-            guiGraphics.renderTooltip(font, Component.translatable(
-                    "gui.domesurvival.water_purifier.raw_tooltip",
-                    menu.getRawWater(), menu.getRawCapacity()), mouseX, mouseY);
-        } else if (isHovering(PURE_BAR_X, PURE_BAR_Y, PURE_BAR_W, PURE_BAR_H, mouseX, mouseY)) {
-            guiGraphics.renderTooltip(font, Component.translatable(
-                    "gui.domesurvival.water_purifier.purified_tooltip",
-                    menu.getPurifiedWater(), menu.getPurifiedCapacity()), mouseX, mouseY);
-        } else if (isHovering(PROGRESS_BAR_X, PROGRESS_BAR_Y, PROGRESS_BAR_W, PROGRESS_BAR_H, mouseX, mouseY)) {
-            int percent = menu.getProgressMax() <= 0 ? 0 : menu.getProgress() * 100 / menu.getProgressMax();
-            guiGraphics.renderTooltip(font, Component.translatable(
-                    "gui.domesurvival.water_purifier.progress_tooltip", percent), mouseX, mouseY);
-        }
-    }
-
-    @Override
-    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
-        int x = leftPos;
-        int y = topPos;
-        drawIndustrialPanel(guiGraphics, x, y, MACHINE_PANEL_WIDTH, PANEL_HEIGHT, 0xFF30363A);
-
-        drawThinFrame(guiGraphics, x + ENERGY_METER_X, y + ENERGY_METER_Y, ENERGY_METER_W, ENERGY_METER_H, 0xFF14191C);
-        drawThinFrame(guiGraphics, x + ENERGY_VALUE_X, y + ENERGY_VALUE_Y, ENERGY_VALUE_W, ENERGY_VALUE_H, 0xFF151A1D);
-        drawThinFrame(guiGraphics, x + RAW_BAR_X, y + RAW_BAR_Y, RAW_BAR_W, RAW_BAR_H, 0xFF151A1D);
-        drawThinFrame(guiGraphics, x + PROGRESS_BAR_X, y + PROGRESS_BAR_Y, PROGRESS_BAR_W, PROGRESS_BAR_H, 0xFF151A1D);
-        drawThinFrame(guiGraphics, x + PURE_BAR_X, y + PURE_BAR_Y, PURE_BAR_W, PURE_BAR_H, 0xFF151A1D);
-        drawSlot(guiGraphics, x + WATER_SLOT_BG_X, y + MACHINE_SLOT_BG_Y, MACHINE_SLOT_BG_SIZE);
-        drawSlot(guiGraphics, x + FILTER_SLOT_BG_X, y + MACHINE_SLOT_BG_Y, MACHINE_SLOT_BG_SIZE);
-
-        int capacity = Math.max(1, menu.getEnergyCapacity());
-        int energyInnerHeight = ENERGY_METER_H - 6;
-        int energyHeight = Math.min(energyInnerHeight, (int) ((long) menu.getEnergyStored() * energyInnerHeight / capacity));
-        if (energyHeight > 0) {
-            int fillBottom = y + ENERGY_METER_Y + ENERGY_METER_H - 3;
-            int fillTop = fillBottom - energyHeight;
-            guiGraphics.fill(x + ENERGY_METER_X + 3, fillTop, x + ENERGY_METER_X + ENERGY_METER_W - 3, fillBottom, ENERGY_MAIN);
-            guiGraphics.fill(x + ENERGY_METER_X + 4, fillTop, x + ENERGY_METER_X + 6, fillBottom, ENERGY_BRIGHT);
-        }
-
-        fillHorizontal(guiGraphics, x + RAW_BAR_X, y + RAW_BAR_Y, RAW_BAR_W, RAW_BAR_H,
-                menu.getRawWater(), menu.getRawCapacity(), RAW_WATER, RAW_WATER_BRIGHT);
-        fillHorizontal(guiGraphics, x + PURE_BAR_X, y + PURE_BAR_Y, PURE_BAR_W, PURE_BAR_H,
-                menu.getPurifiedWater(), menu.getPurifiedCapacity(), PURE_WATER, PURE_WATER_BRIGHT);
-
-        int progressMax = Math.max(1, menu.getProgressMax());
-        int progress = Math.min(PROGRESS_BAR_W - 6, menu.getProgress() * (PROGRESS_BAR_W - 6) / progressMax);
-        if (progress > 0) {
-            guiGraphics.fill(x + PROGRESS_BAR_X + 3, y + PROGRESS_BAR_Y + 3,
-                    x + PROGRESS_BAR_X + 3 + progress, y + PROGRESS_BAR_Y + PROGRESS_BAR_H - 3, ENERGY_MAIN);
-            guiGraphics.fill(x + PROGRESS_BAR_X + 3, y + PROGRESS_BAR_Y + 4,
-                    x + PROGRESS_BAR_X + 3 + progress, y + PROGRESS_BAR_Y + 6, ENERGY_BRIGHT);
-        }
-
-        // Machine/inventory separator in neutral metal colors, without the extra orange stripe.
-        guiGraphics.fill(x + 10, y + 173, x + MACHINE_PANEL_WIDTH - 10, y + 174, 0xFF171B1F);
-        guiGraphics.fill(x + 10, y + 174, x + MACHINE_PANEL_WIDTH - 10, y + 175, 0xFF4B5359);
-
-        for (int row = 0; row < 3; row++) {
-            for (int column = 0; column < 9; column++) {
-                drawSlot(guiGraphics,
-                        x + INVENTORY_X + column * INVENTORY_SLOT_STEP,
-                        y + INVENTORY_Y + row * INVENTORY_SLOT_STEP,
-                        INVENTORY_SLOT_SIZE);
-            }
-        }
-        for (int column = 0; column < 9; column++) {
-            drawSlot(guiGraphics,
-                    x + INVENTORY_X + column * INVENTORY_SLOT_STEP,
-                    y + HOTBAR_Y,
-                    INVENTORY_SLOT_SIZE);
-        }
-
-        drawGearButton(guiGraphics, x + GEAR_X, y + GEAR_Y, sidePanelOpen);
-
-        if (sidePanelOpen) {
-            drawIndustrialPanel(guiGraphics, x + SIDE_PANEL_X, y, SIDE_PANEL_WIDTH, SIDE_PANEL_HEIGHT, 0xFF252B2F);
-            drawThinFrame(guiGraphics, x + SIDE_MODEL_FRAME.x, y + SIDE_MODEL_FRAME.y,
-                    SIDE_MODEL_FRAME.width, SIDE_MODEL_FRAME.height, 0xFF171C20);
-            drawSideModel(guiGraphics, mouseX, mouseY);
-        }
-    }
-
-    private static int scaled(int value, int capacity, int maxPixels) {
-        if (value <= 0 || capacity <= 0) return 0;
-        return Math.min(maxPixels, (int) ((long) value * maxPixels / capacity));
-    }
-
-    private static void fillHorizontal(GuiGraphics guiGraphics, int x, int y, int width, int height,
-                                       int value, int capacity, int main, int bright) {
-        int fill = scaled(value, capacity, width - 6);
-        if (fill <= 0) return;
-        guiGraphics.fill(x + 3, y + 3, x + 3 + fill, y + height - 3, main);
-        guiGraphics.fill(x + 3, y + 4, x + 3 + fill, y + 6, bright);
-    }
-
-    @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        drawClampedText(guiGraphics, title, 10, 8, MACHINE_PANEL_WIDTH - 20, 0xFFE0E4E6);
-        drawClampedText(guiGraphics, Component.translatable("gui.domesurvival.water_purifier.energy_section"),
-                14, 24, MACHINE_PANEL_WIDTH - 28, 0xFFC5CBCD);
-        drawCenteredClampedText(guiGraphics, Component.translatable(
-                        "gui.domesurvival.water_purifier.energy_compact",
-                        compactRf(menu.getEnergyStored()), compactRf(menu.getEnergyCapacity())),
-                ENERGY_VALUE_X + 3, ENERGY_VALUE_Y + 4, ENERGY_VALUE_W - 6, ENERGY_BRIGHT);
-        drawClampedText(guiGraphics, Component.translatable(
-                        "gui.domesurvival.water_purifier.consumption", WaterPurifierBlockEntity.ENERGY_PER_TICK),
-                42, 58, 166, 0xFFC1C7CA);
-        drawClampedText(guiGraphics, Component.translatable(
-                        "gui.domesurvival.water_purifier.cycle", WaterPurifierBlockEntity.PROCESS_TICKS / 20.0D),
-                42, 70, 166, 0xFFC1C7CA);
-
-        // One evenly spaced row: raw water / process / purified water.
-        // No extra section/status/slot captions are rendered here, so nothing can overlap.
-        drawCenteredClampedText(guiGraphics, Component.translatable("gui.domesurvival.water_purifier.raw_short"),
-                RAW_BAR_X, 96, RAW_BAR_W, 0xFF79B8D7);
-        drawCenteredClampedText(guiGraphics, Component.translatable("gui.domesurvival.water_purifier.process_short"),
-                PROGRESS_BAR_X, 96, PROGRESS_BAR_W, ENERGY_BRIGHT);
-        drawCenteredClampedText(guiGraphics, Component.translatable("gui.domesurvival.water_purifier.pure_short"),
-                PURE_BAR_X, 96, PURE_BAR_W, 0xFF8CE0E6);
-
-        drawClampedText(guiGraphics, playerInventoryTitle, 14, 163, 126, 0xFFC5CBCD);
-
-        if (sidePanelOpen) {
-            drawCenteredClampedText(guiGraphics, Component.translatable("gui.domesurvival.side_config"),
-                    SIDE_PANEL_X + 4, 8, SIDE_PANEL_WIDTH - 8, 0xFFE0E4E6);
-        }
-    }
-
-    private Component getStatusText() {
-        return switch (menu.getStatus()) {
-            case WaterPurifierBlockEntity.STATUS_RUNNING -> Component.translatable("gui.domesurvival.water_purifier.status.running");
-            case WaterPurifierBlockEntity.STATUS_NO_WATER -> Component.translatable("gui.domesurvival.water_purifier.status.no_water");
-            case WaterPurifierBlockEntity.STATUS_NO_FILTER -> Component.translatable("gui.domesurvival.water_purifier.status.no_filter");
-            case WaterPurifierBlockEntity.STATUS_NO_ENERGY -> Component.translatable("gui.domesurvival.water_purifier.status.no_energy");
-            case WaterPurifierBlockEntity.STATUS_OUTPUT_FULL -> Component.translatable("gui.domesurvival.water_purifier.status.output_full");
-            default -> Component.translatable("gui.domesurvival.water_purifier.status.idle");
-        };
-    }
-
-    private int getStatusColor() {
-        return menu.getStatus() == WaterPurifierBlockEntity.STATUS_RUNNING ? ENERGY_BRIGHT : 0xFFA9B1B5;
-    }
-
-    private void drawGearButton(GuiGraphics guiGraphics, int x, int y, boolean active) {
-        int bg = active ? 0xFF3A3427 : 0xFF252B2F;
-        drawThinFrame(guiGraphics, x, y, GEAR_SIZE, GEAR_SIZE, bg);
-        int cx = x + GEAR_SIZE / 2;
-        int cy = y + GEAR_SIZE / 2;
-        int metal = active ? ENERGY_BRIGHT : 0xFF687278;
-        guiGraphics.fill(cx - 5, cy - 2, cx + 5, cy + 2, metal);
-        guiGraphics.fill(cx - 2, cy - 5, cx + 2, cy + 5, metal);
-        guiGraphics.fill(cx - 4, cy - 4, cx + 4, cy + 4, metal);
-        guiGraphics.fill(cx - 2, cy - 2, cx + 2, cy + 2, 0xFF151A1D);
-    }
-
-    private void drawSideModel(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        for (RelativeSide visualSide : RelativeSide.values()) {
-            Rect rect = SIDE_RECTS.get(visualSide);
-            boolean hovered = visualSide != RelativeSide.FRONT && rect.contains(mouseX, mouseY, leftPos, topPos);
-            drawMachineFace(guiGraphics, rect, visualSide,
-                    menu.getSideMode(machineSideForVisualSide(visualSide)), hovered);
-        }
-    }
-
-    private void drawMachineFace(GuiGraphics guiGraphics, Rect rect, RelativeSide side, SideMode mode, boolean hovered) {
-        int x = leftPos + rect.x;
-        int y = topPos + rect.y;
-        int outer = hovered ? ENERGY_MAIN : 0xFF0E1214;
-        int rim = hovered ? 0xFF5A5140 : 0xFF3D454A;
-        int face = side == RelativeSide.FRONT ? 0xFF20262A : 0xFF252B2F;
-        guiGraphics.fill(x, y, x + rect.width, y + rect.height, outer);
-        guiGraphics.fill(x + 1, y + 1, x + rect.width - 1, y + rect.height - 1, rim);
-        guiGraphics.fill(x + 2, y + 2, x + rect.width - 2, y + rect.height - 2, face);
-        if (side == RelativeSide.FRONT) {
-            guiGraphics.fill(x + 4, y + 5, x + rect.width - 4, y + rect.height - 4, 0xFF121719);
-            guiGraphics.fill(x + 6, y + 6, x + rect.width - 6, y + rect.height - 5, PURE_WATER);
-            return;
-        }
-        int portU = switch (mode) {
-            case INPUT -> PORT_INPUT_U;
-            case OUTPUT, BOTH -> PORT_OUTPUT_U;
-            case DISABLED -> PORT_OFF_U;
-        };
-        blitPortSprite(guiGraphics, x + Math.max(1, (rect.width - PORT_SIZE) / 2),
-                y + Math.max(1, (rect.height - PORT_SIZE) / 2), portU);
-    }
-
-    private static void blitPortSprite(GuiGraphics guiGraphics, int x, int y, int u) {
-        guiGraphics.blit(PORT_TEXTURE, x, y, u, 0, PORT_SIZE, PORT_SIZE, PORT_TEX_WIDTH, PORT_TEX_HEIGHT);
-    }
-
-    private static void drawIndustrialPanel(GuiGraphics guiGraphics, int x, int y, int width, int height, int fillColor) {
-        guiGraphics.fill(x, y, x + width, y + height, 0xFF0C0F11);
-        guiGraphics.fill(x + 1, y + 1, x + width - 1, y + height - 1, 0xFF464E53);
-        guiGraphics.fill(x + 2, y + 2, x + width - 2, y + height - 2, fillColor);
-        guiGraphics.fill(x + 3, y + 3, x + width - 3, y + 4, 0xFF50585D);
-        guiGraphics.fill(x + 3, y + height - 4, x + width - 3, y + height - 3, 0xFF50585D);
-    }
-
-    private static void drawThinFrame(GuiGraphics guiGraphics, int x, int y, int width, int height, int fillColor) {
-        guiGraphics.fill(x, y, x + width, y + height, 0xFF0B0E10);
-        guiGraphics.fill(x + 1, y + 1, x + width - 1, y + height - 1, 0xFF4C555A);
-        guiGraphics.fill(x + 2, y + 2, x + width - 2, y + height - 2, fillColor);
-    }
-
-    private static void drawSlot(GuiGraphics guiGraphics, int x, int y, int size) {
-        int contentSize = 16;
-        int inset = Math.max(2, (size - contentSize) / 2);
-        guiGraphics.fill(x, y, x + size, y + size, 0xFF0D1012);
-        guiGraphics.fill(x + 1, y + 1, x + size - 1, y + size - 1, 0xFF3E464B);
-        guiGraphics.fill(x + inset, y + inset, x + inset + contentSize, y + inset + contentSize, 0xFF1B2125);
-    }
-
-    private void drawClampedText(GuiGraphics guiGraphics, Component text, int x, int y, int maxWidth, int color) {
-        String value = text.getString();
-        guiGraphics.enableScissor(leftPos + x, topPos + y, leftPos + x + maxWidth, topPos + y + font.lineHeight + 1);
-        if (font.width(value) <= maxWidth) {
-            guiGraphics.drawString(font, value, x, y, color, false);
-        } else {
-            String dots = "...";
-            int usableWidth = Math.max(0, maxWidth - font.width(dots));
-            guiGraphics.drawString(font, font.plainSubstrByWidth(value, usableWidth) + dots, x, y, color, false);
-        }
-        guiGraphics.disableScissor();
-    }
-
-    private void drawCenteredClampedText(GuiGraphics guiGraphics, Component text, int x, int y, int maxWidth, int color) {
-        String value = text.getString();
-        if (font.width(value) > maxWidth) {
-            String dots = "...";
-            value = font.plainSubstrByWidth(value, Math.max(0, maxWidth - font.width(dots))) + dots;
-        }
-        int drawX = x + Math.max(0, (maxWidth - font.width(value)) / 2);
-        guiGraphics.enableScissor(leftPos + x, topPos + y, leftPos + x + maxWidth, topPos + y + font.lineHeight + 1);
-        guiGraphics.drawString(font, value, drawX, y, color, false);
-        guiGraphics.disableScissor();
-    }
-
-    private static String compactRf(int value) {
-        if (value < 1_000) return Integer.toString(value);
-        if (value % 1_000 == 0) return (value / 1_000) + "k";
-        return String.format(Locale.ROOT, "%.1fk", value / 1_000.0D);
-    }
-
-    private RelativeSide getHoveredSide(double mouseX, double mouseY) {
-        for (RelativeSide side : RelativeSide.values()) {
-            if (side == RelativeSide.FRONT) continue;
-            Rect rect = SIDE_RECTS.get(side);
-            if (rect.contains(mouseX, mouseY, leftPos, topPos)) return side;
-        }
-        return null;
-    }
-
-    private static String sideTranslationKey(RelativeSide side) {
-        return "gui.domesurvival.side." + side.name().toLowerCase(Locale.ROOT);
-    }
-
-    private static Component getSideModeTooltip(SideMode mode) {
-        return switch (mode) {
-            case INPUT -> Component.translatable("gui.domesurvival.side_state.input");
-            case OUTPUT, BOTH -> Component.translatable("gui.domesurvival.side_state.output");
-            case DISABLED -> Component.translatable("gui.domesurvival.side_state.disabled");
-        };
-    }
-
-    private record Rect(int x, int y, int width, int height) {
-        private boolean contains(double mouseX, double mouseY, int leftPos, int topPos) {
-            double localX = mouseX - leftPos;
-            double localY = mouseY - topPos;
-            return localX >= x && localX < x + width && localY >= y && localY < y + height;
-        }
-    }
+    private record Rect(int x,int y,int w,int h){boolean contains(double px,double py){return px>=x&&px<x+w&&py>=y&&py<y+h;}}
 }

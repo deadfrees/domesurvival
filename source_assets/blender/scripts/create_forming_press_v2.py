@@ -3,13 +3,14 @@ from pathlib import Path
 script=Path(__file__).with_name('create_buffer_module_v2.py')
 prefix=script.read_text().split("box('Graphite cartridge backplate'")[0]
 prefix=prefix.replace("blender/buffer_module", "blender/forming_press").replace("'Buffer / '","'Press / '")
+prefix=prefix.replace("roles=['body'", "roles=['panel','body'")
 exec(compile(prefix,str(script),'exec'))
 body=elements
-box('Rear machinery enclosure',[.65,.7,8.5],[15.35,15.3,15.4],'body')
-box('Left column housing',[.65,.7,.6],[3.05,15.3,8.5],'body')
-box('Right column housing',[12.95,.7,.6],[15.35,15.3,8.5],'body')
-box('Upper hydraulic enclosure',[3.05,12.35,.6],[12.95,15.3,8.5],'body')
-box('Lower drive enclosure',[3.05,.7,.6],[12.95,2.6,8.5],'body')
+box('Rear machinery enclosure',[.65,.7,8.5],[15.35,15.3,15.4],'panel')
+box('Left column housing',[.65,.7,.6],[3.05,15.3,8.5],'panel')
+box('Right column housing',[12.95,.7,.6],[15.35,15.3,8.5],'panel')
+box('Upper hydraulic enclosure',[3.05,12.35,.6],[12.95,15.3,8.5],'panel')
+box('Lower drive enclosure',[3.05,.7,.6],[12.95,2.6,8.5],'panel')
 for x in (0,15.2):
     for z in (0,15.2):box('Structural corner',[x,.3,z],[x+.8,15.7,z+.8],'frame')
 for y in (.3,15.2):
@@ -29,6 +30,12 @@ box('Hydraulic cylinder',[6.2,10.9,4.1],[9.8,12.4,7.6],'frame')
 box('Identification plate',[5.5,13.25,.3],[10.5,14.2,.58],'brass')
 for x in (1.5,13.8):
     for y in (1.5,14):box('Captive screw',[x,y,.1],[x+.45,y+.45,.45],'bolt')
+# Continuous service skins match the generator's exposed panel depth and UVs.
+# They also hide seams between the press's structural housings on the roof.
+for element in source['elements']:
+    if element['name'].endswith(('_service_skin','_roof_skin')):
+        box('Matched '+element['name'],element['from'],element['to'],'panel')
+        body[-1]['faces']=json.loads(json.dumps(element['faces']))
 # Surface pads under the world-side ports, at the real block boundary.
 for side in ['east','west','south','up','down']:
     p=json.loads((A/f'models/block/coal_generator_input_port_{side}.json').read_text())
@@ -42,8 +49,8 @@ for mode in ['input','output']:
 for x in (.25,15.5):
     box('Side service pad',[x,4.6,4.6],[x+.25,11.4,11.4],'frame')
     for y in (12.3,13,13.7):box('Cooling fin',[x,y,3.8],[x+.25,y+.25,12.2],'trim')
-box('Rear service pad',[4.6,4.6,15.65],[11.4,11.4,15.9],'frame')
-for y in (.1,15.65):box('Vertical service pad',[4.6,y,4.6],[11.4,y+.25,11.4],'frame')
+box('Rear service pad',[4.6,4.6,15.55],[11.4,11.4,15.8],'frame')
+for y in (.2,15.55):box('Vertical service pad',[4.6,y,4.6],[11.4,y+.25,11.4],'frame')
 textures={role:source['textures'][role] for role in roles};textures['particle']=source['textures']['body']
 def model(es):return {'parent':'minecraft:block/block','render_type':'minecraft:cutout','textures':textures,'elements':es}
 # The moving tool is authored in the same scene and exported separately for the renderer.

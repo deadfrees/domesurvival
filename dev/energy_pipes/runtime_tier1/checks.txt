@@ -1,0 +1,12 @@
+Creating fresh isolated world
+PASS Actual BlockItem placement
+PASS Actual player break
+PASS Isolated node
+PASS Vertical UP/DOWN
+PASS Corner
+PASS T junction
+PASS Cross junction
+PASS Six-direction junction
+PASS Mixed tiers connect
+PASS Pipe connects to actual energy buffer port
+Fixture ready: 100-pipe benchmark plus junction/FE fixtures

@@ -1,3 +1,1 @@
-{
-  "parent": "domesurvival:block/oxygen_electrolyzer"
-}
+{"parent":"domesurvival:block/oxygen_electrolyzer_inventory"}

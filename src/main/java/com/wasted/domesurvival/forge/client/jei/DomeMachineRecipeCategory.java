@@ -58,20 +58,24 @@ final class DomeMachineRecipeCategory implements IRecipeCategory<DomeMachineReci
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, DomeMachineRecipe recipe, IFocusGroup focuses) {
         SlotLayout positions = SlotLayout.forKind(recipe.layout());
-        addItemSlots(builder, recipe.itemInputs(), positions.itemInputs(), false, List.of());
-        addFluidSlots(builder, recipe.fluidInputs(), positions.fluidInputs(), false);
-        addItemSlots(builder, recipe.itemOutputs(), positions.itemOutputs(), true, recipe.outputNotes());
-        addFluidSlots(builder, recipe.fluidOutputs(), positions.fluidOutputs(), true);
+        boolean defaultBackground = recipe.layout() != DomeMachineRecipe.Layout.SAND_SIEVE;
+        addItemSlots(builder, recipe.itemInputs(), positions.itemInputs(), false, List.of(), defaultBackground);
+        addFluidSlots(builder, recipe.fluidInputs(), positions.fluidInputs(), false, defaultBackground);
+        addItemSlots(builder, recipe.itemOutputs(), positions.itemOutputs(), true, recipe.outputNotes(), defaultBackground);
+        addFluidSlots(builder, recipe.fluidOutputs(), positions.fluidOutputs(), true, defaultBackground);
     }
 
     private static void addItemSlots(IRecipeLayoutBuilder builder, List<List<ItemStack>> ingredients,
-                                     List<Position> positions, boolean output, List<Component> notes) {
+                                     List<Position> positions, boolean output, List<Component> notes, boolean defaultBackground) {
         int count = Math.min(ingredients.size(), positions.size());
         for (int index = 0; index < count; index++) {
             Position position = positions.get(index);
             var slot = output
-                    ? builder.addOutputSlot(position.x(), position.y()).setOutputSlotBackground()
-                    : builder.addInputSlot(position.x(), position.y()).setStandardSlotBackground();
+                    ? builder.addOutputSlot(position.x(), position.y())
+                    : builder.addInputSlot(position.x(), position.y());
+            if (defaultBackground) {
+                if (output) slot.setOutputSlotBackground(); else slot.setStandardSlotBackground();
+            }
             slot.addItemStacks(ingredients.get(index));
             if (output && !notes.isEmpty()) {
                 slot.addRichTooltipCallback((view, tooltip) -> tooltip.addAll(notes));
@@ -80,14 +84,17 @@ final class DomeMachineRecipeCategory implements IRecipeCategory<DomeMachineReci
     }
 
     private static void addFluidSlots(IRecipeLayoutBuilder builder, List<FluidStack> fluids,
-                                      List<Position> positions, boolean output) {
+                                      List<Position> positions, boolean output, boolean defaultBackground) {
         int count = Math.min(fluids.size(), positions.size());
         for (int index = 0; index < count; index++) {
             Position position = positions.get(index);
             FluidStack fluid = fluids.get(index);
             var slot = output
-                    ? builder.addOutputSlot(position.x(), position.y()).setOutputSlotBackground()
-                    : builder.addInputSlot(position.x(), position.y()).setStandardSlotBackground();
+                    ? builder.addOutputSlot(position.x(), position.y())
+                    : builder.addInputSlot(position.x(), position.y());
+            if (defaultBackground) {
+                if (output) slot.setOutputSlotBackground(); else slot.setStandardSlotBackground();
+            }
             slot.setFluidRenderer(Math.max(1, fluid.getAmount()), true, 16, 16)
                     .addFluidStack(fluid.getFluid(), fluid.getAmount(), fluid.getTag());
         }
@@ -187,14 +194,13 @@ final class DomeMachineRecipeCategory implements IRecipeCategory<DomeMachineReci
                 DomeJeiStyle.drawArrow(graphics, 138, 145, 32);
             }
             case SAND_SIEVE -> {
-                DomeJeiStyle.drawThinFrame(graphics, 96, 14, 23, 36, 0xFF171C20);
-                for (int x = 100; x <= 114; x += 4) {
+                DomeJeiStyle.drawThinFrame(graphics, 94, 14, 20, 36, 0xFF171C20);
+                for (int x = 98; x <= 110; x += 4) {
                     graphics.fill(x, 19, x + 1, 45, 0xFF697278);
                 }
                 for (int y = 21; y <= 43; y += 5) {
-                    graphics.fill(100, y, 115, y + 1, 0xFF4B5359);
+                    graphics.fill(98, y, 111, y + 1, 0xFF4B5359);
                 }
-                DomeJeiStyle.drawArrow(graphics, 119, 122, 32);
             }
         }
     }
@@ -239,6 +245,8 @@ final class DomeMachineRecipeCategory implements IRecipeCategory<DomeMachineReci
                         List.of(), List.of(new Position(28, SLOT_Y)), List.of(), List.of());
                 case OXYGEN_FILLER -> new SlotLayout(
                         List.of(new Position(28, SLOT_Y)), List.of(), List.of(O0), List.of());
+                case FILTER_REGENERATION -> new SlotLayout(
+                        List.of(new Position(18, SLOT_Y), new Position(47, SLOT_Y)), List.of(), List.of(O0), List.of());
                 case BIO_REPAIR -> new SlotLayout(
                         List.of(new Position(8, 16), new Position(34, 16), new Position(60, 16), new Position(86, 16)),
                         List.of(new Position(112, 16)), List.of(new Position(156, 31)), List.of());
@@ -246,8 +254,9 @@ final class DomeMachineRecipeCategory implements IRecipeCategory<DomeMachineReci
                         List.of(new Position(18, SLOT_Y), new Position(47, SLOT_Y)),
                         List.of(new Position(76, SLOT_Y)), List.of(O0), List.of());
                 case SAND_SIEVE -> new SlotLayout(
-                        List.of(new Position(18, SLOT_Y), new Position(47, SLOT_Y)),
-                        List.of(new Position(76, SLOT_Y)), List.of(O1, O0), List.of());
+                        List.of(new Position(14, SLOT_Y), new Position(42, SLOT_Y)),
+                        List.of(new Position(70, SLOT_Y)),
+                        List.of(new Position(120, SLOT_Y), new Position(148, SLOT_Y)), List.of());
             };
         }
     }

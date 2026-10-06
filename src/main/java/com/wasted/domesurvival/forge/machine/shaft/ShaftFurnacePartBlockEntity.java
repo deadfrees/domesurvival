@@ -25,9 +25,7 @@ public final class ShaftFurnacePartBlockEntity extends BlockEntity {
                 && level != null) {
             BlockEntity controller = level.getBlockEntity(ShaftFurnacePartBlock.controllerPosition(worldPosition, state));
             if (controller instanceof ShaftFurnaceBlockEntity furnace) {
-                return (ShaftFurnacePartBlock.isInputPort(state)
-                        ? furnace.getInputPortCapability()
-                        : furnace.getOutputPortCapability()).cast();
+                return furnace.getCapability(cap, side);
             }
         }
         return super.getCapability(cap, side);

@@ -1,11 +1,11 @@
 package com.wasted.domesurvival.forge.machine.sieve;
 
 import com.wasted.domesurvival.forge.registry.ModBlockEntities;
+import com.wasted.domesurvival.forge.client.particle.SandSieveParticles;
 import com.wasted.domesurvival.forge.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -16,7 +16,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -30,9 +29,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.util.RandomSource;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.fluids.FluidUtil;
 import org.jetbrains.annotations.Nullable;
@@ -78,25 +74,6 @@ public final class SandSieveBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if (!state.getValue(ACTIVE) || random.nextInt(2) != 0) return;
-        level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.SAND.defaultBlockState()),
-                pos.getX() + 0.28D + random.nextDouble() * 0.44D,
-                pos.getY() + 0.68D,
-                pos.getZ() + 0.28D + random.nextDouble() * 0.44D,
-                (random.nextDouble() - 0.5D) * 0.025D,
-                -0.035D,
-                (random.nextDouble() - 0.5D) * 0.025D);
-        if (random.nextInt(3) == 0) {
-            level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.SAND.defaultBlockState()),
-                    pos.getX() + 0.36D + random.nextDouble() * 0.28D,
-                    pos.getY() + 0.40D,
-                    pos.getZ() + 0.36D + random.nextDouble() * 0.28D,
-                    0.0D, -0.022D, 0.0D);
-        }
-    }
-
-    @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player,
                                  InteractionHand hand, BlockHitResult hit) {
         if (!(level.getBlockEntity(pos) instanceof SandSieveBlockEntity sieve)) {
@@ -115,7 +92,6 @@ public final class SandSieveBlock extends BaseEntityBlock {
             // Sneaking always opens maintenance access. A normal click starts a
             // prepared cycle; when inputs are incomplete it opens the GUI instead.
             if (!player.isShiftKeyDown() && sieve.tryStartCycle()) {
-                level.playSound(null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.45F, 0.85F);
                 level.playSound(null, pos, ModSounds.SAND_SIEVE_PROCESS.get(), SoundSource.BLOCKS,
                         0.72F, 1.0F);
             } else {
@@ -150,7 +126,8 @@ public final class SandSieveBlock extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
                                                                   BlockEntityType<T> type) {
-        return level.isClientSide ? null
+        return level.isClientSide
+                ? createTickerHelper(type, ModBlockEntities.SAND_SIEVE.get(), SandSieveParticles::tick)
                 : createTickerHelper(type, ModBlockEntities.SAND_SIEVE.get(), SandSieveBlockEntity::serverTick);
     }
 }

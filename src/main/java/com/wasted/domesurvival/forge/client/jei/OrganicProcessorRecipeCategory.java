@@ -25,21 +25,21 @@ import java.util.Locale;
  */
 final class OrganicProcessorRecipeCategory implements IRecipeCategory<OrganicProcessorRecipe> {
     private static final int WIDTH = 180;
-    private static final int HEIGHT = 118;
+    private static final int HEIGHT = 128;
 
-    private static final int PRIMARY_X = 13;
-    private static final int PRIMARY_Y = 18;
-    private static final int ADDITIVE_X = 13;
-    private static final int ADDITIVE_Y = 55;
-    private static final int WATER_X = 48;
-    private static final int WATER_Y = 37;
+    private static final int PRIMARY_X = 17;
+    private static final int PRIMARY_Y = 33;
+    private static final int ADDITIVE_X = 17;
+    private static final int ADDITIVE_Y = 66;
+    private static final int WATER_X = 47;
+    private static final int WATER_Y = 35;
     private static final int OUTPUT_X = 147;
-    private static final int OUTPUT_Y = 37;
+    private static final int OUTPUT_Y = 66;
 
-    private static final int PROGRESS_X = 78;
-    private static final int PROGRESS_Y = 38;
-    private static final int PROGRESS_W = 50;
-    private static final int PROGRESS_H = 14;
+    private static final int PROGRESS_X = 75;
+    private static final int PROGRESS_Y = 90;
+    private static final int PROGRESS_W = 89;
+    private static final int PROGRESS_H = 6;
 
     private final RecipeType<OrganicProcessorRecipe> recipeType;
     private final IDrawable icon;
@@ -79,84 +79,36 @@ final class OrganicProcessorRecipeCategory implements IRecipeCategory<OrganicPro
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, OrganicProcessorRecipe recipe, IFocusGroup focuses) {
         builder.addInputSlot(PRIMARY_X, PRIMARY_Y)
-                .setStandardSlotBackground()
+
                 .addItemStacks(withCount(recipe.getPrimary().getItems(), recipe.getPrimaryCount()));
 
         builder.addInputSlot(ADDITIVE_X, ADDITIVE_Y)
-                .setStandardSlotBackground()
+
                 .addItemStacks(withCount(recipe.getAdditive().getItems(), recipe.getAdditiveCount()));
 
         builder.addInputSlot(WATER_X, WATER_Y)
-                .setStandardSlotBackground()
-                .setFluidRenderer(Math.max(1, recipe.getWaterMb()), true, 16, 16)
+
+                .setFluidRenderer(Math.max(1, recipe.getWaterMb()), true, 12, 42)
                 .addFluidStack(ModFluids.PURIFIED_WATER.get(), recipe.getWaterMb());
 
         builder.addOutputSlot(OUTPUT_X, OUTPUT_Y)
-                .setOutputSlotBackground()
+
                 .addItemStack(recipe.getResult());
     }
 
     @Override
     public void draw(OrganicProcessorRecipe recipe, IRecipeSlotsView recipeSlotsView,
                      GuiGraphics graphics, double mouseX, double mouseY) {
-        DomeJeiStyle.drawIndustrialPanel(graphics, 0, 0, WIDTH, HEIGHT, DomeJeiStyle.PANEL_FILL);
-        DomeJeiStyle.drawThinFrame(graphics, 5, 6, WIDTH - 10, 75, DomeJeiStyle.PANEL_ALT);
-
-        DomeJeiStyle.drawSlot(graphics, PRIMARY_X, PRIMARY_Y, false, false);
-        DomeJeiStyle.drawSlot(graphics, ADDITIVE_X, ADDITIVE_Y, false, false);
-        DomeJeiStyle.drawSlot(graphics, WATER_X, WATER_Y, false, true);
-        DomeJeiStyle.drawSlot(graphics, OUTPUT_X, OUTPUT_Y, true, false);
-
-        float progress = DomeJeiStyle.animationFraction(recipe.getProcessingTime());
-        DomeJeiStyle.drawProgress(
-                graphics, PROGRESS_X, PROGRESS_Y, PROGRESS_W, PROGRESS_H,
-                progress, DomeJeiStyle.PROCESS, DomeJeiStyle.PROCESS_LIGHT
-        );
-
-        drawOrganicChamber(graphics, progress);
-
-        DomeJeiStyle.drawCenteredClamped(
-                graphics,
-                Component.literal(recipe.getWaterMb() + " mB"),
-                WATER_X + 8,
-                62,
-                46,
-                DomeJeiStyle.TEXT_MUTED
-        );
-
-        Component statistics = Component.translatable(
-                "jei.domesurvival.statistics_powered",
-                seconds(recipe.getProcessingTime()),
-                energyPerTick(recipe.getEnergy(), recipe.getProcessingTime())
-        );
-        DomeJeiStyle.drawCenteredClamped(
-                graphics, statistics, WIDTH / 2, 103, WIDTH - 16, DomeJeiStyle.TEXT_DIM
-        );
-    }
-
-    private static void drawOrganicChamber(GuiGraphics graphics, float progress) {
-        int x = 82;
-        int y = 58;
-        int width = 42;
-        int height = 27;
-
-        DomeJeiStyle.drawThinFrame(graphics, x, y, width, height, 0xFF171C20);
-        graphics.fill(x + 6, y + 5, x + width - 6, y + height - 5, 0xFF16282A);
-
-        int liquidTop = y + 13;
-        graphics.fill(x + 7, liquidTop, x + width - 7, y + height - 6, 0xFF365C59);
-        graphics.fill(x + 7, liquidTop, x + width - 7, liquidTop + 2, 0xFF6C9690);
-
-        // Simple animated mixer shaft and two bubbles: distinct from the crusher process.
-        int sweep = Math.min(12, Math.max(0, Math.round(progress * 12.0F)));
-        int centerX = x + width / 2;
-        graphics.fill(centerX - 1, y + 6, centerX + 1, y + 21, DomeJeiStyle.METAL);
-        graphics.fill(centerX - 7 + sweep / 2, y + 19, centerX + 7 - sweep / 2, y + 21, DomeJeiStyle.METAL_LIGHT);
-
-        int bubbleY = liquidTop + 7 - Math.min(6, Math.round(progress * 6.0F));
-        graphics.fill(x + 11, bubbleY, x + 13, bubbleY + 2, 0xFF91BDB5);
-        graphics.fill(x + 29, liquidTop + 3 + Math.min(4, Math.round(progress * 4.0F)),
-                x + 31, liquidTop + 5 + Math.min(4, Math.round(progress * 4.0F)), 0xFF91BDB5);
+        var panel = new net.minecraft.resources.ResourceLocation("domesurvival","textures/gui/organic_processor_v2/jei.png");
+        graphics.blit(panel,0,0,180,128,0,0,720,512,720,512);
+        DomeJeiStyle.drawCenteredClamped(graphics,getTitle(),90,10,160,DomeJeiStyle.TEXT);
+        com.wasted.domesurvival.forge.client.render.OrganicProcessorPreview.draw(graphics,104,57,25,true,0,0);
+        int filled=(int)(PROGRESS_W*DomeJeiStyle.animationFraction(recipe.getProcessingTime()));
+        if(filled>0){
+            // JEI translates the pose; crop UVs instead of using screen-space scissoring.
+            graphics.blit(new net.minecraft.resources.ResourceLocation("domesurvival","textures/gui/coal_generator_v2/widgets.png"),PROGRESS_X,PROGRESS_Y,filled,PROGRESS_H,0,192,Math.max(1,256*filled/PROGRESS_W),32,512,256);
+        }
+        DomeJeiStyle.drawCenteredClamped(graphics,Component.literal(recipe.getEnergy()+" FE · "+seconds(recipe.getProcessingTime())),90,111,158,DomeJeiStyle.TEXT_DIM);
     }
 
     private static List<ItemStack> withCount(ItemStack[] candidates, int count) {

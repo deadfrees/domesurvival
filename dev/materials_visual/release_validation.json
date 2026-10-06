@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "pixels": {
+    "gunpowder_silhouettes": 9,
+    "result": "PASS",
+    "unchanged_solarite_models": 6,
+    "exact_original_designs": 39
+  },
+  "runtime_assertions": 359,
+  "resources_checked": 226,
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "8c91606f578450aa8ef069d3a2ae26627d1bf6c8fca9593f1a99746369cb93c5"
+}

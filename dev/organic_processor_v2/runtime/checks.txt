@@ -1,0 +1,532 @@
+PASS Recessed shell does not hide adjacent faces
+PASS Three unchanged biosynthesis recipes
+PASS No early output domesurvival:organic_processing/nutrient_mix_from_carrot/0
+PASS Correct product domesurvival:organic_processing/nutrient_mix_from_carrot/0
+PASS Exact resources domesurvival:organic_processing/nutrient_mix_from_carrot/0
+PASS No early output domesurvival:organic_processing/nutrient_mix_from_carrot/1
+PASS Correct product domesurvival:organic_processing/nutrient_mix_from_carrot/1
+PASS Exact resources domesurvival:organic_processing/nutrient_mix_from_carrot/1
+PASS No early output domesurvival:organic_processing/nutrient_mix_from_carrot/2
+PASS Correct product domesurvival:organic_processing/nutrient_mix_from_carrot/2
+PASS Exact resources domesurvival:organic_processing/nutrient_mix_from_carrot/2
+PASS No early output domesurvival:organic_processing/nutrient_mix_from_wheat/0
+PASS Correct product domesurvival:organic_processing/nutrient_mix_from_wheat/0
+PASS Exact resources domesurvival:organic_processing/nutrient_mix_from_wheat/0
+PASS No early output domesurvival:organic_processing/nutrient_mix_from_wheat/1
+PASS Correct product domesurvival:organic_processing/nutrient_mix_from_wheat/1
+PASS Exact resources domesurvival:organic_processing/nutrient_mix_from_wheat/1
+PASS No early output domesurvival:organic_processing/nutrient_mix_from_wheat/2
+PASS Correct product domesurvival:organic_processing/nutrient_mix_from_wheat/2
+PASS Exact resources domesurvival:organic_processing/nutrient_mix_from_wheat/2
+PASS No early output domesurvival:organic_processing/biogel_from_kelp/0
+PASS Correct product domesurvival:organic_processing/biogel_from_kelp/0
+PASS Exact resources domesurvival:organic_processing/biogel_from_kelp/0
+PASS No early output domesurvival:organic_processing/biogel_from_kelp/1
+PASS Correct product domesurvival:organic_processing/biogel_from_kelp/1
+PASS Exact resources domesurvival:organic_processing/biogel_from_kelp/1
+PASS No early output domesurvival:organic_processing/biogel_from_kelp/2
+PASS Correct product domesurvival:organic_processing/biogel_from_kelp/2
+PASS Exact resources domesurvival:organic_processing/biogel_from_kelp/2
+PASS Module change preserves paid cycle
+PASS Saved cycle finishes at old cost; next uses efficiency
+PASS Next cycle uses module cost exactly
+PASS Duplicate and conflicting modules denied
+PASS No energy pauses rotor and paid cycle
+PASS Insufficient water pauses without consumption
+PASS Blocked output pauses without consumption
+PASS Unblocked cycle resumes
+PASS Legacy NBT cycle completes once
+PASS Full buffer removal blocked
+PASS Safe buffer removal permitted
+PASS Hidden machine slot 0
+PASS Hidden machine slot 1
+PASS Hidden machine slot 2
+PASS Hidden machine slot 3
+PASS Hidden machine slot 4
+PASS Missing ingredient consumes nothing
+PASS Capabilities north/TOP/DISABLED
+PASS Visual agrees north/TOP/DISABLED
+PASS Capabilities north/TOP/INPUT
+PASS Visual agrees north/TOP/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities north/TOP/OUTPUT
+PASS Visual agrees north/TOP/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities north/BOTTOM/DISABLED
+PASS Visual agrees north/BOTTOM/DISABLED
+PASS Capabilities north/BOTTOM/INPUT
+PASS Visual agrees north/BOTTOM/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities north/BOTTOM/OUTPUT
+PASS Visual agrees north/BOTTOM/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities north/FRONT/DISABLED
+PASS Visual agrees north/FRONT/DISABLED
+PASS Capabilities north/FRONT/INPUT
+PASS Visual agrees north/FRONT/INPUT
+PASS Capabilities north/FRONT/OUTPUT
+PASS Visual agrees north/FRONT/OUTPUT
+PASS Capabilities north/BACK/DISABLED
+PASS Visual agrees north/BACK/DISABLED
+PASS Capabilities north/BACK/INPUT
+PASS Visual agrees north/BACK/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities north/BACK/OUTPUT
+PASS Visual agrees north/BACK/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities north/LEFT/DISABLED
+PASS Visual agrees north/LEFT/DISABLED
+PASS Capabilities north/LEFT/INPUT
+PASS Visual agrees north/LEFT/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities north/LEFT/OUTPUT
+PASS Visual agrees north/LEFT/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities north/RIGHT/DISABLED
+PASS Visual agrees north/RIGHT/DISABLED
+PASS Capabilities north/RIGHT/INPUT
+PASS Visual agrees north/RIGHT/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities north/RIGHT/OUTPUT
+PASS Visual agrees north/RIGHT/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Unsided automation denied
+PASS Side settings survive save TOP
+PASS Side settings survive save BOTTOM
+PASS Side settings survive save FRONT
+PASS Side settings survive save BACK
+PASS Side settings survive save LEFT
+PASS Side settings survive save RIGHT
+PASS Capabilities east/TOP/DISABLED
+PASS Visual agrees east/TOP/DISABLED
+PASS Capabilities east/TOP/INPUT
+PASS Visual agrees east/TOP/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities east/TOP/OUTPUT
+PASS Visual agrees east/TOP/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities east/BOTTOM/DISABLED
+PASS Visual agrees east/BOTTOM/DISABLED
+PASS Capabilities east/BOTTOM/INPUT
+PASS Visual agrees east/BOTTOM/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities east/BOTTOM/OUTPUT
+PASS Visual agrees east/BOTTOM/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities east/FRONT/DISABLED
+PASS Visual agrees east/FRONT/DISABLED
+PASS Capabilities east/FRONT/INPUT
+PASS Visual agrees east/FRONT/INPUT
+PASS Capabilities east/FRONT/OUTPUT
+PASS Visual agrees east/FRONT/OUTPUT
+PASS Capabilities east/BACK/DISABLED
+PASS Visual agrees east/BACK/DISABLED
+PASS Capabilities east/BACK/INPUT
+PASS Visual agrees east/BACK/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities east/BACK/OUTPUT
+PASS Visual agrees east/BACK/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities east/LEFT/DISABLED
+PASS Visual agrees east/LEFT/DISABLED
+PASS Capabilities east/LEFT/INPUT
+PASS Visual agrees east/LEFT/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities east/LEFT/OUTPUT
+PASS Visual agrees east/LEFT/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities east/RIGHT/DISABLED
+PASS Visual agrees east/RIGHT/DISABLED
+PASS Capabilities east/RIGHT/INPUT
+PASS Visual agrees east/RIGHT/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities east/RIGHT/OUTPUT
+PASS Visual agrees east/RIGHT/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Unsided automation denied
+PASS Side settings survive save TOP
+PASS Side settings survive save BOTTOM
+PASS Side settings survive save FRONT
+PASS Side settings survive save BACK
+PASS Side settings survive save LEFT
+PASS Side settings survive save RIGHT
+PASS Capabilities south/TOP/DISABLED
+PASS Visual agrees south/TOP/DISABLED
+PASS Capabilities south/TOP/INPUT
+PASS Visual agrees south/TOP/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities south/TOP/OUTPUT
+PASS Visual agrees south/TOP/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities south/BOTTOM/DISABLED
+PASS Visual agrees south/BOTTOM/DISABLED
+PASS Capabilities south/BOTTOM/INPUT
+PASS Visual agrees south/BOTTOM/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities south/BOTTOM/OUTPUT
+PASS Visual agrees south/BOTTOM/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities south/FRONT/DISABLED
+PASS Visual agrees south/FRONT/DISABLED
+PASS Capabilities south/FRONT/INPUT
+PASS Visual agrees south/FRONT/INPUT
+PASS Capabilities south/FRONT/OUTPUT
+PASS Visual agrees south/FRONT/OUTPUT
+PASS Capabilities south/BACK/DISABLED
+PASS Visual agrees south/BACK/DISABLED
+PASS Capabilities south/BACK/INPUT
+PASS Visual agrees south/BACK/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities south/BACK/OUTPUT
+PASS Visual agrees south/BACK/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities south/LEFT/DISABLED
+PASS Visual agrees south/LEFT/DISABLED
+PASS Capabilities south/LEFT/INPUT
+PASS Visual agrees south/LEFT/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities south/LEFT/OUTPUT
+PASS Visual agrees south/LEFT/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities south/RIGHT/DISABLED
+PASS Visual agrees south/RIGHT/DISABLED
+PASS Capabilities south/RIGHT/INPUT
+PASS Visual agrees south/RIGHT/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities south/RIGHT/OUTPUT
+PASS Visual agrees south/RIGHT/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Unsided automation denied
+PASS Side settings survive save TOP
+PASS Side settings survive save BOTTOM
+PASS Side settings survive save FRONT
+PASS Side settings survive save BACK
+PASS Side settings survive save LEFT
+PASS Side settings survive save RIGHT
+PASS Capabilities west/TOP/DISABLED
+PASS Visual agrees west/TOP/DISABLED
+PASS Capabilities west/TOP/INPUT
+PASS Visual agrees west/TOP/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities west/TOP/OUTPUT
+PASS Visual agrees west/TOP/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities west/BOTTOM/DISABLED
+PASS Visual agrees west/BOTTOM/DISABLED
+PASS Capabilities west/BOTTOM/INPUT
+PASS Visual agrees west/BOTTOM/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities west/BOTTOM/OUTPUT
+PASS Visual agrees west/BOTTOM/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities west/FRONT/DISABLED
+PASS Visual agrees west/FRONT/DISABLED
+PASS Capabilities west/FRONT/INPUT
+PASS Visual agrees west/FRONT/INPUT
+PASS Capabilities west/FRONT/OUTPUT
+PASS Visual agrees west/FRONT/OUTPUT
+PASS Capabilities west/BACK/DISABLED
+PASS Visual agrees west/BACK/DISABLED
+PASS Capabilities west/BACK/INPUT
+PASS Visual agrees west/BACK/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities west/BACK/OUTPUT
+PASS Visual agrees west/BACK/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities west/LEFT/DISABLED
+PASS Visual agrees west/LEFT/DISABLED
+PASS Capabilities west/LEFT/INPUT
+PASS Visual agrees west/LEFT/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities west/LEFT/OUTPUT
+PASS Visual agrees west/LEFT/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Capabilities west/RIGHT/DISABLED
+PASS Visual agrees west/RIGHT/DISABLED
+PASS Capabilities west/RIGHT/INPUT
+PASS Visual agrees west/RIGHT/INPUT
+PASS Water simulation
+PASS Purified-only input, no draining
+PASS Filter simulation
+PASS Blue takes filter and media, never extracts
+PASS Input whitelist
+PASS FE simulation and limit
+PASS Item view cannot mutate inventory
+PASS Cached fluid respects OFF
+PASS Cached input respects OFF
+PASS Capabilities west/RIGHT/OUTPUT
+PASS Visual agrees west/RIGHT/OUTPUT
+PASS Orange denies insertion and unfinished filter
+PASS Output simulation
+PASS Orange extracts only finished filter
+PASS Cached output respects OFF
+PASS Unsided automation denied
+PASS Side settings survive save TOP
+PASS Side settings survive save BOTTOM
+PASS Side settings survive save FRONT
+PASS Side settings survive save BACK
+PASS Side settings survive save LEFT
+PASS Side settings survive save RIGHT
+PASS Survival harvest tier wooden_pickaxe
+PASS Contents and modules drop once
+PASS Survival harvest tier golden_pickaxe
+PASS Contents and modules drop once
+PASS Survival harvest tier stone_pickaxe
+PASS Contents and modules drop once
+PASS Survival harvest tier iron_pickaxe
+PASS Contents and modules drop once
+PASS Survival harvest tier diamond_pickaxe
+PASS Contents and modules drop once
+PASS Survival harvest tier netherite_pickaxe
+PASS Contents and modules drop once
+PASS Wrench rotates configured sides
+PASS Wrench drops one machine in world
+PASS Portable data retained Modules
+PASS Portable data retained Energy
+PASS Portable data retained Progress
+PASS Portable data retained CycleTicks
+PASS Portable data retained CycleEnergy
+PASS Portable data retained PurifiedWater
+PASS Portable data retained Inventory
+PASS Portable data retained UnifiedSideConfig
+PASS Normal pickup delay
+PASS Placement restores paid progress and FE
+PASS Placed sides follow new facing
+PASS Adventure dismantle denied
+PASS Full input caption fits
+PASS Cleaning carriage moves when active
+PASS Cleaning carriage freezes while paused
+PASS Client blue item connection
+Screenshot 01_existing_model
+PASS Networked regenerator GUI opens
+PASS Expanded FE buffer synchronized
+Screenshot 02_main_gui
+PASS Networked regeneration status is active
+PASS Client working state synchronized
+Screenshot 02_working_gui
+Screenshot 02_carriage_motion
+Screenshot 03_main_scale3
+Screenshot 03_energy_tooltip
+Screenshot 04_sides
+PASS Networked side button updates menu
+PASS Client receives logical side update
+Screenshot 05_modules_empty
+PASS Networked Shift-click installs efficiency while working
+Screenshot 06_modules_installed
+Screenshot 07_module_scale3
+Screenshot 07_module_help
+PASS JEI runtime available
+PASS Exactly one regenerator JEI category
+PASS Exactly three JEI recipes, no duplicates
+Screenshot 08_jei
+Screenshot 09_jei_progress
+RESULT PASS failures=0

@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "unchanged_frame_elements": 13,
+  "removed_rear_connector_elements": 2,
+  "unchanged_behavior_and_resources": 13,
+  "materials": {
+    "particle": "minecraft:block/spruce_planks",
+    "frame": "minecraft:block/stone_bricks",
+    "wood": "minecraft:block/spruce_planks",
+    "timber": "minecraft:block/stripped_spruce_log",
+    "copper": "minecraft:block/copper_block"
+  },
+  "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
+  "sha256": "31b1228fdf03aabbd3d142e621e2bc5d0aa72ffddfefe2b28cb17f68dbdc1946",
+  "runtime_checks": 32
+}

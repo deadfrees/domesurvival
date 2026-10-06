@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "unchanged_frame_elements": 13,
+  "removed_rear_connector_elements": 2,
+  "unchanged_behavior_and_resources": 13,
+  "materials": {
+    "particle": "minecraft:block/spruce_planks",
+    "frame": "minecraft:block/stone_bricks",
+    "wood": "minecraft:block/spruce_planks",
+    "timber": "minecraft:block/stripped_spruce_log",
+    "copper": "minecraft:block/copper_block"
+  }
+}

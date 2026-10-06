@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "domesurvival:item/voltarium_gear"
+    "layer0": "domesurvival:item/press_products/voltarium_gear"
   }
 }

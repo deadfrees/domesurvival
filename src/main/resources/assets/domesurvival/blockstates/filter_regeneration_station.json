@@ -1,12 +1,178 @@
 {
-  "variants": {
-    "facing=north,active=false": { "model": "domesurvival:block/filter_regeneration_station" },
-    "facing=north,active=true":  { "model": "domesurvival:block/filter_regeneration_station_active" },
-    "facing=east,active=false":  { "model": "domesurvival:block/filter_regeneration_station", "y": 90 },
-    "facing=east,active=true":   { "model": "domesurvival:block/filter_regeneration_station_active", "y": 90 },
-    "facing=south,active=false": { "model": "domesurvival:block/filter_regeneration_station", "y": 180 },
-    "facing=south,active=true":  { "model": "domesurvival:block/filter_regeneration_station_active", "y": 180 },
-    "facing=west,active=false":  { "model": "domesurvival:block/filter_regeneration_station", "y": 270 },
-    "facing=west,active=true":   { "model": "domesurvival:block/filter_regeneration_station_active", "y": 270 }
-  }
+  "multipart": [
+    {
+      "when": {
+        "facing": "north",
+        "active": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/filter_regeneration_station"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "active": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/filter_regeneration_station",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "active": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/filter_regeneration_station",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "active": "false"
+      },
+      "apply": {
+        "model": "domesurvival:block/filter_regeneration_station",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "active": "true"
+      },
+      "apply": {
+        "model": "domesurvival:block/filter_regeneration_station_active"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "active": "true"
+      },
+      "apply": {
+        "model": "domesurvival:block/filter_regeneration_station_active",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "active": "true"
+      },
+      "apply": {
+        "model": "domesurvival:block/filter_regeneration_station_active",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "active": "true"
+      },
+      "apply": {
+        "model": "domesurvival:block/filter_regeneration_station_active",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "port_up": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_input_port_up"
+      }
+    },
+    {
+      "when": {
+        "port_up": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_output_port_up"
+      }
+    },
+    {
+      "when": {
+        "port_down": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_input_port_down"
+      }
+    },
+    {
+      "when": {
+        "port_down": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_output_port_down"
+      }
+    },
+    {
+      "when": {
+        "port_north": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_input_port_north"
+      }
+    },
+    {
+      "when": {
+        "port_north": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_output_port_north"
+      }
+    },
+    {
+      "when": {
+        "port_south": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_input_port_south"
+      }
+    },
+    {
+      "when": {
+        "port_south": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_output_port_south"
+      }
+    },
+    {
+      "when": {
+        "port_west": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_input_port_west"
+      }
+    },
+    {
+      "when": {
+        "port_west": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_output_port_west"
+      }
+    },
+    {
+      "when": {
+        "port_east": "input"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_input_port_east"
+      }
+    },
+    {
+      "when": {
+        "port_east": "output"
+      },
+      "apply": {
+        "model": "domesurvival:block/coal_generator_output_port_east"
+      }
+    }
+  ]
 }

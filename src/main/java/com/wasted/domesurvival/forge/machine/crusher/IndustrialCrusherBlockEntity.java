@@ -4,6 +4,7 @@ import com.wasted.domesurvival.forge.capability.IGasStorage;
 import com.wasted.domesurvival.forge.capability.ModCapabilities;
 import com.wasted.domesurvival.forge.gas.GasStorage;
 import com.wasted.domesurvival.forge.gas.ModGases;
+import com.wasted.domesurvival.forge.fluid.ModFluids;
 import com.wasted.domesurvival.forge.machine.api.IProcessingMachine;
 import com.wasted.domesurvival.forge.machine.api.MachineOperatingState;
 import com.wasted.domesurvival.forge.machine.energy.MachineEnergyStorage;
@@ -30,6 +31,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -42,7 +46,8 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         implements net.minecraft.world.MenuProvider, IModularMachine, IProcessingMachine {
     public static final int BASE_CAPACITY = 40_000;
     public static final int MAX_RECEIVE = 256;
-    public static final int GAS_CAPACITY = 4_000;
+    public static final int PROCESS_CAPACITY = 4_000;
+    public static final int GAS_CAPACITY = PROCESS_CAPACITY;
 
     public static final int DATA_ENERGY = 0;
     public static final int DATA_CAPACITY = 1;
@@ -52,7 +57,12 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
     public static final int DATA_STATUS = 5;
     public static final int DATA_GAS = 6;
     public static final int DATA_GAS_CAPACITY = 7;
-    public static final int DATA_COUNT = 8;
+    public static final int DATA_PROCESS_TYPE = 8;
+    public static final int DATA_COUNT = 9;
+
+    public static final int PROCESS_EMPTY = 0;
+    public static final int PROCESS_MINERAL_GAS = 1;
+    public static final int PROCESS_NEOFLUX = 2;
 
     public static final int READY = 0;
     public static final int CRUSHING = 1;
@@ -60,7 +70,8 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
     public static final int NO_RECIPE = 3;
     public static final int OUTPUT_FULL = 4;
     public static final int NOT_ENOUGH_INPUT = 5;
-    public static final int GAS_FULL = 6;
+    public static final int PROCESS_TANK_BLOCKED = 6;
+    public static final int GAS_FULL = PROCESS_TANK_BLOCKED;
 
     private static final String NBT_INVENTORY = "Inventory";
     private static final String NBT_MODULES = "Modules";
@@ -70,6 +81,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
     private static final String NBT_CYCLE_TICKS = "CycleTicks";
     private static final String NBT_CYCLE_ENERGY = "CycleEnergy";
     private static final String NBT_GAS_TANK = "GasTank";
+    private static final String NBT_FLUID_TANK = "FluidTank";
 
     private final ItemStackHandler inventory = new ItemStackHandler(3) {
         @Override
@@ -92,12 +104,23 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
 
     /** Crusher gas buffer is production-only externally: pipes may drain it but never fill it. */
     private final GasStorage gasTank = new GasStorage(
-            GAS_CAPACITY,
+            PROCESS_CAPACITY,
             0,
             Integer.MAX_VALUE,
             ModGases.MINERAL_GAS::equals,
             this::setChanged
     );
+
+    /** Neoflux shares the Crusher's logical process tank with Mineral Gas. */
+    private final FluidTank fluidTank = new FluidTank(
+            PROCESS_CAPACITY,
+            stack -> stack.getFluid() == ModFluids.NEOFLUX.get()
+    ) {
+        @Override
+        protected void onContentsChanged() {
+            setChanged();
+        }
+    };
 
     private final IItemHandler items = new IItemHandler() {
         @Override public int getSlots() { return 3; }
@@ -140,9 +163,27 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         @Override public boolean canExtractGas(ResourceLocation gas) { return gasTank.canExtractGas(gas); }
     };
 
+    /** Forge fluid capability is output-only; automation may drain Neoflux but cannot inject it. */
+    private final IFluidHandler fluidOutput = new IFluidHandler() {
+        @Override public int getTanks() { return 1; }
+        @Override public @NotNull FluidStack getFluidInTank(int tank) {
+            return tank == 0 ? fluidTank.getFluid().copy() : FluidStack.EMPTY;
+        }
+        @Override public int getTankCapacity(int tank) { return tank == 0 ? fluidTank.getCapacity() : 0; }
+        @Override public boolean isFluidValid(int tank, @NotNull FluidStack stack) { return false; }
+        @Override public int fill(FluidStack resource, FluidAction action) { return 0; }
+        @Override public @NotNull FluidStack drain(FluidStack resource, FluidAction action) {
+            return fluidTank.drain(resource, action);
+        }
+        @Override public @NotNull FluidStack drain(int maxDrain, FluidAction action) {
+            return fluidTank.drain(maxDrain, action);
+        }
+    };
+
     private LazyOptional<IItemHandler> itemCap = LazyOptional.of(() -> items);
     private LazyOptional<IEnergyStorage> energyCap = LazyOptional.of(() -> energyInput);
     private LazyOptional<IGasStorage> gasCap = LazyOptional.of(() -> gasOutput);
+    private LazyOptional<IFluidHandler> fluidCap = LazyOptional.of(() -> fluidOutput);
 
     private int progress;
     private int cycleTicks;
@@ -164,8 +205,9 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
             if (index == DATA_MAX_PROGRESS) return recipe == null ? 0 : processingTicks(recipe);
             if (index == DATA_RECIPE_ENERGY) return recipe == null ? 0 : processingEnergy(recipe);
             if (index == DATA_STATUS) return status(recipe);
-            if (index == DATA_GAS) return gasTank.getGasStored();
-            if (index == DATA_GAS_CAPACITY) return gasTank.getMaxGasStored();
+            if (index == DATA_GAS) return processStored();
+            if (index == DATA_GAS_CAPACITY) return PROCESS_CAPACITY;
+            if (index == DATA_PROCESS_TYPE) return processType();
             return 0;
         }
 
@@ -208,8 +250,8 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
 
         ensureCycleSnapshot(recipe);
 
-        // No FE is consumed while either item output or the complete gas output is blocked.
-        if (!canAcceptItemOutputs(recipe) || !canAcceptGas(recipe)) return false;
+        // No FE is consumed while either item output or the complete process output is blocked.
+        if (!canAcceptItemOutputs(recipe) || !canAcceptProcessOutput(recipe)) return false;
 
         int ticks = processingTicks(recipe);
         int totalEnergy = processingEnergy(recipe);
@@ -218,7 +260,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
 
         // Completion gets an explicit second validation immediately before the final FE debit.
         if (progress + 1 >= ticks
-                && (!hasRequiredInput(recipe) || !canAcceptItemOutputs(recipe) || !canAcceptGas(recipe))) {
+                && (!hasRequiredInput(recipe) || !canAcceptItemOutputs(recipe) || !canAcceptProcessOutput(recipe))) {
             return false;
         }
 
@@ -291,6 +333,8 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
 
         if (recipe.hasGasResult()) {
             gasTank.addInternal(recipe.getGasResult(), recipe.getGasAmount(), false);
+        } else if (recipe.hasFluidResult()) {
+            fluidTank.fill(recipe.getFluidResult(), IFluidHandler.FluidAction.EXECUTE);
         }
     }
 
@@ -311,10 +355,35 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         return canAccept(1, recipe.getResult()) && canAccept(2, recipe.getByproduct());
     }
 
-    private boolean canAcceptGas(IndustrialCrusherRecipe recipe) {
-        if (!recipe.hasGasResult()) return true;
-        ResourceLocation gas = recipe.getGasResult();
-        return gas != null && gasTank.addInternal(gas, recipe.getGasAmount(), true) == recipe.getGasAmount();
+    private boolean canAcceptProcessOutput(IndustrialCrusherRecipe recipe) {
+        if (recipe.hasGasResult()) {
+            ResourceLocation gas = recipe.getGasResult();
+            return gas != null && gasTank.addInternal(gas, recipe.getGasAmount(), true) == recipe.getGasAmount();
+        }
+
+        if (recipe.hasFluidResult()) {
+            FluidStack fluid = recipe.getFluidResult();
+            return fluidTank.fill(fluid, IFluidHandler.FluidAction.SIMULATE) == fluid.getAmount();
+        }
+
+        return true;
+    }
+
+    private int processStored() {
+        IndustrialCrusherRecipe recipe = currentRecipe().orElse(null);
+        if (recipe != null && recipe.hasGasResult()) return gasTank.getGasStored();
+        if (recipe != null && recipe.hasFluidResult()) return fluidTank.getFluidAmount();
+        if (!fluidTank.isEmpty()) return fluidTank.getFluidAmount();
+        return gasTank.getGasStored();
+    }
+
+    private int processType() {
+        IndustrialCrusherRecipe recipe = currentRecipe().orElse(null);
+        if (recipe != null && recipe.hasGasResult()) return PROCESS_MINERAL_GAS;
+        if (recipe != null && recipe.hasFluidResult()) return PROCESS_NEOFLUX;
+        if (!fluidTank.isEmpty()) return PROCESS_NEOFLUX;
+        if (gasTank.getGasStored() > 0) return PROCESS_MINERAL_GAS;
+        return PROCESS_EMPTY;
     }
 
     private boolean canAccept(int slot, ItemStack addition) {
@@ -368,7 +437,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         if (recipe == null) return inventory.getStackInSlot(0).isEmpty() ? READY : NO_RECIPE;
         if (!hasRequiredInput(recipe)) return NOT_ENOUGH_INPUT;
         if (!canAcceptItemOutputs(recipe)) return OUTPUT_FULL;
-        if (!canAcceptGas(recipe)) return GAS_FULL;
+        if (!canAcceptProcessOutput(recipe)) return PROCESS_TANK_BLOCKED;
 
         int ticks = processingTicks(recipe);
         int totalEnergy = processingEnergy(recipe);
@@ -390,7 +459,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
             case CRUSHING -> MachineOperatingState.WORKING;
             case NO_ENERGY -> MachineOperatingState.NO_ENERGY;
             case NO_RECIPE, NOT_ENOUGH_INPUT -> MachineOperatingState.NO_RECIPE;
-            case OUTPUT_FULL, GAS_FULL -> MachineOperatingState.OUTPUT_BLOCKED;
+            case OUTPUT_FULL, PROCESS_TANK_BLOCKED -> MachineOperatingState.OUTPUT_BLOCKED;
             default -> MachineOperatingState.IDLE;
         };
     }
@@ -402,6 +471,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
     public MachineModuleInventory getModules() { return modules; }
     public ContainerData getDataAccess() { return data; }
     public IGasStorage getGasStorage() { return gasOutput; }
+    public IFluidHandler getFluidStorage() { return fluidOutput; }
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
@@ -413,6 +483,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         tag.putInt(NBT_CYCLE_TICKS, cycleTicks);
         tag.putInt(NBT_CYCLE_ENERGY, cycleEnergy);
         tag.put(NBT_GAS_TANK, gasTank.serializeNBT());
+        tag.put(NBT_FLUID_TANK, fluidTank.writeToNBT(new CompoundTag()));
         if (activeRecipe != null) tag.putString(NBT_ACTIVE_RECIPE, activeRecipe.toString());
     }
 
@@ -427,6 +498,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         cycleTicks = Math.max(0, tag.getInt(NBT_CYCLE_TICKS));
         cycleEnergy = Math.max(0, tag.getInt(NBT_CYCLE_ENERGY));
         gasTank.deserializeNBT(tag.getCompound(NBT_GAS_TANK));
+        fluidTank.readFromNBT(tag.getCompound(NBT_FLUID_TANK));
         activeRecipe = tag.contains(NBT_ACTIVE_RECIPE)
                 ? ResourceLocation.tryParse(tag.getString(NBT_ACTIVE_RECIPE))
                 : null;
@@ -438,6 +510,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         if (cap == ForgeCapabilities.ITEM_HANDLER) return itemCap.cast();
         if (cap == ForgeCapabilities.ENERGY) return energyCap.cast();
         if (cap == ModCapabilities.GAS) return gasCap.cast();
+        if (cap == ForgeCapabilities.FLUID_HANDLER) return fluidCap.cast();
         return super.getCapability(cap, side);
     }
 
@@ -447,6 +520,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         itemCap.invalidate();
         energyCap.invalidate();
         gasCap.invalidate();
+        fluidCap.invalidate();
     }
 
     @Override
@@ -455,6 +529,7 @@ public final class IndustrialCrusherBlockEntity extends BlockEntity
         itemCap = LazyOptional.of(() -> items);
         energyCap = LazyOptional.of(() -> energyInput);
         gasCap = LazyOptional.of(() -> gasOutput);
+        fluidCap = LazyOptional.of(() -> fluidOutput);
     }
 
     @Override

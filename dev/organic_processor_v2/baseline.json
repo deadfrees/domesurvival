@@ -1,0 +1,15 @@
+{
+  "src/main/java/com/wasted/domesurvival/forge/machine/organic/OrganicProcessorBlock.java": "355d58eef96e50da46b9885d29e3400d8483f45dfa47e522557866926049e70f",
+  "src/main/java/com/wasted/domesurvival/forge/machine/organic/OrganicProcessorBlockEntity.java": "6606b5a81ce4e03391016907565bc7116721f3cd107d9d0489292aba798ea2ae",
+  "src/main/java/com/wasted/domesurvival/forge/machine/organic/OrganicProcessorMenu.java": "c89b8b4000becd29ff4241d318f08718a77882df666195c8a629f8f0cb40b0c4",
+  "src/main/java/com/wasted/domesurvival/forge/machine/organic/OrganicProcessorRegistry.java": "ad58697509a7f870f91e59ddbd7bb56a750ef3db9b01dae0475ba89d951e7f8d",
+  "src/main/java/com/wasted/domesurvival/forge/machine/organic/OrganicProcessorScreen.java": "d3e1a7e5c4a02988461f498f0193831bc63e8584c253bc77350ee5354fb43355",
+  "src/main/resources/data/domesurvival/recipes/organic_processing/biogel_from_kelp.json": "163a49b610ff12c33ad627acae4983b0e8eb44b9e2065a3b456e917f1edbda53",
+  "src/main/resources/data/domesurvival/recipes/organic_processing/nutrient_mix_from_carrot.json": "7ba13b852e99e17dd6f7b08af7522d1c95edcf421eacc668657e2c486deedade",
+  "src/main/resources/data/domesurvival/recipes/organic_processing/nutrient_mix_from_wheat.json": "0c6e8ec38e82f746a8866e6a84020467f94294ec4bdec5f0e895c30ff5b30f15",
+  "src/main/resources/assets/domesurvival/blockstates/organic_processor.json": "276f983500cd4a8de50808ed2b23c74c33ff2fd4b1cbed4b4dc70bb1f4f90ef3",
+  "src/main/resources/assets/domesurvival/models/block/organic_processor.json": "ab3b5189e4d09b28242fc18751926eabd4a0818c6cc4a26bfe6e6556d1390e3d",
+  "src/main/resources/assets/domesurvival/models/block/organic_processor_active.json": "8fc5edeccaa7be77d7bb4ec52e0042c9f005539d451241083ae4aa55a8847c2f",
+  "src/main/resources/assets/domesurvival/models/item/organic_processor.json": "b295cbf9be7566c161f4a89607a668321a3093f079cd3eb7d2913e7fc5a852ca",
+  "src/main/java/com/wasted/domesurvival/forge/client/jei/OrganicProcessorRecipeCategory.java": "8e9aa05f321e9ced3ac387bb23843a080ca3bb450be1ccc5176b177b8eb7dab0"
+}

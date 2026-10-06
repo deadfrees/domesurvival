@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "CSC",
+    "GPG",
+    "WTW"
+  ],
+  "key": {
+    "C": {
+      "item": "domesurvival:solarite_crystal"
+    },
+    "S": {
+      "tag": "forge:wires/silver"
+    },
+    "G": {
+      "tag": "forge:plates/goteium"
+    },
+    "P": {
+      "item": "domesurvival:solar_panel_mk1"
+    },
+    "W": {
+      "tag": "forge:wires/copper"
+    },
+    "T": {
+      "tag": "forge:plates/tin"
+    }
+  },
+  "result": {
+    "item": "domesurvival:solar_panel_mk2",
+    "count": 1
+  }
+}

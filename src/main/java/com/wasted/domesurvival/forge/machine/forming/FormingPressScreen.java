@@ -124,7 +124,7 @@ public final class FormingPressScreen extends AbstractContainerScreen<FormingPre
             int energyHeight = (int) Math.min(47, (long) menu.energyStored() * 47 / Math.max(1, menu.energyCapacity()));
             if (energyHeight > 0) widget(graphics, 17, 87 - energyHeight, 12, energyHeight, 64, 47 - energyHeight, 12, energyHeight);
             int width=menu.progressMax()<=0?0:Math.min(85,menu.progress()*85/menu.progressMax());
-            if(width>0){graphics.enableScissor(leftPos+82,topPos+70,leftPos+82+width,topPos+78);widget(graphics,82,70,85,8,0,48,64,8);graphics.disableScissor();}
+            if(width>0){graphics.enableScissor(leftPos+82,topPos+76,leftPos+82+width,topPos+84);widget(graphics,82,76,85,8,0,48,64,8);graphics.disableScissor();}
             String[] icons={"steel_plate","steel_gear","steel_rod","steel_wire","steel_tube"};
             for(FormingOperation operation:FormingOperation.values()){
                 int x=24+36*operation.ordinal();
@@ -158,17 +158,16 @@ public final class FormingPressScreen extends AbstractContainerScreen<FormingPre
                         entry.getKey() == RelativeSide.FRONT ? MUTED : TEXT);
             }
         } else {
-            text(graphics, Component.translatable(KEY + "energy_section"), 14, 26, 75, MUTED);
+            text(graphics, Component.translatable(KEY + "energy_section"), 14, 28, 75, MUTED);
             Component energy = Component.translatable(KEY + "energy_compact_spaced", compact(menu.energyStored()), compact(menu.energyCapacity()));
             graphics.drawCenteredString(font, energy, 125, 42, AMBER);
-            text(graphics,Component.translatable(KEY+"raw"),43,55,33,MUTED);
-            text(graphics,Component.translatable(KEY+"product"),172,55,35,MUTED);
+            text(graphics,Component.translatable(KEY+"raw"),43,57,33,MUTED);
+            text(graphics,Component.translatable(KEY+"product"),172,57,35,MUTED);
             String[] states={"ready","forming","no_energy","no_recipe","output_full","not_enough_input"};
-            text(graphics,Component.translatable("gui.domesurvival.forming_press.status."+states[Math.max(0,Math.min(5,menu.status()))],menu.inputCount(),menu.requiredInputCount()),42,91,166,TEXT);
+            text(graphics,Component.translatable("gui.domesurvival.forming_press.status."+states[Math.max(0,Math.min(5,menu.status()))],menu.inputCount(),menu.requiredInputCount()),42,96,166,TEXT);
         }
         text(graphics,Component.translatable(KEY+"cycle",menu.recipeEnergy(),menu.progressMax()/20.0),14,139,195,MUTED);
         text(graphics,playerInventoryTitle,14,149,194,TEXT);
-        graphics.drawCenteredString(font,"MP-01 / "+compact(menu.energyCapacity())+" FE",110,253,MUTED);
     }
 
     private void text(GuiGraphics graphics, Component component, int x, int y, int maxWidth, int color) {
@@ -189,8 +188,8 @@ public final class FormingPressScreen extends AbstractContainerScreen<FormingPre
         } else if (inside(mouseX, mouseY, SETTINGS)) {
             graphics.renderTooltip(font, Component.translatable("gui.domesurvival.side_config"), mouseX, mouseY);
         } else if (menu.isModulePanelOpen()) {
-            if (inside(mouseX, mouseY, new Rect(18, 53, 24, 54))) {
-                graphics.renderTooltip(font, Component.translatable(KEY + "module_slot_tooltip"), mouseX, mouseY);
+            if ((hoveredSlot == null || !hoveredSlot.hasItem()) && inside(mouseX, mouseY, new Rect(18, 45, 185, 67))) {
+                graphics.renderTooltip(font, font.split(Component.translatable(KEY + "module_slot_tooltip"), 220), mouseX, mouseY);
             }
         } else if (menu.isSidePanelOpen()) {
             RelativeSide side = hoveredSide(mouseX, mouseY);
@@ -204,7 +203,7 @@ public final class FormingPressScreen extends AbstractContainerScreen<FormingPre
         } else if (menu.isMainPanelOpen()) {
             for(FormingOperation operation:FormingOperation.values())if(inside(mouseX,mouseY,new Rect(24+36*operation.ordinal(),108,30,26)))
                 graphics.renderTooltip(font,Component.translatable("gui.domesurvival.forming_press.operation."+operation.getSerializedName()),mouseX,mouseY);
-            if (inside(mouseX,mouseY,new Rect(14,37,194,16)))
+            if (inside(mouseX,mouseY,new Rect(14,37,18,53)) || inside(mouseX,mouseY,new Rect(42,38,166,15)))
 
             graphics.renderTooltip(font, Component.translatable(KEY + "energy_tooltip", menu.energyStored(), menu.energyCapacity()), mouseX, mouseY);
         }

@@ -1,131 +1,96 @@
 package com.wasted.domesurvival.forge.machine.shaft;
 
 import com.wasted.domesurvival.forge.block.ModBlocks;
+import com.wasted.domesurvival.forge.machine.module.*;
+import com.wasted.domesurvival.forge.machine.side.*;
 import com.wasted.domesurvival.forge.registry.ModMenuTypes;
+import net.minecraft.core.*;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraftforge.items.*;
 
 public final class ShaftFurnaceMenu extends AbstractContainerMenu {
-    private static final int MACHINE_SLOT_COUNT = 4;
-    private static final int PLAYER_INVENTORY_START = MACHINE_SLOT_COUNT;
-    private static final int PLAYER_INVENTORY_END = PLAYER_INVENTORY_START + 27;
-    private static final int HOTBAR_START = PLAYER_INVENTORY_END;
-    private static final int HOTBAR_END = HOTBAR_START + 9;
-
-    private final ContainerLevelAccess access;
+    public static final int MAIN_TAB=201, MODULE_TAB=200, SIDE_TAB=202;
+    private int tab=MAIN_TAB;
+    private final Level level;
+    private final BlockPos pos;
+    private final ShaftFurnaceBlockEntity furnace;
     private final ContainerData data;
-
-    public ShaftFurnaceMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
-        this(containerId, playerInventory, new ItemStackHandler(MACHINE_SLOT_COUNT),
-                new SimpleContainerData(ShaftFurnaceBlockEntity.DATA_COUNT),
-                ContainerLevelAccess.create(playerInventory.player.level(), extraData.readBlockPos()));
-    }
-
-    public ShaftFurnaceMenu(int containerId, Inventory playerInventory, ShaftFurnaceBlockEntity furnace) {
-        this(containerId, playerInventory, furnace.getInventory(), furnace.getDataAccess(),
-                ContainerLevelAccess.create(playerInventory.player.level(), furnace.getBlockPos()));
-    }
-
-    private ShaftFurnaceMenu(int containerId, Inventory playerInventory, IItemHandler inventory,
-                             ContainerData data, ContainerLevelAccess access) {
-        super(ModMenuTypes.SHAFT_FURNACE.get(), containerId);
-        this.access = access;
-        this.data = data;
-        checkContainerDataCount(data, ShaftFurnaceBlockEntity.DATA_COUNT);
-        addDataSlots(data);
-
-        addSlot(new SlotItemHandler(inventory, ShaftFurnaceBlockEntity.SLOT_IRON, 26, 54) {
-            @Override public boolean mayPlace(@NotNull ItemStack stack) { return ShaftFurnaceBlockEntity.isValidIron(stack); }
+    public ShaftFurnaceMenu(int id,Inventory inv,FriendlyByteBuf extra){this(id,inv,null,new ItemStackHandler(4),new SimpleContainerData(ShaftFurnaceBlockEntity.DATA_COUNT),extra.readBlockPos());}
+    public ShaftFurnaceMenu(int id,Inventory inv,ShaftFurnaceBlockEntity furnace){this(id,inv,furnace,furnace.getInventory(),furnace.getDataAccess(),furnace.getBlockPos());}
+    private ShaftFurnaceMenu(int id,Inventory inv,ShaftFurnaceBlockEntity furnace,IItemHandler container,ContainerData data,BlockPos pos){
+        super(ModMenuTypes.SHAFT_FURNACE.get(),id);this.furnace=furnace;this.data=data;this.pos=pos;level=inv.player.level();
+        addDataSlots(new ContainerData(){
+            public int get(int i){return (data.get(i/2)>>>((i%2)*16))&65535;}
+            public void set(int i,int v){int shift=i%2*16;data.set(i/2,(data.get(i/2)&~(65535<<shift))|((v&65535)<<shift));}
+            public int getCount(){return data.getCount()*2;}
         });
-        addSlot(new SlotItemHandler(inventory, ShaftFurnaceBlockEntity.SLOT_COKE, 62, 54) {
-            @Override public boolean mayPlace(@NotNull ItemStack stack) { return ShaftFurnaceBlockEntity.isValidCoke(stack); }
+        addSlot(new SlotItemHandler(container,0,46,62){
+            public boolean isActive(){return isMainPanelOpen();}public boolean mayPickup(Player p){return isActive();}
+            public boolean mayPlace(ItemStack s){return isActive()&&ShaftFurnaceBlockEntity.isValidIron(s);}
         });
-        addSlot(new OutputSlot(inventory, ShaftFurnaceBlockEntity.SLOT_STEEL, 178, 42));
-        addSlot(new OutputSlot(inventory, ShaftFurnaceBlockEntity.SLOT_SLAG, 178, 72));
-
-        addPlayerInventory(playerInventory);
-        addPlayerHotbar(playerInventory);
+        addSlot(new SlotItemHandler(container,1,46,115){
+            public boolean isActive(){return isMainPanelOpen();}public boolean mayPickup(Player p){return isActive();}
+            public boolean mayPlace(ItemStack s){return isActive()&&ShaftFurnaceBlockEntity.isValidCoke(s);}
+        });
+        addSlot(new SlotItemHandler(container,2,182,62){
+            public boolean isActive(){return isMainPanelOpen();}public boolean mayPickup(Player p){return isActive();}
+            public boolean mayPlace(ItemStack s){return false;}
+        });
+        addSlot(new SlotItemHandler(container,3,182,115){
+            public boolean isActive(){return isMainPanelOpen();}public boolean mayPickup(Player p){return isActive();}
+            public boolean mayPlace(ItemStack s){return false;}
+        });
+        for(int row=0;row<3;row++)for(int col=0;col<9;col++)addSlot(new Slot(inv,col+row*9+9,14+col*22,161+row*22));
+        for(int col=0;col<9;col++)addSlot(new Slot(inv,col,14+col*22,229));
+        addSlot(new SlotItemHandler(furnace==null?new ItemStackHandler(1):furnace.getModules(),0,22,71){
+            public boolean isActive(){return isModulePanelOpen();}public boolean mayPickup(Player p){return isActive();}
+            public int getMaxStackSize(){return 1;}
+            public boolean mayPlace(ItemStack s){return isActive()&&s.getItem() instanceof MachineModuleItem m&&m.module().type()==MachineModuleType.EFFICIENCY&&super.mayPlace(s);}
+        });
     }
-
-    private void addPlayerInventory(Inventory playerInventory) {
-        for (int row = 0; row < 3; row++) {
-            for (int column = 0; column < 9; column++) {
-                addSlot(new net.minecraft.world.inventory.Slot(
-                        playerInventory, column + row * 9 + 9, 14 + column * 22, 161 + row * 22));
-            }
-        }
+    public boolean isMainPanelOpen(){return tab==MAIN_TAB;}
+    public boolean isModulePanelOpen(){return tab==MODULE_TAB;}
+    public boolean isSidePanelOpen(){return tab==SIDE_TAB;}
+    public void setTab(int tab){this.tab=tab;}
+    public BlockPos getBlockPos(){return pos;}
+    public int burnRemaining(){return data.get(2);}public int burnTotal(){return data.get(3);}
+    public int progress(){return data.get(0);}public int progressMax(){return data.get(1);}
+    public boolean efficiency(){return data.get(10)!=0;}public int status(){return data.get(11);}
+    public SideMode getSideMode(RelativeSide side){
+        if(side==RelativeSide.FRONT)return SideMode.DISABLED;
+        var state=level.getBlockState(pos);
+        Direction facing=state.hasProperty(AbstractFurnaceBlock.FACING)?state.getValue(AbstractFurnaceBlock.FACING):Direction.NORTH;
+        int value=data.get(4+side.resolve(facing).ordinal());
+        return value>=0&&value<SideMode.values().length?SideMode.values()[value]:SideMode.DISABLED;
     }
-
-    private void addPlayerHotbar(Inventory playerInventory) {
-        for (int column = 0; column < 9; column++) {
-            addSlot(new net.minecraft.world.inventory.Slot(playerInventory, column, 14 + column * 22, 229));
-        }
+    @Override public boolean stillValid(Player player){return stillValid(ContainerLevelAccess.create(level,pos),player,ModBlocks.SHAFT_FURNACE.get());}
+    @Override public boolean clickMenuButton(Player player,int id){
+        if(!stillValid(player))return false;
+        if(id==MAIN_TAB||id==MODULE_TAB||id==SIDE_TAB){setTab(id);return true;}
+        int side=id-100;
+        if(!isSidePanelOpen()||side<0||side>=RelativeSide.values().length||RelativeSide.values()[side]==RelativeSide.FRONT)return false;
+        if(furnace!=null)furnace.cycleSideMode(RelativeSide.values()[side]);return true;
     }
-
-    @Override
-    public boolean stillValid(Player player) {
-        return stillValid(access, player, ModBlocks.SHAFT_FURNACE.get());
-    }
-
-    @Override
-    public @NotNull ItemStack quickMoveStack(Player player, int index) {
-        ItemStack result = ItemStack.EMPTY;
-        net.minecraft.world.inventory.Slot slot = slots.get(index);
-        if (slot == null || !slot.hasItem()) return result;
-
-        ItemStack stack = slot.getItem();
-        result = stack.copy();
-        if (index < MACHINE_SLOT_COUNT) {
-            if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, HOTBAR_END, true)) return ItemStack.EMPTY;
-        } else if (ShaftFurnaceBlockEntity.isValidIron(stack)
-                && moveItemStackTo(stack, ShaftFurnaceBlockEntity.SLOT_IRON, ShaftFurnaceBlockEntity.SLOT_IRON + 1, false)) {
-            // moved to iron input
-        } else if (ShaftFurnaceBlockEntity.isValidCoke(stack)
-                && moveItemStackTo(stack, ShaftFurnaceBlockEntity.SLOT_COKE, ShaftFurnaceBlockEntity.SLOT_COKE + 1, false)) {
-            // moved to coke input
-        } else if (index >= PLAYER_INVENTORY_START && index < PLAYER_INVENTORY_END) {
-            if (!moveItemStackTo(stack, HOTBAR_START, HOTBAR_END, false)) return ItemStack.EMPTY;
-        } else if (index >= HOTBAR_START && index < HOTBAR_END) {
-            if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END, false)) return ItemStack.EMPTY;
-        } else {
-            return ItemStack.EMPTY;
-        }
-
-        if (stack.isEmpty()) slot.set(ItemStack.EMPTY); else slot.setChanged();
-        return result;
-    }
-
-    public int getProgressPixels() {
-        int max = data.get(ShaftFurnaceBlockEntity.DATA_PROGRESS_MAX);
-        return max <= 0 ? 0 : data.get(ShaftFurnaceBlockEntity.DATA_PROGRESS) * 24 / max;
-    }
-
-    public int getBurnPixels() {
-        int max = data.get(ShaftFurnaceBlockEntity.DATA_BURN_TIME_MAX);
-        return max <= 0 ? 0 : data.get(ShaftFurnaceBlockEntity.DATA_BURN_TIME) * 13 / max;
-    }
-
-    public int getProgress() { return data.get(ShaftFurnaceBlockEntity.DATA_PROGRESS); }
-    public int getProgressMax() { return data.get(ShaftFurnaceBlockEntity.DATA_PROGRESS_MAX); }
-    public int getBurnTime() { return data.get(ShaftFurnaceBlockEntity.DATA_BURN_TIME); }
-    public int getBurnTimeMax() { return data.get(ShaftFurnaceBlockEntity.DATA_BURN_TIME_MAX); }
-    public boolean isWorking() { return getBurnTime() > 0 && getProgress() > 0; }
-
-    private static final class OutputSlot extends SlotItemHandler {
-        private OutputSlot(IItemHandler inventory, int index, int x, int y) {
-            super(inventory, index, x, y);
-        }
-
-        @Override public boolean mayPlace(@NotNull ItemStack stack) { return false; }
+    @Override public ItemStack quickMoveStack(Player player,int index){
+        if(index<0||index>=slots.size())return ItemStack.EMPTY;
+        Slot slot=slots.get(index);if(!slot.isActive()||!slot.hasItem()||!slot.mayPickup(player))return ItemStack.EMPTY;
+        ItemStack stack=slot.getItem(),copy=stack.copy();
+        if(index<4||index==40){if(!moveItemStackTo(stack,4,40,true))return ItemStack.EMPTY;}
+        else if(stack.getItem() instanceof MachineModuleItem){if(!isModulePanelOpen()||!moveItemStackTo(stack,40,41,false))return ItemStack.EMPTY;}
+        else if(isMainPanelOpen()&&ShaftFurnaceBlockEntity.isValidIron(stack)){if(!moveItemStackTo(stack,0,1,false))return ItemStack.EMPTY;}
+        else if(isMainPanelOpen()&&ShaftFurnaceBlockEntity.isValidCoke(stack)){if(!moveItemStackTo(stack,1,2,false))return ItemStack.EMPTY;}
+        else if(index<31){if(!moveItemStackTo(stack,31,40,false))return ItemStack.EMPTY;}
+        else if(!moveItemStackTo(stack,4,31,false))return ItemStack.EMPTY;
+        if(stack.getCount()==copy.getCount())return ItemStack.EMPTY;
+        if(index==2||index==3)slot.onQuickCraft(stack,copy);
+        if(stack.isEmpty())slot.set(ItemStack.EMPTY);else slot.setChanged();
+        slot.onTake(player,stack);return copy;
     }
 }

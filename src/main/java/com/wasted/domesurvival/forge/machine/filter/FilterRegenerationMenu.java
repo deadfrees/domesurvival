@@ -1,196 +1,97 @@
 package com.wasted.domesurvival.forge.machine.filter;
 
-import net.minecraft.core.BlockPos;
+import com.wasted.domesurvival.forge.block.ModBlocks;
+import com.wasted.domesurvival.forge.machine.module.*;
+import com.wasted.domesurvival.forge.machine.side.*;
+import com.wasted.domesurvival.forge.registry.ModMenuTypes;
+import net.minecraft.core.*;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraftforge.items.*;
 
 public final class FilterRegenerationMenu extends AbstractContainerMenu {
-    private static final int FILTER_SLOT_INDEX = 0;
-    private static final int MEDIA_SLOT_INDEX = 1;
-    private static final int PLAYER_INVENTORY_START = 2;
-    private static final int PLAYER_INVENTORY_END = 29;
-    private static final int HOTBAR_START = 29;
-    private static final int HOTBAR_END = 38;
-
-    private final ContainerLevelAccess access;
+    public static final int MAIN_TAB=201, MODULE_TAB=200, SIDE_TAB=202;
+    private int tab=MAIN_TAB;
+    private final Level level;
+    private final BlockPos pos;
+    private final FilterRegenerationBlockEntity furnace;
     private final ContainerData data;
-
-    public FilterRegenerationMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
-        this(
-                containerId,
-                playerInventory,
-                null,
-                new ItemStackHandler(2),
-                new SimpleContainerData(FilterRegenerationBlockEntity.DATA_COUNT),
-                extraData.readBlockPos()
-        );
-    }
-
-    public FilterRegenerationMenu(
-            int containerId,
-            Inventory playerInventory,
-            FilterRegenerationBlockEntity station
-    ) {
-        this(
-                containerId,
-                playerInventory,
-                station,
-                station.getInventory(),
-                station.getDataAccess(),
-                station.getBlockPos()
-        );
-    }
-
-    private FilterRegenerationMenu(
-            int containerId,
-            Inventory playerInventory,
-            @Nullable FilterRegenerationBlockEntity station,
-            IItemHandler machineInventory,
-            ContainerData data,
-            BlockPos blockPos
-    ) {
-        super(FilterRegenerationRegistry.FILTER_REGENERATION_MENU.get(), containerId);
-
-        this.access = ContainerLevelAccess.create(playerInventory.player.level(), blockPos);
-        this.data = data;
-
-        checkContainerDataCount(data, FilterRegenerationBlockEntity.DATA_COUNT);
-        addDataSlots(data);
-
-        // Same item-centering offset used by CoalGeneratorMenu:
-        // 24x24 visual cell -> vanilla slot starts +4px inside it.
-        addSlot(new SlotItemHandler(machineInventory, 0, 150, 106) {
-            @Override
-            public boolean mayPlace(@NotNull ItemStack stack) {
-                return FilterRegenerationBlockEntity.isEligibleFilter(stack);
-            }
+    public FilterRegenerationMenu(int id,Inventory inv,FriendlyByteBuf extra){this(id,inv,null,new ItemStackHandler(3),new SimpleContainerData(FilterRegenerationBlockEntity.DATA_COUNT),extra.readBlockPos());}
+    public FilterRegenerationMenu(int id,Inventory inv,FilterRegenerationBlockEntity furnace){this(id,inv,furnace,furnace.getInventory(),furnace.getDataAccess(),furnace.getBlockPos());}
+    private FilterRegenerationMenu(int id,Inventory inv,FilterRegenerationBlockEntity furnace,IItemHandler container,ContainerData data,BlockPos pos){
+        super(FilterRegenerationRegistry.FILTER_REGENERATION_MENU.get(),id);this.furnace=furnace;this.data=data;this.pos=pos;level=inv.player.level();
+        addDataSlots(new ContainerData(){
+            public int get(int i){return (data.get(i/2)>>>((i%2)*16))&65535;}
+            public void set(int i,int v){int shift=i%2*16;data.set(i/2,(data.get(i/2)&~(65535<<shift))|((v&65535)<<shift));}
+            public int getCount(){return data.getCount()*2;}
         });
-
-        addSlot(new SlotItemHandler(machineInventory, 1, 182, 106) {
-            @Override
-            public boolean mayPlace(@NotNull ItemStack stack) {
-                return FilterRegenerationBlockEntity.isRegenerationMedia(stack);
-            }
+        for(int row=0;row<3;row++)for(int col=0;col<9;col++)addSlot(new Slot(inv,col+row*9+9,14+col*22,161+row*22));
+        for(int col=0;col<9;col++)addSlot(new Slot(inv,col,14+col*22,229));
+        addSlot(new SlotItemHandler(container,0,52,103){
+            public boolean isActive(){return isMainPanelOpen();}
+            public boolean mayPickup(Player player){return isActive()&&(furnace==null?progress()==0:furnace.canRemoveFilter());}
+            public boolean mayPlace(ItemStack stack){return isActive()&&FilterRegenerationBlockEntity.isEligibleFilter(stack);}
+            public int getMaxStackSize(){return 1;}
         });
-
-        addPlayerInventory(playerInventory);
-        addPlayerHotbar(playerInventory);
+        addSlot(new SlotItemHandler(container,1,52,67){
+            public boolean isActive(){return isMainPanelOpen();}
+            public boolean mayPickup(Player player){return isActive();}
+            public boolean mayPlace(ItemStack stack){return isActive()&&FilterRegenerationBlockEntity.isRegenerationMedia(stack);}
+        });
+        addSlot(new SlotItemHandler(container,2,180,103){
+            public boolean isActive(){return isMainPanelOpen();}
+            public boolean mayPickup(Player player){return isActive();}
+            public boolean mayPlace(ItemStack stack){return false;}
+        });
+        for(int i=0;i<2;i++)addSlot(new SlotItemHandler(furnace==null?new ItemStackHandler(2):furnace.getModules(),i,22,67+i*30){
+            public boolean isActive(){return isModulePanelOpen();}
+            public boolean mayPickup(Player p){return isActive()&&(!(getItem().getItem() instanceof MachineModuleItem m)||m.module().type()!=MachineModuleType.BUFFER||energyStored()<=FilterRegenerationBlockEntity.ENERGY_CAPACITY);}
+            public int getMaxStackSize(){return 1;}
+            public boolean mayPlace(ItemStack s){return isActive()&&s.getItem() instanceof MachineModuleItem&&super.mayPlace(s);}
+        });
     }
-
-    private void addPlayerInventory(Inventory playerInventory) {
-        for (int row = 0; row < 3; row++) {
-            for (int column = 0; column < 9; column++) {
-                addSlot(new net.minecraft.world.inventory.Slot(
-                        playerInventory,
-                        column + row * 9 + 9,
-                        14 + column * 22,
-                        161 + row * 22
-                ));
-            }
-        }
+    public boolean isMainPanelOpen(){return tab==MAIN_TAB;}
+    public boolean isModulePanelOpen(){return tab==MODULE_TAB;}
+    public boolean isSidePanelOpen(){return tab==SIDE_TAB;}
+    public void setTab(int tab){this.tab=tab;}
+    public BlockPos getBlockPos(){return pos;}
+    public int energyStored(){return data.get(0);}public int energyCapacity(){return data.get(1);}
+    public int progress(){return data.get(2);}public int progressMax(){return data.get(3);}
+    public int status(){return data.get(4);}public int regenerationCycles(){return data.get(5);}
+    public int maxRegenerationCycles(){return data.get(6);}public int cycleEnergy(){return data.get(7);}
+    public SideMode getSideMode(RelativeSide side){
+        if(side==RelativeSide.FRONT)return SideMode.DISABLED;
+        var state=level.getBlockState(pos);
+        Direction facing=state.hasProperty(AbstractFurnaceBlock.FACING)?state.getValue(AbstractFurnaceBlock.FACING):Direction.NORTH;
+        int value=data.get(8+side.resolve(facing).ordinal());
+        return value>=0&&value<SideMode.values().length?SideMode.values()[value]:SideMode.DISABLED;
     }
-
-    private void addPlayerHotbar(Inventory playerInventory) {
-        for (int column = 0; column < 9; column++) {
-            addSlot(new net.minecraft.world.inventory.Slot(
-                    playerInventory,
-                    column,
-                    14 + column * 22,
-                    229
-            ));
-        }
+    @Override public boolean stillValid(Player player){return stillValid(ContainerLevelAccess.create(level,pos),player,FilterRegenerationRegistry.FILTER_REGENERATION_STATION.get());}
+    @Override public boolean clickMenuButton(Player player,int id){
+        if(!stillValid(player))return false;
+        if(id==MAIN_TAB||id==MODULE_TAB||id==SIDE_TAB){setTab(id);return true;}
+        int side=id-100;
+        if(!isSidePanelOpen()||side<0||side>=RelativeSide.values().length||RelativeSide.values()[side]==RelativeSide.FRONT)return false;
+        if(furnace!=null)furnace.cycleSideMode(RelativeSide.values()[side]);return true;
     }
-
-    @Override
-    public boolean stillValid(Player player) {
-        return stillValid(
-                access,
-                player,
-                FilterRegenerationRegistry.FILTER_REGENERATION_STATION.get()
-        );
-    }
-
-    @Override
-    public @NotNull ItemStack quickMoveStack(Player player, int index) {
-        if (index < 0 || index >= slots.size()) {
-            return ItemStack.EMPTY;
-        }
-
-        var slot = slots.get(index);
-        if (!slot.hasItem()) {
-            return ItemStack.EMPTY;
-        }
-
-        ItemStack stack = slot.getItem();
-        ItemStack result = stack.copy();
-
-        if (index == FILTER_SLOT_INDEX || index == MEDIA_SLOT_INDEX) {
-            if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, HOTBAR_END, true)) {
-                return ItemStack.EMPTY;
-            }
-        } else if (FilterRegenerationBlockEntity.isEligibleFilter(stack)
-                && moveItemStackTo(stack, FILTER_SLOT_INDEX, FILTER_SLOT_INDEX + 1, false)) {
-            // Moved into the filter slot.
-        } else if (FilterRegenerationBlockEntity.isRegenerationMedia(stack)
-                && moveItemStackTo(stack, MEDIA_SLOT_INDEX, MEDIA_SLOT_INDEX + 1, false)) {
-            // Moved into the media slot.
-        } else if (index >= PLAYER_INVENTORY_START && index < PLAYER_INVENTORY_END) {
-            if (!moveItemStackTo(stack, HOTBAR_START, HOTBAR_END, false)) {
-                return ItemStack.EMPTY;
-            }
-        } else if (index >= HOTBAR_START && index < HOTBAR_END) {
-            if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END, false)) {
-                return ItemStack.EMPTY;
-            }
-        } else {
-            return ItemStack.EMPTY;
-        }
-
-        if (stack.isEmpty()) {
-            slot.set(ItemStack.EMPTY);
-        } else {
-            slot.setChanged();
-        }
-
-        return result;
-    }
-
-    public int energyStored() {
-        return data.get(FilterRegenerationBlockEntity.DATA_ENERGY);
-    }
-
-    public int energyCapacity() {
-        return data.get(FilterRegenerationBlockEntity.DATA_CAPACITY);
-    }
-
-    public int progress() {
-        return data.get(FilterRegenerationBlockEntity.DATA_PROGRESS);
-    }
-
-    public int progressMax() {
-        return data.get(FilterRegenerationBlockEntity.DATA_MAX_PROGRESS);
-    }
-
-    public int status() {
-        return data.get(FilterRegenerationBlockEntity.DATA_STATUS);
-    }
-
-    public int regenerationCycles() {
-        return data.get(FilterRegenerationBlockEntity.DATA_REGEN_CYCLES);
-    }
-
-    public int maxRegenerationCycles() {
-        return data.get(FilterRegenerationBlockEntity.DATA_MAX_REGEN_CYCLES);
+    @Override public ItemStack quickMoveStack(Player player,int index){
+        if(index<0||index>=slots.size())return ItemStack.EMPTY;
+        Slot slot=slots.get(index);if(!slot.isActive()||!slot.hasItem()||!slot.mayPickup(player))return ItemStack.EMPTY;
+        ItemStack stack=slot.getItem(),copy=stack.copy();
+        if(index>=36){if(!moveItemStackTo(stack,0,36,true))return ItemStack.EMPTY;}
+        else if(stack.getItem() instanceof MachineModuleItem){if(!isModulePanelOpen()||!moveItemStackTo(stack,39,41,false))return ItemStack.EMPTY;}
+        else if(FilterRegenerationBlockEntity.isEligibleFilter(stack)&&isMainPanelOpen()){if(!moveItemStackTo(stack,36,37,false))return ItemStack.EMPTY;}
+        else if(FilterRegenerationBlockEntity.isRegenerationMedia(stack)&&isMainPanelOpen()){if(!moveItemStackTo(stack,37,38,false))return ItemStack.EMPTY;}
+        else if(index<27){if(!moveItemStackTo(stack,27,36,false))return ItemStack.EMPTY;}
+        else if(!moveItemStackTo(stack,0,27,false))return ItemStack.EMPTY;
+        if(stack.getCount()==copy.getCount())return ItemStack.EMPTY;
+        if(stack.isEmpty())slot.set(ItemStack.EMPTY);else slot.setChanged();
+        slot.onTake(player,stack);return copy;
     }
 }

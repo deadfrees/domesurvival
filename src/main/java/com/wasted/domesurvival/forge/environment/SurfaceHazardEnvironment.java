@@ -4,6 +4,8 @@ import com.wasted.domesurvival.core.dome.DomeBounds;
 import com.wasted.domesurvival.core.dome.DomeZone;
 import com.wasted.domesurvival.core.weather.SurfaceWeatherType;
 import com.wasted.domesurvival.forge.data.DomeSavedData;
+import com.wasted.domesurvival.forge.metro.dome.DomeMetroAtmosphere;
+import com.wasted.domesurvival.forge.metro.RestoredMetroAtmosphere;
 import com.wasted.domesurvival.forge.weather.SurfaceWeatherService;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -15,20 +17,21 @@ public final class SurfaceHazardEnvironment {
     private SurfaceHazardEnvironment() {
     }
 
-    /**
-     * Generic living-entity exposure classification.
-     *
-     * ServerPlayer callers continue to work unchanged, while mobs can now reuse
-     * the exact same dome / sky / weather rules instead of duplicating geometry.
-     */
     public static SurfaceExposure exposure(LivingEntity entity) {
         if (!(entity.level() instanceof ServerLevel level)
                 || !Level.OVERWORLD.equals(level.dimension())) {
             return SurfaceExposure.NONE;
         }
 
-        // Keep development/test worlds without the generated dome playable.
         if (!DomeSavedData.get(level).isGenerated()) {
+            return SurfaceExposure.NONE;
+        }
+
+        // The central Dome metro is an authored, sealed extension of the Dome.
+        // Glass passes skylight, so canSeeSky() alone must not classify this zone
+        // as exposed to sandstorms/acid rain/solar damage.
+        if (DomeMetroAtmosphere.isForcedBreathable(level, exposurePosition(entity))
+                || RestoredMetroAtmosphere.isForcedBreathable(level, exposurePosition(entity))) {
             return SurfaceExposure.NONE;
         }
 
@@ -50,27 +53,29 @@ public final class SurfaceHazardEnvironment {
         };
     }
 
-    /** True when the entity's eyes are directly open to surface weather outside the dome. */
     public static boolean directlyExposedToWeather(LivingEntity entity) {
         if (!(entity.level() instanceof ServerLevel level)
                 || !Level.OVERWORLD.equals(level.dimension())) {
             return false;
         }
 
-        if (!DomeSavedData.get(level).isGenerated()
-                || !isOutsideDome(level, entity.getX(), entity.getY(), entity.getZ())) {
+        if (!DomeSavedData.get(level).isGenerated()) {
             return false;
         }
 
-        return level.canSeeSky(exposurePosition(entity));
+        BlockPos exposurePos = exposurePosition(entity);
+        if (DomeMetroAtmosphere.isForcedBreathable(level, exposurePos)
+                || RestoredMetroAtmosphere.isForcedBreathable(level, exposurePos)) {
+            return false;
+        }
+
+        if (!isOutsideDome(level, entity.getX(), entity.getY(), entity.getZ())) {
+            return false;
+        }
+
+        return level.canSeeSky(exposurePos);
     }
 
-    /**
-     * Exact direct-sun test for a world block position.
-     *
-     * Used by water evaporation. The block must be outside the authored dome,
-     * directly open to the sky, in the overworld, during clear daytime weather.
-     */
     public static boolean directlyExposedToSolar(ServerLevel level, BlockPos pos) {
         if (!Level.OVERWORLD.equals(level.dimension())
                 || !DomeSavedData.get(level).isGenerated()
@@ -79,16 +84,18 @@ public final class SurfaceHazardEnvironment {
             return false;
         }
 
-        if (!isOutsideDome(level,
-                pos.getX() + 0.5D,
-                pos.getY() + 0.5D,
-                pos.getZ() + 0.5D
-        )) {
+        if (DomeMetroAtmosphere.isForcedBreathable(level, pos.above())
+                || RestoredMetroAtmosphere.isForcedBreathable(level, pos.above())) {
             return false;
         }
 
-        // Test the air immediately above the fluid surface. This avoids treating
-        // water under a roof, glass or another cover as sun-exposed.
+        if (!isOutsideDome(level,
+                pos.getX() + 0.5D,
+                pos.getY() + 0.5D,
+                pos.getZ() + 0.5D)) {
+            return false;
+        }
+
         return level.canSeeSky(pos.above());
     }
 

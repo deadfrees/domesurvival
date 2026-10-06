@@ -21,7 +21,7 @@ public final class QuestCampaignRegistry {
             new ChapterSpec(3, "270E74565C81C894", "Здесь будут жить", 15),
             new ChapterSpec(4, "23B2052E4DA60D0E", "Не одним хлебом", 20),
             new ChapterSpec(5, "7E8BFDBBF2CA9449", "Всё своё не унесёшь", 14),
-            new ChapterSpec(6, "649FCBF9F0251A82", "Пусть горит свет", 20),
+            new ChapterSpec(6, "649FCBF9F0251A82", "Пусть горит свет", 23),
             new ChapterSpec(7, "76CBABB04B110F16", "Промышленный район", 22),
             new ChapterSpec(8, "6337B45648BD526C", "Всё должно двигаться", 20),
             new ChapterSpec(9, "196E68C2962C3B35", "Мир оказался больше", 16),

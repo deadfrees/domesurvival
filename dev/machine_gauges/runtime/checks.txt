@@ -1,0 +1,30 @@
+PASS copper quarter: fixed divisions and correctly clipped level
+PASS copper expanded_capacity: fixed divisions and correctly clipped level
+PASS copper expanded_full: fixed divisions and correctly clipped level
+PASS copper zero_capacity: fixed divisions and correctly clipped level
+PASS coke quarter: fixed divisions and correctly clipped level
+PASS coke expanded_capacity: fixed divisions and correctly clipped level
+PASS coke expanded_full: fixed divisions and correctly clipped level
+PASS coke zero_capacity: fixed divisions and correctly clipped level
+PASS shaft quarter: fixed divisions and correctly clipped level
+PASS shaft expanded_capacity: fixed divisions and correctly clipped level
+PASS shaft expanded_full: fixed divisions and correctly clipped level
+PASS shaft zero_capacity: fixed divisions and correctly clipped level
+PASS purifier quarter: fixed divisions and correctly clipped level
+PASS purifier expanded_capacity: fixed divisions and correctly clipped level
+PASS purifier expanded_full: fixed divisions and correctly clipped level
+PASS purifier zero_capacity: fixed divisions and correctly clipped level
+PASS electrolyzer quarter: fixed divisions and correctly clipped level
+PASS electrolyzer expanded_capacity: fixed divisions and correctly clipped level
+PASS electrolyzer expanded_full: fixed divisions and correctly clipped level
+PASS electrolyzer zero_capacity: fixed divisions and correctly clipped level
+PASS filler quarter: fixed divisions and correctly clipped level
+PASS filler expanded_capacity: fixed divisions and correctly clipped level
+PASS filler expanded_full: fixed divisions and correctly clipped level
+PASS filler zero_capacity: fixed divisions and correctly clipped level
+PASS filter quarter: fixed divisions and correctly clipped level
+PASS filter expanded_capacity: fixed divisions and correctly clipped level
+PASS filter expanded_full: fixed divisions and correctly clipped level
+PASS filter zero_capacity: fixed divisions and correctly clipped level
+PASS Sieve uses detailed water sprite instead of flat fill
+RESULT PASS failures=0

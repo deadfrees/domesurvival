@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 },
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:string", "weight": 12,
+          "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 }}] },
+        { "type": "minecraft:item", "name": "minecraft:leather", "weight": 9 },
+        { "type": "minecraft:item", "name": "minecraft:paper", "weight": 10,
+          "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 4.0 }}] },
+        { "type": "minecraft:item", "name": "minecraft:glass_bottle", "weight": 9 },
+        { "type": "minecraft:item", "name": "minecraft:coal", "weight": 8,
+          "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 }}] },
+        { "type": "minecraft:item", "name": "minecraft:flint", "weight": 8 },
+        { "type": "minecraft:empty", "weight": 8 }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:torch", "weight": 10,
+          "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 4.0 }}] },
+        { "type": "minecraft:item", "name": "minecraft:bread", "weight": 6 },
+        { "type": "minecraft:item", "name": "minecraft:iron_nugget", "weight": 8,
+          "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 4.0 }}] },
+        { "type": "minecraft:item", "name": "minecraft:bucket", "weight": 2 },
+        { "type": "minecraft:empty", "weight": 8 }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [{ "condition": "minecraft:random_chance", "chance": 0.14 }],
+      "entries": [
+        { "type": "minecraft:item", "name": "domesurvival:tin_nugget", "weight": 5,
+          "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 }}] },
+        { "type": "minecraft:item", "name": "domesurvival:lead_nugget", "weight": 5,
+          "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 3.0 }}] },
+        { "type": "minecraft:item", "name": "domesurvival:silver_nugget", "weight": 3,
+          "functions": [{ "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 }}] },
+        { "type": "minecraft:item", "name": "domesurvival:water_filter_cartridge", "weight": 1 }
+      ]
+    }
+  ]
+}

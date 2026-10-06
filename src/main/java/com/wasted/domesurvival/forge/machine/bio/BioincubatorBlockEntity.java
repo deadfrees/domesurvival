@@ -9,6 +9,8 @@ import com.wasted.domesurvival.forge.machine.energy.MachineEnergyStorage;
 import com.wasted.domesurvival.forge.machine.side.PortVisual;
 import com.wasted.domesurvival.forge.machine.side.RelativeSide;
 import com.wasted.domesurvival.forge.machine.side.SideMode;
+import com.wasted.domesurvival.forge.machine.module.*;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import com.wasted.domesurvival.forge.machine.side.UnifiedSideConfig;
 import com.wasted.domesurvival.forge.registry.ModBlockEntities;
 import com.wasted.domesurvival.forge.quest.QuestProgressService;
@@ -52,7 +54,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * BIOINCUBATOR_VISUAL_V191
  * Connector-aware incubator refined after in-game review.
  */
-public final class BioincubatorBlockEntity extends BlockEntity implements MenuProvider {
+public final class BioincubatorBlockEntity extends BlockEntity implements MenuProvider, IModularMachine {
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final Set<String> REPORTED_INVALID_SAMPLES = ConcurrentHashMap.newKeySet();
     public static final int ENERGY_CAPACITY = 60_000;
@@ -82,7 +84,8 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
     public static final int DATA_SPECIES = 7;
     public static final int DATA_MODE = 8;
     public static final int DATA_SIDES_START = 9;
-    public static final int DATA_COUNT = DATA_SIDES_START + 6;
+    public static final int DATA_CYCLE_ENERGY = DATA_SIDES_START + 6;
+    public static final int DATA_COUNT = DATA_CYCLE_ENERGY + 1;
 
     public static final int STATUS_IDLE = 0;
     public static final int STATUS_RUNNING = 1;
@@ -130,7 +133,6 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
 
         @Override
         protected void onContentsChanged(int slot) {
-            progress = 0;
             setChanged();
         }
     };
@@ -148,50 +150,36 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         }
     };
 
-    private final IEnergyStorage energyInputView = new IEnergyStorage() {
-        @Override
-        public int receiveEnergy(int maxReceive, boolean simulate) {
-            int accepted = energyStorage.receiveEnergy(maxReceive, simulate);
-            if (!simulate && accepted > 0) {
-                setChanged();
-            }
-            return accepted;
+    private final java.util.EnumMap<Direction,Port> ports = new java.util.EnumMap<>(Direction.class);
+    private final MachineModuleInventory modules = new MachineModuleInventory(this,MachineModuleResolver.STANDARD,this::modulesChanged);
+    private int cycleTicks, cycleEnergy, cycleMode;
+    private ItemStack cycleCapsule = ItemStack.EMPTY;
+    private Direction lastFacing;
+    private float animationTick, previousAnimationTick;
+    private boolean syncPending;
+    public int moduleSlotCount(){return 2;}
+    public Set<MachineModuleType> allowedModuleTypes(){return Set.of(MachineModuleType.BUFFER,MachineModuleType.EFFICIENCY,MachineModuleType.OVERDRIVE);}
+    public MachineModuleInventory getModules(){return modules;}
+    private void modulesChanged(){energyStorage.setCapacityInternal(Math.max(energyStorage.getEnergyStored(),modules.modifiers().applyBufferCapacity(ENERGY_CAPACITY)));setChanged();}
+    private void resetCycle(){progress=0;cycleTicks=cycleEnergy=0;cycleCapsule=ItemStack.EMPTY;}
+    public static void clientTick(Level level,BlockPos pos,BlockState state,BioincubatorBlockEntity machine){
+        machine.previousAnimationTick=machine.animationTick;
+        if(state.getValue(BioincubatorBlock.LIT))machine.animationTick=(machine.animationTick+1)%240;
+    }
+    public float animationPhase(float partial){float next=animationTick<previousAnimationTick?animationTick+240:animationTick;return (previousAnimationTick+(next-previousAnimationTick)*partial)/240F;}
+    @Override public void setChanged(){super.setChanged();syncPending=true;}
+    @Override public CompoundTag getUpdateTag(){return saveWithoutMetadata();}
+    @Override public void handleUpdateTag(CompoundTag tag){load(tag);}
+    @Override public ClientboundBlockEntityDataPacket getUpdatePacket(){return ClientboundBlockEntityDataPacket.create(this);}
+    public void rotateSideConfiguration(@Nullable Direction previous){
+        Direction facing=getMachineFacing();
+        if(previous!=null&&previous!=facing){
+            var modes=new java.util.EnumMap<RelativeSide,SideMode>(RelativeSide.class);
+            for(var side:RelativeSide.values())modes.put(side,sideConfig.getMode(side.resolve(previous)));
+            for(var side:RelativeSide.values())sideConfig.setMode(side.resolve(facing),modes.get(side));
         }
-
-        @Override public int extractEnergy(int maxExtract, boolean simulate) { return 0; }
-        @Override public int getEnergyStored() { return energyStorage.getEnergyStored(); }
-        @Override public int getMaxEnergyStored() { return energyStorage.getMaxEnergyStored(); }
-        @Override public boolean canExtract() { return false; }
-        @Override public boolean canReceive() { return true; }
-    };
-
-    private final IFluidHandler fluidInputView = new IFluidHandler() {
-        @Override public int getTanks() { return 1; }
-        @Override public @NotNull FluidStack getFluidInTank(int tank) { return purifiedWaterTank.getFluidInTank(0); }
-        @Override public int getTankCapacity(int tank) { return WATER_CAPACITY; }
-        @Override public boolean isFluidValid(int tank, @NotNull FluidStack stack) { return purifiedWaterTank.isFluidValid(0, stack); }
-        @Override public int fill(FluidStack resource, FluidAction action) { return purifiedWaterTank.fill(resource, action); }
-        @Override public @NotNull FluidStack drain(FluidStack resource, FluidAction action) { return FluidStack.EMPTY; }
-        @Override public @NotNull FluidStack drain(int maxDrain, FluidAction action) { return FluidStack.EMPTY; }
-    };
-
-    private final IItemHandler itemInputView = new IItemHandler() {
-        @Override public int getSlots() { return inventory.getSlots(); }
-        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
-        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            return inventory.insertItem(slot, stack, simulate);
-        }
-        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return slot == SLOT_OUTPUT ? inventory.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
-        }
-        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
-        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return inventory.isItemValid(slot, stack); }
-    };
-
-    private LazyOptional<IEnergyStorage> energyCapability = LazyOptional.of(() -> energyInputView);
-    private LazyOptional<IFluidHandler> fluidCapability = LazyOptional.of(() -> fluidInputView);
-    private LazyOptional<IItemHandler> itemCapability = LazyOptional.of(() -> itemInputView);
-
+        sideConfig.setMode(facing,SideMode.DISABLED);lastFacing=facing;refreshCapabilities();portsNeedSync=true;syncAllPortStates();setChanged();
+    }
     private int progress;
     private int mode = MODE_INCUBATION;
     private int status = STATUS_IDLE;
@@ -211,6 +199,7 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
             if (index == DATA_STATUS) return status;
             if (index == DATA_SPECIES) return speciesId();
             if (index == DATA_MODE) return mode;
+            if (index == DATA_CYCLE_ENERGY) return processingEnergy(recipe);
 
             if (index >= DATA_SIDES_START && index < DATA_SIDES_START + 6) {
                 Direction direction = Direction.values()[index - DATA_SIDES_START];
@@ -235,10 +224,12 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
 
         for (RelativeSide relative : RelativeSide.values()) {
             Direction worldSide = relative.resolve(facing);
-            sideConfig.setMode(
-                    worldSide,
-                    relative == RelativeSide.FRONT ? SideMode.DISABLED : SideMode.INPUT
-            );
+            SideMode mode = switch (relative) {
+                case FRONT -> SideMode.DISABLED;
+                case TOP, LEFT, BACK -> SideMode.INPUT;
+                case RIGHT, BOTTOM -> SideMode.OUTPUT;
+            };
+            sideConfig.setMode(worldSide, mode);
         }
 
         portsNeedSync = true;
@@ -254,11 +245,9 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         }
 
         Direction worldSide = relativeSide.resolve(getMachineFacing());
-        SideMode next = sideConfig.getMode(worldSide) == SideMode.INPUT
-                ? SideMode.DISABLED
-                : SideMode.INPUT;
+        SideMode next = sideConfig.cycleMode(worldSide);
 
-        if (sideConfig.setMode(worldSide, next)) {
+        if (sideConfig.getMode(worldSide) == next) {
             refreshCapabilities();
             syncPortState(worldSide);
             notifyPortVisualUpdate();
@@ -278,7 +267,7 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
     }
     public int toggleMode() {
         mode = mode == MODE_INCUBATION ? MODE_REPAIR : MODE_INCUBATION;
-        progress = 0;
+        resetCycle();
         status = calculateStatus(currentRecipe());
         setChanged();
         return mode;
@@ -291,34 +280,26 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
             incubator.portsNeedSync = false;
         }
 
+        if(incubator.lastFacing!=incubator.getMachineFacing())incubator.rotateSideConfiguration(incubator.lastFacing);
+        if(incubator.progress>0&&!incubator.cycleCapsule.isEmpty()&&
+                (incubator.cycleMode!=incubator.mode||!ItemStack.isSameItemSameTags(incubator.cycleCapsule,incubator.inventory.getStackInSlot(SLOT_CAPSULE))))incubator.resetCycle();
         Recipe recipe = incubator.currentRecipe();
         int newStatus = incubator.calculateStatus(recipe);
         boolean changed = false;
-
-        if (newStatus == STATUS_RUNNING) {
-            int energyPerTick = incubator.energyPerTick(recipe);
-            int processTicks = incubator.processTicks(recipe);
-            int removed = incubator.energyStorage.removeEnergyInternal(energyPerTick);
-            if (removed == energyPerTick) {
-                incubator.progress++;
-                changed = true;
-
-                if (incubator.progress >= processTicks) {
-                    boolean finished = incubator.mode == MODE_REPAIR
-                            ? incubator.finishRepair()
-                            : recipe != null && incubator.finishCycle(recipe);
-                    if (finished) {
-                        incubator.progress = 0;
-                    } else {
-                        incubator.progress = Math.max(0, processTicks - 1);
-                    }
-                }
+        if(newStatus==STATUS_RUNNING){
+            if(incubator.cycleTicks==0){
+                int ticks=incubator.processTicks(recipe),cost=incubator.processingEnergy(recipe);
+                incubator.cycleTicks=ticks;incubator.cycleEnergy=cost;
+                incubator.cycleCapsule=incubator.inventory.getStackInSlot(SLOT_CAPSULE).copyWithCount(1);incubator.cycleMode=incubator.mode;
             }
-        } else if (incubator.progress != 0 && newStatus != STATUS_NO_ENERGY) {
-            incubator.progress = 0;
-            changed = true;
+            incubator.energyStorage.removeEnergyInternal(incubator.energyPerTick(recipe));incubator.progress++;changed=true;
+            if(incubator.progress>=incubator.cycleTicks){
+                boolean finished=incubator.mode==MODE_REPAIR?incubator.finishRepair():recipe!=null&&incubator.finishCycle(recipe);
+                if(finished)incubator.resetCycle();else incubator.progress=incubator.cycleTicks-1;
+            }
+        }else if(newStatus==STATUS_NO_CAPSULE||newStatus==STATUS_INVALID_CAPSULE||newStatus==STATUS_DAMAGED_CAPSULE||newStatus==STATUS_REQUIRES_DAMAGED){
+            if(incubator.progress!=0){incubator.resetCycle();changed=true;}
         }
-
         incubator.status = incubator.calculateStatus(incubator.currentRecipe());
         boolean lit = incubator.status == STATUS_RUNNING;
 
@@ -329,9 +310,8 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
             changed = true;
         }
 
-        if (changed) {
-            incubator.setChanged();
-        }
+        if (changed) incubator.setChanged();
+        if(incubator.syncPending&&level.getGameTime()%10==0){incubator.syncPending=false;level.sendBlockUpdated(pos,level.getBlockState(pos),level.getBlockState(pos),2);}
     }
 
     private int calculateStatus(@Nullable Recipe recipe) {
@@ -339,7 +319,6 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         if (capsule.isEmpty()) return STATUS_NO_CAPSULE;
         BioModuleData.Sample sample = BioModuleData.sample(capsule);
         if (sample == null) return STATUS_INVALID_CAPSULE;
-        if (!BioModuleData.isIdentificationUnlocked(level)) return STATUS_DATABASE_LOCKED;
         if (!BioLootData.isAllowed(sample.entityId())) return STATUS_INVALID_CAPSULE;
 
         if (mode == MODE_REPAIR) {
@@ -351,7 +330,7 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
             }
             if (!inventory.getStackInSlot(SLOT_OUTPUT).isEmpty()) return STATUS_REPAIR_OUTPUT_FULL;
             if (purifiedWaterTank.getFluidAmount() < REPAIR_WATER_MB) return STATUS_NO_WATER;
-            if (energyStorage.getEnergyStored() < REPAIR_ENERGY_PER_TICK) return STATUS_NO_ENERGY;
+            if (energyStorage.getEnergyStored() < energyPerTick(recipe)) return STATUS_NO_ENERGY;
             return STATUS_RUNNING;
         }
 
@@ -371,7 +350,7 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
             return STATUS_OUTPUT_BLOCKED;
         }
 
-        if (energyStorage.getEnergyStored() < recipe.energyPerTick()) {
+        if (energyStorage.getEnergyStored() < energyPerTick(recipe)) {
             return STATUS_NO_ENERGY;
         }
 
@@ -462,20 +441,18 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         return recipeForCapsule(inventory.getStackInSlot(SLOT_CAPSULE));
     }
 
-    private int energyPerTick(@Nullable Recipe recipe) {
-        return mode == MODE_REPAIR ? REPAIR_ENERGY_PER_TICK : recipe == null ? 0 : recipe.energyPerTick();
+    private int baseTicks(@Nullable Recipe recipe){return mode==MODE_REPAIR?REPAIR_PROCESS_TICKS:recipe==null?0:recipe.processTicks();}
+    public int processingEnergy(@Nullable Recipe recipe){
+        if(cycleTicks>0)return cycleEnergy;
+        int base=baseTicks(recipe)*(mode==MODE_REPAIR?REPAIR_ENERGY_PER_TICK:recipe==null?0:recipe.energyPerTick());
+        return modules.modifiers().applyEnergyCost(base);
     }
-
-    private int processTicks(@Nullable Recipe recipe) {
-        if (mode == MODE_REPAIR) {
-            return BioModuleData.sample(inventory.getStackInSlot(SLOT_CAPSULE)) == null
-                    ? 0 : REPAIR_PROCESS_TICKS;
-        }
-        return recipe == null ? 0 : recipe.processTicks();
+    private int energyPerTick(@Nullable Recipe recipe){
+        int ticks=Math.max(1,processTicks(recipe)),cost=processingEnergy(recipe),before=Math.min(progress,ticks),after=Math.min(progress+1,ticks);
+        return (int)((long)cost*after/ticks-(long)cost*before/ticks);
     }
-
+    public int processTicks(@Nullable Recipe recipe){return cycleTicks>0?cycleTicks:modules.modifiers().applyProcessingTicks(baseTicks(recipe));}
     private int speciesId() {
-        if (!BioModuleData.isIdentificationUnlocked(level)) return 0;
         BioModuleData.Sample sample = BioModuleData.sample(inventory.getStackInSlot(SLOT_CAPSULE));
         if (sample == null || !BioLootData.isAllowed(sample.entityId())) return 0;
         EntityType<?> type = net.minecraftforge.registries.ForgeRegistries.ENTITY_TYPES.getValue(sample.entityId());
@@ -488,7 +465,7 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
             return null;
         }
         BioModuleData.Sample sample = BioModuleData.sample(capsule);
-        if (sample == null || sample.damaged() || !BioModuleData.isIdentificationUnlocked(level)) {
+        if (sample == null || sample.damaged()) {
             return null;
         }
 
@@ -508,7 +485,7 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
                 species.feedCount(), species.waterMb(), species.energyPerTick(), species.processTicks());
     }
 
-    private Direction getMachineFacing() {
+    public Direction getMachineFacing() {
         BlockState state = getBlockState();
         return state.hasProperty(BioincubatorBlock.FACING)
                 ? state.getValue(BioincubatorBlock.FACING)
@@ -596,20 +573,24 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
             inventory.deserializeNBT(inventoryTag);
         }
 
+        modules.deserializeNBT(tag.getCompound("Modules"));
+        energyStorage.setCapacityInternal(Math.max(tag.getInt(NBT_ENERGY),modules.modifiers().applyBufferCapacity(ENERGY_CAPACITY)));
         energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
 
         if (tag.contains(NBT_WATER)) {
             purifiedWaterTank.readFromNBT(tag.getCompound(NBT_WATER));
         }
 
-        progress = tag.getInt(NBT_PROGRESS);
+        progress = Math.max(0,tag.getInt(NBT_PROGRESS));
+        cycleTicks=Math.max(0,tag.getInt("CycleTicks"));cycleEnergy=Math.max(0,tag.getInt("CycleEnergy"));
+        cycleCapsule=ItemStack.of(tag.getCompound("CycleCapsule"));cycleMode=tag.getInt("CycleMode");
         mode = tag.getInt(NBT_MODE) == MODE_REPAIR ? MODE_REPAIR : MODE_INCUBATION;
 
         if (!sideConfig.load(tag)) {
             applyDefaultSideConfiguration();
         }
 
-        sideConfig.setMode(getMachineFacing(), SideMode.DISABLED);
+        rotateSideConfiguration(Direction.byName(tag.getString("PortFacing")));
         portsNeedSync = true;
         status = calculateStatus(currentRecipe());
         refreshCapabilities();
@@ -627,70 +608,60 @@ public final class BioincubatorBlockEntity extends BlockEntity implements MenuPr
         tag.put(NBT_WATER, water);
 
         tag.putInt(NBT_PROGRESS, progress);
+        tag.put("Modules",modules.serializeNBT());tag.putInt("CycleTicks",cycleTicks);tag.putInt("CycleEnergy",cycleEnergy);
+        tag.put("CycleCapsule",cycleCapsule.save(new CompoundTag()));tag.putInt("CycleMode",cycleMode);
+        tag.putString("PortFacing",getMachineFacing().getName());
         tag.putInt(NBT_MODE, mode);
         sideConfig.save(tag);
     }
 
-    @Override
-    public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ENERGY) {
-            if (side == null) {
-                return energyCapability.cast();
-            }
-            if (!isFrontWorldSide(side) && sideConfig.allowsInput(side)) {
-                return energyCapability.cast();
-            }
-            return LazyOptional.empty();
-        }
-
-        if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            if (side == null) {
-                return fluidCapability.cast();
-            }
-            if (!isFrontWorldSide(side) && sideConfig.allowsInput(side)) {
-                return fluidCapability.cast();
-            }
-            return LazyOptional.empty();
-        }
-
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == null) {
-                return itemCapability.cast();
-            }
-            if (!isFrontWorldSide(side) && sideConfig.allowsInput(side)) {
-                return itemCapability.cast();
-            }
-            return LazyOptional.empty();
-        }
-
-        return super.getCapability(cap, side);
+    public SideMode sideMode(@Nullable Direction side) {
+        return side == null || side == getMachineFacing() ? SideMode.DISABLED : sideConfig.getMode(side);
     }
-
+    @Override public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap,@Nullable Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER || cap == ForgeCapabilities.ENERGY || cap == ForgeCapabilities.FLUID_HANDLER) {
+            if (isRemoved() || sideMode(side) == SideMode.DISABLED) return LazyOptional.empty();
+            Port port = ports.computeIfAbsent(side, Port::new);
+            if (cap == ForgeCapabilities.ITEM_HANDLER) return port.items.cast();
+            if (sideMode(side) != SideMode.INPUT) return LazyOptional.empty();
+            return cap == ForgeCapabilities.ENERGY ? port.power.cast() : port.fluid.cast();
+        }
+        return super.getCapability(cap,side);
+    }
     private void refreshCapabilities() {
-        energyCapability.invalidate();
-        fluidCapability.invalidate();
-        itemCapability.invalidate();
-
-        energyCapability = LazyOptional.of(() -> energyInputView);
-        fluidCapability = LazyOptional.of(() -> fluidInputView);
-        itemCapability = LazyOptional.of(() -> itemInputView);
+        ports.values().forEach(p -> {p.items.invalidate();p.power.invalidate();p.fluid.invalidate();});
+        ports.clear();
     }
+    @Override public void invalidateCaps(){super.invalidateCaps();refreshCapabilities();}
+    @Override public void reviveCaps(){super.reviveCaps();refreshCapabilities();}
 
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        energyCapability.invalidate();
-        fluidCapability.invalidate();
-        itemCapability.invalidate();
-    }
-
-    @Override
-    public void reviveCaps() {
-        super.reviveCaps();
-        energyCapability = LazyOptional.of(() -> energyInputView);
-        fluidCapability = LazyOptional.of(() -> fluidInputView);
-        itemCapability = LazyOptional.of(() -> itemInputView);
-        portsNeedSync = true;
+    private final class Port implements IItemHandler {
+        final Direction side;
+        Port(Direction side){this.side=side;}
+        boolean input(){return !isRemoved() && sideMode(side)==SideMode.INPUT;}
+        boolean output(){return !isRemoved() && sideMode(side)==SideMode.OUTPUT;}
+        final LazyOptional<IItemHandler> items=LazyOptional.of(()->this);
+        final LazyOptional<IEnergyStorage> power=LazyOptional.of(()->new IEnergyStorage(){
+            public int receiveEnergy(int n,boolean sim){int accepted=input()?energyStorage.receiveEnergy(n,sim):0;if(accepted>0&&!sim)setChanged();return accepted;}
+            public int extractEnergy(int n,boolean sim){return 0;}
+            public boolean canReceive(){return input();} public boolean canExtract(){return false;}
+            public int getEnergyStored(){return energyStorage.getEnergyStored();} public int getMaxEnergyStored(){return energyStorage.getMaxEnergyStored();}
+        });
+        final LazyOptional<IFluidHandler> fluid=LazyOptional.of(()->new IFluidHandler(){
+            public int getTanks(){return 1;}
+            public FluidStack getFluidInTank(int tank){return tank==0&&input()?purifiedWaterTank.getFluid().copy():FluidStack.EMPTY;}
+            public int getTankCapacity(int tank){return tank==0?purifiedWaterTank.getCapacity():0;}
+            public boolean isFluidValid(int tank,FluidStack stack){return tank==0&&input()&&purifiedWaterTank.isFluidValid(tank,stack);}
+            public int fill(FluidStack stack,FluidAction action){return input()?purifiedWaterTank.fill(stack,action):0;}
+            public FluidStack drain(FluidStack stack,FluidAction action){return FluidStack.EMPTY;}
+            public FluidStack drain(int amount,FluidAction action){return FluidStack.EMPTY;}
+        });
+        public int getSlots(){return 5;}
+        public ItemStack getStackInSlot(int slot){return slot>=0&&slot<5&&(input()&&slot<4||output()&&slot==4)?inventory.getStackInSlot(slot).copy():ItemStack.EMPTY;}
+        public boolean isItemValid(int slot,ItemStack stack){return slot>=0&&slot<4&&input()&&inventory.isItemValid(slot,stack);}
+        public ItemStack insertItem(int slot,ItemStack stack,boolean simulate){return isItemValid(slot,stack)?inventory.insertItem(slot,stack,simulate):stack;}
+        public ItemStack extractItem(int slot,int amount,boolean simulate){return slot==4&&output()?inventory.extractItem(slot,amount,simulate):ItemStack.EMPTY;}
+        public int getSlotLimit(int slot){return slot>=0&&slot<5?inventory.getSlotLimit(slot):0;}
     }
 
     public record Recipe(

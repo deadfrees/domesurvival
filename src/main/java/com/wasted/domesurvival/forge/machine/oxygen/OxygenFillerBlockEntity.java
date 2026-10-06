@@ -3,6 +3,8 @@ package com.wasted.domesurvival.forge.machine.oxygen;
 import com.wasted.domesurvival.forge.capability.IOxygenStorage;
 import com.wasted.domesurvival.forge.capability.ModCapabilities;
 import com.wasted.domesurvival.forge.item.ModItems;
+import com.wasted.domesurvival.forge.machine.module.*;
+import java.util.*;
 import com.wasted.domesurvival.forge.item.OxygenTankItem;
 import com.wasted.domesurvival.forge.machine.energy.MachineEnergyStorage;
 import com.wasted.domesurvival.forge.machine.side.PortVisual;
@@ -44,7 +46,7 @@ import org.jetbrains.annotations.Nullable;
  * Stores oxygen from the pipe network, fills DomeSurvival tanks and pressurizes sealed rooms.
  * V62 never compensates an active leak: the room must be resealed before oxygen input resumes.
  */
-public final class OxygenFillerBlockEntity extends BlockEntity implements MenuProvider {
+public final class OxygenFillerBlockEntity extends BlockEntity implements MenuProvider, IModularMachine {
     public static final int ENERGY_CAPACITY = 20_000;
     public static final int MAX_ENERGY_INPUT_PER_TICK = 64;
     public static final int ENERGY_PER_FILL_TICK = 5;
@@ -52,7 +54,7 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
     public static final int MAX_OXYGEN_INPUT_PER_TICK = 120;
     public static final int MAX_OXYGEN_OUTPUT_PER_TICK = 120;
     public static final int OXYGEN_FILL_PER_TICK = 1;
-    public static final int SLOT_TANK = 0;
+    public static final int SLOT_TANK = 0, SLOT_OUTPUT = 1;
 
     public static final int DATA_ENERGY = 0;
     public static final int DATA_ENERGY_CAPACITY = 1;
@@ -67,8 +69,9 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
     public static final int DATA_ROOM_OXYGEN = 10;
     public static final int DATA_ROOM_OXYGEN_REQUIRED = 11;
     public static final int DATA_SIDES_START = 12;
-    public static final int DATA_COUNT = DATA_SIDES_START + 6;
+    public static final int DATA_COUNT = DATA_SIDES_START + 7;
 
+    public static final int STATUS_OUTPUT_FULL = 14;
     public static final int STATUS_IDLE = 0;
     public static final int STATUS_FILLING = 1;
     public static final int STATUS_NO_TANK = 2;
@@ -88,7 +91,7 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
     private static final String NBT_OXYGEN = "Oxygen";
     private static final String NBT_INVENTORY = "Inventory";
     private static final String NBT_MODE = "OperatingMode";
-    private static final int VENTILATION_PARTICLE_INTERVAL = 12;
+    private static final int VENTILATION_PARTICLE_INTERVAL = 4;
     /** Keeps visuals/sound stable between 1-second occupant O2 maintenance pulses. */
     private static final int VENTILATION_ACTIVITY_HOLD_TICKS =
             RoomAtmosphereRules.OCCUPANT_CONSUMPTION_INTERVAL_TICKS + 5;
@@ -99,68 +102,38 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
     private final OxygenStorage oxygenStorage =
             new OxygenStorage(OXYGEN_CAPACITY, MAX_OXYGEN_INPUT_PER_TICK, 0);
 
-    private final ItemStackHandler inventory = new ItemStackHandler(1) {
+    private final ItemStackHandler inventory = new ItemStackHandler(2) {
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return slot == SLOT_TANK && stack.getItem() instanceof OxygenTankItem;
+            return slot == SLOT_TANK && acceptsTank(stack);
         }
 
+        @Override public int getSlotLimit(int slot) { return 1; }
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
         }
     };
 
-    private final IEnergyStorage energyInputView = new IEnergyStorage() {
-        @Override public int receiveEnergy(int maxReceive, boolean simulate) {
-            int accepted = energyStorage.receiveEnergy(maxReceive, simulate);
-            if (!simulate && accepted > 0) setChanged();
-            return accepted;
-        }
-        @Override public int extractEnergy(int maxExtract, boolean simulate) { return 0; }
-        @Override public int getEnergyStored() { return energyStorage.getEnergyStored(); }
-        @Override public int getMaxEnergyStored() { return energyStorage.getMaxEnergyStored(); }
-        @Override public boolean canExtract() { return false; }
-        @Override public boolean canReceive() { return true; }
-    };
-
-    private final IOxygenStorage oxygenInputView = new IOxygenStorage() {
-        @Override public int receiveOxygen(int maxReceive, boolean simulate) {
-            int accepted = oxygenStorage.receiveOxygen(maxReceive, simulate);
-            if (!simulate && accepted > 0) setChanged();
-            return accepted;
-        }
-        @Override public int extractOxygen(int maxExtract, boolean simulate) { return 0; }
-        @Override public int getOxygenStored() { return oxygenStorage.getOxygenStored(); }
-        @Override public int getMaxOxygenStored() { return oxygenStorage.getMaxOxygenStored(); }
-        @Override public boolean canReceive() { return true; }
-        @Override public boolean canExtract() { return false; }
-    };
-
-    /**
-     * Sided oxygen output exposed only on connector faces configured as OUTPUT.
-     *
-     * Oxygen pipes in DomeSurvival are pull-based, so downstream machines query
-     * this capability and extract directly from the filler buffer.
-     */
-    private final IOxygenStorage oxygenOutputView = new IOxygenStorage() {
-        @Override public int receiveOxygen(int maxReceive, boolean simulate) { return 0; }
-
-        @Override
-        public int extractOxygen(int maxExtract, boolean simulate) {
-            return extractOxygenForNetwork(maxExtract, simulate);
-        }
-
-        @Override public int getOxygenStored() { return oxygenStorage.getOxygenStored(); }
-        @Override public int getMaxOxygenStored() { return oxygenStorage.getMaxOxygenStored(); }
-        @Override public boolean canReceive() { return false; }
-        @Override public boolean canExtract() { return true; }
-    };
-
-    private LazyOptional<IEnergyStorage> energyCapability = LazyOptional.of(() -> energyInputView);
-    private LazyOptional<IOxygenStorage> oxygenInputCapability = LazyOptional.of(() -> oxygenInputView);
-    private LazyOptional<IOxygenStorage> oxygenOutputCapability = LazyOptional.of(() -> oxygenOutputView);
-    private LazyOptional<IItemHandler> itemCapability = LazyOptional.of(() -> inventory);
+    private final EnumMap<Direction, Port> ports = new EnumMap<>(Direction.class);
+    private final MachineModuleInventory modules = new MachineModuleInventory(this, MachineModuleResolver.STANDARD, this::modulesChanged);
+    private Direction lastFacing;
+    private boolean syncPending;
+    private float animationTick, previousAnimationTick;
+    @Override public int moduleSlotCount() { return 2; }
+    @Override public Set<MachineModuleType> allowedModuleTypes() { return Set.of(MachineModuleType.BUFFER, MachineModuleType.EFFICIENCY); }
+    public MachineModuleInventory getModules() { return modules; }
+    private void modulesChanged() { energyStorage.setCapacityInternal(modules.modifiers().applyBufferCapacity(ENERGY_CAPACITY)); setChanged(); }
+    @Override public void setChanged() { super.setChanged(); syncPending = true; }
+    public int fillEnergyCost() { return modules.modifiers().applyEnergyCost(ENERGY_PER_FILL_TICK); }
+    public int oxygenAmount() { return oxygenStorage.getOxygenStored(); }
+    public static boolean acceptsTank(ItemStack stack) { return stack.getItem() instanceof OxygenTankItem tank && tank.getOxygen(stack) < tank.capacity(); }
+    public float animationPhase(float partial) { float next=animationTick<previousAnimationTick?animationTick+80:animationTick;return (previousAnimationTick+(next-previousAnimationTick)*partial)/80F; }
+    private boolean moveCompletedTank() {
+        ItemStack stack=inventory.getStackInSlot(SLOT_TANK);
+        if (!(stack.getItem() instanceof OxygenTankItem tank) || tank.getOxygen(stack)<tank.capacity() || !inventory.getStackInSlot(SLOT_OUTPUT).isEmpty()) return false;
+        inventory.setStackInSlot(SLOT_OUTPUT,stack.copy()); inventory.setStackInSlot(SLOT_TANK,ItemStack.EMPTY); return true;
+    }
 
     private long oxygenOutputBudgetGameTime = Long.MIN_VALUE;
     private int oxygenOutputUsedThisTick;
@@ -177,6 +150,7 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
     private final ContainerData dataAccess = new ContainerData() {
         @Override
         public int get(int index) {
+            if (index == 18) return fillEnergyCost();
             if (index == DATA_ENERGY) return energyStorage.getEnergyStored();
             if (index == DATA_ENERGY_CAPACITY) return energyStorage.getMaxEnergyStored();
             if (index == DATA_OXYGEN) return oxygenStorage.getOxygenStored();
@@ -202,7 +176,7 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
 
     public OxygenFillerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.OXYGEN_FILLER.get(), pos, state);
-        applyDefaultSideConfiguration();
+        applyDefaultSideConfiguration(); lastFacing=getMachineFacing();
     }
 
     private void applyDefaultSideConfiguration() {
@@ -210,7 +184,7 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
         Direction facing = getMachineFacing();
         for (RelativeSide relative : RelativeSide.values()) {
             Direction worldSide = relative.resolve(facing);
-            sideConfig.setMode(worldSide, relative == RelativeSide.FRONT ? SideMode.DISABLED : SideMode.INPUT);
+            sideConfig.setMode(worldSide, relative == RelativeSide.FRONT ? SideMode.DISABLED : relative == RelativeSide.RIGHT || relative == RelativeSide.BOTTOM ? SideMode.OUTPUT : SideMode.INPUT);
         }
     }
 
@@ -219,8 +193,9 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, OxygenFillerBlockEntity machine) {
+        if(machine.lastFacing!=machine.getMachineFacing())machine.rotateSideConfiguration(machine.lastFacing);
         machine.syncAllPortStates();
-        boolean changed = false;
+        boolean changed = machine.operatingMode==OxygenFillerMode.TANK_FILLING && machine.moveCompletedTank();
 
         machine.status = machine.calculateStatus();
         if (machine.shouldPullOxygenForCurrentMode()
@@ -248,7 +223,7 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
                 int amount = Math.min(OXYGEN_FILL_PER_TICK,
                         Math.min(missing, machine.oxygenStorage.getOxygenStored()));
                 if (amount > 0
-                        && machine.energyStorage.removeEnergyInternal(ENERGY_PER_FILL_TICK) == ENERGY_PER_FILL_TICK) {
+                        && machine.energyStorage.removeEnergyInternal(machine.fillEnergyCost()) == machine.fillEnergyCost()) {
                     machine.oxygenStorage.removeInternal(amount);
                     tank.setOxygen(stack, tank.getOxygen(stack) + amount);
                     working = true;
@@ -264,6 +239,7 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
             }
         }
 
+        if(machine.operatingMode==OxygenFillerMode.TANK_FILLING)changed |= machine.moveCompletedTank();
         machine.status = machine.calculateStatus();
 
         // The room consumes O2 once per second. Without a visual hold the filler
@@ -292,14 +268,14 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
                 MachineAmbientSoundService.MachineType.OXYGEN_FILLER
         );
 
+        state=level.getBlockState(pos);
         if (state.getValue(OxygenFillerBlock.LIT) != visualWorking) {
             level.setBlock(pos, state.setValue(OxygenFillerBlock.LIT, visualWorking), 3);
             changed = true;
         }
 
-        if (changed) {
-            machine.setChanged();
-        }
+        if (changed) machine.setChanged();
+        if(machine.syncPending && level.getGameTime()%10==0){machine.syncPending=false;machine.syncOperatingModeToClient();}
     }
 
     private boolean shouldPullOxygenForCurrentMode() {
@@ -374,9 +350,9 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
         clearRoomDisplay();
         ItemStack stack = inventory.getStackInSlot(SLOT_TANK);
         if (stack.isEmpty() || !(stack.getItem() instanceof OxygenTankItem tank)) return STATUS_NO_TANK;
-        if (tank.getOxygen(stack) >= tank.capacity()) return STATUS_TANK_FULL;
+        if (tank.getOxygen(stack) >= tank.capacity()) return inventory.getStackInSlot(SLOT_OUTPUT).isEmpty()?STATUS_TANK_FULL:STATUS_OUTPUT_FULL;
         if (oxygenStorage.getOxygenStored() <= 0) return STATUS_NO_OXYGEN;
-        if (energyStorage.getEnergyStored() < ENERGY_PER_FILL_TICK) return STATUS_NO_ENERGY;
+        if (energyStorage.getEnergyStored() < fillEnergyCost()) return STATUS_NO_ENERGY;
         return STATUS_FILLING;
     }
 
@@ -425,6 +401,8 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
     }
 
     public static void clientTick(Level level, BlockPos pos, BlockState state, OxygenFillerBlockEntity machine) {
+        machine.previousAnimationTick=machine.animationTick;
+        if(state.getValue(OxygenFillerBlock.LIT))machine.animationTick=(machine.animationTick+1)%80;
         if (!level.isClientSide
                 || machine.operatingMode != OxygenFillerMode.VENTILATION
                 || !state.getValue(OxygenFillerBlock.LIT)) {
@@ -436,34 +414,41 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
             return;
         }
 
-        double x = pos.getX() + 0.5D + (level.random.nextDouble() - 0.5D) * 0.10D;
+        double x = pos.getX() + 0.5D + (level.random.nextDouble() - 0.5D) * 0.28D;
         double y = pos.getY() + 1.035D;
-        double z = pos.getZ() + 0.5D + (level.random.nextDouble() - 0.5D) * 0.10D;
+        double z = pos.getZ() + (level.random.nextBoolean() ? .165D : .835D);
+        if(machine.getMachineFacing().getAxis()==Direction.Axis.X){double offset=x-pos.getX();x=pos.getX()+z-pos.getZ();z=pos.getZ()+offset;}
         level.addParticle(
                 ModParticles.VENTILATION_BUBBLE.get(),
                 x, y, z,
-                0.0D, 0.012D, 0.0D
+                (level.random.nextDouble()-.5)*.008D, .015D, (level.random.nextDouble()-.5)*.008D
         );
     }
 
-    private int getTankOxygen() {
+    public int getTankOxygen() {
         ItemStack stack = inventory.getStackInSlot(SLOT_TANK);
         return stack.getItem() instanceof OxygenTankItem tank ? tank.getOxygen(stack) : 0;
     }
 
-    private int getTankCapacity() {
+    public int getTankCapacity() {
         ItemStack stack = inventory.getStackInSlot(SLOT_TANK);
         return stack.getItem() instanceof OxygenTankItem tank ? tank.capacity() : ModItems.SMALL_TANK_CAPACITY;
     }
 
-    private boolean allowsOxygenInputOn(Direction direction) {
-        if (operatingMode == OxygenFillerMode.VENTILATION && direction == Direction.UP) return false;
-        return !isFrontWorldSide(direction) && sideConfig.allowsInput(direction);
+    public SideMode sideMode(Direction direction) {
+        if(direction==null || isFrontWorldSide(direction) || operatingMode==OxygenFillerMode.VENTILATION && direction==Direction.UP) return SideMode.DISABLED;
+        return sideConfig.getMode(direction);
     }
-
-    private boolean allowsOxygenOutputOn(Direction direction) {
-        if (operatingMode == OxygenFillerMode.VENTILATION && direction == Direction.UP) return false;
-        return !isFrontWorldSide(direction) && sideConfig.allowsOutput(direction);
+    private boolean allowsOxygenInputOn(Direction direction) { return sideMode(direction)==SideMode.INPUT; }
+    private boolean allowsOxygenOutputOn(Direction direction) { return sideMode(direction)==SideMode.OUTPUT; }
+    public void rotateSideConfiguration(Direction oldFacing) {
+        Direction facing=getMachineFacing();
+        if(oldFacing!=null && oldFacing!=facing){
+            EnumMap<RelativeSide,SideMode> old=new EnumMap<>(RelativeSide.class);
+            for(RelativeSide side:RelativeSide.values())old.put(side,sideConfig.getMode(side.resolve(oldFacing)));
+            for(RelativeSide side:RelativeSide.values())sideConfig.setMode(side.resolve(facing),old.get(side));
+        }
+        sideConfig.setMode(facing,SideMode.DISABLED);lastFacing=facing;refreshCapabilities();syncAllPortStates();setChanged();
     }
 
     /**
@@ -616,20 +601,27 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
         tag.put(NBT_INVENTORY, inventory.serializeNBT());
         tag.putInt(NBT_MODE, operatingMode.ordinal());
         sideConfig.save(tag);
+        tag.put("Modules",modules.serializeNBT());tag.putString("PortFacing",getMachineFacing().getName());
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
+        if(tag.contains("Modules"))modules.deserializeNBT(tag.getCompound("Modules"));
+        else for(int i=0;i<2;i++)modules.setStackInSlot(i,ItemStack.EMPTY);
+        modulesChanged();
         energyStorage.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
         oxygenStorage.setStoredInternal(tag.getInt(NBT_OXYGEN));
         operatingMode = OxygenFillerMode.byOrdinal(tag.getInt(NBT_MODE));
         if (tag.contains(NBT_INVENTORY)) {
-            inventory.deserializeNBT(tag.getCompound(NBT_INVENTORY));
+            CompoundTag stored=tag.getCompound(NBT_INVENTORY).copy();stored.putInt("Size",2);
+            inventory.deserializeNBT(stored);
         }
         if (!sideConfig.load(tag)) {
             applyDefaultSideConfiguration();
         }
+        Direction savedFacing=Direction.byName(tag.getString("PortFacing"));
+        rotateSideConfiguration(savedFacing);
         Direction facing = getMachineFacing();
         sideConfig.setMode(facing, SideMode.DISABLED);
         // INPUT and OUTPUT are both persistent valid modes. UnifiedSideConfig
@@ -638,19 +630,8 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
         status = STATUS_IDLE;
     }
 
-    @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag tag = new CompoundTag();
-        tag.putInt(NBT_MODE, operatingMode.ordinal());
-        return tag;
-    }
-
-    @Override
-    public void handleUpdateTag(CompoundTag tag) {
-        if (tag.contains(NBT_MODE)) {
-            operatingMode = OxygenFillerMode.byOrdinal(tag.getInt(NBT_MODE));
-        }
-    }
+    @Override public CompoundTag getUpdateTag() { return saveWithoutMetadata(); }
+    @Override public void handleUpdateTag(CompoundTag tag) { load(tag); }
 
     @Nullable
     @Override
@@ -658,57 +639,41 @@ public final class OxygenFillerBlockEntity extends BlockEntity implements MenuPr
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    @Override
-    public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        // Null is the existing unsided/internal access path and remains input-only.
-        boolean inputAllowed = side == null || allowsOxygenInputOn(side);
-
-        if (cap == ForgeCapabilities.ENERGY && inputAllowed) {
-            return energyCapability.cast();
+    @Override public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap,@Nullable Direction side) {
+        if(cap==ForgeCapabilities.ENERGY || cap==ForgeCapabilities.ITEM_HANDLER || cap==ModCapabilities.OXYGEN){
+            if(isRemoved() || sideMode(side)==SideMode.DISABLED)return LazyOptional.empty();
+            Port port=ports.computeIfAbsent(side,Port::new);
+            if(cap==ForgeCapabilities.ENERGY)return sideMode(side)==SideMode.INPUT?port.energy.cast():LazyOptional.empty();
+            return cap==ModCapabilities.OXYGEN?port.oxygen.cast():port.items.cast();
         }
-
-        if (cap == ForgeCapabilities.ITEM_HANDLER && inputAllowed) {
-            return itemCapability.cast();
-        }
-
-        if (cap == ModCapabilities.OXYGEN) {
-            if (side == null || allowsOxygenInputOn(side)) {
-                return oxygenInputCapability.cast();
-            }
-            if (allowsOxygenOutputOn(side)) {
-                return oxygenOutputCapability.cast();
-            }
-            return LazyOptional.empty();
-        }
-
-        return super.getCapability(cap, side);
+        return super.getCapability(cap,side);
     }
-
-    private void refreshCapabilities() {
-        energyCapability.invalidate();
-        oxygenInputCapability.invalidate();
-        oxygenOutputCapability.invalidate();
-        itemCapability.invalidate();
-
-        energyCapability = LazyOptional.of(() -> energyInputView);
-        oxygenInputCapability = LazyOptional.of(() -> oxygenInputView);
-        oxygenOutputCapability = LazyOptional.of(() -> oxygenOutputView);
-        itemCapability = LazyOptional.of(() -> inventory);
-    }
-
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        energyCapability.invalidate();
-        oxygenInputCapability.invalidate();
-        oxygenOutputCapability.invalidate();
-        itemCapability.invalidate();
-    }
-
-    @Override
-    public void reviveCaps() {
-        super.reviveCaps();
-        refreshCapabilities();
+    private void refreshCapabilities(){ports.values().forEach(p->{p.energy.invalidate();p.oxygen.invalidate();p.items.invalidate();});ports.clear();}
+    @Override public void invalidateCaps(){super.invalidateCaps();refreshCapabilities();}
+    @Override public void reviveCaps(){super.reviveCaps();refreshCapabilities();}
+    private final class Port implements IItemHandler {
+        final Direction side; Port(Direction side){this.side=side;}
+        boolean input(){return !isRemoved()&&sideMode(side)==SideMode.INPUT;}
+        boolean output(){return !isRemoved()&&sideMode(side)==SideMode.OUTPUT;}
+        final LazyOptional<IItemHandler> items=LazyOptional.of(()->this);
+        final LazyOptional<IEnergyStorage> energy=LazyOptional.of(()->new IEnergyStorage(){
+            public int receiveEnergy(int n,boolean simulate){int accepted=input()?energyStorage.receiveEnergy(n,simulate):0;if(accepted>0&&!simulate)setChanged();return accepted;}
+            public int extractEnergy(int n,boolean simulate){return 0;}
+            public int getEnergyStored(){return energyStorage.getEnergyStored();}public int getMaxEnergyStored(){return energyStorage.getMaxEnergyStored();}
+            public boolean canReceive(){return input();}public boolean canExtract(){return false;}
+        });
+        final LazyOptional<IOxygenStorage> oxygen=LazyOptional.of(()->new IOxygenStorage(){
+            public int receiveOxygen(int n,boolean simulate){int accepted=input()?oxygenStorage.receiveOxygen(n,simulate):0;if(accepted>0&&!simulate)setChanged();return accepted;}
+            public int extractOxygen(int n,boolean simulate){return output()?extractOxygenForNetwork(n,simulate):0;}
+            public int getOxygenStored(){return oxygenAmount();}public int getMaxOxygenStored(){return OXYGEN_CAPACITY;}
+            public boolean canReceive(){return input();}public boolean canExtract(){return output();}
+        });
+        public int getSlots(){return 2;}
+        public ItemStack getStackInSlot(int slot){return (slot==SLOT_TANK&&input()||slot==SLOT_OUTPUT&&output())?inventory.getStackInSlot(slot).copy():ItemStack.EMPTY;}
+        public ItemStack insertItem(int slot,ItemStack stack,boolean simulate){return isItemValid(slot,stack)?inventory.insertItem(slot,stack,simulate):stack;}
+        public ItemStack extractItem(int slot,int amount,boolean simulate){return slot==SLOT_OUTPUT&&output()&&inventory.getStackInSlot(slot).getItem() instanceof OxygenTankItem tank&&tank.getOxygen(inventory.getStackInSlot(slot))==tank.capacity()?inventory.extractItem(slot,amount,simulate):ItemStack.EMPTY;}
+        public int getSlotLimit(int slot){return 1;}
+        public boolean isItemValid(int slot,ItemStack stack){return slot==SLOT_TANK&&input()&&acceptsTank(stack);}
     }
 
     @Override

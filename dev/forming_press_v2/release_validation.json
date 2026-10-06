@@ -1,19 +1,27 @@
 {
   "result": "PASS",
-  "runtime_assertions": 315,
+  "runtime_assertions": 372,
   "jar": "C:\\domesurvival\\build\\libs\\domesurvival-0.2.0.jar",
-  "bytes": 183433325,
-  "sha256": "1fbee3aa7d079142135753210f1908994e5916b1572fdeb549a47681ae5cad77",
-  "resources_checked": 39,
+  "bytes": 183916870,
+  "sha256": "c61dedf33930f154dd69cb8d2828fed036638e85276f85f24fb3b82ce17437e9",
+  "resources_checked": 61,
   "restored_mod_jars": 85,
   "probe_classes_in_release": false,
   "native_wrench_thermal_superclass": false,
+  "visual_checks": {
+    "result": "PASS",
+    "socket_configurations_without_coplanar_overlap": 40,
+    "flat_module_items": 6,
+    "press_enclosure_uses_generator_panel_uv": true
+  },
   "screenshots": [
     "01_machine_working.png",
     "02_machine_motion.png",
     "03_main_gui.png",
     "04_side_gui.png",
     "05_modules_gui.png",
-    "06_scale3.png"
+    "06_scale3.png",
+    "07_module_help.png",
+    "08_generator_help.png"
   ]
 }

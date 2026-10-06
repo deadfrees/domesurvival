@@ -53,33 +53,16 @@ public final class BioModuleItem extends Item {
 
     @Override
     public Component getName(ItemStack stack) {
-        if (!BioModuleData.isIdentificationUnlockedOnClient()) {
-            return Component.translatable("item.domesurvival.unknown_bio_module");
-        }
         return identifiedName(stack);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level,
                                 List<Component> tooltip, TooltipFlag flag) {
-        if (!BioModuleData.isIdentificationUnlocked(level)) {
-            tooltip.add(Component.translatable("tooltip.domesurvival.bio.unknown_content")
-                    .withStyle(ChatFormatting.GRAY));
-            tooltip.add(Component.translatable("tooltip.domesurvival.bio.unknown_condition")
-                    .withStyle(ChatFormatting.GRAY));
-            tooltip.add(Component.translatable("tooltip.domesurvival.bio.database_locked")
-                    .withStyle(ChatFormatting.DARK_AQUA));
-            return;
-        }
-
         ResourceLocation entityId = entityId(stack);
         var entityType = entityId == null ? null : ForgeRegistries.ENTITY_TYPES.getValue(entityId);
-        BioLootData.Species species = entityId == null ? null
-                : level != null && level.isClientSide
-                ? BioModuleClientState.species(entityId)
-                : BioLootData.species(entityId);
 
-        if (entityType == null || species == null) {
+        if (entityType == null) {
             tooltip.add(Component.translatable("tooltip.domesurvival.bio.unsupported_entity")
                     .withStyle(ChatFormatting.RED));
             return;
@@ -92,19 +75,27 @@ public final class BioModuleItem extends Item {
                         ? "tooltip.domesurvival.bio.condition_damaged"
                         : "tooltip.domesurvival.bio.condition_viable"
         ).withStyle(hasDamagedGenome(stack) ? ChatFormatting.RED : ChatFormatting.GREEN));
-        tooltip.add(Component.translatable(
-                "tooltip.domesurvival.bio.nutrient_required", species.feedCount()
-        ).withStyle(ChatFormatting.GOLD));
-        tooltip.add(Component.translatable("tooltip.domesurvival.bio.rarity." + species.rarity())
-                .withStyle(ChatFormatting.DARK_GRAY));
-        tooltip.add(Component.translatable("tooltip.domesurvival.bio.group." + species.lootGroup())
-                .withStyle(ChatFormatting.DARK_GRAY));
+
+        BioLootData.Species species = entityId == null ? null
+                : level != null && level.isClientSide
+                ? BioModuleClientState.species(entityId)
+                : BioLootData.species(entityId);
+
+        if (species != null) {
+            tooltip.add(Component.translatable(
+                    "tooltip.domesurvival.bio.nutrient_required", species.feedCount()
+            ).withStyle(ChatFormatting.GOLD));
+            tooltip.add(Component.translatable("tooltip.domesurvival.bio.rarity." + species.rarity())
+                    .withStyle(ChatFormatting.DARK_GRAY));
+            tooltip.add(Component.translatable("tooltip.domesurvival.bio.group." + species.lootGroup())
+                    .withStyle(ChatFormatting.DARK_GRAY));
+        }
     }
 
     private static Component identifiedName(ItemStack stack) {
         ResourceLocation entityId = entityId(stack);
         var entityType = entityId == null ? null : ForgeRegistries.ENTITY_TYPES.getValue(entityId);
-        if (entityType == null || !BioModuleClientState.isAllowed(entityId)) {
+        if (entityType == null) {
             return Component.translatable("item.domesurvival.invalid_bio_module");
         }
         return Component.translatable(

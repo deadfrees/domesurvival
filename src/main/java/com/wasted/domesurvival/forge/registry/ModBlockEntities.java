@@ -17,6 +17,7 @@ import com.wasted.domesurvival.forge.machine.water.WaterPurifierBlockEntity;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenElectrolyzerBlockEntity;
 import com.wasted.domesurvival.forge.machine.oxygen.OxygenFillerBlockEntity;
 import com.wasted.domesurvival.forge.machine.bio.BioincubatorBlockEntity;
+import com.wasted.domesurvival.forge.lanos.LanosTrunkBlockEntity;
 import com.wasted.domesurvival.forge.machine.sieve.SandSieveBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -166,6 +167,16 @@ public static final RegistryObject<BlockEntityType<CopperFurnaceBlockEntity>> CO
                             ModBlocks.BASIC_ENERGY_PIPE.get(),
                             ModBlocks.REINFORCED_ENERGY_PIPE.get(),
                             ModBlocks.HIGH_VOLTAGE_ENERGY_PIPE.get()
+                    ).build(null)
+            );
+
+    public static final RegistryObject<BlockEntityType<LanosTrunkBlockEntity>> LANOS_TRUNK =
+            BLOCK_ENTITY_TYPES.register(
+                    "lanos_trunk",
+                    () -> BlockEntityType.Builder.of(
+                            LanosTrunkBlockEntity::new,
+                            ModBlocks.LANOS_ABANDONED.get(),
+                            ModBlocks.LANOS_DECORATIVE.get()
                     ).build(null)
             );
 

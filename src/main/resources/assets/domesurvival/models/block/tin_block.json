@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "domesurvival:block/tin_block"
+    "all": "domesurvival:block/materials_v2/tin_block"
   }
 }

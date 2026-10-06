@@ -1,0 +1,33 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "port": "domesurvival:block/coal_generator_port_item",
+    "pad": "domesurvival:block/bio/bioincubator_first_connector_pad"
+  },
+  "elements": [
+    {
+      "from": [
+        5.5,
+        5.5,
+        0.01
+      ],
+      "to": [
+        10.5,
+        10.5,
+        0.03
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#port"
+        }
+      }
+    }
+  ]
+}

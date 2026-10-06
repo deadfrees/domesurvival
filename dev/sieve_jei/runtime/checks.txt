@@ -1,0 +1,19 @@
+PASS All six sieve recipes registered
+PASS Full slot frame fits inner panel: itemInputs 14
+PASS Full slot frame fits inner panel: itemInputs 42
+PASS Full slot frame fits inner panel: fluidInputs 70
+PASS Full slot frame fits inner panel: itemOutputs 120
+PASS Full slot frame fits inner panel: itemOutputs 148
+PASS Rendered domesurvival:sand_sieve/dry_fiber at scale 2
+PASS Rendered domesurvival:sand_sieve/dry_copper at scale 2
+PASS Rendered domesurvival:sand_sieve/dry_steel at scale 2
+PASS Rendered domesurvival:sand_sieve/wet_fiber at scale 2
+PASS Rendered domesurvival:sand_sieve/wet_copper at scale 2
+PASS Rendered domesurvival:sand_sieve/wet_steel at scale 2
+PASS Rendered domesurvival:sand_sieve/dry_fiber at scale 3
+PASS Rendered domesurvival:sand_sieve/dry_copper at scale 3
+PASS Rendered domesurvival:sand_sieve/dry_steel at scale 3
+PASS Rendered domesurvival:sand_sieve/wet_fiber at scale 3
+PASS Rendered domesurvival:sand_sieve/wet_copper at scale 3
+PASS Rendered domesurvival:sand_sieve/wet_steel at scale 3
+RESULT PASS failures=0

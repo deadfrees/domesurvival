@@ -26,6 +26,7 @@ public record DomeMachineRecipe(
         WATER_PURIFIER,
         OXYGEN_ELECTROLYZER,
         OXYGEN_FILLER,
+        FILTER_REGENERATION,
         BIO_REPAIR,
         BIO_INCUBATION,
         SAND_SIEVE

@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 
 /**
- * The sieve tray is transformed every rendered frame. This deliberately uses
+ * The sand is transformed every rendered frame while the mesh stays fixed. This uses
  * partial ticks and trigonometric motion instead of a stepped texture animation.
  */
 public final class SandSieveBlockEntityRenderer implements BlockEntityRenderer<SandSieveBlockEntity> {
@@ -36,9 +36,9 @@ public final class SandSieveBlockEntityRenderer implements BlockEntityRenderer<S
             pose.pushPose();
             // The mesh is visible in the upper tray again, but remains clearly
             // separated from both the wooden rim and the sand surface.
-            pose.translate(0.5F + slideX, 0.735F, 0.5F + slideZ);
+            pose.translate(0.5F, 0.735F, 0.5F);
             pose.mulPose(Axis.YP.rotationDegrees(sieve.getBlockState().getValue(SandSieveBlock.FACING).toYRot()));
-            pose.mulPose(Axis.XP.rotationDegrees(90.0F + tilt));
+            pose.mulPose(Axis.XP.rotationDegrees(90.0F));
             pose.scale(0.72F, 0.72F, 0.72F);
             Minecraft.getInstance().getItemRenderer().renderStatic(
                     mesh, ItemDisplayContext.FIXED, packedLight, OverlayTexture.NO_OVERLAY,

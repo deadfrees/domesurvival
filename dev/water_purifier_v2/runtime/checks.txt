@@ -1,0 +1,327 @@
+PASS No early fluid result water_filter_cartridge/0
+PASS Exact 250 to 200 mB conversion water_filter_cartridge/0
+PASS Exact energy cost water_filter_cartridge/0
+PASS One filter durability per cycle 0
+PASS No early fluid result water_filter_cartridge/1
+PASS Exact 250 to 200 mB conversion water_filter_cartridge/1
+PASS Exact energy cost water_filter_cartridge/1
+PASS One filter durability per cycle 1
+PASS No early fluid result water_filter_cartridge/2
+PASS Exact 250 to 200 mB conversion water_filter_cartridge/2
+PASS Exact energy cost water_filter_cartridge/2
+PASS One filter durability per cycle 2
+PASS No early fluid result improved_water_filter/0
+PASS Exact 250 to 200 mB conversion improved_water_filter/0
+PASS Exact energy cost improved_water_filter/0
+PASS One filter durability per cycle 0
+PASS No early fluid result improved_water_filter/1
+PASS Exact 250 to 200 mB conversion improved_water_filter/1
+PASS Exact energy cost improved_water_filter/1
+PASS One filter durability per cycle 1
+PASS No early fluid result improved_water_filter/2
+PASS Exact 250 to 200 mB conversion improved_water_filter/2
+PASS Exact energy cost improved_water_filter/2
+PASS One filter durability per cycle 2
+PASS Shift-click installs while working
+PASS Hot insertion preserves active cycle
+PASS Active cycle snapshot survives save
+PASS Next cycle adopts efficiency
+PASS Conflicting speed modules rejected
+PASS Duplicate modules rejected
+PASS Charged buffer cannot be removed
+PASS Safe buffer removal preserves energy
+PASS Full tank pauses unfinished cycle
+PASS Freed tank resumes cycle
+PASS No energy pauses cycle
+PASS Power restored resumes cycle
+PASS No water pauses cycle
+PASS Water bucket becomes one empty bucket
+PASS Exhausted cartridge retains regeneration NBT
+PASS Exhausted filter stops processing
+PASS Hidden slots protected
+PASS Front menu button rejected
+PASS Legacy all-output defaults gain functioning input
+PASS Capabilities north/TOP/DISABLED
+PASS Capabilities north/TOP/INPUT
+PASS Blue water fill only TOP
+PASS Blue FE limit and fluid validation TOP
+PASS Blue item validation TOP
+PASS Cached input obeys OFF TOP
+PASS Capabilities north/TOP/OUTPUT
+PASS Orange drains purified water only TOP
+PASS Orange protects working filter TOP
+PASS Orange releases spent filter TOP
+PASS Cached output obeys OFF TOP
+PASS Capabilities north/BOTTOM/DISABLED
+PASS Capabilities north/BOTTOM/INPUT
+PASS Blue water fill only BOTTOM
+PASS Blue FE limit and fluid validation BOTTOM
+PASS Blue item validation BOTTOM
+PASS Cached input obeys OFF BOTTOM
+PASS Capabilities north/BOTTOM/OUTPUT
+PASS Orange drains purified water only BOTTOM
+PASS Orange protects working filter BOTTOM
+PASS Orange releases spent filter BOTTOM
+PASS Cached output obeys OFF BOTTOM
+PASS Capabilities north/FRONT/DISABLED
+PASS Capabilities north/FRONT/INPUT
+PASS Capabilities north/FRONT/OUTPUT
+PASS Capabilities north/BACK/DISABLED
+PASS Capabilities north/BACK/INPUT
+PASS Blue water fill only BACK
+PASS Blue FE limit and fluid validation BACK
+PASS Blue item validation BACK
+PASS Cached input obeys OFF BACK
+PASS Capabilities north/BACK/OUTPUT
+PASS Orange drains purified water only BACK
+PASS Orange protects working filter BACK
+PASS Orange releases spent filter BACK
+PASS Cached output obeys OFF BACK
+PASS Capabilities north/LEFT/DISABLED
+PASS Capabilities north/LEFT/INPUT
+PASS Blue water fill only LEFT
+PASS Blue FE limit and fluid validation LEFT
+PASS Blue item validation LEFT
+PASS Cached input obeys OFF LEFT
+PASS Capabilities north/LEFT/OUTPUT
+PASS Orange drains purified water only LEFT
+PASS Orange protects working filter LEFT
+PASS Orange releases spent filter LEFT
+PASS Cached output obeys OFF LEFT
+PASS Capabilities north/RIGHT/DISABLED
+PASS Capabilities north/RIGHT/INPUT
+PASS Blue water fill only RIGHT
+PASS Blue FE limit and fluid validation RIGHT
+PASS Blue item validation RIGHT
+PASS Cached input obeys OFF RIGHT
+PASS Capabilities north/RIGHT/OUTPUT
+PASS Orange drains purified water only RIGHT
+PASS Orange protects working filter RIGHT
+PASS Orange releases spent filter RIGHT
+PASS Cached output obeys OFF RIGHT
+PASS Unsided access denied north
+PASS Capabilities east/TOP/DISABLED
+PASS Capabilities east/TOP/INPUT
+PASS Blue water fill only TOP
+PASS Blue FE limit and fluid validation TOP
+PASS Blue item validation TOP
+PASS Cached input obeys OFF TOP
+PASS Capabilities east/TOP/OUTPUT
+PASS Orange drains purified water only TOP
+PASS Orange protects working filter TOP
+PASS Orange releases spent filter TOP
+PASS Cached output obeys OFF TOP
+PASS Capabilities east/BOTTOM/DISABLED
+PASS Capabilities east/BOTTOM/INPUT
+PASS Blue water fill only BOTTOM
+PASS Blue FE limit and fluid validation BOTTOM
+PASS Blue item validation BOTTOM
+PASS Cached input obeys OFF BOTTOM
+PASS Capabilities east/BOTTOM/OUTPUT
+PASS Orange drains purified water only BOTTOM
+PASS Orange protects working filter BOTTOM
+PASS Orange releases spent filter BOTTOM
+PASS Cached output obeys OFF BOTTOM
+PASS Capabilities east/FRONT/DISABLED
+PASS Capabilities east/FRONT/INPUT
+PASS Capabilities east/FRONT/OUTPUT
+PASS Capabilities east/BACK/DISABLED
+PASS Capabilities east/BACK/INPUT
+PASS Blue water fill only BACK
+PASS Blue FE limit and fluid validation BACK
+PASS Blue item validation BACK
+PASS Cached input obeys OFF BACK
+PASS Capabilities east/BACK/OUTPUT
+PASS Orange drains purified water only BACK
+PASS Orange protects working filter BACK
+PASS Orange releases spent filter BACK
+PASS Cached output obeys OFF BACK
+PASS Capabilities east/LEFT/DISABLED
+PASS Capabilities east/LEFT/INPUT
+PASS Blue water fill only LEFT
+PASS Blue FE limit and fluid validation LEFT
+PASS Blue item validation LEFT
+PASS Cached input obeys OFF LEFT
+PASS Capabilities east/LEFT/OUTPUT
+PASS Orange drains purified water only LEFT
+PASS Orange protects working filter LEFT
+PASS Orange releases spent filter LEFT
+PASS Cached output obeys OFF LEFT
+PASS Capabilities east/RIGHT/DISABLED
+PASS Capabilities east/RIGHT/INPUT
+PASS Blue water fill only RIGHT
+PASS Blue FE limit and fluid validation RIGHT
+PASS Blue item validation RIGHT
+PASS Cached input obeys OFF RIGHT
+PASS Capabilities east/RIGHT/OUTPUT
+PASS Orange drains purified water only RIGHT
+PASS Orange protects working filter RIGHT
+PASS Orange releases spent filter RIGHT
+PASS Cached output obeys OFF RIGHT
+PASS Unsided access denied east
+PASS Capabilities south/TOP/DISABLED
+PASS Capabilities south/TOP/INPUT
+PASS Blue water fill only TOP
+PASS Blue FE limit and fluid validation TOP
+PASS Blue item validation TOP
+PASS Cached input obeys OFF TOP
+PASS Capabilities south/TOP/OUTPUT
+PASS Orange drains purified water only TOP
+PASS Orange protects working filter TOP
+PASS Orange releases spent filter TOP
+PASS Cached output obeys OFF TOP
+PASS Capabilities south/BOTTOM/DISABLED
+PASS Capabilities south/BOTTOM/INPUT
+PASS Blue water fill only BOTTOM
+PASS Blue FE limit and fluid validation BOTTOM
+PASS Blue item validation BOTTOM
+PASS Cached input obeys OFF BOTTOM
+PASS Capabilities south/BOTTOM/OUTPUT
+PASS Orange drains purified water only BOTTOM
+PASS Orange protects working filter BOTTOM
+PASS Orange releases spent filter BOTTOM
+PASS Cached output obeys OFF BOTTOM
+PASS Capabilities south/FRONT/DISABLED
+PASS Capabilities south/FRONT/INPUT
+PASS Capabilities south/FRONT/OUTPUT
+PASS Capabilities south/BACK/DISABLED
+PASS Capabilities south/BACK/INPUT
+PASS Blue water fill only BACK
+PASS Blue FE limit and fluid validation BACK
+PASS Blue item validation BACK
+PASS Cached input obeys OFF BACK
+PASS Capabilities south/BACK/OUTPUT
+PASS Orange drains purified water only BACK
+PASS Orange protects working filter BACK
+PASS Orange releases spent filter BACK
+PASS Cached output obeys OFF BACK
+PASS Capabilities south/LEFT/DISABLED
+PASS Capabilities south/LEFT/INPUT
+PASS Blue water fill only LEFT
+PASS Blue FE limit and fluid validation LEFT
+PASS Blue item validation LEFT
+PASS Cached input obeys OFF LEFT
+PASS Capabilities south/LEFT/OUTPUT
+PASS Orange drains purified water only LEFT
+PASS Orange protects working filter LEFT
+PASS Orange releases spent filter LEFT
+PASS Cached output obeys OFF LEFT
+PASS Capabilities south/RIGHT/DISABLED
+PASS Capabilities south/RIGHT/INPUT
+PASS Blue water fill only RIGHT
+PASS Blue FE limit and fluid validation RIGHT
+PASS Blue item validation RIGHT
+PASS Cached input obeys OFF RIGHT
+PASS Capabilities south/RIGHT/OUTPUT
+PASS Orange drains purified water only RIGHT
+PASS Orange protects working filter RIGHT
+PASS Orange releases spent filter RIGHT
+PASS Cached output obeys OFF RIGHT
+PASS Unsided access denied south
+PASS Capabilities west/TOP/DISABLED
+PASS Capabilities west/TOP/INPUT
+PASS Blue water fill only TOP
+PASS Blue FE limit and fluid validation TOP
+PASS Blue item validation TOP
+PASS Cached input obeys OFF TOP
+PASS Capabilities west/TOP/OUTPUT
+PASS Orange drains purified water only TOP
+PASS Orange protects working filter TOP
+PASS Orange releases spent filter TOP
+PASS Cached output obeys OFF TOP
+PASS Capabilities west/BOTTOM/DISABLED
+PASS Capabilities west/BOTTOM/INPUT
+PASS Blue water fill only BOTTOM
+PASS Blue FE limit and fluid validation BOTTOM
+PASS Blue item validation BOTTOM
+PASS Cached input obeys OFF BOTTOM
+PASS Capabilities west/BOTTOM/OUTPUT
+PASS Orange drains purified water only BOTTOM
+PASS Orange protects working filter BOTTOM
+PASS Orange releases spent filter BOTTOM
+PASS Cached output obeys OFF BOTTOM
+PASS Capabilities west/FRONT/DISABLED
+PASS Capabilities west/FRONT/INPUT
+PASS Capabilities west/FRONT/OUTPUT
+PASS Capabilities west/BACK/DISABLED
+PASS Capabilities west/BACK/INPUT
+PASS Blue water fill only BACK
+PASS Blue FE limit and fluid validation BACK
+PASS Blue item validation BACK
+PASS Cached input obeys OFF BACK
+PASS Capabilities west/BACK/OUTPUT
+PASS Orange drains purified water only BACK
+PASS Orange protects working filter BACK
+PASS Orange releases spent filter BACK
+PASS Cached output obeys OFF BACK
+PASS Capabilities west/LEFT/DISABLED
+PASS Capabilities west/LEFT/INPUT
+PASS Blue water fill only LEFT
+PASS Blue FE limit and fluid validation LEFT
+PASS Blue item validation LEFT
+PASS Cached input obeys OFF LEFT
+PASS Capabilities west/LEFT/OUTPUT
+PASS Orange drains purified water only LEFT
+PASS Orange protects working filter LEFT
+PASS Orange releases spent filter LEFT
+PASS Cached output obeys OFF LEFT
+PASS Capabilities west/RIGHT/DISABLED
+PASS Capabilities west/RIGHT/INPUT
+PASS Blue water fill only RIGHT
+PASS Blue FE limit and fluid validation RIGHT
+PASS Blue item validation RIGHT
+PASS Cached input obeys OFF RIGHT
+PASS Capabilities west/RIGHT/OUTPUT
+PASS Orange drains purified water only RIGHT
+PASS Orange protects working filter RIGHT
+PASS Orange releases spent filter RIGHT
+PASS Cached output obeys OFF RIGHT
+PASS Unsided access denied west
+PASS Automatic export cannot contaminate raw tank
+PASS OFF prevents automatic fluid output
+PASS Blue prevents automatic fluid output
+PASS Orange automatically exports 100 mB
+PASS Survival harvest tier iron_pickaxe
+PASS Contents and module drop exactly once iron_pickaxe
+PASS Survival harvest tier wooden_pickaxe
+PASS Contents and module drop exactly once wooden_pickaxe
+PASS Wrench rotates configured sides
+PASS Wrench creates one world drop
+PASS Portable data retained Inventory
+PASS Portable data retained Modules
+PASS Portable data retained Energy
+PASS Portable data retained RawTank
+PASS Portable data retained PurifiedTank
+PASS Portable data retained Progress
+PASS Portable data retained CycleTicks
+PASS Portable data retained CycleEnergy
+PASS Portable data retained UnifiedSideConfig
+PASS Normal pickup delay
+PASS Actual placement restores fluid energy and cycle
+PASS Placed ports follow orientation
+PASS Adventure dismantle denied
+PASS Pump moves when active
+PASS Pump freezes while paused
+PASS Client pipe recognizes input
+PASS Client pipe recognizes output
+PASS Client pipe rejects front
+Screenshot 01_existing_model
+PASS Networked purifier GUI opens
+PASS Expanded FE buffer synchronized
+Screenshot 02_main_gui
+Screenshot 03_main_scale3
+Screenshot 03_energy_tooltip
+Screenshot 04_sides
+PASS Networked side button updates menu
+PASS Client receives logical side update
+Screenshot 05_modules_empty
+PASS Networked Shift-click installs efficiency while working
+Screenshot 06_modules_installed
+Screenshot 07_module_scale3
+Screenshot 07_module_help
+PASS JEI runtime available
+PASS Exactly one purifier JEI category
+PASS Two distinct filter recipes
+Screenshot 08_jei
+Screenshot 09_jei_progress
+RESULT PASS failures=0

@@ -17,6 +17,7 @@ import com.wasted.domesurvival.forge.recipe.OrganicProcessorRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -93,8 +94,6 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
         protected void onContentsChanged(int slot) {
             if (slot == SLOT_PRIMARY || slot == SLOT_ADDITIVE) {
                 invalidateRecipe();
-                progress = 0;
-                activeRecipe = null;
             }
             setChanged();
         }
@@ -116,79 +115,13 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
     private final MachineModuleInventory modules =
             new MachineModuleInventory(this, MachineModuleResolver.STANDARD, this::modulesChanged);
 
-    private final IItemHandler fullItems = new IItemHandler() {
-        @Override public int getSlots() { return 3; }
-        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
-        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            return slot == SLOT_PRIMARY || slot == SLOT_ADDITIVE
-                    ? inventory.insertItem(slot, stack, simulate) : stack;
-        }
-        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return slot == SLOT_OUTPUT ? inventory.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
-        }
-        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
-        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return inventory.isItemValid(slot, stack);
-        }
-    };
-
-    private final IItemHandler inputItems = new IItemHandler() {
-        @Override public int getSlots() { return 2; }
-        @Override public @NotNull ItemStack getStackInSlot(int slot) { return inventory.getStackInSlot(slot); }
-        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            return slot >= 0 && slot < 2 ? inventory.insertItem(slot, stack, simulate) : stack;
-        }
-        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) { return ItemStack.EMPTY; }
-        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(slot); }
-        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return slot >= 0 && slot < 2 && inventory.isItemValid(slot, stack);
-        }
-    };
-
-    private final IItemHandler outputItems = new IItemHandler() {
-        @Override public int getSlots() { return 1; }
-        @Override public @NotNull ItemStack getStackInSlot(int slot) {
-            return slot == 0 ? inventory.getStackInSlot(SLOT_OUTPUT) : ItemStack.EMPTY;
-        }
-        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) { return stack; }
-        @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return slot == 0 ? inventory.extractItem(SLOT_OUTPUT, amount, simulate) : ItemStack.EMPTY;
-        }
-        @Override public int getSlotLimit(int slot) { return inventory.getSlotLimit(SLOT_OUTPUT); }
-        @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) { return false; }
-    };
-
-    private final IEnergyStorage energyInput = new IEnergyStorage() {
-        @Override
-        public int receiveEnergy(int maxReceive, boolean simulate) {
-            int accepted = energy.receiveEnergy(maxReceive, simulate);
-            if (!simulate && accepted > 0) setChanged();
-            return accepted;
-        }
-        @Override public int extractEnergy(int maxExtract, boolean simulate) { return 0; }
-        @Override public int getEnergyStored() { return energy.getEnergyStored(); }
-        @Override public int getMaxEnergyStored() { return energy.getMaxEnergyStored(); }
-        @Override public boolean canExtract() { return false; }
-        @Override public boolean canReceive() { return true; }
-    };
-
-    private final IFluidHandler fluidInput = new IFluidHandler() {
-        @Override public int getTanks() { return 1; }
-        @Override public @NotNull FluidStack getFluidInTank(int tank) { return water.getFluidInTank(0); }
-        @Override public int getTankCapacity(int tank) { return water.getCapacity(); }
-        @Override public boolean isFluidValid(int tank, @NotNull FluidStack stack) { return water.isFluidValid(0, stack); }
-        @Override public int fill(FluidStack resource, FluidAction action) { return water.fill(resource, action); }
-        @Override public @NotNull FluidStack drain(FluidStack resource, FluidAction action) { return FluidStack.EMPTY; }
-        @Override public @NotNull FluidStack drain(int maxDrain, FluidAction action) { return FluidStack.EMPTY; }
-    };
-
-    private LazyOptional<IItemHandler> fullItemCap = LazyOptional.of(() -> fullItems);
-    private LazyOptional<IItemHandler> inputItemCap = LazyOptional.of(() -> inputItems);
-    private LazyOptional<IItemHandler> outputItemCap = LazyOptional.of(() -> outputItems);
-    private LazyOptional<IEnergyStorage> energyCap = LazyOptional.of(() -> energyInput);
-    private LazyOptional<IFluidHandler> fluidCap = LazyOptional.of(() -> fluidInput);
+    private final java.util.EnumMap<Direction, Port> ports = new java.util.EnumMap<>(Direction.class);
 
     private int progress;
+    private int cycleTicks, cycleEnergy;
+    private float animationTick, previousAnimationTick;
+    private Direction lastFacing;
+    private boolean syncPending;
     private boolean active;
     @Nullable private ResourceLocation activeRecipe;
 
@@ -271,15 +204,47 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
                 : Direction.NORTH;
     }
 
+    public void rotateSideConfiguration(@Nullable Direction previous) {
+        Direction facing = getMachineFacing();
+        if (previous != null && previous != facing) {
+            var modes = new java.util.EnumMap<RelativeSide,SideMode>(RelativeSide.class);
+            for (var side : RelativeSide.values()) modes.put(side,sideConfig.getMode(side.resolve(previous)));
+            for (var side : RelativeSide.values()) sideConfig.setMode(side.resolve(facing),side==RelativeSide.FRONT?SideMode.DISABLED:modes.get(side));
+        }
+        sideConfig.setMode(facing,SideMode.DISABLED);
+        lastFacing = facing;
+        refreshCapabilities();
+        syncAllPortStates();
+        setChanged();
+    }
+
+    public static void clientTick(Level level,BlockPos pos,BlockState state,OrganicProcessorBlockEntity processor) {
+        processor.previousAnimationTick = processor.animationTick;
+        if (state.getValue(OrganicProcessorBlock.ACTIVE)) processor.animationTick = (processor.animationTick + 1) % 80;
+    }
+    public float animationPhase(float partialTick) {
+        float next = animationTick < previousAnimationTick ? animationTick + 80 : animationTick;
+        return (previousAnimationTick + (next-previousAnimationTick)*partialTick)/80F;
+    }
+    @Override public void setChanged(){super.setChanged();syncPending=true;}
+    @Override public CompoundTag getUpdateTag(){return saveWithoutMetadata();}
+    @Override public void handleUpdateTag(CompoundTag tag){load(tag);}
+    @Override public ClientboundBlockEntityDataPacket getUpdatePacket(){return ClientboundBlockEntityDataPacket.create(this);}
+
     public static void serverTick(Level level, BlockPos pos, BlockState state, OrganicProcessorBlockEntity processor) {
+        if (processor.lastFacing != processor.getMachineFacing()) processor.rotateSideConfiguration(processor.lastFacing);
         processor.active = false;
         boolean changed = processor.tickProcess();
 
         if (state.getValue(OrganicProcessorBlock.ACTIVE) != processor.active) {
-            level.setBlock(pos, state.setValue(OrganicProcessorBlock.ACTIVE, processor.active), 3);
+            level.setBlock(pos, level.getBlockState(pos).setValue(OrganicProcessorBlock.ACTIVE, processor.active), 3);
             changed = true;
         }
         if (changed) processor.setChanged();
+        if (processor.syncPending && level.getGameTime()%10L==0) {
+            processor.syncPending=false;
+            level.sendBlockUpdated(pos,level.getBlockState(pos),level.getBlockState(pos),2);
+        }
     }
 
     private boolean tickProcess() {
@@ -290,6 +255,7 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
 
         if (activeRecipe == null || !activeRecipe.equals(recipe.getId())) {
             progress = 0;
+            cycleTicks = cycleEnergy = 0;
             activeRecipe = recipe.getId();
         }
 
@@ -304,6 +270,7 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
             return false;
         }
 
+        if (cycleTicks == 0) { cycleTicks = ticks; cycleEnergy = totalEnergy; }
         energy.removeEnergyInternal(requiredThisTick);
         progress++;
         active = true;
@@ -311,6 +278,7 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
         if (progress >= ticks) {
             finish(recipe);
             progress = 0;
+            cycleTicks = cycleEnergy = 0;
             activeRecipe = null;
         }
         return true;
@@ -319,16 +287,17 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
     private boolean resetProgressIfNeeded() {
         boolean changed = progress != 0 || activeRecipe != null;
         progress = 0;
+        cycleTicks = cycleEnergy = 0;
         activeRecipe = null;
         return changed;
     }
 
     private int modifiedProcessingTicks(OrganicProcessorRecipe recipe) {
-        return Math.max(1, modules.modifiers().applyProcessingTicks(recipe.getProcessingTime()));
+        return cycleTicks > 0 ? cycleTicks : Math.max(1, modules.modifiers().applyProcessingTicks(recipe.getProcessingTime()));
     }
 
     private int modifiedEnergyCost(OrganicProcessorRecipe recipe) {
-        return Math.max(1, modules.modifiers().applyEnergyCost(recipe.getEnergy()));
+        return cycleTicks > 0 ? cycleEnergy : Math.max(1, modules.modifiers().applyEnergyCost(recipe.getEnergy()));
     }
 
     private int energyStep(int totalEnergy, int totalTicks) {
@@ -446,9 +415,8 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
     }
 
     private void modulesChanged() {
-        energy.setCapacityInternal(modules.modifiers().applyBufferCapacity(BASE_ENERGY_CAPACITY));
-        progress = 0;
-        activeRecipe = null;
+        // GUI prevents removing an overfilled buffer. Retain FE even for external forced edits.
+        energy.setCapacityInternal(Math.max(energy.getEnergyStored(), modules.modifiers().applyBufferCapacity(BASE_ENERGY_CAPACITY)));
         setChanged();
     }
 
@@ -480,6 +448,9 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
         water.writeToNBT(waterTag);
         tag.put(NBT_WATER, waterTag);
         tag.putInt(NBT_PROGRESS, progress);
+        tag.putInt("CycleTicks", cycleTicks);
+        tag.putInt("CycleEnergy", cycleEnergy);
+        tag.putString("PortFacing", getMachineFacing().getName());
         if (activeRecipe != null) tag.putString(NBT_ACTIVE_RECIPE, activeRecipe.toString());
         sideConfig.save(tag);
     }
@@ -489,14 +460,16 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
         super.load(tag);
         inventory.deserializeNBT(tag.getCompound(NBT_INVENTORY));
         modules.deserializeNBT(tag.getCompound(NBT_MODULES));
-        energy.setCapacityInternal(modules.modifiers().applyBufferCapacity(BASE_ENERGY_CAPACITY));
+        energy.setCapacityInternal(Math.max(tag.getInt(NBT_ENERGY), modules.modifiers().applyBufferCapacity(BASE_ENERGY_CAPACITY)));
         energy.setEnergyStoredInternal(tag.getInt(NBT_ENERGY));
         if (tag.contains(NBT_WATER)) water.readFromNBT(tag.getCompound(NBT_WATER));
         progress = Math.max(0, tag.getInt(NBT_PROGRESS));
+        cycleTicks = Math.max(0, tag.getInt("CycleTicks"));
+        cycleEnergy = Math.max(0, tag.getInt("CycleEnergy"));
         activeRecipe = tag.contains(NBT_ACTIVE_RECIPE)
                 ? ResourceLocation.tryParse(tag.getString(NBT_ACTIVE_RECIPE)) : null;
         if (!sideConfig.load(tag)) applyDefaultSideConfiguration();
-        sideConfig.setMode(getMachineFacing(), SideMode.DISABLED);
+        rotateSideConfiguration(Direction.byName(tag.getString("PortFacing")));
         invalidateRecipe();
     }
 
@@ -543,60 +516,53 @@ public final class OrganicProcessorBlockEntity extends BlockEntity
         syncAllPortStates();
     }
 
-    @Override
-    public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ENERGY) {
-            if (side == null || sideConfig.allowsInput(side)) return energyCap.cast();
-            return LazyOptional.empty();
-        }
-
-        if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            if (side == null || sideConfig.allowsInput(side)) return fluidCap.cast();
-            return LazyOptional.empty();
-        }
-
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == null) return fullItemCap.cast();
-            if (sideConfig.allowsInput(side)) return inputItemCap.cast();
-            if (sideConfig.allowsOutput(side)) return outputItemCap.cast();
-            return LazyOptional.empty();
-        }
-
-        return super.getCapability(cap, side);
+    public SideMode sideMode(@Nullable Direction side) {
+        return side == null || side == getMachineFacing() ? SideMode.DISABLED : sideConfig.getMode(side);
     }
-
+    @Override public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap,@Nullable Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER || cap == ForgeCapabilities.ENERGY || cap == ForgeCapabilities.FLUID_HANDLER) {
+            if (isRemoved() || sideMode(side) == SideMode.DISABLED) return LazyOptional.empty();
+            Port port = ports.computeIfAbsent(side, Port::new);
+            if (cap == ForgeCapabilities.ITEM_HANDLER) return port.items.cast();
+            if (sideMode(side) != SideMode.INPUT) return LazyOptional.empty();
+            return cap == ForgeCapabilities.ENERGY ? port.power.cast() : port.fluid.cast();
+        }
+        return super.getCapability(cap,side);
+    }
     private void refreshCapabilities() {
-        fullItemCap.invalidate();
-        inputItemCap.invalidate();
-        outputItemCap.invalidate();
-        energyCap.invalidate();
-        fluidCap.invalidate();
-
-        fullItemCap = LazyOptional.of(() -> fullItems);
-        inputItemCap = LazyOptional.of(() -> inputItems);
-        outputItemCap = LazyOptional.of(() -> outputItems);
-        energyCap = LazyOptional.of(() -> energyInput);
-        fluidCap = LazyOptional.of(() -> fluidInput);
+        ports.values().forEach(p -> {p.items.invalidate();p.power.invalidate();p.fluid.invalidate();});
+        ports.clear();
     }
+    @Override public void invalidateCaps(){super.invalidateCaps();refreshCapabilities();}
+    @Override public void reviveCaps(){super.reviveCaps();refreshCapabilities();}
 
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        fullItemCap.invalidate();
-        inputItemCap.invalidate();
-        outputItemCap.invalidate();
-        energyCap.invalidate();
-        fluidCap.invalidate();
-    }
-
-    @Override
-    public void reviveCaps() {
-        super.reviveCaps();
-        fullItemCap = LazyOptional.of(() -> fullItems);
-        inputItemCap = LazyOptional.of(() -> inputItems);
-        outputItemCap = LazyOptional.of(() -> outputItems);
-        energyCap = LazyOptional.of(() -> energyInput);
-        fluidCap = LazyOptional.of(() -> fluidInput);
+    private final class Port implements IItemHandler {
+        final Direction side;
+        Port(Direction side){this.side=side;}
+        boolean input(){return !isRemoved() && sideMode(side)==SideMode.INPUT;}
+        boolean output(){return !isRemoved() && sideMode(side)==SideMode.OUTPUT;}
+        final LazyOptional<IItemHandler> items=LazyOptional.of(()->this);
+        final LazyOptional<IEnergyStorage> power=LazyOptional.of(()->new IEnergyStorage(){
+            public int receiveEnergy(int n,boolean sim){int accepted=input()?energy.receiveEnergy(n,sim):0;if(accepted>0&&!sim)setChanged();return accepted;}
+            public int extractEnergy(int n,boolean sim){return 0;}
+            public boolean canReceive(){return input();} public boolean canExtract(){return false;}
+            public int getEnergyStored(){return energy.getEnergyStored();} public int getMaxEnergyStored(){return energy.getMaxEnergyStored();}
+        });
+        final LazyOptional<IFluidHandler> fluid=LazyOptional.of(()->new IFluidHandler(){
+            public int getTanks(){return 1;}
+            public FluidStack getFluidInTank(int tank){return tank==0&&input()?water.getFluid().copy():FluidStack.EMPTY;}
+            public int getTankCapacity(int tank){return tank==0?water.getCapacity():0;}
+            public boolean isFluidValid(int tank,FluidStack stack){return tank==0&&input()&&water.isFluidValid(tank,stack);}
+            public int fill(FluidStack stack,FluidAction action){return input()?water.fill(stack,action):0;}
+            public FluidStack drain(FluidStack stack,FluidAction action){return FluidStack.EMPTY;}
+            public FluidStack drain(int amount,FluidAction action){return FluidStack.EMPTY;}
+        });
+        public int getSlots(){return 3;}
+        public ItemStack getStackInSlot(int slot){return slot>=0&&slot<3&&(input()&&slot<2||output()&&slot==2)?inventory.getStackInSlot(slot).copy():ItemStack.EMPTY;}
+        public boolean isItemValid(int slot,ItemStack stack){return slot>=0&&slot<2&&input()&&inventory.isItemValid(slot,stack);}
+        public ItemStack insertItem(int slot,ItemStack stack,boolean simulate){return isItemValid(slot,stack)?inventory.insertItem(slot,stack,simulate):stack;}
+        public ItemStack extractItem(int slot,int amount,boolean simulate){return slot==2&&output()?inventory.extractItem(slot,amount,simulate):ItemStack.EMPTY;}
+        public int getSlotLimit(int slot){return slot>=0&&slot<3?inventory.getSlotLimit(slot):0;}
     }
 
     @Override

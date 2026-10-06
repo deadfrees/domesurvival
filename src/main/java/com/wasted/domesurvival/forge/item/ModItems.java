@@ -172,6 +172,52 @@ public static final RegistryObject<Item> OXYGEN_MASK = ITEMS.register(
             "surface_suit_boots",
             () -> new SurfaceSuitItem(ArmorItem.Type.BOOTS, new Item.Properties())
     );
+    /** Late-game FE cell used directly and as the power core of Neosteel armor. */
+    public static final RegistryObject<Item> NEOSTEEL_ENERGY_CELL = ITEMS.register(
+            "neosteel_energy_cell",
+            () -> new EnergyCellItem(new Item.Properties())
+    );
+    /** Environmental-only upgrade; one module must be installed in each Neosteel armor piece. */
+    public static final RegistryObject<Item> SURFACE_PROTECTION_MODULE = ITEMS.register(
+            "surface_protection_module",
+            () -> new SurfaceProtectionModuleItem(new Item.Properties())
+    );
+
+    public static final RegistryObject<Item> NEOSTEEL_HELMET = ITEMS.register(
+            "neosteel_helmet",
+            () -> new NeosteelArmorItem(
+                    ArmorItem.Type.HELMET,
+                    NeosteelArmorItem.HELMET_CAPACITY,
+                    new Item.Properties()
+            )
+    );
+
+    public static final RegistryObject<Item> NEOSTEEL_CHESTPLATE = ITEMS.register(
+            "neosteel_chestplate",
+            () -> new NeosteelArmorItem(
+                    ArmorItem.Type.CHESTPLATE,
+                    NeosteelArmorItem.CHESTPLATE_CAPACITY,
+                    new Item.Properties()
+            )
+    );
+
+    public static final RegistryObject<Item> NEOSTEEL_LEGGINGS = ITEMS.register(
+            "neosteel_leggings",
+            () -> new NeosteelArmorItem(
+                    ArmorItem.Type.LEGGINGS,
+                    NeosteelArmorItem.LEGGINGS_CAPACITY,
+                    new Item.Properties()
+            )
+    );
+
+    public static final RegistryObject<Item> NEOSTEEL_BOOTS = ITEMS.register(
+            "neosteel_boots",
+            () -> new NeosteelArmorItem(
+                    ArmorItem.Type.BOOTS,
+                    NeosteelArmorItem.BOOTS_CAPACITY,
+                    new Item.Properties()
+            )
+    );
 
     /** Separate painting item backed by Dome Survival painting variants. */
     public static final RegistryObject<Item> MEMORY_PAINTING = ITEMS.register(

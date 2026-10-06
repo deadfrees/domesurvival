@@ -1,4 +1,6 @@
 {
   "parent": "minecraft:item/generated",
-  "textures": { "layer0": "domesurvival:item/raw_lead" }
+  "textures": {
+    "layer0": "domesurvival:item/materials_v2/crushed_lead_ore"
+  }
 }

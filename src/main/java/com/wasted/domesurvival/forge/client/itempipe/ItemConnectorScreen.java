@@ -4,84 +4,57 @@ import com.wasted.domesurvival.forge.itempipe.ItemConnectorMenu;
 import com.wasted.domesurvival.forge.itempipe.ItemConnectorMode;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-import java.util.EnumMap;
-import java.util.Map;
-
+/** Own controls keep modes legible when a resource pack reskins vanilla buttons. */
 public final class ItemConnectorScreen extends AbstractContainerScreen<ItemConnectorMenu> {
-    private final Map<ItemConnectorMode, Button> buttons = new EnumMap<>(ItemConnectorMode.class);
-
-    public ItemConnectorScreen(ItemConnectorMenu menu, Inventory inventory, Component title) {
-        super(menu, inventory, title);
-        imageWidth = 236;
-        imageHeight = 126;
-        titleLabelX = 12;
-        titleLabelY = 9;
-        inventoryLabelY = 1000;
+    private static final ResourceLocation PANEL=new ResourceLocation("domesurvival","textures/gui/item_connector_v2/panel.png");
+    private static final ResourceLocation WIDGETS=new ResourceLocation("domesurvival","textures/gui/coal_generator_v2/widgets.png");
+    public ItemConnectorScreen(ItemConnectorMenu menu,Inventory inventory,Component title){
+        super(menu,inventory,title);imageWidth=236;imageHeight=176;inventoryLabelY=1000;
     }
-
-    @Override
-    protected void init() {
+    private static Component modeName(ItemConnectorMode mode){return Component.translatable("gui.domesurvival.item_pipe.mode."+mode.id());}
+    private static Component help(ItemConnectorMode mode){return Component.translatable("gui.domesurvival.item_pipe.connector_v2.help."+mode.id());}
+    private static int color(ItemConnectorMode mode){return switch(mode){case INPUT->0xFF83B8D2;case OUTPUT->0xFFE0A267;case DISABLED->0xFF98A5AB;};}
+    @Override protected void init(){
         super.init();
-        buttons.clear();
-        int y = topPos + 75;
-        addModeButton(ItemConnectorMode.INPUT, leftPos + 10, y, 62);
-        addModeButton(ItemConnectorMode.OUTPUT, leftPos + 87, y, 62);
-        addModeButton(ItemConnectorMode.DISABLED, leftPos + 164, y, 62);
+        addMode(ItemConnectorMode.INPUT,12);addMode(ItemConnectorMode.OUTPUT,85);addMode(ItemConnectorMode.DISABLED,158);
     }
-
-    private void addModeButton(ItemConnectorMode mode, int x, int y, int width) {
-        Button button = Button.builder(
-                Component.translatable("gui.domesurvival.item_pipe.mode." + mode.id()),
-                ignored -> {
-                    if (minecraft != null && minecraft.gameMode != null) {
-                        minecraft.gameMode.handleInventoryButtonClick(menu.containerId, mode.ordinal());
-                    }
-                }
-        ).bounds(x, y, width, 20).build();
-        buttons.put(mode, addRenderableWidget(button));
-    }
-
-    @Override
-    protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
-        int left = leftPos;
-        int top = topPos;
-        graphics.fill(left, top, left + imageWidth, top + imageHeight, 0xFF111619);
-        graphics.fill(left + 2, top + 2, left + imageWidth - 2, top + imageHeight - 2, 0xFF232B2F);
-        graphics.fill(left + 9, top + 28, left + imageWidth - 9, top + 66, 0xFF0F1417);
-
-        int modeColor = switch (menu.mode()) {
-            case INPUT -> 0xFF2F78C7;
-            case OUTPUT -> 0xFFD47A2F;
-            case DISABLED -> 0xFF41484C;
+    private void addMode(ItemConnectorMode mode,int x){
+        Button button=new Button(leftPos+x,topPos+90,66,28,modeName(mode),ignored->{
+            if(menu.mode()!=mode&&minecraft!=null&&minecraft.gameMode!=null)
+                minecraft.gameMode.handleInventoryButtonClick(menu.containerId,mode.ordinal());
+        },message->message.get()){
+            @Override public void renderWidget(GuiGraphics g,int mouseX,int mouseY,float partial){
+                boolean selected=menu.mode()==mode;
+                if(isHoveredOrFocused())g.fill(getX()+2,getY()+2,getX()+64,getY()+26,0x223F6878);
+                if(selected||isHoveredOrFocused())g.renderOutline(getX()+1,getY()+1,64,26,color(mode));
+                g.fill(getX()+7,getY()+5,getX()+59,getY()+7,selected?color(mode):0xFF49565C);
+                String label=getMessage().getString();
+                g.drawString(font,label,getX()+(66-font.width(label))/2,getY()+12,selected?color(mode):0xFFCAD2D4,false);
+            }
         };
-        graphics.fill(left + 14, top + 34, left + 22, top + 59, modeColor);
+        button.setTooltip(Tooltip.create(help(mode)));addRenderableWidget(button);
     }
-
-    @Override
-    protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        graphics.drawString(font, title, titleLabelX, titleLabelY, 0xFFE3E7E8, false);
-        graphics.drawString(font,
-                Component.translatable("gui.domesurvival.item_pipe.side", menu.side().getName().toUpperCase()),
-                29, 34, 0xFFCCD2D4, false);
-        graphics.drawString(font,
-                Component.translatable("gui.domesurvival.item_pipe.speed", menu.itemsPerCycle(), menu.cooldownTicks()),
-                29, 46, 0xFF929CA0, false);
-        graphics.drawString(font,
-                Component.translatable("gui.domesurvival.item_pipe.connector_help"),
-                12, 103, 0xFF788388, false);
+    @Override protected void renderBg(GuiGraphics g,float partial,int mx,int my){
+        g.blit(PANEL,leftPos,topPos,236,176,0,0,944,704,944,704);
+        int u=switch(menu.mode()){case INPUT->20;case OUTPUT->40;case DISABLED->0;};
+        g.blit(WIDGETS,leftPos+19,topPos+41,20,20,u*4F,96,80,80,512,256);
     }
-
-    @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-        for (Map.Entry<ItemConnectorMode, Button> entry : buttons.entrySet()) {
-            entry.getValue().active = entry.getKey() != menu.mode();
-        }
-        renderBackground(graphics);
-        super.render(graphics, mouseX, mouseY, partialTick);
-        renderTooltip(graphics, mouseX, mouseY);
+    private void text(GuiGraphics g,Component value,int x,int y,int width,int color){
+        String s=value.getString();if(font.width(s)>width)s=font.plainSubstrByWidth(s,width-font.width("..."))+"...";
+        g.drawString(font,s,x,y,color,false);
     }
+    @Override protected void renderLabels(GuiGraphics g,int mx,int my){
+        text(g,title,13,10,210,0xFF251C13);
+        text(g,Component.translatable("gui.domesurvival.item_pipe.side",Component.translatable("message.domesurvival.item_pipe.side."+menu.side().getName())),50,34,169,0xFFCAD2D4);
+        text(g,Component.translatable("gui.domesurvival.item_pipe.connector_v2.rate",menu.itemsPerCycle(),menu.cooldownTicks()),50,48,169,0xFF98A5AB);
+        text(g,Component.translatable("gui.domesurvival.item_pipe.connector_v2.selected",modeName(menu.mode())),50,63,169,color(menu.mode()));
+        g.drawWordWrap(font,help(menu.mode()),16,134,204,0xFFCAD2D4);
+    }
+    @Override public void render(GuiGraphics g,int mx,int my,float partial){renderBackground(g);super.render(g,mx,my,partial);renderTooltip(g,mx,my);}
 }

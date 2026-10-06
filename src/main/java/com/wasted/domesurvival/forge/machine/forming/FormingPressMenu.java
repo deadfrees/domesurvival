@@ -104,7 +104,7 @@ public final class FormingPressMenu extends AbstractContainerMenu {
 
         // Visual frames are 24x24; vanilla 16x16 slots are centered with +4 px inset,
         // exactly like CoalGeneratorMenu's fuel slot.
-        addSlot(new SlotItemHandler(machineInventory, 0, 46, 66) {
+        addSlot(new SlotItemHandler(machineInventory, 0, 46, 72) {
             @Override public boolean isActive() { return isMainPanelOpen(); }
             @Override public boolean mayPickup(Player player) { return isMainPanelOpen(); }
             @Override
@@ -113,7 +113,7 @@ public final class FormingPressMenu extends AbstractContainerMenu {
             }
         });
 
-        addSlot(new SlotItemHandler(machineInventory, 1, 182, 66) {
+        addSlot(new SlotItemHandler(machineInventory, 1, 182, 72) {
             @Override public boolean isActive() { return isMainPanelOpen(); }
             @Override public boolean mayPickup(Player player) { return isMainPanelOpen(); }
             @Override
@@ -129,10 +129,10 @@ public final class FormingPressMenu extends AbstractContainerMenu {
             @Override public boolean isActive() { return isModulePanelOpen(); }
             @Override public int getMaxStackSize() { return 1; }
             @Override public boolean mayPlace(@NotNull ItemStack stack) {
-                return isModulePanelOpen() && progress() == 0 && stack.getItem() instanceof MachineModuleItem && super.mayPlace(stack);
+                return isModulePanelOpen() && stack.getItem() instanceof MachineModuleItem && super.mayPlace(stack);
             }
             @Override public boolean mayPickup(Player player) {
-                return isModulePanelOpen() && progress() == 0
+                return isModulePanelOpen()
                     && (!(getItem().getItem() instanceof MachineModuleItem item)
                         || item.module().type() != MachineModuleType.BUFFER || energyStored() <= FormingPressBlockEntity.ENERGY_CAPACITY);
             }

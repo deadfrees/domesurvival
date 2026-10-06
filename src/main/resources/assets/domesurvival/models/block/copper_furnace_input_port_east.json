@@ -1,0 +1,379 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "ambientocclusion": true,
+  "textures": {
+    "body": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "panel": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "frame": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "trim": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "steel": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "black": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "rubber": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "brass": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "bolt": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "cap": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "input": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "output": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "refractory": "domesurvival:block/copper_furnace_v2/satin_atlas",
+    "socket_output": "domesurvival:block/copper_furnace_v2/socket_output",
+    "socket_input": "domesurvival:block/copper_furnace_v2/socket_input",
+    "status": "domesurvival:block/copper_furnace_v2/status",
+    "badge": "domesurvival:block/copper_furnace_v2/badge",
+    "flame": "domesurvival:block/copper_furnace_v2/flame",
+    "flame_back": "domesurvival:block/copper_furnace_v2/flame_back",
+    "dial": "domesurvival:block/copper_furnace_v2/dial",
+    "coal": "domesurvival:block/copper_furnace_v2/coal",
+    "particle": "domesurvival:block/copper_furnace_v2/particle"
+  },
+  "elements": [
+    {
+      "name": "east_socket_insert",
+      "from": [
+        15.87,
+        5.3,
+        5.3
+      ],
+      "to": [
+        15.9,
+        10.7,
+        10.7
+      ],
+      "faces": {
+        "east": {
+          "texture": "#socket_input",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "name": "east_collar_left",
+      "from": [
+        15.85,
+        4.85,
+        4.85
+      ],
+      "to": [
+        15.985,
+        11.15,
+        5.3
+      ],
+      "faces": {
+        "east": {
+          "texture": "#steel",
+          "uv": [
+            13.203125,
+            0.046875,
+            13.3125,
+            1.625
+          ]
+        },
+        "west": {
+          "texture": "#steel",
+          "uv": [
+            13.203125,
+            0.046875,
+            13.3125,
+            1.625
+          ]
+        },
+        "south": {
+          "texture": "#steel",
+          "uv": [
+            13.40625,
+            0.046875,
+            13.4375,
+            1.625
+          ]
+        },
+        "north": {
+          "texture": "#steel",
+          "uv": [
+            13.40625,
+            0.046875,
+            13.4375,
+            1.625
+          ]
+        },
+        "up": {
+          "texture": "#steel",
+          "uv": [
+            14.703125,
+            6.578125,
+            14.8125,
+            6.609375
+          ]
+        },
+        "down": {
+          "texture": "#steel",
+          "uv": [
+            14.703125,
+            6.578125,
+            14.8125,
+            6.609375
+          ]
+        }
+      }
+    },
+    {
+      "name": "east_collar_right",
+      "from": [
+        15.85,
+        4.85,
+        10.7
+      ],
+      "to": [
+        15.985,
+        11.15,
+        11.15
+      ],
+      "faces": {
+        "east": {
+          "texture": "#steel",
+          "uv": [
+            13.203125,
+            0.046875,
+            13.3125,
+            1.625
+          ]
+        },
+        "west": {
+          "texture": "#steel",
+          "uv": [
+            13.203125,
+            0.046875,
+            13.3125,
+            1.625
+          ]
+        },
+        "south": {
+          "texture": "#steel",
+          "uv": [
+            13.40625,
+            0.046875,
+            13.4375,
+            1.625
+          ]
+        },
+        "north": {
+          "texture": "#steel",
+          "uv": [
+            13.40625,
+            0.046875,
+            13.4375,
+            1.625
+          ]
+        },
+        "up": {
+          "texture": "#steel",
+          "uv": [
+            14.703125,
+            6.578125,
+            14.8125,
+            6.609375
+          ]
+        },
+        "down": {
+          "texture": "#steel",
+          "uv": [
+            14.703125,
+            6.578125,
+            14.8125,
+            6.609375
+          ]
+        }
+      }
+    },
+    {
+      "name": "east_collar_lower",
+      "from": [
+        15.85,
+        4.85,
+        5.3
+      ],
+      "to": [
+        15.985,
+        5.3,
+        10.7
+      ],
+      "faces": {
+        "east": {
+          "texture": "#steel",
+          "uv": [
+            0.046875,
+            6.578125,
+            1.390625,
+            6.6875
+          ]
+        },
+        "west": {
+          "texture": "#steel",
+          "uv": [
+            0.046875,
+            6.578125,
+            1.390625,
+            6.6875
+          ]
+        },
+        "south": {
+          "texture": "#steel",
+          "uv": [
+            1.484375,
+            6.578125,
+            1.515625,
+            6.6875
+          ]
+        },
+        "north": {
+          "texture": "#steel",
+          "uv": [
+            1.484375,
+            6.578125,
+            1.515625,
+            6.6875
+          ]
+        },
+        "up": {
+          "texture": "#steel",
+          "uv": [
+            13.265625,
+            6.578125,
+            14.609375,
+            6.609375
+          ]
+        },
+        "down": {
+          "texture": "#steel",
+          "uv": [
+            13.265625,
+            6.578125,
+            14.609375,
+            6.609375
+          ]
+        }
+      }
+    },
+    {
+      "name": "east_collar_upper",
+      "from": [
+        15.85,
+        10.7,
+        5.3
+      ],
+      "to": [
+        15.985,
+        11.15,
+        10.7
+      ],
+      "faces": {
+        "east": {
+          "texture": "#steel",
+          "uv": [
+            0.046875,
+            6.578125,
+            1.390625,
+            6.6875
+          ]
+        },
+        "west": {
+          "texture": "#steel",
+          "uv": [
+            0.046875,
+            6.578125,
+            1.390625,
+            6.6875
+          ]
+        },
+        "south": {
+          "texture": "#steel",
+          "uv": [
+            1.484375,
+            6.578125,
+            1.515625,
+            6.6875
+          ]
+        },
+        "north": {
+          "texture": "#steel",
+          "uv": [
+            1.484375,
+            6.578125,
+            1.515625,
+            6.6875
+          ]
+        },
+        "up": {
+          "texture": "#steel",
+          "uv": [
+            13.265625,
+            6.578125,
+            14.609375,
+            6.609375
+          ]
+        },
+        "down": {
+          "texture": "#steel",
+          "uv": [
+            13.265625,
+            6.578125,
+            14.609375,
+            6.609375
+          ]
+        }
+      }
+    },
+    {
+      "name": "east_mode_band",
+      "from": [
+        15.99,
+        10.85,
+        5.4
+      ],
+      "to": [
+        16,
+        11.08,
+        6.6000000000000005
+      ],
+      "faces": {
+        "east": {
+          "texture": "#input",
+          "uv": [
+            1.609375,
+            6.578125,
+            1.90625,
+            6.640625
+          ]
+        }
+      }
+    },
+    {
+      "name": "east_mode_band",
+      "from": [
+        15.99,
+        10.85,
+        9.4
+      ],
+      "to": [
+        16,
+        11.08,
+        10.6
+      ],
+      "faces": {
+        "east": {
+          "texture": "#input",
+          "uv": [
+            1.609375,
+            6.578125,
+            1.90625,
+            6.640625
+          ]
+        }
+      }
+    }
+  ]
+}

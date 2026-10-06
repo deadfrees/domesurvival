@@ -24,6 +24,7 @@ public final class ModFluids {
     private static final ResourceLocation WATER_FLOW = new ResourceLocation("block/water_flow");
     private static final ResourceLocation WATER_OVERLAY = new ResourceLocation("block/water_overlay");
     private static final int PURIFIED_TINT = 0xFF72D4DB;
+    private static final int NEOFLUX_TINT = 0xFFC47A43;
 
     public static final DeferredRegister<FluidType> FLUID_TYPES =
             DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, DomeSurvival.MOD_ID);
@@ -48,12 +49,39 @@ public final class ModFluids {
             () -> new ForgeFlowingFluid.Flowing(purifiedWaterProperties())
     );
 
+    /** Capability-only metallurgical reagent; intentionally has no bucket or world block. */
+    public static final RegistryObject<FluidType> NEOFLUX_TYPE = FLUID_TYPES.register(
+            "neoflux",
+            () -> new NeofluxFluidType(FluidType.Properties.create()
+                    .density(1600)
+                    .viscosity(1800)
+                    .temperature(340))
+    );
+
+    public static final RegistryObject<FlowingFluid> NEOFLUX = FLUIDS.register(
+            "neoflux",
+            () -> new ForgeFlowingFluid.Source(neofluxProperties())
+    );
+
+    public static final RegistryObject<FlowingFluid> FLOWING_NEOFLUX = FLUIDS.register(
+            "flowing_neoflux",
+            () -> new ForgeFlowingFluid.Flowing(neofluxProperties())
+    );
+
     private static ForgeFlowingFluid.Properties purifiedWaterProperties() {
         return new ForgeFlowingFluid.Properties(
                 PURIFIED_WATER_TYPE,
                 PURIFIED_WATER,
                 FLOWING_PURIFIED_WATER
         ).slopeFindDistance(4).levelDecreasePerBlock(1);
+    }
+
+    private static ForgeFlowingFluid.Properties neofluxProperties() {
+        return new ForgeFlowingFluid.Properties(
+                NEOFLUX_TYPE,
+                NEOFLUX,
+                FLOWING_NEOFLUX
+        ).slopeFindDistance(2).levelDecreasePerBlock(2);
     }
 
     private ModFluids() {
@@ -85,6 +113,38 @@ public final class ModFluids {
                 @Override
                 public int getTintColor() {
                     return PURIFIED_TINT;
+                }
+            });
+        }
+    }
+
+
+    private static final class NeofluxFluidType extends FluidType {
+        private NeofluxFluidType(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+            consumer.accept(new IClientFluidTypeExtensions() {
+                @Override
+                public ResourceLocation getStillTexture() {
+                    return WATER_STILL;
+                }
+
+                @Override
+                public ResourceLocation getFlowingTexture() {
+                    return WATER_FLOW;
+                }
+
+                @Override
+                public ResourceLocation getOverlayTexture() {
+                    return WATER_OVERLAY;
+                }
+
+                @Override
+                public int getTintColor() {
+                    return NEOFLUX_TINT;
                 }
             });
         }

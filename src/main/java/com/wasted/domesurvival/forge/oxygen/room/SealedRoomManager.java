@@ -3,6 +3,7 @@ package com.wasted.domesurvival.forge.oxygen.room;
 import com.wasted.domesurvival.forge.DomeSurvival;
 import com.wasted.domesurvival.forge.airlock.gate.AirlockGateBlock;
 import com.wasted.domesurvival.forge.airlock.gate.AirlockGateMotion;
+import it.unimi.dsi.fastutil.longs.Long2LongOpenHashMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.longs.LongArrayFIFOQueue;
 import it.unimi.dsi.fastutil.longs.LongIterator;
@@ -15,6 +16,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
@@ -37,6 +39,9 @@ public final class SealedRoomManager {
     /** Hard stop against accidental scans into the entire overworld/cave network. */
     public static final int MAX_INTERIOR_BLOCKS = 65_536;
     public static final int MAX_AXIS_DISTANCE = 64;
+    private static final int NEGATIVE_CACHE_RETRY_TICKS = 100;
+    private static final int TOO_LARGE_RETRY_TICKS = 400;
+    private static final int MAX_NEGATIVE_RETRIES_PER_TICK = 1;
 
     /** Optional datapack compatibility hooks for modded blocks. */
     public static final TagKey<Block> AIRTIGHT_BLOCKS = TagKey.create(
@@ -94,7 +99,16 @@ public final class SealedRoomManager {
         long outletKey = outletPos.asLong();
         CachedRoom existing = cache.roomsByOutlet.get(outletKey);
         if (existing != null) {
-            return existing.snapshot;
+            int retryInterval = existing.snapshot.state() == RoomState.TOO_LARGE
+                    ? TOO_LARGE_RETRY_TICKS : NEGATIVE_CACHE_RETRY_TICKS;
+            if (existing.snapshot.sealed()
+                    || level.getGameTime() - cache.negativeScannedAt.get(outletKey) < retryInterval
+                    || !cache.tryNegativeRetry(level.getGameTime())) {
+                return existing.snapshot;
+            }
+            // An OPEN/TOO_LARGE result can have stopped before seeing a newly built roof.
+            // Retry it periodically without rescanning every machine tick.
+            removeCached(cache, outletKey);
         }
 
         CachedRoom pending = cache.pendingRevalidation.get(outletKey);
@@ -104,7 +118,7 @@ public final class SealedRoomManager {
         }
 
         CachedRoom discovered = discover(level, outletPos.immutable());
-        register(cache, outletKey, discovered);
+        register(cache, outletKey, discovered, level.getGameTime());
         if (discovered.snapshot.sealed()) {
             RoomAtmosphereSavedData.get(level).reconcileSealed(
                     discovered.snapshot, outletKey, level.getGameTime()
@@ -332,7 +346,7 @@ public final class SealedRoomManager {
         }
 
         cache.pendingRevalidation.remove(outletKey);
-        register(cache, outletKey, discovered);
+        register(cache, outletKey, discovered, level.getGameTime());
 
         RoomAtmosphereSavedData atmosphere = RoomAtmosphereSavedData.get(level);
         if (discovered.snapshot.sealed()) {
@@ -464,8 +478,10 @@ public final class SealedRoomManager {
                 return result(RoomState.UNLOADED, interior, boundary, outletPos, canonicalCell);
             }
 
-            // Reaching direct sky means the ventilation volume has escaped to the outside atmosphere.
-            if (level.canSeeSky(current)) {
+            // WORLD_SURFACE tracks the highest non-air block synchronously. A glass roof
+            // therefore closes this column even when skylight still reaches the room.
+            if (current.getY() >= level.getHeight(
+                    Heightmap.Types.WORLD_SURFACE, current.getX(), current.getZ())) {
                 return result(RoomState.OPEN, interior, boundary, outletPos, canonicalCell);
             }
 
@@ -569,9 +585,12 @@ public final class SealedRoomManager {
         return LEVEL_CACHES.computeIfAbsent(level, ignored -> new LevelCache());
     }
 
-    private static void register(LevelCache cache, long outletKey, CachedRoom room) {
+    private static void register(LevelCache cache, long outletKey, CachedRoom room, long gameTime) {
         removeCached(cache, outletKey);
         cache.roomsByOutlet.put(outletKey, room);
+        if (!room.snapshot.sealed()) {
+            cache.negativeScannedAt.put(outletKey, gameTime);
+        }
 
         LongIterator iterator = room.dependencyChunks.iterator();
         while (iterator.hasNext()) {
@@ -585,6 +604,7 @@ public final class SealedRoomManager {
     private static void removeCached(LevelCache cache, long outletKey) {
         CachedRoom old = cache.roomsByOutlet.remove(outletKey);
         if (old == null) return;
+        cache.negativeScannedAt.remove(outletKey);
 
         LongIterator iterator = old.dependencyChunks.iterator();
         while (iterator.hasNext()) {
@@ -638,9 +658,22 @@ public final class SealedRoomManager {
     private static final class LevelCache {
         private final Long2ObjectOpenHashMap<CachedRoom> roomsByOutlet = new Long2ObjectOpenHashMap<>();
         private final Long2ObjectOpenHashMap<LongOpenHashSet> roomsByChunk = new Long2ObjectOpenHashMap<>();
+        private final Long2LongOpenHashMap negativeScannedAt = new Long2LongOpenHashMap();
         private final Long2ObjectOpenHashMap<CachedRoom> pendingRevalidation = new Long2ObjectOpenHashMap<>();
         private final Long2ObjectOpenHashMap<LeakingRoom> leakingRoomsById = new Long2ObjectOpenHashMap<>();
         private final Long2ObjectOpenHashMap<LongOpenHashSet> leakingRoomsByChunk = new Long2ObjectOpenHashMap<>();
+        private long retryBudgetTick = Long.MIN_VALUE;
+        private int negativeRetriesThisTick;
+
+        private boolean tryNegativeRetry(long gameTime) {
+            if (retryBudgetTick != gameTime) {
+                retryBudgetTick = gameTime;
+                negativeRetriesThisTick = 0;
+            }
+            if (negativeRetriesThisTick >= MAX_NEGATIVE_RETRIES_PER_TICK) return false;
+            negativeRetriesThisTick++;
+            return true;
+        }
     }
 
     private record CachedRoom(

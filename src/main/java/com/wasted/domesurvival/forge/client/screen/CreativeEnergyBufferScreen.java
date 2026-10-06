@@ -1,310 +1,210 @@
 package com.wasted.domesurvival.forge.client.screen;
 
-import com.wasted.domesurvival.forge.DomeSurvival;
+import com.mojang.blaze3d.platform.Lighting;
+import com.mojang.math.Axis;
+import com.wasted.domesurvival.forge.block.ModBlocks;
 import com.wasted.domesurvival.forge.machine.energy.CreativeEnergyBufferMenu;
 import com.wasted.domesurvival.forge.machine.side.RelativeSide;
 import com.wasted.domesurvival.forge.machine.side.SideMode;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.ItemStack;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Locale;
 
-/**
- * Compact Energy Buffer UI. The side selector is intentionally copied from
- * the established CoalGenerator machine-family UI: same gear, cube-net,
- * sprites, click protocol and tooltips.
- */
+/** Creative Nexus instruments share the series layout and keep a permanent red charge display. */
 public final class CreativeEnergyBufferScreen extends AbstractContainerScreen<CreativeEnergyBufferMenu> {
-    private static final ResourceLocation PORT_TEXTURE =
-            new ResourceLocation(DomeSurvival.MOD_ID, "textures/gui/coal_generator_ports.png");
+    private static final String KEY = "gui.domesurvival.steel_buffer_v2.";
+    private static final ResourceLocation PANEL = tex("panel");
+    private static final ResourceLocation CONFIG = tex("configuration");
+    private static final ResourceLocation WIDGETS =
+            new ResourceLocation("domesurvival", "textures/gui/coal_generator_v2/widgets.png");
+    private static final int TEXT = 0xFFCAD2D4;
+    private static final int BLUE = 0xFF83B8D2;
+    private static final int RED = 0xFFF07B72;
+    private static final EnumMap<RelativeSide, Rect> SIDES = new EnumMap<>(RelativeSide.class);
 
-    private static final int PANEL_WIDTH = 176;
-    private static final int PANEL_HEIGHT = 104;
-    private static final int GEAR_X = 180;
-    private static final int GEAR_Y = 8;
-    private static final int GEAR_SIZE = 20;
-    private static final int SIDE_PANEL_X = 204;
-    private static final int SIDE_PANEL_WIDTH = 96;
-    private static final int SIDE_PANEL_HEIGHT = 122;
+    static {
+        SIDES.put(RelativeSide.TOP, new Rect(46, 51, 20, 20));
+        SIDES.put(RelativeSide.LEFT, new Rect(22, 75, 20, 20));
+        SIDES.put(RelativeSide.FRONT, new Rect(46, 75, 20, 20));
+        SIDES.put(RelativeSide.RIGHT, new Rect(70, 75, 20, 20));
+        SIDES.put(RelativeSide.BOTTOM, new Rect(46, 99, 20, 20));
+        SIDES.put(RelativeSide.BACK, new Rect(70, 99, 20, 20));
+    }
 
-    private static final int BAR_X = 24;
-    private static final int BAR_Y = 43;
-    private static final int BAR_W = 128;
-    private static final int BAR_H = 18;
+    public CreativeEnergyBufferScreen(CreativeEnergyBufferMenu menu, Inventory inventory, Component title) {
+        super(menu, inventory, title);
+        imageWidth = 220;
+        imageHeight = 266;
+    }
 
-    private static final Rect SIDE_MODEL_FRAME = new Rect(SIDE_PANEL_X + 8, 28, 80, 90);
-    private static final int SIDE_BUTTON_SIZE = 14;
-    private static final int SIDE_GRID_STEP = 22;
-    private static final EnumMap<RelativeSide, Rect> SIDE_RECTS = createSideRects();
+    private static ResourceLocation tex(String name) {
+        return new ResourceLocation("domesurvival", "textures/gui/adamantium_buffer_v2/" + name + ".png");
+    }
 
-    private static final int PORT_SIZE = 6;
-    private static final int PORT_TEX_WIDTH = 24;
-    private static final int PORT_TEX_HEIGHT = 6;
-    private static final int PORT_OFF_U = 0;
-    private static final int PORT_INPUT_U = 12;
-    private static final int PORT_OUTPUT_U = 18;
+    private static RelativeSide actual(RelativeSide side) {
+        return side == RelativeSide.LEFT ? RelativeSide.RIGHT
+                : side == RelativeSide.RIGHT ? RelativeSide.LEFT : side;
+    }
 
-    private boolean sidePanelOpen;
+    private boolean inside(double x, double y, Rect rect) {
+        return rect.contains(x - leftPos, y - topPos);
+    }
 
-    public CreativeEnergyBufferScreen(CreativeEnergyBufferMenu menu, Inventory playerInventory, Component title) {
-        super(menu, playerInventory, title);
-        imageWidth = PANEL_WIDTH;
-        imageHeight = PANEL_HEIGHT;
-        inventoryLabelY = 1000;
+    private Component t(String key, Object... args) {
+        return Component.translatable(KEY + key, args);
+    }
+
+    private void send(int id) {
+        if (minecraft != null && minecraft.gameMode != null) {
+            minecraft.gameMode.handleInventoryButtonClick(menu.containerId, id);
+        }
     }
 
     @Override
-    protected void init() {
-        super.init();
-        leftPos = (width - PANEL_WIDTH) / 2;
-        topPos = (height - imageHeight) / 2;
-    }
-
-    private static EnumMap<RelativeSide, Rect> createSideRects() {
-        EnumMap<RelativeSide, Rect> regions = new EnumMap<>(RelativeSide.class);
-        int centerX = SIDE_PANEL_X + (SIDE_PANEL_WIDTH - SIDE_BUTTON_SIZE) / 2;
-        int middleY = 66;
-        regions.put(RelativeSide.TOP, new Rect(centerX, middleY - SIDE_GRID_STEP, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        regions.put(RelativeSide.LEFT, new Rect(centerX - SIDE_GRID_STEP, middleY, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        regions.put(RelativeSide.FRONT, new Rect(centerX, middleY, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        regions.put(RelativeSide.RIGHT, new Rect(centerX + SIDE_GRID_STEP, middleY, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        regions.put(RelativeSide.BOTTOM, new Rect(centerX, middleY + SIDE_GRID_STEP, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        regions.put(RelativeSide.BACK, new Rect(centerX + SIDE_GRID_STEP, middleY + SIDE_GRID_STEP, SIDE_BUTTON_SIZE, SIDE_BUTTON_SIZE));
-        return regions;
-    }
-
-    @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (button == 0) {
-            if (inside(mouseX, mouseY, GEAR_X, GEAR_Y, GEAR_SIZE, GEAR_SIZE)) {
-                sidePanelOpen = !sidePanelOpen;
-                return true;
-            }
-
-            if (sidePanelOpen) {
-                RelativeSide side = getHoveredSide(mouseX, mouseY);
-                if (side != null && minecraft != null && minecraft.gameMode != null) {
-                    RelativeSide machineSide = machineSideForVisualSide(side);
-                    minecraft.gameMode.handleInventoryButtonClick(
-                            menu.containerId,
-                            CreativeEnergyBufferMenu.sideButtonId(machineSide)
-                    );
+    public boolean mouseClicked(double x, double y, int button) {
+        if (button == 0 && inside(x, y, new Rect(192, 6, 20, 20))) {
+            menu.setSidePanelOpen(!menu.isSidePanelOpen());
+            send(menu.isSidePanelOpen() ? 202 : 201);
+            return true;
+        }
+        if (button == 0 && menu.isSidePanelOpen()) {
+            for (var entry : SIDES.entrySet()) {
+                if (inside(x, y, entry.getValue())) {
+                    if (entry.getKey() != RelativeSide.FRONT) {
+                        send(CreativeEnergyBufferMenu.sideButtonId(actual(entry.getKey())));
+                    }
                     return true;
                 }
             }
         }
-        return super.mouseClicked(mouseX, mouseY, button);
+        return super.mouseClicked(x, y, button);
     }
 
-    private boolean inside(double mouseX, double mouseY, int x, int y, int w, int h) {
-        double localX = mouseX - leftPos;
-        double localY = mouseY - topPos;
-        return localX >= x && localX < x + w && localY >= y && localY < y + h;
-    }
-
-    private static RelativeSide machineSideForVisualSide(RelativeSide visualSide) {
-        return switch (visualSide) {
-            case LEFT -> RelativeSide.RIGHT;
-            case RIGHT -> RelativeSide.LEFT;
-            default -> visualSide;
-        };
+    private void widget(GuiGraphics graphics, int x, int y, int u, int v) {
+        graphics.blit(WIDGETS, leftPos + x, topPos + y, 20, 20,
+                u * 4F, v * 4F, 80, 80, 512, 256);
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
-        renderTooltip(guiGraphics, mouseX, mouseY);
-
-        if (inside(mouseX, mouseY, GEAR_X, GEAR_Y, GEAR_SIZE, GEAR_SIZE)) {
-            guiGraphics.renderTooltip(font, Component.translatable("gui.domesurvival.side_config"), mouseX, mouseY);
-            return;
-        }
-
-        if (sidePanelOpen) {
-            RelativeSide hoveredSide = getHoveredSide(mouseX, mouseY);
-            if (hoveredSide != null) {
-                List<Component> tooltip = new ArrayList<>();
-                tooltip.add(Component.translatable(sideTranslationKey(hoveredSide)));
-                tooltip.add(getSideModeTooltip(menu.getSideMode(machineSideForVisualSide(hoveredSide))));
-                guiGraphics.renderComponentTooltip(font, tooltip, mouseX, mouseY, ItemStack.EMPTY);
-                return;
+    protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
+        graphics.blit(PANEL, leftPos, topPos, 220, 266, 0, 0, 880, 1064, 880, 1064);
+        widget(graphics, 192, 6, 0, 0);
+        if (menu.isSidePanelOpen()) {
+            graphics.blit(CONFIG, leftPos + 8, topPos + 29, 204, 111,
+                    0, 0, 816, 444, 816, 444);
+            for (var entry : SIDES.entrySet()) {
+                SideMode mode = menu.getSideMode(actual(entry.getKey()));
+                Rect rect = entry.getValue();
+                widget(graphics, rect.x, rect.y,
+                        mode == SideMode.INPUT ? 20 : mode.allowsOutput() ? 40 : 0, 24);
             }
-        }
-
-        if (isHovering(BAR_X, BAR_Y, BAR_W, BAR_H, mouseX, mouseY)) {
-            guiGraphics.renderTooltip(
-                    font,
-                    Component.translatable("gui.domesurvival.energy_buffer.creative_tooltip"),
-                    mouseX,
-                    mouseY
-            );
-        }
-    }
-
-    @Override
-    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
-        int x = leftPos;
-        int y = topPos;
-
-        drawIndustrialPanel(guiGraphics, x, y, PANEL_WIDTH, PANEL_HEIGHT, 0xFF30363A);
-
-        drawThinFrame(guiGraphics, x + BAR_X, y + BAR_Y, BAR_W, BAR_H, 0xFF151A1D);
-        int capacity = Math.max(1, menu.getEnergyCapacity());
-        int fill = Math.min(BAR_W - 6,
-                (int) ((long) menu.getEnergyStored() * (BAR_W - 6) / capacity));
-        if (fill > 0) {
-            guiGraphics.fill(x + BAR_X + 3, y + BAR_Y + 3,
-                    x + BAR_X + 3 + fill, y + BAR_Y + BAR_H - 3, 0xFF7A2020);
-            guiGraphics.fill(x + BAR_X + 3, y + BAR_Y + 4,
-                    x + BAR_X + 3 + fill, y + BAR_Y + 7, 0xFFC83A36);
-            guiGraphics.fill(x + BAR_X + 3, y + BAR_Y + BAR_H - 7,
-                    x + BAR_X + 3 + fill, y + BAR_Y + BAR_H - 4, 0xFFFF6555);
-        }
-
-        drawGearButton(guiGraphics, x + GEAR_X, y + GEAR_Y, sidePanelOpen);
-
-        if (sidePanelOpen) {
-            drawIndustrialPanel(guiGraphics, x + SIDE_PANEL_X, y,
-                    SIDE_PANEL_WIDTH, SIDE_PANEL_HEIGHT, 0xFF252B2F);
-            drawThinFrame(guiGraphics,
-                    leftPos + SIDE_MODEL_FRAME.x,
-                    topPos + SIDE_MODEL_FRAME.y,
-                    SIDE_MODEL_FRAME.width,
-                    SIDE_MODEL_FRAME.height,
-                    0xFF171C20);
-            drawSideModel(guiGraphics, mouseX, mouseY);
-        }
-    }
-
-    private void drawGearButton(GuiGraphics guiGraphics, int x, int y, boolean active) {
-        int bg = active ? 0xFF394247 : 0xFF252B2F;
-        drawThinFrame(guiGraphics, x, y, GEAR_SIZE, GEAR_SIZE, bg);
-        int cx = x + GEAR_SIZE / 2;
-        int cy = y + GEAR_SIZE / 2;
-        int metal = active ? 0xFF869197 : 0xFF687278;
-        guiGraphics.fill(cx - 5, cy - 2, cx + 5, cy + 2, metal);
-        guiGraphics.fill(cx - 2, cy - 5, cx + 2, cy + 5, metal);
-        guiGraphics.fill(cx - 4, cy - 4, cx + 4, cy + 4, metal);
-        guiGraphics.fill(cx - 2, cy - 2, cx + 2, cy + 2, 0xFF151A1D);
-    }
-
-    private void drawSideModel(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        for (RelativeSide visualSide : RelativeSide.values()) {
-            Rect rect = SIDE_RECTS.get(visualSide);
-            boolean hovered = visualSide != RelativeSide.FRONT
-                    && rect.contains(mouseX, mouseY, leftPos, topPos);
-            RelativeSide machineSide = machineSideForVisualSide(visualSide);
-            drawMachineFace(guiGraphics, rect, visualSide, menu.getSideMode(machineSide), hovered);
-        }
-    }
-
-    private void drawMachineFace(GuiGraphics guiGraphics, Rect rect, RelativeSide side,
-                                 SideMode mode, boolean hovered) {
-        int x = leftPos + rect.x;
-        int y = topPos + rect.y;
-
-        int outer = hovered ? 0xFF697278 : 0xFF0E1214;
-        int rim = hovered ? 0xFF50585E : 0xFF3D454A;
-        int face = side == RelativeSide.FRONT ? 0xFF20262A : 0xFF252B2F;
-
-        guiGraphics.fill(x, y, x + rect.width, y + rect.height, outer);
-        guiGraphics.fill(x + 1, y + 1, x + rect.width - 1, y + rect.height - 1, rim);
-        guiGraphics.fill(x + 2, y + 2, x + rect.width - 2, y + rect.height - 2, face);
-
-        if (side == RelativeSide.FRONT) {
-            guiGraphics.fill(x + 4, y + 5, x + rect.width - 4, y + rect.height - 4, 0xFF121719);
-            for (int i = 0; i < 3; i++) {
-                int ventX = x + 5 + i * 2;
-                guiGraphics.fill(ventX, y + 7, ventX + 1, y + rect.height - 6, 0xFF424A4F);
+        } else {
+            // Four stationary divisions show a full, inexhaustible creative reservoir.
+            graphics.fill(leftPos + 19, topPos + 47, leftPos + 141, topPos + 55, 0xFF751C25);
+            graphics.fill(leftPos + 19, topPos + 47, leftPos + 141, topPos + 49, 0xFFF0645E);
+            graphics.fill(leftPos + 19, topPos + 53, leftPos + 141, topPos + 55, 0xFFC3383C);
+            for (int i = 1; i < 4; i++) {
+                int divider = leftPos + 19 + i * 122 / 4;
+                graphics.fill(divider, topPos + 47, divider + 1, topPos + 55, 0xFF42242A);
             }
-            return;
+            drawPreview(graphics, leftPos + 176, topPos + 104, 30);
         }
-
-        int portU = switch (mode) {
-            case INPUT -> PORT_INPUT_U;
-            case OUTPUT, BOTH -> PORT_OUTPUT_U;
-            case DISABLED -> PORT_OFF_U;
-        };
-
-        guiGraphics.blit(
-                PORT_TEXTURE,
-                x + Math.max(1, (rect.width - PORT_SIZE) / 2),
-                y + Math.max(1, (rect.height - PORT_SIZE) / 2),
-                portU, 0,
-                PORT_SIZE, PORT_SIZE,
-                PORT_TEX_WIDTH, PORT_TEX_HEIGHT
-        );
+        if (menu.isSidePanelOpen() || inside(mouseX, mouseY, new Rect(192, 6, 20, 20))) {
+            graphics.renderOutline(leftPos + 192, topPos + 6, 20, 20, RED);
+        }
     }
 
-    private static void drawIndustrialPanel(GuiGraphics guiGraphics, int x, int y,
-                                            int width, int height, int fillColor) {
-        guiGraphics.fill(x, y, x + width, y + height, 0xFF0C0F11);
-        guiGraphics.fill(x + 1, y + 1, x + width - 1, y + height - 1, 0xFF464E53);
-        guiGraphics.fill(x + 2, y + 2, x + width - 2, y + height - 2, fillColor);
-        guiGraphics.fill(x + 3, y + 3, x + width - 3, y + 4, 0xFF50585D);
-        guiGraphics.fill(x + 3, y + height - 4, x + width - 3, y + height - 3, 0xFF14181B);
+    private static void drawPreview(GuiGraphics graphics, int x, int y, int scale) {
+        graphics.flush();
+        var pose = graphics.pose();
+        pose.pushPose();
+        pose.translate(x, y, 150);
+        pose.scale(scale, -scale, scale);
+        pose.mulPose(Axis.XP.rotationDegrees(20));
+        pose.mulPose(Axis.YP.rotationDegrees(150));
+        pose.translate(-.5, -.5, -.5);
+        Lighting.setupFor3DItems();
+        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(
+                ModBlocks.ENERGY_BUFFER_CREATIVE.get().defaultBlockState(),
+                pose, graphics.bufferSource(), 15728880, OverlayTexture.NO_OVERLAY);
+        graphics.flush();
+        pose.popPose();
+        Lighting.setupFor3DItems();
     }
 
-    private static void drawThinFrame(GuiGraphics guiGraphics, int x, int y,
-                                      int width, int height, int fillColor) {
-        guiGraphics.fill(x, y, x + width, y + height, 0xFF0B0E10);
-        guiGraphics.fill(x + 1, y + 1, x + width - 1, y + height - 1, 0xFF4C555A);
-        guiGraphics.fill(x + 2, y + 2, x + width - 2, y + height - 2, fillColor);
+    private void label(GuiGraphics graphics, Component value, int x, int y, int width, int color) {
+        String text = value.getString();
+        if (font.width(text) > width) {
+            text = font.plainSubstrByWidth(text, width - font.width("...")) + "...";
+        }
+        graphics.drawString(font, text, x, y, color, false);
     }
 
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        guiGraphics.drawString(font, title, 10, 10, 0xFFE0E4E6, false);
-        guiGraphics.drawString(font,
-                Component.translatable("gui.domesurvival.energy_buffer.creative_energy"),
-                24, 70, 0xFFD0D6DA, false);
-
-        if (sidePanelOpen) {
-            guiGraphics.drawCenteredString(
-                    font,
-                    Component.translatable("gui.domesurvival.side_config"),
-                    SIDE_PANEL_X + SIDE_PANEL_WIDTH / 2,
-                    10,
-                    0xFFE0E4E6
-            );
+    protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
+        label(graphics, title, 13, 10, 166, RED);
+        label(graphics, playerInventoryTitle, 14, 146, 62, TEXT);
+        if (menu.isSidePanelOpen()) {
+            label(graphics, Component.translatable("gui.domesurvival.side_config"), 15, 33, 190, TEXT);
+            label(graphics, t("input"), 111, 52, 90, BLUE);
+            label(graphics, t("input_role"), 111, 66, 90, TEXT);
+            label(graphics, t("output"), 111, 87, 90, RED);
+            label(graphics, t("output_role"), 111, 101, 90, TEXT);
+            for (var entry : SIDES.entrySet()) {
+                Rect rect = entry.getValue();
+                graphics.drawCenteredString(font,
+                        Component.translatable("gui.domesurvival.coal_generator.side_letter."
+                                + entry.getKey().name().toLowerCase(Locale.ROOT)),
+                        rect.x + 10, rect.y + 5,
+                        entry.getKey() == RelativeSide.FRONT ? 0xFF78858B : TEXT);
+            }
+        } else {
+            label(graphics, Component.translatable("gui.domesurvival.energy_buffer.creative_tooltip"),
+                    18, 35, 132, RED);
+            label(graphics, Component.translatable("gui.domesurvival.energy_buffer.creative_energy"),
+                    18, 68, 144, TEXT);
+            label(graphics, t("flow_in", menu.getInputPerTick()), 18, 90, 129, BLUE);
+            label(graphics, t("flow_out", menu.getOutputPerTick()), 18, 106, 129, RED);
         }
     }
 
-    private RelativeSide getHoveredSide(double mouseX, double mouseY) {
-        for (RelativeSide side : RelativeSide.values()) {
-            if (side == RelativeSide.FRONT) continue;
-            Rect rect = SIDE_RECTS.get(side);
-            if (rect.contains(mouseX, mouseY, leftPos, topPos)) return side;
+    private void help(GuiGraphics graphics, Component text, int x, int y) {
+        graphics.renderTooltip(font, font.split(text, 220), x, y);
+    }
+
+    @Override
+    public void render(GuiGraphics graphics, int x, int y, float partialTick) {
+        renderBackground(graphics);
+        super.render(graphics, x, y, partialTick);
+        renderTooltip(graphics, x, y);
+        if (hoveredSlot != null && hoveredSlot.hasItem()) return;
+        if (inside(x, y, new Rect(192, 6, 20, 20))) {
+            help(graphics, Component.translatable("gui.domesurvival.side_config"), x, y);
+        } else if (menu.isSidePanelOpen()) {
+            for (var entry : SIDES.entrySet()) {
+                if (inside(x, y, entry.getValue())) {
+                    help(graphics, t(entry.getKey() == RelativeSide.FRONT ? "front" : switch (menu.getSideMode(actual(entry.getKey()))) {
+                        case INPUT -> "input_help";
+                        case OUTPUT, BOTH -> "output_help";
+                        default -> "off";
+                    }), x, y);
+                }
+            }
+        } else if (inside(x, y, new Rect(18, 43, 123, 12))) {
+            help(graphics, Component.translatable("gui.domesurvival.energy_buffer.creative_tooltip"), x, y);
         }
-        return null;
-    }
-
-    private static String sideTranslationKey(RelativeSide side) {
-        return "gui.domesurvival.side." + side.name().toLowerCase(Locale.ROOT);
-    }
-
-    private static Component getSideModeTooltip(SideMode mode) {
-        return switch (mode) {
-            case INPUT -> Component.translatable("gui.domesurvival.side_state.input");
-            case OUTPUT, BOTH -> Component.translatable("gui.domesurvival.side_state.output");
-            case DISABLED -> Component.translatable("gui.domesurvival.side_state.disabled");
-        };
     }
 
     private record Rect(int x, int y, int width, int height) {
-        private boolean contains(double mouseX, double mouseY, int leftPos, int topPos) {
-            double localX = mouseX - leftPos;
-            double localY = mouseY - topPos;
-            return localX >= x && localX < x + width
-                    && localY >= y && localY < y + height;
+        boolean contains(double px, double py) {
+            return px >= x && px < x + width && py >= y && py < y + height;
         }
     }
 }

@@ -1,0 +1,43 @@
+"""Purifier GUI, using the approved generator graphite material pipeline."""
+from pathlib import Path
+source=Path(__file__).with_name('create_coal_generator_gui.py')
+helpers=source.read_text().split('main=setup(')[0]
+helpers=helpers.replace('gui/coal_generator_v2','gui/water_purifier_v2').replace('blender/coal_generator_gui','blender/water_purifier_gui')
+exec(compile(helpers,str(source),'exec'))
+def backing(w,h):
+    base(w,h)
+    box('Inset instruments',8,28,w-16,112,3.3,'black',.7)
+    box('Control face',9,29,w-18,110,3.5,'case',.6)
+main=setup('Water purifier controls',220,266);backing(220,266)
+box('Title gasket',8,6,156,16,3.5,'black',.7)
+box('Title plate',9,7,154,14,3.8,'case',.5)
+well(14,43,16,86,False);well(42,43,28,56,False);well(178,43,28,56,False)
+well(42,107,24,24,False);well(178,107,24,24,False);well(79,108,91,14,False)
+for x in (70.5,173.5):
+    for y in range(47,96,8):box('Volume tick',x,y,2,.3,3.8,'trim' if 'trim' in M else 'steel',.1,.1)
+box('Inventory caption',10,143,72,14,3.5,'rim',.5,.3)
+box('Inventory inset',11,144,70,12,3.8,'case',.4,.3)
+for row in range(3):
+    for col in range(9):well(12+22*col,159+22*row,20,20,False)
+for col in range(9):well(12+22*col,227,20,20,False)
+for x in (7,213):
+    for y in (28,143,257):screw(x,y)
+render(main,'panel')
+config=setup('Purifier logical ports',204,111);base(204,111)
+box('Heading',4,3,196,12,3.5,'case',.5)
+box('Cube recess',5,19,88,78,3.5,'black',.7);box('Legend',97,19,101,75,3.5,'well',.7)
+for x,y in [(38,22),(14,46),(38,46),(62,46),(38,70),(62,70)]:well(x,y,20,20,False)
+render(config,'configuration')
+modules=setup('Purifier modules',204,111);base(204,111)
+box('Heading',4,3,196,12,3.5,'case',.5)
+box('Socket panel',5,29,38,64,3.5,'black',.6)
+well(10,34,24,24,False);well(10,64,24,24,False)
+box('Module specification',47,20,150,76,3.5,'well',.6)
+render(modules,'modules')
+card=setup('Purifier JEI',180,128);base(180,128)
+box('Recipe title',7,5,166,17,3.6,'case',.5)
+well(13,32,24,47,False);well(143,32,24,47,False);well(46,80,24,24,False);well(76,85,58,12,False)
+box('Details',7,106,166,17,3.6,'case',.4)
+render(card,'jei')
+bpy.context.window.scene=main;bpy.ops.wm.save_as_mainfile(filepath=str(SOURCE/'water_purifier_gui.blend'))
+print('WATER_PURIFIER_GUI_COMPLETE',flush=True)

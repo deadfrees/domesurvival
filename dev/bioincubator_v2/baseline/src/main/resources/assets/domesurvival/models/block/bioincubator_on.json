@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "domesurvival:block/bio/bioincubator_side",
+    "up": "domesurvival:block/bio/bioincubator_top",
+    "north": "domesurvival:block/bio/bioincubator_front_on",
+    "south": "domesurvival:block/bio/bioincubator_side",
+    "west": "domesurvival:block/bio/bioincubator_side",
+    "east": "domesurvival:block/bio/bioincubator_side",
+    "particle": "domesurvival:block/bio/bioincubator_side"
+  }
+}

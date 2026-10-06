@@ -1,0 +1,308 @@
+PASS Base coal burn duration unchanged
+PASS No output before 80 second cycle
+PASS One coal makes exactly one coke
+PASS Install efficiency with Shift-click while burning
+PASS Installing does not refill active fuel
+PASS Next coal gets 15 percent longer burn
+PASS Module never accelerates coke cycle
+PASS Overdrive rejected
+PASS Remove efficiency during active processing
+PASS Empty module socket rejects overdrive
+PASS Removal retains burning fuel snapshot
+PASS Full output pauses instead of losing progress
+PASS Clearing output resumes cycle
+PASS Missing fuel preserves unfinished cycle
+PASS Fuel container retained
+PASS Full-width fuel values survive NBT
+PASS Module and fuel survive save/reload
+PASS Old saves restore original feed side
+PASS Hidden slots cannot be operated under side panel
+PASS Menu refuses front port configuration
+PASS Port presence north/TOP/DISABLED
+PASS No FE north/TOP/DISABLED
+PASS Port presence north/TOP/INPUT
+PASS No FE north/TOP/INPUT
+PASS Blue accepts feed and fuel TOP
+PASS Blue blocks invalid input and extraction TOP
+PASS Port presence north/TOP/OUTPUT
+PASS No FE north/TOP/OUTPUT
+PASS Orange protects coal and fuel TOP
+PASS Orange extracts empty bucket TOP
+PASS Cached handler obeys OFF TOP
+PASS Port presence north/BOTTOM/DISABLED
+PASS No FE north/BOTTOM/DISABLED
+PASS Port presence north/BOTTOM/INPUT
+PASS No FE north/BOTTOM/INPUT
+PASS Blue accepts feed and fuel BOTTOM
+PASS Blue blocks invalid input and extraction BOTTOM
+PASS Port presence north/BOTTOM/OUTPUT
+PASS No FE north/BOTTOM/OUTPUT
+PASS Orange protects coal and fuel BOTTOM
+PASS Orange extracts empty bucket BOTTOM
+PASS Cached handler obeys OFF BOTTOM
+PASS Port presence north/FRONT/DISABLED
+PASS No FE north/FRONT/DISABLED
+PASS Port presence north/FRONT/INPUT
+PASS No FE north/FRONT/INPUT
+PASS Port presence north/FRONT/OUTPUT
+PASS No FE north/FRONT/OUTPUT
+PASS Port presence north/BACK/DISABLED
+PASS No FE north/BACK/DISABLED
+PASS Port presence north/BACK/INPUT
+PASS No FE north/BACK/INPUT
+PASS Blue accepts feed and fuel BACK
+PASS Blue blocks invalid input and extraction BACK
+PASS Port presence north/BACK/OUTPUT
+PASS No FE north/BACK/OUTPUT
+PASS Orange protects coal and fuel BACK
+PASS Orange extracts empty bucket BACK
+PASS Cached handler obeys OFF BACK
+PASS Port presence north/LEFT/DISABLED
+PASS No FE north/LEFT/DISABLED
+PASS Port presence north/LEFT/INPUT
+PASS No FE north/LEFT/INPUT
+PASS Blue accepts feed and fuel LEFT
+PASS Blue blocks invalid input and extraction LEFT
+PASS Port presence north/LEFT/OUTPUT
+PASS No FE north/LEFT/OUTPUT
+PASS Orange protects coal and fuel LEFT
+PASS Orange extracts empty bucket LEFT
+PASS Cached handler obeys OFF LEFT
+PASS Port presence north/RIGHT/DISABLED
+PASS No FE north/RIGHT/DISABLED
+PASS Port presence north/RIGHT/INPUT
+PASS No FE north/RIGHT/INPUT
+PASS Blue accepts feed and fuel RIGHT
+PASS Blue blocks invalid input and extraction RIGHT
+PASS Port presence north/RIGHT/OUTPUT
+PASS No FE north/RIGHT/OUTPUT
+PASS Orange protects coal and fuel RIGHT
+PASS Orange extracts empty bucket RIGHT
+PASS Cached handler obeys OFF RIGHT
+PASS Unsided access denied north
+PASS Port presence east/TOP/DISABLED
+PASS No FE east/TOP/DISABLED
+PASS Port presence east/TOP/INPUT
+PASS No FE east/TOP/INPUT
+PASS Blue accepts feed and fuel TOP
+PASS Blue blocks invalid input and extraction TOP
+PASS Port presence east/TOP/OUTPUT
+PASS No FE east/TOP/OUTPUT
+PASS Orange protects coal and fuel TOP
+PASS Orange extracts empty bucket TOP
+PASS Cached handler obeys OFF TOP
+PASS Port presence east/BOTTOM/DISABLED
+PASS No FE east/BOTTOM/DISABLED
+PASS Port presence east/BOTTOM/INPUT
+PASS No FE east/BOTTOM/INPUT
+PASS Blue accepts feed and fuel BOTTOM
+PASS Blue blocks invalid input and extraction BOTTOM
+PASS Port presence east/BOTTOM/OUTPUT
+PASS No FE east/BOTTOM/OUTPUT
+PASS Orange protects coal and fuel BOTTOM
+PASS Orange extracts empty bucket BOTTOM
+PASS Cached handler obeys OFF BOTTOM
+PASS Port presence east/FRONT/DISABLED
+PASS No FE east/FRONT/DISABLED
+PASS Port presence east/FRONT/INPUT
+PASS No FE east/FRONT/INPUT
+PASS Port presence east/FRONT/OUTPUT
+PASS No FE east/FRONT/OUTPUT
+PASS Port presence east/BACK/DISABLED
+PASS No FE east/BACK/DISABLED
+PASS Port presence east/BACK/INPUT
+PASS No FE east/BACK/INPUT
+PASS Blue accepts feed and fuel BACK
+PASS Blue blocks invalid input and extraction BACK
+PASS Port presence east/BACK/OUTPUT
+PASS No FE east/BACK/OUTPUT
+PASS Orange protects coal and fuel BACK
+PASS Orange extracts empty bucket BACK
+PASS Cached handler obeys OFF BACK
+PASS Port presence east/LEFT/DISABLED
+PASS No FE east/LEFT/DISABLED
+PASS Port presence east/LEFT/INPUT
+PASS No FE east/LEFT/INPUT
+PASS Blue accepts feed and fuel LEFT
+PASS Blue blocks invalid input and extraction LEFT
+PASS Port presence east/LEFT/OUTPUT
+PASS No FE east/LEFT/OUTPUT
+PASS Orange protects coal and fuel LEFT
+PASS Orange extracts empty bucket LEFT
+PASS Cached handler obeys OFF LEFT
+PASS Port presence east/RIGHT/DISABLED
+PASS No FE east/RIGHT/DISABLED
+PASS Port presence east/RIGHT/INPUT
+PASS No FE east/RIGHT/INPUT
+PASS Blue accepts feed and fuel RIGHT
+PASS Blue blocks invalid input and extraction RIGHT
+PASS Port presence east/RIGHT/OUTPUT
+PASS No FE east/RIGHT/OUTPUT
+PASS Orange protects coal and fuel RIGHT
+PASS Orange extracts empty bucket RIGHT
+PASS Cached handler obeys OFF RIGHT
+PASS Unsided access denied east
+PASS Port presence south/TOP/DISABLED
+PASS No FE south/TOP/DISABLED
+PASS Port presence south/TOP/INPUT
+PASS No FE south/TOP/INPUT
+PASS Blue accepts feed and fuel TOP
+PASS Blue blocks invalid input and extraction TOP
+PASS Port presence south/TOP/OUTPUT
+PASS No FE south/TOP/OUTPUT
+PASS Orange protects coal and fuel TOP
+PASS Orange extracts empty bucket TOP
+PASS Cached handler obeys OFF TOP
+PASS Port presence south/BOTTOM/DISABLED
+PASS No FE south/BOTTOM/DISABLED
+PASS Port presence south/BOTTOM/INPUT
+PASS No FE south/BOTTOM/INPUT
+PASS Blue accepts feed and fuel BOTTOM
+PASS Blue blocks invalid input and extraction BOTTOM
+PASS Port presence south/BOTTOM/OUTPUT
+PASS No FE south/BOTTOM/OUTPUT
+PASS Orange protects coal and fuel BOTTOM
+PASS Orange extracts empty bucket BOTTOM
+PASS Cached handler obeys OFF BOTTOM
+PASS Port presence south/FRONT/DISABLED
+PASS No FE south/FRONT/DISABLED
+PASS Port presence south/FRONT/INPUT
+PASS No FE south/FRONT/INPUT
+PASS Port presence south/FRONT/OUTPUT
+PASS No FE south/FRONT/OUTPUT
+PASS Port presence south/BACK/DISABLED
+PASS No FE south/BACK/DISABLED
+PASS Port presence south/BACK/INPUT
+PASS No FE south/BACK/INPUT
+PASS Blue accepts feed and fuel BACK
+PASS Blue blocks invalid input and extraction BACK
+PASS Port presence south/BACK/OUTPUT
+PASS No FE south/BACK/OUTPUT
+PASS Orange protects coal and fuel BACK
+PASS Orange extracts empty bucket BACK
+PASS Cached handler obeys OFF BACK
+PASS Port presence south/LEFT/DISABLED
+PASS No FE south/LEFT/DISABLED
+PASS Port presence south/LEFT/INPUT
+PASS No FE south/LEFT/INPUT
+PASS Blue accepts feed and fuel LEFT
+PASS Blue blocks invalid input and extraction LEFT
+PASS Port presence south/LEFT/OUTPUT
+PASS No FE south/LEFT/OUTPUT
+PASS Orange protects coal and fuel LEFT
+PASS Orange extracts empty bucket LEFT
+PASS Cached handler obeys OFF LEFT
+PASS Port presence south/RIGHT/DISABLED
+PASS No FE south/RIGHT/DISABLED
+PASS Port presence south/RIGHT/INPUT
+PASS No FE south/RIGHT/INPUT
+PASS Blue accepts feed and fuel RIGHT
+PASS Blue blocks invalid input and extraction RIGHT
+PASS Port presence south/RIGHT/OUTPUT
+PASS No FE south/RIGHT/OUTPUT
+PASS Orange protects coal and fuel RIGHT
+PASS Orange extracts empty bucket RIGHT
+PASS Cached handler obeys OFF RIGHT
+PASS Unsided access denied south
+PASS Port presence west/TOP/DISABLED
+PASS No FE west/TOP/DISABLED
+PASS Port presence west/TOP/INPUT
+PASS No FE west/TOP/INPUT
+PASS Blue accepts feed and fuel TOP
+PASS Blue blocks invalid input and extraction TOP
+PASS Port presence west/TOP/OUTPUT
+PASS No FE west/TOP/OUTPUT
+PASS Orange protects coal and fuel TOP
+PASS Orange extracts empty bucket TOP
+PASS Cached handler obeys OFF TOP
+PASS Port presence west/BOTTOM/DISABLED
+PASS No FE west/BOTTOM/DISABLED
+PASS Port presence west/BOTTOM/INPUT
+PASS No FE west/BOTTOM/INPUT
+PASS Blue accepts feed and fuel BOTTOM
+PASS Blue blocks invalid input and extraction BOTTOM
+PASS Port presence west/BOTTOM/OUTPUT
+PASS No FE west/BOTTOM/OUTPUT
+PASS Orange protects coal and fuel BOTTOM
+PASS Orange extracts empty bucket BOTTOM
+PASS Cached handler obeys OFF BOTTOM
+PASS Port presence west/FRONT/DISABLED
+PASS No FE west/FRONT/DISABLED
+PASS Port presence west/FRONT/INPUT
+PASS No FE west/FRONT/INPUT
+PASS Port presence west/FRONT/OUTPUT
+PASS No FE west/FRONT/OUTPUT
+PASS Port presence west/BACK/DISABLED
+PASS No FE west/BACK/DISABLED
+PASS Port presence west/BACK/INPUT
+PASS No FE west/BACK/INPUT
+PASS Blue accepts feed and fuel BACK
+PASS Blue blocks invalid input and extraction BACK
+PASS Port presence west/BACK/OUTPUT
+PASS No FE west/BACK/OUTPUT
+PASS Orange protects coal and fuel BACK
+PASS Orange extracts empty bucket BACK
+PASS Cached handler obeys OFF BACK
+PASS Port presence west/LEFT/DISABLED
+PASS No FE west/LEFT/DISABLED
+PASS Port presence west/LEFT/INPUT
+PASS No FE west/LEFT/INPUT
+PASS Blue accepts feed and fuel LEFT
+PASS Blue blocks invalid input and extraction LEFT
+PASS Port presence west/LEFT/OUTPUT
+PASS No FE west/LEFT/OUTPUT
+PASS Orange protects coal and fuel LEFT
+PASS Orange extracts empty bucket LEFT
+PASS Cached handler obeys OFF LEFT
+PASS Port presence west/RIGHT/DISABLED
+PASS No FE west/RIGHT/DISABLED
+PASS Port presence west/RIGHT/INPUT
+PASS No FE west/RIGHT/INPUT
+PASS Blue accepts feed and fuel RIGHT
+PASS Blue blocks invalid input and extraction RIGHT
+PASS Port presence west/RIGHT/OUTPUT
+PASS No FE west/RIGHT/OUTPUT
+PASS Orange protects coal and fuel RIGHT
+PASS Orange extracts empty bucket RIGHT
+PASS Cached handler obeys OFF RIGHT
+PASS Unsided access denied west
+PASS Enabled output exports to neighboring inventory
+PASS Disabled output stops automatic export
+PASS Survival harvest tier stone_pickaxe
+PASS Contents and module drop exactly once stone_pickaxe
+PASS Survival harvest tier wooden_pickaxe
+PASS Contents and module drop exactly once wooden_pickaxe
+PASS Wrench rotates configured sides
+PASS Wrench creates one world drop without inserting into inventory
+PASS Portable oven retains fuel progress and upgrade
+PASS World drop uses normal pickup delay
+PASS Actual BlockItem placement restores saved machine
+PASS Port configuration follows newly placed orientation
+PASS Adventure mode blocks dismantle
+PASS Client pipe recognizes input
+PASS Client pipe recognizes output
+PASS Client pipe rejects front
+Screenshot 01_existing_model
+PASS Networked coke GUI opens
+PASS 32-bit fuel value synchronized
+Screenshot 02_main_gui
+Screenshot 03_main_scale3
+Screenshot 04_sides
+PASS Networked side button updates menu
+PASS Client receives logical side update
+Screenshot 05_modules_empty
+PASS Networked Shift-click installs efficiency while working
+Screenshot 06_modules_installed
+Screenshot 07_module_scale3
+PASS JEI runtime available
+PASS Exactly one coke JEI category
+PASS Exactly one coke recipe
+Screenshot 08_jei
+Screenshot 09_jei_progress
+PASS Generator GUI without footer opens
+Screenshot 10_generator_without_code
+PASS Press GUI without footer opens
+Screenshot 11_press_without_code
+PASS Copper GUI without footer opens
+Screenshot 12_copper_without_code
+RESULT PASS failures=0

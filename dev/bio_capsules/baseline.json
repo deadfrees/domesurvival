@@ -1,0 +1,7 @@
+{
+  "src/main/resources/assets/domesurvival/models/item/bio_module.json": "3d2cac7d3db8fdf5e5f0a0016d6c4c5d90ad669fdbb1f83142123ccf17e4aa47",
+  "src/main/resources/assets/domesurvival/models/item/cow_cryocapsule.json": "96b1ff78ac4ee4377e59cb736a2e6d9c32c5adfde805c65a083750dcde19c100",
+  "src/main/resources/assets/domesurvival/models/item/sheep_cryocapsule.json": "96b1ff78ac4ee4377e59cb736a2e6d9c32c5adfde805c65a083750dcde19c100",
+  "src/main/resources/assets/domesurvival/models/item/chicken_cryocapsule.json": "96b1ff78ac4ee4377e59cb736a2e6d9c32c5adfde805c65a083750dcde19c100",
+  "src/main/resources/assets/domesurvival/models/item/damaged_pig_cryocapsule.json": "96b1ff78ac4ee4377e59cb736a2e6d9c32c5adfde805c65a083750dcde19c100"
+}
