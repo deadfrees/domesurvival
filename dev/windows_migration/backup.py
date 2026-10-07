@@ -39,7 +39,7 @@ def inventory(source, label):
         for name in files:
             p = Path(base) / name
             if label == 'codex-home' and (name in CODEX_FILES_SKIP or
-                    name.endswith(('-wal', '-shm', '.lock')) or name.startswith('..codex-global-state')):
+                    name.endswith(('-wal', '-shm', '.lock', '.guard')) or name.startswith('..codex-global-state')):
                 skipped.append(str(p))
                 continue
             if p.is_symlink():
